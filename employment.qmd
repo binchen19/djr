@@ -339,7 +339,7 @@ df_percentage |>
   theme_bw() +
   theme(legend.position = "none")
 
-ggsave("line_plot.png", width = 10, height = 6, dpi = 300) # <1>
+# ggsave("line_plot.png", width = 10, height = 6, dpi = 300) # <1>
 ```
 
 1.  `ggsave()` is a function that saves the plot to a file. In this case, we are saving the plot as a PNG file with a width of 10 inches, a height of 6 inches, and a resolution of 300 dpi.
