@@ -314,11 +314,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#leaning-objectives" id="toc-leaning-objectives" class="nav-link active" data-scroll-target="#leaning-objectives"><span class="header-section-number">5</span> Leaning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up"><span class="header-section-number">5.1</span> Set up</a></li>
-  <li><a href="#data-import-inspection" id="toc-data-import-inspection" class="nav-link" data-scroll-target="#data-import-inspection"><span class="header-section-number">5.2</span> Data Import &amp; Inspection</a></li>
-  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">5.3</span> Data Cleaning</a>
+  <li><a href="#leaning-objectives" id="toc-leaning-objectives" class="nav-link active" data-scroll-target="#leaning-objectives"><span class="header-section-number">4.1</span> Leaning Objectives</a></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up"><span class="header-section-number">4.2</span> Set up</a></li>
+  <li><a href="#data-import-inspection" id="toc-data-import-inspection" class="nav-link" data-scroll-target="#data-import-inspection"><span class="header-section-number">4.3</span> Data Import &amp; Inspection</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">4.4</span> Data Cleaning</a>
   <ul class="collapse">
   <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><code>mutate()</code></a></li>
   <li><a href="#change-column-name" id="toc-change-column-name" class="nav-link" data-scroll-target="#change-column-name">Change column name</a></li>
@@ -326,16 +325,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><code>select()</code></a></li>
   <li><a href="#string-functions-with-pipe-operator" id="toc-string-functions-with-pipe-operator" class="nav-link" data-scroll-target="#string-functions-with-pipe-operator">String functions with pipe operator <code>|&gt;</code></a></li>
   </ul></li>
-  <li><a href="#save-load-data" id="toc-save-load-data" class="nav-link" data-scroll-target="#save-load-data"><span class="header-section-number">5.4</span> Save &amp; Load data</a>
+  <li><a href="#save-load-data" id="toc-save-load-data" class="nav-link" data-scroll-target="#save-load-data"><span class="header-section-number">4.5</span> Save &amp; Load data</a>
   <ul class="collapse">
   <li><a href="#save-data" id="toc-save-data" class="nav-link" data-scroll-target="#save-data">Save data</a></li>
   <li><a href="#save-to-csv" id="toc-save-to-csv" class="nav-link" data-scroll-target="#save-to-csv">Save to CSV</a></li>
   <li><a href="#save-to-.rdata" id="toc-save-to-.rdata" class="nav-link" data-scroll-target="#save-to-.rdata">Save to <code>.RData</code></a></li>
   <li><a href="#load-the-cleand-data-back" id="toc-load-the-cleand-data-back" class="nav-link" data-scroll-target="#load-the-cleand-data-back">Load the cleand data back</a></li>
   </ul></li>
-  <li><a href="#fixing-date-as.date" id="toc-fixing-date-as.date" class="nav-link" data-scroll-target="#fixing-date-as.date"><span class="header-section-number">5.5</span> Fixing Date <code>as.Date()</code></a></li>
-  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">5.6</span> Key Functions Recap</a></li>
-  </ul></li>
+  <li><a href="#fixing-date-as.date" id="toc-fixing-date-as.date" class="nav-link" data-scroll-target="#fixing-date-as.date"><span class="header-section-number">4.6</span> Fixing Date <code>as.Date()</code></a></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">4.7</span> Key Functions Recap</a></li>
   </ul>
 </nav>
     </div>
@@ -361,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="leaning-objectives" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Leaning Objectives</h1>
+<section id="leaning-objectives" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="leaning-objectives"><span class="header-section-number">4.1</span> Leaning Objectives</h2>
 <ul>
 <li>Review data import and inspection
 <ul>
@@ -383,8 +381,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Load data: <code>load()</code></li>
 </ul></li>
 </ul>
-<section id="set-up" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="set-up"><span class="header-section-number">5.1</span> Set up</h2>
+</section>
+<section id="set-up" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="set-up"><span class="header-section-number">4.2</span> Set up</h2>
 <p>Before we start, let’s load the <code>tidyverse</code> packages.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -402,8 +401,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="data-import-inspection" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="data-import-inspection"><span class="header-section-number">5.2</span> Data Import &amp; Inspection</h2>
+<section id="data-import-inspection" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="data-import-inspection"><span class="header-section-number">4.3</span> Data Import &amp; Inspection</h2>
 <p>Let’s start by importing the data using the <code>read_csv()</code> function from the <code>readr</code> package.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -461,8 +460,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="data-cleaning" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">5.3</span> Data Cleaning</h2>
+<section id="data-cleaning" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">4.4</span> Data Cleaning</h2>
 <section id="mutate" class="level3">
 <h3 class="anchored" data-anchor-id="mutate"><code>mutate()</code></h3>
 <p>However, in the <code>df</code> dataset, we found the academic year is in a format as “2009/10”. This is not a standard date format, therefore, we may not be able to use <code>as.Date()</code> to convert it to a date object. Instead, we can extract the year as an integer and store it in a new column.</p>
@@ -606,8 +605,8 @@ Note
 </div>
 </section>
 </section>
-<section id="save-load-data" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="save-load-data"><span class="header-section-number">5.4</span> Save &amp; Load data</h2>
+<section id="save-load-data" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="save-load-data"><span class="header-section-number">4.5</span> Save &amp; Load data</h2>
 <p>After cleaning the data, we can save the cleaned data to be used for further analysis. We can save the cleand dataframe to the following formats: - CSV file: using <code>write_csv()</code> function from the <code>readr</code> package. - RData: save multiple objects using the <code>save()</code> function. - RDS file: save single object using the <code>saveRDS()</code> function.</p>
 <p>However, it is often recommended to save the data to <code>.RData</code> file, because it is more efficient to read the data from <code>.RData</code> file and it preserves the data structure and data type of the data frame.</p>
 <p>That means, if you save the dataframe to CSV file, you may lose the data structure and data type of the data frame. For example, if you save a data frame with date columns to a CSV file, when you read the CSV file back, the character columns may be read as characters.</p>
@@ -670,8 +669,8 @@ Note
 </section>
 </section>
 </section>
-<section id="fixing-date-as.date" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="fixing-date-as.date"><span class="header-section-number">5.5</span> Fixing Date <code>as.Date()</code></h2>
+<section id="fixing-date-as.date" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="fixing-date-as.date"><span class="header-section-number">4.6</span> Fixing Date <code>as.Date()</code></h2>
 <p>In data analysis for journalism, we often need to convert character strings to dates for further analysis. Because we can not do math operations on a character string, and also it may sort the year in a wrong order if we sort it as a character string.</p>
 <p>Normally, we can use some functions to convert a character string to a date. For example: we first created a character string <code>today_char</code> and then converted it to a date object <code>today_date</code> using the <code>as.Date()</code> function.</p>
 <div class="cell">
@@ -703,8 +702,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="key-functions-recap" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">5.6</span> Key Functions Recap</h2>
+<section id="key-functions-recap" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">4.7</span> Key Functions Recap</h2>
 <table class="table">
 <colgroup>
 <col style="width: 15%">
@@ -797,7 +796,6 @@ Tip
 </table>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
