@@ -2,13 +2,12 @@
 title: "Data Import"
 format: html
 ---
-# Importing Data in R
+## Importing Data in R
 
-## Built-in Datasets from Packages
+### Built-in Datasets from Packages
 
 R comes with a variety of built-in datasets that can be loaded directly from packages, here are some popular ones:
 
-### Popular Data Packages
 
 | Package       | Key Datasets          | Load Command         |
 |---------------|-----------------------|----------------------|
@@ -23,9 +22,9 @@ R comes with a variety of built-in datasets that can be loaded directly from pac
 mtcars
 ```
 
-## Downloading External Data
+### Downloading External Data
 
-### From TidyTuesday
+#### From TidyTuesday
 ```{r}
 #| eval: false
 #install.packages("tidytuesdayR")
@@ -36,7 +35,7 @@ tuesdata <- tt_load('2024-08-06')
 olympics <- tuesdata$olympics
 ```
 
-### Direct from URL
+#### Direct from URL
 ```{r}
 #| eval: true
 #| message: false
@@ -53,7 +52,7 @@ hksalary_download
 ```
 
 
-## Local File Import
+### Local File Import
 
 In data analysis projects, importing local files is more common than importing data from the web. Here are some common file types and their uses:
 
@@ -83,7 +82,7 @@ hksalary <- read_csv("data/hksalary.csv")
 hksalary
 ```
 
-### File Path Management
+#### File Path Management
 
 | Path Type     | Example                     | When to Use          |
 |---------------|-----------------------------|----------------------|

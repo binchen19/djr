@@ -3,7 +3,7 @@ title: "Data Wrangling"
 format: html
 ---
 
-# Leaning Objectives
+## Leaning Objectives
 
 -   Review data import and inspection
     -  Data import: `read_csv()`
