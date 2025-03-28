@@ -3,7 +3,7 @@ title: "HK University Graduate Employment Situation"
 format: html
 ---
 
-# Learning Objectives
+## Learning Objectives
 -   Practice on Merging two data frames
     -   Learn how to use `left_join`
 -   Practice more data analysis strategies on the "employment" data set
@@ -15,7 +15,7 @@ format: html
     -   Plot with facets: `facet_wrap`
     -   Interactive Plots: `plotly`
     
-# Set up
+## Set up
 
 In this week, you will continue working with the `Graduate_Employment_Stituation(Eng).csv` dataset. This dataset was downloaded from [DATA.GOV.HK](https://data.gov.hk/en-data/dataset/hk-ugc-ugc-student-ges-statistics). It contains on employment situation of graduates of full-time UGC-funded programmes in Hong Kong. The full name of the dataset is "Employment Situation of Graduates of Full-time UGC-funded Programmes by University, Level of Study, Employment Situation and Occupation".
 
@@ -24,14 +24,12 @@ In this week, you will continue working with the `Graduate_Employment_Stituation
 library(tidyverse)
 ```
 
-# Import the data
+## Data Import and Cleaning
 
 ```{r message=FALSE, warning=FALSE}
 # Use your own path
 df <- read_csv("data/employment.csv")
 ```
-
-# Data Cleaning
 
 ```{r}
 df_cleaned <- df |>
@@ -50,7 +48,7 @@ df_cleaned <- df |>
 glimpse(df_cleaned)
 ```
 
-# Merging two data frames
+## Merging two data frames
 
 For example, if you want to know what is the "Unemployment" percentage for each university in the most recent surveyed year, you may find it is hard to get the result directly from the `df_cleaned` dataset. You may need to do some data manipulation to get the result.
 
@@ -62,7 +60,7 @@ $$
 
 ::: {.callout-note title = "Question"} So take a minute to think about how you can get the result? Can you get the percentage from the `df_cleaned` dataset directly using the `group_by` and `summarise` functions? and why or why not? :::
 
-## n_unemployed
+### n_unemployed
 
 ```{r}
 df_unemp <- df_cleaned |>
@@ -73,7 +71,7 @@ df_unemp <- df_cleaned |>
 glimpse(df_unemp)
 ```
 
-## n_total
+### n_total
 
 ```{r}
 df_total <- df_cleaned |>
@@ -83,9 +81,9 @@ df_total <- df_cleaned |>
 glimpse(df_total)
 ```
 
-## Calculate the percentage and create a new dataframe
+### Calculate the percentage and create a new dataframe
 
-## Merge the two dataframes
+### Merge the two dataframes
 
 Notice that df_unemp and df_total have the same columns "university" and "year_start". You can use the `left_join` function to merge the two dataframes by these two columns.
 
@@ -114,11 +112,11 @@ df_percentage <- df_unemp |>
 df_percentage
 ```
 
-# More on data explore
+## More on data explore
 
 So far, you have learnt how to explore a dataset by looking at the first few rows, the column details. Often, you may want to explore the dataset in more detail. Especially for columns/variables. You should notice that for different types of columns, you may need to use different strategies and functions to explore them. For example, for a `numeric` column, you may want to know the `mean`, `median`, `min`, `max`, etc. For a `character` column, you may want to know the unique values, the frequency of each unique value, etc.
 
-## `unique()`
+### `unique()`
 
 For example, in the `df` dataset, you may want to explore the `Occupation` column. You can use the `unique()` function to get all the unique values in the `Occupation` column.
 
@@ -128,7 +126,7 @@ For example, in the `df` dataset, you may want to explore the `Occupation` colum
 unique(df$University)
 ```
 
-## `table()`
+### `table()`
 
 You may also want to know the frequency of each unique value in the `Occupation` column. You can use the `table()` function to get the frequency of each unique value in the `Occupation` column.
 
@@ -142,7 +140,7 @@ table(df$Occupation)
 You can use table() to also get the frequency of unique value for a combination of two columns. For example, if you want to know the frequency of each unique value in the `Occupation` column for each `University`, you can use the following code: `table(df$University, df$Occupation)`.
 :::
 
-### extension
+#### extension
 
 Can you use `group_by` and `summarise` to get the same result?
 
@@ -152,7 +150,7 @@ df |>
   summarise(n = n())
 ```
 
-## `summary()`
+### `summary()`
 
 Notice that the `unique` and `table` functions are particularly useful for `character` columns. For `numeric` columns, the exploration can be very straightforward, such as getting the `mean`, `median`, `min`, `max`, etc. For example, if you want to explore the `percentage` column in the `df_percentage` dataset.
 
@@ -173,7 +171,7 @@ summary(df_percentage$percentage)
 `1st Qu` and `3rd Qu` are the first and third quartiles, respectively. They are the values that divide the data into four equal parts. The `median` is the middle value of the data. The `min` and `max` are the minimum and maximum values of the data, respectively.
 :::
 
-## `hist()`
+### `hist()`
 
 For a `numeric` column, you may also want to know the distribution of the data. You can use the `hist()` function to plot a histogram of the data.
 
@@ -183,7 +181,7 @@ hist(df_percentage$percentage)
 
 ::: {.callout-note title = "Question"} Can you dont use `hist()` on a `character` column to get the distribution of the data, and why? :::
 
-## `skim` package
+### `skim` package
 
 Actually, there are some packages that can help you explore the data more efficiently. For example, the `skimr` package provides a more comprehensive summary of the data.
 
@@ -203,9 +201,9 @@ skim(df)
 
 You will see the output including three pages: overall description, two `one_skim_df`. - The overall description provides the summary of the dataset, including the number of rows, columns, missing values, etc. - The second page page shows details for character columns. The useful information includes the number of missing values, the number of unique values. You may find this page also shows information about `min` and `max`, however, this is not about the min and max of the data, but the min and max of the length of the string in the column. - The third page shows a description of all the `numeric` columns. You will find in additional to n_missing, it also provides the `mean`, `sd`, `p0`, `p25`, `p50`, `p75`.
 
-# More on data visualization
+## Data visualization
 
-## Bar Plot
+### Bar Plot
 
 -   Create a bar plot to show the percentage of graduates who are "Unemployed" for each university in the most recent surveyed year (2022). Use the `df_percentage` dataframe.
 
@@ -219,7 +217,7 @@ df_percentage |>
        y = "Percentage")
 ```
 
-## Bar Plot + `coord_flip()`
+#### Bar Plot + `coord_flip()`
 
 ```{r}
 df_percentage |>
@@ -234,7 +232,7 @@ df_percentage |>
 
 1.  `coord_flip()` is a function that flips the x and y axes. It is useful when you have a lot of categories on the x-axis and the labels are long, so it is better to put them on the y-axis.
 
-## reordering the bars
+#### reordering the bars
 
 ```{r}
 df_percentage |>
@@ -253,7 +251,7 @@ df_percentage |>
 `fct_reorder()` is a function provided by the `forcats` package, which is part of the `tidyverse`. You don't need to load the `forcats` package explicitly because it is loaded automatically when you load the `tidyverse`.
 :::
 
-## add labels
+#### add labels
 
 ```{r}
 df_percentage |>
@@ -269,7 +267,7 @@ df_percentage |>
 
 1.  `geom_text()` is a function that adds text labels to the plot. In this case, we are adding the `percentage` values to the plot. The `hjust` argument controls the horizontal justification of the text. A value of *-0.1* means the text is slightly to the *right* of the bar.
 
-## Line Plot
+### Line Plot
 
 -   Create a line plot to show the percentage of Unemployed graduates for HKU over the years.
 
@@ -287,7 +285,7 @@ df_percentage |>
 
 1.  `scale_x_continuous()` is a function that controls the breaks (tick marks) on the x-axis. In this case, we are setting the breaks to be every year from 2009 to 2022.
 
-### Line Plot with Multiple Lines
+#### Line Plot with Multiple Lines
 
 ```{r}
 df_percentage |>
@@ -308,7 +306,7 @@ df_percentage |>
 Within the `theme()` function, you can use the `legend.position` argument to control the position of the legend. The possible values are "none", "left", "right", "top", "bottom", "topright", "topleft", "bottomright", "bottomleft".
 :::
 
-## Plot with Facets
+#### Plot with Facets
 
 ```{r}
 df_percentage |>
@@ -325,7 +323,7 @@ df_percentage |>
 
 1.  `facet_wrap(~university)` is a function that creates a separate plot for each level of the `university` factor. In this case, we are creating a separate plot for each university. The `~` symbol is used to specify the variable that you want to facet by.
 
-## Save the plots
+#### Save the plots
 
 ```{r}
 df_percentage |>
@@ -348,7 +346,7 @@ df_percentage |>
 `dpi` stands for dots per inch, which is the resolution of the image. The higher the dpi, the higher the resolution of the image. The default dpi is 300, which is a good resolution for most purposes.
 :::
 
-## Arrange multiple plots
+### Arrange multiple plots
 
 Sometimes, you may want to put multiple plots together for comparison or presentation. You can use the `gridExtra` package to arrange multiple plots on a single page. Install the `gridExtra` package if you haven't installed it yet.
 
@@ -386,7 +384,7 @@ p2 <- df_percentage |>
 grid.arrange(p1, p2, ncol = 2)
 ```
 
-# Interactive Plot with `plotly`
+### Interactive Plot with `plotly`
 
 When you plot using `ggplot2`, you can easily convert it to an interactive plot using the `plotly` package. This is super useful when you want to share your plot online or in a presentation, especially when the plot involves multiple lines or facets.
 
