@@ -314,32 +314,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#importing-data-in-r" id="toc-importing-data-in-r" class="nav-link active" data-scroll-target="#importing-data-in-r"><span class="header-section-number">4</span> Importing Data in R</a>
+  <li><a href="#importing-data-in-r" id="toc-importing-data-in-r" class="nav-link active" data-scroll-target="#importing-data-in-r"><span class="header-section-number">3.1</span> Importing Data in R</a>
   <ul class="collapse">
-  <li><a href="#built-in-datasets-from-packages" id="toc-built-in-datasets-from-packages" class="nav-link" data-scroll-target="#built-in-datasets-from-packages"><span class="header-section-number">4.1</span> Built-in Datasets from Packages</a>
-  <ul class="collapse">
-  <li><a href="#popular-data-packages" id="toc-popular-data-packages" class="nav-link" data-scroll-target="#popular-data-packages">Popular Data Packages</a></li>
-  </ul></li>
-  <li><a href="#downloading-external-data" id="toc-downloading-external-data" class="nav-link" data-scroll-target="#downloading-external-data"><span class="header-section-number">4.2</span> Downloading External Data</a>
-  <ul class="collapse">
-  <li><a href="#from-tidytuesday" id="toc-from-tidytuesday" class="nav-link" data-scroll-target="#from-tidytuesday">From TidyTuesday</a></li>
-  <li><a href="#direct-from-url" id="toc-direct-from-url" class="nav-link" data-scroll-target="#direct-from-url">Direct from URL</a></li>
-  </ul></li>
-  <li><a href="#local-file-import" id="toc-local-file-import" class="nav-link" data-scroll-target="#local-file-import"><span class="header-section-number">4.3</span> Local File Import</a>
-  <ul class="collapse">
+  <li><a href="#built-in-datasets-from-packages" id="toc-built-in-datasets-from-packages" class="nav-link" data-scroll-target="#built-in-datasets-from-packages">Built-in Datasets from Packages</a></li>
+  <li><a href="#downloading-external-data" id="toc-downloading-external-data" class="nav-link" data-scroll-target="#downloading-external-data">Downloading External Data</a></li>
+  <li><a href="#local-file-import" id="toc-local-file-import" class="nav-link" data-scroll-target="#local-file-import">Local File Import</a></li>
   <li><a href="#csv-files-with-readr-tidyverse-package" id="toc-csv-files-with-readr-tidyverse-package" class="nav-link" data-scroll-target="#csv-files-with-readr-tidyverse-package">CSV Files with <code>readr</code> (<code>tidyverse</code>) package</a></li>
-  <li><a href="#file-path-management" id="toc-file-path-management" class="nav-link" data-scroll-target="#file-path-management">File Path Management</a></li>
   </ul></li>
-  <li><a href="#data-inspection" id="toc-data-inspection" class="nav-link" data-scroll-target="#data-inspection"><span class="header-section-number">4.4</span> Data Inspection</a>
+  <li><a href="#data-inspection" id="toc-data-inspection" class="nav-link" data-scroll-target="#data-inspection"><span class="header-section-number">3.2</span> Data Inspection</a>
   <ul class="collapse">
   <li><a href="#first-look-tools" id="toc-first-look-tools" class="nav-link" data-scroll-target="#first-look-tools">First Look Tools</a></li>
   </ul></li>
-  <li><a href="#practice-import-hksalary.csv-data" id="toc-practice-import-hksalary.csv-data" class="nav-link" data-scroll-target="#practice-import-hksalary.csv-data"><span class="header-section-number">4.5</span> Practice: Import <code>hksalary.csv</code> Data</a>
+  <li><a href="#practice-import-hksalary.csv-data" id="toc-practice-import-hksalary.csv-data" class="nav-link" data-scroll-target="#practice-import-hksalary.csv-data"><span class="header-section-number">3.3</span> Practice: Import <code>hksalary.csv</code> Data</a>
   <ul class="collapse">
   <li><a href="#step-by-step-practice" id="toc-step-by-step-practice" class="nav-link" data-scroll-target="#step-by-step-practice">Step-by-Step Practice</a></li>
   </ul></li>
-  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">4.6</span> Key Functions Recap</a></li>
-  </ul></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">3.4</span> Key Functions Recap</a></li>
   </ul>
 </nav>
     </div>
@@ -365,13 +355,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="importing-data-in-r" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Importing Data in R</h1>
-<section id="built-in-datasets-from-packages" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="built-in-datasets-from-packages"><span class="header-section-number">4.1</span> Built-in Datasets from Packages</h2>
+<section id="importing-data-in-r" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="importing-data-in-r"><span class="header-section-number">3.1</span> Importing Data in R</h2>
+<section id="built-in-datasets-from-packages" class="level3">
+<h3 class="anchored" data-anchor-id="built-in-datasets-from-packages">Built-in Datasets from Packages</h3>
 <p>R comes with a variety of built-in datasets that can be loaded directly from packages, here are some popular ones:</p>
-<section id="popular-data-packages" class="level3">
-<h3 class="anchored" data-anchor-id="popular-data-packages">Popular Data Packages</h3>
 <table class="table">
 <thead>
 <tr class="header">
@@ -408,11 +396,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="downloading-external-data" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="downloading-external-data"><span class="header-section-number">4.2</span> Downloading External Data</h2>
-<section id="from-tidytuesday" class="level3">
-<h3 class="anchored" data-anchor-id="from-tidytuesday">From TidyTuesday</h3>
+<section id="downloading-external-data" class="level3">
+<h3 class="anchored" data-anchor-id="downloading-external-data">Downloading External Data</h3>
+<section id="from-tidytuesday" class="level4">
+<h4 class="anchored" data-anchor-id="from-tidytuesday">From TidyTuesday</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidytuesdayR")</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytuesdayR)</span>
@@ -422,8 +409,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>olympics <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>olympics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="direct-from-url" class="level3">
-<h3 class="anchored" data-anchor-id="direct-from-url">Direct from URL</h3>
+<section id="direct-from-url" class="level4">
+<h4 class="anchored" data-anchor-id="direct-from-url">Direct from URL</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -443,8 +430,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="local-file-import" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="local-file-import"><span class="header-section-number">4.3</span> Local File Import</h2>
+<section id="local-file-import" class="level3">
+<h3 class="anchored" data-anchor-id="local-file-import">Local File Import</h3>
 <p>In data analysis projects, importing local files is more common than importing data from the web. Here are some common file types and their uses:</p>
 <ul>
 <li><strong>CSV Files</strong>: Simple, human-readable, and widely supported. Ideal for tabular data.</li>
@@ -466,6 +453,7 @@ Note
 <p>For this course, we will focus on <strong>CSV</strong> files, as they are simple and widely used.</p>
 </div>
 </div>
+</section>
 <section id="csv-files-with-readr-tidyverse-package" class="level3">
 <h3 class="anchored" data-anchor-id="csv-files-with-readr-tidyverse-package">CSV Files with <code>readr</code> (<code>tidyverse</code>) package</h3>
 <p>First, we download the CSV file from the web and save it locally as <code>hksalary.csv</code>. Then, we import it using the <code>read_csv()</code> function from the <code>readr</code> package.</p>
@@ -504,9 +492,8 @@ dbl (1): Average Annual Salary (HK$'000)
 </div>
 </div>
 </div>
-</section>
-<section id="file-path-management" class="level3">
-<h3 class="anchored" data-anchor-id="file-path-management">File Path Management</h3>
+<section id="file-path-management" class="level4">
+<h4 class="anchored" data-anchor-id="file-path-management">File Path Management</h4>
 <table class="table">
 <thead>
 <tr class="header">
@@ -543,8 +530,9 @@ Relative Path
 </div>
 </section>
 </section>
-<section id="data-inspection" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="data-inspection"><span class="header-section-number">4.4</span> Data Inspection</h2>
+</section>
+<section id="data-inspection" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="data-inspection"><span class="header-section-number">3.2</span> Data Inspection</h2>
 <p>After importing data, it’s essential to inspect it to understand its structure and contents. Here are some common functions to help you get started:</p>
 <section id="first-look-tools" class="level3">
 <h3 class="anchored" data-anchor-id="first-look-tools">First Look Tools</h3>
@@ -622,8 +610,8 @@ $ `Average Annual Salary (HK$'000)`   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 
 </table>
 </section>
 </section>
-<section id="practice-import-hksalary.csv-data" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="practice-import-hksalary.csv-data"><span class="header-section-number">4.5</span> Practice: Import <code>hksalary.csv</code> Data</h2>
+<section id="practice-import-hksalary.csv-data" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="practice-import-hksalary.csv-data"><span class="header-section-number">3.3</span> Practice: Import <code>hksalary.csv</code> Data</h2>
 <section id="step-by-step-practice" class="level3">
 <h3 class="anchored" data-anchor-id="step-by-step-practice">Step-by-Step Practice</h3>
 <ol type="1">
@@ -660,8 +648,8 @@ dbl (1): Average Annual Salary (HK$'000)
 </ol>
 </section>
 </section>
-<section id="key-functions-recap" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">4.6</span> Key Functions Recap</h2>
+<section id="key-functions-recap" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">3.4</span> Key Functions Recap</h2>
 <table class="table">
 <colgroup>
 <col style="width: 27%">
@@ -705,7 +693,6 @@ dbl (1): Average Annual Salary (HK$'000)
 </table>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
