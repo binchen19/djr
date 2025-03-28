@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Journalism with R - 8&nbsp; ggplot 2.0</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./map-usa-election.html" rel="next">
+<link href="./visual-01.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./visual-02.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Journalism with R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Import &amp; Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transform &amp; Merging</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-usa-election.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Map: World Life Expectancy</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Special Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto-pub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto Webiste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Case Studies</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">9</span> Learning Objectives</a></li>
+  <li><a href="#load-packages-and-data" id="toc-load-packages-and-data" class="nav-link" data-scroll-target="#load-packages-and-data"><span class="header-section-number">10</span> Load Packages and Data</a></li>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration"><span class="header-section-number">11</span> Data Exploration</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">12</span> Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#questions-to-answer" id="toc-questions-to-answer" class="nav-link" data-scroll-target="#questions-to-answer"><span class="header-section-number">12.1</span> Questions to Answer</a></li>
+  <li><a href="#q1-top-counties-with-the-highest-number-of-wildfires" id="toc-q1-top-counties-with-the-highest-number-of-wildfires" class="nav-link" data-scroll-target="#q1-top-counties-with-the-highest-number-of-wildfires"><span class="header-section-number">12.2</span> Q1: Top Counties with the Highest Number of Wildfires</a>
+  <ul class="collapse">
+  <li><a href="#method-1-group_by-and-summarize" id="toc-method-1-group_by-and-summarize" class="nav-link" data-scroll-target="#method-1-group_by-and-summarize">Method 1: <code>group_by()</code> and <code>summarize()</code></a></li>
+  <li><a href="#method-2-count" id="toc-method-2-count" class="nav-link" data-scroll-target="#method-2-count">Method 2: <code>count()</code></a></li>
+  </ul></li>
+  <li><a href="#q2-top-5-counties-with-the-highest-average-burnt-areas" id="toc-q2-top-5-counties-with-the-highest-average-burnt-areas" class="nav-link" data-scroll-target="#q2-top-5-counties-with-the-highest-average-burnt-areas"><span class="header-section-number">12.3</span> Q2: Top 5 counties with the highest <strong>average burnt areas</strong>?</a></li>
+  <li><a href="#q3-how-does-the-average-burnt-area-change-over-the-years-for-each-county" id="toc-q3-how-does-the-average-burnt-area-change-over-the-years-for-each-county" class="nav-link" data-scroll-target="#q3-how-does-the-average-burnt-area-change-over-the-years-for-each-county"><span class="header-section-number">12.4</span> Q3: How does the <em>average burnt area</em> change over the years for each county?</a></li>
+  </ul></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">13</span> Data Visualization</a>
+  <ul class="collapse">
+  <li><a href="#bar-chart-number-of-wildfires-by-county" id="toc-bar-chart-number-of-wildfires-by-county" class="nav-link" data-scroll-target="#bar-chart-number-of-wildfires-by-county"><span class="header-section-number">13.1</span> Bar Chart: Number of Wildfires by County</a></li>
+  <li><a href="#line-plot-number-of-wildfires-by-year-for-each-county" id="toc-line-plot-number-of-wildfires-by-year-for-each-county" class="nav-link" data-scroll-target="#line-plot-number-of-wildfires-by-year-for-each-county"><span class="header-section-number">13.2</span> Line Plot: Number of Wildfires by Year for Each County</a></li>
+  </ul></li>
+  <li><a href="#plotly-interactive-data-visualization" id="toc-plotly-interactive-data-visualization" class="nav-link" data-scroll-target="#plotly-interactive-data-visualization"><span class="header-section-number">14</span> <code>Plotly</code>: Interactive Data Visualization</a>
+  <ul class="collapse">
+  <li><a href="#interactive-bar-chart" id="toc-interactive-bar-chart" class="nav-link" data-scroll-target="#interactive-bar-chart"><span class="header-section-number">14.1</span> Interactive Bar Chart</a></li>
+  <li><a href="#interactive-line-plot" id="toc-interactive-line-plot" class="nav-link" data-scroll-target="#interactive-line-plot"><span class="header-section-number">14.2</span> Interactive Line Plot</a></li>
+  <li><a href="#more-on-plotly" id="toc-more-on-plotly" class="nav-link" data-scroll-target="#more-on-plotly"><span class="header-section-number">14.3</span> More on <code>plotly</code></a></li>
+  </ul></li>
+  <li><a href="#save-the-plots" id="toc-save-the-plots" class="nav-link" data-scroll-target="#save-the-plots"><span class="header-section-number">15</span> Save the Plots</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./visual-02.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="learning-objectives" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Learning Objectives</h1>
+<ul>
+<li>Analyzing <a href="&quot;https://www.kaggle.com/datasets/vivekattri/california-wildfire-damage-2014-feb2025/data&quot;">California Wildfire Data</a></li>
+<li>More on Data Visualization
+<ul>
+<li>Bar Chart
+<ul>
+<li><code>coord_flip()</code>: Flip the x and y axes to create a horizontal bar chart.</li>
+<li><code>gemo_text()</code>: Add text labels to the bars, with the <code>vjust</code> and <code>hjust</code> arguments to adjust the position of the labels.</li>
+</ul></li>
+<li>Line Chart 2.0
+<ul>
+<li><code>geom_line()</code>: Connect data points with lines.</li>
+<li><code>facet_wrap()</code>: Create multiple plots based on a categorical variable.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="load-packages-and-data" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Load Packages and Data</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/wildfire.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>After loading the data, you should see a data frame called <code>df_clean</code> in your environment.</p>
+</section>
+<section id="data-exploration" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Data Exploration</h1>
+<p>We can use the <code>glimpse()</code> function to get a quick overview of the data.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>glimpse()</code> is a function from the <code>dplyr</code> package that provides a concise summary of a data frame.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 100
+Columns: 11
+$ id             &lt;chr&gt; "INC1000", "INC1001", "INC1002", "INC1003", "INC1004", …
+$ date           &lt;date&gt; 2020-11-22, 2021-09-23, 2022-02-10, 2021-05-17, 2021-0…
+$ location       &lt;chr&gt; "Sonoma County", "Sonoma County", "Shasta County", "Son…
+$ area           &lt;dbl&gt; 14048, 33667, 26394, 20004, 40320, 48348, 16038, 24519,…
+$ homes          &lt;dbl&gt; 763, 1633, 915, 1220, 794, 60, 1404, 121, 299, 275, 623…
+$ businesses     &lt;dbl&gt; 474, 4, 291, 128, 469, 205, 137, 28, 264, 196, 41, 183,…
+$ vehicles       &lt;dbl&gt; 235, 263, 31, 34, 147, 21, 64, 125, 208, 153, 143, 78, …
+$ injuries       &lt;dbl&gt; 70, 100, 50, 28, 0, 58, 13, 0, 33, 41, 58, 12, 32, 16, …
+$ fatalities     &lt;dbl&gt; 19, 2, 6, 0, 15, 2, 11, 5, 4, 2, 17, 18, 19, 8, 16, 19,…
+$ financial_loss &lt;dbl&gt; 2270.57, 1381.14, 2421.96, 3964.16, 1800.09, 4458.29, 7…
+$ cause          &lt;chr&gt; "Lightning", "Lightning", "Human Activity", "Unknown", …</code></pre>
+</div>
+</div>
+</section>
+<section id="data-analysis" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Data Analysis</h1>
+<section id="questions-to-answer" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="questions-to-answer"><span class="header-section-number">12.1</span> Questions to Answer</h2>
+<p>Here we will analyze the data to answer the following questions:</p>
+<ul>
+<li>Q1: Top 5 counties with the <strong>highest number</strong> of wildfires?</li>
+<li>Q2: Top 5 counties with the highest <strong>average burnt areas</strong>?</li>
+<li>Q3: How does the number of wildfires change over the years for each county?</li>
+</ul>
+</section>
+<section id="q1-top-counties-with-the-highest-number-of-wildfires" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="q1-top-counties-with-the-highest-number-of-wildfires"><span class="header-section-number">12.2</span> Q1: Top Counties with the Highest Number of Wildfires</h2>
+<section id="method-1-group_by-and-summarize" class="level3">
+<h3 class="anchored" data-anchor-id="method-1-group_by-and-summarize">Method 1: <code>group_by()</code> and <code>summarize()</code></h3>
+<p>To answer this question, we can first try the <code>group_by()</code> and <code>summarize()</code> functions to count the number of wildfires by county.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">num_of_wildfires =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(num_of_wildfires))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["num_of_wildfires"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Shasta County","2":"14"},{"1":"San Diego County","2":"12"},{"1":"Sonoma County","2":"12"},{"1":"Butte County","2":"11"},{"1":"Mendocino County","2":"11"},{"1":"Napa Valley","2":"10"},{"1":"Orange County","2":"9"},{"1":"Riverside County","2":"8"},{"1":"Los Angeles County","2":"7"},{"1":"Santa Barbara County","2":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="method-2-count" class="level3">
+<h3 class="anchored" data-anchor-id="method-2-count">Method 2: <code>count()</code></h3>
+<p>We can also use the <code>count()</code> function to achieve the same result, which is more concise.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Shasta County","2":"14"},{"1":"San Diego County","2":"12"},{"1":"Sonoma County","2":"12"},{"1":"Butte County","2":"11"},{"1":"Mendocino County","2":"11"},{"1":"Napa Valley","2":"10"},{"1":"Orange County","2":"9"},{"1":"Riverside County","2":"8"},{"1":"Los Angeles County","2":"7"},{"1":"Santa Barbara County","2":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="q2-top-5-counties-with-the-highest-average-burnt-areas" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="q2-top-5-counties-with-the-highest-average-burnt-areas"><span class="header-section-number">12.3</span> Q2: Top 5 counties with the highest <strong>average burnt areas</strong>?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_burnt_area =</span> <span class="fu">mean</span>(area)) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_burnt_area))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["avg_burnt_area"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Orange County","2":"31473.00"},{"1":"Mendocino County","2":"30901.09"},{"1":"Santa Barbara County","2":"29796.17"},{"1":"Butte County","2":"29250.45"},{"1":"Riverside County","2":"27241.62"},{"1":"Napa Valley","2":"26614.50"},{"1":"Shasta County","2":"25423.07"},{"1":"Los Angeles County","2":"23923.71"},{"1":"San Diego County","2":"22853.25"},{"1":"Sonoma County","2":"20644.92"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="q3-how-does-the-average-burnt-area-change-over-the-years-for-each-county" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="q3-how-does-the-average-burnt-area-change-over-the-years-for-each-county"><span class="header-section-number">12.4</span> Q3: How does the <em>average burnt area</em> change over the years for each county?</h2>
+<p>First, we need want to translate this question to a data analysis task: calculate the number of wildfires by year for each county. That means, we need to group the data by <code>location</code> and <code>year</code>, and then compute <em>average burnt area</em> for each group.</p>
+<p>Note that the original dataframe doesn’t have a <code>year</code> column. We need to extract the year from the <code>date</code> column. Here we can use the <code>year()</code> function from the <code>lubridate</code> package to extract the year from the <code>date</code> column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(location, <span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_burnt_area =</span> <span class="fu">mean</span>(area, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'location'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["avg_burnt_area"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Butte County","2":"2014","3":"17860.00"},{"1":"Butte County","2":"2015","3":"48680.00"},{"1":"Butte County","2":"2018","3":"27338.50"},{"1":"Butte County","2":"2019","3":"33242.00"},{"1":"Butte County","2":"2020","3":"46294.00"},{"1":"Butte County","2":"2021","3":"18615.00"},{"1":"Butte County","2":"2022","3":"17712.00"},{"1":"Butte County","2":"2023","3":"48348.00"},{"1":"Los Angeles County","2":"2014","3":"11162.00"},{"1":"Los Angeles County","2":"2015","3":"44006.00"},{"1":"Los Angeles County","2":"2017","3":"20521.00"},{"1":"Los Angeles County","2":"2018","3":"33911.00"},{"1":"Los Angeles County","2":"2022","3":"19288.67"},{"1":"Mendocino County","2":"2014","3":"33625.33"},{"1":"Mendocino County","2":"2015","3":"32142.00"},{"1":"Mendocino County","2":"2017","3":"40223.00"},{"1":"Mendocino County","2":"2018","3":"19395.00"},{"1":"Mendocino County","2":"2021","3":"40094.00"},{"1":"Mendocino County","2":"2022","3":"15551.00"},{"1":"Napa Valley","2":"2014","3":"5537.50"},{"1":"Napa Valley","2":"2015","3":"24519.00"},{"1":"Napa Valley","2":"2016","3":"17406.50"},{"1":"Napa Valley","2":"2019","3":"36784.00"},{"1":"Napa Valley","2":"2021","3":"44869.00"},{"1":"Napa Valley","2":"2022","3":"27965.00"},{"1":"Napa Valley","2":"2023","3":"43060.00"},{"1":"Orange County","2":"2015","3":"37858.00"},{"1":"Orange County","2":"2016","3":"24817.00"},{"1":"Orange County","2":"2017","3":"2135.00"},{"1":"Orange County","2":"2019","3":"18906.00"},{"1":"Orange County","2":"2020","3":"42633.00"},{"1":"Orange County","2":"2022","3":"44974.00"},{"1":"Orange County","2":"2023","3":"44484.00"},{"1":"Riverside County","2":"2015","3":"49008.00"},{"1":"Riverside County","2":"2016","3":"30482.00"},{"1":"Riverside County","2":"2017","3":"3823.00"},{"1":"Riverside County","2":"2018","3":"23786.50"},{"1":"Riverside County","2":"2020","3":"13531.00"},{"1":"Riverside County","2":"2021","3":"29236.00"},{"1":"Riverside County","2":"2023","3":"44280.00"},{"1":"San Diego County","2":"2014","3":"17656.00"},{"1":"San Diego County","2":"2015","3":"33331.00"},{"1":"San Diego County","2":"2016","3":"14737.00"},{"1":"San Diego County","2":"2017","3":"357.00"},{"1":"San Diego County","2":"2018","3":"22504.50"},{"1":"San Diego County","2":"2019","3":"39796.00"},{"1":"San Diego County","2":"2022","3":"24294.50"},{"1":"San Diego County","2":"2023","3":"23777.00"},{"1":"Santa Barbara County","2":"2014","3":"47674.00"},{"1":"Santa Barbara County","2":"2018","3":"24965.00"},{"1":"Santa Barbara County","2":"2021","3":"20800.00"},{"1":"Santa Barbara County","2":"2023","3":"30186.50"},{"1":"Shasta County","2":"2014","3":"21502.00"},{"1":"Shasta County","2":"2016","3":"30580.67"},{"1":"Shasta County","2":"2019","3":"23713.67"},{"1":"Shasta County","2":"2020","3":"21040.00"},{"1":"Shasta County","2":"2021","3":"12161.50"},{"1":"Shasta County","2":"2022","3":"32801.50"},{"1":"Shasta County","2":"2023","3":"39532.00"},{"1":"Sonoma County","2":"2014","3":"23398.50"},{"1":"Sonoma County","2":"2018","3":"16772.00"},{"1":"Sonoma County","2":"2019","3":"4297.00"},{"1":"Sonoma County","2":"2020","3":"11796.00"},{"1":"Sonoma County","2":"2021","3":"27815.75"},{"1":"Sonoma County","2":"2023","3":"22509.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-visualization" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Data Visualization</h1>
+<section id="bar-chart-number-of-wildfires-by-county" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="bar-chart-number-of-wildfires-by-county"><span class="header-section-number">13.1</span> Bar Chart: Number of Wildfires by County</h2>
+<p>We chose to use a bar chart to visualize the number of wildfires by county because it is a good way to compare the number of wildfires (numeric) across different counties (categorical).</p>
+<p>We start by counting the number of wildfires by county using the <code>count()</code> function, and then create a bar chart using <code>ggplot()</code>. Remember the key componenets of a bar chart:</p>
+<ul>
+<li>Data: The data frame with the variables to be plotted.</li>
+<li><code>ggplot(aes(x, y))</code>: The mapping between the data and the visual properties of the plot.</li>
+<li><code>geom_col()</code>: The geometric object for a bar chart.</li>
+<li><code>labs()</code>: The labels for the title, x-axis, and y-axis.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by County"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"County"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Then, we can add more customization to the plot, such as changing the fill color (<code>geom_col(fill = "red")</code>), using a different theme(`theme_bw``).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by County"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"County"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-02_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Because the county names are long, we can use <code>coord_flip()</code> to flip the x and y axes to create a horizontal bar chart.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by County"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"County"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Then, we may want to reorder the bars by the number of wildfires. We can use the <code>fct_reorder()</code> function from the <code>forcats</code> package to reorder the bars by the number of wildfires.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(location, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by County"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"County"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, we can add text labels to the bars using the <code>geom_text()</code> function, with the <code>vjust</code> and <code>hjust</code> arguments to adjust the position of the labels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(location, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by County"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"County"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="fl">1.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s put all the code together:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-13-1"><a href="#annotated-cell-13-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-13-2" class="code-annotation-target"><a href="#annotated-cell-13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-13-3" class="code-annotation-target"><a href="#annotated-cell-13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(location, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-13-4" class="code-annotation-target"><a href="#annotated-cell-13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-13-5"><a href="#annotated-cell-13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by County"</span>,</span>
+<span id="annotated-cell-13-6"><a href="#annotated-cell-13-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"County"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-13-7" class="code-annotation-target"><a href="#annotated-cell-13-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-13-8" class="code-annotation-target"><a href="#annotated-cell-13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-13-9" class="code-annotation-target"><a href="#annotated-cell-13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="7" onclick="event.preventDefault();">7</a><span id="annotated-cell-13-10" class="code-annotation-target"><a href="#annotated-cell-13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">hjust =</span> <span class="fl">1.1</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="2" data-code-annotation="1">Count the number of wildfires by county.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="3" data-code-annotation="2">Map the county names to the x-axis and the number of wildfires to the y-axis.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="4" data-code-annotation="3">Create a bar chart with red bars.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="7" data-code-annotation="4">Add labels for the title, x-axis, and y-axis.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="8" data-code-annotation="5">Use a black-and-white theme.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="9" data-code-annotation="6">Flip the x and y axes to create a horizontal bar chart.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="10" data-code-annotation="7">Add text labels to the bars.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-02_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="line-plot-number-of-wildfires-by-year-for-each-county" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="line-plot-number-of-wildfires-by-year-for-each-county"><span class="header-section-number">13.2</span> Line Plot: Number of Wildfires by Year for Each County</h2>
+<p>We chose to use a line plot to visualize the number of wildfires by year for each county because it is a good way to show trends <em>over time</em>.</p>
+<p>Let’s start by calculating the number of wildfires by year for each county using the <code>group_by()</code> and <code>summarize()</code> functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location, <span class="at">year =</span> <span class="fu">year</span>(date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Butte County","2":"2014","3":"1"},{"1":"Butte County","2":"2015","3":"1"},{"1":"Butte County","2":"2018","3":"2"},{"1":"Butte County","2":"2019","3":"1"},{"1":"Butte County","2":"2020","3":"1"},{"1":"Butte County","2":"2021","3":"2"},{"1":"Butte County","2":"2022","3":"2"},{"1":"Butte County","2":"2023","3":"1"},{"1":"Los Angeles County","2":"2014","3":"1"},{"1":"Los Angeles County","2":"2015","3":"1"},{"1":"Los Angeles County","2":"2017","3":"1"},{"1":"Los Angeles County","2":"2018","3":"1"},{"1":"Los Angeles County","2":"2022","3":"3"},{"1":"Mendocino County","2":"2014","3":"3"},{"1":"Mendocino County","2":"2015","3":"2"},{"1":"Mendocino County","2":"2017","3":"1"},{"1":"Mendocino County","2":"2018","3":"2"},{"1":"Mendocino County","2":"2021","3":"2"},{"1":"Mendocino County","2":"2022","3":"1"},{"1":"Napa Valley","2":"2014","3":"2"},{"1":"Napa Valley","2":"2015","3":"1"},{"1":"Napa Valley","2":"2016","3":"2"},{"1":"Napa Valley","2":"2019","3":"1"},{"1":"Napa Valley","2":"2021","3":"1"},{"1":"Napa Valley","2":"2022","3":"1"},{"1":"Napa Valley","2":"2023","3":"2"},{"1":"Orange County","2":"2015","3":"1"},{"1":"Orange County","2":"2016","3":"2"},{"1":"Orange County","2":"2017","3":"1"},{"1":"Orange County","2":"2019","3":"1"},{"1":"Orange County","2":"2020","3":"2"},{"1":"Orange County","2":"2022","3":"1"},{"1":"Orange County","2":"2023","3":"1"},{"1":"Riverside County","2":"2015","3":"1"},{"1":"Riverside County","2":"2016","3":"1"},{"1":"Riverside County","2":"2017","3":"1"},{"1":"Riverside County","2":"2018","3":"2"},{"1":"Riverside County","2":"2020","3":"1"},{"1":"Riverside County","2":"2021","3":"1"},{"1":"Riverside County","2":"2023","3":"1"},{"1":"San Diego County","2":"2014","3":"2"},{"1":"San Diego County","2":"2015","3":"2"},{"1":"San Diego County","2":"2016","3":"1"},{"1":"San Diego County","2":"2017","3":"1"},{"1":"San Diego County","2":"2018","3":"2"},{"1":"San Diego County","2":"2019","3":"1"},{"1":"San Diego County","2":"2022","3":"2"},{"1":"San Diego County","2":"2023","3":"1"},{"1":"Santa Barbara County","2":"2014","3":"1"},{"1":"Santa Barbara County","2":"2018","3":"2"},{"1":"Santa Barbara County","2":"2021","3":"1"},{"1":"Santa Barbara County","2":"2023","3":"2"},{"1":"Shasta County","2":"2014","3":"1"},{"1":"Shasta County","2":"2016","3":"3"},{"1":"Shasta County","2":"2019","3":"3"},{"1":"Shasta County","2":"2020","3":"2"},{"1":"Shasta County","2":"2021","3":"2"},{"1":"Shasta County","2":"2022","3":"2"},{"1":"Shasta County","2":"2023","3":"1"},{"1":"Sonoma County","2":"2014","3":"2"},{"1":"Sonoma County","2":"2018","3":"1"},{"1":"Sonoma County","2":"2019","3":"1"},{"1":"Sonoma County","2":"2020","3":"2"},{"1":"Sonoma County","2":"2021","3":"4"},{"1":"Sonoma County","2":"2023","3":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Then, we can create a line plot using <code>ggplot()</code>. Remember the key components of a line plot: - Data: The data frame with the variables to be plotted. - <code>ggplot(aes(x, y))</code>: The mapping between the data and the visual properties of the plot. - <code>geom_line()</code>: The geometric object for a line plot. - <code>labs()</code>: The labels for the title, x-axis, and y-axis.</p>
+<p>Since we want to show the number of wildfires by year for each county, we can map the <code>year</code> to the x-axis, the number of wildfires <code>n</code> to the y-axis, and the county names (<code>location</code>) to the color.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location, <span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">color =</span> location)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by Year"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As we see the plot, it is not very informative because there are too many counties. We can use the <code>facet_wrap()</code> function to create multiple plots based on the <code>location</code> variable, and remove the legend using <code>theme(legend.position = "none")</code>, also, we can change the theme to <code>theme_bw()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-16-2"><a href="#annotated-cell-16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location, <span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-16-3" class="code-annotation-target"><a href="#annotated-cell-16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">color =</span> location)) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-16-4" class="code-annotation-target"><a href="#annotated-cell-16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="annotated-cell-16-5"><a href="#annotated-cell-16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by County and Year"</span>,</span>
+<span id="annotated-cell-16-6"><a href="#annotated-cell-16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-16-7" class="code-annotation-target"><a href="#annotated-cell-16-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of wildfires"</span>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-16-8" class="code-annotation-target"><a href="#annotated-cell-16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-16-9" class="code-annotation-target"><a href="#annotated-cell-16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>location) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-16-10" class="code-annotation-target"><a href="#annotated-cell-16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="3" data-code-annotation="1">Map the year to the x-axis, the number of wildfires to the y-axis, and the county names to the color.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="4" data-code-annotation="2">Create a line plot.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="7" data-code-annotation="3">Add labels for the title, x-axis, and y-axis.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="8" data-code-annotation="4">Use a black-and-white theme.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="9" data-code-annotation="5">Create multiple plots based on the county names.</span>
+</dd>
+<dt data-target-cell="annotated-cell-16" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="10" data-code-annotation="6">Remove the legend.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="plotly-interactive-data-visualization" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> <code>Plotly</code>: Interactive Data Visualization</h1>
+<p>We can use the <code>plotly</code> package to create interactive data visualizations. Here we will create an interactive bar chart to show the number of wildfires by county.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'plotly'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:ggplot2':
+
+    last_plot</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:stats':
+
+    filter</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:graphics':
+
+    layout</code></pre>
+</div>
+</div>
+<section id="interactive-bar-chart" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="interactive-bar-chart"><span class="header-section-number">14.1</span> Interactive Bar Chart</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by County"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"County"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>) <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-957bfebda8b135ce45eb" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-957bfebda8b135ce45eb">{"x":{"data":[{"orientation":"h","width":[0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858],"base":[0,0,0,0,0,0,0,0,0,0],"x":[11,7,11,10,9,8,12,6,14,12],"y":[1,2,3,4,5,6,7,8,9,10],"text":["location: Butte County<br />n: 11","location: Los Angeles County<br />n:  7","location: Mendocino County<br />n: 11","location: Napa Valley<br />n: 10","location: Orange County<br />n:  9","location: Riverside County<br />n:  8","location: San Diego County<br />n: 12","location: Santa Barbara County<br />n:  6","location: Shasta County<br />n: 14","location: Sonoma County<br />n: 12"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,0,0,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":142.46575342465755},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Number of Wildfires by County","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.70000000000000007,14.699999999999999],"tickmode":"array","ticktext":["0","5","10"],"tickvals":[0,5,10],"categoryorder":"array","categoryarray":["0","5","10"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Number of Wildfires","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,10.6],"tickmode":"array","ticktext":["Butte County","Los Angeles County","Mendocino County","Napa Valley","Orange County","Riverside County","San Diego County","Santa Barbara County","Shasta County","Sonoma County"],"tickvals":[1,2,3,4,5,6.0000000000000009,7,8,9,10],"categoryorder":"array","categoryarray":["Butte County","Los Angeles County","Mendocino County","Napa Valley","Orange County","Riverside County","San Diego County","Santa Barbara County","Shasta County","Sonoma County"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"County","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176002,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1553d6e2b2ab":{"x":{},"y":{},"type":"bar"}},"cur_data":"1553d6e2b2ab","visdat":{"1553d6e2b2ab":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="interactive-line-plot" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="interactive-line-plot"><span class="header-section-number">14.2</span> Interactive Line Plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(location, <span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">color =</span> location)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of Wildfires by Year"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Wildfires"</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9eb637a8247bec70836c" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-9eb637a8247bec70836c">{"x":{"data":[{"x":[2014,2015,2018,2019,2020,2021,2022,2023],"y":[1,1,2,1,1,2,2,1],"text":["year: 2014<br />n: 1<br />location: Butte County","year: 2015<br />n: 1<br />location: Butte County","year: 2018<br />n: 2<br />location: Butte County","year: 2019<br />n: 1<br />location: Butte County","year: 2020<br />n: 1<br />location: Butte County","year: 2021<br />n: 2<br />location: Butte County","year: 2022<br />n: 2<br />location: Butte County","year: 2023<br />n: 1<br />location: Butte County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)","dash":"solid"},"hoveron":"points","name":"Butte County","legendgroup":"Butte County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2014,2015,2017,2018,2022],"y":[1,1,1,1,3],"text":["year: 2014<br />n: 1<br />location: Los Angeles County","year: 2015<br />n: 1<br />location: Los Angeles County","year: 2017<br />n: 1<br />location: Los Angeles County","year: 2018<br />n: 1<br />location: Los Angeles County","year: 2022<br />n: 3<br />location: Los Angeles County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(216,144,0,1)","dash":"solid"},"hoveron":"points","name":"Los Angeles County","legendgroup":"Los Angeles County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2014,2015,2017,2018,2021,2022],"y":[3,2,1,2,2,1],"text":["year: 2014<br />n: 3<br />location: Mendocino County","year: 2015<br />n: 2<br />location: Mendocino County","year: 2017<br />n: 1<br />location: Mendocino County","year: 2018<br />n: 2<br />location: Mendocino County","year: 2021<br />n: 2<br />location: Mendocino County","year: 2022<br />n: 1<br />location: Mendocino County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(163,165,0,1)","dash":"solid"},"hoveron":"points","name":"Mendocino County","legendgroup":"Mendocino County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2014,2015,2016,2019,2021,2022,2023],"y":[2,1,2,1,1,1,2],"text":["year: 2014<br />n: 2<br />location: Napa Valley","year: 2015<br />n: 1<br />location: Napa Valley","year: 2016<br />n: 2<br />location: Napa Valley","year: 2019<br />n: 1<br />location: Napa Valley","year: 2021<br />n: 1<br />location: Napa Valley","year: 2022<br />n: 1<br />location: Napa Valley","year: 2023<br />n: 2<br />location: Napa Valley"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(57,182,0,1)","dash":"solid"},"hoveron":"points","name":"Napa Valley","legendgroup":"Napa Valley","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2015,2016,2017,2019,2020,2022,2023],"y":[1,2,1,1,2,1,1],"text":["year: 2015<br />n: 1<br />location: Orange County","year: 2016<br />n: 2<br />location: Orange County","year: 2017<br />n: 1<br />location: Orange County","year: 2019<br />n: 1<br />location: Orange County","year: 2020<br />n: 2<br />location: Orange County","year: 2022<br />n: 1<br />location: Orange County","year: 2023<br />n: 1<br />location: Orange County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,191,125,1)","dash":"solid"},"hoveron":"points","name":"Orange County","legendgroup":"Orange County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2015,2016,2017,2018,2020,2021,2023],"y":[1,1,1,2,1,1,1],"text":["year: 2015<br />n: 1<br />location: Riverside County","year: 2016<br />n: 1<br />location: Riverside County","year: 2017<br />n: 1<br />location: Riverside County","year: 2018<br />n: 2<br />location: Riverside County","year: 2020<br />n: 1<br />location: Riverside County","year: 2021<br />n: 1<br />location: Riverside County","year: 2023<br />n: 1<br />location: Riverside County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)","dash":"solid"},"hoveron":"points","name":"Riverside County","legendgroup":"Riverside County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2014,2015,2016,2017,2018,2019,2022,2023],"y":[2,2,1,1,2,1,2,1],"text":["year: 2014<br />n: 2<br />location: San Diego County","year: 2015<br />n: 2<br />location: San Diego County","year: 2016<br />n: 1<br />location: San Diego County","year: 2017<br />n: 1<br />location: San Diego County","year: 2018<br />n: 2<br />location: San Diego County","year: 2019<br />n: 1<br />location: San Diego County","year: 2022<br />n: 2<br />location: San Diego County","year: 2023<br />n: 1<br />location: San Diego County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,176,246,1)","dash":"solid"},"hoveron":"points","name":"San Diego County","legendgroup":"San Diego County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2014,2018,2021,2023],"y":[1,2,1,2],"text":["year: 2014<br />n: 1<br />location: Santa Barbara County","year: 2018<br />n: 2<br />location: Santa Barbara County","year: 2021<br />n: 1<br />location: Santa Barbara County","year: 2023<br />n: 2<br />location: Santa Barbara County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(149,144,255,1)","dash":"solid"},"hoveron":"points","name":"Santa Barbara County","legendgroup":"Santa Barbara County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2014,2016,2019,2020,2021,2022,2023],"y":[1,3,3,2,2,2,1],"text":["year: 2014<br />n: 1<br />location: Shasta County","year: 2016<br />n: 3<br />location: Shasta County","year: 2019<br />n: 3<br />location: Shasta County","year: 2020<br />n: 2<br />location: Shasta County","year: 2021<br />n: 2<br />location: Shasta County","year: 2022<br />n: 2<br />location: Shasta County","year: 2023<br />n: 1<br />location: Shasta County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(231,107,243,1)","dash":"solid"},"hoveron":"points","name":"Shasta County","legendgroup":"Shasta County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2014,2018,2019,2020,2021,2023],"y":[2,1,1,2,4,2],"text":["year: 2014<br />n: 2<br />location: Sonoma County","year: 2018<br />n: 1<br />location: Sonoma County","year: 2019<br />n: 1<br />location: Sonoma County","year: 2020<br />n: 2<br />location: Sonoma County","year: 2021<br />n: 4<br />location: Sonoma County","year: 2023<br />n: 2<br />location: Sonoma County"],"type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(255,98,188,1)","dash":"solid"},"hoveron":"points","name":"Sonoma County","legendgroup":"Sonoma County","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":31.415525114155255},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Number of Wildfires by Year","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[2013.55,2023.45],"tickmode":"array","ticktext":["2014","2016","2018","2020","2022"],"tickvals":[2014,2016,2018,2020,2022],"categoryorder":"array","categoryarray":["2014","2016","2018","2020","2022"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Year","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.84999999999999998,4.1500000000000004],"tickmode":"array","ticktext":["1","2","3","4"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1","2","3","4"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Number of Wildfires","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"location","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1553d55a0ca3b":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"1553d55a0ca3b","visdat":{"1553d55a0ca3b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="more-on-plotly" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="more-on-plotly"><span class="header-section-number">14.3</span> More on <code>plotly</code></h2>
+<p>We can also create an interactive scatter plot to show the financial losses from wildfires in California. We can map the <code>date</code> to the x-axis, the <code>financial_loss</code> to the y-axis, the <code>cause</code> to the color, and create a tooltip with additional information.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="annotated-cell-20"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-20-1"><a href="#annotated-cell-20-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="annotated-cell-20-2"><a href="#annotated-cell-20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> financial_loss, <span class="at">color =</span> cause, <span class="at">text =</span> <span class="fu">paste</span>(</span>
+<span id="annotated-cell-20-3"><a href="#annotated-cell-20-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Date:"</span>, date,</span>
+<span id="annotated-cell-20-4"><a href="#annotated-cell-20-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;Location:"</span>, location,</span>
+<span id="annotated-cell-20-5"><a href="#annotated-cell-20-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;Area Burned:"</span>, area, <span class="st">"acres"</span>,</span>
+<span id="annotated-cell-20-6"><a href="#annotated-cell-20-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;Homes Destroyed:"</span>, homes,</span>
+<span id="annotated-cell-20-7"><a href="#annotated-cell-20-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;Businesses Affected:"</span>, businesses,</span>
+<span id="annotated-cell-20-8"><a href="#annotated-cell-20-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;Vehicles Destroyed:"</span>, vehicles,</span>
+<span id="annotated-cell-20-9"><a href="#annotated-cell-20-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;br&gt;Fatalities:"</span>, fatalities</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-20-10" class="code-annotation-target"><a href="#annotated-cell-20-10" aria-hidden="true" tabindex="-1"></a>  ))) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-20-11" class="code-annotation-target"><a href="#annotated-cell-20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-20-12"><a href="#annotated-cell-20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Financial Losses from Wildfires in California"</span>,</span>
+<span id="annotated-cell-20-13"><a href="#annotated-cell-20-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Date"</span>,</span>
+<span id="annotated-cell-20-14"><a href="#annotated-cell-20-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Financial Loss ($)"</span>,</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-20-15" class="code-annotation-target"><a href="#annotated-cell-20-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Cause of Wildfire"</span>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-20-16" class="code-annotation-target"><a href="#annotated-cell-20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="annotated-cell-20-17"><a href="#annotated-cell-20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-20-18"><a href="#annotated-cell-20-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p3, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-20" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="10" data-code-annotation="1">Map the <code>date</code> to the x-axis, the <code>financial_loss</code> to the y-axis, the <code>cause</code> to the color, and create a tooltip with additional information. <code>&lt;br&gt;</code> means a line break.</span>
+</dd>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="11" data-code-annotation="2">Create a scatter plot.</span>
+</dd>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="15" data-code-annotation="3">Add labels for the title, x-axis, y-axis, and color.</span>
+</dd>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-20" data-code-lines="16" data-code-annotation="4">Use a minimal theme.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-fe4bfae3daf74134219a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-fe4bfae3daf74134219a">{"x":{"data":[{"x":[19033,19494,17650,17834,18900,16979,16176,18850,19260,18144,19265,18219,19570,18071,16321,16577,16203,18866,16624,19015,18394,19275,16845,19275,17755,18636,19396,16901,17008,18640,19591,18533,19226,17547,19180,16939,16245,18706],"y":[2421.96,4458.29,713.79999999999995,2529.6999999999998,1630.3800000000001,801.44000000000005,268.91000000000003,603.54999999999995,268.07999999999998,1691.28,4063.0599999999999,1840.53,2952.1700000000001,723.15999999999997,2024.8199999999999,4096.3100000000004,1305.3399999999999,3372.3899999999999,3407.0900000000001,3244.2600000000002,1472.98,971.37,3605.9899999999998,4113.5799999999999,3097.0900000000001,3502.6799999999998,52.590000000000003,3685.1799999999998,1565.1300000000001,1177.54,1096.2,4488.6199999999999,663.97000000000003,4008.5799999999999,376.72000000000003,1474.78,3308.7399999999998,4276.7799999999997],"text":["Date: 2022-02-10 <br>Location: Shasta County <br>Area Burned: 26394 acres <br>Homes Destroyed: 915 <br>Businesses Affected: 291 <br>Vehicles Destroyed: 31 <br>Fatalities: 6","Date: 2023-05-17 <br>Location: Butte County <br>Area Burned: 48348 acres <br>Homes Destroyed: 60 <br>Businesses Affected: 205 <br>Vehicles Destroyed: 21 <br>Fatalities: 2","Date: 2018-04-29 <br>Location: San Diego County <br>Area Burned: 16038 acres <br>Homes Destroyed: 1404 <br>Businesses Affected: 137 <br>Vehicles Destroyed: 64 <br>Fatalities: 11","Date: 2018-10-30 <br>Location: Riverside County <br>Area Burned: 34157 acres <br>Homes Destroyed: 623 <br>Businesses Affected: 41 <br>Vehicles Destroyed: 143 <br>Fatalities: 17","Date: 2021-09-30 <br>Location: Santa Barbara County <br>Area Burned: 20800 acres <br>Homes Destroyed: 1739 <br>Businesses Affected: 183 <br>Vehicles Destroyed: 78 <br>Fatalities: 18","Date: 2016-06-27 <br>Location: San Diego County <br>Area Burned: 14737 acres <br>Homes Destroyed: 505 <br>Businesses Affected: 434 <br>Vehicles Destroyed: 247 <br>Fatalities: 8","Date: 2014-04-16 <br>Location: Sonoma County <br>Area Burned: 25094 acres <br>Homes Destroyed: 1014 <br>Businesses Affected: 288 <br>Vehicles Destroyed: 269 <br>Fatalities: 12","Date: 2021-08-11 <br>Location: Mendocino County <br>Area Burned: 35889 acres <br>Homes Destroyed: 1212 <br>Businesses Affected: 483 <br>Vehicles Destroyed: 19 <br>Fatalities: 14","Date: 2022-09-25 <br>Location: Orange County <br>Area Burned: 44974 acres <br>Homes Destroyed: 270 <br>Businesses Affected: 83 <br>Vehicles Destroyed: 50 <br>Fatalities: 7","Date: 2019-09-05 <br>Location: Napa Valley <br>Area Burned: 36784 acres <br>Homes Destroyed: 461 <br>Businesses Affected: 215 <br>Vehicles Destroyed: 195 <br>Fatalities: 9","Date: 2022-09-30 <br>Location: San Diego County <br>Area Burned: 16346 acres <br>Homes Destroyed: 429 <br>Businesses Affected: 279 <br>Vehicles Destroyed: 228 <br>Fatalities: 12","Date: 2019-11-19 <br>Location: Shasta County <br>Area Burned: 14713 acres <br>Homes Destroyed: 465 <br>Businesses Affected: 56 <br>Vehicles Destroyed: 163 <br>Fatalities: 10","Date: 2023-08-01 <br>Location: Riverside County <br>Area Burned: 44280 acres <br>Homes Destroyed: 1296 <br>Businesses Affected: 158 <br>Vehicles Destroyed: 173 <br>Fatalities: 4","Date: 2019-06-24 <br>Location: Shasta County <br>Area Burned: 10138 acres <br>Homes Destroyed: 1285 <br>Businesses Affected: 78 <br>Vehicles Destroyed: 148 <br>Fatalities: 14","Date: 2014-09-08 <br>Location: San Diego County <br>Area Burned: 6651 acres <br>Homes Destroyed: 1559 <br>Businesses Affected: 43 <br>Vehicles Destroyed: 102 <br>Fatalities: 5","Date: 2015-05-22 <br>Location: Los Angeles County <br>Area Burned: 44006 acres <br>Homes Destroyed: 189 <br>Businesses Affected: 113 <br>Vehicles Destroyed: 38 <br>Fatalities: 5","Date: 2014-05-13 <br>Location: Sonoma County <br>Area Burned: 21703 acres <br>Homes Destroyed: 735 <br>Businesses Affected: 279 <br>Vehicles Destroyed: 294 <br>Fatalities: 1","Date: 2021-08-27 <br>Location: Butte County <br>Area Burned: 1409 acres <br>Homes Destroyed: 345 <br>Businesses Affected: 263 <br>Vehicles Destroyed: 275 <br>Fatalities: 4","Date: 2015-07-08 <br>Location: Butte County <br>Area Burned: 48680 acres <br>Homes Destroyed: 1031 <br>Businesses Affected: 124 <br>Vehicles Destroyed: 264 <br>Fatalities: 3","Date: 2022-01-23 <br>Location: San Diego County <br>Area Burned: 32243 acres <br>Homes Destroyed: 572 <br>Businesses Affected: 219 <br>Vehicles Destroyed: 80 <br>Fatalities: 14","Date: 2020-05-12 <br>Location: Butte County <br>Area Burned: 46294 acres <br>Homes Destroyed: 1902 <br>Businesses Affected: 258 <br>Vehicles Destroyed: 275 <br>Fatalities: 8","Date: 2022-10-10 <br>Location: Los Angeles County <br>Area Burned: 19735 acres <br>Homes Destroyed: 1035 <br>Businesses Affected: 475 <br>Vehicles Destroyed: 95 <br>Fatalities: 0","Date: 2016-02-14 <br>Location: Riverside County <br>Area Burned: 30482 acres <br>Homes Destroyed: 492 <br>Businesses Affected: 229 <br>Vehicles Destroyed: 11 <br>Fatalities: 15","Date: 2022-10-10 <br>Location: Napa Valley <br>Area Burned: 27965 acres <br>Homes Destroyed: 702 <br>Businesses Affected: 436 <br>Vehicles Destroyed: 22 <br>Fatalities: 13","Date: 2018-08-12 <br>Location: Los Angeles County <br>Area Burned: 33911 acres <br>Homes Destroyed: 141 <br>Businesses Affected: 63 <br>Vehicles Destroyed: 286 <br>Fatalities: 2","Date: 2021-01-09 <br>Location: Napa Valley <br>Area Burned: 44869 acres <br>Homes Destroyed: 1601 <br>Businesses Affected: 290 <br>Vehicles Destroyed: 50 <br>Fatalities: 2","Date: 2023-02-08 <br>Location: Napa Valley <br>Area Burned: 45821 acres <br>Homes Destroyed: 763 <br>Businesses Affected: 371 <br>Vehicles Destroyed: 145 <br>Fatalities: 6","Date: 2016-04-10 <br>Location: Orange County <br>Area Burned: 6620 acres <br>Homes Destroyed: 1054 <br>Businesses Affected: 354 <br>Vehicles Destroyed: 13 <br>Fatalities: 15","Date: 2016-07-26 <br>Location: Napa Valley <br>Area Burned: 17392 acres <br>Homes Destroyed: 66 <br>Businesses Affected: 322 <br>Vehicles Destroyed: 249 <br>Fatalities: 7","Date: 2021-01-13 <br>Location: Shasta County <br>Area Burned: 18920 acres <br>Homes Destroyed: 896 <br>Businesses Affected: 144 <br>Vehicles Destroyed: 200 <br>Fatalities: 6","Date: 2023-08-22 <br>Location: Orange County <br>Area Burned: 44484 acres <br>Homes Destroyed: 1093 <br>Businesses Affected: 438 <br>Vehicles Destroyed: 51 <br>Fatalities: 12","Date: 2020-09-28 <br>Location: Orange County <br>Area Burned: 42554 acres <br>Homes Destroyed: 965 <br>Businesses Affected: 151 <br>Vehicles Destroyed: 34 <br>Fatalities: 19","Date: 2022-08-22 <br>Location: Mendocino County <br>Area Burned: 15551 acres <br>Homes Destroyed: 897 <br>Businesses Affected: 364 <br>Vehicles Destroyed: 101 <br>Fatalities: 9","Date: 2018-01-16 <br>Location: Mendocino County <br>Area Burned: 13112 acres <br>Homes Destroyed: 1468 <br>Businesses Affected: 46 <br>Vehicles Destroyed: 281 <br>Fatalities: 17","Date: 2022-07-07 <br>Location: Shasta County <br>Area Burned: 39209 acres <br>Homes Destroyed: 710 <br>Businesses Affected: 282 <br>Vehicles Destroyed: 189 <br>Fatalities: 14","Date: 2016-05-18 <br>Location: Shasta County <br>Area Burned: 11863 acres <br>Homes Destroyed: 702 <br>Businesses Affected: 9 <br>Vehicles Destroyed: 40 <br>Fatalities: 1","Date: 2014-06-24 <br>Location: Napa Valley <br>Area Burned: 1338 acres <br>Homes Destroyed: 1619 <br>Businesses Affected: 262 <br>Vehicles Destroyed: 293 <br>Fatalities: 3","Date: 2021-03-20 <br>Location: Mendocino County <br>Area Burned: 44299 acres <br>Homes Destroyed: 1217 <br>Businesses Affected: 172 <br>Vehicles Destroyed: 176 <br>Fatalities: 20"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"Human Activity","legendgroup":"Human Activity","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[18588,18893,16670,17866,19151,17584,16514,18463,16726,19195,17244,16486,19657,16683,16384,16145,17894,17352,18772,19168,18152,18723,17991,18976,17396,16133,18394,16936,16390,16777,17819],"y":[2270.5700000000002,1381.1400000000001,2001.3299999999999,2611.9000000000001,3576.23,927.62,2745.1900000000001,1518.79,1745.6700000000001,644.91999999999996,650.72000000000003,1554.6500000000001,3654.4200000000001,979.65999999999997,1653.22,286.63999999999999,4193.4499999999998,4127.9399999999996,3797.5500000000002,3373,3856.8600000000001,4280.9300000000003,4829.6999999999998,3351.3899999999999,273.68000000000001,4075.6700000000001,3764.96,4059.9000000000001,416.63,2848.4299999999998,4508.6499999999996],"text":["Date: 2020-11-22 <br>Location: Sonoma County <br>Area Burned: 14048 acres <br>Homes Destroyed: 763 <br>Businesses Affected: 474 <br>Vehicles Destroyed: 235 <br>Fatalities: 19","Date: 2021-09-23 <br>Location: Sonoma County <br>Area Burned: 33667 acres <br>Homes Destroyed: 1633 <br>Businesses Affected: 4 <br>Vehicles Destroyed: 263 <br>Fatalities: 2","Date: 2015-08-23 <br>Location: Napa Valley <br>Area Burned: 24519 acres <br>Homes Destroyed: 121 <br>Businesses Affected: 28 <br>Vehicles Destroyed: 125 <br>Fatalities: 5","Date: 2018-12-01 <br>Location: Butte County <br>Area Burned: 21351 acres <br>Homes Destroyed: 275 <br>Businesses Affected: 196 <br>Vehicles Destroyed: 153 <br>Fatalities: 2","Date: 2022-06-08 <br>Location: Los Angeles County <br>Area Burned: 3668 acres <br>Homes Destroyed: 142 <br>Businesses Affected: 493 <br>Vehicles Destroyed: 32 <br>Fatalities: 19","Date: 2018-02-22 <br>Location: Riverside County <br>Area Burned: 13416 acres <br>Homes Destroyed: 1766 <br>Businesses Affected: 441 <br>Vehicles Destroyed: 223 <br>Fatalities: 2","Date: 2015-03-20 <br>Location: Mendocino County <br>Area Burned: 45742 acres <br>Homes Destroyed: 1812 <br>Businesses Affected: 37 <br>Vehicles Destroyed: 45 <br>Fatalities: 6","Date: 2020-07-20 <br>Location: Riverside County <br>Area Burned: 13531 acres <br>Homes Destroyed: 1066 <br>Businesses Affected: 239 <br>Vehicles Destroyed: 156 <br>Fatalities: 2","Date: 2015-10-18 <br>Location: San Diego County <br>Area Burned: 39768 acres <br>Homes Destroyed: 65 <br>Businesses Affected: 75 <br>Vehicles Destroyed: 211 <br>Fatalities: 14","Date: 2022-07-22 <br>Location: Los Angeles County <br>Area Burned: 34463 acres <br>Homes Destroyed: 1966 <br>Businesses Affected: 339 <br>Vehicles Destroyed: 172 <br>Fatalities: 11","Date: 2017-03-19 <br>Location: San Diego County <br>Area Burned: 357 acres <br>Homes Destroyed: 887 <br>Businesses Affected: 181 <br>Vehicles Destroyed: 89 <br>Fatalities: 9","Date: 2015-02-20 <br>Location: Riverside County <br>Area Burned: 49008 acres <br>Homes Destroyed: 665 <br>Businesses Affected: 399 <br>Vehicles Destroyed: 238 <br>Fatalities: 3","Date: 2023-10-27 <br>Location: Shasta County <br>Area Burned: 39532 acres <br>Homes Destroyed: 1021 <br>Businesses Affected: 359 <br>Vehicles Destroyed: 120 <br>Fatalities: 16","Date: 2015-09-05 <br>Location: San Diego County <br>Area Burned: 26894 acres <br>Homes Destroyed: 1045 <br>Businesses Affected: 362 <br>Vehicles Destroyed: 200 <br>Fatalities: 2","Date: 2014-11-10 <br>Location: Shasta County <br>Area Burned: 21502 acres <br>Homes Destroyed: 1763 <br>Businesses Affected: 452 <br>Vehicles Destroyed: 218 <br>Fatalities: 3","Date: 2014-03-16 <br>Location: Mendocino County <br>Area Burned: 41647 acres <br>Homes Destroyed: 484 <br>Businesses Affected: 210 <br>Vehicles Destroyed: 180 <br>Fatalities: 16","Date: 2018-12-29 <br>Location: Santa Barbara County <br>Area Burned: 47883 acres <br>Homes Destroyed: 1097 <br>Businesses Affected: 444 <br>Vehicles Destroyed: 84 <br>Fatalities: 17","Date: 2017-07-05 <br>Location: Los Angeles County <br>Area Burned: 20521 acres <br>Homes Destroyed: 653 <br>Businesses Affected: 255 <br>Vehicles Destroyed: 257 <br>Fatalities: 9","Date: 2021-05-25 <br>Location: Sonoma County <br>Area Burned: 17272 acres <br>Homes Destroyed: 504 <br>Businesses Affected: 381 <br>Vehicles Destroyed: 297 <br>Fatalities: 13","Date: 2022-06-25 <br>Location: Butte County <br>Area Burned: 25558 acres <br>Homes Destroyed: 903 <br>Businesses Affected: 162 <br>Vehicles Destroyed: 300 <br>Fatalities: 14","Date: 2019-09-13 <br>Location: San Diego County <br>Area Burned: 39796 acres <br>Homes Destroyed: 1691 <br>Businesses Affected: 427 <br>Vehicles Destroyed: 121 <br>Fatalities: 3","Date: 2021-04-06 <br>Location: Butte County <br>Area Burned: 35821 acres <br>Homes Destroyed: 1123 <br>Businesses Affected: 60 <br>Vehicles Destroyed: 162 <br>Fatalities: 8","Date: 2019-04-05 <br>Location: Shasta County <br>Area Burned: 46290 acres <br>Homes Destroyed: 453 <br>Businesses Affected: 453 <br>Vehicles Destroyed: 248 <br>Fatalities: 8","Date: 2021-12-15 <br>Location: Shasta County <br>Area Burned: 5403 acres <br>Homes Destroyed: 97 <br>Businesses Affected: 216 <br>Vehicles Destroyed: 261 <br>Fatalities: 16","Date: 2017-08-18 <br>Location: Orange County <br>Area Burned: 2135 acres <br>Homes Destroyed: 95 <br>Businesses Affected: 412 <br>Vehicles Destroyed: 103 <br>Fatalities: 0","Date: 2014-03-04 <br>Location: Napa Valley <br>Area Burned: 9737 acres <br>Homes Destroyed: 1735 <br>Businesses Affected: 386 <br>Vehicles Destroyed: 52 <br>Fatalities: 10","Date: 2020-05-12 <br>Location: Shasta County <br>Area Burned: 3366 acres <br>Homes Destroyed: 697 <br>Businesses Affected: 99 <br>Vehicles Destroyed: 232 <br>Fatalities: 10","Date: 2016-05-15 <br>Location: Shasta County <br>Area Burned: 49653 acres <br>Homes Destroyed: 1417 <br>Businesses Affected: 318 <br>Vehicles Destroyed: 70 <br>Fatalities: 17","Date: 2014-11-16 <br>Location: Mendocino County <br>Area Burned: 22675 acres <br>Homes Destroyed: 1968 <br>Businesses Affected: 312 <br>Vehicles Destroyed: 37 <br>Fatalities: 4","Date: 2015-12-08 <br>Location: Mendocino County <br>Area Burned: 18542 acres <br>Homes Destroyed: 1114 <br>Businesses Affected: 71 <br>Vehicles Destroyed: 143 <br>Fatalities: 14","Date: 2018-10-15 <br>Location: Santa Barbara County <br>Area Burned: 2047 acres <br>Homes Destroyed: 1401 <br>Businesses Affected: 75 <br>Vehicles Destroyed: 153 <br>Fatalities: 9"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"Lightning","legendgroup":"Lightning","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[18764,18892,19699,18300,16882,17943,17149,16224,17810,17857,16206,17330,19507,16104,16982,16157,19412,18325,16184,18436,17810,18924,18173,17985,17814,19285,19592,19675,16651,17468,19526],"y":[3964.1599999999999,1800.0899999999999,1012.23,98.689999999999998,1488.8,4866.9899999999998,3512.9099999999999,1975.26,1385.77,180.99000000000001,3485.1199999999999,4643.1400000000003,1168.1600000000001,2580.8699999999999,2133.1199999999999,85.569999999999993,3407.6100000000001,4391.0500000000002,567.30999999999995,2395.0999999999999,3397.8299999999999,3930.8800000000001,3704.7199999999998,1809.76,3381.8699999999999,2987.1300000000001,1314.4200000000001,147.02000000000001,1257.5599999999999,4049.8600000000001,3169.4899999999998],"text":["Date: 2021-05-17 <br>Location: Sonoma County <br>Area Burned: 20004 acres <br>Homes Destroyed: 1220 <br>Businesses Affected: 128 <br>Vehicles Destroyed: 34 <br>Fatalities: 0","Date: 2021-09-22 <br>Location: Sonoma County <br>Area Burned: 40320 acres <br>Homes Destroyed: 794 <br>Businesses Affected: 469 <br>Vehicles Destroyed: 147 <br>Fatalities: 15","Date: 2023-12-08 <br>Location: Sonoma County <br>Area Burned: 20418 acres <br>Homes Destroyed: 299 <br>Businesses Affected: 264 <br>Vehicles Destroyed: 208 <br>Fatalities: 4","Date: 2020-02-08 <br>Location: Sonoma County <br>Area Burned: 9544 acres <br>Homes Destroyed: 382 <br>Businesses Affected: 244 <br>Vehicles Destroyed: 24 <br>Fatalities: 19","Date: 2016-03-22 <br>Location: Napa Valley <br>Area Burned: 17421 acres <br>Homes Destroyed: 1161 <br>Businesses Affected: 319 <br>Vehicles Destroyed: 300 <br>Fatalities: 16","Date: 2019-02-16 <br>Location: Butte County <br>Area Burned: 33242 acres <br>Homes Destroyed: 1760 <br>Businesses Affected: 118 <br>Vehicles Destroyed: 240 <br>Fatalities: 13","Date: 2016-12-14 <br>Location: Shasta County <br>Area Burned: 30226 acres <br>Homes Destroyed: 477 <br>Businesses Affected: 427 <br>Vehicles Destroyed: 131 <br>Fatalities: 17","Date: 2014-06-03 <br>Location: Butte County <br>Area Burned: 17860 acres <br>Homes Destroyed: 1819 <br>Businesses Affected: 391 <br>Vehicles Destroyed: 45 <br>Fatalities: 15","Date: 2018-10-06 <br>Location: Sonoma County <br>Area Burned: 16772 acres <br>Homes Destroyed: 1736 <br>Businesses Affected: 371 <br>Vehicles Destroyed: 122 <br>Fatalities: 4","Date: 2018-11-22 <br>Location: San Diego County <br>Area Burned: 28971 acres <br>Homes Destroyed: 750 <br>Businesses Affected: 348 <br>Vehicles Destroyed: 176 <br>Fatalities: 9","Date: 2014-05-16 <br>Location: San Diego County <br>Area Burned: 28661 acres <br>Homes Destroyed: 276 <br>Businesses Affected: 313 <br>Vehicles Destroyed: 89 <br>Fatalities: 10","Date: 2017-06-13 <br>Location: Riverside County <br>Area Burned: 3823 acres <br>Homes Destroyed: 1536 <br>Businesses Affected: 385 <br>Vehicles Destroyed: 159 <br>Fatalities: 16","Date: 2023-05-30 <br>Location: San Diego County <br>Area Burned: 23777 acres <br>Homes Destroyed: 18 <br>Businesses Affected: 222 <br>Vehicles Destroyed: 190 <br>Fatalities: 18","Date: 2014-02-03 <br>Location: Santa Barbara County <br>Area Burned: 47674 acres <br>Homes Destroyed: 1186 <br>Businesses Affected: 438 <br>Vehicles Destroyed: 71 <br>Fatalities: 11","Date: 2016-06-30 <br>Location: Orange County <br>Area Burned: 43014 acres <br>Homes Destroyed: 1491 <br>Businesses Affected: 425 <br>Vehicles Destroyed: 62 <br>Fatalities: 13","Date: 2014-03-28 <br>Location: Los Angeles County <br>Area Burned: 11162 acres <br>Homes Destroyed: 544 <br>Businesses Affected: 223 <br>Vehicles Destroyed: 196 <br>Fatalities: 8","Date: 2023-02-24 <br>Location: Sonoma County <br>Area Burned: 24600 acres <br>Homes Destroyed: 1598 <br>Businesses Affected: 406 <br>Vehicles Destroyed: 98 <br>Fatalities: 17","Date: 2020-03-04 <br>Location: Shasta County <br>Area Burned: 38714 acres <br>Homes Destroyed: 957 <br>Businesses Affected: 222 <br>Vehicles Destroyed: 229 <br>Fatalities: 8","Date: 2014-04-24 <br>Location: Mendocino County <br>Area Burned: 36554 acres <br>Homes Destroyed: 914 <br>Businesses Affected: 293 <br>Vehicles Destroyed: 240 <br>Fatalities: 5","Date: 2020-06-23 <br>Location: Orange County <br>Area Burned: 42712 acres <br>Homes Destroyed: 692 <br>Businesses Affected: 253 <br>Vehicles Destroyed: 106 <br>Fatalities: 19","Date: 2018-10-06 <br>Location: Mendocino County <br>Area Burned: 25678 acres <br>Homes Destroyed: 1388 <br>Businesses Affected: 393 <br>Vehicles Destroyed: 274 <br>Fatalities: 5","Date: 2021-10-24 <br>Location: Riverside County <br>Area Burned: 29236 acres <br>Homes Destroyed: 1563 <br>Businesses Affected: 240 <br>Vehicles Destroyed: 66 <br>Fatalities: 13","Date: 2019-10-04 <br>Location: Orange County <br>Area Burned: 18906 acres <br>Homes Destroyed: 229 <br>Businesses Affected: 67 <br>Vehicles Destroyed: 262 <br>Fatalities: 13","Date: 2019-03-30 <br>Location: Sonoma County <br>Area Burned: 4297 acres <br>Homes Destroyed: 313 <br>Businesses Affected: 98 <br>Vehicles Destroyed: 247 <br>Fatalities: 7","Date: 2018-10-10 <br>Location: Butte County <br>Area Burned: 33326 acres <br>Homes Destroyed: 1017 <br>Businesses Affected: 271 <br>Vehicles Destroyed: 75 <br>Fatalities: 17","Date: 2022-10-20 <br>Location: Butte County <br>Area Burned: 9866 acres <br>Homes Destroyed: 705 <br>Businesses Affected: 101 <br>Vehicles Destroyed: 5 <br>Fatalities: 14","Date: 2023-08-23 <br>Location: Santa Barbara County <br>Area Burned: 41584 acres <br>Homes Destroyed: 1609 <br>Businesses Affected: 12 <br>Vehicles Destroyed: 212 <br>Fatalities: 7","Date: 2023-11-14 <br>Location: Napa Valley <br>Area Burned: 40299 acres <br>Homes Destroyed: 731 <br>Businesses Affected: 151 <br>Vehicles Destroyed: 42 <br>Fatalities: 19","Date: 2015-08-04 <br>Location: Orange County <br>Area Burned: 37858 acres <br>Homes Destroyed: 595 <br>Businesses Affected: 217 <br>Vehicles Destroyed: 118 <br>Fatalities: 9","Date: 2017-10-29 <br>Location: Mendocino County <br>Area Burned: 40223 acres <br>Homes Destroyed: 692 <br>Businesses Affected: 69 <br>Vehicles Destroyed: 72 <br>Fatalities: 12","Date: 2023-06-18 <br>Location: Santa Barbara County <br>Area Burned: 18789 acres <br>Homes Destroyed: 1883 <br>Businesses Affected: 281 <br>Vehicles Destroyed: 220 <br>Fatalities: 12"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"Unknown","legendgroup":"Unknown","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":48.949771689497723},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Financial Losses from Wildfires in California","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[15924.25,19878.75],"tickmode":"array","ticktext":["2014","2016","2018","2020","2022","2024"],"tickvals":[16071,16801,17532,18262,18993,19723],"categoryorder":"array","categoryarray":["2014","2016","2018","2020","2022","2024"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Date","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-188.13,5107.71],"tickmode":"array","ticktext":["0","1000","2000","3000","4000","5000"],"tickvals":[0,1000.0000000000001,2000,3000,4000,5000],"categoryorder":"array","categoryarray":["0","1000","2000","3000","4000","5000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Financial Loss ($)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Cause of Wildfire","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1553d16d8ead2":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"}},"cur_data":"1553d16d8ead2","visdat":{"1553d16d8ead2":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+</section>
+<section id="save-the-plots" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Save the Plots</h1>
+<p>To save a plot as an image file, we can use the <code>ggsave()</code> function. Here we will save the bar chart as a PNG file with a width of 8 inches, a height of 6 inches, and a resolution of 300 dpi.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"bar_chart.png"</span>, p1, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./visual-01.html" class="pagination-link  aria-label=" &lt;span="" bascis&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./map-usa-election.html" class="pagination-link" aria-label="<span class='chapter-number'>9</span>&nbsp; <span class='chapter-title'>Map: US election 2024</span>">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright © 2025 Bin Chen</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

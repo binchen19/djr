@@ -1,0 +1,1197 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Journalism with R",
+    "section": "",
+    "text": "Preface",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#about-this-book",
+    "href": "index.html#about-this-book",
+    "title": "Data Journalism with R",
+    "section": "About this book",
+    "text": "About this book\nThis book is a collection of my notes from the Data Journalism courses I have been teaching at The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.\nWhile originally designed as a companion for my students, I hope this book will also benefit a wider audience—including journalists, aspiring data storytellers, and students interested in learning R for data analysis. Through practical examples and real-world case studies, this book provides a hands-on approach to integrating data into storytelling.\nHope you find it useful! 🤗",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#about-the-author",
+    "href": "index.html#about-the-author",
+    "title": "Data Journalism with R",
+    "section": "About the author",
+    "text": "About the author\n\nBin Chen\nI am an Assistant Professor at the Journalism and Media Studies Centre, the University of Hong Kong. My research interests include computational social science, social media and politics, and comparative media studies. At HKU, I teach Data Journalism courses at both the undergraduate and postgraduate levels.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Data Journalism with R",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis book is inspired by the Reporting with Data in R book by two professors at the University of Texas at Austin, Christian McDonald and Josephine Lukito. I would like to thank them for their great work and for sharing their materials with the public.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "install.html",
+    "href": "install.html",
+    "title": "1  Intro to R and RStudio",
+    "section": "",
+    "text": "1.1 Why Learn R for Data Journalism?\nData journalism requires tools that combine statistical rigor with storytelling capabilities. R provides:",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#why-learn-r-for-data-journalism",
+    "href": "install.html#why-learn-r-for-data-journalism",
+    "title": "1  Intro to R and RStudio",
+    "section": "",
+    "text": "Reproducible analysis through script-based workflows\nAdvanced visualization for impactful storytelling\nOpen-source community with continuous innovation\nProfessional-grade tools used by NYT, BBC, and Reuters etc.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#installing-the-tools",
+    "href": "install.html#installing-the-tools",
+    "title": "1  Intro to R and RStudio",
+    "section": "1.2 Installing the Tools",
+    "text": "1.2 Installing the Tools\n\nStep 1: Install R\n\nVisit CRAN Mirror\nSelect your operating system (Windows/Mac/Linux)\nDownload the latest version (≥4.3.0 recommended)\nRun the installer with default settings\n\n\n\nStep 2: Install RStudio\n\n\n\n\n\nRStudio Interface\n\n\n\n\n\nGo to posit.co/download\nChoose Download RStudio Desktop\nInstall using default options\n\n\n\n\n\n\n\nImportant\n\n\n\nInstallation Order Matters! Always install R before RStudio - the IDE needs the base R engine to function.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#first-time-setup",
+    "href": "install.html#first-time-setup",
+    "title": "1  Intro to R and RStudio",
+    "section": "1.3 First-Time Setup",
+    "text": "1.3 First-Time Setup\n\nOrganizing Your Workspace\n\nCreate a project folder:\n\nWindows: C:/Users/[YourName]/Documents/djr\nMac: /Users/[YourName]/Documents/djr\n\nUse lowercase letters only (avoid spaces/special characters)\n\n\n# Create folder from R Console (alternative method)\ndir.create(\"~/Documents/djr\")\n\n\n\nConfiguring RStudio\nOptimize your setup through:\n\nTools &gt; Global Options &gt; General\n\nUncheck everything above the “Other” panel\nSet “Save workspace” to Never\n\nTools &gt; Global Options &gt; Code\n\nEnable “Soft-wrap R source files”\nCheck “Use native pipe operator |&gt;”",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#understanding-the-rstudio-interface",
+    "href": "install.html#understanding-the-rstudio-interface",
+    "title": "1  Intro to R and RStudio",
+    "section": "1.4 Understanding the RStudio Interface",
+    "text": "1.4 Understanding the RStudio Interface\n\n\n\n\n\n\n\n\n\nPosition\nPanel\nPurpose\nKey Features\n\n\n\n\nTop-Left\nSource\nCode editing\nScripts, R Markdown, notebooks\n\n\nBottom-Left\nConsole\nDirect code execution\nImmediate feedback, debugging\n\n\nTop-Right\nEnvironment\nActive data objects\nVariable inspection\n\n\nBottom-Right\nFiles/Help\nNavigation & documentation\nPackage help, file browsing\n\n\n\n\n\n\n\n\nRStudio IDE Cheatsheet Preview\n\n\n\n\nDownload full RStudio IDE cheatsheets",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#essential-packages-installation",
+    "href": "install.html#essential-packages-installation",
+    "title": "1  Intro to R and RStudio",
+    "section": "1.5 Essential Packages Installation",
+    "text": "1.5 Essential Packages Installation\nRun this in the Console:\n\ninstall.packages(c(\n  \"tidyverse\",   # Data wrangling & visualization\n  \"rmarkdown\",   # Dynamic reporting\n  \"quarto\",      # Modern publishing\n  \"knitr\",       # Document processing\n  \"janitor\"      # Data cleaning\n))",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#your-first-project",
+    "href": "install.html#your-first-project",
+    "title": "1  Intro to R and RStudio",
+    "section": "1.6 Your First Project",
+    "text": "1.6 Your First Project\n\nCreate an R Project\n\nFile &gt; New Project &gt; New Directory\nName: firstname-week1 (e.g., bin-week1)\nBrowse to your djr folder\nClick Create Project\n\n\n\nCreate R Markdown File\n\nFile &gt; New File &gt; R Markdown\nTitle: “My First R Markdown”\nAuthor: Your name\nDefault HTML output\n\n\n\n\n\n\n\nNote\n\n\n\nWhy R Markdown? - Combine narrative and code - Export to multiple formats: HTML, PDF, Word - Track changes with version control",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#writing-your-first-rmd-document",
+    "href": "install.html#writing-your-first-rmd-document",
+    "title": "1  Intro to R and RStudio",
+    "section": "1.7 Writing Your First RMD Document",
+    "text": "1.7 Writing Your First RMD Document\nOnce you have created a new R Markdown file, you can start writing in it. R Markdown files use a combination of Markdown and R code to create dynamic documents. You can include text, code chunks, and output in your R Markdown file.\n\nMetadata\nOn top right of the R Markdown file, you will see a YAML front matter section, which is used to define metadata for the document. This metadata is enclosed within triple-dashed lines.\nYou can specify metadata such as the title, author, date, and output format in the YAML front matter section. Here is an example of metadata in a R Markdown file:\n---\ntitle: \"Data Journalism\"\nsubtitle: \"Week 1\"\nauthor: \"Bin Chen\"\ndate: \"Jan 20, 2025\"\nformat: html\n---\n\n\nText Content\nYou can write narrative text in your R Markdown file using Markdown syntax. Markdown is a lightweight markup language that allows you to format text using simple and intuitive syntax. You can use Markdown to create headings, lists, links, images, and more.\nHere is an example of Markdown text in a R Markdown file: - Heading: # Heading 1 - Bold: **bold text** - List: - item 1 - Link: [link text](https://www.example.com) - Image: ![](path/to/image.png) - Code: `code`\n\n\nCode Chunks\nYou can include R code in your R Markdown file using code chunks. Code chunks are enclosed within three backticks and curly braces, indicating the language of the code (in this case, R).\nYou can insert a code chunk by clicking the green “+” icon in the top right corner of the R Markdown file and selecting “R”, or you can user the keyboard shortcut “Ctrl + Alt + I” on Windows or “Cmd + Option + I” on Mac.\nHere is an example of a code chunk in a R Markdown file:\n\n1 + 1\n\n\n\n\n\n\nRMarkdown Cheatsheet Preview\n\n\n\n\nDownload full RMarkdown cheatsheets\n\n\nRender the R Markdown file\nOnce you have written your R Markdown file, you can render it to create a dynamic document. To render the R Markdown file, click the “knit” button in the top right corner of the R Markdown file. This will run the R code chunks and generate the output in the specified format.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Intro to R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html",
+    "href": "r-basics.html",
+    "title": "2  R Coding Basics",
+    "section": "",
+    "text": "2.1 Concepts",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#concepts",
+    "href": "r-basics.html#concepts",
+    "title": "2  R Coding Basics",
+    "section": "",
+    "text": "Console: The area in RStudio where you can type and run R code. However, you may not want to write codes in the console because it is not saved and hard to reproduce.\nObjects: A variable, function, or data structure in R. Objects have names and values.\nVariable: A variable is a place to store data. It has a name and a value. For example, x &lt;- 5 creates a variable x and assigns the value 5 to it.\nFunction: A function is a block of code that performs a specific task. For example, mean(x) calculates the mean of the variable x.\nData frame: A data frame is a two-dimensional data structure that stores data in rows and columns. For example, data.frame(x = 1:5, y = letters[1:5]) creates a data frame with two columns x and y.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#syntax",
+    "href": "r-basics.html#syntax",
+    "title": "2  R Coding Basics",
+    "section": "2.2 Syntax",
+    "text": "2.2 Syntax\n\nAssignment operator (&lt;-): The assignment operator is used to assign a value to a variable. For example, x &lt;- 5 assigns the value 5 to the variable x.\nComment (#): The comment symbol # is used to add comments to R code. Comments are not executed and are used to explain the code.\nPipe Operator(|&gt;): The pipe operator |&gt; (also %&gt;%) is used to chain multiple functions together. It takes the output of one function and passes it as the input to the next function. For example, data |&gt; filter(x &gt; 5) |&gt; select(y) filters the data frame data to include rows where x is greater than 5 and then selects the column y.\nVectors(c()): A vector is a one-dimensional data structure that stores a sequence of values. For example, c(1, 2, 3, 4, 5) creates a vector with the values 1, 2, 3, 4, and 5. Here c() refers to combine.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#data-type",
+    "href": "r-basics.html#data-type",
+    "title": "2  R Coding Basics",
+    "section": "2.3 Data Type",
+    "text": "2.3 Data Type\n\nInteger: A data type that represents whole numbers. For example, 5, 10, and -3 are integer values.\n\n\nx &lt;- 5\n\n\nNumeric: A data type that represents numbers. For example, 3.14, and -2.5 are numeric values.\n\n\ny &lt;- 3.14\nz &lt;- -2.5\n\n\nCharacter: A data type that represents text. For example, \"hello\", \"R\", and \"data analysis\" are character values.\n\n\nname &lt;- \"Your Name\"\nlanguage &lt;- c(\"R\", \"Python\")\n\n\nLogical: A data type that represents TRUE or FALSE values. Logical values are used in conditional statements and comparisons.\n\n\n# Logical\nis_student &lt;- FALSE\nis_teacher &lt;- TRUE\n\n\ndate: A data type that represents dates. For example, as.Date(\"2024-09-07\") creates a date object representing September 7, 2024.\n\n\n\n\n\n\n\nWarning\n\n\n\nTo create a date object in R, you can use the as.Date() function with the date in the format YYYY-MM-DD. If you just use x &lt;- \"2024-09-07\", it will be a character type.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#data-structures",
+    "href": "r-basics.html#data-structures",
+    "title": "2  R Coding Basics",
+    "section": "2.4 Data Structures",
+    "text": "2.4 Data Structures\nWe will talk about three common data structures in R: vector, data frame, and list. There are also other data structures in R, such as matrix and array, but we will not use them in this course.\n\nVector: A one-dimensional data structure that stores a sequence of values. Vectors can be numeric, character, logical, or factor.\n\n\nnumbers &lt;- c(1, 2, 3, 4, 5)\n\n\nData Frame: A two-dimensional data structure that stores data in rows and columns. Data frames are used to store structured data and are commonly used in data analysis.\n\n\n# Create a data frame\ndf &lt;- data.frame(\n  name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  age = c(25, 30, 35))\ndf\n\n\n  \n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn this course, we will primarily work with data frames.\n\n\n\nList: A data structure that stores a collection of objects. Lists can contain vectors, matrices, data frames, and other lists.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#errorswarningsmessages",
+    "href": "r-basics.html#errorswarningsmessages",
+    "title": "2  R Coding Basics",
+    "section": "2.5 Errors/Warnings/Messages",
+    "text": "2.5 Errors/Warnings/Messages\n\nError: An error occurs when R encounters a problem that prevents it from executing the code. Errors are displayed in red text and typically include an error message that describes the problem.\nWarning: A warning occurs when R encounters a potential problem but is able to continue executing the code. Warnings are displayed in yellow text and typically include a warning message that describes the potential issue.\nMessage: A message is a general output from R that provides information about the code execution. Messages are displayed in white text and are used to convey information about the code.\n\n\n\n\n\n\n\nNote\n\n\n\nYou may ignore the messages, but you should always pay attention to errors and warnings.\n\n\n\nDebug Tips?\n\nRead the error message: The error message provides information about what went wrong. Read the error message carefully to understand the problem.\nCheck the code: Review the code that caused the error. Look for syntax errors, missing parentheses, brackets, or quotation marks, and other common mistakes.\nUse the help panel: RStudio has a help panel that provides information about functions, packages, and error messages. Use the help panel to look up information related to the error.\nSearch online: If you are unable to resolve the error, search online for solutions. Websites like Stack Overflow, RStudio Community, and the R documentation can be helpful resources.\nPosting your questions: If you are still unable to resolve the error, ask for help. Post your code and the error message on the RStudio Community or another forum to get assistance from the community.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#coding-habits",
+    "href": "r-basics.html#coding-habits",
+    "title": "2  R Coding Basics",
+    "section": "2.6 Coding habits",
+    "text": "2.6 Coding habits\n\nComment your code: Add comments to your code to explain what it does. Comments make your code easier to understand and maintain.\nUse meaningful variable names: Choose variable names that are descriptive and meaningful. Avoid using single-letter variable names like x or y. Also, please avoid using reserved words in R, such as mean, sum, data, etc, and do NOT use space, dash, or other special characters in variable names. It is always recommended to use underscore _ to separate words in variable names. Again, use all lowercase letters in variable names to make your life easier.\nOrganize your code: Organize your code into sections using comments or markdown headers. This makes it easier to navigate and understand your code.\n\n\nTips for learning R coding\n\n“Copy, Paste, and Tweak”: When writing code, it’s common to copy and paste existing code and then tweak it to fit your needs. This can save time and reduce errors.\n“Save, Save, Save”: Save your work frequently to avoid losing your progress.\nPractice, practice, practice: The more you practice writing R code, the more comfortable and proficient you will become.\nCall ? for help: If you are unsure about how to use a function or need more information, you can call ?function_name to access the help file for that function.\n\nSome extra notes on using the ? operator: In R or RStudio, you can always use the ? operator to call for help on a function or dataset, but the specific syntax may differ - depends on whether the package containing that function or dataset is loaded. Here’s how it works:\n\nFor Loaded Packages: If the package is already loaded using library() or require(), you can directly use the ? operator with the name of the function or dataset. For example, if you have already loaded the ggplot2 package (included in tidyverse), you can simply write ?ggplot to get help on the ggplot function.\nFor Unloaded Packages: If the package is not loaded, RStudio does not automatically know where to look for documentation unless you specify the package name. In this case, you have two options:\n\nLoad the Package: You can first load the package using library(packagename) and then use the ? operator as usual.\nDirect Specification: You can directly specify the package when using the ? operator, even if it’s not loaded. You do this by using ?packagename::functionname. For example, to get help on the ggplot function in ggplot2 without loading the package, you would write ?ggplot2::ggplot.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#key-functions",
+    "href": "r-basics.html#key-functions",
+    "title": "2  R Coding Basics",
+    "section": "2.7 Key Functions",
+    "text": "2.7 Key Functions\n\n\n\n\n\n\n\n\nCommand\nPurpose\nExample\n\n\n\n\n&lt;-\nAssign value\nx &lt;- 5\n\n\nc()\nCreate vector\nages &lt;- c(21, 25, 19)\n\n\ndata.frame()\nCreate data frame\ndf &lt;- data.frame(id=1:3)\n\n\n` |&gt; `\nPipe operator\n`df |&gt; filter(age &gt; 20)`\n\n\nlibrary()\nLoad package\nlibrary(tidyverse)\n\n\ninstall.packages()\nInstall package\ninstall.packages(\"dplyr\")\n\n\n?\nGet help\n?ggplot\n\n\n#\nAdd comment\n# Calculate average\n\n\nstr()\nCheck structure\nstr(df)",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "data-import.html",
+    "href": "data-import.html",
+    "title": "3  Data Import",
+    "section": "",
+    "text": "4 Importing Data in R",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Import</span>"
+    ]
+  },
+  {
+    "objectID": "data-import.html#built-in-datasets-from-packages",
+    "href": "data-import.html#built-in-datasets-from-packages",
+    "title": "3  Data Import",
+    "section": "4.1 Built-in Datasets from Packages",
+    "text": "4.1 Built-in Datasets from Packages\nR comes with a variety of built-in datasets that can be loaded directly from packages, here are some popular ones:\n\nPopular Data Packages\n\n\n\nPackage\nKey Datasets\nLoad Command\n\n\n\n\ndatasets\nmtcars, iris\nBuilt-in\n\n\nggplot2\ndiamonds, mpg\nlibrary(tidyverse)\n\n\nnycflights13\nflights, weather\ninstall.packages()\n\n\ngapminder\ngapminder\nlibrary(gapminder)\n\n\n\nUsage Example:\n\nmtcars",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Import</span>"
+    ]
+  },
+  {
+    "objectID": "data-import.html#downloading-external-data",
+    "href": "data-import.html#downloading-external-data",
+    "title": "3  Data Import",
+    "section": "4.2 Downloading External Data",
+    "text": "4.2 Downloading External Data\n\nFrom TidyTuesday\n\n#install.packages(\"tidytuesdayR\")\nlibrary(tidytuesdayR)\n\n# Load 2024 Olympics data\ntuesdata &lt;- tt_load('2024-08-06')  \nolympics &lt;- tuesdata$olympics\n\n\n\nDirect from URL\n\nlibrary(tidyverse)\n\n# Hong Kong graduates salary data\n\ndata_url = \"https://res.data.gov.hk/api/get-download-file?name=https%3A%2F%2Fwww.ugcs.gov.hk%2Fdatagovhk%2FAverage_Annual_Salaries_FT_Employment(Eng).csv\"\nhksalary_download &lt;- read_csv(data_url)\n\nhksalary_download",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Import</span>"
+    ]
+  },
+  {
+    "objectID": "data-import.html#local-file-import",
+    "href": "data-import.html#local-file-import",
+    "title": "3  Data Import",
+    "section": "4.3 Local File Import",
+    "text": "4.3 Local File Import\nIn data analysis projects, importing local files is more common than importing data from the web. Here are some common file types and their uses:\n\nCSV Files: Simple, human-readable, and widely supported. Ideal for tabular data.\nExcel Files: Used for spreadsheets with multiple sheets or formatting. Imported with readxl or openxlsx.\nSPSS, SAS, Stata Files: Common in social science and survey research. Use specialized R packages to import.\nRDS Files: Binary format for storing R objects, preserving their structure and class information.\nRData Files: Binary format for saving multiple R objects in a single file, often used for workspaces.\n\n\n\n\n\n\n\nNote\n\n\n\nFor this course, we will focus on CSV files, as they are simple and widely used.\n\n\n\nCSV Files with readr (tidyverse) package\nFirst, we download the CSV file from the web and save it locally as hksalary.csv. Then, we import it using the read_csv() function from the readr package.\n\n\n\n\n\n\nread_csv() vs. read.csv()\n\n\n\nNote that read_csv() from readr is preferred over read.csv() from base R for its speed and consistency. In this course, we recommend using read_csv() for CSV files.\n\n\n\n# Relative path (recommended)\nhksalary &lt;- read_csv(\"data/hksalary.csv\")\n\nRows: 368 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): Academic Year, Level of Study, Broad Academic Programme Category\ndbl (1): Average Annual Salary (HK$'000)\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nhksalary\n\n\n  \n\n\n\n\n\nFile Path Management\n\n\n\nPath Type\nExample\nWhen to Use\n\n\n\n\nRelative\ndata/hksalary.csv\nDefault in projects\n\n\nAbsolute\nC:/Users/.../hksalary.csv\nTemporary analysis\n\n\n\n\n\n\n\n\n\nRelative Path\n\n\n\nUse relative paths for portability and to avoid hardcoding directory paths.",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Import</span>"
+    ]
+  },
+  {
+    "objectID": "data-import.html#data-inspection",
+    "href": "data-import.html#data-inspection",
+    "title": "3  Data Import",
+    "section": "4.4 Data Inspection",
+    "text": "4.4 Data Inspection\nAfter importing data, it’s essential to inspect it to understand its structure and contents. Here are some common functions to help you get started:\n\nFirst Look Tools\n\nhead(): Shows the first few rows of the dataset.\n\n\n# First 6 rows\nhead(hksalary)\n\n\n  \n\n\n\n\nglimpse(): Provides a concise summary of the dataset’s structure.\n\n\n# # Tidyverse alternative to str()\nglimpse(hksalary)  \n\nRows: 368\nColumns: 4\n$ `Academic Year`                     &lt;chr&gt; \"2009/10\", \"2009/10\", \"2009/10\", \"…\n$ `Level of Study`                    &lt;chr&gt; \"Sub-degree\", \"Sub-degree\", \"Sub-d…\n$ `Broad Academic Programme Category` &lt;chr&gt; \"Medicine, Dentistry and Health\", …\n$ `Average Annual Salary (HK$'000)`   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155,…\n\n\n\nsummary(): Displays a statistical summary of the dataset.\n\n\nsummary(hksalary)\n\n Academic Year      Level of Study     Broad Academic Programme Category\n Length:368         Length:368         Length:368                       \n Class :character   Class :character   Class :character                 \n Mode  :character   Mode  :character   Mode  :character                 \n                                                                        \n                                                                        \n                                                                        \n Average Annual Salary (HK$'000)\n Min.   :120.0                  \n 1st Qu.:206.5                  \n Median :269.0                  \n Mean   :283.8                  \n 3rd Qu.:350.5                  \n Max.   :714.0                  \n\n\n\n\n\nFunction\nOutput Focus\nTidyverse Equivalent\n\n\n\n\nhead()\nTop rows\nslice_head()\n\n\nstr()\nData types & structure\nglimpse()",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Import</span>"
+    ]
+  },
+  {
+    "objectID": "data-import.html#practice-import-hksalary.csv-data",
+    "href": "data-import.html#practice-import-hksalary.csv-data",
+    "title": "3  Data Import",
+    "section": "4.5 Practice: Import hksalary.csv Data",
+    "text": "4.5 Practice: Import hksalary.csv Data\n\nStep-by-Step Practice\n\nSetup Workspace\n\nCreate import-practice project\nMake /data subfolder\n\nStore Data\n\nDownload Hong Kong Graduates Annual Salary Data\nSave as hksalary.csv in /data\n\nImport Data\n\nlibrary(tidyverse)\nhksalary &lt;- read_csv(\"data/hksalary.csv\")\n\nRows: 368 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): Academic Year, Level of Study, Broad Academic Programme Category\ndbl (1): Average Annual Salary (HK$'000)\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nInitial Inspection\n\nglimpse(hksalary)\nsummary(hksalary)",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Import</span>"
+    ]
+  },
+  {
+    "objectID": "data-import.html#key-functions-recap",
+    "href": "data-import.html#key-functions-recap",
+    "title": "3  Data Import",
+    "section": "4.6 Key Functions Recap",
+    "text": "4.6 Key Functions Recap\n\n\n\n\n\n\n\n\nTask\nFunction\nExample\n\n\n\n\nLoad package\nlibrary()\nlibrary(tidyverse)\n\n\nRead CSV\nread_csv()\nread_csv(\"data/file.csv\")\n\n\nView structure\nglimpse()/str()\nglimpse(df)\n\n\nShow first rows\nhead()\nhead(df, n = 10)\n\n\nStatistical summary\nsummary()\nsummary(df$salary)",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data Import</span>"
+    ]
+  },
+  {
+    "objectID": "data-wrangling.html",
+    "href": "data-wrangling.html",
+    "title": "4  Data Wrangling",
+    "section": "",
+    "text": "5 Leaning Objectives",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "data-wrangling.html#set-up",
+    "href": "data-wrangling.html#set-up",
+    "title": "4  Data Wrangling",
+    "section": "5.1 Set up",
+    "text": "5.1 Set up\nBefore we start, let’s load the tidyverse packages.\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "data-wrangling.html#data-import-inspection",
+    "href": "data-wrangling.html#data-import-inspection",
+    "title": "4  Data Wrangling",
+    "section": "5.2 Data Import & Inspection",
+    "text": "5.2 Data Import & Inspection\nLet’s start by importing the data using the read_csv() function from the readr package.\n\n\n\n\n\n\nNote\n\n\n\nreadr is a package that provides a fast and friendly way to read rectangular data (like CSV files) into R. It is part of the tidyverse, so you don’t need to install it separately if you have installed the tidyverse package. And you don’t need to load it separately if you have loaded the tidyverse package.\n\n\n\ndf &lt;- read_csv(\"data/hksalary.csv\")\n\nRows: 368 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): Academic Year, Level of Study, Broad Academic Programme Category\ndbl (1): Average Annual Salary (HK$'000)\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n\nglimpse(df)\n\nRows: 368\nColumns: 4\n$ `Academic Year`                     &lt;chr&gt; \"2009/10\", \"2009/10\", \"2009/10\", \"…\n$ `Level of Study`                    &lt;chr&gt; \"Sub-degree\", \"Sub-degree\", \"Sub-d…\n$ `Broad Academic Programme Category` &lt;chr&gt; \"Medicine, Dentistry and Health\", …\n$ `Average Annual Salary (HK$'000)`   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155,…\n\n\nBased on the glimpse() output, we can see there are several issues with the raw data:\n\nColumn names contain spaces and special characters, we may want to rename them to make them easier to work with.\nThe Academic Year column is in a format like “2009/10”, which is not a standard date format. We may want to extract the year as an integer and store it in a new column.\n\n\n\n\n\n\n\nTip\n\n\n\nWhen you do data cleaning, it is always recommended to create a new column rather than modifying the original column. This way, you can keep the original data intact and have a record of the changes you made. Also, it is recommended to create a new dataframe rather than modifying the original dataframe.",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "data-wrangling.html#data-cleaning",
+    "href": "data-wrangling.html#data-cleaning",
+    "title": "4  Data Wrangling",
+    "section": "5.3 Data Cleaning",
+    "text": "5.3 Data Cleaning\n\nmutate()\nHowever, in the df dataset, we found the academic year is in a format as “2009/10”. This is not a standard date format, therefore, we may not be able to use as.Date() to convert it to a date object. Instead, we can extract the year as an integer and store it in a new column.\nWe can use mutate() to create a new column year that contains the year as an integer.\nmutate() is a function from the dplyr package that is used to create new columns or modify existing columns in a data frame. It takes the data frame as the first argument and then specifies the new column name and its value using the assignment operator =.\n\n\n\n\n\n\nNote\n\n\n\nWhen you do data cleaning, tt is always recommended to create a new column rather than modifying the original column. This way, you can keep the original data intact and have a record of the changes you made. Also, you should create a new dataframe rather than modifying the original dataframe.\n\n\nHere is how we do the data cleaning: - name the new dataframe as df1 - create a new column year that contains the first four characters of the Academic Year column by using the substr() function\n\ndf1 &lt;- df |&gt;\n  mutate(year = substr(`Academic Year`, 1, 4))\n\nglimpse(df1)\n\nRows: 368\nColumns: 5\n$ `Academic Year`                     &lt;chr&gt; \"2009/10\", \"2009/10\", \"2009/10\", \"…\n$ `Level of Study`                    &lt;chr&gt; \"Sub-degree\", \"Sub-degree\", \"Sub-d…\n$ `Broad Academic Programme Category` &lt;chr&gt; \"Medicine, Dentistry and Health\", …\n$ `Average Annual Salary (HK$'000)`   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155,…\n$ year                                &lt;chr&gt; \"2009\", \"2009\", \"2009\", \"2009\", \"2…\n\n\nQuestion here: can we attach the head()function to the mutate() functions above? why and why not?\n\n\nChange column name\n\nrename()\nTo change column names, another function often used is rename(). It is a function from the dplyr package that is used to rename columns in a data frame. It takes the data frame as the first argument and then specifies the new column names using the assignment operator =.\nfor example, you can rename the columns in the df data frame as follows:\n\ndf2 &lt;- df1 |&gt;\n  rename(`level` = `Level of Study`,\n         `category` = `Broad Academic Programme Category`,\n         `salary` = `Average Annual Salary (HK$'000)`)\n\nglimpse(df2)\n\nRows: 368\nColumns: 5\n$ `Academic Year` &lt;chr&gt; \"2009/10\", \"2009/10\", \"2009/10\", \"2009/10\", \"2009/10\",…\n$ level           &lt;chr&gt; \"Sub-degree\", \"Sub-degree\", \"Sub-degree\", \"Sub-degree\"…\n$ category        &lt;chr&gt; \"Medicine, Dentistry and Health\", \"Sciences\", \"Enginee…\n$ salary          &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155, 346, 148, 154, 157,…\n$ year            &lt;chr&gt; \"2009\", \"2009\", \"2009\", \"2009\", \"2009\", \"2009\", \"2009\"…\n\n\n\n\n\n\n\n\nNote\n\n\n\nYou can also use the mutate() function to rename columns by creating new columns with the new names.\nThe differences between mutate() and rename() are: mutate() is used to create new columns or modify existing columns, while rename() is used to rename existing columns. So you see after using mutate(), you get 4 more new columns.\nWhen you use rename() to rename columns, and if the column names contain spaces or special characters, you need to enclose the column names in backticks (`) or double quotes (“).\n\n\n\n\n\nChange data type\n\nas.integer(): convert a character or numeric column to an integer column.\nas.numeric(): convert a character or integer column to a numeric column.\nas.character(): convert a numeric or integer column to a character column.\nas.Date(): convert a character column to a date column.\n\nWe found that the year column is stored as an character type, but we want to store it as an integer type. We can use the as.integer() function to convert the year column to an integer.\n\ndf3 &lt;- df2 |&gt;\n  mutate(year = as.integer(year))\n\ndf3 |&gt; head()\n\n\n  \n\n\n\n\n\nselect()\nWe found now we have 8 columns but we only want to keep the year, level, category, and salary columns. We can use the select() function to keep only the columns we want.\nselect() is a function from the dplyr package that is used to select columns in a data frame. It takes the data frame as the first argument and then specifies the columns to keep using the column names.\n\ndf4 &lt;- df3 |&gt;\n  select(year, level, category, salary)\n\nhead(df3)\n\n\n  \n\n\n\n\n\nString functions with pipe operator |&gt;\nFrom this week, we will start to use the |&gt; operator to string functions together. This operator is available in R version 4.1.0 and later. It allows you to pass the result of one function to the next function as the first argument. This can make your code more concise and easier to read, especially when you have multiple data manipulation steps.\nA simple use of “|&gt;” operate is to write the object first and then followed by the function. For example, df |&gt; head() is equivalent to head(df).\nNow, we can combine all the data cleaning steps together using the pipe operator |&gt;.\n\ndf_clean &lt;- df |&gt;\n  rename(`year` = `Academic Year`,\n         `level` = `Level of Study`,\n         `category` = `Broad Academic Programme Category`,\n         `salary` = `Average Annual Salary (HK$'000)`) |&gt;\n  mutate(year = substr(year, 1, 4)) |&gt;\n  mutate(year = as.integer(year)) |&gt;\n  select(year, level, category, salary)\n\nstr(df_clean)\n\ntibble [368 × 4] (S3: tbl_df/tbl/data.frame)\n $ year    : int [1:368] 2009 2009 2009 2009 2009 2009 2009 2009 2009 2009 ...\n $ level   : chr [1:368] \"Sub-degree\" \"Sub-degree\" \"Sub-degree\" \"Sub-degree\" ...\n $ category: chr [1:368] \"Medicine, Dentistry and Health\" \"Sciences\" \"Engineering and Technology\" \"Business and Management\" ...\n $ salary  : num [1:368] 292 125 125 139 163 122 155 346 148 154 ...",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "data-wrangling.html#save-load-data",
+    "href": "data-wrangling.html#save-load-data",
+    "title": "4  Data Wrangling",
+    "section": "5.4 Save & Load data",
+    "text": "5.4 Save & Load data\nAfter cleaning the data, we can save the cleaned data to be used for further analysis. We can save the cleand dataframe to the following formats: - CSV file: using write_csv() function from the readr package. - RData: save multiple objects using the save() function. - RDS file: save single object using the saveRDS() function.\nHowever, it is often recommended to save the data to .RData file, because it is more efficient to read the data from .RData file and it preserves the data structure and data type of the data frame.\nThat means, if you save the dataframe to CSV file, you may lose the data structure and data type of the data frame. For example, if you save a data frame with date columns to a CSV file, when you read the CSV file back, the character columns may be read as characters.\n\n\n\n\n\n\nTip\n\n\n\n.RData is smaller, faster!\n\n\n\nSave data\nNow we have done the data cleaning, we can save the cleaned data to a new CSV file. We can use the write_csv() function from the readr package to save the data frame to a CSV file.\n\n\nSave to CSV\nLets save the cleaned data to a CSV file named hksalary_cleaned.csv in the data folder. You can again just use the relative path to save the file in the data folder.\n\nwrite_csv(df_clean, \"out/hksalary_cleaned.csv\")\n\n\n\nSave to .RData\nOr, it is often recommended to save the data to .RData file, because it is more efficient to read the data from .RData file and it preserves the data structure and data type of the data frame.\nYou can simply save the data frame to an .RData file using the save() function.\n\nsave(df_clean, file = \"out/hksalary_cleaned.RData\")\n\nHere you may notice that the file size of the .RData file is much smaller than the .csv file. This is because the .RData file stores the data in a binary format, which is more efficient than the text-based CSV format.\n.RData files are automatically compressed, which can significantly reduce the size of the data on disk compared to .csv files, which are plain text. And as a result, it is faster to read and write data from .RData files.\n\n\nLoad the cleand data back\n\nload()\nLets try to load the cleaned data back to R:\nFor .RData file, you can simply use the load() function to load the data back into R.\n\nload(\"data/hksalary_cleaned.RData\")\n\n\n\n\n\n\n\nNote\n\n\n\nYou will notice that the name of the data frame is df_clean because we saved the cleaned data frame as df_clean in the .RData file.",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "data-wrangling.html#fixing-date-as.date",
+    "href": "data-wrangling.html#fixing-date-as.date",
+    "title": "4  Data Wrangling",
+    "section": "5.5 Fixing Date as.Date()",
+    "text": "5.5 Fixing Date as.Date()\nIn data analysis for journalism, we often need to convert character strings to dates for further analysis. Because we can not do math operations on a character string, and also it may sort the year in a wrong order if we sort it as a character string.\nNormally, we can use some functions to convert a character string to a date. For example: we first created a character string today_char and then converted it to a date object today_date using the as.Date() function.\n\ntoday_char &lt;- \"2025/02/17\"\nstr(today_char)\n\n chr \"2025/02/17\"\n\n\n\ntoday_date &lt;- as.Date(today_char, format = \"%Y/%m/%d\")\nstr(today_date)\n\n Date[1:1], format: \"2025-02-17\"\n\n\nas.Date() function is a baseR function used to convert a character string to a date object. The format argument specifies the format of the input character string. In this case, “%Y/%m/%d” indicates that the character string is in the format “year/month/day”.\n\n\n\n\n\n\nTip\n\n\n\nThere are some very handy R packages that can help you to convert character strings to dates, such as lubridate and anytime. You can explore these packages if you need more advanced date manipulation functions.",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "data-wrangling.html#key-functions-recap",
+    "href": "data-wrangling.html#key-functions-recap",
+    "title": "4  Data Wrangling",
+    "section": "5.6 Key Functions Recap",
+    "text": "5.6 Key Functions Recap\n\n\n\n\n\n\n\n\n\nFunction\nPackage\nPurpose\nExample Use\n\n\n\n\nread_csv()\nreadr\nImport data from CSV files\ndf &lt;- read_csv(\"data/hksalary.csv\")\n\n\nhead()\nBase R\nView the first few rows of a data frame\nhead(df)\n\n\nglimpse()\ndplyr\nGet a quick overview of the data structure\nglimpse(df)\n\n\nmutate()\ndplyr\nCreate or modify columns in a data frame\ndf1 &lt;- df |&gt; mutate(year = substr(Academic Year, 1, 4))\n\n\nrename()\ndplyr\nRename columns in a data frame\ndf2 &lt;- df1 |&gt; rename(year =Academic Year)\n\n\nas.integer()\nBase R\nConvert a column to integer type\ndf3 &lt;- df2 |&gt; mutate(year = as.integer(year))\n\n\nas.character()\nBase R\nConvert a column to character type\ndf3 |&gt; mutate(category = as.character(category))\n\n\nas.Date()\nBase R\nConvert a character string to a Date object\ntoday_date &lt;- as.Date(\"2025/02/17\", format = \"%Y/%m/%d\")\n\n\nselect()\ndplyr\nSelect specific columns from a data frame\ndf4 &lt;- df3 |&gt; select(year, level, category, salary)\n\n\nwrite_csv()\nreadr\nSave a data frame to a CSV file\nwrite_csv(df_clean, \"out/hksalary_cleaned.csv\")\n\n\nsave()\nBase R\nSave R objects (e.g., data frames) to an .RData file\nsave(df_clean, file = \"out/hksalary_cleaned.RData\")\n\n\nload()\nBase R\nLoad R objects from an .RData file\nload(\"out/hksalary_cleaned.RData\")",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data Wrangling</span>"
+    ]
+  },
+  {
+    "objectID": "transform-merge.html",
+    "href": "transform-merge.html",
+    "title": "5  Data Transform & Merging",
+    "section": "",
+    "text": "6 Set up\nLet’s start by loading the necessary libraries and the dataset.\nlibrary(tidyverse) \n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(rnaturalearth) # For world map data\n# Load the life expectancy data\ndf &lt;- read_csv(\"data/life_expectancy.csv\")\n\nNew names:\nRows: 266 Columns: 69\n── Column specification\n──────────────────────────────────────────────────────── Delimiter: \",\" chr\n(4): Country Name, Country Code, Indicator Name, Indicator Code dbl (63): 1960,\n1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, ... lgl (2): 2023,\n...69\nℹ Use `spec()` to retrieve the full column specification for this data. ℹ\nSpecify the column types or set `show_col_types = FALSE` to quiet this message.\n• `` -&gt; `...69`\nglimpse(df)\n\nRows: 266\nColumns: 69\n$ `Country Name`   &lt;chr&gt; \"Aruba\", \"Africa Eastern and Southern\", \"Afghanistan\"…\n$ `Country Code`   &lt;chr&gt; \"ABW\", \"AFE\", \"AFG\", \"AFW\", \"AGO\", \"ALB\", \"AND\", \"ARB…\n$ `Indicator Name` &lt;chr&gt; \"Life expectancy at birth, total (years)\", \"Life expe…\n$ `Indicator Code` &lt;chr&gt; \"SP.DYN.LE00.IN\", \"SP.DYN.LE00.IN\", \"SP.DYN.LE00.IN\",…\n$ `1960`           &lt;dbl&gt; 64.15200, 44.09883, 32.53500, 37.84614, 38.21100, 54.…\n$ `1961`           &lt;dbl&gt; 64.53700, 44.40108, 33.06800, 38.16548, 37.26700, 55.…\n$ `1962`           &lt;dbl&gt; 64.75200, 44.76804, 33.54700, 38.73579, 37.53900, 56.…\n$ `1963`           &lt;dbl&gt; 65.13200, 44.92569, 34.01600, 39.06327, 37.82400, 57.…\n$ `1964`           &lt;dbl&gt; 65.29400, 45.49893, 34.49400, 39.33362, 38.13100, 58.…\n$ `1965`           &lt;dbl&gt; 65.50200, 45.51282, 34.95300, 39.61488, 38.49500, 60.…\n$ `1966`           &lt;dbl&gt; 66.06300, 45.26340, 35.45300, 39.83348, 38.75700, 60.…\n$ `1967`           &lt;dbl&gt; 66.43900, 45.93304, 35.92400, 39.46643, 39.09200, 61.…\n$ `1968`           &lt;dbl&gt; 66.75700, 46.22975, 36.41800, 40.07945, 39.48400, 62.…\n$ `1969`           &lt;dbl&gt; 67.16800, 46.43694, 36.91000, 40.34288, 39.82900, 63.…\n$ `1970`           &lt;dbl&gt; 67.58300, 46.72371, 37.41800, 41.02645, 40.19000, 64.…\n$ `1971`           &lt;dbl&gt; 67.97500, 47.20967, 37.92300, 41.54788, 40.55400, 65.…\n$ `1972`           &lt;dbl&gt; 68.57700, 46.91316, 38.44400, 42.24128, 40.90500, 66.…\n$ `1973`           &lt;dbl&gt; 69.09200, 47.72271, 39.00300, 42.84673, 41.27000, 67.…\n$ `1974`           &lt;dbl&gt; 69.50300, 47.63436, 39.55000, 43.48896, 41.65200, 67.…\n$ `1975`           &lt;dbl&gt; 69.76200, 47.79288, 40.10000, 44.19265, 41.19100, 68.…\n$ `1976`           &lt;dbl&gt; 70.03500, 48.37347, 40.64500, 44.99494, 41.16300, 68.…\n$ `1977`           &lt;dbl&gt; 70.26400, 48.65676, 41.22800, 45.71210, 41.43700, 69.…\n$ `1978`           &lt;dbl&gt; 70.49400, 48.78190, 40.27100, 46.26202, 41.83000, 69.…\n$ `1979`           &lt;dbl&gt; 70.77800, 49.27690, 39.08600, 46.66625, 42.17500, 69.…\n$ `1980`           &lt;dbl&gt; 71.06600, 49.65491, 39.61800, 47.00825, 42.44900, 70.…\n$ `1981`           &lt;dbl&gt; 71.72200, 50.08262, 40.16400, 47.29049, 42.77200, 70.…\n$ `1982`           &lt;dbl&gt; 71.95900, 50.33266, 37.76600, 47.52312, 43.05100, 71.…\n$ `1983`           &lt;dbl&gt; 72.10500, 48.75816, 38.18700, 47.77922, 42.09200, 71.…\n$ `1984`           &lt;dbl&gt; 72.25100, 48.71600, 33.32900, 47.92625, 42.35300, 71.…\n$ `1985`           &lt;dbl&gt; 72.38800, 49.08027, 33.55000, 48.01570, 42.64800, 71.…\n$ `1986`           &lt;dbl&gt; 72.46200, 49.71145, 39.39600, 48.06035, 42.84300, 71.…\n$ `1987`           &lt;dbl&gt; 72.78900, 50.11539, 39.84400, 48.22949, 40.91700, 72.…\n$ `1988`           &lt;dbl&gt; 73.04700, 49.37453, 43.95800, 48.50468, 41.54500, 72.…\n$ `1989`           &lt;dbl&gt; 73.02300, 50.72100, 45.15800, 48.68021, 41.76500, 72.…\n$ `1990`           &lt;dbl&gt; 73.07600, 50.64266, 45.96700, 48.63821, 41.89300, 73.…\n$ `1991`           &lt;dbl&gt; 73.10000, 50.41606, 46.66300, 48.64873, 43.81300, 73.…\n$ `1992`           &lt;dbl&gt; 73.17900, 49.97447, 47.59600, 48.72149, 42.20900, 73.…\n$ `1993`           &lt;dbl&gt; 73.22500, 50.28794, 51.46600, 48.81533, 42.10100, 73.…\n$ `1994`           &lt;dbl&gt; 73.27200, 50.91639, 51.49500, 48.66470, 43.42200, 74.…\n$ `1995`           &lt;dbl&gt; 73.34900, 51.01604, 52.54400, 48.76475, 45.84900, 74.…\n$ `1996`           &lt;dbl&gt; 73.44800, 50.81934, 53.24300, 48.88525, 46.03300, 74.…\n$ `1997`           &lt;dbl&gt; 73.45200, 50.98197, 53.63400, 49.05807, 46.30600, 73.…\n$ `1998`           &lt;dbl&gt; 73.49100, 50.32711, 52.94300, 49.30990, 45.05700, 74.…\n$ `1999`           &lt;dbl&gt; 73.56100, 51.25887, 54.84600, 49.72643, 45.38600, 75.…\n$ `2000`           &lt;dbl&gt; 73.56900, 51.98699, 55.29800, 50.19459, 46.02400, 75.…\n$ `2001`           &lt;dbl&gt; 73.64700, 52.21224, 55.79800, 50.53735, 46.59000, 75.…\n$ `2002`           &lt;dbl&gt; 73.72600, 52.56278, 56.45400, 50.89809, 47.38600, 75.…\n$ `2003`           &lt;dbl&gt; 73.75200, 53.03630, 57.34400, 51.37161, 49.61700, 76.…\n$ `2004`           &lt;dbl&gt; 73.57600, 53.55188, 57.94400, 51.78477, 50.59200, 76.…\n$ `2005`           &lt;dbl&gt; 73.81100, 54.22295, 58.36100, 52.30806, 51.57000, 76.…\n$ `2006`           &lt;dbl&gt; 74.02600, 55.15772, 58.68400, 52.79254, 52.36900, 76.…\n$ `2007`           &lt;dbl&gt; 74.21000, 55.93784, 59.11100, 53.20900, 53.64200, 77.…\n$ `2008`           &lt;dbl&gt; 74.14700, 56.68074, 59.85200, 53.59415, 54.63300, 77.…\n$ `2009`           &lt;dbl&gt; 74.56000, 57.62151, 60.36400, 54.11171, 55.75200, 77.…\n$ `2010`           &lt;dbl&gt; 75.40400, 58.41032, 60.85100, 54.50047, 56.72600, 77.…\n$ `2011`           &lt;dbl&gt; 75.46500, 59.29332, 61.41900, 54.96017, 57.59600, 78.…\n$ `2012`           &lt;dbl&gt; 75.53100, 60.05153, 61.92300, 55.28394, 58.62300, 78.…\n$ `2013`           &lt;dbl&gt; 75.63600, 60.71003, 62.41700, 55.61514, 59.30700, 78.…\n$ `2014`           &lt;dbl&gt; 75.60100, 61.33881, 62.54500, 55.86366, 60.04000, 78.…\n$ `2015`           &lt;dbl&gt; 75.68300, 61.85686, 62.65900, 56.13527, 60.65500, 78.…\n$ `2016`           &lt;dbl&gt; 75.61700, 62.44464, 63.13600, 56.51809, 61.09200, 78.…\n$ `2017`           &lt;dbl&gt; 75.90300, 62.92481, 63.01600, 56.82663, 61.68000, 79.…\n$ `2018`           &lt;dbl&gt; 76.07200, 63.36704, 63.08100, 57.12971, 62.14400, 79.…\n$ `2019`           &lt;dbl&gt; 76.24800, 63.75475, 63.56500, 57.50029, 62.44800, 79.…\n$ `2020`           &lt;dbl&gt; 75.72300, 63.30979, 62.57500, 57.18067, 62.26100, 76.…\n$ `2021`           &lt;dbl&gt; 74.62600, 62.44909, 61.98200, 56.94647, 61.64300, 76.…\n$ `2022`           &lt;dbl&gt; 74.99200, 62.88846, 62.87900, 57.58911, 61.92900, 76.…\n$ `2023`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ ...69            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\nBased on the output of glimpse(), we can see that the dataset contains 217 rows and 69 columns. Each row is a country, and each column represents the life expectancy at birth for a specific year.\nHowever, this is not a clean format for data visualization. We need to transform this wide data format to a long data format using the pivot_longer() function.",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data Transform & Merging</span>"
+    ]
+  },
+  {
+    "objectID": "transform-merge.html#transform-wide-to-long-data",
+    "href": "transform-merge.html#transform-wide-to-long-data",
+    "title": "5  Data Transform & Merging",
+    "section": "6.1 Transform Wide to Long Data",
+    "text": "6.1 Transform Wide to Long Data\nWe found there are NAs for data in 2023 and after. So we will only select columns from 2022 and before, that is columns 5 to 67.\n\n# Transform wide data to long data format\ndf_long &lt;- df |&gt; \n  rename(country = `Country Name`,\n         country_code = `Country Code`) |&gt;\n  pivot_longer(cols = 5:67, \n               names_to = \"year\", \n               values_to = \"life_expectancy\") |&gt; \n  mutate(year = as.numeric(year)) |&gt;\n  select(country, country_code, year, life_expectancy)\n\n\nglimpse(df_long)\n\nRows: 16,758\nColumns: 4\n$ country         &lt;chr&gt; \"Aruba\", \"Aruba\", \"Aruba\", \"Aruba\", \"Aruba\", \"Aruba\", …\n$ country_code    &lt;chr&gt; \"ABW\", \"ABW\", \"ABW\", \"ABW\", \"ABW\", \"ABW\", \"ABW\", \"ABW\"…\n$ year            &lt;dbl&gt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, …\n$ life_expectancy &lt;dbl&gt; 64.152, 64.537, 64.752, 65.132, 65.294, 65.502, 66.063…\n\n\n\nsummary(df_long)\n\n   country          country_code            year      life_expectancy\n Length:16758       Length:16758       Min.   :1960   Min.   :11.99  \n Class :character   Class :character   1st Qu.:1975   1st Qu.:57.03  \n Mode  :character   Mode  :character   Median :1991   Median :66.96  \n                                       Mean   :1991   Mean   :64.39  \n                                       3rd Qu.:2007   3rd Qu.:72.65  \n                                       Max.   :2022   Max.   :85.53  \n                                                      NA's   :634",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data Transform & Merging</span>"
+    ]
+  },
+  {
+    "objectID": "transform-merge.html#merging-with-world-map-data",
+    "href": "transform-merge.html#merging-with-world-map-data",
+    "title": "5  Data Transform & Merging",
+    "section": "6.2 Merging with World Map Data",
+    "text": "6.2 Merging with World Map Data\n\n# Load world map data\nworld &lt;- ne_countries(scale = \"medium\", returnclass = \"sf\") |&gt;\n  select(iso_a3, geometry)\n\n# Merge life expectancy data with world map data\ndf_merge &lt;- df_long |&gt;\n  filter(year == 2022) |&gt;\n  left_join(world, by = c(\"country_code\" = \"iso_a3\"))\n\n\nglimpse(df_merge)\n\nRows: 266\nColumns: 5\n$ country         &lt;chr&gt; \"Aruba\", \"Africa Eastern and Southern\", \"Afghanistan\",…\n$ country_code    &lt;chr&gt; \"ABW\", \"AFE\", \"AFG\", \"AFW\", \"AGO\", \"ALB\", \"AND\", \"ARB\"…\n$ year            &lt;dbl&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, …\n$ life_expectancy &lt;dbl&gt; 74.99200, 62.88846, 62.87900, 57.58911, 61.92900, 76.8…\n$ geometry        &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((-69.89912 1..., MULTIPOLY…",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data Transform & Merging</span>"
+    ]
+  },
+  {
+    "objectID": "transform-merge.html#save-the-merged-data",
+    "href": "transform-merge.html#save-the-merged-data",
+    "title": "5  Data Transform & Merging",
+    "section": "6.3 Save the Merged Data",
+    "text": "6.3 Save the Merged Data\n\n# Save the merged data to .RData\nsave(df_merge, file = \"out/expectancy_merged.RData\")",
+    "crumbs": [
+      "Data Import & Wrangling",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Data Transform & Merging</span>"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html",
+    "href": "data-analysis.html",
+    "title": "6  Data Analysis",
+    "section": "",
+    "text": "6.1 Establishing Facts: Single Variable Analysis\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nload(\"out/hksalary_cleaned.RData\")\nglimpse(df_clean)\n\nRows: 368\nColumns: 4\n$ year     &lt;int&gt; 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2…\n$ level    &lt;chr&gt; \"Sub-degree\", \"Sub-degree\", \"Sub-degree\", \"Sub-degree\", \"Sub-…\n$ category &lt;chr&gt; \"Medicine, Dentistry and Health\", \"Sciences\", \"Engineering an…\n$ salary   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155, 346, 148, 154, 157, 155, 1…",
+    "crumbs": [
+      "Data Analysis",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html#establishing-facts-single-variable-analysis",
+    "href": "data-analysis.html#establishing-facts-single-variable-analysis",
+    "title": "6  Data Analysis",
+    "section": "",
+    "text": "Unique Values\n\n# Unique degree levels\ndf_clean |&gt; \n  distinct(level)\n\n\n  \n\n\n\n\n# Unique categories\nunique(df_clean$category)\n\n[1] \"Medicine, Dentistry and Health\" \"Sciences\"                      \n[3] \"Engineering and Technology\"     \"Business and Management\"       \n[5] \"Social Sciences\"                \"Arts and Humanities\"           \n[7] \"Education\"                     \n\n\n\n\n\n\n\n\nunique() vs distinct()\n\n\n\nThe unique() function returns a vector of unique values, while distinct() returns a data frame with unique rows.\n\n\n\n# Category distribution\ndf_clean |&gt; \n  count(category) |&gt; \n  arrange(desc(n)) \n\n\n  \n\n\n\n\n\n\n\n\n\ncount()\n\n\n\nUsing count() on a single variable in this dataset may not provide meaningful insights, as it simply counts the frequency of each category. However, in other contexts—such as the “Billboard Hot100” dataset—count() is useful for counting the number of hot100 songs by each artist, or the number of weeks each song was on the chart.\n\n\n\n\nSalary Baseline Analysis\n\n# Overall salary distribution\ndf_clean |&gt; \n  summarise(\n    avg = mean(salary),\n    median = median(salary),\n    top_10 = quantile(salary, 0.9)\n  )",
+    "crumbs": [
+      "Data Analysis",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html#tracking-changes-time-based-analysis",
+    "href": "data-analysis.html#tracking-changes-time-based-analysis",
+    "title": "6  Data Analysis",
+    "section": "6.2 Tracking Changes: Time-Based Analysis",
+    "text": "6.2 Tracking Changes: Time-Based Analysis\n\nSalary Evolution 2014-2023\n\ndf_clean |&gt; \n  group_by(year) |&gt; \n  summarise(avg_salary = mean(salary)) \n\n\n  \n\n\n\n\ndf_clean |&gt; \n  group_by(year) |&gt; \n  summarise(avg_salary = mean(salary))|&gt; \n  mutate(\n    change = avg_salary - lag(avg_salary),\n    pct_change = change/lag(avg_salary)\n  )\n\n\n  \n\n\n\n\n\n\n\n\n\nlag() Function\n\n\n\nThe lag() function is used to compute the difference between the current and previous year’s average salary. This helps identify trends and changes over time.",
+    "crumbs": [
+      "Data Analysis",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html#revealing-disparities-group-comparisons",
+    "href": "data-analysis.html#revealing-disparities-group-comparisons",
+    "title": "6  Data Analysis",
+    "section": "6.3 Revealing Disparities: Group Comparisons",
+    "text": "6.3 Revealing Disparities: Group Comparisons\n\nDegree Level Comparison\n\ndf_clean |&gt; \n  group_by(level) |&gt; \n  summarise(avg_salary = mean(salary))\n\n\n  \n\n\n\n\n\nTop Earning Fields\n\ndf_clean |&gt; \n  group_by(category) |&gt; \n  summarise(avg_salary = mean(salary))",
+    "crumbs": [
+      "Data Analysis",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "data-analysis.html#key-functions-recap",
+    "href": "data-analysis.html#key-functions-recap",
+    "title": "6  Data Analysis",
+    "section": "6.4 Key Functions Recap",
+    "text": "6.4 Key Functions Recap\n\n\n\n\n\n\n\n\n\nFunction\nPackage\nPurpose\nExample Use\n\n\n\n\ndistinct()\ndplyr\nReturns unique rows based on specified columns\ndf_clean |&gt; distinct(level)\n\n\nunique()\nBase R\nReturns unique values in a vector\nunique(df_clean$category)\n\n\ncount()\ndplyr\nCounts frequency of unique values in a column\ndf_clean |&gt; count(category) |&gt; arrange(desc(n))\n\n\nsummarise()\ndplyr\nComputes summary statistics for variables\ndf_clean |&gt; summarise(avg = mean(salary), median = median(salary), top_10 = quantile(salary, 0.9))\n\n\ngroup_by()\ndplyr\nGroups data by a variable for summary operations\ndf_clean |&gt; group_by(year) |&gt; summarise(avg_salary = mean(salary))\n\n\nmutate()\ndplyr\nCreates or modifies columns in a data frame\ndf_clean |&gt; mutate(change = avg_salary - lag(avg_salary), pct_change = change/lag(avg_salary))\n\n\nlag()\ndplyr\nComputes the lag of a vector (previous values)\nlag(avg_salary)",
+    "crumbs": [
+      "Data Analysis",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "visual-01.html",
+    "href": "visual-01.html",
+    "title": "7  ggplot Bascis",
+    "section": "",
+    "text": "8 Data Visualization\nWe will use the ggplot2 package to create visualizations for the data analysis results.\nHere is the key components for using ggplot2:\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nload(\"out/hksalary_cleaned.RData\")",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ggplot Bascis</span>"
+    ]
+  },
+  {
+    "objectID": "visual-01.html#bar-chart-average-annual-salary-by-level-of-study",
+    "href": "visual-01.html#bar-chart-average-annual-salary-by-level-of-study",
+    "title": "7  ggplot Bascis",
+    "section": "8.1 Bar Chart: Average Annual Salary by Level of Study",
+    "text": "8.1 Bar Chart: Average Annual Salary by Level of Study\n\n1df_clean |&gt;\n2  filter(year == 2022) |&gt;\n3  group_by(level) |&gt;\n4  summarise(avg_salary = mean(salary)) |&gt;\n5  ggplot(aes(x = level, y = avg_salary)) +\n6  geom_col() +\n7  labs(title = \"Average Annual Salary by Level of Study\",\n       x = \"Level of Study\",\n       y = \"Average Annual Salary (HK$'000)\")\n\n\n1\n\nUse the pipe operator |&gt; to chain the operations.\n\n2\n\nUse filter() to select the data for the most recent academic year, 2022.\n\n3\n\nUse group_by() to group the data by the level column.\n\n4\n\nUse summarise() to calculate the average salary for each group.\n\n5\n\nUse ggplot() to create a new ggplot object and specify the aesthetic mappings using aes().\n\n6\n\nUse geom_col() to create a bar chart.\n\n7\n\nUse labs() to add titles and labels to the plot.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nNotice, we use + rather than |&gt; to add a new layer to the plot. This is because ggplot() is a function that creates a new ggplot object, and geom_col() is a function that adds a new layer to the plot. We use + to combine multiple layers in the plot.\n\n\nWe can add more customization to the plot, such as changing the color of the bars, adding labels, and adjusting the theme.\n\nMore Customizations:\nWe can add more customization to the plot, such as changing the color of the bars, adding labels, and adjusting the theme.\n\ndf_clean |&gt;\n  filter(year == 2022) |&gt;\n  group_by(level) |&gt;\n  summarise(avg_salary = mean(salary)) |&gt;\n1  ggplot(aes(x = level, y = avg_salary, fill = level)) +\n2  geom_col(width = 0.7) +\n  labs(title = \"Average Annual Salary by Level of Study\",\n       subtitle = str_wrap(\"In the academic year 2022-2023, Taught Postgraduate graduates have the highest average annual salary.\"),\n       x = \"Level of Study\",\n       y = \"Average Annual Salary (HK$'000)\",\n3       caption = \"Source: DATA.GOV.HK | Author: Bin Chen\") +\n4  theme_minimal() +\n5  theme(legend.position = \"none\")\n\n\n1\n\nUse fill = level in aes() to color the bars by the level column.\n\n2\n\nUse geom_col(width = 0.7) to adjust the width of the bars to make them thinner.\n\n3\n\nUse labs() to add a subtitle and caption to the plot.\n\n4\n\nUse theme_minimal() to apply a minimal theme to the plot.\n\n5\n\nUse theme(legend.position = \"none\") to remove the legend from the plot.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nYou can explore more themes and customize the plot further using the theme() function. Common themes include theme_bw(), theme_classic(), theme_minimal().\n\n\n\n\nAdding values to the bars\nAdding values to the bars can help readers better understand the data. We can use the geom_text() function to add text labels to the bars. However, the values of average salary are too long to be displayed on the bars. We can just show the rounded values by using the round() function.\n\ndf_clean |&gt;\n  filter(year == 2022) |&gt;\n  group_by(level) |&gt;\n1  summarise(avg_salary = round(mean(salary), 2)) |&gt;\n  ggplot(aes(x = level, y = avg_salary, fill = level)) + \n  geom_col(width = 0.7) + \n2  geom_text(aes(label = avg_salary), vjust = -0.5, size = 3) +\n  labs(title = \"Average Annual Salary by Level of Study\",\n       x = \"Level of Study\",\n       y = \"Average Annual Salary (HK$'000)\") +\n  theme_light() + \n  theme(legend.position = \"none\")\n\n\n1\n\nUse round(mean(salary), 2) to round the average salary to two decimal places.\n\n2\n\nUse geom_text() to add text labels to the bars. The vjust = -0.5 argument adjusts the vertical position of the labels, and the size = 3 argument adjusts the font size of the labels.\n\n\n\n\n\n\n\n\n\n\n\n\n\nColor Palette\nYou may find the default color palette not visually appealing. You can customize the color palette using the scale_fill_manual() function to specify the colors for the four bars.\n\n## specify four colors\ncolors &lt;- c(\"#FF6F61\", \"#6B5B95\", \"#88B04B\", \"#F7CAC9\")\n\ndf_clean |&gt;\n  filter(year == 2022) |&gt;\n  group_by(level) |&gt;\n  summarise(avg_salary = mean(salary)) |&gt;\n  ggplot(aes(x = level, y = avg_salary, fill = level)) +\n  geom_col(width = 0.7) +\n  labs(title = \"Average Annual Salary by Level of Study\",\n       x = \"Level of Study\",\n       y = \"Average Annual Salary (HK$'000)\") +\n1  scale_fill_manual(values = colors) +\n  theme_minimal() +\n  theme(legend.position = \"none\")\n\n\n1\n\nUse scale_fill_manual() to specify the colors for the bars using the values argument.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nYou can use some tools to find good color palettes, such as ColorBrewer, Paletton, and Coolors.",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ggplot Bascis</span>"
+    ]
+  },
+  {
+    "objectID": "visual-01.html#line-plot-average-annual-salary-by-leveland-by-year_start",
+    "href": "visual-01.html#line-plot-average-annual-salary-by-leveland-by-year_start",
+    "title": "7  ggplot Bascis",
+    "section": "8.2 Line plot: Average Annual Salary by leveland by year_start",
+    "text": "8.2 Line plot: Average Annual Salary by leveland by year_start\n\ndf_clean |&gt;\n1  group_by(year, level) |&gt;\n2  summarise(avg_salary = mean(salary)) |&gt;\n3  ggplot(aes(x = year, y = avg_salary, color = level)) +\n4  geom_line(aes(color = level)) +\n5  labs(title = \"Average Annual Salary of Graduates by Level of Study Over the Years\",\n       x = \"Year\",\n       y = \"Average Annual Salary (HK$'000)\",\n       color = \"Level of Study\") +\n6  theme_bw()\n\n\n1\n\nUse group_by(year_start, level) to group the data by year_start and level.\n\n2\n\nUse summarise() to calculate the average salary for each group.\n\n3\n\nUse ggplot() to create a new ggplot object and specify the aesthetic mappings using aes().\n\n4\n\nUse geom_line() to create a line plot.\n\n5\n\nUse labs() to add titles and labels to the plot.\n\n6\n\nUse theme_bw() to apply a black-and-white theme to the plot.\n\n\n\n\n`summarise()` has grouped output by 'year'. You can override using the\n`.groups` argument.\n\n\n\n\n\n\n\n\n\n\nMore Customization\n\ndf_clean |&gt;\n  group_by(year, level) |&gt; \n  summarise(avg_salary = mean(salary)) |&gt; \n  ggplot(aes(x = year, y = avg_salary, color = level)) + \n  geom_line() + \n1  geom_point() +\n2  scale_color_brewer(palette = \"Set1\") +\n  labs(title = \"Average Annual Salary of Graduates by Level of Study Over the Years\", \n       x = \"Year\", \n       y = \"Average Annual Salary (HK$'000)\", \n       color = \"Level of Study\") + \n  theme_bw() \n\n\n1\n\nUse geom_point() to add points to the line plot.\n\n2\n\nUse scale_color_brewer(palette = \"Set1\") to specify the color palette for the lines.\n\n\n\n\n`summarise()` has grouped output by 'year'. You can override using the\n`.groups` argument.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nscale_color_brewer() provides a set of color palettes. You can specify the palette name to use different color schemes. It is automatically loaded when you load the ggplot2 package. A complete list of available palettes can be found in the RColorBrewer package documentation.",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ggplot Bascis</span>"
+    ]
+  },
+  {
+    "objectID": "visual-01.html#specify-aes-in-multi-layer-plots",
+    "href": "visual-01.html#specify-aes-in-multi-layer-plots",
+    "title": "7  ggplot Bascis",
+    "section": "8.3 Specify aes() in multi-layer plots",
+    "text": "8.3 Specify aes() in multi-layer plots\nIn the previous examples, we specify the aes() function only in the main ggplot() function. However, you can also specify the aes() function in each geom_ function to customize the aesthetics for each layer.\nFor example, for the line plot, if we want to customize shape of points for each level, we can specify the shape aesthetics in the geom_point() functions.\n\ndf_clean |&gt;\n  group_by(year, level) |&gt; \n  summarise(avg_salary = mean(salary)) |&gt; \n1  ggplot(aes(x = year, y = avg_salary, color = level)) +\n  geom_line() + \n2  geom_point(aes(shape = level)) +\n  scale_color_brewer(palette = \"Set1\") + \n  labs(title = \"Average Annual Salary of Graduates by Level of Study Over the Years\", \n       x = \"Year\", \n       y = \"Average Annual Salary (HK$'000)\", \n       color = \"Level of Study\") + \n  theme_bw() \n\n\n1\n\nWhen you specify aes(color = level) in the main ggplot(), it applies the color aesthetic globally to both the geom_line() and geom_point() layers (or any subsequent geoms). This means that both the lines and the points will be colored by the level variable unless you override it in the individual geoms.\n\n2\n\nWhen you specify aes(shape = level) in geom_point(), it controls the shape of the points based on the level variable, but only for the points. The lines won’t be affected by the shape aesthetic because geom_line() doesn’t use shapes.\n\n\n\n\n`summarise()` has grouped output by 'year'. You can override using the\n`.groups` argument.\n\n\n\n\n\n\n\n\n\nHowever, you will see we created a separate legend, this is because we specified the shape aesthetics in the geom_point() function. In this case, we can do this:\n\ndf_clean |&gt;\n  group_by(year, level) |&gt; \n  summarise(avg_salary = mean(salary)) |&gt; \n  ggplot(aes(x = year, y = avg_salary, color = level)) + \n  geom_line() + \n  geom_point(aes(shape = level)) +  \n  scale_color_brewer(palette = \"Set1\") + \n  labs(title = \"Average Annual Salary of Graduates by Level of Study Over the Years\", \n       x = \"Year\", \n       y = \"Average Annual Salary (HK$'000)\", \n       color = \"Level of Study\",\n1       shape = \"Level of Study\") +\n  theme_bw() \n\n\n1\n\nAdd a shape = \"Level of Study\" in the labs() function, making both the color and shape legends appear as one unified legend, labeled “Level of Study.”\n\n\n\n\n`summarise()` has grouped output by 'year'. You can override using the\n`.groups` argument.",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ggplot Bascis</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html",
+    "href": "visual-02.html",
+    "title": "8  ggplot 2.0",
+    "section": "",
+    "text": "9 Learning Objectives",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#questions-to-answer",
+    "href": "visual-02.html#questions-to-answer",
+    "title": "8  ggplot 2.0",
+    "section": "12.1 Questions to Answer",
+    "text": "12.1 Questions to Answer\nHere we will analyze the data to answer the following questions:\n\nQ1: Top 5 counties with the highest number of wildfires?\nQ2: Top 5 counties with the highest average burnt areas?\nQ3: How does the number of wildfires change over the years for each county?",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#q1-top-counties-with-the-highest-number-of-wildfires",
+    "href": "visual-02.html#q1-top-counties-with-the-highest-number-of-wildfires",
+    "title": "8  ggplot 2.0",
+    "section": "12.2 Q1: Top Counties with the Highest Number of Wildfires",
+    "text": "12.2 Q1: Top Counties with the Highest Number of Wildfires\n\nMethod 1: group_by() and summarize()\nTo answer this question, we can first try the group_by() and summarize() functions to count the number of wildfires by county.\n\ndf_clean |&gt;\n  group_by(location) |&gt;\n  summarize(num_of_wildfires = n()) |&gt;\n  arrange(desc(num_of_wildfires))\n\n\n  \n\n\n\n\n\nMethod 2: count()\nWe can also use the count() function to achieve the same result, which is more concise.\n\ndf_clean |&gt;\n  count(location) |&gt;\n  arrange(desc(n))",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#q2-top-5-counties-with-the-highest-average-burnt-areas",
+    "href": "visual-02.html#q2-top-5-counties-with-the-highest-average-burnt-areas",
+    "title": "8  ggplot 2.0",
+    "section": "12.3 Q2: Top 5 counties with the highest average burnt areas?",
+    "text": "12.3 Q2: Top 5 counties with the highest average burnt areas?\n\ndf_clean |&gt;\n  group_by(location) |&gt;\n  summarize(avg_burnt_area = mean(area)) |&gt;\n  arrange(desc(avg_burnt_area))",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#q3-how-does-the-average-burnt-area-change-over-the-years-for-each-county",
+    "href": "visual-02.html#q3-how-does-the-average-burnt-area-change-over-the-years-for-each-county",
+    "title": "8  ggplot 2.0",
+    "section": "12.4 Q3: How does the average burnt area change over the years for each county?",
+    "text": "12.4 Q3: How does the average burnt area change over the years for each county?\nFirst, we need want to translate this question to a data analysis task: calculate the number of wildfires by year for each county. That means, we need to group the data by location and year, and then compute average burnt area for each group.\nNote that the original dataframe doesn’t have a year column. We need to extract the year from the date column. Here we can use the year() function from the lubridate package to extract the year from the date column.\n\ndf_clean |&gt;\n  group_by(location, year = year(date)) |&gt;\n  summarize(avg_burnt_area = mean(area, na.rm = TRUE)) \n\n`summarise()` has grouped output by 'location'. You can override using the\n`.groups` argument.",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#bar-chart-number-of-wildfires-by-county",
+    "href": "visual-02.html#bar-chart-number-of-wildfires-by-county",
+    "title": "8  ggplot 2.0",
+    "section": "13.1 Bar Chart: Number of Wildfires by County",
+    "text": "13.1 Bar Chart: Number of Wildfires by County\nWe chose to use a bar chart to visualize the number of wildfires by county because it is a good way to compare the number of wildfires (numeric) across different counties (categorical).\nWe start by counting the number of wildfires by county using the count() function, and then create a bar chart using ggplot(). Remember the key componenets of a bar chart:\n\nData: The data frame with the variables to be plotted.\nggplot(aes(x, y)): The mapping between the data and the visual properties of the plot.\ngeom_col(): The geometric object for a bar chart.\nlabs(): The labels for the title, x-axis, and y-axis.\n\n\ndf_clean |&gt;\n  count(location) |&gt;\n  ggplot(aes(x = location, y = n)) +\n  geom_col() +\n  labs(title = \"Number of Wildfires by County\",\n       x = \"County\",\n       y = \"Number of Wildfires\")\n\n\n\n\n\n\n\n\nThen, we can add more customization to the plot, such as changing the fill color (geom_col(fill = \"red\")), using a different theme(`theme_bw``).\n\ndf_clean |&gt;\n  count(location) |&gt;\n  ggplot(aes(x = location, y = n)) +\n  geom_col(fill = \"red\") + \n  labs(title = \"Number of Wildfires by County\",\n       x = \"County\",\n       y = \"Number of Wildfires\") +\n  theme_bw() \n\n\n\n\n\n\n\n\nBecause the county names are long, we can use coord_flip() to flip the x and y axes to create a horizontal bar chart.\n\ndf_clean |&gt;\n  count(location) |&gt;\n  ggplot(aes(x = location, y = n)) +\n  geom_col(fill = \"red\") +\n  labs(title = \"Number of Wildfires by County\",\n       x = \"County\",\n       y = \"Number of Wildfires\") +\n  theme_bw() +\n  coord_flip()\n\n\n\n\n\n\n\n\nThen, we may want to reorder the bars by the number of wildfires. We can use the fct_reorder() function from the forcats package to reorder the bars by the number of wildfires.\n\ndf_clean |&gt;\n  count(location) |&gt;\n  ggplot(aes(x = fct_reorder(location, n), y = n)) +\n  geom_col(fill = \"red\") +\n  labs(title = \"Number of Wildfires by County\",\n       x = \"County\",\n       y = \"Number of Wildfires\") +\n  theme_bw() +\n  coord_flip()\n\n\n\n\n\n\n\n\nFinally, we can add text labels to the bars using the geom_text() function, with the vjust and hjust arguments to adjust the position of the labels.\n\ndf_clean |&gt;\n  count(location) |&gt;\n  ggplot(aes(x = fct_reorder(location, n), y = n)) +\n  geom_col(fill = \"red\") +\n  labs(title = \"Number of Wildfires by County\",\n       x = \"County\",\n       y = \"Number of Wildfires\") +\n  theme_bw() +\n  coord_flip() +\n  geom_text(aes(label = n), vjust = 0, hjust = 1.1)\n\n\n\n\n\n\n\n\nLet’s put all the code together:\n\ndf_clean |&gt;\n1  count(location) |&gt;\n2  ggplot(aes(x = fct_reorder(location, n), y = n)) +\n3  geom_col(fill = \"red\") +\n  labs(title = \"Number of Wildfires by County\",\n       x = \"County\",\n4       y = \"Number of Wildfires\") +\n5  theme_bw() +\n6  coord_flip() +\n7  geom_text(aes(label = n), vjust = -0.5, hjust = 1.1)\n\n\n1\n\nCount the number of wildfires by county.\n\n2\n\nMap the county names to the x-axis and the number of wildfires to the y-axis.\n\n3\n\nCreate a bar chart with red bars.\n\n4\n\nAdd labels for the title, x-axis, and y-axis.\n\n5\n\nUse a black-and-white theme.\n\n6\n\nFlip the x and y axes to create a horizontal bar chart.\n\n7\n\nAdd text labels to the bars.",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#line-plot-number-of-wildfires-by-year-for-each-county",
+    "href": "visual-02.html#line-plot-number-of-wildfires-by-year-for-each-county",
+    "title": "8  ggplot 2.0",
+    "section": "13.2 Line Plot: Number of Wildfires by Year for Each County",
+    "text": "13.2 Line Plot: Number of Wildfires by Year for Each County\nWe chose to use a line plot to visualize the number of wildfires by year for each county because it is a good way to show trends over time.\nLet’s start by calculating the number of wildfires by year for each county using the group_by() and summarize() functions.\n\ndf_clean |&gt;\n  count(location, year = year(date))\n\n\n  \n\n\n\nThen, we can create a line plot using ggplot(). Remember the key components of a line plot: - Data: The data frame with the variables to be plotted. - ggplot(aes(x, y)): The mapping between the data and the visual properties of the plot. - geom_line(): The geometric object for a line plot. - labs(): The labels for the title, x-axis, and y-axis.\nSince we want to show the number of wildfires by year for each county, we can map the year to the x-axis, the number of wildfires n to the y-axis, and the county names (location) to the color.\n\ndf_clean |&gt;\n  count(location, year = year(date)) |&gt;\n  ggplot(aes(x = year, y = n, color = location)) +\n  geom_line() +\n  labs(title = \"Number of Wildfires by Year\",\n       x = \"Year\",\n       y = \"Number of Wildfires\")\n\n\n\n\n\n\n\n\nAs we see the plot, it is not very informative because there are too many counties. We can use the facet_wrap() function to create multiple plots based on the location variable, and remove the legend using theme(legend.position = \"none\"), also, we can change the theme to theme_bw().\n\ndf_clean |&gt;\n  count(location, year = year(date)) |&gt;\n1  ggplot(aes(x = year, y = n, color = location)) +\n2  geom_line() +\n  labs(title = \"Number of Wildfires by County and Year\",\n       x = \"Year\",\n3       y = \"Number of wildfires\") +\n4  theme_bw() +\n5  facet_wrap(~location) +\n6  theme(legend.position = \"none\")\n\n\n1\n\nMap the year to the x-axis, the number of wildfires to the y-axis, and the county names to the color.\n\n2\n\nCreate a line plot.\n\n3\n\nAdd labels for the title, x-axis, and y-axis.\n\n4\n\nUse a black-and-white theme.\n\n5\n\nCreate multiple plots based on the county names.\n\n6\n\nRemove the legend.",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#interactive-bar-chart",
+    "href": "visual-02.html#interactive-bar-chart",
+    "title": "8  ggplot 2.0",
+    "section": "14.1 Interactive Bar Chart",
+    "text": "14.1 Interactive Bar Chart\n\np1 &lt;- df_clean |&gt;\n  count(location) |&gt;\n  ggplot(aes(x = location, y = n)) +\n  geom_col(fill = \"red\") +\n  labs(title = \"Number of Wildfires by County\",\n       x = \"County\",\n       y = \"Number of Wildfires\") +\n  theme_bw() +\n  coord_flip() \n\nggplotly(p1)",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#interactive-line-plot",
+    "href": "visual-02.html#interactive-line-plot",
+    "title": "8  ggplot 2.0",
+    "section": "14.2 Interactive Line Plot",
+    "text": "14.2 Interactive Line Plot\n\np2 &lt;- df_clean |&gt;\n  count(location, year = year(date)) |&gt;\n  ggplot(aes(x = year, y = n, color = location)) +\n  geom_line() +\n  labs(title = \"Number of Wildfires by Year\",\n       x = \"Year\",\n       y = \"Number of Wildfires\") +\n  theme_classic()\n\nggplotly(p2)",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "visual-02.html#more-on-plotly",
+    "href": "visual-02.html#more-on-plotly",
+    "title": "8  ggplot 2.0",
+    "section": "14.3 More on plotly",
+    "text": "14.3 More on plotly\nWe can also create an interactive scatter plot to show the financial losses from wildfires in California. We can map the date to the x-axis, the financial_loss to the y-axis, the cause to the color, and create a tooltip with additional information.\n\np3 &lt;- df_clean |&gt;\n  ggplot(aes(x = date, y = financial_loss, color = cause, text = paste(\n    \"Date:\", date,\n    \"&lt;br&gt;Location:\", location,\n    \"&lt;br&gt;Area Burned:\", area, \"acres\",\n    \"&lt;br&gt;Homes Destroyed:\", homes,\n    \"&lt;br&gt;Businesses Affected:\", businesses,\n    \"&lt;br&gt;Vehicles Destroyed:\", vehicles,\n    \"&lt;br&gt;Fatalities:\", fatalities\n1  ))) +\n2  geom_point(size = 2) +\n  labs(title = \"Financial Losses from Wildfires in California\",\n       x = \"Date\",\n       y = \"Financial Loss ($)\",\n3       color = \"Cause of Wildfire\") +\n4  theme_minimal()\n\nggplotly(p3, tooltip = \"text\")\n\n\n1\n\nMap the date to the x-axis, the financial_loss to the y-axis, the cause to the color, and create a tooltip with additional information. &lt;br&gt; means a line break.\n\n2\n\nCreate a scatter plot.\n\n3\n\nAdd labels for the title, x-axis, y-axis, and color.\n\n4\n\nUse a minimal theme.",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ggplot 2.0</span>"
+    ]
+  },
+  {
+    "objectID": "map-usa-election.html",
+    "href": "map-usa-election.html",
+    "title": "9  Map: US election 2024",
+    "section": "",
+    "text": "In this notebook, I am going to showcase how you can use R to create a map of the United States with election results. Specifically, I will use the usmap package to plot a map of the United States and color each state based on the winner of the 2024 presidential election.\n\n\n\n\n\n\nNote\n\n\n\nThe usmap package is a simple and easy-to-use package for creating maps of the United States in R. It provides a convenient way to plot data on a map of the United States and customize the appearance of the map.\n\n\n\n10 Load the necessary libraries\n\n# install the usmap package if you haven't already\nlibrary(usmap)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n11 Create the election results data\nSince the accurate election results data is not available, I will create a simplified dataset with the winner of the 2024 presidential election in each state. The dataset contains two columns: state and winner. The state column contains the two-letter abbreviation for each state, and the winner column contains the name of the candidate who won the state.\nThe reason I use the two-letter abbreviation for each state is that the usmap package requires the state names to be in this format to plot the map correctly.\nHere, I use the data.frame() function to create a data frame election_data with the 2024 US presidential election results data. The state column contains the two-letter abbreviation for each state, and the winner column contains the name of the candidate who won the state.\n\n# Election results data\nelection_data &lt;- data.frame(\n  state = c(\"AL\", \"AK\", \"AZ\", \"AR\", \"CA\",\n            \"CO\", \"CT\", \"DE\", \"FL\", \"GA\",\n            \"HI\", \"ID\", \"IL\", \"IN\", \"IA\", \"KS\", \n            \"KY\", \"LA\", \"ME\", \"MD\", \"MA\",\n            \"MI\", \"MN\", \"MS\", \"MO\", \"MT\",\n            \"NE\", \"NV\", \"NH\", \"NJ\", \"NM\",\n            \"NY\", \"NC\", \"ND\", \"OH\", \"OK\",\n            \"OR\", \"PA\", \"RI\", \"SC\",\n            \"SD\", \"TN\", \"TX\", \"UT\", \"VT\", \"VA\",\n            \"WA\", \"WV\", \"WI\", \"WY\"),\n  winner = c(\"Trump\", \"Trump\", \"Harris\", \"Trump\", \"Harris\",\n             \"Harris\", \"Harris\", \"Harris\", \"Trump\", \"Trump\",\n             \"Harris\", \"Trump\", \"Harris\", \"Trump\", \"Trump\", \"Trump\",\n             \"Trump\", \"Trump\", \"Harris\", \"Harris\", \"Harris\",\n             \"Harris\", \"Harris\", \"Trump\", \"Trump\", \"Trump\",\n             \"Trump\", \"Harris\", \"Harris\", \"Harris\", \"Harris\",\n             \"Harris\", \"Trump\", \"Trump\", \"Trump\", \"Trump\",\n             \"Harris\", \"Harris\", \"Harris\", \"Trump\",\n             \"Trump\", \"Trump\", \"Trump\", \"Trump\", \"Harris\", \"Harris\",\n             \"Harris\", \"Trump\", \"Harris\", \"Trump\")\n)\n\n\n\n12 Explore the election_data\n\n# Display the first few rows of the election_data data frame\nhead(election_data)\n\n\n  \n\n\n\n\nglimpse(election_data)\n\nRows: 50\nColumns: 2\n$ state  &lt;chr&gt; \"AL\", \"AK\", \"AZ\", \"AR\", \"CA\", \"CO\", \"CT\", \"DE\", \"FL\", \"GA\", \"HI…\n$ winner &lt;chr&gt; \"Trump\", \"Trump\", \"Harris\", \"Trump\", \"Harris\", \"Harris\", \"Harri…\n\n\n\n\n13 Visualization\nIt is very common to see news outlets to use maps to visualize election results. This is also because states are the basic unit of the US presidential election and it provides a clear and intuitive way to show the distribution of votes across the country.\nHere, I will use the plot_usmap() function from the usmap package to create a map of the United States with the election results.\n\n# Plotting the map with election results\n1plot_usmap(data = election_data, values = \"winner\", lines = \"white\") +\n2  scale_fill_manual(values = c(\"Trump\" = \"red\", \"Harris\" = \"blue\")) +\n3  labs(title = \"2024 US Presidential Election Results\",\n       fill = \"Winner\") + \n4  theme_minimal() +\n  # remove grid lines and axis \n5  theme(panel.grid = element_blank(),\n        axis.text = element_blank(), \n        axis.title = element_blank())\n\n\n1\n\nThe plot_usmap() function creates a map of the United States with the election results. The data argument specifies the data frame containing the election results data, and the values argument specifies the column in the data frame that contains the winner of each state.\n\n2\n\nThe scale_fill_manual() function customizes the fill colors of the map based on the winner of each state. In this case, I use red for Trump and blue for Harris.\n\n3\n\nThe labs() function adds a title to the map and labels the legend with “Winner”.\n\n4\n\nThe theme_minimal() function sets the theme of the plot to a minimal style.\n\n5\n\nThe theme() function is used to remove grid lines and axis labels from the plot to make it cleaner and more focused on the election results.",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Map: US election 2024</span>"
+    ]
+  },
+  {
+    "objectID": "map-lifex.html",
+    "href": "map-lifex.html",
+    "title": "10  Map: World Life Expectancy",
+    "section": "",
+    "text": "10.1 Set up\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(rnaturalearth) # For world map data\n\nload(\"out/expectancy_merged.RData\")",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Map: World Life Expectancy</span>"
+    ]
+  },
+  {
+    "objectID": "map-lifex.html#set-up",
+    "href": "map-lifex.html#set-up",
+    "title": "10  Map: World Life Expectancy",
+    "section": "",
+    "text": "Overview of Life Expectancy\n\n# Summary statistics of worldwide life expectancy in 2022\ndf_merge |&gt;\n  filter(year == 2022) |&gt;\n  summarise(mean_life_expectancy = mean(life_expectancy),\n            median_life_expectancy = median(life_expectancy),\n            min_life_expectancy = min(life_expectancy),\n            max_life_expectancy = max(life_expectancy))\n\n\n  \n\n\n\n\n\nTop 10 Countries/Regions with Highest Life Expectancy\n\n# Top 10 countries with the highest life expectancy in 2022\ndf_merge |&gt;\n  filter(year == 2022) |&gt;\n  arrange(desc(life_expectancy)) |&gt;\n  head(10)",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Map: World Life Expectancy</span>"
+    ]
+  },
+  {
+    "objectID": "map-lifex.html#data-visualization",
+    "href": "map-lifex.html#data-visualization",
+    "title": "10  Map: World Life Expectancy",
+    "section": "10.2 Data Visualization",
+    "text": "10.2 Data Visualization\n\nBar Plot: Life Expectancy in 2022 by 10 Major Countries\n\n# List of 10 major countries (with highest GDP)\ncountry_list &lt;- c(\"United States\", \"China\", \"Japan\", \"Germany\", \"India\", \n                  \"United Kingdom\", \"France\", \"Brazil\", \"Italy\", \"Canada\")\n\n\ndf_merge |&gt;\n  filter(year == 2022) |&gt;\n  filter(country %in% country_list) |&gt;\n  ggplot(aes(x = reorder(country, life_expectancy), y = life_expectancy)) +\n  geom_col(fill = \"steelblue\") +\n  coord_flip() +\n  labs(title = \"Life Expectancy in 2022 by 10 Major Countries\",\n       x = \"Country\",\n       y = \"Life Expectancy at Birth\",\n       fill = \"Country\",\n       caption = \"Source: World Bank | Author: Bin Chen\") +\n  geom_text(aes(label = round(life_expectancy, 1)), hjust = -0.1, size = 3) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\nLine Plot: Life expectancy trend in China\n\n# Life expectancy trend in China\ndf_merge |&gt;\n  filter(country == \"China\") |&gt;\n  ggplot(aes(x = year, y = life_expectancy)) +\n  geom_line(color = \"steelblue\") +\n  labs(title = \"Life Expectancy Trend in China\",\n       x = \"Year\",\n       y = \"Life Expectancy at Birth\",\n       caption = \"Source: World Bank | Author: Bin Chen\") +\n  theme_minimal()\n\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n\n\n\n\n\n\n\n\n\n\n\nMultiple Lines\n\n# Life expectancy trend in the 10 major countries\ndf_merge |&gt;\n  filter(country %in% country_list) |&gt;\n  ggplot(aes(x = year, y = life_expectancy, color = country)) +\n  geom_line() +\n  labs(title = \"Life Expectancy Trend in 10 Major Countries\",\n       x = \" \",\n       y = \" \",\n       caption = \"Source: World Bank | Author: Bin Chen\") +\n  theme_minimal() +\n  facet_wrap(~country, scales = \"free_y\") + \n  theme(legend.position = \"none\")\n\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n`geom_line()`: Each group consists of only one observation.\nℹ Do you need to adjust the group aesthetic?\n\n\n\n\n\n\n\n\n\n\n\nMap Plot: Life Expectancy by Country in 2022\n\n# Map of life expectancy by country in 2022\ndf_merge |&gt;\n  ggplot(aes()) +\n  geom_sf(aes(geometry = geometry, fill = life_expectancy)) +\n  scale_fill_gradient(low = \"#deebf7\", \n                      high = \"#3182bd\",\n                      na.value = \"grey90\", \n                      name = \"Life Expectancy\", \n                      guide = guide_colorbar(\n                        barwidth = 10,\n                        barheight = 0.5,\n                        title.position = \"top\",\n                        title.hjust = 0.5\n                      )) +\n  labs(title = \"Life Expectancy by Country in 2022\",\n       fill = \"Life Expectancy at Birth\",\n       caption = \"Source: World Bank | Author: Bin Chen\") +\n  theme_bw() +\n  theme(\n    panel.grid.major = element_blank(),  \n    panel.grid.minor = element_blank(),  \n    axis.text = element_blank(),         \n    axis.title = element_blank(),        \n    axis.ticks = element_blank(),        \n    panel.border = element_blank(),      \n    plot.background = element_rect(fill = \"white\", colour = NA),\n    legend.position = \"bottom\",\n    plot.title = element_text(hjust = 0.5, size = 10),\n    legend.title = element_text(size = 10),\n    legend.text = element_text(size = 8)\n  )",
+    "crumbs": [
+      "Data Visualization",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Map: World Life Expectancy</span>"
+    ]
+  },
+  {
+    "objectID": "quarto-pub.html",
+    "href": "quarto-pub.html",
+    "title": "11  Quarto Webiste",
+    "section": "",
+    "text": "11.1 Publishing the Quarto Website\nStep-by-Step Guide to Publishing on Quarto Pub with RStudio",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Quarto Webiste</span>"
+    ]
+  },
+  {
+    "objectID": "quarto-pub.html#publishing-the-quarto-website",
+    "href": "quarto-pub.html#publishing-the-quarto-website",
+    "title": "11  Quarto Webiste",
+    "section": "",
+    "text": "Create an Account on Quarto Pub\n\nBegin by signing up for a free account at Quarto Pub. This platform will host the website or document you create in RStudio.\n\nInitiate the Publishing Process\n\nOnce you have your Quarto account ready, open RStudio and locate the Terminal pane, which is typically found at the bottom left of the RStudio interface.\nIn the Terminal, type the command quarto publish and press Enter. This command starts the process to publish your document or website.\nSelect Quarto Pub as Your Publishing Destination: When prompted, choose quarto pub from the list of possible publishing destinations. This specifies where your project will be published.\nSelect your Quarto Pub account\nConfirm the site name (by default, it will be your directory name “yourfirstname-jmsc24fall-01”)\n\nAuthorize Quarto Pub\n\nIf this is your first time using Quarto Pub with RStudio, you will need to authorize the connection.\nWhen prompted to authorize, type Y or y and press Enter. This action will open a webpage where you need to click Allow to grant RStudio the necessary permissions to publish on your behalf.\n\nComplete the Publishing Process\n\nReturn to RStudio and continue by pressing Enter as needed to move through the final steps of the setup.\nFollow any additional on-screen instructions to complete the publishing process.\nUse directional keys to navigate and select options, and press Enter to confirm your choices.\n\nThen you will see the published website page pops up!",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Quarto Webiste</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html",
+    "href": "debate.html",
+    "title": "12  Text Analysis",
+    "section": "",
+    "text": "13 Today’s Agenda",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#course-evaluation",
+    "href": "debate.html#course-evaluation",
+    "title": "12  Text Analysis",
+    "section": "13.1 Course Evaluation",
+    "text": "13.1 Course Evaluation\n\nhttp://sftl.hku.hk/\nAnonymous\nBe careful about “strongly agree” vs “strongly disagree”\n\nAs we are unable to retrieve any of the questionnaires and rectify the answers after it is submitted",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#final-projects-rubric",
+    "href": "debate.html#final-projects-rubric",
+    "title": "12  Text Analysis",
+    "section": "13.2 Final Projects Rubric",
+    "text": "13.2 Final Projects Rubric\n\nOrganization & Formatting (15%)\n\n.qmd Files: Includes all required .qmd files, each properly named and organized:\nHome Page: Outlines the project’s purpose, data sources, research questions, key findings, and author information.\nData Cleaning: Contains code and accompanying text for data cleaning processes.\nData Analysis: Features code and explanatory text for data analysis.\nStructure: Utilizes clear headings, text, code chunks, and images to enhance readability and navigation.\n\nQuestions & Findings (25%)\n\nQuestions: Research questions are well-articulated and directly relevant to the dataset.\nFindings: Clearly presents findings with insightful interpretations and data-driven conclusions.\n\nData Cleaning & Analysis (45%) •\n\nOrganization: Uses headings to logically organize the analysis steps.\nCode Strategy: Clearly displays coding strategies with well-documented and commented code.\nExplanation: Thoroughly explains each step of the analysis, with comments inside code chunks or supplementary text outside.\n\nWriting and Presentation (15%) •\n\nWriting Quality: Ensures writing is clear, concise, and free of grammatical errors, adhering to AP style guidelines.\nAesthetics: Creates a visually appealing website with a consistent color scheme, thoughtful font choices, and an organized layout.",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#import",
+    "href": "debate.html#import",
+    "title": "12  Text Analysis",
+    "section": "16.1 Import",
+    "text": "16.1 Import\n\n# Read the transcript\ntranscript &lt;- readLines(\"data/debate.txt\")\ntranscript[1:10]\n\n [1] \"PARTICIPANTS:\"                                                                                                                                                                                                                                                                                                                      \n [2] \"Vice President Kamala Harris (D) and\"                                                                                                                                                                                                                                                                                               \n [3] \"Former President Donald Trump (R)\"                                                                                                                                                                                                                                                                                                  \n [4] \"\"                                                                                                                                                                                                                                                                                                                                   \n [5] \"MODERATORS:\"                                                                                                                                                                                                                                                                                                                        \n [6] \"Linsey Davis (ABC News) and\"                                                                                                                                                                                                                                                                                                        \n [7] \"David Muir (ABC News)\"                                                                                                                                                                                                                                                                                                              \n [8] \"\"                                                                                                                                                                                                                                                                                                                                   \n [9] \"MUIR: Good evening, I'm David Muir. And thank you for joining us for tonight's ABC News Presidential Debate. We want to welcome viewers watching on ABC and around the world tonight. Vice President Kamala Harris and President Donald Trump are just moments away from taking the stage in this unprecedented race for president.\"\n[10] \"\"                                                                                                                                                                                                                                                                                                                                   \n\n\n\n# Remove empty lines\ntranscript &lt;- transcript[transcript != \"\"]",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#parse-transcripts-to-a-data-frame",
+    "href": "debate.html#parse-transcripts-to-a-data-frame",
+    "title": "12  Text Analysis",
+    "section": "16.2 Parse transcripts to a data frame",
+    "text": "16.2 Parse transcripts to a data frame\n\n# Initialize an empty data frame\ndata &lt;- data.frame(speaker = character(),\n                   text = character(),\n                   stringsAsFactors = FALSE)\n\n# Define a regular expression pattern to detect speaker lines\nspeaker_pattern &lt;- \"^[A-Z ]+:\"  # Lines that start with uppercase letters followed by a colon\n# Initialize variables\ncurrent_speaker &lt;- NA\ncurrent_text &lt;- \"\"\n\nfor (line in transcript) {\n  # Check if the line matches the speaker pattern\n  if (str_detect(line, speaker_pattern)) {\n    # If there's accumulated text, save it before moving to the next speaker\n    if (!is.na(current_speaker) && current_text != \"\") {\n      data &lt;- rbind(data, data.frame(speaker = current_speaker, text = current_text, stringsAsFactors = FALSE))\n      current_text &lt;- \"\"\n    }\n    # Extract the speaker\n    split_line &lt;- str_split_fixed(line, \":\", 2)\n    current_speaker &lt;- str_trim(split_line[1])\n    # Start accumulating text\n    current_text &lt;- str_trim(split_line[2])\n  } else {\n    # Accumulate text\n    current_text &lt;- paste(current_text, str_trim(line))\n  }\n}\n\n# Add the last piece of text\nif (!is.na(current_speaker) && current_text != \"\") {\n  data &lt;- rbind(data, data.frame(speaker = current_speaker, text = current_text, stringsAsFactors = FALSE))\n}\n\n\n# write_csv(data, \"out/debate_df.csv\")",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#filter-out-non-candidate-speakers",
+    "href": "debate.html#filter-out-non-candidate-speakers",
+    "title": "12  Text Analysis",
+    "section": "18.1 Filter Out Non-Candidate Speakers",
+    "text": "18.1 Filter Out Non-Candidate Speakers\n\ndf1 &lt;- df |&gt;\n  filter(speaker == \"HARRIS\" | speaker == \"TRUMP\")\n\nunique(df1$speaker)\n\n[1] \"HARRIS\" \"TRUMP\"",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#standardize-speaker-names",
+    "href": "debate.html#standardize-speaker-names",
+    "title": "12  Text Analysis",
+    "section": "18.2 Standardize Speaker Names",
+    "text": "18.2 Standardize Speaker Names\n\n# Standardize speaker names if necessary\ndf1$speaker &lt;- ifelse(df1$speaker == \"HARRIS\", \"Harris\", \"Trump\")",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#tokenize-and-remove-stop-words",
+    "href": "debate.html#tokenize-and-remove-stop-words",
+    "title": "12  Text Analysis",
+    "section": "19.1 Tokenize and Remove Stop Words",
+    "text": "19.1 Tokenize and Remove Stop Words\n\n# Tokenize the text column\ntidy_data &lt;- df1 %&gt;%\n  unnest_tokens(word, text)\n\nhead(tidy_data)\n\n\n  \n\n\n\n\n# Load stop words\ndata(\"stop_words\")\n\n# Remove stop words\ntidy_data_clean &lt;- tidy_data %&gt;%\n  anti_join(stop_words, by = \"word\") %&gt;%\n  filter(!str_detect(word, \"\\\\d+\"))\n\n\n# Calculate word frequencies\nword_counts &lt;- tidy_data_clean %&gt;%\n  count(speaker, word, sort = TRUE)",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#analyze-top-words",
+    "href": "debate.html#analyze-top-words",
+    "title": "12  Text Analysis",
+    "section": "19.2 Analyze Top Words",
+    "text": "19.2 Analyze Top Words\n\n# Get top 10 words for each candidate\ntop_words &lt;- word_counts %&gt;%\n  group_by(speaker) %&gt;%\n  top_n(10, n) %&gt;%\n  ungroup() %&gt;%\n  arrange(speaker, -n)\n\n# View the result\nprint(top_words)\n\n# A tibble: 22 × 3\n   speaker word           n\n   &lt;chr&gt;   &lt;chr&gt;      &lt;int&gt;\n 1 Harris  president     56\n 2 Harris  people        48\n 3 Harris  donald        32\n 4 Harris  trump         31\n 5 Harris  american      27\n 6 Harris  united        21\n 7 Harris  plan          20\n 8 Harris  understand    18\n 9 Harris  care          14\n10 Harris  talk          14\n# ℹ 12 more rows",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#analyze-top-word-pairs-bigrams",
+    "href": "debate.html#analyze-top-word-pairs-bigrams",
+    "title": "12  Text Analysis",
+    "section": "19.3 Analyze Top Word Pairs (Bigrams)",
+    "text": "19.3 Analyze Top Word Pairs (Bigrams)\n\n# Create bigrams\nbigrams &lt;- df1 %&gt;%\n  unnest_tokens(bigram, text, token = \"ngrams\", n = 2)\n\n\n# Separate bigrams into two words\nbigrams_separated &lt;- bigrams %&gt;%\n  separate(bigram, into = c(\"word1\", \"word2\"), sep = \" \")\n\n# Remove stop words\nbigrams_filtered &lt;- bigrams_separated %&gt;%\n  filter(!word1 %in% stop_words$word,\n         !word2 %in% stop_words$word) %&gt;%\n  # remove numbers \n  filter(!str_detect(word1, \"\\\\d+\"),\n         !str_detect(word2, \"\\\\d+\"))\n\n\n# Unite the words back into bigrams\nbigram_counts &lt;- bigrams_filtered %&gt;%\n  unite(bigram, word1, word2, sep = \" \") %&gt;%\n  count(speaker, bigram, sort = TRUE)\n\n\n# Get top 10 bigrams for each candidate\ntop_bigrams &lt;- bigram_counts %&gt;%\n  group_by(speaker) %&gt;%\n  top_n(10, n) %&gt;%\n  ungroup() %&gt;%\n  arrange(speaker, -n)\n\n# View the result\nprint(top_bigrams)\n\n# A tibble: 23 × 3\n   speaker bigram                n\n   &lt;chr&gt;   &lt;chr&gt;             &lt;int&gt;\n 1 Harris  donald trump         26\n 2 Harris  american people      18\n 3 Harris  vice president       11\n 4 Harris  affordable care       7\n 5 Harris  care act              7\n 6 Harris  donald trump's        6\n 7 Harris  health care           5\n 8 Harris  middle class          5\n 9 Harris  national security     5\n10 Harris  trump left            4\n# ℹ 13 more rows",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#top-words",
+    "href": "debate.html#top-words",
+    "title": "12  Text Analysis",
+    "section": "20.1 Top words",
+    "text": "20.1 Top words\n\n# Plot\ntop_words %&gt;%\n  mutate(word = reorder_within(word, n, speaker)) %&gt;%\n  ggplot(aes(word, n, fill = speaker)) +\n  geom_col(show.legend = FALSE) +\n  facet_wrap(~speaker, scales = \"free_y\") +\n  coord_flip() +\n  scale_x_reordered() +\n  labs(x = \"Words\", y = \"Frequency\", title = \"Top Words by Candidate\")",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#top-bigrams",
+    "href": "debate.html#top-bigrams",
+    "title": "12  Text Analysis",
+    "section": "20.2 Top Bigrams",
+    "text": "20.2 Top Bigrams\n\n# Plot\ntop_bigrams %&gt;%\n  mutate(bigram = reorder_within(bigram, n, speaker)) %&gt;%\n  ggplot(aes(bigram, n, fill = speaker)) +\n  geom_col(show.legend = FALSE) +\n  facet_wrap(~speaker, scales = \"free_y\") +\n  coord_flip() +\n  scale_x_reordered() +\n  labs(x = \"Bigrams\", y = \"Frequency\", title = \"Top Bigrams by Candidate\")",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#single-plot",
+    "href": "debate.html#single-plot",
+    "title": "12  Text Analysis",
+    "section": "21.1 Single Plot",
+    "text": "21.1 Single Plot\n\nwordcloud(words = harris_words$word, \n          freq = harris_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Blues\"),\n          scale = c(4, 0.5))\ntitle(\"Harris\")",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#side-by-side",
+    "href": "debate.html#side-by-side",
+    "title": "12  Text Analysis",
+    "section": "21.2 Side-by-Side",
+    "text": "21.2 Side-by-Side\n\n# Set up the plotting area for two plots\npar(mfrow = c(1, 2))\n\n# Word cloud for Harris\nwordcloud(words = harris_words$word, \n          freq = harris_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Blues\"),\n          scale = c(4, 0.5))\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : people could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : government could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : standing could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : understanding could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : understands could not be fit on page. It will not be plotted.\n\ntitle(\"Harris\")\n\n# Word cloud for Trump\nwordcloud(words = trump_words$word, \n          freq = trump_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Reds\"),\n          scale = c(4, 0.5))\ntitle(\"Trump\")",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "debate.html#heatmap",
+    "href": "debate.html#heatmap",
+    "title": "12  Text Analysis",
+    "section": "22.1 Heatmap",
+    "text": "22.1 Heatmap\n\n# Create a heatmap\nggplot(agenda_counts, aes(x = word, y = speaker, fill = n)) +\n  geom_tile() +\n  scale_fill_gradient(low = \"white\", high = \"red\") +\n  labs(title = \"Agenda Keyword Frequencies Heatmap\",\n       x = \" \",\n       y = \" \") +\n  theme_minimal() +\n  # remove grid\n  theme(panel.grid.major = element_blank(), \n        panel.grid.minor = element_blank()\n        )",
+    "crumbs": [
+      "Special Topics",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "hot100.html",
+    "href": "hot100.html",
+    "title": "13  Billboard Hot100",
+    "section": "",
+    "text": "13.1 Load Packages\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Billboard Hot100</span>"
+    ]
+  },
+  {
+    "objectID": "hot100.html#import-data",
+    "href": "hot100.html#import-data",
+    "title": "13  Billboard Hot100",
+    "section": "13.2 Import Data",
+    "text": "13.2 Import Data\nThis dataset is downloaded from Kaggle, which contains the Billboard Hot 100 chart data from 1958 to 2024.\n\ndf &lt;- read_csv(\"data/hot100.csv\")\n\nRows: 345887 Columns: 8\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): Song, Artist, Weeks in Charts, Image URL\ndbl  (3): Rank, Last Week, Peak Position\ndate (1): Date\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Billboard Hot100</span>"
+    ]
+  },
+  {
+    "objectID": "hot100.html#data-inspection",
+    "href": "hot100.html#data-inspection",
+    "title": "13  Billboard Hot100",
+    "section": "13.3 Data Inspection",
+    "text": "13.3 Data Inspection\n\nstr(): Structure of the Data\n\nstr(df)\n\nspc_tbl_ [345,887 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ Date           : Date[1:345887], format: \"1958-08-06\" \"1958-08-06\" ...\n $ Song           : chr [1:345887] \"Poor Little Fool\" \"Nel Blu Dipinto Di Blu (Volare)\" \"Patricia\" \"Splish Splash\" ...\n $ Artist         : chr [1:345887] \"Ricky Nelson\" \"Domenico Modugno\" \"Perez Prado And His Orchestra\" \"Bobby Darin\" ...\n $ Rank           : num [1:345887] 1 2 3 4 5 6 7 8 9 9 ...\n $ Last Week      : num [1:345887] 1 54 2 3 5 8 4 6 12 9 ...\n $ Peak Position  : num [1:345887] 1 2 2 3 5 6 4 6 9 9 ...\n $ Weeks in Charts: chr [1:345887] \"2\" \"2\" \"2\" \"2\" ...\n $ Image URL      : chr [1:345887] \"#\" \"https://charts-static.billboard.com/img/1958/08/domenico-modugno-x2d-180x180.jpg\" \"#\" \"https://charts-static.billboard.com/img/1958/08/bobby-darin-hm6-180x180.jpg\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   Date = col_date(format = \"\"),\n  ..   Song = col_character(),\n  ..   Artist = col_character(),\n  ..   Rank = col_double(),\n  ..   `Last Week` = col_double(),\n  ..   `Peak Position` = col_double(),\n  ..   `Weeks in Charts` = col_character(),\n  ..   `Image URL` = col_character()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\nHere is the description for each column:\n\nDate: the date of the chart\nSong: the name of the song\nArtist: the name of the artist\nRank: the position of the song on the chart\nLast Week: the position of the song on the previous week’s chart\nPeak Position: the highest position the song reached on the chart\nWeeks in Chart: the number of weeks the song has been on the chart\nImage URL: the URL of the song’s cover image\n\n\n\nsummary(): Summary of the Data\n\nsummary(df)\n\n      Date                Song              Artist               Rank      \n Min.   :1958-08-06   Length:345887      Length:345887      Min.   :  1.0  \n 1st Qu.:1975-03-05   Class :character   Class :character   1st Qu.: 26.0  \n Median :1991-10-09   Mode  :character   Mode  :character   Median : 51.0  \n Mean   :1991-10-05                                         Mean   : 50.5  \n 3rd Qu.:2008-05-07                                         3rd Qu.: 76.0  \n Max.   :2024-12-04                                         Max.   :100.0  \n   Last Week      Peak Position    Weeks in Charts     Image URL        \n Min.   :  1.00   Min.   :  1.00   Length:345887      Length:345887     \n 1st Qu.: 25.00   1st Qu.:  7.00   Class :character   Class :character  \n Median : 51.00   Median : 28.00   Mode  :character   Mode  :character  \n Mean   : 50.52   Mean   : 32.95                                        \n 3rd Qu.: 76.00   3rd Qu.: 55.00                                        \n Max.   :100.00   Max.   :100.00                                        \n\n\n\n\ncheck missing values\n\n# check missing values\ndf |&gt;\n  summarise_all(~sum(is.na(.)))",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Billboard Hot100</span>"
+    ]
+  },
+  {
+    "objectID": "hot100.html#data-cleaning",
+    "href": "hot100.html#data-cleaning",
+    "title": "13  Billboard Hot100",
+    "section": "13.4 Data Cleaning",
+    "text": "13.4 Data Cleaning\n\n\n\n\n\n\nNote\n\n\n\nDo we need to clean the data? any issue with the column names? data types?\n\n\n\nRename Columns\n\n# rename all columns to be all lowercase, and ideally single words, no spaces, or snake_case\n\ndf1 &lt;- df |&gt;\n  rename(date = Date,\n         song = Song,\n         artist = Artist,\n         rank = Rank,\n         last_week = `Last Week`,\n         peak_position = `Peak Position`,\n         weeks_in_charts = `Weeks in Charts`,\n         image_url = `Image URL`)\n\n# check column names and data types\nstr(df1)\n\nspc_tbl_ [345,887 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ date           : Date[1:345887], format: \"1958-08-06\" \"1958-08-06\" ...\n $ song           : chr [1:345887] \"Poor Little Fool\" \"Nel Blu Dipinto Di Blu (Volare)\" \"Patricia\" \"Splish Splash\" ...\n $ artist         : chr [1:345887] \"Ricky Nelson\" \"Domenico Modugno\" \"Perez Prado And His Orchestra\" \"Bobby Darin\" ...\n $ rank           : num [1:345887] 1 2 3 4 5 6 7 8 9 9 ...\n $ last_week      : num [1:345887] 1 54 2 3 5 8 4 6 12 9 ...\n $ peak_position  : num [1:345887] 1 2 2 3 5 6 4 6 9 9 ...\n $ weeks_in_charts: chr [1:345887] \"2\" \"2\" \"2\" \"2\" ...\n $ image_url      : chr [1:345887] \"#\" \"https://charts-static.billboard.com/img/1958/08/domenico-modugno-x2d-180x180.jpg\" \"#\" \"https://charts-static.billboard.com/img/1958/08/bobby-darin-hm6-180x180.jpg\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   Date = col_date(format = \"\"),\n  ..   Song = col_character(),\n  ..   Artist = col_character(),\n  ..   Rank = col_double(),\n  ..   `Last Week` = col_double(),\n  ..   `Peak Position` = col_double(),\n  ..   `Weeks in Charts` = col_character(),\n  ..   `Image URL` = col_character()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\n\n\nConvert Data Types\n\n# weeks_in_chart should be numeric\ndf2 &lt;- df1 |&gt;\n  mutate(weeks_in_charts = as.numeric(weeks_in_charts))\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `weeks_in_charts = as.numeric(weeks_in_charts)`.\nCaused by warning:\n! NAs introduced by coercion\n\n# check data types\nstr(df2)\n\ntibble [345,887 × 8] (S3: tbl_df/tbl/data.frame)\n $ date           : Date[1:345887], format: \"1958-08-06\" \"1958-08-06\" ...\n $ song           : chr [1:345887] \"Poor Little Fool\" \"Nel Blu Dipinto Di Blu (Volare)\" \"Patricia\" \"Splish Splash\" ...\n $ artist         : chr [1:345887] \"Ricky Nelson\" \"Domenico Modugno\" \"Perez Prado And His Orchestra\" \"Bobby Darin\" ...\n $ rank           : num [1:345887] 1 2 3 4 5 6 7 8 9 9 ...\n $ last_week      : num [1:345887] 1 54 2 3 5 8 4 6 12 9 ...\n $ peak_position  : num [1:345887] 1 2 2 3 5 6 4 6 9 9 ...\n $ weeks_in_charts: num [1:345887] 2 2 2 2 2 2 2 2 2 2 ...\n $ image_url      : chr [1:345887] \"#\" \"https://charts-static.billboard.com/img/1958/08/domenico-modugno-x2d-180x180.jpg\" \"#\" \"https://charts-static.billboard.com/img/1958/08/bobby-darin-hm6-180x180.jpg\" ...\n\n\n\n\n\n\n\n\nCan you answer these questions?\n\n\n\n\nHow many rows/columns in the dataset?\nWhat are the column names?\nWhat are the data types of each column?",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Billboard Hot100</span>"
+    ]
+  },
+  {
+    "objectID": "hot100.html#data-analysis",
+    "href": "hot100.html#data-analysis",
+    "title": "13  Billboard Hot100",
+    "section": "13.5 Data Analysis",
+    "text": "13.5 Data Analysis\n\n# rename df2 as hot100\n\nhot100 = df2\n# save(hot100, file = \"data/hot100.RData\")\n\n\nSingle Variable Descriptive Statistics\n\n# oldest and newest date\nsummary(hot100$date)\n\n        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. \n\"1958-08-06\" \"1975-03-05\" \"1991-10-09\" \"1991-10-05\" \"2008-05-07\" \"2024-12-04\" \n\n\n\n# which artist has most appearances in the hot-100 charts?\ntable(hot100$artist) |&gt;\n  sort(decreasing = TRUE) |&gt;\n  head(10)\n\n\n Taylor Swift         Drake    Elton John       Madonna Kenny Chesney \n         1574           932           888           856           782 \n   Tim McGraw Morgan Wallen   Keith Urban Stevie Wonder   Rod Stewart \n          749           731           674           659           657 \n\n\n\n\nMultiple Variables\n\nWhich artist appeared most\n\nhot100 |&gt;\n  filter(rank == 1, date &gt; \"2015-01-01\") |&gt;\n  distinct(artist, song) |&gt;\n  group_by(artist) |&gt;\n  summarise(n = n()) |&gt;\n  arrange(-n) |&gt;\n  head(10) |&gt;\n  ggplot(aes(x = artist, y = n)) +\n  geom_col() +\n  coord_flip()\n\n\n\n\n\n\n\n\n\n\nWhich song (song & artist) has been on the charts the most?\n\nhot100 |&gt;\n  group_by(song, artist) |&gt;\n  summarize(appearance = n()) |&gt;\n  arrange(-appearance) |&gt;\n  head(10)\n\n`summarise()` has grouped output by 'song'. You can override using the\n`.groups` argument.\n\n\n\n  \n\n\n\n\n\nWhich song (song & artist) was No. 1 for the most number of weeks?\n\nhot100 |&gt;\n  filter(rank == 1) |&gt;\n  group_by(song, artist) |&gt;\n  summarize(appearance = n()) |&gt;\n  arrange(-appearance) |&gt;\n  head(10)\n\n`summarise()` has grouped output by 'song'. You can override using the\n`.groups` argument.\n\n\n\n  \n\n\n\n\n\nWhich artist has the most No. 1 songs in last 10 years?\n\nhot100 |&gt;\n  filter(rank == 1, year(date) &gt;= 2015) |&gt;\n  distinct(artist, song) |&gt;\n  count(artist, sort = TRUE) |&gt;\n  head(10)\n\n\n  \n\n\n\n\n\n\n\n\n\nNote\n\n\n\ncount(artist, sort = TRUE) is equivalent to group_by(artist) |&gt; summarize(n = n()) |&gt; arrange(desc(n))",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Billboard Hot100</span>"
+    ]
+  },
+  {
+    "objectID": "hot100.html#data-visualization",
+    "href": "hot100.html#data-visualization",
+    "title": "13  Billboard Hot100",
+    "section": "13.6 Data Visualization",
+    "text": "13.6 Data Visualization\n\nBar Chart\nBar chart is used to show the frequency of each category. Bar chart is a good choice when you want to show the relationship between a numerical variable and a categorical variable (e.g., song, artist).\n\n# bar chart to show the top 10 artists with most appearances in the hot-100 charts\nhot100 |&gt; \n  filter(rank == 1, year(date) &gt;= 2000) |&gt; \n  group_by(artist) |&gt; \n  summarize(appearance = n()) |&gt; \n  arrange(-appearance) |&gt; \n  head(10) |&gt; \n  ggplot(aes(x = reorder(artist, appearance), y = appearance, fill = appearance)) + \n  geom_col(show.legend = FALSE) + \n  geom_text(aes(label = appearance), hjust = -0.2, size = 3) + \n  scale_fill_gradient(low = \"lightblue\", high = \"darkblue\") + \n  labs(\n    title = \"Top 10 Artists with Most Billboard No.1 Hits in the 21st Century\",\n    subtitle = str_wrap(\"Adele, Taylor Swift, and Mariah Carey are the top 3 artists with the most Billboard No.1 Hits in the 21st century.\"),\n    x = \"Artist\",\n    y = \"Number of No. 1 Songs\",\n    caption = \"Source: Billboard | Author: Bin Chen\"\n  ) +\n  coord_flip() + \n  theme_minimal(base_size = 10) +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 12),\n    plot.subtitle = element_text(size = 10, color = \"gray30\"),\n    plot.caption = element_text(size = 10, color = \"gray50\", hjust = 0)\n  )\n\n\n\n\n\n\n\n\n\n\nLine Chart\n\n# Get top 10 artists with the most No. 1 songs (each song counted only once)\ntop10_artists &lt;- hot100 |&gt;\n  filter(rank == 1) |&gt;\n  distinct(artist, song) |&gt;  # Ensure each song is counted only once per artist\n  group_by(artist) |&gt;\n  summarize(appearance = n()) |&gt;  # Count unique No. 1 songs per artist\n  arrange(desc(appearance)) |&gt;  # Sort by the number of unique songs\n  slice_head(n = 10)  # Select the top 10 artists\n\n# Print the result\ntop10_artists\n\n\n  \n\n\n\n\n# line chart to show the number of No. 1 songs for the top 10 artists\nhot100 |&gt;\n  filter(rank == 1, artist %in% top10_artists$artist) |&gt;\n  group_by(artist, year = year(date)) |&gt;\n  summarize(appearance = n()) |&gt;\n  ggplot(aes(x = year, y = appearance, color = artist)) +\n  geom_line() +\n  geom_point() +\n  labs(\n    title = \"Number of No. 1 Songs by Top 10 Artists\",\n    x = \"Year\",\n    y = \"Number of No. 1 Songs\",\n    color = \"Artist\",\n    caption = \"Source: Billboard | Author: Bin Chen\"\n  ) +\n  theme_minimal(base_size = 10) +\n  theme(\n    plot.title = element_text(face = \"bold\", size = 12),\n    plot.subtitle = element_text(size = 10, color = \"gray30\"),\n    plot.caption = element_text(size = 10, color = \"gray50\", hjust = 0)\n  )\n\n`summarise()` has grouped output by 'artist'. You can override using the\n`.groups` argument.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Billboard Hot100</span>"
+    ]
+  },
+  {
+    "objectID": "olympics.html",
+    "href": "olympics.html",
+    "title": "14  Paris 2024 Olympics",
+    "section": "",
+    "text": "15 Data Import\nlibrary(tidyverse)\ndf &lt;- read_csv(\"data/medallists.csv\")\ncolnames(df)\n\n [1] \"medal_date\"   \"medal_type\"   \"medal_code\"   \"name\"         \"gender\"      \n [6] \"country_code\" \"country\"      \"country_long\" \"nationality\"  \"team\"        \n[11] \"team_gender\"  \"discipline\"   \"event\"        \"event_type\"   \"url_event\"   \n[16] \"birth_date\"   \"code_athlete\" \"code_team\"",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Paris 2024 Olympics</span>"
+    ]
+  },
+  {
+    "objectID": "olympics.html#q1-who-won-the-most-medals-in-paris-2024",
+    "href": "olympics.html#q1-who-won-the-most-medals-in-paris-2024",
+    "title": "14  Paris 2024 Olympics",
+    "section": "17.1 Q1: Who won the most medals in Paris 2024?",
+    "text": "17.1 Q1: Who won the most medals in Paris 2024?\n\ndf_clean |&gt;\n  group_by(name) |&gt;\n  summarise(medal_count = n()) |&gt;\n  arrange(desc(medal_count)) |&gt;\n  head(10)",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Paris 2024 Olympics</span>"
+    ]
+  },
+  {
+    "objectID": "olympics.html#q2-who-won-the-most-gold-medals-in-paris-2024",
+    "href": "olympics.html#q2-who-won-the-most-gold-medals-in-paris-2024",
+    "title": "14  Paris 2024 Olympics",
+    "section": "17.2 Q2: Who won the most gold medals in Paris 2024?",
+    "text": "17.2 Q2: Who won the most gold medals in Paris 2024?\n\ndf_clean |&gt;\n  filter(medal_type == \"Gold Medal\") |&gt;\n  group_by(name) |&gt;\n  summarise(gold_count = n()) |&gt;\n  arrange(desc(gold_count)) |&gt;\n  head(10)",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Paris 2024 Olympics</span>"
+    ]
+  },
+  {
+    "objectID": "olympics.html#q3-which-country-has-the-most-medallists-in-paris-2024",
+    "href": "olympics.html#q3-which-country-has-the-most-medallists-in-paris-2024",
+    "title": "14  Paris 2024 Olympics",
+    "section": "17.3 Q3: Which country has the most medallists in Paris 2024?",
+    "text": "17.3 Q3: Which country has the most medallists in Paris 2024?\n\ndf_clean |&gt;\n  group_by(country) |&gt;\n  summarise(medallist_count = n()) |&gt;\n  arrange(desc(medallist_count)) |&gt;\n  head(10)",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Paris 2024 Olympics</span>"
+    ]
+  },
+  {
+    "objectID": "olympics.html#bar-chart",
+    "href": "olympics.html#bar-chart",
+    "title": "14  Paris 2024 Olympics",
+    "section": "18.1 Bar Chart",
+    "text": "18.1 Bar Chart\nWe will use a bar chart to show top 20 country with most medallists in Paris 2024.\n\ndf_clean |&gt;\n  group_by(country) |&gt;\n  summarise(medallist_count = n()) |&gt;\n  arrange(desc(medallist_count)) |&gt;\n  head(20) |&gt;\n1  ggplot(aes(x = reorder(country, medallist_count), y = medallist_count)) +\n2  geom_col() +\n3  coord_flip() +\n  labs(title = \"Top 20 Countries with Most Medallists in Paris 2024\",\n       x = \"Country\",\n       y = \"Number of Medallists\") +\n  theme_minimal() \n\n\n1\n\nUse reorder() to reorder countries based on the number of medallists.\n\n2\n\nUse geom_col() to create a bar chart.\n\n3\n\nUse coord_flip() to flip the x and y axes because we want to show the countries on the y-axis for better readability.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhy do we need to “reorder()” even if we have already used “arrange()”? 1. arrange(): This function reorders the rows of the data frame based on a variable, but it doesn’t change the internal ordering of factor levels in R. Factor levels determine how categorical variables (like country) are displayed on the plot’s axes. 2. reorder(): In the aes() function of ggplot(), reorder(country, medallist_count) specifically reorders the factor levels of country based on the values of medallist_count. This ensures that when plotting, the countries with the highest medallist_count are shown in the order you want on the x-axis (or y-axis).",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Paris 2024 Olympics</span>"
+    ]
+  },
+  {
+    "objectID": "olympics.html#scatter-plot",
+    "href": "olympics.html#scatter-plot",
+    "title": "14  Paris 2024 Olympics",
+    "section": "18.2 Scatter Plot",
+    "text": "18.2 Scatter Plot\nWe will use a scatter plot to show the relationships between the number of medals and the age of the medallists.\n\ndf_clean |&gt;\n  mutate(age = 2024 - year(birth_date)) |&gt;\n  filter(is.na(age) == FALSE) |&gt;\n  group_by(age) |&gt;\n  summarise(medallist_count = n()) |&gt;\n1  ggplot(aes(x = age, y = medallist_count)) +\n2  geom_point() +\n3  geom_smooth(method = \"lm\") +\n  labs(title = \"Relationship between Age and Number of Medallists\",\n       x = \"Age\",\n       y = \"Number of Medallists\") +\n  theme_minimal()\n\n\n1\n\nUse aes() to specify the x and y variables.\n\n2\n\nUse geom_point() to create a scatter plot.\n\n3\n\nUse geom_smooth(method = \"lm\") to add a linear regression line to the plot.\n\n\n\n\n`geom_smooth()` using formula = 'y ~ x'",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Paris 2024 Olympics</span>"
+    ]
+  },
+  {
+    "objectID": "olympics.html#world-map",
+    "href": "olympics.html#world-map",
+    "title": "14  Paris 2024 Olympics",
+    "section": "18.3 World map",
+    "text": "18.3 World map\nUse a world map to show the distribution of medallists in Paris 2024.\nHere we will use two packages: rnaturalearth and rnaturalearthdata to get the world map data. The rnaturalearth package provides access to the Natural Earth dataset, which contains a variety of geospatial data, including country boundaries. The rnaturalearthdata package contains the data files needed to create maps using the rnaturalearth package.\n\nlibrary(rnaturalearth)\nlibrary(rnaturalearthdata)\n\n\n1\n\nUse ne_countries() to get the world map data. The scale parameter specifies the level of detail for the map, and the returnclass parameter specifies the class of the returned object (in this case, a simple features object).\n\n\n\n\n\nAttaching package: 'rnaturalearthdata'\n\n\nThe following object is masked from 'package:rnaturalearth':\n\n    countries110\n\n1world &lt;- ne_countries(scale = \"medium\", returnclass = \"sf\")\n\n\ndf_clean |&gt;\n  group_by(country_code) |&gt;\n  summarise(medallist_count = n()) |&gt;\n1  left_join(world, by = c(\"country_code\" = \"iso_a3\")) |&gt;\n2  ggplot() +\n3  geom_sf(aes(fill = medallist_count, geometry = geometry)) +\n4  scale_fill_viridis_c(option = \"B\", direction = -1, begin = 0.3, end = 0.8) +\n  labs(title = \"Distribution of Medallists in Paris 2024\") +\n  theme_bw() +\n  theme(\n    panel.grid.major = element_blank(),  # Remove major grid lines\n    panel.grid.minor = element_blank(),  # Remove minor grid lines\n    axis.text = element_blank(),         # Remove axis text\n    axis.title = element_blank(),        # Remove axis titles\n    axis.ticks = element_blank(),        # Remove axis ticks\n    panel.border = element_blank(),      # Remove panel border if desired\n    plot.background = element_rect(fill = \"white\", colour = NA),  # Set plot background color\n    legend.position = \"bottom\",          # Adjust legend position\n    plot.title = element_text(hjust = 0.5)  # Center the plot title\n  )\n\n\n1\n\nUse left_join() to join the world data with the df_clean data based on the country_code and iso_a3 columns. iso_a3 is the ISO 3166-1 alpha-3 country code, such as “USA” for the United States.\n\n2\n\nUse ggplot() to create a plot.\n\n3\n\nUse geom_sf() to create a map. The fill aesthetic is set to medallist_count to color the map based on the number of medallists in each country. The geometry aesthetic specifies the geometry column in the world data, which means the map will be drawn based on the country boundaries.\n\n4\n\nUse scale_fill_viridis_c() to set the color scale for the map. The option parameter specifies the color palette, direction specifies the direction of the color gradient, and begin and end specify the color range.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\ngeom_sf is a function in the ggplot2 package used to visualize simple features (spatial data) in R. It is specifically designed to handle geospatial objects, such as polygons, points, and lines that represent geographic data. The “sf” stands for simple features, a standard way to encode spatial vector data.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Paris 2024 Olympics</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html",
+    "href": "employment.html",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "",
+    "text": "16 Learning Objectives",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#n_unemployed",
+    "href": "employment.html#n_unemployed",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "20.1 n_unemployed",
+    "text": "20.1 n_unemployed\n\ndf_unemp &lt;- df_cleaned |&gt;\n  filter(employment == \"Unemployed\") |&gt;\n  group_by(university, year_start) |&gt;\n  summarise(n = sum(headcount))\n\n`summarise()` has grouped output by 'university'. You can override using the\n`.groups` argument.\n\nglimpse(df_unemp)\n\nRows: 111\nColumns: 3\nGroups: university [8]\n$ university &lt;chr&gt; \"City University of Hong Kong\", \"City University of Hong Ko…\n$ year_start &lt;int&gt; 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018,…\n$ n          &lt;dbl&gt; 28, 29, 30, 33, 43, 58, 80, 89, 74, 140, 65, 40, 39, 45, 17…",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#n_total",
+    "href": "employment.html#n_total",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "20.2 n_total",
+    "text": "20.2 n_total\n\ndf_total &lt;- df_cleaned |&gt;\n  group_by(university, year_start) |&gt;\n  summarise(total_n = sum(headcount))\n\n`summarise()` has grouped output by 'university'. You can override using the\n`.groups` argument.\n\nglimpse(df_total)\n\nRows: 112\nColumns: 3\nGroups: university [8]\n$ university &lt;chr&gt; \"City University of Hong Kong\", \"City University of Hong Ko…\n$ year_start &lt;int&gt; 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018,…\n$ total_n    &lt;dbl&gt; 2667, 2734, 2850, 2972, 3067, 3090, 3441, 3592, 3421, 3218,…",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#calculate-the-percentage-and-create-a-new-dataframe",
+    "href": "employment.html#calculate-the-percentage-and-create-a-new-dataframe",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "20.3 Calculate the percentage and create a new dataframe",
+    "text": "20.3 Calculate the percentage and create a new dataframe",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#merge-the-two-dataframes",
+    "href": "employment.html#merge-the-two-dataframes",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "20.4 Merge the two dataframes",
+    "text": "20.4 Merge the two dataframes\nNotice that df_unemp and df_total have the same columns “university” and “year_start”. You can use the left_join function to merge the two dataframes by these two columns.\nHowever, df_unemp has 111 rows and df_total has 112 rows. This is because there is one university in df_unemp that is not in df_total. You can use the anti_join function to find out which university is not in df_total.\n\ntable(df_unemp$university, df_unemp$year_start)\ntable(df_total$university, df_total$year_start)\n\nSo here we found the data for “The Education University of Hong Kong” in 2009 is missing. So we can remove the 2009 from the dataset just for the purpose of this analysis.\n\ndf_unemp &lt;- df_unemp |&gt;\n  filter(year_start != 2009)\n\ndf_total &lt;- df_total |&gt;\n  filter(year_start != 2009)\n\n\ndf_percentage &lt;- df_unemp |&gt;\n  left_join(df_total, by = c(\"university\", \"year_start\")) |&gt;\n  mutate(percentage = n / total_n * 100)\n\ndf_percentage",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#unique",
+    "href": "employment.html#unique",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "21.1 unique()",
+    "text": "21.1 unique()\nFor example, in the df dataset, you may want to explore the Occupation column. You can use the unique() function to get all the unique values in the Occupation column.\nunique() is a function that returns a vector of the unique values in a vector or data frame column. It is provided by the base R, so you don’t need to load any additional packages to use it.\n\nunique(df$University)\n\n[1] \"City University of Hong Kong\"                      \n[2] \"Hong Kong Baptist University\"                      \n[3] \"Lingnan University\"                                \n[4] \"The Chinese University of Hong Kong\"               \n[5] \"The Education University of Hong Kong\"             \n[6] \"The Hong Kong Polytechnic University\"              \n[7] \"The Hong Kong University of Science and Technology\"\n[8] \"The University of Hong Kong\"",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#table",
+    "href": "employment.html#table",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "21.2 table()",
+    "text": "21.2 table()\nYou may also want to know the frequency of each unique value in the Occupation column. You can use the table() function to get the frequency of each unique value in the Occupation column.\ntable() is a function that returns the frequency of each unique value in a vector or data frame column. It is provided by the base R, so you don’t need to load any additional packages to use it.\n\ntable(df$Occupation)\n\n\n                                              Accountants and Auditors \n                                                                   134 \n                                       Agriculture and Fishery Workers \n                                                                    34 \n                                            Aircraft and Ship Officers \n                                                                    74 \n                                              Architects and Surveyors \n                                                                   153 \n                                                               Artists \n                                                                   159 \n                              Authors, Journalists and Related Writers \n                                                                   182 \n                                                Business Professionals \n                                                                   259 \n                                          Clerical and Related Workers \n                                                                   175 \n                          Economists, Statisticians and Mathematicians \n                                                                   171 \n                                               Engineering Technicians \n                                                                   159 \n                                                             Engineers \n                                                                   193 \n                               Government Administrators and Diplomats \n                                                                    33 \n                                 Government Officials (General Grades) \n                                                                   161 \n                         Insurance, Real Estate, and Business Services \n                                                                   151 \n                                                         Legal Workers \n                                                                   124 \n                                                              Managers \n                                                                   199 \n                                            Medical and Health Workers \n                                                                   195 \n                                           Not in Full-time Employment \n                                                                  1186 \n                                  Occupations not elsewhere classified \n                                                                    49 \n                             Other Professionals and Technical Workers \n                                                                   205 \n                                                 Other Service Workers \n                                                                   136 \n                                 Physical and Life Science Technicians \n                                                                   155 \n                                          Physical and Life Scientists \n                                                                   159 \n                                        Production and Related Workers \n                                                                    76 \n                                            Protective Service Workers \n                                                                   138 \n                                                     Religious Workers \n                                                                    69 \n                                                 Sales/Service Workers \n                                                                   155 \n                              System Analysts and Computer Programmers \n                                                                   199 \n                                                   Teaching Profession \n                                                                   315 \n                                  Workers not reporting any occupation \n                                                                   210 \nWorkers reporting occupations unidentifiable or inadequately described \n                                                                    61 \n\n\n\n\n\n\n\n\nTip\n\n\n\nYou can use table() to also get the frequency of unique value for a combination of two columns. For example, if you want to know the frequency of each unique value in the Occupation column for each University, you can use the following code: table(df$University, df$Occupation).\n\n\n\nextension\nCan you use group_by and summarise to get the same result?\n\ndf |&gt;\n  group_by(Occupation) |&gt;\n  summarise(n = n())",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#summary",
+    "href": "employment.html#summary",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "21.3 summary()",
+    "text": "21.3 summary()\nNotice that the unique and table functions are particularly useful for character columns. For numeric columns, the exploration can be very straightforward, such as getting the mean, median, min, max, etc. For example, if you want to explore the percentage column in the df_percentage dataset.\n\nmean(df_percentage$percentage)\n\n[1] 1.69358\n\nmedian(df_percentage$percentage)\n\n[1] 1.435754\n\nmin(df_percentage$percentage)\n\n[1] 0.240096\n\nmax(df_percentage$percentage)\n\n[1] 4.75382\n\n\nAlso, there is a very handy function called summary() that can give you a summary of the numeric column. It provides the min, 1st Qu, median, mean, 3rd Qu, max for the numeric column.\n\nsummary(df_percentage$percentage)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n 0.2401  1.0485  1.4358  1.6936  2.2880  4.7538 \n\n\n\n1st Qu and 3rd Qu are the first and third quartiles, respectively. They are the values that divide the data into four equal parts. The median is the middle value of the data. The min and max are the minimum and maximum values of the data, respectively.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#hist",
+    "href": "employment.html#hist",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "21.4 hist()",
+    "text": "21.4 hist()\nFor a numeric column, you may also want to know the distribution of the data. You can use the hist() function to plot a histogram of the data.\n\nhist(df_percentage$percentage)\n\n\n\n\n\n\n\n\n::: {.callout-note title = “Question”} Can you dont use hist() on a character column to get the distribution of the data, and why? :::",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#skim-package",
+    "href": "employment.html#skim-package",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "21.5 skim package",
+    "text": "21.5 skim package\nActually, there are some packages that can help you explore the data more efficiently. For example, the skimr package provides a more comprehensive summary of the data.\nFirst, lets load the skimr package.\n\n# install the package if you haven't installed it\n# run install.packages(\"skim\") in console, don't run this in the R markdown\nlibrary(skimr)\n\nThen, you can simply run the skim() function on the dataset to get a comprehensive summary of the data. Let’s try the skim() function on the df dataset.\n\nskim(df)\n\n\nData summary\n\n\nName\ndf\n\n\nNumber of rows\n5669\n\n\nNumber of columns\n6\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n5\n\n\nnumeric\n1\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\nAcademic Year\n0\n1\n7\n7\n0\n14\n0\n\n\nUniversity\n0\n1\n18\n50\n0\n8\n0\n\n\nLevel of study\n0\n1\n10\n21\n0\n4\n0\n\n\nEmployment Situation\n0\n1\n6\n15\n0\n5\n0\n\n\nOccupation\n0\n1\n7\n70\n0\n31\n0\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nNumber of Graduates (Headcount)\n0\n1\n51.34\n107.38\n1\n2\n11\n46\n1014\n▇▁▁▁▁\n\n\n\n\n\nYou will see the output including three pages: overall description, two one_skim_df. - The overall description provides the summary of the dataset, including the number of rows, columns, missing values, etc. - The second page page shows details for character columns. The useful information includes the number of missing values, the number of unique values. You may find this page also shows information about min and max, however, this is not about the min and max of the data, but the min and max of the length of the string in the column. - The third page shows a description of all the numeric columns. You will find in additional to n_missing, it also provides the mean, sd, p0, p25, p50, p75.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#bar-plot",
+    "href": "employment.html#bar-plot",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "22.1 Bar Plot",
+    "text": "22.1 Bar Plot\n\nCreate a bar plot to show the percentage of graduates who are “Unemployed” for each university in the most recent surveyed year (2022). Use the df_percentage dataframe.\n\n\ndf_percentage |&gt;\n  filter(year_start == 2022) |&gt;\n  ggplot(aes(x = university, y = percentage)) +\n  geom_col() +\n  labs(title = \"Unemployment Percentage by University in 2022/23\",\n       x = \"University\",\n       y = \"Percentage\")",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#bar-plot-coord_flip",
+    "href": "employment.html#bar-plot-coord_flip",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "22.2 Bar Plot + coord_flip()",
+    "text": "22.2 Bar Plot + coord_flip()\n\ndf_percentage |&gt;\n  filter(year_start == 2022) |&gt;\n  ggplot(aes(x = university, y = percentage)) +\n  geom_col() + \n1  coord_flip() +\n  labs(title = \"Unemployment Percentage by University in 2022/23\",\n       x = \" \",\n       y = \"Percentage (%)\")\n\n\n1\n\ncoord_flip() is a function that flips the x and y axes. It is useful when you have a lot of categories on the x-axis and the labels are long, so it is better to put them on the y-axis.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#reordering-the-bars",
+    "href": "employment.html#reordering-the-bars",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "22.3 reordering the bars",
+    "text": "22.3 reordering the bars\n\ndf_percentage |&gt;\n  filter(year_start == 2022) |&gt;\n1  ggplot(aes(x = fct_reorder(university, percentage), y = percentage)) +\n  geom_col() +\n  coord_flip() +\n  labs(title = \"Unemployment Percentage by University in 2022/23\",\n       x = \" \",\n       y = \"Percentage (%)\")\n\n\n1\n\nfct_reorder() is a function that reorders the levels of a factor based on a summary statistic. In this case, we are reordering the levels of the university factor based on the percentage column.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nfct_reorder() is a function provided by the forcats package, which is part of the tidyverse. You don’t need to load the forcats package explicitly because it is loaded automatically when you load the tidyverse.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#add-labels",
+    "href": "employment.html#add-labels",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "22.4 add labels",
+    "text": "22.4 add labels\n\ndf_percentage |&gt;\n  filter(year_start == 2022) |&gt;\n  ggplot(aes(x = fct_reorder(university, percentage), y = percentage)) +\n  geom_col() +\n1  geom_text(aes(label = round(percentage, 1)), hjust = -0.1) +\n  coord_flip() +\n  labs(title = \"Unemployment Percentage by University in 2022/23\",\n       x = \"University\",\n       y = \"Percentage\")\n\n\n1\n\ngeom_text() is a function that adds text labels to the plot. In this case, we are adding the percentage values to the plot. The hjust argument controls the horizontal justification of the text. A value of -0.1 means the text is slightly to the right of the bar.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#line-plot",
+    "href": "employment.html#line-plot",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "22.5 Line Plot",
+    "text": "22.5 Line Plot\n\nCreate a line plot to show the percentage of Unemployed graduates for HKU over the years.\n\n\ndf_percentage |&gt;\n  filter(university == \"The University of Hong Kong\") |&gt;\n  ggplot(aes(x = year_start, y = percentage)) +\n  geom_line() +\n1  scale_x_continuous(breaks = seq(2009, 2022, 1)) +\n  labs(title = \"Unemployment Percentage of HKU Graduates Over the Years\",\n       x = \"Year\",\n       y = \"Percentage (%)\") +\n  theme_bw()\n\n\n1\n\nscale_x_continuous() is a function that controls the breaks (tick marks) on the x-axis. In this case, we are setting the breaks to be every year from 2009 to 2022.\n\n\n\n\n\n\n\n\n\n\n\n\nLine Plot with Multiple Lines\n\ndf_percentage |&gt;\n  ggplot(aes(x = year_start, y = percentage, color = university)) +\n  geom_line() +\n  geom_point() +\n  scale_x_continuous(breaks = seq(2009, 2022, 1)) +\n  labs(title = \"Unemployment Percentage of Graduates Over the Years\",\n       x = \" \",\n       y = \"Percentage (%)\") +\n  theme_bw() +\n1  theme(legend.position = \"bottom\")\n\n\n1\n\ntheme(legend.position = \"bottom\") is a function that moves the legend to the bottom of the plot. The default position is at the right of the plot.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nWithin the theme() function, you can use the legend.position argument to control the position of the legend. The possible values are “none”, “left”, “right”, “top”, “bottom”, “topright”, “topleft”, “bottomright”, “bottomleft”.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#plot-with-facets",
+    "href": "employment.html#plot-with-facets",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "22.6 Plot with Facets",
+    "text": "22.6 Plot with Facets\n\ndf_percentage |&gt;\n  ggplot(aes(x = year_start, y = percentage, color = university)) +\n  geom_line() +\n  labs(title = \"Unemployment Percentage of Graduates Over the Years\",\n       x = \"Year\",\n       y = \"Percentage (%)\") +\n  scale_x_continuous(breaks = seq(2009, 2022, 2)) +\n1  facet_wrap(~university) +\n  theme_bw() +\n  theme(legend.position = \"none\")\n\n\n1\n\nfacet_wrap(~university) is a function that creates a separate plot for each level of the university factor. In this case, we are creating a separate plot for each university. The ~ symbol is used to specify the variable that you want to facet by.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#save-the-plots",
+    "href": "employment.html#save-the-plots",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "22.7 Save the plots",
+    "text": "22.7 Save the plots\n\ndf_percentage |&gt;\n  ggplot(aes(x = year_start, y = percentage, color = university)) +\n  geom_line() +\n  labs(title = \"Unemployment Percentage of Graduates Over the Years\",\n       x = \"Year\",\n       y = \"Percentage (%)\") +\n  scale_x_continuous(breaks = seq(2009, 2022, 2)) +\n  facet_wrap(~university) +\n  theme_bw() +\n  theme(legend.position = \"none\")\n\n\n1\n\nggsave() is a function that saves the plot to a file. In this case, we are saving the plot as a PNG file with a width of 10 inches, a height of 6 inches, and a resolution of 300 dpi.\n\n\n\n\n\n\n\n\n\n\n1# ggsave(\"line_plot.png\", width = 10, height = 6, dpi = 300)\n\n\n\n\n\n\n\nNote\n\n\n\ndpi stands for dots per inch, which is the resolution of the image. The higher the dpi, the higher the resolution of the image. The default dpi is 300, which is a good resolution for most purposes.",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  },
+  {
+    "objectID": "employment.html#arrange-multiple-plots",
+    "href": "employment.html#arrange-multiple-plots",
+    "title": "15  HK University Graduate Employment Situation",
+    "section": "22.8 Arrange multiple plots",
+    "text": "22.8 Arrange multiple plots\nSometimes, you may want to put multiple plots together for comparison or presentation. You can use the gridExtra package to arrange multiple plots on a single page. Install the gridExtra package if you haven’t installed it yet.\n\nlibrary(gridExtra)\n\nHere you can created two plots p1 and p2 and put them together using the grid.arrange() function.\nThe code grid.arrange(p1, p2, ncol = 2) means to put p1 and p2 together in two columns.\n\np1 &lt;- df_percentage |&gt;\n  ggplot(aes(x = year_start, y = percentage, color = university)) +\n  geom_line() +\n  labs(title = \"Unemployment Percentage of Graduates Over the Years\",\n       x = \"Year\",\n       y = \"Percentage (%)\") +\n  scale_x_continuous(breaks = seq(2009, 2022, 2)) +\n  facet_wrap(~university) +\n  theme_bw() +\n  theme(legend.position = \"none\")\n\np2 &lt;- df_percentage |&gt;\n  ggplot(aes(x = year_start, y = percentage, color = university)) +\n  geom_line() +\n  labs(title = \"Unemployment Percentage of Graduates Over the Years\",\n       x = \"Year\",\n       y = \"Percentage (%)\") +\n  scale_x_continuous(breaks = seq(2009, 2022, 2)) +\n  theme_bw() +\n  theme(legend.position = \"none\")\n\n# put p1 and p2 together\ngrid.arrange(p1, p2, ncol = 2)",
+    "crumbs": [
+      "Case Studies",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>HK University Graduate Employment Situation</span>"
+    ]
+  }
+]

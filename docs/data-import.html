@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Journalism with R - 3&nbsp; Data Import</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data-wrangling.html" rel="next">
+<link href="./r-basics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./data-import.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Journalism with R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Import &amp; Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-import.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transform &amp; Merging</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-usa-election.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Map: World Life Expectancy</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Special Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto-pub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto Webiste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Case Studies</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#importing-data-in-r" id="toc-importing-data-in-r" class="nav-link active" data-scroll-target="#importing-data-in-r"><span class="header-section-number">4</span> Importing Data in R</a>
+  <ul class="collapse">
+  <li><a href="#built-in-datasets-from-packages" id="toc-built-in-datasets-from-packages" class="nav-link" data-scroll-target="#built-in-datasets-from-packages"><span class="header-section-number">4.1</span> Built-in Datasets from Packages</a>
+  <ul class="collapse">
+  <li><a href="#popular-data-packages" id="toc-popular-data-packages" class="nav-link" data-scroll-target="#popular-data-packages">Popular Data Packages</a></li>
+  </ul></li>
+  <li><a href="#downloading-external-data" id="toc-downloading-external-data" class="nav-link" data-scroll-target="#downloading-external-data"><span class="header-section-number">4.2</span> Downloading External Data</a>
+  <ul class="collapse">
+  <li><a href="#from-tidytuesday" id="toc-from-tidytuesday" class="nav-link" data-scroll-target="#from-tidytuesday">From TidyTuesday</a></li>
+  <li><a href="#direct-from-url" id="toc-direct-from-url" class="nav-link" data-scroll-target="#direct-from-url">Direct from URL</a></li>
+  </ul></li>
+  <li><a href="#local-file-import" id="toc-local-file-import" class="nav-link" data-scroll-target="#local-file-import"><span class="header-section-number">4.3</span> Local File Import</a>
+  <ul class="collapse">
+  <li><a href="#csv-files-with-readr-tidyverse-package" id="toc-csv-files-with-readr-tidyverse-package" class="nav-link" data-scroll-target="#csv-files-with-readr-tidyverse-package">CSV Files with <code>readr</code> (<code>tidyverse</code>) package</a></li>
+  <li><a href="#file-path-management" id="toc-file-path-management" class="nav-link" data-scroll-target="#file-path-management">File Path Management</a></li>
+  </ul></li>
+  <li><a href="#data-inspection" id="toc-data-inspection" class="nav-link" data-scroll-target="#data-inspection"><span class="header-section-number">4.4</span> Data Inspection</a>
+  <ul class="collapse">
+  <li><a href="#first-look-tools" id="toc-first-look-tools" class="nav-link" data-scroll-target="#first-look-tools">First Look Tools</a></li>
+  </ul></li>
+  <li><a href="#practice-import-hksalary.csv-data" id="toc-practice-import-hksalary.csv-data" class="nav-link" data-scroll-target="#practice-import-hksalary.csv-data"><span class="header-section-number">4.5</span> Practice: Import <code>hksalary.csv</code> Data</a>
+  <ul class="collapse">
+  <li><a href="#step-by-step-practice" id="toc-step-by-step-practice" class="nav-link" data-scroll-target="#step-by-step-practice">Step-by-Step Practice</a></li>
+  </ul></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">4.6</span> Key Functions Recap</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./data-import.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="importing-data-in-r" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Importing Data in R</h1>
+<section id="built-in-datasets-from-packages" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="built-in-datasets-from-packages"><span class="header-section-number">4.1</span> Built-in Datasets from Packages</h2>
+<p>R comes with a variety of built-in datasets that can be loaded directly from packages, here are some popular ones:</p>
+<section id="popular-data-packages" class="level3">
+<h3 class="anchored" data-anchor-id="popular-data-packages">Popular Data Packages</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Key Datasets</th>
+<th>Load Command</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>datasets</code></td>
+<td>mtcars, iris</td>
+<td>Built-in</td>
+</tr>
+<tr class="even">
+<td><code>ggplot2</code></td>
+<td>diamonds, mpg</td>
+<td><code>library(tidyverse)</code></td>
+</tr>
+<tr class="odd">
+<td><code>nycflights13</code></td>
+<td>flights, weather</td>
+<td><code>install.packages()</code></td>
+</tr>
+<tr class="even">
+<td><code>gapminder</code></td>
+<td>gapminder</td>
+<td><code>library(gapminder)</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Usage Example:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="downloading-external-data" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="downloading-external-data"><span class="header-section-number">4.2</span> Downloading External Data</h2>
+<section id="from-tidytuesday" class="level3">
+<h3 class="anchored" data-anchor-id="from-tidytuesday">From TidyTuesday</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("tidytuesdayR")</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytuesdayR)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load 2024 Olympics data</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tuesdata <span class="ot">&lt;-</span> <span class="fu">tt_load</span>(<span class="st">'2024-08-06'</span>)  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>olympics <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>olympics</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="direct-from-url" class="level3">
+<h3 class="anchored" data-anchor-id="direct-from-url">Direct from URL</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Hong Kong graduates salary data</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>data_url <span class="ot">=</span> <span class="st">"https://res.data.gov.hk/api/get-download-file?name=https%3A%2F%2Fwww.ugcs.gov.hk%2Fdatagovhk%2FAverage_Annual_Salaries_FT_Employment(Eng).csv"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>hksalary_download <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(data_url)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>hksalary_download</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Academic Year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Level of Study"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Broad Academic Programme Category"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Average Annual Salary (HK$'000)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2009/10","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"292"},{"1":"2009/10","2":"Sub-degree","3":"Sciences","4":"125"},{"1":"2009/10","2":"Sub-degree","3":"Engineering and Technology","4":"125"},{"1":"2009/10","2":"Sub-degree","3":"Business and Management","4":"139"},{"1":"2009/10","2":"Sub-degree","3":"Social Sciences","4":"163"},{"1":"2009/10","2":"Sub-degree","3":"Arts and Humanities","4":"122"},{"1":"2009/10","2":"Sub-degree","3":"Education","4":"155"},{"1":"2009/10","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"346"},{"1":"2009/10","2":"Undergraduate","3":"Sciences","4":"148"},{"1":"2009/10","2":"Undergraduate","3":"Engineering and Technology","4":"154"},{"1":"2009/10","2":"Undergraduate","3":"Business and Management","4":"157"},{"1":"2009/10","2":"Undergraduate","3":"Social Sciences","4":"155"},{"1":"2009/10","2":"Undergraduate","3":"Arts and Humanities","4":"150"},{"1":"2009/10","2":"Undergraduate","3":"Education","4":"214"},{"1":"2009/10","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"276"},{"1":"2009/10","2":"Taught Postgraduate","3":"Sciences","4":"224"},{"1":"2009/10","2":"Taught Postgraduate","3":"Engineering and Technology","4":"295"},{"1":"2009/10","2":"Taught Postgraduate","3":"Business and Management","4":"233"},{"1":"2009/10","2":"Taught Postgraduate","3":"Social Sciences","4":"373"},{"1":"2009/10","2":"Taught Postgraduate","3":"Arts and Humanities","4":"222"},{"1":"2009/10","2":"Taught Postgraduate","3":"Education","4":"245"},{"1":"2009/10","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"239"},{"1":"2009/10","2":"Research Postgraduate","3":"Sciences","4":"227"},{"1":"2009/10","2":"Research Postgraduate","3":"Engineering and Technology","4":"238"},{"1":"2009/10","2":"Research Postgraduate","3":"Business and Management","4":"341"},{"1":"2009/10","2":"Research Postgraduate","3":"Social Sciences","4":"272"},{"1":"2009/10","2":"Research Postgraduate","3":"Arts and Humanities","4":"242"},{"1":"2009/10","2":"Research Postgraduate","3":"Education","4":"310"},{"1":"2010/11","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"294"},{"1":"2010/11","2":"Sub-degree","3":"Sciences","4":"144"},{"1":"2010/11","2":"Sub-degree","3":"Engineering and Technology","4":"131"},{"1":"2010/11","2":"Sub-degree","3":"Business and Management","4":"129"},{"1":"2010/11","2":"Sub-degree","3":"Social Sciences","4":"175"},{"1":"2010/11","2":"Sub-degree","3":"Arts and Humanities","4":"120"},{"1":"2010/11","2":"Sub-degree","3":"Education","4":"160"},{"1":"2010/11","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"358"},{"1":"2010/11","2":"Undergraduate","3":"Sciences","4":"162"},{"1":"2010/11","2":"Undergraduate","3":"Engineering and Technology","4":"171"},{"1":"2010/11","2":"Undergraduate","3":"Business and Management","4":"172"},{"1":"2010/11","2":"Undergraduate","3":"Social Sciences","4":"167"},{"1":"2010/11","2":"Undergraduate","3":"Arts and Humanities","4":"162"},{"1":"2010/11","2":"Undergraduate","3":"Education","4":"230"},{"1":"2010/11","2":"Taught Postgraduate","3":"Sciences","4":"245"},{"1":"2010/11","2":"Taught Postgraduate","3":"Engineering and Technology","4":"326"},{"1":"2010/11","2":"Taught Postgraduate","3":"Business and Management","4":"255"},{"1":"2010/11","2":"Taught Postgraduate","3":"Social Sciences","4":"390"},{"1":"2010/11","2":"Taught Postgraduate","3":"Arts and Humanities","4":"242"},{"1":"2010/11","2":"Taught Postgraduate","3":"Education","4":"258"},{"1":"2010/11","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"241"},{"1":"2010/11","2":"Research Postgraduate","3":"Sciences","4":"227"},{"1":"2010/11","2":"Research Postgraduate","3":"Engineering and Technology","4":"245"},{"1":"2010/11","2":"Research Postgraduate","3":"Business and Management","4":"300"},{"1":"2010/11","2":"Research Postgraduate","3":"Social Sciences","4":"254"},{"1":"2010/11","2":"Research Postgraduate","3":"Arts and Humanities","4":"243"},{"1":"2010/11","2":"Research Postgraduate","3":"Education","4":"268"},{"1":"2011/12","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"312"},{"1":"2011/12","2":"Sub-degree","3":"Sciences","4":"148"},{"1":"2011/12","2":"Sub-degree","3":"Engineering and Technology","4":"141"},{"1":"2011/12","2":"Sub-degree","3":"Business and Management","4":"137"},{"1":"2011/12","2":"Sub-degree","3":"Social Sciences","4":"171"},{"1":"2011/12","2":"Sub-degree","3":"Arts and Humanities","4":"132"},{"1":"2011/12","2":"Sub-degree","3":"Education","4":"166"},{"1":"2011/12","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"365"},{"1":"2011/12","2":"Undergraduate","3":"Sciences","4":"165"},{"1":"2011/12","2":"Undergraduate","3":"Engineering and Technology","4":"179"},{"1":"2011/12","2":"Undergraduate","3":"Business and Management","4":"170"},{"1":"2011/12","2":"Undergraduate","3":"Social Sciences","4":"168"},{"1":"2011/12","2":"Undergraduate","3":"Arts and Humanities","4":"164"},{"1":"2011/12","2":"Undergraduate","3":"Education","4":"227"},{"1":"2011/12","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"276"},{"1":"2011/12","2":"Taught Postgraduate","3":"Sciences","4":"238"},{"1":"2011/12","2":"Taught Postgraduate","3":"Engineering and Technology","4":"336"},{"1":"2011/12","2":"Taught Postgraduate","3":"Business and Management","4":"219"},{"1":"2011/12","2":"Taught Postgraduate","3":"Social Sciences","4":"404"},{"1":"2011/12","2":"Taught Postgraduate","3":"Arts and Humanities","4":"239"},{"1":"2011/12","2":"Taught Postgraduate","3":"Education","4":"251"},{"1":"2011/12","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"245"},{"1":"2011/12","2":"Research Postgraduate","3":"Sciences","4":"245"},{"1":"2011/12","2":"Research Postgraduate","3":"Engineering and Technology","4":"270"},{"1":"2011/12","2":"Research Postgraduate","3":"Business and Management","4":"350"},{"1":"2011/12","2":"Research Postgraduate","3":"Social Sciences","4":"239"},{"1":"2011/12","2":"Research Postgraduate","3":"Arts and Humanities","4":"267"},{"1":"2011/12","2":"Research Postgraduate","3":"Education","4":"269"},{"1":"2012/13","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"325"},{"1":"2012/13","2":"Sub-degree","3":"Sciences","4":"198"},{"1":"2012/13","2":"Sub-degree","3":"Engineering and Technology","4":"157"},{"1":"2012/13","2":"Sub-degree","3":"Business and Management","4":"143"},{"1":"2012/13","2":"Sub-degree","3":"Social Sciences","4":"174"},{"1":"2012/13","2":"Sub-degree","3":"Arts and Humanities","4":"135"},{"1":"2012/13","2":"Sub-degree","3":"Education","4":"176"},{"1":"2012/13","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"375"},{"1":"2012/13","2":"Undergraduate","3":"Sciences","4":"175"},{"1":"2012/13","2":"Undergraduate","3":"Engineering and Technology","4":"191"},{"1":"2012/13","2":"Undergraduate","3":"Business and Management","4":"179"},{"1":"2012/13","2":"Undergraduate","3":"Social Sciences","4":"174"},{"1":"2012/13","2":"Undergraduate","3":"Arts and Humanities","4":"163"},{"1":"2012/13","2":"Undergraduate","3":"Education","4":"231"},{"1":"2012/13","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"294"},{"1":"2012/13","2":"Taught Postgraduate","3":"Sciences","4":"249"},{"1":"2012/13","2":"Taught Postgraduate","3":"Engineering and Technology","4":"339"},{"1":"2012/13","2":"Taught Postgraduate","3":"Social Sciences","4":"410"},{"1":"2012/13","2":"Taught Postgraduate","3":"Arts and Humanities","4":"245"},{"1":"2012/13","2":"Taught Postgraduate","3":"Education","4":"250"},{"1":"2012/13","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"259"},{"1":"2012/13","2":"Research Postgraduate","3":"Sciences","4":"245"},{"1":"2012/13","2":"Research Postgraduate","3":"Engineering and Technology","4":"259"},{"1":"2012/13","2":"Research Postgraduate","3":"Business and Management","4":"353"},{"1":"2012/13","2":"Research Postgraduate","3":"Social Sciences","4":"287"},{"1":"2012/13","2":"Research Postgraduate","3":"Arts and Humanities","4":"274"},{"1":"2012/13","2":"Research Postgraduate","3":"Education","4":"269"},{"1":"2013/14","2":"Sub-degree","3":"Sciences","4":"176"},{"1":"2013/14","2":"Sub-degree","3":"Engineering and Technology","4":"160"},{"1":"2013/14","2":"Sub-degree","3":"Business and Management","4":"144"},{"1":"2013/14","2":"Sub-degree","3":"Social Sciences","4":"181"},{"1":"2013/14","2":"Sub-degree","3":"Arts and Humanities","4":"150"},{"1":"2013/14","2":"Sub-degree","3":"Education","4":"176"},{"1":"2013/14","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"379"},{"1":"2013/14","2":"Undergraduate","3":"Sciences","4":"187"},{"1":"2013/14","2":"Undergraduate","3":"Engineering and Technology","4":"207"},{"1":"2013/14","2":"Undergraduate","3":"Business and Management","4":"193"},{"1":"2013/14","2":"Undergraduate","3":"Social Sciences","4":"182"},{"1":"2013/14","2":"Undergraduate","3":"Arts and Humanities","4":"172"},{"1":"2013/14","2":"Undergraduate","3":"Education","4":"246"},{"1":"2013/14","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"297"},{"1":"2013/14","2":"Taught Postgraduate","3":"Sciences","4":"276"},{"1":"2013/14","2":"Taught Postgraduate","3":"Engineering and Technology","4":"354"},{"1":"2013/14","2":"Taught Postgraduate","3":"Social Sciences","4":"417"},{"1":"2013/14","2":"Taught Postgraduate","3":"Arts and Humanities","4":"275"},{"1":"2013/14","2":"Taught Postgraduate","3":"Education","4":"273"},{"1":"2013/14","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"262"},{"1":"2013/14","2":"Research Postgraduate","3":"Sciences","4":"279"},{"1":"2013/14","2":"Research Postgraduate","3":"Engineering and Technology","4":"301"},{"1":"2013/14","2":"Research Postgraduate","3":"Business and Management","4":"439"},{"1":"2013/14","2":"Research Postgraduate","3":"Social Sciences","4":"296"},{"1":"2013/14","2":"Research Postgraduate","3":"Arts and Humanities","4":"257"},{"1":"2013/14","2":"Research Postgraduate","3":"Education","4":"285"},{"1":"2014/15","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"344"},{"1":"2014/15","2":"Sub-degree","3":"Sciences","4":"176"},{"1":"2014/15","2":"Sub-degree","3":"Engineering and Technology","4":"177"},{"1":"2014/15","2":"Sub-degree","3":"Business and Management","4":"144"},{"1":"2014/15","2":"Sub-degree","3":"Social Sciences","4":"169"},{"1":"2014/15","2":"Sub-degree","3":"Arts and Humanities","4":"133"},{"1":"2014/15","2":"Sub-degree","3":"Education","4":"184"},{"1":"2014/15","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"399"},{"1":"2014/15","2":"Undergraduate","3":"Sciences","4":"192"},{"1":"2014/15","2":"Undergraduate","3":"Engineering and Technology","4":"213"},{"1":"2014/15","2":"Undergraduate","3":"Business and Management","4":"205"},{"1":"2014/15","2":"Undergraduate","3":"Social Sciences","4":"191"},{"1":"2014/15","2":"Undergraduate","3":"Arts and Humanities","4":"181"},{"1":"2014/15","2":"Undergraduate","3":"Education","4":"256"},{"1":"2014/15","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"336"},{"1":"2014/15","2":"Taught Postgraduate","3":"Sciences","4":"279"},{"1":"2014/15","2":"Taught Postgraduate","3":"Engineering and Technology","4":"348"},{"1":"2014/15","2":"Taught Postgraduate","3":"Social Sciences","4":"474"},{"1":"2014/15","2":"Taught Postgraduate","3":"Arts and Humanities","4":"280"},{"1":"2014/15","2":"Taught Postgraduate","3":"Education","4":"286"},{"1":"2014/15","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"275"},{"1":"2014/15","2":"Research Postgraduate","3":"Sciences","4":"273"},{"1":"2014/15","2":"Research Postgraduate","3":"Engineering and Technology","4":"285"},{"1":"2014/15","2":"Research Postgraduate","3":"Business and Management","4":"431"},{"1":"2014/15","2":"Research Postgraduate","3":"Social Sciences","4":"330"},{"1":"2014/15","2":"Research Postgraduate","3":"Arts and Humanities","4":"346"},{"1":"2014/15","2":"Research Postgraduate","3":"Education","4":"312"},{"1":"2015/16","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"388"},{"1":"2015/16","2":"Sub-degree","3":"Sciences","4":"176"},{"1":"2015/16","2":"Sub-degree","3":"Engineering and Technology","4":"179"},{"1":"2015/16","2":"Sub-degree","3":"Business and Management","4":"155"},{"1":"2015/16","2":"Sub-degree","3":"Social Sciences","4":"197"},{"1":"2015/16","2":"Sub-degree","3":"Arts and Humanities","4":"161"},{"1":"2015/16","2":"Sub-degree","3":"Education","4":"197"},{"1":"2015/16","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"415"},{"1":"2015/16","2":"Undergraduate","3":"Sciences","4":"200"},{"1":"2015/16","2":"Undergraduate","3":"Engineering and Technology","4":"212"},{"1":"2015/16","2":"Undergraduate","3":"Business and Management","4":"210"},{"1":"2015/16","2":"Undergraduate","3":"Social Sciences","4":"199"},{"1":"2015/16","2":"Undergraduate","3":"Arts and Humanities","4":"189"},{"1":"2015/16","2":"Undergraduate","3":"Education","4":"277"},{"1":"2015/16","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"313"},{"1":"2015/16","2":"Taught Postgraduate","3":"Sciences","4":"306"},{"1":"2015/16","2":"Taught Postgraduate","3":"Engineering and Technology","4":"313"},{"1":"2015/16","2":"Taught Postgraduate","3":"Social Sciences","4":"462"},{"1":"2015/16","2":"Taught Postgraduate","3":"Arts and Humanities","4":"302"},{"1":"2015/16","2":"Taught Postgraduate","3":"Education","4":"297"},{"1":"2015/16","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"288"},{"1":"2015/16","2":"Research Postgraduate","3":"Sciences","4":"279"},{"1":"2015/16","2":"Research Postgraduate","3":"Engineering and Technology","4":"310"},{"1":"2015/16","2":"Research Postgraduate","3":"Business and Management","4":"483"},{"1":"2015/16","2":"Research Postgraduate","3":"Social Sciences","4":"350"},{"1":"2015/16","2":"Research Postgraduate","3":"Arts and Humanities","4":"268"},{"1":"2015/16","2":"Research Postgraduate","3":"Education","4":"341"},{"1":"2016/17","2":"Sub-degree","3":"Sciences","4":"158"},{"1":"2016/17","2":"Sub-degree","3":"Engineering and Technology","4":"182"},{"1":"2016/17","2":"Sub-degree","3":"Business and Management","4":"156"},{"1":"2016/17","2":"Sub-degree","3":"Social Sciences","4":"233"},{"1":"2016/17","2":"Sub-degree","3":"Arts and Humanities","4":"201"},{"1":"2016/17","2":"Sub-degree","3":"Education","4":"233"},{"1":"2016/17","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"427"},{"1":"2016/17","2":"Undergraduate","3":"Sciences","4":"209"},{"1":"2016/17","2":"Undergraduate","3":"Engineering and Technology","4":"219"},{"1":"2016/17","2":"Undergraduate","3":"Business and Management","4":"220"},{"1":"2016/17","2":"Undergraduate","3":"Social Sciences","4":"207"},{"1":"2016/17","2":"Undergraduate","3":"Arts and Humanities","4":"200"},{"1":"2016/17","2":"Undergraduate","3":"Education","4":"287"},{"1":"2016/17","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"348"},{"1":"2016/17","2":"Taught Postgraduate","3":"Sciences","4":"305"},{"1":"2016/17","2":"Taught Postgraduate","3":"Engineering and Technology","4":"329"},{"1":"2016/17","2":"Taught Postgraduate","3":"Social Sciences","4":"443"},{"1":"2016/17","2":"Taught Postgraduate","3":"Arts and Humanities","4":"305"},{"1":"2016/17","2":"Taught Postgraduate","3":"Education","4":"313"},{"1":"2016/17","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"305"},{"1":"2016/17","2":"Research Postgraduate","3":"Sciences","4":"283"},{"1":"2016/17","2":"Research Postgraduate","3":"Engineering and Technology","4":"325"},{"1":"2016/17","2":"Research Postgraduate","3":"Business and Management","4":"510"},{"1":"2016/17","2":"Research Postgraduate","3":"Social Sciences","4":"357"},{"1":"2016/17","2":"Research Postgraduate","3":"Arts and Humanities","4":"313"},{"1":"2016/17","2":"Research Postgraduate","3":"Education","4":"340"},{"1":"2017/18","2":"Sub-degree","3":"Sciences","4":"152"},{"1":"2017/18","2":"Sub-degree","3":"Engineering and Technology","4":"186"},{"1":"2017/18","2":"Sub-degree","3":"Business and Management","4":"140"},{"1":"2017/18","2":"Sub-degree","3":"Social Sciences","4":"235"},{"1":"2017/18","2":"Sub-degree","3":"Arts and Humanities","4":"198"},{"1":"2017/18","2":"Sub-degree","3":"Education","4":"235"},{"1":"2017/18","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"462"},{"1":"2017/18","2":"Undergraduate","3":"Sciences","4":"228"},{"1":"2017/18","2":"Undergraduate","3":"Engineering and Technology","4":"229"},{"1":"2017/18","2":"Undergraduate","3":"Business and Management","4":"240"},{"1":"2017/18","2":"Undergraduate","3":"Social Sciences","4":"227"},{"1":"2017/18","2":"Undergraduate","3":"Arts and Humanities","4":"208"},{"1":"2017/18","2":"Undergraduate","3":"Education","4":"290"},{"1":"2017/18","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"367"},{"1":"2017/18","2":"Taught Postgraduate","3":"Sciences","4":"335"},{"1":"2017/18","2":"Taught Postgraduate","3":"Engineering and Technology","4":"346"},{"1":"2017/18","2":"Taught Postgraduate","3":"Social Sciences","4":"484"},{"1":"2017/18","2":"Taught Postgraduate","3":"Arts and Humanities","4":"335"},{"1":"2017/18","2":"Taught Postgraduate","3":"Education","4":"341"},{"1":"2017/18","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"328"},{"1":"2017/18","2":"Research Postgraduate","3":"Sciences","4":"342"},{"1":"2017/18","2":"Research Postgraduate","3":"Engineering and Technology","4":"317"},{"1":"2017/18","2":"Research Postgraduate","3":"Business and Management","4":"369"},{"1":"2017/18","2":"Research Postgraduate","3":"Social Sciences","4":"340"},{"1":"2017/18","2":"Research Postgraduate","3":"Arts and Humanities","4":"284"},{"1":"2017/18","2":"Research Postgraduate","3":"Education","4":"356"},{"1":"2018/19","2":"Sub-degree","3":"Sciences","4":"188"},{"1":"2018/19","2":"Sub-degree","3":"Engineering and Technology","4":"185"},{"1":"2018/19","2":"Sub-degree","3":"Business and Management","4":"304"},{"1":"2018/19","2":"Sub-degree","3":"Social Sciences","4":"241"},{"1":"2018/19","2":"Sub-degree","3":"Arts and Humanities","4":"233"},{"1":"2018/19","2":"Sub-degree","3":"Education","4":"241"},{"1":"2018/19","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"472"},{"1":"2018/19","2":"Undergraduate","3":"Sciences","4":"240"},{"1":"2018/19","2":"Undergraduate","3":"Engineering and Technology","4":"238"},{"1":"2018/19","2":"Undergraduate","3":"Business and Management","4":"246"},{"1":"2018/19","2":"Undergraduate","3":"Social Sciences","4":"237"},{"1":"2018/19","2":"Undergraduate","3":"Arts and Humanities","4":"228"},{"1":"2018/19","2":"Undergraduate","3":"Education","4":"328"},{"1":"2018/19","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"446"},{"1":"2018/19","2":"Taught Postgraduate","3":"Sciences","4":"382"},{"1":"2018/19","2":"Taught Postgraduate","3":"Engineering and Technology","4":"373"},{"1":"2018/19","2":"Taught Postgraduate","3":"Social Sciences","4":"488"},{"1":"2018/19","2":"Taught Postgraduate","3":"Arts and Humanities","4":"379"},{"1":"2018/19","2":"Taught Postgraduate","3":"Education","4":"376"},{"1":"2018/19","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"339"},{"1":"2018/19","2":"Research Postgraduate","3":"Sciences","4":"338"},{"1":"2018/19","2":"Research Postgraduate","3":"Engineering and Technology","4":"358"},{"1":"2018/19","2":"Research Postgraduate","3":"Business and Management","4":"524"},{"1":"2018/19","2":"Research Postgraduate","3":"Social Sciences","4":"343"},{"1":"2018/19","2":"Research Postgraduate","3":"Arts and Humanities","4":"360"},{"1":"2018/19","2":"Research Postgraduate","3":"Education","4":"360"},{"1":"2019/20","2":"Sub-degree","3":"Sciences","4":"164"},{"1":"2019/20","2":"Sub-degree","3":"Engineering and Technology","4":"186"},{"1":"2019/20","2":"Sub-degree","3":"Social Sciences","4":"196"},{"1":"2019/20","2":"Sub-degree","3":"Arts and Humanities","4":"196"},{"1":"2019/20","2":"Sub-degree","3":"Education","4":"196"},{"1":"2019/20","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"482"},{"1":"2019/20","2":"Undergraduate","3":"Sciences","4":"237"},{"1":"2019/20","2":"Undergraduate","3":"Engineering and Technology","4":"233"},{"1":"2019/20","2":"Undergraduate","3":"Business and Management","4":"234"},{"1":"2019/20","2":"Undergraduate","3":"Social Sciences","4":"228"},{"1":"2019/20","2":"Undergraduate","3":"Arts and Humanities","4":"220"},{"1":"2019/20","2":"Undergraduate","3":"Education","4":"334"},{"1":"2019/20","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"530"},{"1":"2019/20","2":"Taught Postgraduate","3":"Sciences","4":"384"},{"1":"2019/20","2":"Taught Postgraduate","3":"Engineering and Technology","4":"344"},{"1":"2019/20","2":"Taught Postgraduate","3":"Social Sciences","4":"462"},{"1":"2019/20","2":"Taught Postgraduate","3":"Arts and Humanities","4":"384"},{"1":"2019/20","2":"Taught Postgraduate","3":"Education","4":"396"},{"1":"2019/20","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"345"},{"1":"2019/20","2":"Research Postgraduate","3":"Sciences","4":"380"},{"1":"2019/20","2":"Research Postgraduate","3":"Engineering and Technology","4":"377"},{"1":"2019/20","2":"Research Postgraduate","3":"Business and Management","4":"435"},{"1":"2019/20","2":"Research Postgraduate","3":"Social Sciences","4":"373"},{"1":"2019/20","2":"Research Postgraduate","3":"Arts and Humanities","4":"317"},{"1":"2019/20","2":"Research Postgraduate","3":"Education","4":"371"},{"1":"2020/21","2":"Sub-degree","3":"Sciences","4":"182"},{"1":"2020/21","2":"Sub-degree","3":"Engineering and Technology","4":"229"},{"1":"2020/21","2":"Sub-degree","3":"Social Sciences","4":"211"},{"1":"2020/21","2":"Sub-degree","3":"Arts and Humanities","4":"211"},{"1":"2020/21","2":"Sub-degree","3":"Education","4":"211"},{"1":"2020/21","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"487"},{"1":"2020/21","2":"Undergraduate","3":"Sciences","4":"257"},{"1":"2020/21","2":"Undergraduate","3":"Engineering and Technology","4":"245"},{"1":"2020/21","2":"Undergraduate","3":"Business and Management","4":"256"},{"1":"2020/21","2":"Undergraduate","3":"Social Sciences","4":"246"},{"1":"2020/21","2":"Undergraduate","3":"Arts and Humanities","4":"234"},{"1":"2020/21","2":"Undergraduate","3":"Education","4":"333"},{"1":"2020/21","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"577"},{"1":"2020/21","2":"Taught Postgraduate","3":"Sciences","4":"399"},{"1":"2020/21","2":"Taught Postgraduate","3":"Engineering and Technology","4":"369"},{"1":"2020/21","2":"Taught Postgraduate","3":"Social Sciences","4":"483"},{"1":"2020/21","2":"Taught Postgraduate","3":"Arts and Humanities","4":"402"},{"1":"2020/21","2":"Taught Postgraduate","3":"Education","4":"403"},{"1":"2020/21","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"352"},{"1":"2020/21","2":"Research Postgraduate","3":"Sciences","4":"385"},{"1":"2020/21","2":"Research Postgraduate","3":"Engineering and Technology","4":"415"},{"1":"2020/21","2":"Research Postgraduate","3":"Business and Management","4":"479"},{"1":"2020/21","2":"Research Postgraduate","3":"Social Sciences","4":"333"},{"1":"2020/21","2":"Research Postgraduate","3":"Arts and Humanities","4":"384"},{"1":"2020/21","2":"Research Postgraduate","3":"Education","4":"395"},{"1":"2021/22","2":"Sub-degree","3":"Sciences","4":"175"},{"1":"2021/22","2":"Sub-degree","3":"Engineering and Technology","4":"220"},{"1":"2021/22","2":"Sub-degree","3":"Social Sciences","4":"226"},{"1":"2021/22","2":"Sub-degree","3":"Arts and Humanities","4":"226"},{"1":"2021/22","2":"Sub-degree","3":"Education","4":"226"},{"1":"2021/22","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"497"},{"1":"2021/22","2":"Undergraduate","3":"Sciences","4":"286"},{"1":"2021/22","2":"Undergraduate","3":"Engineering and Technology","4":"265"},{"1":"2021/22","2":"Undergraduate","3":"Business and Management","4":"288"},{"1":"2021/22","2":"Undergraduate","3":"Social Sciences","4":"264"},{"1":"2021/22","2":"Undergraduate","3":"Arts and Humanities","4":"252"},{"1":"2021/22","2":"Undergraduate","3":"Education","4":"353"},{"1":"2021/22","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"569"},{"1":"2021/22","2":"Taught Postgraduate","3":"Sciences","4":"432"},{"1":"2021/22","2":"Taught Postgraduate","3":"Engineering and Technology","4":"378"},{"1":"2021/22","2":"Taught Postgraduate","3":"Social Sciences","4":"456"},{"1":"2021/22","2":"Taught Postgraduate","3":"Arts and Humanities","4":"432"},{"1":"2021/22","2":"Taught Postgraduate","3":"Education","4":"414"},{"1":"2021/22","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"392"},{"1":"2021/22","2":"Research Postgraduate","3":"Sciences","4":"392"},{"1":"2021/22","2":"Research Postgraduate","3":"Engineering and Technology","4":"369"},{"1":"2021/22","2":"Research Postgraduate","3":"Business and Management","4":"473"},{"1":"2021/22","2":"Research Postgraduate","3":"Social Sciences","4":"376"},{"1":"2021/22","2":"Research Postgraduate","3":"Arts and Humanities","4":"369"},{"1":"2021/22","2":"Research Postgraduate","3":"Education","4":"417"},{"1":"2022/23","2":"Sub-degree","3":"Sciences","4":"183"},{"1":"2022/23","2":"Sub-degree","3":"Engineering and Technology","4":"222"},{"1":"2022/23","2":"Sub-degree","3":"Social Sciences","4":"235"},{"1":"2022/23","2":"Sub-degree","3":"Arts and Humanities","4":"235"},{"1":"2022/23","2":"Sub-degree","3":"Education","4":"235"},{"1":"2022/23","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"506"},{"1":"2022/23","2":"Undergraduate","3":"Sciences","4":"290"},{"1":"2022/23","2":"Undergraduate","3":"Engineering and Technology","4":"283"},{"1":"2022/23","2":"Undergraduate","3":"Business and Management","4":"295"},{"1":"2022/23","2":"Undergraduate","3":"Social Sciences","4":"275"},{"1":"2022/23","2":"Undergraduate","3":"Arts and Humanities","4":"269"},{"1":"2022/23","2":"Undergraduate","3":"Education","4":"375"},{"1":"2022/23","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"714"},{"1":"2022/23","2":"Taught Postgraduate","3":"Sciences","4":"448"},{"1":"2022/23","2":"Taught Postgraduate","3":"Engineering and Technology","4":"401"},{"1":"2022/23","2":"Taught Postgraduate","3":"Social Sciences","4":"488"},{"1":"2022/23","2":"Taught Postgraduate","3":"Arts and Humanities","4":"448"},{"1":"2022/23","2":"Taught Postgraduate","3":"Education","4":"429"},{"1":"2022/23","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"411"},{"1":"2022/23","2":"Research Postgraduate","3":"Sciences","4":"427"},{"1":"2022/23","2":"Research Postgraduate","3":"Engineering and Technology","4":"421"},{"1":"2022/23","2":"Research Postgraduate","3":"Business and Management","4":"512"},{"1":"2022/23","2":"Research Postgraduate","3":"Social Sciences","4":"391"},{"1":"2022/23","2":"Research Postgraduate","3":"Arts and Humanities","4":"346"},{"1":"2022/23","2":"Research Postgraduate","3":"Education","4":"410"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="local-file-import" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="local-file-import"><span class="header-section-number">4.3</span> Local File Import</h2>
+<p>In data analysis projects, importing local files is more common than importing data from the web. Here are some common file types and their uses:</p>
+<ul>
+<li><strong>CSV Files</strong>: Simple, human-readable, and widely supported. Ideal for tabular data.</li>
+<li><strong>Excel Files</strong>: Used for spreadsheets with multiple sheets or formatting. Imported with <code>readxl</code> or <code>openxlsx</code>.</li>
+<li><strong>SPSS, SAS, Stata Files</strong>: Common in social science and survey research. Use specialized R packages to import.</li>
+<li><strong>RDS Files</strong>: Binary format for storing R objects, preserving their structure and class information.</li>
+<li><strong>RData Files</strong>: Binary format for saving multiple R objects in a single file, often used for workspaces.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For this course, we will focus on <strong>CSV</strong> files, as they are simple and widely used.</p>
+</div>
+</div>
+<section id="csv-files-with-readr-tidyverse-package" class="level3">
+<h3 class="anchored" data-anchor-id="csv-files-with-readr-tidyverse-package">CSV Files with <code>readr</code> (<code>tidyverse</code>) package</h3>
+<p>First, we download the CSV file from the web and save it locally as <code>hksalary.csv</code>. Then, we import it using the <code>read_csv()</code> function from the <code>readr</code> package.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>read_csv()</code> vs.&nbsp;<code>read.csv()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that <code>read_csv()</code> from <code>readr</code> is preferred over <code>read.csv()</code> from base R for its speed and consistency. In this course, we recommend using <code>read_csv()</code> for CSV files.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Relative path (recommended)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hksalary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hksalary.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 368 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): Academic Year, Level of Study, Broad Academic Programme Category
+dbl (1): Average Annual Salary (HK$'000)
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hksalary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Academic Year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Level of Study"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Broad Academic Programme Category"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Average Annual Salary (HK$'000)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2009/10","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"292"},{"1":"2009/10","2":"Sub-degree","3":"Sciences","4":"125"},{"1":"2009/10","2":"Sub-degree","3":"Engineering and Technology","4":"125"},{"1":"2009/10","2":"Sub-degree","3":"Business and Management","4":"139"},{"1":"2009/10","2":"Sub-degree","3":"Social Sciences","4":"163"},{"1":"2009/10","2":"Sub-degree","3":"Arts and Humanities","4":"122"},{"1":"2009/10","2":"Sub-degree","3":"Education","4":"155"},{"1":"2009/10","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"346"},{"1":"2009/10","2":"Undergraduate","3":"Sciences","4":"148"},{"1":"2009/10","2":"Undergraduate","3":"Engineering and Technology","4":"154"},{"1":"2009/10","2":"Undergraduate","3":"Business and Management","4":"157"},{"1":"2009/10","2":"Undergraduate","3":"Social Sciences","4":"155"},{"1":"2009/10","2":"Undergraduate","3":"Arts and Humanities","4":"150"},{"1":"2009/10","2":"Undergraduate","3":"Education","4":"214"},{"1":"2009/10","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"276"},{"1":"2009/10","2":"Taught Postgraduate","3":"Sciences","4":"224"},{"1":"2009/10","2":"Taught Postgraduate","3":"Engineering and Technology","4":"295"},{"1":"2009/10","2":"Taught Postgraduate","3":"Business and Management","4":"233"},{"1":"2009/10","2":"Taught Postgraduate","3":"Social Sciences","4":"373"},{"1":"2009/10","2":"Taught Postgraduate","3":"Arts and Humanities","4":"222"},{"1":"2009/10","2":"Taught Postgraduate","3":"Education","4":"245"},{"1":"2009/10","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"239"},{"1":"2009/10","2":"Research Postgraduate","3":"Sciences","4":"227"},{"1":"2009/10","2":"Research Postgraduate","3":"Engineering and Technology","4":"238"},{"1":"2009/10","2":"Research Postgraduate","3":"Business and Management","4":"341"},{"1":"2009/10","2":"Research Postgraduate","3":"Social Sciences","4":"272"},{"1":"2009/10","2":"Research Postgraduate","3":"Arts and Humanities","4":"242"},{"1":"2009/10","2":"Research Postgraduate","3":"Education","4":"310"},{"1":"2010/11","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"294"},{"1":"2010/11","2":"Sub-degree","3":"Sciences","4":"144"},{"1":"2010/11","2":"Sub-degree","3":"Engineering and Technology","4":"131"},{"1":"2010/11","2":"Sub-degree","3":"Business and Management","4":"129"},{"1":"2010/11","2":"Sub-degree","3":"Social Sciences","4":"175"},{"1":"2010/11","2":"Sub-degree","3":"Arts and Humanities","4":"120"},{"1":"2010/11","2":"Sub-degree","3":"Education","4":"160"},{"1":"2010/11","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"358"},{"1":"2010/11","2":"Undergraduate","3":"Sciences","4":"162"},{"1":"2010/11","2":"Undergraduate","3":"Engineering and Technology","4":"171"},{"1":"2010/11","2":"Undergraduate","3":"Business and Management","4":"172"},{"1":"2010/11","2":"Undergraduate","3":"Social Sciences","4":"167"},{"1":"2010/11","2":"Undergraduate","3":"Arts and Humanities","4":"162"},{"1":"2010/11","2":"Undergraduate","3":"Education","4":"230"},{"1":"2010/11","2":"Taught Postgraduate","3":"Sciences","4":"245"},{"1":"2010/11","2":"Taught Postgraduate","3":"Engineering and Technology","4":"326"},{"1":"2010/11","2":"Taught Postgraduate","3":"Business and Management","4":"255"},{"1":"2010/11","2":"Taught Postgraduate","3":"Social Sciences","4":"390"},{"1":"2010/11","2":"Taught Postgraduate","3":"Arts and Humanities","4":"242"},{"1":"2010/11","2":"Taught Postgraduate","3":"Education","4":"258"},{"1":"2010/11","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"241"},{"1":"2010/11","2":"Research Postgraduate","3":"Sciences","4":"227"},{"1":"2010/11","2":"Research Postgraduate","3":"Engineering and Technology","4":"245"},{"1":"2010/11","2":"Research Postgraduate","3":"Business and Management","4":"300"},{"1":"2010/11","2":"Research Postgraduate","3":"Social Sciences","4":"254"},{"1":"2010/11","2":"Research Postgraduate","3":"Arts and Humanities","4":"243"},{"1":"2010/11","2":"Research Postgraduate","3":"Education","4":"268"},{"1":"2011/12","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"312"},{"1":"2011/12","2":"Sub-degree","3":"Sciences","4":"148"},{"1":"2011/12","2":"Sub-degree","3":"Engineering and Technology","4":"141"},{"1":"2011/12","2":"Sub-degree","3":"Business and Management","4":"137"},{"1":"2011/12","2":"Sub-degree","3":"Social Sciences","4":"171"},{"1":"2011/12","2":"Sub-degree","3":"Arts and Humanities","4":"132"},{"1":"2011/12","2":"Sub-degree","3":"Education","4":"166"},{"1":"2011/12","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"365"},{"1":"2011/12","2":"Undergraduate","3":"Sciences","4":"165"},{"1":"2011/12","2":"Undergraduate","3":"Engineering and Technology","4":"179"},{"1":"2011/12","2":"Undergraduate","3":"Business and Management","4":"170"},{"1":"2011/12","2":"Undergraduate","3":"Social Sciences","4":"168"},{"1":"2011/12","2":"Undergraduate","3":"Arts and Humanities","4":"164"},{"1":"2011/12","2":"Undergraduate","3":"Education","4":"227"},{"1":"2011/12","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"276"},{"1":"2011/12","2":"Taught Postgraduate","3":"Sciences","4":"238"},{"1":"2011/12","2":"Taught Postgraduate","3":"Engineering and Technology","4":"336"},{"1":"2011/12","2":"Taught Postgraduate","3":"Business and Management","4":"219"},{"1":"2011/12","2":"Taught Postgraduate","3":"Social Sciences","4":"404"},{"1":"2011/12","2":"Taught Postgraduate","3":"Arts and Humanities","4":"239"},{"1":"2011/12","2":"Taught Postgraduate","3":"Education","4":"251"},{"1":"2011/12","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"245"},{"1":"2011/12","2":"Research Postgraduate","3":"Sciences","4":"245"},{"1":"2011/12","2":"Research Postgraduate","3":"Engineering and Technology","4":"270"},{"1":"2011/12","2":"Research Postgraduate","3":"Business and Management","4":"350"},{"1":"2011/12","2":"Research Postgraduate","3":"Social Sciences","4":"239"},{"1":"2011/12","2":"Research Postgraduate","3":"Arts and Humanities","4":"267"},{"1":"2011/12","2":"Research Postgraduate","3":"Education","4":"269"},{"1":"2012/13","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"325"},{"1":"2012/13","2":"Sub-degree","3":"Sciences","4":"198"},{"1":"2012/13","2":"Sub-degree","3":"Engineering and Technology","4":"157"},{"1":"2012/13","2":"Sub-degree","3":"Business and Management","4":"143"},{"1":"2012/13","2":"Sub-degree","3":"Social Sciences","4":"174"},{"1":"2012/13","2":"Sub-degree","3":"Arts and Humanities","4":"135"},{"1":"2012/13","2":"Sub-degree","3":"Education","4":"176"},{"1":"2012/13","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"375"},{"1":"2012/13","2":"Undergraduate","3":"Sciences","4":"175"},{"1":"2012/13","2":"Undergraduate","3":"Engineering and Technology","4":"191"},{"1":"2012/13","2":"Undergraduate","3":"Business and Management","4":"179"},{"1":"2012/13","2":"Undergraduate","3":"Social Sciences","4":"174"},{"1":"2012/13","2":"Undergraduate","3":"Arts and Humanities","4":"163"},{"1":"2012/13","2":"Undergraduate","3":"Education","4":"231"},{"1":"2012/13","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"294"},{"1":"2012/13","2":"Taught Postgraduate","3":"Sciences","4":"249"},{"1":"2012/13","2":"Taught Postgraduate","3":"Engineering and Technology","4":"339"},{"1":"2012/13","2":"Taught Postgraduate","3":"Social Sciences","4":"410"},{"1":"2012/13","2":"Taught Postgraduate","3":"Arts and Humanities","4":"245"},{"1":"2012/13","2":"Taught Postgraduate","3":"Education","4":"250"},{"1":"2012/13","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"259"},{"1":"2012/13","2":"Research Postgraduate","3":"Sciences","4":"245"},{"1":"2012/13","2":"Research Postgraduate","3":"Engineering and Technology","4":"259"},{"1":"2012/13","2":"Research Postgraduate","3":"Business and Management","4":"353"},{"1":"2012/13","2":"Research Postgraduate","3":"Social Sciences","4":"287"},{"1":"2012/13","2":"Research Postgraduate","3":"Arts and Humanities","4":"274"},{"1":"2012/13","2":"Research Postgraduate","3":"Education","4":"269"},{"1":"2013/14","2":"Sub-degree","3":"Sciences","4":"176"},{"1":"2013/14","2":"Sub-degree","3":"Engineering and Technology","4":"160"},{"1":"2013/14","2":"Sub-degree","3":"Business and Management","4":"144"},{"1":"2013/14","2":"Sub-degree","3":"Social Sciences","4":"181"},{"1":"2013/14","2":"Sub-degree","3":"Arts and Humanities","4":"150"},{"1":"2013/14","2":"Sub-degree","3":"Education","4":"176"},{"1":"2013/14","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"379"},{"1":"2013/14","2":"Undergraduate","3":"Sciences","4":"187"},{"1":"2013/14","2":"Undergraduate","3":"Engineering and Technology","4":"207"},{"1":"2013/14","2":"Undergraduate","3":"Business and Management","4":"193"},{"1":"2013/14","2":"Undergraduate","3":"Social Sciences","4":"182"},{"1":"2013/14","2":"Undergraduate","3":"Arts and Humanities","4":"172"},{"1":"2013/14","2":"Undergraduate","3":"Education","4":"246"},{"1":"2013/14","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"297"},{"1":"2013/14","2":"Taught Postgraduate","3":"Sciences","4":"276"},{"1":"2013/14","2":"Taught Postgraduate","3":"Engineering and Technology","4":"354"},{"1":"2013/14","2":"Taught Postgraduate","3":"Social Sciences","4":"417"},{"1":"2013/14","2":"Taught Postgraduate","3":"Arts and Humanities","4":"275"},{"1":"2013/14","2":"Taught Postgraduate","3":"Education","4":"273"},{"1":"2013/14","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"262"},{"1":"2013/14","2":"Research Postgraduate","3":"Sciences","4":"279"},{"1":"2013/14","2":"Research Postgraduate","3":"Engineering and Technology","4":"301"},{"1":"2013/14","2":"Research Postgraduate","3":"Business and Management","4":"439"},{"1":"2013/14","2":"Research Postgraduate","3":"Social Sciences","4":"296"},{"1":"2013/14","2":"Research Postgraduate","3":"Arts and Humanities","4":"257"},{"1":"2013/14","2":"Research Postgraduate","3":"Education","4":"285"},{"1":"2014/15","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"344"},{"1":"2014/15","2":"Sub-degree","3":"Sciences","4":"176"},{"1":"2014/15","2":"Sub-degree","3":"Engineering and Technology","4":"177"},{"1":"2014/15","2":"Sub-degree","3":"Business and Management","4":"144"},{"1":"2014/15","2":"Sub-degree","3":"Social Sciences","4":"169"},{"1":"2014/15","2":"Sub-degree","3":"Arts and Humanities","4":"133"},{"1":"2014/15","2":"Sub-degree","3":"Education","4":"184"},{"1":"2014/15","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"399"},{"1":"2014/15","2":"Undergraduate","3":"Sciences","4":"192"},{"1":"2014/15","2":"Undergraduate","3":"Engineering and Technology","4":"213"},{"1":"2014/15","2":"Undergraduate","3":"Business and Management","4":"205"},{"1":"2014/15","2":"Undergraduate","3":"Social Sciences","4":"191"},{"1":"2014/15","2":"Undergraduate","3":"Arts and Humanities","4":"181"},{"1":"2014/15","2":"Undergraduate","3":"Education","4":"256"},{"1":"2014/15","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"336"},{"1":"2014/15","2":"Taught Postgraduate","3":"Sciences","4":"279"},{"1":"2014/15","2":"Taught Postgraduate","3":"Engineering and Technology","4":"348"},{"1":"2014/15","2":"Taught Postgraduate","3":"Social Sciences","4":"474"},{"1":"2014/15","2":"Taught Postgraduate","3":"Arts and Humanities","4":"280"},{"1":"2014/15","2":"Taught Postgraduate","3":"Education","4":"286"},{"1":"2014/15","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"275"},{"1":"2014/15","2":"Research Postgraduate","3":"Sciences","4":"273"},{"1":"2014/15","2":"Research Postgraduate","3":"Engineering and Technology","4":"285"},{"1":"2014/15","2":"Research Postgraduate","3":"Business and Management","4":"431"},{"1":"2014/15","2":"Research Postgraduate","3":"Social Sciences","4":"330"},{"1":"2014/15","2":"Research Postgraduate","3":"Arts and Humanities","4":"346"},{"1":"2014/15","2":"Research Postgraduate","3":"Education","4":"312"},{"1":"2015/16","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"388"},{"1":"2015/16","2":"Sub-degree","3":"Sciences","4":"176"},{"1":"2015/16","2":"Sub-degree","3":"Engineering and Technology","4":"179"},{"1":"2015/16","2":"Sub-degree","3":"Business and Management","4":"155"},{"1":"2015/16","2":"Sub-degree","3":"Social Sciences","4":"197"},{"1":"2015/16","2":"Sub-degree","3":"Arts and Humanities","4":"161"},{"1":"2015/16","2":"Sub-degree","3":"Education","4":"197"},{"1":"2015/16","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"415"},{"1":"2015/16","2":"Undergraduate","3":"Sciences","4":"200"},{"1":"2015/16","2":"Undergraduate","3":"Engineering and Technology","4":"212"},{"1":"2015/16","2":"Undergraduate","3":"Business and Management","4":"210"},{"1":"2015/16","2":"Undergraduate","3":"Social Sciences","4":"199"},{"1":"2015/16","2":"Undergraduate","3":"Arts and Humanities","4":"189"},{"1":"2015/16","2":"Undergraduate","3":"Education","4":"277"},{"1":"2015/16","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"313"},{"1":"2015/16","2":"Taught Postgraduate","3":"Sciences","4":"306"},{"1":"2015/16","2":"Taught Postgraduate","3":"Engineering and Technology","4":"313"},{"1":"2015/16","2":"Taught Postgraduate","3":"Social Sciences","4":"462"},{"1":"2015/16","2":"Taught Postgraduate","3":"Arts and Humanities","4":"302"},{"1":"2015/16","2":"Taught Postgraduate","3":"Education","4":"297"},{"1":"2015/16","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"288"},{"1":"2015/16","2":"Research Postgraduate","3":"Sciences","4":"279"},{"1":"2015/16","2":"Research Postgraduate","3":"Engineering and Technology","4":"310"},{"1":"2015/16","2":"Research Postgraduate","3":"Business and Management","4":"483"},{"1":"2015/16","2":"Research Postgraduate","3":"Social Sciences","4":"350"},{"1":"2015/16","2":"Research Postgraduate","3":"Arts and Humanities","4":"268"},{"1":"2015/16","2":"Research Postgraduate","3":"Education","4":"341"},{"1":"2016/17","2":"Sub-degree","3":"Sciences","4":"158"},{"1":"2016/17","2":"Sub-degree","3":"Engineering and Technology","4":"182"},{"1":"2016/17","2":"Sub-degree","3":"Business and Management","4":"156"},{"1":"2016/17","2":"Sub-degree","3":"Social Sciences","4":"233"},{"1":"2016/17","2":"Sub-degree","3":"Arts and Humanities","4":"201"},{"1":"2016/17","2":"Sub-degree","3":"Education","4":"233"},{"1":"2016/17","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"427"},{"1":"2016/17","2":"Undergraduate","3":"Sciences","4":"209"},{"1":"2016/17","2":"Undergraduate","3":"Engineering and Technology","4":"219"},{"1":"2016/17","2":"Undergraduate","3":"Business and Management","4":"220"},{"1":"2016/17","2":"Undergraduate","3":"Social Sciences","4":"207"},{"1":"2016/17","2":"Undergraduate","3":"Arts and Humanities","4":"200"},{"1":"2016/17","2":"Undergraduate","3":"Education","4":"287"},{"1":"2016/17","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"348"},{"1":"2016/17","2":"Taught Postgraduate","3":"Sciences","4":"305"},{"1":"2016/17","2":"Taught Postgraduate","3":"Engineering and Technology","4":"329"},{"1":"2016/17","2":"Taught Postgraduate","3":"Social Sciences","4":"443"},{"1":"2016/17","2":"Taught Postgraduate","3":"Arts and Humanities","4":"305"},{"1":"2016/17","2":"Taught Postgraduate","3":"Education","4":"313"},{"1":"2016/17","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"305"},{"1":"2016/17","2":"Research Postgraduate","3":"Sciences","4":"283"},{"1":"2016/17","2":"Research Postgraduate","3":"Engineering and Technology","4":"325"},{"1":"2016/17","2":"Research Postgraduate","3":"Business and Management","4":"510"},{"1":"2016/17","2":"Research Postgraduate","3":"Social Sciences","4":"357"},{"1":"2016/17","2":"Research Postgraduate","3":"Arts and Humanities","4":"313"},{"1":"2016/17","2":"Research Postgraduate","3":"Education","4":"340"},{"1":"2017/18","2":"Sub-degree","3":"Sciences","4":"152"},{"1":"2017/18","2":"Sub-degree","3":"Engineering and Technology","4":"186"},{"1":"2017/18","2":"Sub-degree","3":"Business and Management","4":"140"},{"1":"2017/18","2":"Sub-degree","3":"Social Sciences","4":"235"},{"1":"2017/18","2":"Sub-degree","3":"Arts and Humanities","4":"198"},{"1":"2017/18","2":"Sub-degree","3":"Education","4":"235"},{"1":"2017/18","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"462"},{"1":"2017/18","2":"Undergraduate","3":"Sciences","4":"228"},{"1":"2017/18","2":"Undergraduate","3":"Engineering and Technology","4":"229"},{"1":"2017/18","2":"Undergraduate","3":"Business and Management","4":"240"},{"1":"2017/18","2":"Undergraduate","3":"Social Sciences","4":"227"},{"1":"2017/18","2":"Undergraduate","3":"Arts and Humanities","4":"208"},{"1":"2017/18","2":"Undergraduate","3":"Education","4":"290"},{"1":"2017/18","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"367"},{"1":"2017/18","2":"Taught Postgraduate","3":"Sciences","4":"335"},{"1":"2017/18","2":"Taught Postgraduate","3":"Engineering and Technology","4":"346"},{"1":"2017/18","2":"Taught Postgraduate","3":"Social Sciences","4":"484"},{"1":"2017/18","2":"Taught Postgraduate","3":"Arts and Humanities","4":"335"},{"1":"2017/18","2":"Taught Postgraduate","3":"Education","4":"341"},{"1":"2017/18","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"328"},{"1":"2017/18","2":"Research Postgraduate","3":"Sciences","4":"342"},{"1":"2017/18","2":"Research Postgraduate","3":"Engineering and Technology","4":"317"},{"1":"2017/18","2":"Research Postgraduate","3":"Business and Management","4":"369"},{"1":"2017/18","2":"Research Postgraduate","3":"Social Sciences","4":"340"},{"1":"2017/18","2":"Research Postgraduate","3":"Arts and Humanities","4":"284"},{"1":"2017/18","2":"Research Postgraduate","3":"Education","4":"356"},{"1":"2018/19","2":"Sub-degree","3":"Sciences","4":"188"},{"1":"2018/19","2":"Sub-degree","3":"Engineering and Technology","4":"185"},{"1":"2018/19","2":"Sub-degree","3":"Business and Management","4":"304"},{"1":"2018/19","2":"Sub-degree","3":"Social Sciences","4":"241"},{"1":"2018/19","2":"Sub-degree","3":"Arts and Humanities","4":"233"},{"1":"2018/19","2":"Sub-degree","3":"Education","4":"241"},{"1":"2018/19","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"472"},{"1":"2018/19","2":"Undergraduate","3":"Sciences","4":"240"},{"1":"2018/19","2":"Undergraduate","3":"Engineering and Technology","4":"238"},{"1":"2018/19","2":"Undergraduate","3":"Business and Management","4":"246"},{"1":"2018/19","2":"Undergraduate","3":"Social Sciences","4":"237"},{"1":"2018/19","2":"Undergraduate","3":"Arts and Humanities","4":"228"},{"1":"2018/19","2":"Undergraduate","3":"Education","4":"328"},{"1":"2018/19","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"446"},{"1":"2018/19","2":"Taught Postgraduate","3":"Sciences","4":"382"},{"1":"2018/19","2":"Taught Postgraduate","3":"Engineering and Technology","4":"373"},{"1":"2018/19","2":"Taught Postgraduate","3":"Social Sciences","4":"488"},{"1":"2018/19","2":"Taught Postgraduate","3":"Arts and Humanities","4":"379"},{"1":"2018/19","2":"Taught Postgraduate","3":"Education","4":"376"},{"1":"2018/19","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"339"},{"1":"2018/19","2":"Research Postgraduate","3":"Sciences","4":"338"},{"1":"2018/19","2":"Research Postgraduate","3":"Engineering and Technology","4":"358"},{"1":"2018/19","2":"Research Postgraduate","3":"Business and Management","4":"524"},{"1":"2018/19","2":"Research Postgraduate","3":"Social Sciences","4":"343"},{"1":"2018/19","2":"Research Postgraduate","3":"Arts and Humanities","4":"360"},{"1":"2018/19","2":"Research Postgraduate","3":"Education","4":"360"},{"1":"2019/20","2":"Sub-degree","3":"Sciences","4":"164"},{"1":"2019/20","2":"Sub-degree","3":"Engineering and Technology","4":"186"},{"1":"2019/20","2":"Sub-degree","3":"Social Sciences","4":"196"},{"1":"2019/20","2":"Sub-degree","3":"Arts and Humanities","4":"196"},{"1":"2019/20","2":"Sub-degree","3":"Education","4":"196"},{"1":"2019/20","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"482"},{"1":"2019/20","2":"Undergraduate","3":"Sciences","4":"237"},{"1":"2019/20","2":"Undergraduate","3":"Engineering and Technology","4":"233"},{"1":"2019/20","2":"Undergraduate","3":"Business and Management","4":"234"},{"1":"2019/20","2":"Undergraduate","3":"Social Sciences","4":"228"},{"1":"2019/20","2":"Undergraduate","3":"Arts and Humanities","4":"220"},{"1":"2019/20","2":"Undergraduate","3":"Education","4":"334"},{"1":"2019/20","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"530"},{"1":"2019/20","2":"Taught Postgraduate","3":"Sciences","4":"384"},{"1":"2019/20","2":"Taught Postgraduate","3":"Engineering and Technology","4":"344"},{"1":"2019/20","2":"Taught Postgraduate","3":"Social Sciences","4":"462"},{"1":"2019/20","2":"Taught Postgraduate","3":"Arts and Humanities","4":"384"},{"1":"2019/20","2":"Taught Postgraduate","3":"Education","4":"396"},{"1":"2019/20","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"345"},{"1":"2019/20","2":"Research Postgraduate","3":"Sciences","4":"380"},{"1":"2019/20","2":"Research Postgraduate","3":"Engineering and Technology","4":"377"},{"1":"2019/20","2":"Research Postgraduate","3":"Business and Management","4":"435"},{"1":"2019/20","2":"Research Postgraduate","3":"Social Sciences","4":"373"},{"1":"2019/20","2":"Research Postgraduate","3":"Arts and Humanities","4":"317"},{"1":"2019/20","2":"Research Postgraduate","3":"Education","4":"371"},{"1":"2020/21","2":"Sub-degree","3":"Sciences","4":"182"},{"1":"2020/21","2":"Sub-degree","3":"Engineering and Technology","4":"229"},{"1":"2020/21","2":"Sub-degree","3":"Social Sciences","4":"211"},{"1":"2020/21","2":"Sub-degree","3":"Arts and Humanities","4":"211"},{"1":"2020/21","2":"Sub-degree","3":"Education","4":"211"},{"1":"2020/21","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"487"},{"1":"2020/21","2":"Undergraduate","3":"Sciences","4":"257"},{"1":"2020/21","2":"Undergraduate","3":"Engineering and Technology","4":"245"},{"1":"2020/21","2":"Undergraduate","3":"Business and Management","4":"256"},{"1":"2020/21","2":"Undergraduate","3":"Social Sciences","4":"246"},{"1":"2020/21","2":"Undergraduate","3":"Arts and Humanities","4":"234"},{"1":"2020/21","2":"Undergraduate","3":"Education","4":"333"},{"1":"2020/21","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"577"},{"1":"2020/21","2":"Taught Postgraduate","3":"Sciences","4":"399"},{"1":"2020/21","2":"Taught Postgraduate","3":"Engineering and Technology","4":"369"},{"1":"2020/21","2":"Taught Postgraduate","3":"Social Sciences","4":"483"},{"1":"2020/21","2":"Taught Postgraduate","3":"Arts and Humanities","4":"402"},{"1":"2020/21","2":"Taught Postgraduate","3":"Education","4":"403"},{"1":"2020/21","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"352"},{"1":"2020/21","2":"Research Postgraduate","3":"Sciences","4":"385"},{"1":"2020/21","2":"Research Postgraduate","3":"Engineering and Technology","4":"415"},{"1":"2020/21","2":"Research Postgraduate","3":"Business and Management","4":"479"},{"1":"2020/21","2":"Research Postgraduate","3":"Social Sciences","4":"333"},{"1":"2020/21","2":"Research Postgraduate","3":"Arts and Humanities","4":"384"},{"1":"2020/21","2":"Research Postgraduate","3":"Education","4":"395"},{"1":"2021/22","2":"Sub-degree","3":"Sciences","4":"175"},{"1":"2021/22","2":"Sub-degree","3":"Engineering and Technology","4":"220"},{"1":"2021/22","2":"Sub-degree","3":"Social Sciences","4":"226"},{"1":"2021/22","2":"Sub-degree","3":"Arts and Humanities","4":"226"},{"1":"2021/22","2":"Sub-degree","3":"Education","4":"226"},{"1":"2021/22","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"497"},{"1":"2021/22","2":"Undergraduate","3":"Sciences","4":"286"},{"1":"2021/22","2":"Undergraduate","3":"Engineering and Technology","4":"265"},{"1":"2021/22","2":"Undergraduate","3":"Business and Management","4":"288"},{"1":"2021/22","2":"Undergraduate","3":"Social Sciences","4":"264"},{"1":"2021/22","2":"Undergraduate","3":"Arts and Humanities","4":"252"},{"1":"2021/22","2":"Undergraduate","3":"Education","4":"353"},{"1":"2021/22","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"569"},{"1":"2021/22","2":"Taught Postgraduate","3":"Sciences","4":"432"},{"1":"2021/22","2":"Taught Postgraduate","3":"Engineering and Technology","4":"378"},{"1":"2021/22","2":"Taught Postgraduate","3":"Social Sciences","4":"456"},{"1":"2021/22","2":"Taught Postgraduate","3":"Arts and Humanities","4":"432"},{"1":"2021/22","2":"Taught Postgraduate","3":"Education","4":"414"},{"1":"2021/22","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"392"},{"1":"2021/22","2":"Research Postgraduate","3":"Sciences","4":"392"},{"1":"2021/22","2":"Research Postgraduate","3":"Engineering and Technology","4":"369"},{"1":"2021/22","2":"Research Postgraduate","3":"Business and Management","4":"473"},{"1":"2021/22","2":"Research Postgraduate","3":"Social Sciences","4":"376"},{"1":"2021/22","2":"Research Postgraduate","3":"Arts and Humanities","4":"369"},{"1":"2021/22","2":"Research Postgraduate","3":"Education","4":"417"},{"1":"2022/23","2":"Sub-degree","3":"Sciences","4":"183"},{"1":"2022/23","2":"Sub-degree","3":"Engineering and Technology","4":"222"},{"1":"2022/23","2":"Sub-degree","3":"Social Sciences","4":"235"},{"1":"2022/23","2":"Sub-degree","3":"Arts and Humanities","4":"235"},{"1":"2022/23","2":"Sub-degree","3":"Education","4":"235"},{"1":"2022/23","2":"Undergraduate","3":"Medicine, Dentistry and Health","4":"506"},{"1":"2022/23","2":"Undergraduate","3":"Sciences","4":"290"},{"1":"2022/23","2":"Undergraduate","3":"Engineering and Technology","4":"283"},{"1":"2022/23","2":"Undergraduate","3":"Business and Management","4":"295"},{"1":"2022/23","2":"Undergraduate","3":"Social Sciences","4":"275"},{"1":"2022/23","2":"Undergraduate","3":"Arts and Humanities","4":"269"},{"1":"2022/23","2":"Undergraduate","3":"Education","4":"375"},{"1":"2022/23","2":"Taught Postgraduate","3":"Medicine, Dentistry and Health","4":"714"},{"1":"2022/23","2":"Taught Postgraduate","3":"Sciences","4":"448"},{"1":"2022/23","2":"Taught Postgraduate","3":"Engineering and Technology","4":"401"},{"1":"2022/23","2":"Taught Postgraduate","3":"Social Sciences","4":"488"},{"1":"2022/23","2":"Taught Postgraduate","3":"Arts and Humanities","4":"448"},{"1":"2022/23","2":"Taught Postgraduate","3":"Education","4":"429"},{"1":"2022/23","2":"Research Postgraduate","3":"Medicine, Dentistry and Health","4":"411"},{"1":"2022/23","2":"Research Postgraduate","3":"Sciences","4":"427"},{"1":"2022/23","2":"Research Postgraduate","3":"Engineering and Technology","4":"421"},{"1":"2022/23","2":"Research Postgraduate","3":"Business and Management","4":"512"},{"1":"2022/23","2":"Research Postgraduate","3":"Social Sciences","4":"391"},{"1":"2022/23","2":"Research Postgraduate","3":"Arts and Humanities","4":"346"},{"1":"2022/23","2":"Research Postgraduate","3":"Education","4":"410"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="file-path-management" class="level3">
+<h3 class="anchored" data-anchor-id="file-path-management">File Path Management</h3>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Path Type</th>
+<th>Example</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Relative</strong></td>
+<td><code>data/hksalary.csv</code></td>
+<td>Default in projects</td>
+</tr>
+<tr class="even">
+<td><strong>Absolute</strong></td>
+<td><code>C:/Users/.../hksalary.csv</code></td>
+<td>Temporary analysis</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Relative Path
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use relative paths for portability and to avoid hardcoding directory paths.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="data-inspection" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="data-inspection"><span class="header-section-number">4.4</span> Data Inspection</h2>
+<p>After importing data, it’s essential to inspect it to understand its structure and contents. Here are some common functions to help you get started:</p>
+<section id="first-look-tools" class="level3">
+<h3 class="anchored" data-anchor-id="first-look-tools">First Look Tools</h3>
+<ul>
+<li><strong><code>head()</code></strong>: Shows the first few rows of the dataset.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First 6 rows</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hksalary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Academic Year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Level of Study"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Broad Academic Programme Category"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Average Annual Salary (HK$'000)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2009/10","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"292"},{"1":"2009/10","2":"Sub-degree","3":"Sciences","4":"125"},{"1":"2009/10","2":"Sub-degree","3":"Engineering and Technology","4":"125"},{"1":"2009/10","2":"Sub-degree","3":"Business and Management","4":"139"},{"1":"2009/10","2":"Sub-degree","3":"Social Sciences","4":"163"},{"1":"2009/10","2":"Sub-degree","3":"Arts and Humanities","4":"122"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<ul>
+<li><strong><code>glimpse()</code></strong>: Provides a concise summary of the dataset’s structure.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Tidyverse alternative to str()</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(hksalary)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 368
+Columns: 4
+$ `Academic Year`                     &lt;chr&gt; "2009/10", "2009/10", "2009/10", "…
+$ `Level of Study`                    &lt;chr&gt; "Sub-degree", "Sub-degree", "Sub-d…
+$ `Broad Academic Programme Category` &lt;chr&gt; "Medicine, Dentistry and Health", …
+$ `Average Annual Salary (HK$'000)`   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155,…</code></pre>
+</div>
+</div>
+<ul>
+<li><strong><code>summary()</code></strong>: Displays a statistical summary of the dataset.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hksalary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Academic Year      Level of Study     Broad Academic Programme Category
+ Length:368         Length:368         Length:368                       
+ Class :character   Class :character   Class :character                 
+ Mode  :character   Mode  :character   Mode  :character                 
+                                                                        
+                                                                        
+                                                                        
+ Average Annual Salary (HK$'000)
+ Min.   :120.0                  
+ 1st Qu.:206.5                  
+ Median :269.0                  
+ Mean   :283.8                  
+ 3rd Qu.:350.5                  
+ Max.   :714.0                  </code></pre>
+</div>
+</div>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Output Focus</th>
+<th>Tidyverse Equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>head()</code></td>
+<td>Top rows</td>
+<td><code>slice_head()</code></td>
+</tr>
+<tr class="even">
+<td><code>str()</code></td>
+<td>Data types &amp; structure</td>
+<td><code>glimpse()</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="practice-import-hksalary.csv-data" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="practice-import-hksalary.csv-data"><span class="header-section-number">4.5</span> Practice: Import <code>hksalary.csv</code> Data</h2>
+<section id="step-by-step-practice" class="level3">
+<h3 class="anchored" data-anchor-id="step-by-step-practice">Step-by-Step Practice</h3>
+<ol type="1">
+<li><p><strong>Setup Workspace</strong></p>
+<ul>
+<li>Create <code>import-practice</code> project</li>
+<li>Make <code>/data</code> subfolder</li>
+</ul></li>
+<li><p><strong>Store Data</strong></p>
+<ul>
+<li>Download <a href="https://www.ugcs.gov.hk/datagovhk/Average_Annual_Salaries_FT_Employment(Eng).csv">Hong Kong Graduates Annual Salary Data</a></li>
+<li>Save as <code>hksalary.csv</code> in <code>/data</code></li>
+</ul></li>
+<li><p><strong>Import Data</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>hksalary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hksalary.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 368 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): Academic Year, Level of Study, Broad Academic Programme Category
+dbl (1): Average Annual Salary (HK$'000)
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div></li>
+<li><p><strong>Initial Inspection</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(hksalary)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hksalary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
+</section>
+</section>
+<section id="key-functions-recap" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">4.6</span> Key Functions Recap</h2>
+<table class="table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 34%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Function</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Load package</td>
+<td><code>library()</code></td>
+<td><code>library(tidyverse)</code></td>
+</tr>
+<tr class="even">
+<td>Read CSV</td>
+<td><code>read_csv()</code></td>
+<td><code>read_csv("data/file.csv")</code></td>
+</tr>
+<tr class="odd">
+<td>View structure</td>
+<td><code>glimpse()</code>/<code>str()</code></td>
+<td><code>glimpse(df)</code></td>
+</tr>
+<tr class="even">
+<td>Show first rows</td>
+<td><code>head()</code></td>
+<td><code>head(df, n = 10)</code></td>
+</tr>
+<tr class="odd">
+<td>Statistical summary</td>
+<td><code>summary()</code></td>
+<td><code>summary(df$salary)</code></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./r-basics.html" class="pagination-link  aria-label=" &lt;span="" coding="" basics&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data-wrangling.html" class="pagination-link" aria-label="<span class='chapter-number'>4</span>&nbsp; <span class='chapter-title'>Data Wrangling</span>">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright © 2025 Bin Chen</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

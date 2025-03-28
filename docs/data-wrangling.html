@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Journalism with R - 4&nbsp; Data Wrangling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./transform-merge.html" rel="next">
+<link href="./data-import.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./data-wrangling.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Journalism with R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Getting Started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Import &amp; Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transform &amp; Merging</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-usa-election.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Map: World Life Expectancy</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Special Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto-pub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto Webiste</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Case Studies</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#leaning-objectives" id="toc-leaning-objectives" class="nav-link active" data-scroll-target="#leaning-objectives"><span class="header-section-number">5</span> Leaning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up"><span class="header-section-number">5.1</span> Set up</a></li>
+  <li><a href="#data-import-inspection" id="toc-data-import-inspection" class="nav-link" data-scroll-target="#data-import-inspection"><span class="header-section-number">5.2</span> Data Import &amp; Inspection</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">5.3</span> Data Cleaning</a>
+  <ul class="collapse">
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><code>mutate()</code></a></li>
+  <li><a href="#change-column-name" id="toc-change-column-name" class="nav-link" data-scroll-target="#change-column-name">Change column name</a></li>
+  <li><a href="#change-data-type" id="toc-change-data-type" class="nav-link" data-scroll-target="#change-data-type">Change data type</a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><code>select()</code></a></li>
+  <li><a href="#string-functions-with-pipe-operator" id="toc-string-functions-with-pipe-operator" class="nav-link" data-scroll-target="#string-functions-with-pipe-operator">String functions with pipe operator <code>|&gt;</code></a></li>
+  </ul></li>
+  <li><a href="#save-load-data" id="toc-save-load-data" class="nav-link" data-scroll-target="#save-load-data"><span class="header-section-number">5.4</span> Save &amp; Load data</a>
+  <ul class="collapse">
+  <li><a href="#save-data" id="toc-save-data" class="nav-link" data-scroll-target="#save-data">Save data</a></li>
+  <li><a href="#save-to-csv" id="toc-save-to-csv" class="nav-link" data-scroll-target="#save-to-csv">Save to CSV</a></li>
+  <li><a href="#save-to-.rdata" id="toc-save-to-.rdata" class="nav-link" data-scroll-target="#save-to-.rdata">Save to <code>.RData</code></a></li>
+  <li><a href="#load-the-cleand-data-back" id="toc-load-the-cleand-data-back" class="nav-link" data-scroll-target="#load-the-cleand-data-back">Load the cleand data back</a></li>
+  </ul></li>
+  <li><a href="#fixing-date-as.date" id="toc-fixing-date-as.date" class="nav-link" data-scroll-target="#fixing-date-as.date"><span class="header-section-number">5.5</span> Fixing Date <code>as.Date()</code></a></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">5.6</span> Key Functions Recap</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./data-wrangling.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="leaning-objectives" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Leaning Objectives</h1>
+<ul>
+<li>Review data import and inspection
+<ul>
+<li>Data import: <code>read_csv()</code></li>
+<li>Data inspection: <code>head()</code>, <code>glimpse()</code></li>
+</ul></li>
+<li>Data Wrangling
+<ul>
+<li>Create new columns <code>mutate()</code></li>
+<li>Change column names <code>rename()</code></li>
+<li>Change data types <code>as.integer()</code>, <code>as.character()</code> etc.</li>
+<li>Fix Date <code>as.Date()</code></li>
+</ul></li>
+<li>Save &amp; Load data
+<ul>
+<li>Save to <code>.CSV</code>: <code>write_csv()</code>,</li>
+<li>Save to <code>.RData</code>: <code>save()</code></li>
+<li>Load data: <code>load()</code></li>
+</ul></li>
+</ul>
+<section id="set-up" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="set-up"><span class="header-section-number">5.1</span> Set up</h2>
+<p>Before we start, let’s load the <code>tidyverse</code> packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+</section>
+<section id="data-import-inspection" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="data-import-inspection"><span class="header-section-number">5.2</span> Data Import &amp; Inspection</h2>
+<p>Let’s start by importing the data using the <code>read_csv()</code> function from the <code>readr</code> package.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>readr</code> is a package that provides a fast and friendly way to read rectangular data (like CSV files) into R. It is part of the <code>tidyverse</code>, so you don’t need to install it separately if you have installed the <code>tidyverse</code> package. And you don’t need to load it separately if you have loaded the <code>tidyverse</code> package.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hksalary.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 368 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): Academic Year, Level of Study, Broad Academic Programme Category
+dbl (1): Average Annual Salary (HK$'000)
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 368
+Columns: 4
+$ `Academic Year`                     &lt;chr&gt; "2009/10", "2009/10", "2009/10", "…
+$ `Level of Study`                    &lt;chr&gt; "Sub-degree", "Sub-degree", "Sub-d…
+$ `Broad Academic Programme Category` &lt;chr&gt; "Medicine, Dentistry and Health", …
+$ `Average Annual Salary (HK$'000)`   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155,…</code></pre>
+</div>
+</div>
+<p>Based on the <code>glimpse()</code> output, we can see there are several issues with the raw data:</p>
+<ul>
+<li><strong>Column names</strong> contain spaces and special characters, we may want to rename them to make them easier to work with.</li>
+<li>The <code>Academic Year</code> column is in a format like “2009/10”, which is not a standard date format. We may want to extract the <strong>year</strong> as an integer and store it in a new column.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you do data cleaning, it is always recommended to create a new column rather than modifying the original column. This way, you can keep the original data intact and have a record of the changes you made. Also, it is recommended to create a new dataframe rather than modifying the original dataframe.</p>
+</div>
+</div>
+</section>
+<section id="data-cleaning" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">5.3</span> Data Cleaning</h2>
+<section id="mutate" class="level3">
+<h3 class="anchored" data-anchor-id="mutate"><code>mutate()</code></h3>
+<p>However, in the <code>df</code> dataset, we found the academic year is in a format as “2009/10”. This is not a standard date format, therefore, we may not be able to use <code>as.Date()</code> to convert it to a date object. Instead, we can extract the year as an integer and store it in a new column.</p>
+<p>We can use <code>mutate()</code> to create a new column <code>year</code> that contains the year as an integer.</p>
+<p><code>mutate()</code> is a function from the <code>dplyr</code> package that is used to create new columns or modify existing columns in a data frame. It takes the data frame as the first argument and then specifies the new column name and its value using the assignment operator <code>=</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you do data cleaning, tt is always recommended to create a new column rather than modifying the original column. This way, you can keep the original data intact and have a record of the changes you made. Also, you should create a new dataframe rather than modifying the original dataframe.</p>
+</div>
+</div>
+<p>Here is how we do the data cleaning: - name the new dataframe as <code>df1</code> - create a new column <code>year</code> that contains the first four characters of the <code>Academic Year</code> column by using the <code>substr()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(<span class="st">`</span><span class="at">Academic Year</span><span class="st">`</span>, <span class="dv">1</span>, <span class="dv">4</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 368
+Columns: 5
+$ `Academic Year`                     &lt;chr&gt; "2009/10", "2009/10", "2009/10", "…
+$ `Level of Study`                    &lt;chr&gt; "Sub-degree", "Sub-degree", "Sub-d…
+$ `Broad Academic Programme Category` &lt;chr&gt; "Medicine, Dentistry and Health", …
+$ `Average Annual Salary (HK$'000)`   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155,…
+$ year                                &lt;chr&gt; "2009", "2009", "2009", "2009", "2…</code></pre>
+</div>
+</div>
+<p>Question here: can we attach the <code>head()</code>function to the <code>mutate()</code> functions above? why and why not?</p>
+</section>
+<section id="change-column-name" class="level3">
+<h3 class="anchored" data-anchor-id="change-column-name">Change column name</h3>
+<section id="rename" class="level4">
+<h4 class="anchored" data-anchor-id="rename"><code>rename()</code></h4>
+<p>To change column names, another function often used is <code>rename()</code>. It is a function from the <code>dplyr</code> package that is used to rename columns in a data frame. It takes the data frame as the first argument and then specifies the new column names using the assignment operator <code>=</code>.</p>
+<p>for example, you can rename the columns in the <code>df</code> data frame as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df1 <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">`</span><span class="at">level</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Level of Study</span><span class="st">`</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">category</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Broad Academic Programme Category</span><span class="st">`</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">salary</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Average Annual Salary (HK$'000)</span><span class="st">`</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 368
+Columns: 5
+$ `Academic Year` &lt;chr&gt; "2009/10", "2009/10", "2009/10", "2009/10", "2009/10",…
+$ level           &lt;chr&gt; "Sub-degree", "Sub-degree", "Sub-degree", "Sub-degree"…
+$ category        &lt;chr&gt; "Medicine, Dentistry and Health", "Sciences", "Enginee…
+$ salary          &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155, 346, 148, 154, 157,…
+$ year            &lt;chr&gt; "2009", "2009", "2009", "2009", "2009", "2009", "2009"…</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can also use the <code>mutate()</code> function to rename columns by creating new columns with the new names.</p>
+<p>The differences between <code>mutate()</code> and <code>rename()</code> are: <code>mutate()</code> is used to create new columns or modify existing columns, while <code>rename()</code> is used to rename existing columns. So you see after using <code>mutate()</code>, you get 4 more new columns.</p>
+<p>When you use <code>rename()</code> to rename columns, and if the column names contain spaces or special characters, you need to enclose the column names in backticks (`) or double quotes (“).</p>
+</div>
+</div>
+</section>
+</section>
+<section id="change-data-type" class="level3">
+<h3 class="anchored" data-anchor-id="change-data-type">Change data type</h3>
+<ul>
+<li><code>as.integer()</code>: convert a character or numeric column to an integer column.</li>
+<li><code>as.numeric()</code>: convert a character or integer column to a numeric column.</li>
+<li><code>as.character()</code>: convert a numeric or integer column to a character column.</li>
+<li><code>as.Date()</code>: convert a character column to a date column.</li>
+</ul>
+<p>We found that the <code>year</code> column is stored as an character type, but we want to store it as an integer type. We can use the <code>as.integer()</code> function to convert the <code>year</code> column to an integer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> df2 <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.integer</span>(year))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df3 <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Academic Year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["level"],"name":[2],"type":["chr"],"align":["left"]},{"label":["category"],"name":[3],"type":["chr"],"align":["left"]},{"label":["salary"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"2009/10","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"292","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Sciences","4":"125","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Engineering and Technology","4":"125","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Business and Management","4":"139","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Social Sciences","4":"163","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Arts and Humanities","4":"122","5":"2009"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="select" class="level3">
+<h3 class="anchored" data-anchor-id="select"><code>select()</code></h3>
+<p>We found now we have 8 columns but we only want to keep the <code>year</code>, <code>level</code>, <code>category</code>, and <code>salary</code> columns. We can use the <code>select()</code> function to keep only the columns we want.</p>
+<p><code>select()</code> is a function from the <code>dplyr</code> package that is used to select columns in a data frame. It takes the data frame as the first argument and then specifies the columns to keep using the column names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> df3 <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, level, category, salary)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Academic Year"],"name":[1],"type":["chr"],"align":["left"]},{"label":["level"],"name":[2],"type":["chr"],"align":["left"]},{"label":["category"],"name":[3],"type":["chr"],"align":["left"]},{"label":["salary"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"2009/10","2":"Sub-degree","3":"Medicine, Dentistry and Health","4":"292","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Sciences","4":"125","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Engineering and Technology","4":"125","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Business and Management","4":"139","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Social Sciences","4":"163","5":"2009"},{"1":"2009/10","2":"Sub-degree","3":"Arts and Humanities","4":"122","5":"2009"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="string-functions-with-pipe-operator" class="level3">
+<h3 class="anchored" data-anchor-id="string-functions-with-pipe-operator">String functions with pipe operator <code>|&gt;</code></h3>
+<p>From this week, we will start to use the <code>|&gt;</code> operator to string functions together. This operator is available in R version 4.1.0 and later. It allows you to pass the result of one function to the next function as the first argument. This can make your code more concise and easier to read, especially when you have multiple data manipulation steps.</p>
+<p>A simple use of “|&gt;” operate is to write the object first and then followed by the function. For example, <code>df |&gt; head()</code> is equivalent to <code>head(df)</code>.</p>
+<p>Now, we can combine all the data cleaning steps together using the pipe operator <code>|&gt;</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">`</span><span class="at">year</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Academic Year</span><span class="st">`</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">level</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Level of Study</span><span class="st">`</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">category</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Broad Academic Programme Category</span><span class="st">`</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">`</span><span class="at">salary</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">Average Annual Salary (HK$'000)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">substr</span>(year, <span class="dv">1</span>, <span class="dv">4</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.integer</span>(year)) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, level, category, salary)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [368 × 4] (S3: tbl_df/tbl/data.frame)
+ $ year    : int [1:368] 2009 2009 2009 2009 2009 2009 2009 2009 2009 2009 ...
+ $ level   : chr [1:368] "Sub-degree" "Sub-degree" "Sub-degree" "Sub-degree" ...
+ $ category: chr [1:368] "Medicine, Dentistry and Health" "Sciences" "Engineering and Technology" "Business and Management" ...
+ $ salary  : num [1:368] 292 125 125 139 163 122 155 346 148 154 ...</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="save-load-data" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="save-load-data"><span class="header-section-number">5.4</span> Save &amp; Load data</h2>
+<p>After cleaning the data, we can save the cleaned data to be used for further analysis. We can save the cleand dataframe to the following formats: - CSV file: using <code>write_csv()</code> function from the <code>readr</code> package. - RData: save multiple objects using the <code>save()</code> function. - RDS file: save single object using the <code>saveRDS()</code> function.</p>
+<p>However, it is often recommended to save the data to <code>.RData</code> file, because it is more efficient to read the data from <code>.RData</code> file and it preserves the data structure and data type of the data frame.</p>
+<p>That means, if you save the dataframe to CSV file, you may lose the data structure and data type of the data frame. For example, if you save a data frame with date columns to a CSV file, when you read the CSV file back, the character columns may be read as characters.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>.RData</code> is smaller, faster!</p>
+</div>
+</div>
+<section id="save-data" class="level3">
+<h3 class="anchored" data-anchor-id="save-data">Save data</h3>
+<p>Now we have done the data cleaning, we can save the cleaned data to a new CSV file. We can use the <code>write_csv()</code> function from the <code>readr</code> package to save the data frame to a CSV file.</p>
+</section>
+<section id="save-to-csv" class="level3">
+<h3 class="anchored" data-anchor-id="save-to-csv">Save to CSV</h3>
+<p>Lets save the cleaned data to a CSV file named <code>hksalary_cleaned.csv</code> in the <code>data</code> folder. You can again just use the relative path to save the file in the <code>data</code> folder.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(df_clean, <span class="st">"out/hksalary_cleaned.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="save-to-.rdata" class="level3">
+<h3 class="anchored" data-anchor-id="save-to-.rdata">Save to <code>.RData</code></h3>
+<p>Or, it is often recommended to save the data to <code>.RData</code> file, because it is more efficient to read the data from <code>.RData</code> file and it preserves the data structure and data type of the data frame.</p>
+<p>You can simply save the data frame to an <code>.RData</code> file using the <code>save()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(df_clean, <span class="at">file =</span> <span class="st">"out/hksalary_cleaned.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here you may notice that the file size of the <code>.RData</code> file is much smaller than the .csv file. This is because the <code>.RData</code> file stores the data in a binary format, which is more efficient than the text-based CSV format.</p>
+<p><code>.RData</code> files are automatically compressed, which can significantly reduce the size of the data on disk compared to .csv files, which are plain text. And as a result, it is faster to read and write data from <code>.RData</code> files.</p>
+</section>
+<section id="load-the-cleand-data-back" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-cleand-data-back">Load the cleand data back</h3>
+<section id="load" class="level4">
+<h4 class="anchored" data-anchor-id="load"><code>load()</code></h4>
+<p>Lets try to load the cleaned data back to R:</p>
+<p>For <code>.RData</code> file, you can simply use the <code>load()</code> function to load the data back into R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"data/hksalary_cleaned.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You will notice that the name of the data frame is <code>df_clean</code> because we saved the cleaned data frame as <code>df_clean</code> in the <code>.RData</code> file.</p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="fixing-date-as.date" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="fixing-date-as.date"><span class="header-section-number">5.5</span> Fixing Date <code>as.Date()</code></h2>
+<p>In data analysis for journalism, we often need to convert character strings to dates for further analysis. Because we can not do math operations on a character string, and also it may sort the year in a wrong order if we sort it as a character string.</p>
+<p>Normally, we can use some functions to convert a character string to a date. For example: we first created a character string <code>today_char</code> and then converted it to a date object <code>today_date</code> using the <code>as.Date()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>today_char <span class="ot">&lt;-</span> <span class="st">"2025/02/17"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(today_char)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr "2025/02/17"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>today_date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(today_char, <span class="at">format =</span> <span class="st">"%Y/%m/%d"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(today_date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Date[1:1], format: "2025-02-17"</code></pre>
+</div>
+</div>
+<p><code>as.Date()</code> function is a baseR function used to convert a character string to a date object. The format argument specifies the format of the input character string. In this case, “%Y/%m/%d” indicates that the character string is in the format “year/month/day”.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are some very handy R packages that can help you to convert character strings to dates, such as <code>lubridate</code> and <code>anytime</code>. You can explore these packages if you need more advanced date manipulation functions.</p>
+</div>
+</div>
+</section>
+<section id="key-functions-recap" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">5.6</span> Key Functions Recap</h2>
+<table class="table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 10%">
+<col style="width: 37%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Package</th>
+<th>Purpose</th>
+<th>Example Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_csv()</code></td>
+<td><code>readr</code></td>
+<td>Import data from CSV files</td>
+<td><code>df &lt;- read_csv("data/hksalary.csv")</code></td>
+</tr>
+<tr class="even">
+<td><code>head()</code></td>
+<td>Base R</td>
+<td>View the first few rows of a data frame</td>
+<td><code>head(df)</code></td>
+</tr>
+<tr class="odd">
+<td><code>glimpse()</code></td>
+<td><code>dplyr</code></td>
+<td>Get a quick overview of the data structure</td>
+<td><code>glimpse(df)</code></td>
+</tr>
+<tr class="even">
+<td><code>mutate()</code></td>
+<td><code>dplyr</code></td>
+<td>Create or modify columns in a data frame</td>
+<td><code>df1 &lt;- df |&gt; mutate(year = substr(</code>Academic Year<code>, 1, 4))</code></td>
+</tr>
+<tr class="odd">
+<td><code>rename()</code></td>
+<td><code>dplyr</code></td>
+<td>Rename columns in a data frame</td>
+<td><code>df2 &lt;- df1 |&gt; rename(year =</code>Academic Year<code>)</code></td>
+</tr>
+<tr class="even">
+<td><code>as.integer()</code></td>
+<td>Base R</td>
+<td>Convert a column to integer type</td>
+<td><code>df3 &lt;- df2 |&gt; mutate(year = as.integer(year))</code></td>
+</tr>
+<tr class="odd">
+<td><code>as.character()</code></td>
+<td>Base R</td>
+<td>Convert a column to character type</td>
+<td><code>df3 |&gt; mutate(category = as.character(category))</code></td>
+</tr>
+<tr class="even">
+<td><code>as.Date()</code></td>
+<td>Base R</td>
+<td>Convert a character string to a Date object</td>
+<td><code>today_date &lt;- as.Date("2025/02/17", format = "%Y/%m/%d")</code></td>
+</tr>
+<tr class="odd">
+<td><code>select()</code></td>
+<td><code>dplyr</code></td>
+<td>Select specific columns from a data frame</td>
+<td><code>df4 &lt;- df3 |&gt; select(year, level, category, salary)</code></td>
+</tr>
+<tr class="even">
+<td><code>write_csv()</code></td>
+<td><code>readr</code></td>
+<td>Save a data frame to a CSV file</td>
+<td><code>write_csv(df_clean, "out/hksalary_cleaned.csv")</code></td>
+</tr>
+<tr class="odd">
+<td><code>save()</code></td>
+<td>Base R</td>
+<td>Save R objects (e.g., data frames) to an <code>.RData</code> file</td>
+<td><code>save(df_clean, file = "out/hksalary_cleaned.RData")</code></td>
+</tr>
+<tr class="even">
+<td><code>load()</code></td>
+<td>Base R</td>
+<td>Load R objects from an <code>.RData</code> file</td>
+<td><code>load("out/hksalary_cleaned.RData")</code></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./data-import.html" class="pagination-link  aria-label=" &lt;span="" import&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./transform-merge.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Data Transform &amp; Merging</span>">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transform &amp; Merging</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright © 2025 Bin Chen</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
