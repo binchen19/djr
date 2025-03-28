@@ -1,0 +1,192 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Journalism with R",
+    "section": "",
+    "text": "About this book\nThis book is a collection of my notes from the Data Journalism courses I have been teaching at the Journalism and Media Studies Centre, The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.\nWhile originally designed as a companion for my students (JMSC1003, JMSC6113), I hope this book will also benefit a wider audience—including journalists, aspiring data storytellers, and students interested in learning R for data analysis. Through practical examples and real-world case studies, this book provides a hands-on approach to integrating data into storytelling.\nHope you find it useful! 🤗",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Data Journalism with R</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#about-the-author",
+    "href": "index.html#about-the-author",
+    "title": "Data Journalism with R",
+    "section": "About the author",
+    "text": "About the author\nI am an Assistant Professor at the Journalism and Media Studies Centre, Faculty of Social Science, the University of Hong Kong. My research interests include computational social science, social media and politics, and comparative media studies. At HKU, I teach Data Journalism courses at both the undergraduate and postgraduate levels.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Data Journalism with R</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Data Journalism with R",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis book is strongly inspired by the Reporting with Data in R book by two professors at the University of Texas at Austin, Christian McDonald and Josephine Lukito. I would like to thank them for their great work and for sharing their materials with the public. I would also like to thank my students for their feedback and suggestions.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Data Journalism with R</span>"
+    ]
+  },
+  {
+    "objectID": "01-install.html",
+    "href": "01-install.html",
+    "title": "Install R and RStudio",
+    "section": "",
+    "text": "Why Learn R for Data Journalism?\nData journalism requires tools that combine statistical rigor with storytelling capabilities. R provides:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Install R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "01-install.html#why-learn-r-for-data-journalism",
+    "href": "01-install.html#why-learn-r-for-data-journalism",
+    "title": "Install R and RStudio",
+    "section": "",
+    "text": "Reproducible analysis through script-based workflows\nAdvanced visualization for impactful storytelling\nOpen-source community with continuous innovation\nProfessional-grade tools used by NYT, BBC, and Reuters etc.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Install R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "01-install.html#installing-the-tools",
+    "href": "01-install.html#installing-the-tools",
+    "title": "Install R and RStudio",
+    "section": "1. Installing the Tools",
+    "text": "1. Installing the Tools\n\nStep 1: Install R\n\n\n\n\n\nR Project Logo\n\n\n\n\n\nVisit CRAN Mirror\nSelect your operating system (Windows/Mac/Linux)\nDownload the latest version (≥4.3.0 recommended)\nRun the installer with default settings\n\n\n\nStep 2: Install RStudio\n\n\n\n\n\nRStudio Interface\n\n\n\n\n\nGo to posit.co/download\nChoose Download RStudio Desktop\nInstall using default options\n\n\n\n\n\n\n\nImportant\n\n\n\nInstallation Order Matters! Always install R before RStudio - the IDE needs the base R engine to function.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Install R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "01-install.html#first-time-setup",
+    "href": "01-install.html#first-time-setup",
+    "title": "Install R and RStudio",
+    "section": "2. First-Time Setup",
+    "text": "2. First-Time Setup\n\nOrganizing Your Workspace\n\nCreate a project folder:\n\nWindows: C:/Users/[YourName]/Documents/djr\nMac: /Users/[YourName]/Documents/djr\n\nUse lowercase letters only (avoid spaces/special characters)\n\n\n# Create folder from R Console (alternative method)\ndir.create(\"~/Documents/djr\")\n\n\n\nConfiguring RStudio\nOptimize your setup through:\n\nTools &gt; Global Options &gt; General\n\nUncheck everything above the “Other” panel\nSet “Save workspace” to Never\n\nTools &gt; Global Options &gt; Code\n\nEnable “Soft-wrap R source files”\nCheck “Use native pipe operator |&gt;”",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Install R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "01-install.html#understanding-the-rstudio-interface",
+    "href": "01-install.html#understanding-the-rstudio-interface",
+    "title": "Install R and RStudio",
+    "section": "3. Understanding the RStudio Interface",
+    "text": "3. Understanding the RStudio Interface\n\n\n\n\n\n\n\n\n\nPosition\nPanel\nPurpose\nKey Features\n\n\n\n\nTop-Left\nSource\nCode editing\nScripts, R Markdown, notebooks\n\n\nBottom-Left\nConsole\nDirect code execution\nImmediate feedback, debugging\n\n\nTop-Right\nEnvironment\nActive data objects\nVariable inspection\n\n\nBottom-Right\nFiles/Help\nNavigation & documentation\nPackage help, file browsing\n\n\n\n\n\n\n\n\nRStudio IDE Cheatsheet Preview\n\n\n\n\nDownload full RStudio IDE cheatsheets",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Install R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "01-install.html#essential-packages-installation",
+    "href": "01-install.html#essential-packages-installation",
+    "title": "Install R and RStudio",
+    "section": "4. Essential Packages Installation",
+    "text": "4. Essential Packages Installation\nRun this in the Console:\n\ninstall.packages(c(\n  \"tidyverse\",   # Data wrangling & visualization\n  \"rmarkdown\",   # Dynamic reporting\n  \"quarto\",      # Modern publishing\n  \"knitr\",       # Document processing\n  \"janitor\"      # Data cleaning\n))",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Install R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "01-install.html#your-first-project",
+    "href": "01-install.html#your-first-project",
+    "title": "Install R and RStudio",
+    "section": "5. Your First Project",
+    "text": "5. Your First Project\n\nCreate an R Project\n\nFile &gt; New Project &gt; New Directory\nName: firstname-week1 (e.g., bin-week1)\nBrowse to your djr folder\nClick Create Project\n\n\n\nCreate R Markdown File\n\nFile &gt; New File &gt; R Markdown\nTitle: “My First R Markdown”\nAuthor: Your name\nDefault HTML output\n\n\n\n\n\n\n\nNote\n\n\n\nWhy R Markdown? - Combine narrative and code - Export to multiple formats: HTML, PDF, Word - Track changes with version control",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Install R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "01-install.html#writing-your-first-rmd-document",
+    "href": "01-install.html#writing-your-first-rmd-document",
+    "title": "Install R and RStudio",
+    "section": "6. Writing Your First RMD Document",
+    "text": "6. Writing Your First RMD Document\nOnce you have created a new R Markdown file, you can start writing in it. R Markdown files use a combination of Markdown and R code to create dynamic documents. You can include text, code chunks, and output in your R Markdown file.\n\nMetadata\nOn top right of the R Markdown file, you will see a YAML front matter section, which is used to define metadata for the document. This metadata is enclosed within triple-dashed lines.\nYou can specify metadata such as the title, author, date, and output format in the YAML front matter section. Here is an example of metadata in a R Markdown file:\n---\ntitle: \"Data Journalism\"\nsubtitle: \"Week 1\"\nauthor: \"Bin Chen\"\ndate: \"Jan 20, 2025\"\nformat: html\n---\n\n\nText Content\nYou can write narrative text in your R Markdown file using Markdown syntax. Markdown is a lightweight markup language that allows you to format text using simple and intuitive syntax. You can use Markdown to create headings, lists, links, images, and more.\nHere is an example of Markdown text in a R Markdown file: - Heading: # Heading 1 - Bold: **bold text** - List: - item 1 - Link: [link text](https://www.example.com) - Image: ![](path/to/image.png) - Code: `code`\n\n\nCode Chunks\nYou can include R code in your R Markdown file using code chunks. Code chunks are enclosed within three backticks and curly braces, indicating the language of the code (in this case, R).\nYou can insert a code chunk by clicking the green “+” icon in the top right corner of the R Markdown file and selecting “R”, or you can user the keyboard shortcut “Ctrl + Alt + I” on Windows or “Cmd + Option + I” on Mac.\nHere is an example of a code chunk in a R Markdown file:\n\n1 + 1\n\n\n\n\n\n\nRMarkdown Cheatsheet Preview\n\n\n\n\nDownload full RMarkdown cheatsheets\n\n\nRender the R Markdown file\nOnce you have written your R Markdown file, you can render it to create a dynamic document. To render the R Markdown file, click the “knit” button in the top right corner of the R Markdown file. This will run the R code chunks and generate the output in the specified format.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Install R and RStudio</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentals.html",
+    "href": "02-fundamentals.html",
+    "title": "R Coding Basics",
+    "section": "",
+    "text": "1. Concepts",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentals.html#concepts",
+    "href": "02-fundamentals.html#concepts",
+    "title": "R Coding Basics",
+    "section": "",
+    "text": "Console: The area in RStudio where you can type and run R code. However, you may not want to write codes in the console because it is not saved and hard to reproduce.\nObjects: A variable, function, or data structure in R. Objects have names and values.\nVariable: A variable is a place to store data. It has a name and a value. For example, x &lt;- 5 creates a variable x and assigns the value 5 to it.\nFunction: A function is a block of code that performs a specific task. For example, mean(x) calculates the mean of the variable x.\nData frame: A data frame is a two-dimensional data structure that stores data in rows and columns. For example, data.frame(x = 1:5, y = letters[1:5]) creates a data frame with two columns x and y.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentals.html#syntax",
+    "href": "02-fundamentals.html#syntax",
+    "title": "R Coding Basics",
+    "section": "2. Syntax",
+    "text": "2. Syntax\n\nAssignment operator (&lt;-): The assignment operator is used to assign a value to a variable. For example, x &lt;- 5 assigns the value 5 to the variable x.\nComment (#): The comment symbol # is used to add comments to R code. Comments are not executed and are used to explain the code.\nPipe Operator(|&gt;): The pipe operator |&gt; (also %&gt;%) is used to chain multiple functions together. It takes the output of one function and passes it as the input to the next function. For example, data |&gt; filter(x &gt; 5) |&gt; select(y) filters the data frame data to include rows where x is greater than 5 and then selects the column y.\nVectors(c()): A vector is a one-dimensional data structure that stores a sequence of values. For example, c(1, 2, 3, 4, 5) creates a vector with the values 1, 2, 3, 4, and 5. Here c() refers to combine.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentals.html#data-type",
+    "href": "02-fundamentals.html#data-type",
+    "title": "R Coding Basics",
+    "section": "3. Data Type",
+    "text": "3. Data Type\n\nInteger: A data type that represents whole numbers. For example, 5, 10, and -3 are integer values.\n\n\nNumeric: A data type that represents numbers. For example, 3.14, and -2.5 are numeric values.\n\n\nCharacter: A data type that represents text. For example, \"hello\", \"R\", and \"data analysis\" are character values.\n\n\nLogical: A data type that represents TRUE or FALSE values. Logical values are used in conditional statements and comparisons.\n\n\ndate: A data type that represents dates. For example, as.Date(\"2024-09-07\") creates a date object representing September 7, 2024.\n\n\n\n\n\n\n\nWarning\n\n\n\nTo create a date object in R, you can use the as.Date() function with the date in the format YYYY-MM-DD. If you just use x &lt;- \"2024-09-07\", it will be a character type.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentals.html#data-structures",
+    "href": "02-fundamentals.html#data-structures",
+    "title": "R Coding Basics",
+    "section": "4. Data Structures",
+    "text": "4. Data Structures\nWe will talk about three common data structures in R: vector, data frame, and list. There are also other data structures in R, such as matrix and array, but we will not use them in this course.\n\nVector: A one-dimensional data structure that stores a sequence of values. Vectors can be numeric, character, logical, or factor.\n\n\nData Frame: A two-dimensional data structure that stores data in rows and columns. Data frames are used to store structured data and are commonly used in data analysis.\n\n\n\n     name age\n1   Alice  25\n2     Bob  30\n3 Charlie  35\n\n\n\nList: A data structure that stores a collection of objects. Lists can contain vectors, matrices, data frames, and other lists.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentals.html#errorswarningsmessages",
+    "href": "02-fundamentals.html#errorswarningsmessages",
+    "title": "R Coding Basics",
+    "section": "5. Errors/Warnings/Messages",
+    "text": "5. Errors/Warnings/Messages\n\nError: An error occurs when R encounters a problem that prevents it from executing the code. Errors are displayed in red text and typically include an error message that describes the problem.\nWarning: A warning occurs when R encounters a potential problem but is able to continue executing the code. Warnings are displayed in yellow text and typically include a warning message that describes the potential issue.\nMessage: A message is a general output from R that provides information about the code execution. Messages are displayed in white text and are used to convey information about the code.\n\n\nHow to correct errors (debug)?\n\nRead the error message: The error message provides information about what went wrong. Read the error message carefully to understand the problem.\nCheck the code: Review the code that caused the error. Look for syntax errors, missing parentheses, brackets, or quotation marks, and other common mistakes.\nUse the help panel: RStudio has a help panel that provides information about functions, packages, and error messages. Use the help panel to look up information related to the error.\nSearch online: If you are unable to resolve the error, search online for solutions. Websites like Stack Overflow, RStudio Community, and the R documentation can be helpful resources.\nPosting your questions: If you are still unable to resolve the error, ask for help. Post your code and the error message on the RStudio Community or another forum to get assistance from the community.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentals.html#coding-habits",
+    "href": "02-fundamentals.html#coding-habits",
+    "title": "R Coding Basics",
+    "section": "6. Coding habits",
+    "text": "6. Coding habits\n\nComment your code: Add comments to your code to explain what it does. Comments make your code easier to understand and maintain.\nUse meaningful variable names: Choose variable names that are descriptive and meaningful. Avoid using single-letter variable names like x or y. Also, please avoid using reserved words in R, such as mean, sum, data, etc, and do NOT use space, dash, or other special characters in variable names. It is always recommended to use underscore _ to separate words in variable names. Again, use all lowercase letters in variable names to make your life easier.\nOrganize your code: Organize your code into sections using comments or markdown headers. This makes it easier to navigate and understand your code.\n\n\nTips for learning R coding\n\n“Copy, Paste, and Tweak”: When writing code, it’s common to copy and paste existing code and then tweak it to fit your needs. This can save time and reduce errors.\n“Save, Save, Save”: Save your work frequently to avoid losing your progress.\nPractice, practice, practice: The more you practice writing R code, the more comfortable and proficient you will become.\nCall ? for help: If you are unsure about how to use a function or need more information, you can call ?function_name to access the help file for that function.\n\nSome extra notes on using the ? operator: In R or RStudio, you can always use the ? operator to call for help on a function or dataset, but the specific syntax may differ - depends on whether the package containing that function or dataset is loaded. Here’s how it works:\n\nFor Loaded Packages: If the package is already loaded using library() or require(), you can directly use the ? operator with the name of the function or dataset. For example, if you have already loaded the ggplot2 package (included in tidyverse), you can simply write ?ggplot to get help on the ggplot function.\nFor Unloaded Packages: If the package is not loaded, RStudio does not automatically know where to look for documentation unless you specify the package name. In this case, you have two options:\n\nLoad the Package: You can first load the package using library(packagename) and then use the ? operator as usual.\nDirect Specification: You can directly specify the package when using the ? operator, even if it’s not loaded. You do this by using ?packagename::functionname. For example, to get help on the ggplot function in ggplot2 without loading the package, you would write ?ggplot2::ggplot.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentals.html#key-commands",
+    "href": "02-fundamentals.html#key-commands",
+    "title": "R Coding Basics",
+    "section": "7. Key Commands",
+    "text": "7. Key Commands\n\n\n\n\n\n\n\n\nCommand\nPurpose\nExample\n\n\n\n\n&lt;-\nAssign value\nx &lt;- 5\n\n\nc()\nCreate vector\nages &lt;- c(21, 25, 19)\n\n\ndata.frame()\nCreate data frame\ndf &lt;- data.frame(id=1:3)\n\n\n` &gt; `\nPipe operator\n`df &gt; filter(age &gt; 20)`\n\n\nlibrary()\nLoad package\nlibrary(tidyverse)\n\n\ninstall.packages()\nInstall package\ninstall.packages(\"dplyr\")\n\n\n?\nGet help\n?ggplot\n\n\n#\nAdd comment\n# Calculate average\n\n\nstr()\nCheck structure\nstr(df)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  }
+]

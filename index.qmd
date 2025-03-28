@@ -1,0 +1,19 @@
+# Preface {.unnumbered}
+
+## About this book
+
+This book is a collection of my notes from the Data Journalism courses I have been teaching at The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.
+
+While originally designed as a companion for my students, I hope this book will also benefit a wider audience—including journalists, aspiring data storytellers, and students interested in learning R for data analysis. Through practical examples and real-world case studies, this book provides a hands-on approach to integrating data into storytelling.
+
+Hope you find it useful! 🤗
+
+## About the author
+
+### Bin Chen
+
+I am an Assistant Professor at the Journalism and Media Studies Centre, the University of Hong Kong. My research interests include computational social science, social media and politics, and comparative media studies. At HKU, I teach Data Journalism courses at both the undergraduate and postgraduate levels.
+
+## Acknowledgements
+
+This book is inspired by the [Reporting with Data in R](https://utdata.github.io/rwdir/) book by two professors at the University of Texas at Austin, *Christian McDonald* and *Josephine Lukito*. I would like to thank them for their great work and for sharing their materials with the public. 

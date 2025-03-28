@@ -1,0 +1,255 @@
+---
+title: "Data Wrangling"
+format: html
+---
+
+# Leaning Objectives
+
+-   Review data import and inspection
+    -  Data import: `read_csv()`
+    -  Data inspection: `head()`, `glimpse()`
+-   Data Wrangling
+    -  Create new columns `mutate()`
+    -  Change column names `rename()`
+    -  Change data types `as.integer()`, `as.character()` etc.
+    -  Fix Date `as.Date()`
+-   Save & Load data
+    -  Save to `.CSV`: `write_csv()`, 
+    -  Save to `.RData`: `save()`
+    -  Load data: `load()`
+
+## Set up
+
+Before we start, let's load the `tidyverse` packages.
+
+```{r}
+library(tidyverse)
+```
+
+## Data Import & Inspection
+
+Let's start by importing the data using the `read_csv()` function from the `readr` package.
+
+::: callout-note
+`readr` is a package that provides a fast and friendly way to read rectangular data (like CSV files) into R. It is part of the `tidyverse`, so you don't need to install it separately if you have installed the `tidyverse` package. And you don't need to load it separately if you have loaded the `tidyverse` package.
+:::
+
+```{r}
+df <- read_csv("data/hksalary.csv")
+```
+
+
+```{r}
+glimpse(df)
+```
+
+
+Based on the `glimpse()` output, we can see there are several issues with the raw data:
+
+-  **Column names** contain spaces and special characters, we may want to rename them to make them easier to work with.
+-  The `Academic Year` column is in a format like "2009/10", which is not a standard date format. We may want to extract the **year** as an integer and store it in a new column.
+
+::: callout-tip
+When you do data cleaning, it is always recommended to create a new column rather than modifying the original column. This way, you can keep the original data intact and have a record of the changes you made. Also, it is recommended to create a new dataframe rather than modifying the original dataframe.
+:::
+
+
+## Data Cleaning
+
+
+### `mutate()`
+
+However, in the `df` dataset, we found the academic year is in a format as "2009/10". This is not a standard date format, therefore, we may not be able to use `as.Date()` to convert it to a date object. Instead, we can extract the year as an integer and store it in a new column.
+
+We can use `mutate()` to create a new column `year` that contains the year as an integer.
+
+`mutate()` is a function from the `dplyr` package that is used to create new columns or modify existing columns in a data frame. It takes the data frame as the first argument and then specifies the new column name and its value using the assignment operator `=`.
+
+::: callout-note
+When you do data cleaning, tt is always recommended to create a new column rather than modifying the original column. This way, you can keep the original data intact and have a record of the changes you made. Also, you should create a new dataframe rather than modifying the original dataframe.
+:::
+
+Here is how we do the data cleaning: - name the new dataframe as `df1` - create a new column `year` that contains the first four characters of the `Academic Year` column by using the `substr()` function 
+
+```{r}
+df1 <- df |>
+  mutate(year = substr(`Academic Year`, 1, 4))
+
+glimpse(df1)
+```
+
+Question here: can we attach the `head()`function to the `mutate()` functions above? why and why not?
+
+### Change column name
+
+#### `rename()`
+
+To change column names, another function often used is `rename()`. It is a function from the `dplyr` package that is used to rename columns in a data frame. It takes the data frame as the first argument and then specifies the new column names using the assignment operator `=`.
+
+for example, you can rename the columns in the `df` data frame as follows:
+
+```{r}
+df2 <- df1 |>
+  rename(`level` = `Level of Study`,
+         `category` = `Broad Academic Programme Category`,
+         `salary` = `Average Annual Salary (HK$'000)`)
+
+glimpse(df2)
+```
+
+::: callout-note
+
+You can also use the `mutate()` function to rename columns by creating new columns with the new names. 
+
+The differences between `mutate()` and `rename()` are: `mutate()` is used to create new columns or modify existing columns, while `rename()` is used to rename existing columns. So you see after using `mutate()`, you get 4 more new columns.
+
+When you use `rename()` to rename columns, and if the column names contain spaces or special characters, you need to enclose the column names in backticks (`) or double quotes (").
+:::
+
+
+### Change data type
+
+-  `as.integer()`: convert a character or numeric column to an integer column.
+-  `as.numeric()`: convert a character or integer column to a numeric column.
+-  `as.character()`: convert a numeric or integer column to a character column.
+-  `as.Date()`: convert a character column to a date column.
+
+We found that the `year` column is stored as an character type, but we want to store it as an integer type. We can use the `as.integer()` function to convert the `year` column to an integer.
+
+```{r}
+df3 <- df2 |>
+  mutate(year = as.integer(year))
+
+df3 |> head()
+```
+
+### `select()`
+
+We found now we have 8 columns but we only want to keep the `year`, `level`, `category`, and `salary` columns. We can use the `select()` function to keep only the columns we want.
+
+`select()` is a function from the `dplyr` package that is used to select columns in a data frame. It takes the data frame as the first argument and then specifies the columns to keep using the column names.
+
+```{r}
+df4 <- df3 |>
+  select(year, level, category, salary)
+
+head(df3)
+```
+
+### String functions with pipe operator `|>`
+
+From this week, we will start to use the `|>` operator to string functions together. This operator is available in R version 4.1.0 and later. It allows you to pass the result of one function to the next function as the first argument. This can make your code more concise and easier to read, especially when you have multiple data manipulation steps.
+
+A simple use of "\|\>" operate is to write the object first and then followed by the function. For example, `df |> head()` is equivalent to `head(df)`.
+
+Now, we can combine all the data cleaning steps together using the pipe operator `|>`.
+
+```{r}
+df_clean <- df |>
+  rename(`year` = `Academic Year`,
+         `level` = `Level of Study`,
+         `category` = `Broad Academic Programme Category`,
+         `salary` = `Average Annual Salary (HK$'000)`) |>
+  mutate(year = substr(year, 1, 4)) |>
+  mutate(year = as.integer(year)) |>
+  select(year, level, category, salary)
+
+str(df_clean)
+```
+
+## Save & Load data
+
+After cleaning the data, we can save the cleaned data to be used for further analysis. We can save the cleand dataframe to the following formats:
+-   CSV file: using `write_csv()` function from the `readr` package.
+-   RData: save multiple objects using the `save()` function.
+    -   RDS file: save single object using the `saveRDS()` function.
+
+However, it is often recommended to save the data to `.RData` file, because it is more efficient to read the data from `.RData` file and it preserves the data structure and data type of the data frame.
+
+That means, if you save the dataframe to CSV file, you may lose the data structure and data type of the data frame. For example, if you save a data frame with date columns to a CSV file, when you read the CSV file back, the character columns may be read as characters.
+
+::: callout-tip
+`.RData` is smaller, faster!
+:::
+
+### Save data
+
+Now we have done the data cleaning, we can save the cleaned data to a new CSV file. We can use the `write_csv()` function from the `readr` package to save the data frame to a CSV file.
+
+### Save to CSV
+
+Lets save the cleaned data to a CSV file named `hksalary_cleaned.csv` in the `data` folder. You can again just use the relative path to save the file in the `data` folder.
+
+```{r}
+write_csv(df_clean, "out/hksalary_cleaned.csv")
+```
+
+### Save to `.RData`
+
+Or, it is often recommended to save the data to `.RData` file, because it is more efficient to read the data from `.RData` file and it preserves the data structure and data type of the data frame.
+
+You can simply save the data frame to an `.RData` file using the `save()` function.
+
+```{r}
+save(df_clean, file = "out/hksalary_cleaned.RData")
+```
+
+Here you may notice that the file size of the `.RData` file is much smaller than the .csv file. This is because the `.RData` file stores the data in a binary format, which is more efficient than the text-based CSV format.
+
+`.RData` files are automatically compressed, which can significantly reduce the size of the data on disk compared to .csv files, which are plain text. And as a result, it is faster to read and write data from `.RData` files.
+
+### Load the cleand data back
+
+#### `load()`
+
+Lets try to load the cleaned data back to R:
+
+For `.RData` file, you can simply use the `load()` function to load the data back into R.
+
+```{r}
+#| eval: false
+load("data/hksalary_cleaned.RData")
+```
+
+::: callout-note
+You will notice that the name of the data frame is `df_clean` because we saved the cleaned data frame as `df_clean` in the `.RData` file.
+:::
+
+## Fixing Date `as.Date()`
+
+In data analysis for journalism, we often need to convert character strings to dates for further analysis. Because we can not do math operations on a character string, and also it may sort the year in a wrong order if we sort it as a character string.
+
+Normally, we can use some functions to convert a character string to a date. For example: we first created a character string `today_char` and then converted it to a date object `today_date` using the `as.Date()` function.
+
+```{r}
+today_char <- "2025/02/17"
+str(today_char)
+```
+
+```{r}
+today_date <- as.Date(today_char, format = "%Y/%m/%d")
+str(today_date)
+```
+
+`as.Date()` function is a baseR function used to convert a character string to a date object. The format argument specifies the format of the input character string. In this case, "%Y/%m/%d" indicates that the character string is in the format "year/month/day".
+
+::: callout-tip
+There are some very handy R packages that can help you to convert character strings to dates, such as `lubridate` and `anytime`. You can explore these packages if you need more advanced date manipulation functions.
+:::
+
+## Key Functions Recap
+
+| Function              | Package        | Purpose                                                 | Example Use                                             |
+|-----------------------|----------------|---------------------------------------------------------|---------------------------------------------------------|
+| `read_csv()`           | `readr`        | Import data from CSV files                              | `df <- read_csv("data/hksalary.csv")`                   |
+| `head()`               | Base R         | View the first few rows of a data frame                 | `head(df)`                                              |
+| `glimpse()`            | `dplyr`        | Get a quick overview of the data structure              | `glimpse(df)`                                           |
+| `mutate()`             | `dplyr`        | Create or modify columns in a data frame                | `df1 <- df |> mutate(year = substr(`Academic Year`, 1, 4))` |
+| `rename()`             | `dplyr`        | Rename columns in a data frame                          | `df2 <- df1 |> rename(year = `Academic Year`)`           |
+| `as.integer()`         | Base R         | Convert a column to integer type                        | `df3 <- df2 |> mutate(year = as.integer(year))`         |
+| `as.character()`       | Base R         | Convert a column to character type                      | `df3 |> mutate(category = as.character(category))`      |
+| `as.Date()`            | Base R         | Convert a character string to a Date object             | `today_date <- as.Date("2025/02/17", format = "%Y/%m/%d")` |
+| `select()`             | `dplyr`        | Select specific columns from a data frame               | `df4 <- df3 |> select(year, level, category, salary)`    |
+| `write_csv()`          | `readr`        | Save a data frame to a CSV file                         | `write_csv(df_clean, "out/hksalary_cleaned.csv")`        |
+| `save()`               | Base R         | Save R objects (e.g., data frames) to an `.RData` file  | `save(df_clean, file = "out/hksalary_cleaned.RData")`    |
+| `load()`               | Base R         | Load R objects from an `.RData` file                    | `load("out/hksalary_cleaned.RData")`                    |

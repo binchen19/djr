@@ -1,0 +1,245 @@
+---
+title: "Billboard Hot100"
+format: html
+---
+
+## Load Packages
+
+```{r}
+library(tidyverse)
+```
+## Import Data
+
+This dataset is downloaded from [Kaggle](https://www.kaggle.com/datasets/ludmin/billboard?select=hot100.csv), which contains the Billboard Hot 100 chart data from 1958 to 2024.
+
+```{r}
+df <- read_csv("data/hot100.csv")
+```
+## Data Inspection
+
+### `str()`: Structure of the Data
+```{r}
+str(df)
+```
+
+Here is the description for each column:
+
+- `Date`: the date of the chart
+- `Song`: the name of the song
+- `Artist`: the name of the artist
+- `Rank`: the position of the song on the chart
+- `Last Week`: the position of the song on the previous week's chart
+- `Peak Position`: the highest position the song reached on the chart
+- `Weeks in Chart`: the number of weeks the song has been on the chart
+- `Image URL`: the URL of the song's cover image
+
+### `summary()`: Summary of the Data
+```{r}
+summary(df)
+```
+
+### check missing values
+
+```{r}
+# check missing values
+df |>
+  summarise_all(~sum(is.na(.)))
+```
+
+## Data Cleaning
+
+::: callout-note
+Do we need to clean the data? any issue with the column names? data types?
+:::
+
+### Rename Columns
+```{r}
+# rename all columns to be all lowercase, and ideally single words, no spaces, or snake_case
+
+df1 <- df |>
+  rename(date = Date,
+         song = Song,
+         artist = Artist,
+         rank = Rank,
+         last_week = `Last Week`,
+         peak_position = `Peak Position`,
+         weeks_in_charts = `Weeks in Charts`,
+         image_url = `Image URL`)
+
+# check column names and data types
+str(df1)
+```
+
+### Convert Data Types
+
+```{r}
+# weeks_in_chart should be numeric
+df2 <- df1 |>
+  mutate(weeks_in_charts = as.numeric(weeks_in_charts))
+
+# check data types
+str(df2)
+```
+
+::: callout-note
+### Can you answer these questions?
+-  How many rows/columns in the dataset?
+-  What are the column names?
+-  What are the data types of each column?
+:::
+
+## Data Analysis
+
+```{r}
+# rename df2 as hot100
+
+hot100 = df2
+# save(hot100, file = "data/hot100.RData")
+```
+
+
+### Single Variable Descriptive Statistics
+
+```{r}
+# oldest and newest date
+summary(hot100$date)
+```
+
+
+```{r}
+# which artist has most appearances in the hot-100 charts?
+table(hot100$artist) |>
+  sort(decreasing = TRUE) |>
+  head(10)
+```
+
+### Multiple Variables
+
+#### Which artist appeared most
+
+```{r}
+hot100 |>
+  filter(rank == 1, date > "2015-01-01") |>
+  distinct(artist, song) |>
+  group_by(artist) |>
+  summarise(n = n()) |>
+  arrange(-n) |>
+  head(10) |>
+  ggplot(aes(x = artist, y = n)) +
+  geom_col() +
+  coord_flip()
+```
+
+
+#### Which song (song & artist) has been on the charts the most?
+
+```{r}
+hot100 |>
+  group_by(song, artist) |>
+  summarize(appearance = n()) |>
+  arrange(-appearance) |>
+  head(10)
+```
+
+#### Which song (song & artist) was No. 1 for the most number of weeks?
+
+```{r}
+hot100 |>
+  filter(rank == 1) |>
+  group_by(song, artist) |>
+  summarize(appearance = n()) |>
+  arrange(-appearance) |>
+  head(10)
+```
+
+#### Which artist has the most No. 1 songs in last 10 years?
+
+```{r}
+hot100 |>
+  filter(rank == 1, year(date) >= 2015) |>
+  distinct(artist, song) |>
+  count(artist, sort = TRUE) |>
+  head(10)
+```
+
+::: callout-note
+`count(artist, sort = TRUE)` is equivalent to `group_by(artist)` |> `summarize(n = n())` |> `arrange(desc(n))`
+:::
+
+
+
+## Data Visualization
+
+### Bar Chart
+
+Bar chart is used to show the frequency of each category. Bar chart is a good choice when you want to show the relationship between a numerical variable and a categorical variable (e.g., song, artist).
+
+```{r}
+# bar chart to show the top 10 artists with most appearances in the hot-100 charts
+hot100 |> 
+  filter(rank == 1, year(date) >= 2000) |> 
+  group_by(artist) |> 
+  summarize(appearance = n()) |> 
+  arrange(-appearance) |> 
+  head(10) |> 
+  ggplot(aes(x = reorder(artist, appearance), y = appearance, fill = appearance)) + 
+  geom_col(show.legend = FALSE) + 
+  geom_text(aes(label = appearance), hjust = -0.2, size = 3) + 
+  scale_fill_gradient(low = "lightblue", high = "darkblue") + 
+  labs(
+    title = "Top 10 Artists with Most Billboard No.1 Hits in the 21st Century",
+    subtitle = str_wrap("Adele, Taylor Swift, and Mariah Carey are the top 3 artists with the most Billboard No.1 Hits in the 21st century."),
+    x = "Artist",
+    y = "Number of No. 1 Songs",
+    caption = "Source: Billboard | Author: Bin Chen"
+  ) +
+  coord_flip() + 
+  theme_minimal(base_size = 10) +
+  theme(
+    plot.title = element_text(face = "bold", size = 12),
+    plot.subtitle = element_text(size = 10, color = "gray30"),
+    plot.caption = element_text(size = 10, color = "gray50", hjust = 0)
+  )
+
+```
+
+### Line Chart
+
+```{r}
+# Get top 10 artists with the most No. 1 songs (each song counted only once)
+top10_artists <- hot100 |>
+  filter(rank == 1) |>
+  distinct(artist, song) |>  # Ensure each song is counted only once per artist
+  group_by(artist) |>
+  summarize(appearance = n()) |>  # Count unique No. 1 songs per artist
+  arrange(desc(appearance)) |>  # Sort by the number of unique songs
+  slice_head(n = 10)  # Select the top 10 artists
+
+# Print the result
+top10_artists
+```
+
+```{r}
+# line chart to show the number of No. 1 songs for the top 10 artists
+hot100 |>
+  filter(rank == 1, artist %in% top10_artists$artist) |>
+  group_by(artist, year = year(date)) |>
+  summarize(appearance = n()) |>
+  ggplot(aes(x = year, y = appearance, color = artist)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Number of No. 1 Songs by Top 10 Artists",
+    x = "Year",
+    y = "Number of No. 1 Songs",
+    color = "Artist",
+    caption = "Source: Billboard | Author: Bin Chen"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    plot.title = element_text(face = "bold", size = 12),
+    plot.subtitle = element_text(size = 10, color = "gray30"),
+    plot.caption = element_text(size = 10, color = "gray50", hjust = 0)
+  )
+```
+

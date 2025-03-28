@@ -1,0 +1,87 @@
+---
+title: "Data Transform & Merging"
+format: html
+---
+
+In this notebook, I will explore the life expectancy data from the [World Bank]("https://data.worldbank.org/indicator/SP.DYN.LE00.IN"). The dataset was last updated on March 24, 2025, contains the life expectancy at birth for various countries over the years.
+
+This case study will focus on the following aspects:
+
+-  Data Wrangling: Transforming wide data to long data format
+-  Data Visualization: Create a map of life expectancy by country
+
+# Set up
+
+Let's start by loading the necessary libraries and the dataset.
+
+```{r}
+library(tidyverse) 
+library(rnaturalearth) # For world map data
+```
+
+```{r}
+# Load the life expectancy data
+df <- read_csv("data/life_expectancy.csv")
+```
+
+```{r}
+glimpse(df)
+```
+
+Based on the output of `glimpse()`, we can see that the dataset contains 217 rows and 69 columns. Each row is a country, and each column represents the life expectancy at birth for a specific year.
+
+However, this is not a clean format for data visualization. We need to transform this wide data format to a long data format using the `pivot_longer()` function.
+
+## Transform Wide to Long Data
+
+We found there are NAs for data in 2023 and after. So we will only select columns from 2022 and before, that is columns 5 to 67.
+
+```{r}
+# Transform wide data to long data format
+df_long <- df |> 
+  rename(country = `Country Name`,
+         country_code = `Country Code`) |>
+  pivot_longer(cols = 5:67, 
+               names_to = "year", 
+               values_to = "life_expectancy") |> 
+  mutate(year = as.numeric(year)) |>
+  select(country, country_code, year, life_expectancy)
+```
+
+```{r}
+glimpse(df_long)
+```
+
+```{r}
+summary(df_long)
+```
+
+## Merging with World Map Data
+
+
+```{r}
+# Load world map data
+world <- ne_countries(scale = "medium", returnclass = "sf") |>
+  select(iso_a3, geometry)
+
+# Merge life expectancy data with world map data
+df_merge <- df_long |>
+  filter(year == 2022) |>
+  left_join(world, by = c("country_code" = "iso_a3"))
+```
+
+```{r}
+glimpse(df_merge)
+```
+
+
+## Save the Merged Data
+
+```{r}
+# Save the merged data to .RData
+save(df_merge, file = "out/expectancy_merged.RData")
+```
+
+
+
+

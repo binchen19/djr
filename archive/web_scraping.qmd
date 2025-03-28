@@ -1,0 +1,115 @@
+---
+title: "Web Scraping"
+format: html
+---
+
+In this notebook, we will learn how to scrape data from the web using R. We will use the `rvest` package to scrape data from the Douban Top 250 Movies page. We will extract the movie titles and ratings from the page and store them in a data frame.
+
+::: {.callout-note}
+The `rvest` package is a web scraping package for R that makes it easy to extract data from web pages. It provides a set of functions for navigating the HTML structure of a web page and extracting data from it.
+:::
+
+Given a html webpage, you can use CSS selectors to select the elements you want to extract. CSS selectors are patterns used to select the elements of a web page that you want to style with CSS.
+
+
+CSS selectors are patterns used to select the elements of a web page that you want to style with CSS. You can right-click on the element you want to select and choose `Inspect` to see the HTML structure of the page and identify the CSS selector for the element.
+
+There are also some online tools that can help you generate CSS selectors, such as [SelectorGadget](https://selectorgadget.com/).
+
+# Web Scraping Workflow
+
+In a typical web scraping workflow, you would:
+
+1.  Use the `read_html` to read the HTML content of a web page into R,
+2.  Use the `html_nodes` function to select the elements you want to extract;
+3.  Use the `html_text` function to extract the text content of those elements.
+4.  Store the extracted data in a data frame for further analysis.
+
+
+# Demo: Douban Top 250 Movies
+
+![douban]("douban.png)
+
+# Load Packages
+
+```{r}
+library(rvest)
+library(dplyr)
+```
+
+## Start with 1 page
+
+```{r}
+# Set the URL
+url <- "https://movie.douban.com/top250?start=0&filter="
+
+# Read the HTML content of the webpage
+page <- read_html(url)
+```
+
+Using the `SelectorGadget` tool, we can find the CSS selectors for the movie titles and ratings on the page.
+-   The CSS selector for the movie titles is `.title`.
+-   The CSS selector for the movie ratings is `.rating_num`.
+
+```{r}
+# Extract the movie titles
+titles <- page %>%
+  html_nodes(".title") %>%
+  html_text() %>%
+  # remove titles start with "/"
+  .[!grepl("/", .)]
+
+# Extract the movie ratings
+ratings <- page %>%
+  html_nodes(".rating_num") %>%
+  html_text()
+```
+
+Then, we can combine the titles and ratings into a data frame.
+
+```{r}
+df1 <- data.frame(title = titles, rating = ratings)
+```
+
+```{r}
+head(df1)
+```
+
+## Loop through all pages
+
+```{r}
+# Initialize the data frame correctly
+results <- data.frame(Title = character(), Rating = numeric(), stringsAsFactors = FALSE)
+
+for (i in 0:9) {
+  url <- sprintf("https://movie.douban.com/top250?start=%d&filter=", i * 25)
+  page <- read_html(url)
+  
+  # Extract titles, assuming each title appears correctly per movie
+  titles <- page %>%
+    html_nodes(".title") %>%
+    html_text() %>%
+    .[!grepl("/", .)]
+
+  # Extract ratings
+  ratings <- page %>%
+    html_nodes(".rating_num") %>%
+    html_text()
+  
+  # Check that the number of titles matches the number of ratings
+  if (length(titles) == length(ratings)) {
+    # Combine the titles and ratings into a data frame
+    page_data <- data.frame(Title = titles, Rating = ratings, stringsAsFactors = FALSE)
+    
+    # Append this page's data to the main results
+    results <- rbind(results, page_data)
+  } else {
+    print(paste("Mismatch in counts on page", i))
+  }
+}
+```
+
+```{r}
+glimpse(results)
+```
+

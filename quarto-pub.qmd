@@ -1,0 +1,25 @@
+---
+title: "Quarto Webiste"
+format: html
+---
+
+## Publishing the Quarto Website
+
+Step-by-Step Guide to Publishing on Quarto Pub with RStudio
+
+1.  Create an Account on Quarto Pub
+    -   Begin by signing up for a free account at Quarto Pub. This platform will host the website or document you create in RStudio.
+2.  Initiate the Publishing Process
+    -   Once you have your Quarto account ready, open RStudio and locate the **Terminal** pane, which is typically found at the bottom left of the RStudio interface.
+    -   In the Terminal, type the command `quarto publish` and press Enter. This command starts the process to publish your document or website.
+    -   Select `Quarto Pub` as Your Publishing Destination: When prompted, choose quarto pub from the list of possible publishing destinations. This specifies where your project will be published.
+    -   Select your Quarto Pub account
+    -   Confirm the site name (by default, it will be your directory name "yourfirstname-jmsc24fall-01")
+3.  Authorize Quarto Pub
+    -   If this is your first time using Quarto Pub with RStudio, you will need to authorize the connection.
+    -   When prompted to authorize, type `Y` or `y` and press Enter. This action will open a webpage where you need to click Allow to grant RStudio the necessary permissions to publish on your behalf.
+4.  Complete the Publishing Process
+    -   Return to RStudio and continue by pressing `Enter` as needed to move through the final steps of the setup.
+    -   Follow any additional on-screen instructions to complete the publishing process.
+    -   Use directional keys to navigate and select options, and press `Enter` to confirm your choices.
+5.  Then you will see the published website page pops up!

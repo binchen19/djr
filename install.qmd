@@ -1,0 +1,201 @@
+---
+title: "Intro to R and RStudio"
+---
+
+## Why Learn R for Data Journalism?
+
+Data journalism requires tools that combine statistical rigor with storytelling capabilities. R provides:
+
+-   **Reproducible analysis** through script-based workflows
+-   **Advanced visualization** for impactful storytelling
+-   **Open-source community** with continuous innovation
+-   **Professional-grade tools** used by NYT, BBC, and Reuters etc.
+
+## Installing the Tools
+
+### Step 1: Install R
+
+1.  Visit [CRAN Mirror](https://cran.r-project.org/)
+2.  Select your operating system (Windows/Mac/Linux)
+3.  Download the **latest version** (≥4.3.0 recommended)
+4.  Run the installer with default settings
+
+### Step 2: Install RStudio
+
+```{r}
+#| echo: false
+#| fig-cap: "RStudio Interface"
+knitr::include_graphics("images/install-r-rstudio.png")
+```
+
+1.  Go to [posit.co/download](https://posit.co/download/rstudio-desktop/)
+2.  Choose **Download RStudio Desktop**
+3.  Install using default options
+
+::: callout-important
+**Installation Order Matters!** Always install R **before** RStudio - the IDE needs the base R engine to function.
+:::
+
+## First-Time Setup
+
+### Organizing Your Workspace
+
+1.  Create a project folder:
+
+    -   Windows: `C:/Users/[YourName]/Documents/djr`
+    -   Mac: `/Users/[YourName]/Documents/djr`
+
+2.  Use **lowercase letters only** (avoid spaces/special characters)
+
+```{r}
+#| eval: false
+#| echo: true
+# Create folder from R Console (alternative method)
+dir.create("~/Documents/djr")
+```
+
+### Configuring RStudio
+
+Optimize your setup through:
+
+1.  **Tools \> Global Options \> General**
+    -   **Uncheck** everything above the "Other" panel
+    -   Set "Save workspace" to **Never**
+2.  **Tools \> Global Options \> Code**
+    -   Enable "Soft-wrap R source files"
+    -   Check "Use native pipe operator \|\>"
+
+## Understanding the RStudio Interface
+
+| Position | Panel | Purpose | Key Features |
+|-----------------|-----------------|--------------------|------------------|
+| **Top-Left** | Source | Code editing | Scripts, R Markdown, notebooks |
+| **Bottom-Left** | Console | Direct code execution | Immediate feedback, debugging |
+| **Top-Right** | Environment | Active data objects | Variable inspection |
+| **Bottom-Right** | Files/Help | Navigation & documentation | Package help, file browsing |
+
+```{r}
+#| echo: false
+#| fig-cap: "RStudio IDE Cheatsheet Preview"
+knitr::include_graphics("images/rstudio-ide.png")
+```
+
+Download full [RStudio IDE cheatsheets](cheatsheets/rstudio-ide.pdf)
+
+## Essential Packages Installation
+
+Run this in the **Console**:
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages(c(
+  "tidyverse",   # Data wrangling & visualization
+  "rmarkdown",   # Dynamic reporting
+  "quarto",      # Modern publishing
+  "knitr",       # Document processing
+  "janitor"      # Data cleaning
+))
+```
+
+## Your First Project
+
+### Create an R Project
+
+1.  **File \> New Project \> New Directory**
+2.  Name: `firstname-week1` (e.g., `bin-week1`)
+3.  Browse to your `djr` folder
+4.  Click **Create Project**
+
+### Create R Markdown File
+
+1.  **File \> New File \> R Markdown**
+2.  Title: "My First R Markdown"
+3.  Author: Your name
+4.  Default HTML output
+
+::: callout-note
+**Why R Markdown?** - Combine narrative and code - Export to multiple formats: HTML, PDF, Word - Track changes with version control
+:::
+
+## Writing Your First RMD Document
+
+Once you have created a new R Markdown file, you can start writing in it. R Markdown files use a combination of Markdown and R code to create dynamic documents. You can include text, code chunks, and output in your R Markdown file.
+
+### Metadata
+
+On top right of the R Markdown file, you will see a YAML front matter section, which is used to define metadata for the document. This metadata is enclosed within triple-dashed lines.
+
+You can specify metadata such as the title, author, date, and output format in the YAML front matter section. Here is an example of metadata in a R Markdown file:
+
+``` yaml
+---
+title: "Data Journalism"
+subtitle: "Week 1"
+author: "Bin Chen"
+date: "Jan 20, 2025"
+format: html
+---
+```
+
+### Text Content
+
+You can write narrative text in your R Markdown file using Markdown syntax. Markdown is a lightweight markup language that allows you to format text using simple and intuitive syntax. You can use Markdown to create headings, lists, links, images, and more.
+
+Here is an example of Markdown text in a R Markdown file: - **Heading**: `# Heading 1` - **Bold**: `**bold text**` - **List**: `- item 1` - **Link**: `[link text](https://www.example.com)` - **Image**: `![](path/to/image.png)` - **Code**: `` `code` ``
+
+### Code Chunks
+
+You can include R code in your R Markdown file using code chunks. Code chunks are enclosed within three backticks and curly braces, indicating the language of the code (in this case, R).
+
+You can insert a code chunk by clicking the green "+" icon in the top right corner of the R Markdown file and selecting "R", or you can user the keyboard shortcut "Ctrl + Alt + I" on Windows or "Cmd + Option + I" on Mac.
+
+Here is an example of a code chunk in a R Markdown file:
+
+```{r}
+#| echo: true
+#| eval: false
+1 + 1
+```
+
+```{r}
+#| echo: false
+#| fig-cap: "RMarkdown Cheatsheet Preview"
+knitr::include_graphics("images/rmarkdown.png")
+```
+
+Download full [RMarkdown cheatsheets](cheatsheets/rmarkdown.pdf)
+
+### Render the R Markdown file
+
+Once you have written your R Markdown file, you can render it to create a dynamic document. To render the R Markdown file, click the "knit" button in the top right corner of the R Markdown file. This will run the R code chunks and generate the output in the specified format.
+
+# Practice
+
+Now, lets practice creating a new R project and a new R Markdown file in RStudio.
+
+-   Create a R project named "yourfirstname-week1" in your "djr" folder.
+-   Create a new R Markdown file named "yourfirstname-week1" in the R project you just created.
+-   Write a short bio about you (about 50 words) in the R Markdown file.
+-   Install the packages "praise" by running `install.packages("praise")` in *console*. (NOT IN R Markdown)
+-   Insert a code chunk in the R Markdown file and run `library(praise)` to load the package.
+-   Insert another code chunk and run `praise()` to generate a random compliment.
+-   Render the R Markdown file to html format.
+
+::: callout-warning
+Don't run `install.packages("praise")` in the R Markdown file, as this would prevent your R Markdown file from rendering properly. Always run package installation in the console.
+:::
+
+# Key Functions and Shortcuts
+
+| Functionality | Command / Shortcut | Example Use |
+|-------------------------|-----------------------------|------------------|
+| Insert code chunk (Windows) | `Ctrl + Alt + I` | \- |
+| Insert code chunk (Mac) | `Cmd + Option + I` | \- |
+| Install R packages | `install.packages("package_name")` | `install.packages("ggplot2")` |
+| Load R packages | `library(package_name)` | `library(ggplot2)` |
+| Create dynamic documents | `rmarkdown` | `rmarkdown::render("report.Rmd")` |
+| Tidyverse for data science | `tidyverse` | `library(tidyverse)` |
+| Dynamic report generation | `knitr` | `knitr::kable(head(mtcars))` |
+| Convert R Markdown to various formats | `quarto` | `quarto render document.qmd` |
+| Generate random compliments | `praise` | `praise::praise()` |

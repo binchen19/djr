@@ -1,0 +1,166 @@
+---
+title: "Data Import"
+format: html
+---
+# Importing Data in R
+
+## Built-in Datasets from Packages
+
+R comes with a variety of built-in datasets that can be loaded directly from packages, here are some popular ones:
+
+### Popular Data Packages
+
+| Package       | Key Datasets          | Load Command         |
+|---------------|-----------------------|----------------------|
+| `datasets`    | mtcars, iris          | Built-in             |
+| `ggplot2`     | diamonds, mpg         | `library(tidyverse)` |
+| `nycflights13`| flights, weather      | `install.packages()` |
+| `gapminder`   | gapminder             | `library(gapminder)` |
+
+**Usage Example:**
+```{r}
+#| eval: false
+mtcars
+```
+
+## Downloading External Data
+
+### From TidyTuesday
+```{r}
+#| eval: false
+#install.packages("tidytuesdayR")
+library(tidytuesdayR)
+
+# Load 2024 Olympics data
+tuesdata <- tt_load('2024-08-06')  
+olympics <- tuesdata$olympics
+```
+
+### Direct from URL
+```{r}
+#| eval: true
+#| message: false
+#| warning: false
+
+library(tidyverse)
+
+# Hong Kong graduates salary data
+
+data_url = "https://res.data.gov.hk/api/get-download-file?name=https%3A%2F%2Fwww.ugcs.gov.hk%2Fdatagovhk%2FAverage_Annual_Salaries_FT_Employment(Eng).csv"
+hksalary_download <- read_csv(data_url)
+
+hksalary_download
+```
+
+
+## Local File Import
+
+In data analysis projects, importing local files is more common than importing data from the web. Here are some common file types and their uses:
+
+-  **CSV Files**: Simple, human-readable, and widely supported. Ideal for tabular data.
+-  **Excel Files**: Used for spreadsheets with multiple sheets or formatting. Imported with `readxl` or `openxlsx`.
+-  **SPSS, SAS, Stata Files**: Common in social science and survey research. Use specialized R packages to import.
+-  **RDS Files**: Binary format for storing R objects, preserving their structure and class information.
+-  **RData Files**: Binary format for saving multiple R objects in a single file, often used for workspaces.
+
+::: callout-note
+For this course, we will focus on **CSV** files, as they are simple and widely used.
+:::
+
+### CSV Files with `readr` (`tidyverse`) package
+
+First, we download the CSV file from the web and save it locally as `hksalary.csv`. Then, we import it using the `read_csv()` function from the `readr` package.
+
+::: callout-important
+## `read_csv()` vs. `read.csv()`
+Note that `read_csv()` from `readr` is preferred over `read.csv()` from base R for its speed and consistency. In this course, we recommend using `read_csv()` for CSV files.
+:::
+
+```{r}
+#| eval: true
+# Relative path (recommended)
+hksalary <- read_csv("data/hksalary.csv")
+hksalary
+```
+
+### File Path Management
+
+| Path Type     | Example                     | When to Use          |
+|---------------|-----------------------------|----------------------|
+| **Relative**  | `data/hksalary.csv`         | Default in projects  |
+| **Absolute**  | `C:/Users/.../hksalary.csv` | Temporary analysis   |
+
+::: callout-tip
+## Relative Path
+Use relative paths for portability and to avoid hardcoding directory paths.
+:::
+
+
+
+## Data Inspection
+
+After importing data, it's essential to inspect it to understand its structure and contents. Here are some common functions to help you get started:
+
+### First Look Tools
+
+- **`head()`**: Shows the first few rows of the dataset.
+
+```{r}
+# First 6 rows
+head(hksalary)
+```
+
+-  **`glimpse()`**: Provides a concise summary of the dataset's structure.
+
+
+```{r}
+# # Tidyverse alternative to str()
+glimpse(hksalary)  
+```
+
+-  **`summary()`**: Displays a statistical summary of the dataset.
+
+```{r}
+summary(hksalary)
+```
+
+| Function     | Output Focus             | Tidyverse Equivalent |
+|--------------|--------------------------|----------------------|
+| `head()`     | Top rows                 | `slice_head()`       |
+| `str()`      | Data types & structure   | `glimpse()`          |
+
+
+## Practice: Import `hksalary.csv` Data
+
+### Step-by-Step Practice
+
+1. **Setup Workspace**
+   - Create `import-practice` project
+   - Make `/data` subfolder
+
+2. **Store Data**
+   - Download [Hong Kong Graduates Annual Salary Data](https://www.ugcs.gov.hk/datagovhk/Average_Annual_Salaries_FT_Employment(Eng).csv)
+   - Save as `hksalary.csv` in `/data`
+
+3. **Import Data**
+   ```{r}
+   library(tidyverse)
+   hksalary <- read_csv("data/hksalary.csv")
+   ```
+
+4. **Initial Inspection**
+   ```{r}
+   #| eval: false
+   glimpse(hksalary)
+   summary(hksalary)
+   ```
+
+## Key Functions Recap
+
+| Task                | Function                 | Example                     |
+|---------------------|--------------------------|-----------------------------|
+| Load package        | `library()`              | `library(tidyverse)`        |
+| Read CSV            | `read_csv()`             | `read_csv("data/file.csv")` |
+| View structure      | `glimpse()`/`str()`      | `glimpse(df)`               |
+| Show first rows     | `head()`                 | `head(df, n = 10)`          |
+| Statistical summary | `summary()`              | `summary(df$salary)`        |

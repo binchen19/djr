@@ -1,0 +1,132 @@
+---
+title: "Map: World Life Expectancy"
+format: html
+---
+
+## Set up
+```{r}
+library(tidyverse)
+library(rnaturalearth) # For world map data
+
+load("out/expectancy_merged.RData")
+```
+
+### Overview of Life Expectancy
+
+```{r}
+# Summary statistics of worldwide life expectancy in 2022
+df_merge |>
+  filter(year == 2022) |>
+  summarise(mean_life_expectancy = mean(life_expectancy),
+            median_life_expectancy = median(life_expectancy),
+            min_life_expectancy = min(life_expectancy),
+            max_life_expectancy = max(life_expectancy))
+```
+
+### Top 10 Countries/Regions with Highest Life Expectancy
+
+```{r}
+# Top 10 countries with the highest life expectancy in 2022
+df_merge |>
+  filter(year == 2022) |>
+  arrange(desc(life_expectancy)) |>
+  head(10)
+```
+
+## Data Visualization
+
+### Bar Plot: Life Expectancy in 2022 by 10 Major Countries
+
+```{r}
+# List of 10 major countries (with highest GDP)
+country_list <- c("United States", "China", "Japan", "Germany", "India", 
+                  "United Kingdom", "France", "Brazil", "Italy", "Canada")
+```
+
+
+```{r}
+df_merge |>
+  filter(year == 2022) |>
+  filter(country %in% country_list) |>
+  ggplot(aes(x = reorder(country, life_expectancy), y = life_expectancy)) +
+  geom_col(fill = "steelblue") +
+  coord_flip() +
+  labs(title = "Life Expectancy in 2022 by 10 Major Countries",
+       x = "Country",
+       y = "Life Expectancy at Birth",
+       fill = "Country",
+       caption = "Source: World Bank | Author: Bin Chen") +
+  geom_text(aes(label = round(life_expectancy, 1)), hjust = -0.1, size = 3) +
+  theme_minimal()
+```
+
+### Line Plot: Life expectancy trend in China
+
+```{r}
+# Life expectancy trend in China
+df_merge |>
+  filter(country == "China") |>
+  ggplot(aes(x = year, y = life_expectancy)) +
+  geom_line(color = "steelblue") +
+  labs(title = "Life Expectancy Trend in China",
+       x = "Year",
+       y = "Life Expectancy at Birth",
+       caption = "Source: World Bank | Author: Bin Chen") +
+  theme_minimal()
+```
+
+### Multiple Lines
+
+```{r}
+# Life expectancy trend in the 10 major countries
+df_merge |>
+  filter(country %in% country_list) |>
+  ggplot(aes(x = year, y = life_expectancy, color = country)) +
+  geom_line() +
+  labs(title = "Life Expectancy Trend in 10 Major Countries",
+       x = " ",
+       y = " ",
+       caption = "Source: World Bank | Author: Bin Chen") +
+  theme_minimal() +
+  facet_wrap(~country, scales = "free_y") + 
+  theme(legend.position = "none")
+```
+
+### Map Plot: Life Expectancy by Country in 2022
+
+```{r}
+# Map of life expectancy by country in 2022
+df_merge |>
+  ggplot(aes()) +
+  geom_sf(aes(geometry = geometry, fill = life_expectancy)) +
+  scale_fill_gradient(low = "#deebf7", 
+                      high = "#3182bd",
+                      na.value = "grey90", 
+                      name = "Life Expectancy", 
+                      guide = guide_colorbar(
+                        barwidth = 10,
+                        barheight = 0.5,
+                        title.position = "top",
+                        title.hjust = 0.5
+                      )) +
+  labs(title = "Life Expectancy by Country in 2022",
+       fill = "Life Expectancy at Birth",
+       caption = "Source: World Bank | Author: Bin Chen") +
+  theme_bw() +
+  theme(
+    panel.grid.major = element_blank(),  
+    panel.grid.minor = element_blank(),  
+    axis.text = element_blank(),         
+    axis.title = element_blank(),        
+    axis.ticks = element_blank(),        
+    panel.border = element_blank(),      
+    plot.background = element_rect(fill = "white", colour = NA),
+    legend.position = "bottom",
+    plot.title = element_text(hjust = 0.5, size = 10),
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8)
+  )
+```
+
+
+

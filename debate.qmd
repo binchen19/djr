@@ -1,0 +1,349 @@
+---
+title: "Text Analysis"
+subtitle: "2024 US Presidential Debate"
+format: html
+---
+
+# Today's Agenda
+
+## Course Evaluation
+
+-   **http://sftl.hku.hk/**
+-   Anonymous
+-   Be careful about “strongly agree” vs “strongly disagree”
+    -   As we are unable to retrieve any of the questionnaires and rectify the answers after it is submitted
+
+## Final Projects Rubric
+
+1.  Organization & Formatting (15%)
+    -   .qmd Files: Includes all required .qmd files, each properly named and organized:
+    -   Home Page: Outlines the project’s purpose, data sources, research questions, key findings, and author information.
+    -   Data Cleaning: Contains code and accompanying text for data cleaning processes.
+    -   Data Analysis: Features code and explanatory text for data analysis.
+    -   Structure: Utilizes clear headings, text, code chunks, and images to enhance readability and navigation.
+2.  Questions & Findings (25%)
+    -   Questions: Research questions are well-articulated and directly relevant to the dataset.
+    -   Findings: Clearly presents findings with insightful interpretations and data-driven conclusions.
+3.  Data Cleaning & Analysis (45%) •
+    -   Organization: Uses headings to logically organize the analysis steps.
+    -   Code Strategy: Clearly displays coding strategies with well-documented and commented code.
+    -   Explanation: Thoroughly explains each step of the analysis, with comments inside code chunks or supplementary text outside.
+4.  Writing and Presentation (15%) •
+    -   Writing Quality: Ensures writing is clear, concise, and free of grammatical errors, adhering to AP style guidelines.
+    -   Aesthetics: Creates a visually appealing website with a consistent color scheme, thoughtful font choices, and an organized layout.
+
+# Text Analysis with R: 2024 US Presidential Debate
+
+# Load Packages
+
+```{r}
+library(tidyverse)
+library(tidytext)
+library(skimr)
+```
+
+# Data Import & Wrangling
+
+## Import
+
+```{r}
+# Read the transcript
+transcript <- readLines("data/debate.txt")
+transcript[1:10]
+```
+
+```{r}
+# Remove empty lines
+transcript <- transcript[transcript != ""]
+```
+
+## Parse transcripts to a data frame
+
+```{r}
+# Initialize an empty data frame
+data <- data.frame(speaker = character(),
+                   text = character(),
+                   stringsAsFactors = FALSE)
+
+# Define a regular expression pattern to detect speaker lines
+speaker_pattern <- "^[A-Z ]+:"  # Lines that start with uppercase letters followed by a colon
+# Initialize variables
+current_speaker <- NA
+current_text <- ""
+
+for (line in transcript) {
+  # Check if the line matches the speaker pattern
+  if (str_detect(line, speaker_pattern)) {
+    # If there's accumulated text, save it before moving to the next speaker
+    if (!is.na(current_speaker) && current_text != "") {
+      data <- rbind(data, data.frame(speaker = current_speaker, text = current_text, stringsAsFactors = FALSE))
+      current_text <- ""
+    }
+    # Extract the speaker
+    split_line <- str_split_fixed(line, ":", 2)
+    current_speaker <- str_trim(split_line[1])
+    # Start accumulating text
+    current_text <- str_trim(split_line[2])
+  } else {
+    # Accumulate text
+    current_text <- paste(current_text, str_trim(line))
+  }
+}
+
+# Add the last piece of text
+if (!is.na(current_speaker) && current_text != "") {
+  data <- rbind(data, data.frame(speaker = current_speaker, text = current_text, stringsAsFactors = FALSE))
+}
+```
+
+```{r}
+# write_csv(data, "out/debate_df.csv")
+```
+
+# Import Cleaned Data
+
+```{r}
+df <- data
+```
+
+```{r}
+skim(df)
+```
+
+```{r}
+unique(df$Speaker)
+```
+
+
+# Data Cleaning
+
+## Filter Out Non-Candidate Speakers
+
+```{r}
+df1 <- df |>
+  filter(speaker == "HARRIS" | speaker == "TRUMP")
+
+unique(df1$speaker)
+```
+
+## Standardize Speaker Names
+
+```{r}
+# Standardize speaker names if necessary
+df1$speaker <- ifelse(df1$speaker == "HARRIS", "Harris", "Trump")
+```
+
+# Text Analysis
+
+## Tokenize and Remove Stop Words
+
+```{r}
+# Tokenize the text column
+tidy_data <- df1 %>%
+  unnest_tokens(word, text)
+
+head(tidy_data)
+```
+
+```{r}
+# Load stop words
+data("stop_words")
+
+# Remove stop words
+tidy_data_clean <- tidy_data %>%
+  anti_join(stop_words, by = "word") %>%
+  filter(!str_detect(word, "\\d+"))
+```
+
+```{r}
+# Calculate word frequencies
+word_counts <- tidy_data_clean %>%
+  count(speaker, word, sort = TRUE)
+```
+
+## Analyze Top Words
+
+```{r}
+# Get top 10 words for each candidate
+top_words <- word_counts %>%
+  group_by(speaker) %>%
+  top_n(10, n) %>%
+  ungroup() %>%
+  arrange(speaker, -n)
+
+# View the result
+print(top_words)
+```
+
+## Analyze Top Word Pairs (Bigrams)
+
+```{r}
+# Create bigrams
+bigrams <- df1 %>%
+  unnest_tokens(bigram, text, token = "ngrams", n = 2)
+```
+
+```{r}
+# Separate bigrams into two words
+bigrams_separated <- bigrams %>%
+  separate(bigram, into = c("word1", "word2"), sep = " ")
+
+# Remove stop words
+bigrams_filtered <- bigrams_separated %>%
+  filter(!word1 %in% stop_words$word,
+         !word2 %in% stop_words$word) %>%
+  # remove numbers 
+  filter(!str_detect(word1, "\\d+"),
+         !str_detect(word2, "\\d+"))
+```
+
+```{r}
+# Unite the words back into bigrams
+bigram_counts <- bigrams_filtered %>%
+  unite(bigram, word1, word2, sep = " ") %>%
+  count(speaker, bigram, sort = TRUE)
+```
+
+```{r}
+# Get top 10 bigrams for each candidate
+top_bigrams <- bigram_counts %>%
+  group_by(speaker) %>%
+  top_n(10, n) %>%
+  ungroup() %>%
+  arrange(speaker, -n)
+
+# View the result
+print(top_bigrams)
+```
+
+# Plot
+
+## Top words
+
+```{r}
+# Plot
+top_words %>%
+  mutate(word = reorder_within(word, n, speaker)) %>%
+  ggplot(aes(word, n, fill = speaker)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~speaker, scales = "free_y") +
+  coord_flip() +
+  scale_x_reordered() +
+  labs(x = "Words", y = "Frequency", title = "Top Words by Candidate")
+```
+
+## Top Bigrams
+
+```{r}
+# Plot
+top_bigrams %>%
+  mutate(bigram = reorder_within(bigram, n, speaker)) %>%
+  ggplot(aes(bigram, n, fill = speaker)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~speaker, scales = "free_y") +
+  coord_flip() +
+  scale_x_reordered() +
+  labs(x = "Bigrams", y = "Frequency", title = "Top Bigrams by Candidate")
+```
+
+# Word Cloud
+
+```{r}
+library(wordcloud)
+library(RColorBrewer)
+```
+
+```{r}
+# Filter word counts for each candidate
+harris_words <- word_counts %>%
+  filter(speaker == "Harris")
+
+trump_words <- word_counts %>%
+  filter(speaker == "Trump")
+```
+
+## Single Plot
+
+```{r}
+wordcloud(words = harris_words$word, 
+          freq = harris_words$n, 
+          min.freq = 2,
+          max.words = 100,
+          random.order = FALSE, 
+          rot.per = 0.35, 
+          colors = brewer.pal(8, "Blues"),
+          scale = c(4, 0.5))
+title("Harris")
+```
+
+## Side-by-Side
+
+```{r}
+# Set up the plotting area for two plots
+par(mfrow = c(1, 2))
+
+# Word cloud for Harris
+wordcloud(words = harris_words$word, 
+          freq = harris_words$n, 
+          min.freq = 2,
+          max.words = 100,
+          random.order = FALSE, 
+          rot.per = 0.35, 
+          colors = brewer.pal(8, "Blues"),
+          scale = c(4, 0.5))
+title("Harris")
+
+# Word cloud for Trump
+wordcloud(words = trump_words$word, 
+          freq = trump_words$n, 
+          min.freq = 2,
+          max.words = 100,
+          random.order = FALSE, 
+          rot.per = 0.35, 
+          colors = brewer.pal(8, "Reds"),
+          scale = c(4, 0.5))
+title("Trump")
+```
+
+# Compare on fixed categories
+
+```{r}
+# Define the list of agenda keywords
+agenda_keywords <- c("border", "abortion", "economy", "immigration", "health", "security", "israel", "russia", "china", "ukraine")
+```
+
+```{r}
+# Convert words to lowercase
+tidy_data_clean <- tidy_data_clean %>%
+  mutate(word = tolower(word))
+
+# Filter words that are in the agenda_keywords list
+agenda_data <- tidy_data_clean %>%
+  filter(word %in% agenda_keywords)
+
+# Count the frequency of each keyword per candidate
+agenda_counts <- agenda_data %>%
+  count(speaker, word) %>%
+  arrange(speaker, desc(n))
+```
+
+```{r}
+print(agenda_counts)
+```
+
+## Heatmap
+
+```{r}
+# Create a heatmap
+ggplot(agenda_counts, aes(x = word, y = speaker, fill = n)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "red") +
+  labs(title = "Agenda Keyword Frequencies Heatmap",
+       x = " ",
+       y = " ") +
+  theme_minimal() +
+  # remove grid
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank()
+        )
+```

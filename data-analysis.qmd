@@ -1,0 +1,107 @@
+---
+title: "Data Analysis"
+format: html
+---
+
+## Establishing Facts: Single Variable Analysis
+
+```{r}
+library(tidyverse)
+load("out/hksalary_cleaned.RData")
+glimpse(df_clean)
+```
+
+### Unique Values
+```{r}
+# Unique degree levels
+df_clean |> 
+  distinct(level)
+```
+
+```{r}
+# Unique categories
+unique(df_clean$category)
+```
+::: callout-note
+## unique() vs distinct()
+The `unique()` function returns a vector of unique values, while `distinct()` returns a data frame with unique rows.
+:::
+
+```{r}
+# Category distribution
+df_clean |> 
+  count(category) |> 
+  arrange(desc(n)) 
+```
+
+::: callout-note
+## `count()`
+Using `count()` on a single variable in this dataset may not provide meaningful insights, as it simply counts the frequency of each category. However, in other contexts—such as the "Billboard Hot100" dataset—`count()` is useful for counting the number of hot100 songs by each artist, or the number of weeks each song was on the chart.
+:::
+
+
+
+### Salary Baseline Analysis
+```{r}
+# Overall salary distribution
+df_clean |> 
+  summarise(
+    avg = mean(salary),
+    median = median(salary),
+    top_10 = quantile(salary, 0.9)
+  )
+```
+
+
+## Tracking Changes: Time-Based Analysis
+
+### Salary Evolution 2014-2023
+```{r}
+df_clean |> 
+  group_by(year) |> 
+  summarise(avg_salary = mean(salary)) 
+```
+
+```{r}
+df_clean |> 
+  group_by(year) |> 
+  summarise(avg_salary = mean(salary))|> 
+  mutate(
+    change = avg_salary - lag(avg_salary),
+    pct_change = change/lag(avg_salary)
+  )
+```
+
+::: callout-tip
+### `lag()` Function
+The `lag()` function is used to compute the difference between the current and previous year's average salary. This helps identify trends and changes over time.
+:::
+
+
+## Revealing Disparities: Group Comparisons
+
+### Degree Level Comparison
+```{r}
+df_clean |> 
+  group_by(level) |> 
+  summarise(avg_salary = mean(salary))
+```
+
+### Top Earning Fields
+```{r}
+df_clean |> 
+  group_by(category) |> 
+  summarise(avg_salary = mean(salary))
+```
+
+## Key Functions Recap
+
+| **Function**         | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
+|----------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `distinct()`          | `dplyr`         | Returns unique rows based on specified columns     | `df_clean |> distinct(level)`                                                                                 |
+| `unique()`            | Base R          | Returns unique values in a vector                  | `unique(df_clean$category)`                                                                                    |
+| `count()`             | `dplyr`         | Counts frequency of unique values in a column      | `df_clean |> count(category) |> arrange(desc(n))`                                                              |
+| `summarise()`         | `dplyr`         | Computes summary statistics for variables          | `df_clean |> summarise(avg = mean(salary), median = median(salary), top_10 = quantile(salary, 0.9))`           |
+| `group_by()`          | `dplyr`         | Groups data by a variable for summary operations   | `df_clean |> group_by(year) |> summarise(avg_salary = mean(salary))`                                           |
+| `mutate()`            | `dplyr`         | Creates or modifies columns in a data frame        | `df_clean |> mutate(change = avg_salary - lag(avg_salary), pct_change = change/lag(avg_salary))`               |
+| `lag()`               | `dplyr`         | Computes the lag of a vector (previous values)     | `lag(avg_salary)`                                                                                              |

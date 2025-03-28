@@ -1,0 +1,57 @@
+project:
+  type: book
+  output-dir: docs
+  resources:
+    - v*/
+
+book:
+  title: "Data Journalism with R"
+  author: "Bin Chen"
+  date: last-modified
+  page-footer: "Copyright © 2025 Bin Chen"
+  search: true
+  chapters:
+    - index.qmd
+    - part: "Getting Started"
+      chapters:
+      - install.qmd
+      - r-basics.qmd
+    - part: "Data Import & Wrangling"
+      chapters:
+      - data-import.qmd
+      - data-wrangling.qmd
+      - transform-merge.qmd
+    - part: "Data Analysis"
+      chapters:
+      - data-analysis.qmd
+    - part: "Data Visualization"
+      chapters:
+      - visual-01.qmd
+      - visual-02.qmd
+      - map-usa-election.qmd
+      - map-lifex.qmd
+    - part: "Special Topics"
+      chapters:
+      - quarto-pub.qmd
+      - debate.qmd
+    - part: "Case Studies"
+      chapters:
+      - hot100.qmd
+      - olympics.qmd
+      - employment.qmd
+      
+
+bibliography: references.bib
+
+
+format:
+  html:
+    theme: cosmo
+    df-print: paged
+    code-overflow: wrap
+    number-depth: 2
+
+editor: source
+
+
+

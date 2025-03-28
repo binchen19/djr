@@ -1,0 +1,230 @@
+---
+title: "ggplot Bascis"
+format: html
+---
+
+# Data Visualization
+
+We will use the `ggplot2` package to create visualizations for the data analysis results.
+
+Here is the key components for using ggplot2:
+
+-   `ggplot()`: create a new ggplot object
+-   `aes()`: specify the aesthetic mappings: x-axis, y-axis, color, etc.
+-   specific `geom_` functions: `geom_col()` for bar chart, `geom_point()` for scatter plot, `geom_line()` for line chart, etc.
+-   `labs()`: add titles and labels
+
+::: callout-notes
+there are two `geom_` functions for bar chart: `geom_col()` and `geom_bar()`. By default, `geom_col()` is used when the height of the bar represents the value in the data, while `geom_bar()` is used when the height of the bar represents the count of cases in the data.
+:::
+
+```{r}
+library(tidyverse)
+load("out/hksalary_cleaned.RData")
+```
+
+
+## Bar Chart: Average Annual Salary by Level of Study
+
+```{r}
+df_clean |> # <1>
+  filter(year == 2022) |> # <2>
+  group_by(level) |> # <3>
+  summarise(avg_salary = mean(salary)) |> # <4>
+  ggplot(aes(x = level, y = avg_salary)) + # <5>
+  geom_col() + # <6>
+  labs(title = "Average Annual Salary by Level of Study", # <7>
+       x = "Level of Study", # <7>
+       y = "Average Annual Salary (HK$'000)")  # <7>
+```
+
+1.  Use the pipe operator `|>` to chain the operations.
+2.  Use `filter()` to select the data for the most recent academic year, `2022`.
+3.  Use `group_by()` to group the data by the `level` column.
+4.  Use `summarise()` to calculate the average salary for each group.
+5.  Use `ggplot()` to create a new ggplot object and specify the aesthetic mappings using `aes()`.
+6.  Use `geom_col()` to create a bar chart.
+7.  Use `labs()` to add titles and labels to the plot.
+
+::: callout-important
+Notice, we use `+` rather than `|>` to add a new layer to the plot. This is because `ggplot()` is a function that creates a new ggplot object, and `geom_col()` is a function that adds a new layer to the plot. We use `+` to combine multiple layers in the plot.
+:::
+
+We can add more customization to the plot, such as changing the color of the bars, adding labels, and adjusting the theme.
+
+### More Customizations:
+
+We can add more customization to the plot, such as changing the color of the bars, adding labels, and adjusting the theme.
+
+```{r}
+df_clean |>
+  filter(year == 2022) |>
+  group_by(level) |>
+  summarise(avg_salary = mean(salary)) |>
+  ggplot(aes(x = level, y = avg_salary, fill = level)) + # <1>
+  geom_col(width = 0.7) + # <2>
+  labs(title = "Average Annual Salary by Level of Study",
+       subtitle = str_wrap("In the academic year 2022-2023, Taught Postgraduate graduates have the highest average annual salary."),
+       x = "Level of Study",
+       y = "Average Annual Salary (HK$'000)",
+       caption = "Source: DATA.GOV.HK | Author: Bin Chen") + # <3>
+  theme_minimal() + # <4>
+  theme(legend.position = "none") # <5>
+```
+
+1.  Use `fill = level` in `aes()` to color the bars by the `level` column.
+2.  Use `geom_col(width = 0.7)` to adjust the width of the bars to make them thinner.
+3.  Use `labs()` to add a subtitle and caption to the plot.
+4.  Use `theme_minimal()` to apply a minimal theme to the plot.
+5.  Use `theme(legend.position = "none")` to remove the legend from the plot.
+
+::: callout-tip
+You can explore more themes and customize the plot further using the `theme()` function. Common themes include `theme_bw()`, `theme_classic()`, `theme_minimal()`.
+:::
+
+### Adding values to the bars
+
+Adding values to the bars can help readers better understand the data. We can use the `geom_text()` function to add text labels to the bars. However, the values of average salary are too long to be displayed on the bars. We can just show the rounded values by using the `round()` function.
+
+```{r}
+df_clean |>
+  filter(year == 2022) |>
+  group_by(level) |>
+  summarise(avg_salary = round(mean(salary), 2)) |> # <1>
+  ggplot(aes(x = level, y = avg_salary, fill = level)) + 
+  geom_col(width = 0.7) + 
+  geom_text(aes(label = avg_salary), vjust = -0.5, size = 3) +  # <2>
+  labs(title = "Average Annual Salary by Level of Study",
+       x = "Level of Study",
+       y = "Average Annual Salary (HK$'000)") +
+  theme_light() + 
+  theme(legend.position = "none")
+
+```
+
+1.  Use `round(mean(salary), 2)` to round the average salary to two decimal places.
+2.  Use `geom_text()` to add text labels to the bars. The `vjust = -0.5` argument adjusts the vertical position of the labels, and the `size = 3` argument adjusts the font size of the labels.
+
+### Color Palette
+
+You may find the default color palette not visually appealing. You can customize the color palette using the `scale_fill_manual()` function to specify the colors for the four bars.
+
+```{r }
+## specify four colors
+colors <- c("#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9")
+
+df_clean |>
+  filter(year == 2022) |>
+  group_by(level) |>
+  summarise(avg_salary = mean(salary)) |>
+  ggplot(aes(x = level, y = avg_salary, fill = level)) +
+  geom_col(width = 0.7) +
+  labs(title = "Average Annual Salary by Level of Study",
+       x = "Level of Study",
+       y = "Average Annual Salary (HK$'000)") +
+  scale_fill_manual(values = colors) + # <1>
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+1.  Use `scale_fill_manual()` to specify the colors for the bars using the `values` argument.
+
+::: callout-tip
+You can use some tools to find good color palettes, such as [ColorBrewer](https://colorbrewer2.org/), [Paletton](http://paletton.com/), and [Coolors](https://coolors.co/).
+:::
+
+## Line plot: Average Annual Salary by `level`and by `year_start`
+
+```{r}
+df_clean |>
+  group_by(year, level) |> # <1>
+  summarise(avg_salary = mean(salary)) |> # <2>
+  ggplot(aes(x = year, y = avg_salary, color = level)) + # <3>
+  geom_line(aes(color = level)) + # <4>
+  labs(title = "Average Annual Salary of Graduates by Level of Study Over the Years", # <5>
+       x = "Year", # <5>
+       y = "Average Annual Salary (HK$'000)", # <5>
+       color = "Level of Study") + # <5>
+  theme_bw() # <6>
+```
+
+1.  Use `group_by(year_start, level)` to group the data by `year_start` and `level`.
+2.  Use `summarise()` to calculate the average salary for each group.
+3.  Use `ggplot()` to create a new ggplot object and specify the aesthetic mappings using `aes()`.
+4.  Use `geom_line()` to create a line plot.
+5.  Use `labs()` to add titles and labels to the plot.
+6.  Use `theme_bw()` to apply a black-and-white theme to the plot.
+
+### More Customization
+
+```{r}
+df_clean |>
+  group_by(year, level) |> 
+  summarise(avg_salary = mean(salary)) |> 
+  ggplot(aes(x = year, y = avg_salary, color = level)) + 
+  geom_line() + 
+  geom_point() + # <1>
+  scale_color_brewer(palette = "Set1") + # <2>
+  labs(title = "Average Annual Salary of Graduates by Level of Study Over the Years", 
+       x = "Year", 
+       y = "Average Annual Salary (HK$'000)", 
+       color = "Level of Study") + 
+  theme_bw() 
+```
+
+1.  Use `geom_point()` to add points to the line plot.
+2.  Use `scale_color_brewer(palette = "Set1")` to specify the color palette for the lines.
+
+::: callout-tip
+`scale_color_brewer()` provides a set of color palettes. You can specify the palette name to use different color schemes. It is automatically loaded when you load the `ggplot2` package. A complete list of available palettes can be found in the [RColorBrewer package documentation](https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf).
+:::
+
+## Specify `aes()` in multi-layer plots
+
+In the previous examples, we specify the `aes()` function only in the main `ggplot()` function. However, you can also specify the `aes()` function in each `geom_` function to customize the aesthetics for each layer.
+
+For example, for the line plot, if we want to customize shape of points for each level, we can specify the `shape` aesthetics in the `geom_point()` functions.
+
+```{r}
+df_clean |>
+  group_by(year, level) |> 
+  summarise(avg_salary = mean(salary)) |> 
+  ggplot(aes(x = year, y = avg_salary, color = level)) + # <1>
+  geom_line() + 
+  geom_point(aes(shape = level)) + # <2>
+  scale_color_brewer(palette = "Set1") + 
+  labs(title = "Average Annual Salary of Graduates by Level of Study Over the Years", 
+       x = "Year", 
+       y = "Average Annual Salary (HK$'000)", 
+       color = "Level of Study") + 
+  theme_bw() 
+```
+
+1.  When you specify `aes(color = level)` in the main `ggplot()`, it applies the color aesthetic *globally* to both the `geom_line()` and `geom_point()` layers (or any subsequent geoms). This means that both the lines and the points will be colored by the level variable unless you override it in the individual geoms.
+2.  When you specify `aes(shape = level)` in `geom_point()`, it controls the shape of the points based on the `level` variable, but only for the points. The lines won’t be affected by the shape aesthetic because `geom_line()` doesn’t use shapes.
+
+However, you will see we created a separate legend, this is because we specified the `shape` aesthetics in the `geom_point()` function. In this case, we can do this:
+
+```{r}
+df_clean |>
+  group_by(year, level) |> 
+  summarise(avg_salary = mean(salary)) |> 
+  ggplot(aes(x = year, y = avg_salary, color = level)) + 
+  geom_line() + 
+  geom_point(aes(shape = level)) +  
+  scale_color_brewer(palette = "Set1") + 
+  labs(title = "Average Annual Salary of Graduates by Level of Study Over the Years", 
+       x = "Year", 
+       y = "Average Annual Salary (HK$'000)", 
+       color = "Level of Study",
+       shape = "Level of Study") +  # <1>
+  theme_bw() 
+```
+
+1.  Add a `shape = "Level of Study"` in the `labs()` function, making both the color and shape legends appear as one unified legend, labeled “Level of Study.”
+
+# Practice
+
+- Make a bar chart to show the average annual salary of graduates by `category` for the most recent academic year (2022).
+
+- Make a line plot to show the average annual salary of graduates by `category` over the years.
