@@ -3,7 +3,7 @@ title: "ggplot Bascis"
 format: html
 ---
 
-# Data Visualization
+## Overview
 
 We will use the `ggplot2` package to create visualizations for the data analysis results.
 
@@ -179,7 +179,7 @@ df_clean |>
 `scale_color_brewer()` provides a set of color palettes. You can specify the palette name to use different color schemes. It is automatically loaded when you load the `ggplot2` package. A complete list of available palettes can be found in the [RColorBrewer package documentation](https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf).
 :::
 
-## Specify `aes()` in multi-layer plots
+### Specify `aes()` in multi-layer plots
 
 In the previous examples, we specify the `aes()` function only in the main `ggplot()` function. However, you can also specify the `aes()` function in each `geom_` function to customize the aesthetics for each layer.
 
@@ -223,7 +223,7 @@ df_clean |>
 
 1.  Add a `shape = "Level of Study"` in the `labs()` function, making both the color and shape legends appear as one unified legend, labeled “Level of Study.”
 
-# Practice
+## Practice
 
 - Make a bar chart to show the average annual salary of graduates by `category` for the most recent academic year (2022).
 

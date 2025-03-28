@@ -4,37 +4,9 @@ subtitle: "2024 US Presidential Debate"
 format: html
 ---
 
-# Today's Agenda
+## Text Analysis with R: 2024 US Presidential Debate
 
-## Course Evaluation
-
--   **http://sftl.hku.hk/**
--   Anonymous
--   Be careful about “strongly agree” vs “strongly disagree”
-    -   As we are unable to retrieve any of the questionnaires and rectify the answers after it is submitted
-
-## Final Projects Rubric
-
-1.  Organization & Formatting (15%)
-    -   .qmd Files: Includes all required .qmd files, each properly named and organized:
-    -   Home Page: Outlines the project’s purpose, data sources, research questions, key findings, and author information.
-    -   Data Cleaning: Contains code and accompanying text for data cleaning processes.
-    -   Data Analysis: Features code and explanatory text for data analysis.
-    -   Structure: Utilizes clear headings, text, code chunks, and images to enhance readability and navigation.
-2.  Questions & Findings (25%)
-    -   Questions: Research questions are well-articulated and directly relevant to the dataset.
-    -   Findings: Clearly presents findings with insightful interpretations and data-driven conclusions.
-3.  Data Cleaning & Analysis (45%) •
-    -   Organization: Uses headings to logically organize the analysis steps.
-    -   Code Strategy: Clearly displays coding strategies with well-documented and commented code.
-    -   Explanation: Thoroughly explains each step of the analysis, with comments inside code chunks or supplementary text outside.
-4.  Writing and Presentation (15%) •
-    -   Writing Quality: Ensures writing is clear, concise, and free of grammatical errors, adhering to AP style guidelines.
-    -   Aesthetics: Creates a visually appealing website with a consistent color scheme, thoughtful font choices, and an organized layout.
-
-# Text Analysis with R: 2024 US Presidential Debate
-
-# Load Packages
+## Load Packages
 
 ```{r}
 library(tidyverse)
@@ -42,9 +14,9 @@ library(tidytext)
 library(skimr)
 ```
 
-# Data Import & Wrangling
+## Cleaning Text Data to Data Frame
 
-## Import
+### Import
 
 ```{r}
 # Read the transcript
@@ -57,7 +29,7 @@ transcript[1:10]
 transcript <- transcript[transcript != ""]
 ```
 
-## Parse transcripts to a data frame
+### Parse transcripts to a data frame
 
 ```{r}
 # Initialize an empty data frame
@@ -100,7 +72,7 @@ if (!is.na(current_speaker) && current_text != "") {
 # write_csv(data, "out/debate_df.csv")
 ```
 
-# Import Cleaned Data
+## Import Cleaned Data
 
 ```{r}
 df <- data
@@ -115,9 +87,9 @@ unique(df$Speaker)
 ```
 
 
-# Data Cleaning
+## Data Cleaning
 
-## Filter Out Non-Candidate Speakers
+### Filter Out Non-Candidate Speakers
 
 ```{r}
 df1 <- df |>
@@ -126,16 +98,16 @@ df1 <- df |>
 unique(df1$speaker)
 ```
 
-## Standardize Speaker Names
+### Standardize Speaker Names
 
 ```{r}
 # Standardize speaker names if necessary
 df1$speaker <- ifelse(df1$speaker == "HARRIS", "Harris", "Trump")
 ```
 
-# Text Analysis
+## Text Analysis
 
-## Tokenize and Remove Stop Words
+### Tokenize and Remove Stop Words
 
 ```{r}
 # Tokenize the text column
@@ -161,7 +133,7 @@ word_counts <- tidy_data_clean %>%
   count(speaker, word, sort = TRUE)
 ```
 
-## Analyze Top Words
+### Analyze Top Words
 
 ```{r}
 # Get top 10 words for each candidate
@@ -175,7 +147,7 @@ top_words <- word_counts %>%
 print(top_words)
 ```
 
-## Analyze Top Word Pairs (Bigrams)
+### Analyze Top Word Pairs (Bigrams)
 
 ```{r}
 # Create bigrams
@@ -216,9 +188,9 @@ top_bigrams <- bigram_counts %>%
 print(top_bigrams)
 ```
 
-# Plot
+## Plot
 
-## Top words
+### Top words
 
 ```{r}
 # Plot
@@ -232,7 +204,7 @@ top_words %>%
   labs(x = "Words", y = "Frequency", title = "Top Words by Candidate")
 ```
 
-## Top Bigrams
+### Top Bigrams
 
 ```{r}
 # Plot
@@ -246,7 +218,7 @@ top_bigrams %>%
   labs(x = "Bigrams", y = "Frequency", title = "Top Bigrams by Candidate")
 ```
 
-# Word Cloud
+## Word Cloud
 
 ```{r}
 library(wordcloud)
@@ -262,7 +234,7 @@ trump_words <- word_counts %>%
   filter(speaker == "Trump")
 ```
 
-## Single Plot
+### Single Plot
 
 ```{r}
 wordcloud(words = harris_words$word, 
@@ -276,7 +248,7 @@ wordcloud(words = harris_words$word,
 title("Harris")
 ```
 
-## Side-by-Side
+### Side-by-Side
 
 ```{r}
 # Set up the plotting area for two plots
@@ -305,7 +277,7 @@ wordcloud(words = trump_words$word,
 title("Trump")
 ```
 
-# Compare on fixed categories
+## Compare on fixed categories
 
 ```{r}
 # Define the list of agenda keywords

@@ -314,12 +314,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up"><span class="header-section-number">6</span> Set up</a>
-  <ul class="collapse">
-  <li><a href="#transform-wide-to-long-data" id="toc-transform-wide-to-long-data" class="nav-link" data-scroll-target="#transform-wide-to-long-data"><span class="header-section-number">6.1</span> Transform Wide to Long Data</a></li>
-  <li><a href="#merging-with-world-map-data" id="toc-merging-with-world-map-data" class="nav-link" data-scroll-target="#merging-with-world-map-data"><span class="header-section-number">6.2</span> Merging with World Map Data</a></li>
-  <li><a href="#save-the-merged-data" id="toc-save-the-merged-data" class="nav-link" data-scroll-target="#save-the-merged-data"><span class="header-section-number">6.3</span> Save the Merged Data</a></li>
-  </ul></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up"><span class="header-section-number">5.1</span> Set up</a></li>
+  <li><a href="#transform-wide-to-long-data" id="toc-transform-wide-to-long-data" class="nav-link" data-scroll-target="#transform-wide-to-long-data"><span class="header-section-number">5.2</span> Transform Wide to Long Data</a></li>
+  <li><a href="#merging-with-world-map-data" id="toc-merging-with-world-map-data" class="nav-link" data-scroll-target="#merging-with-world-map-data"><span class="header-section-number">5.3</span> Merging with World Map Data</a></li>
+  <li><a href="#save-the-merged-data" id="toc-save-the-merged-data" class="nav-link" data-scroll-target="#save-the-merged-data"><span class="header-section-number">5.4</span> Save the Merged Data</a></li>
   </ul>
 </nav>
     </div>
@@ -351,8 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Data Wrangling: Transforming wide data to long data format</li>
 <li>Data Visualization: Create a map of life expectancy by country</li>
 </ul>
-<section id="set-up" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Set up</h1>
+<section id="set-up" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="set-up"><span class="header-section-number">5.1</span> Set up</h2>
 <p>Let’s start by loading the necessary libraries and the dataset.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -464,8 +462,9 @@ $ ...69            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 </div>
 <p>Based on the output of <code>glimpse()</code>, we can see that the dataset contains 217 rows and 69 columns. Each row is a country, and each column represents the life expectancy at birth for a specific year.</p>
 <p>However, this is not a clean format for data visualization. We need to transform this wide data format to a long data format using the <code>pivot_longer()</code> function.</p>
-<section id="transform-wide-to-long-data" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="transform-wide-to-long-data"><span class="header-section-number">6.1</span> Transform Wide to Long Data</h2>
+</section>
+<section id="transform-wide-to-long-data" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="transform-wide-to-long-data"><span class="header-section-number">5.2</span> Transform Wide to Long Data</h2>
 <p>We found there are NAs for data in 2023 and after. So we will only select columns from 2022 and before, that is columns 5 to 67.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform wide data to long data format</span></span>
@@ -503,8 +502,8 @@ $ life_expectancy &lt;dbl&gt; 64.152, 64.537, 64.752, 65.132, 65.294, 65.502, 66
 </div>
 </div>
 </section>
-<section id="merging-with-world-map-data" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="merging-with-world-map-data"><span class="header-section-number">6.2</span> Merging with World Map Data</h2>
+<section id="merging-with-world-map-data" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="merging-with-world-map-data"><span class="header-section-number">5.3</span> Merging with World Map Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load world map data</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>) <span class="sc">|&gt;</span></span>
@@ -528,15 +527,14 @@ $ geometry        &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((-69.89912 1..., MULT
 </div>
 </div>
 </section>
-<section id="save-the-merged-data" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="save-the-merged-data"><span class="header-section-number">6.3</span> Save the Merged Data</h2>
+<section id="save-the-merged-data" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="save-the-merged-data"><span class="header-section-number">5.4</span> Save the Merged Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the merged data to .RData</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(df_merge, <span class="at">file =</span> <span class="st">"out/expectancy_merged.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

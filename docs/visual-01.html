@@ -314,21 +314,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link active" data-scroll-target="#data-visualization"><span class="header-section-number">8</span> Data Visualization</a>
-  <ul class="collapse">
-  <li><a href="#bar-chart-average-annual-salary-by-level-of-study" id="toc-bar-chart-average-annual-salary-by-level-of-study" class="nav-link" data-scroll-target="#bar-chart-average-annual-salary-by-level-of-study"><span class="header-section-number">8.1</span> Bar Chart: Average Annual Salary by Level of Study</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">7.1</span> Overview</a></li>
+  <li><a href="#bar-chart-average-annual-salary-by-level-of-study" id="toc-bar-chart-average-annual-salary-by-level-of-study" class="nav-link" data-scroll-target="#bar-chart-average-annual-salary-by-level-of-study"><span class="header-section-number">7.2</span> Bar Chart: Average Annual Salary by Level of Study</a>
   <ul class="collapse">
   <li><a href="#more-customizations" id="toc-more-customizations" class="nav-link" data-scroll-target="#more-customizations">More Customizations:</a></li>
   <li><a href="#adding-values-to-the-bars" id="toc-adding-values-to-the-bars" class="nav-link" data-scroll-target="#adding-values-to-the-bars">Adding values to the bars</a></li>
   <li><a href="#color-palette" id="toc-color-palette" class="nav-link" data-scroll-target="#color-palette">Color Palette</a></li>
   </ul></li>
-  <li><a href="#line-plot-average-annual-salary-by-leveland-by-year_start" id="toc-line-plot-average-annual-salary-by-leveland-by-year_start" class="nav-link" data-scroll-target="#line-plot-average-annual-salary-by-leveland-by-year_start"><span class="header-section-number">8.2</span> Line plot: Average Annual Salary by <code>level</code>and by <code>year_start</code></a>
+  <li><a href="#line-plot-average-annual-salary-by-leveland-by-year_start" id="toc-line-plot-average-annual-salary-by-leveland-by-year_start" class="nav-link" data-scroll-target="#line-plot-average-annual-salary-by-leveland-by-year_start"><span class="header-section-number">7.3</span> Line plot: Average Annual Salary by <code>level</code>and by <code>year_start</code></a>
   <ul class="collapse">
   <li><a href="#more-customization" id="toc-more-customization" class="nav-link" data-scroll-target="#more-customization">More Customization</a></li>
+  <li><a href="#specify-aes-in-multi-layer-plots" id="toc-specify-aes-in-multi-layer-plots" class="nav-link" data-scroll-target="#specify-aes-in-multi-layer-plots">Specify <code>aes()</code> in multi-layer plots</a></li>
   </ul></li>
-  <li><a href="#specify-aes-in-multi-layer-plots" id="toc-specify-aes-in-multi-layer-plots" class="nav-link" data-scroll-target="#specify-aes-in-multi-layer-plots"><span class="header-section-number">8.3</span> Specify <code>aes()</code> in multi-layer plots</a></li>
-  </ul></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">9</span> Practice</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">7.4</span> Practice</a></li>
   </ul>
 </nav>
     </div>
@@ -354,8 +352,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="data-visualization" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Data Visualization</h1>
+<section id="overview" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">7.1</span> Overview</h2>
 <p>We will use the <code>ggplot2</code> package to create visualizations for the data analysis results.</p>
 <p>Here is the key components for using ggplot2:</p>
 <ul>
@@ -383,8 +381,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"out/hksalary_cleaned.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="bar-chart-average-annual-salary-by-level-of-study" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="bar-chart-average-annual-salary-by-level-of-study"><span class="header-section-number">8.1</span> Bar Chart: Average Annual Salary by Level of Study</h2>
+</section>
+<section id="bar-chart-average-annual-salary-by-level-of-study" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="bar-chart-average-annual-salary-by-level-of-study"><span class="header-section-number">7.2</span> Bar Chart: Average Annual Salary by Level of Study</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-3-2" class="code-annotation-target"><a href="#annotated-cell-3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
@@ -599,8 +598,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="line-plot-average-annual-salary-by-leveland-by-year_start" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="line-plot-average-annual-salary-by-leveland-by-year_start"><span class="header-section-number">8.2</span> Line plot: Average Annual Salary by <code>level</code>and by <code>year_start</code></h2>
+<section id="line-plot-average-annual-salary-by-leveland-by-year_start" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="line-plot-average-annual-salary-by-leveland-by-year_start"><span class="header-section-number">7.3</span> Line plot: Average Annual Salary by <code>level</code>and by <code>year_start</code></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
 <a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, level) <span class="sc">|&gt;</span></span>
@@ -705,9 +704,8 @@ Tip
 </div>
 </div>
 </section>
-</section>
-<section id="specify-aes-in-multi-layer-plots" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="specify-aes-in-multi-layer-plots"><span class="header-section-number">8.3</span> Specify <code>aes()</code> in multi-layer plots</h2>
+<section id="specify-aes-in-multi-layer-plots" class="level3">
+<h3 class="anchored" data-anchor-id="specify-aes-in-multi-layer-plots">Specify <code>aes()</code> in multi-layer plots</h3>
 <p>In the previous examples, we specify the <code>aes()</code> function only in the main <code>ggplot()</code> function. However, you can also specify the <code>aes()</code> function in each <code>geom_</code> function to customize the aesthetics for each layer.</p>
 <p>For example, for the line plot, if we want to customize shape of points for each level, we can specify the <code>shape</code> aesthetics in the <code>geom_point()</code> functions.</p>
 <div class="cell">
@@ -784,8 +782,8 @@ Tip
 </div>
 </section>
 </section>
-<section id="practice" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Practice</h1>
+<section id="practice" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="practice"><span class="header-section-number">7.4</span> Practice</h2>
 <ul>
 <li><p>Make a bar chart to show the average annual salary of graduates by <code>category</code> for the most recent academic year (2022).</p></li>
 <li><p>Make a line plot to show the average annual salary of graduates by <code>category</code> over the years.</p></li>

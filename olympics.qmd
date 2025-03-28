@@ -3,7 +3,7 @@ title: "Paris 2024 Olympics"
 format: html
 ---
 
-# Data Import
+## Data Import
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -11,7 +11,7 @@ df <- read_csv("data/medallists.csv")
 colnames(df)
 ```
 
-# Data Clean
+## Data Clean
 
 ```{r}
 df_clean <- df |>
@@ -20,13 +20,13 @@ df_clean <- df |>
 glimpse(df_clean)
 ```
 
-# Data Analysis
+## Data Analysis
 
 -   Q1: Who won the most medals in Paris 2024?
 -   Q2: Who won the most gold medals in Paris 2024?
 -   Q3: Which country has the most medallists in Paris 2024?
 
-## Q1: Who won the most medals in Paris 2024?
+### Q1: Who won the most medals in Paris 2024?
 
 ```{r}
 df_clean |>
@@ -36,7 +36,7 @@ df_clean |>
   head(10)
 ```
 
-## Q2: Who won the most gold medals in Paris 2024?
+### Q2: Who won the most gold medals in Paris 2024?
 
 ```{r}
 df_clean |>
@@ -47,7 +47,7 @@ df_clean |>
   head(10)
 ```
 
-## Q3: Which country has the most medallists in Paris 2024?
+### Q3: Which country has the most medallists in Paris 2024?
 
 ```{r}
 df_clean |>
@@ -57,9 +57,9 @@ df_clean |>
   head(10)
 ```
 
-# Visualization
+## Visualization
 
-## Bar Chart
+### Bar Chart
 
 We will use a bar chart to show top 20 country with most medallists in Paris 2024.
 
@@ -92,7 +92,7 @@ Factor levels determine how categorical variables (like country) are displayed o
 This ensures that when plotting, the countries with the highest medallist_count are shown in the order you want on the x-axis (or y-axis).
 :::
 
-## Scatter Plot
+### Scatter Plot
 
 We will use a scatter plot to show the relationships between the number of medals and the age of the medallists.
 
@@ -115,7 +115,7 @@ df_clean |>
 2.  Use `geom_point()` to create a scatter plot.
 3.  Use `geom_smooth(method = "lm")` to add a linear regression line to the plot.
 
-## World map
+### World map
 
 Use a world map to show the distribution of medallists in Paris 2024.
 

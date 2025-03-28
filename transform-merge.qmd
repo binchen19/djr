@@ -10,7 +10,7 @@ This case study will focus on the following aspects:
 -  Data Wrangling: Transforming wide data to long data format
 -  Data Visualization: Create a map of life expectancy by country
 
-# Set up
+## Set up
 
 Let's start by loading the necessary libraries and the dataset.
 

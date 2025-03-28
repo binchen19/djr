@@ -314,19 +314,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-import" id="toc-data-import" class="nav-link active" data-scroll-target="#data-import"><span class="header-section-number">15</span> Data Import</a></li>
-  <li><a href="#data-clean" id="toc-data-clean" class="nav-link" data-scroll-target="#data-clean"><span class="header-section-number">16</span> Data Clean</a></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">17</span> Data Analysis</a>
+  <li><a href="#data-import" id="toc-data-import" class="nav-link active" data-scroll-target="#data-import"><span class="header-section-number">14.1</span> Data Import</a></li>
+  <li><a href="#data-clean" id="toc-data-clean" class="nav-link" data-scroll-target="#data-clean"><span class="header-section-number">14.2</span> Data Clean</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">14.3</span> Data Analysis</a>
   <ul class="collapse">
-  <li><a href="#q1-who-won-the-most-medals-in-paris-2024" id="toc-q1-who-won-the-most-medals-in-paris-2024" class="nav-link" data-scroll-target="#q1-who-won-the-most-medals-in-paris-2024"><span class="header-section-number">17.1</span> Q1: Who won the most medals in Paris 2024?</a></li>
-  <li><a href="#q2-who-won-the-most-gold-medals-in-paris-2024" id="toc-q2-who-won-the-most-gold-medals-in-paris-2024" class="nav-link" data-scroll-target="#q2-who-won-the-most-gold-medals-in-paris-2024"><span class="header-section-number">17.2</span> Q2: Who won the most gold medals in Paris 2024?</a></li>
-  <li><a href="#q3-which-country-has-the-most-medallists-in-paris-2024" id="toc-q3-which-country-has-the-most-medallists-in-paris-2024" class="nav-link" data-scroll-target="#q3-which-country-has-the-most-medallists-in-paris-2024"><span class="header-section-number">17.3</span> Q3: Which country has the most medallists in Paris 2024?</a></li>
+  <li><a href="#q1-who-won-the-most-medals-in-paris-2024" id="toc-q1-who-won-the-most-medals-in-paris-2024" class="nav-link" data-scroll-target="#q1-who-won-the-most-medals-in-paris-2024">Q1: Who won the most medals in Paris 2024?</a></li>
+  <li><a href="#q2-who-won-the-most-gold-medals-in-paris-2024" id="toc-q2-who-won-the-most-gold-medals-in-paris-2024" class="nav-link" data-scroll-target="#q2-who-won-the-most-gold-medals-in-paris-2024">Q2: Who won the most gold medals in Paris 2024?</a></li>
+  <li><a href="#q3-which-country-has-the-most-medallists-in-paris-2024" id="toc-q3-which-country-has-the-most-medallists-in-paris-2024" class="nav-link" data-scroll-target="#q3-which-country-has-the-most-medallists-in-paris-2024">Q3: Which country has the most medallists in Paris 2024?</a></li>
   </ul></li>
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">18</span> Visualization</a>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">14.4</span> Visualization</a>
   <ul class="collapse">
-  <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart"><span class="header-section-number">18.1</span> Bar Chart</a></li>
-  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot"><span class="header-section-number">18.2</span> Scatter Plot</a></li>
-  <li><a href="#world-map" id="toc-world-map" class="nav-link" data-scroll-target="#world-map"><span class="header-section-number">18.3</span> World map</a></li>
+  <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart">Bar Chart</a></li>
+  <li><a href="#scatter-plot" id="toc-scatter-plot" class="nav-link" data-scroll-target="#scatter-plot">Scatter Plot</a></li>
+  <li><a href="#world-map" id="toc-world-map" class="nav-link" data-scroll-target="#world-map">World map</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -353,8 +353,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="data-import" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Data Import</h1>
+<section id="data-import" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="data-import"><span class="header-section-number">14.1</span> Data Import</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/medallists.csv"</span>)</span>
@@ -367,8 +367,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="data-clean" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> Data Clean</h1>
+<section id="data-clean" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="data-clean"><span class="header-section-number">14.2</span> Data Clean</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, gender, country, medal_type, birth_date, discipline, event, code_athlete, country_code)</span>
@@ -389,15 +389,15 @@ $ country_code &lt;chr&gt; "BEL", "ITA", "BEL", "AUS", "GBR", "USA", "KOR", "TUN
 </div>
 </div>
 </section>
-<section id="data-analysis" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Data Analysis</h1>
+<section id="data-analysis" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">14.3</span> Data Analysis</h2>
 <ul>
 <li>Q1: Who won the most medals in Paris 2024?</li>
 <li>Q2: Who won the most gold medals in Paris 2024?</li>
 <li>Q3: Which country has the most medallists in Paris 2024?</li>
 </ul>
-<section id="q1-who-won-the-most-medals-in-paris-2024" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="q1-who-won-the-most-medals-in-paris-2024"><span class="header-section-number">17.1</span> Q1: Who won the most medals in Paris 2024?</h2>
+<section id="q1-who-won-the-most-medals-in-paris-2024" class="level3">
+<h3 class="anchored" data-anchor-id="q1-who-won-the-most-medals-in-paris-2024">Q1: Who won the most medals in Paris 2024?</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(name) <span class="sc">|&gt;</span></span>
@@ -413,8 +413,8 @@ $ country_code &lt;chr&gt; "BEL", "ITA", "BEL", "AUS", "GBR", "USA", "KOR", "TUN
 </div>
 </div>
 </section>
-<section id="q2-who-won-the-most-gold-medals-in-paris-2024" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="q2-who-won-the-most-gold-medals-in-paris-2024"><span class="header-section-number">17.2</span> Q2: Who won the most gold medals in Paris 2024?</h2>
+<section id="q2-who-won-the-most-gold-medals-in-paris-2024" class="level3">
+<h3 class="anchored" data-anchor-id="q2-who-won-the-most-gold-medals-in-paris-2024">Q2: Who won the most gold medals in Paris 2024?</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(medal_type <span class="sc">==</span> <span class="st">"Gold Medal"</span>) <span class="sc">|&gt;</span></span>
@@ -431,8 +431,8 @@ $ country_code &lt;chr&gt; "BEL", "ITA", "BEL", "AUS", "GBR", "USA", "KOR", "TUN
 </div>
 </div>
 </section>
-<section id="q3-which-country-has-the-most-medallists-in-paris-2024" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="q3-which-country-has-the-most-medallists-in-paris-2024"><span class="header-section-number">17.3</span> Q3: Which country has the most medallists in Paris 2024?</h2>
+<section id="q3-which-country-has-the-most-medallists-in-paris-2024" class="level3">
+<h3 class="anchored" data-anchor-id="q3-which-country-has-the-most-medallists-in-paris-2024">Q3: Which country has the most medallists in Paris 2024?</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
@@ -449,10 +449,10 @@ $ country_code &lt;chr&gt; "BEL", "ITA", "BEL", "AUS", "GBR", "USA", "KOR", "TUN
 </div>
 </section>
 </section>
-<section id="visualization" class="level1" data-number="18">
-<h1 data-number="18"><span class="header-section-number">18</span> Visualization</h1>
-<section id="bar-chart" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="bar-chart"><span class="header-section-number">18.1</span> Bar Chart</h2>
+<section id="visualization" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="visualization"><span class="header-section-number">14.4</span> Visualization</h2>
+<section id="bar-chart" class="level3">
+<h3 class="anchored" data-anchor-id="bar-chart">Bar Chart</h3>
 <p>We will use a bar chart to show top 20 country with most medallists in Paris 2024.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
@@ -505,8 +505,8 @@ Note
 </div>
 </div>
 </section>
-<section id="scatter-plot" class="level2" data-number="18.2">
-<h2 data-number="18.2" class="anchored" data-anchor-id="scatter-plot"><span class="header-section-number">18.2</span> Scatter Plot</h2>
+<section id="scatter-plot" class="level3">
+<h3 class="anchored" data-anchor-id="scatter-plot">Scatter Plot</h3>
 <p>We will use a scatter plot to show the relationships between the number of medals and the age of the medallists.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
@@ -549,8 +549,8 @@ Note
 </div>
 </div>
 </section>
-<section id="world-map" class="level2" data-number="18.3">
-<h2 data-number="18.3" class="anchored" data-anchor-id="world-map"><span class="header-section-number">18.3</span> World map</h2>
+<section id="world-map" class="level3">
+<h3 class="anchored" data-anchor-id="world-map">World map</h3>
 <p>Use a world map to show the distribution of medallists in Paris 2024.</p>
 <p>Here we will use two packages: <code>rnaturalearth</code> and <code>rnaturalearthdata</code> to get the world map data. The <code>rnaturalearth</code> package provides access to the Natural Earth dataset, which contains a variety of geospatial data, including country boundaries. The <code>rnaturalearthdata</code> package contains the data files needed to create maps using the <code>rnaturalearth</code> package.</p>
 <div class="cell">

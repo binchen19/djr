@@ -4,7 +4,7 @@ format: html
 prefer-html: true
 ---
 
-# Learning Objectives
+## Learning Objectives
 
 -   Analyzing [California Wildfire Data](%22https://www.kaggle.com/datasets/vivekattri/california-wildfire-damage-2014-feb2025/data%22)
 -   More on Data Visualization
@@ -15,7 +15,7 @@ prefer-html: true
         -   `geom_line()`: Connect data points with lines.
         -   `facet_wrap()`: Create multiple plots based on a categorical variable.
 
-# Load Packages and Data
+## Load Packages and Data
 
 ```{r}
 library(tidyverse)
@@ -27,7 +27,7 @@ load("data/wildfire.RData")
 
 After loading the data, you should see a data frame called `df_clean` in your environment.
 
-# Data Exploration
+## Data Exploration
 
 We can use the `glimpse()` function to get a quick overview of the data.
 
@@ -39,9 +39,9 @@ We can use the `glimpse()` function to get a quick overview of the data.
 glimpse(df_clean)
 ```
 
-# Data Analysis
+## Data Analysis
 
-## Questions to Answer
+### Questions to Answer
 
 Here we will analyze the data to answer the following questions:
 
@@ -49,9 +49,9 @@ Here we will analyze the data to answer the following questions:
 -   Q2: Top 5 counties with the highest **average burnt areas**?
 -   Q3: How does the number of wildfires change over the years for each county?
 
-## Q1: Top Counties with the Highest Number of Wildfires
+### Q1: Top Counties with the Highest Number of Wildfires
 
-### Method 1: `group_by()` and `summarize()`
+#### Method 1: `group_by()` and `summarize()`
 
 To answer this question, we can first try the `group_by()` and `summarize()` functions to count the number of wildfires by county.
 
@@ -62,7 +62,7 @@ df_clean |>
   arrange(desc(num_of_wildfires))
 ```
 
-### Method 2: `count()`
+#### Method 2: `count()`
 
 We can also use the `count()` function to achieve the same result, which is more concise.
 
@@ -72,7 +72,7 @@ df_clean |>
   arrange(desc(n))
 ```
 
-## Q2: Top 5 counties with the highest **average burnt areas**?
+### Q2: Top 5 counties with the highest **average burnt areas**?
 
 ```{r}
 df_clean |>
@@ -81,7 +81,7 @@ df_clean |>
   arrange(desc(avg_burnt_area))
 ```
 
-## Q3: How does the *average burnt area* change over the years for each county?
+### Q3: How does the *average burnt area* change over the years for each county?
 
 First, we need want to translate this question to a data analysis task: calculate the number of wildfires by year for each county. That means, we need to group the data by `location` and `year`, and then compute *average burnt area* for each group.
 
@@ -93,9 +93,9 @@ df_clean |>
   summarize(avg_burnt_area = mean(area, na.rm = TRUE)) 
 ```
 
-# Data Visualization
+## Data Visualization
 
-## Bar Chart: Number of Wildfires by County
+### Bar Chart: Number of Wildfires by County
 
 We chose to use a bar chart to visualize the number of wildfires by county because it is a good way to compare the number of wildfires (numeric) across different counties (categorical).
 
@@ -195,7 +195,7 @@ df_clean |>
 6.  Flip the x and y axes to create a horizontal bar chart.
 7.  Add text labels to the bars.
 
-## Line Plot: Number of Wildfires by Year for Each County
+### Line Plot: Number of Wildfires by Year for Each County
 
 We chose to use a line plot to visualize the number of wildfires by year for each county because it is a good way to show trends *over time*.
 
@@ -242,7 +242,7 @@ df_clean |>
 5.  Create multiple plots based on the county names.
 6.  Remove the legend.
 
-# `Plotly`: Interactive Data Visualization
+## `Plotly`: Interactive Data Visualization
 
 We can use the `plotly` package to create interactive data visualizations. Here we will create an interactive bar chart to show the number of wildfires by county.
 
@@ -250,7 +250,7 @@ We can use the `plotly` package to create interactive data visualizations. Here 
 library(plotly)
 ```
 
-## Interactive Bar Chart
+### Interactive Bar Chart
 
 ```{r}
 p1 <- df_clean |>
@@ -266,7 +266,7 @@ p1 <- df_clean |>
 ggplotly(p1)
 ```
 
-## Interactive Line Plot
+### Interactive Line Plot
 
 ```{r}
 p2 <- df_clean |>
@@ -281,7 +281,7 @@ p2 <- df_clean |>
 ggplotly(p2)
 ```
 
-## More on `plotly`
+### More on `plotly`
 
 We can also create an interactive scatter plot to show the financial losses from wildfires in California. We can map the `date` to the x-axis, the `financial_loss` to the y-axis, the `cause` to the color, and create a tooltip with additional information.
 
@@ -312,7 +312,7 @@ ggplotly(p3, tooltip = "text") # <5>
 3.  Add labels for the title, x-axis, y-axis, and color.
 4.  Use a minimal theme.
 
-# Save the Plots
+## Save the Plots
 
 To save a plot as an image file, we can use the `ggsave()` function. Here we will save the bar chart as a PNG file with a width of 8 inches, a height of 6 inches, and a resolution of 300 dpi.
 
