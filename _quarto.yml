@@ -30,6 +30,7 @@ book:
       - visual-02.qmd
       - map-usa-election.qmd
       - map-lifex.qmd
+      - norway-invest.qmd
     - part: "Special Topics"
       chapters:
       - quarto-pub.qmd
