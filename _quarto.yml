@@ -41,6 +41,7 @@ book:
       - olympics.qmd
       - employment.qmd
       
+      
 
 bibliography: references.bib
 
@@ -51,6 +52,8 @@ format:
     df-print: paged
     code-overflow: wrap
     number-depth: 2
+
+
 
 editor: source
 

@@ -1,7 +1,4 @@
----
-title: "Map: World Life Expectancy"
-format: html
----
+# Mapping Global Life Expectancy {#sec-lifexmap}
 
 ## Set up
 ```{r}
@@ -11,7 +8,9 @@ library(rnaturalearth) # For world map data
 load("out/expectancy_merged.RData")
 ```
 
-### Overview of Life Expectancy
+## Overview of Life Expectancy
+
+Here let's start by looking at the summary statistics of worldwide life expectancy in the most recent year available (2022).
 
 ```{r}
 # Summary statistics of worldwide life expectancy in 2022
@@ -97,9 +96,10 @@ df_merge |>
 ```{r}
 # Map of life expectancy by country in 2022
 df_merge |>
-  ggplot(aes()) +
-  geom_sf(aes(geometry = geometry, fill = life_expectancy)) +
-  scale_fill_gradient(low = "#deebf7", 
+  filter(year == 2022) |>
+  ggplot(aes()) + # <1> 
+  geom_sf(aes(geometry = geometry, fill = life_expectancy)) + # <2>
+  scale_fill_gradient(low = "white", 
                       high = "#3182bd",
                       na.value = "grey90", 
                       name = "Life Expectancy", 
@@ -108,25 +108,23 @@ df_merge |>
                         barheight = 0.5,
                         title.position = "top",
                         title.hjust = 0.5
-                      )) +
-  labs(title = "Life Expectancy by Country in 2022",
+                      )) + # <3>
+  labs(title = "Life Expectancy at Birth by Country in 2022",
        fill = "Life Expectancy at Birth",
-       caption = "Source: World Bank | Author: Bin Chen") +
-  theme_bw() +
-  theme(
-    panel.grid.major = element_blank(),  
-    panel.grid.minor = element_blank(),  
-    axis.text = element_blank(),         
-    axis.title = element_blank(),        
-    axis.ticks = element_blank(),        
-    panel.border = element_blank(),      
-    plot.background = element_rect(fill = "white", colour = NA),
-    legend.position = "bottom",
-    plot.title = element_text(hjust = 0.5, size = 10),
-    legend.title = element_text(size = 10),
-    legend.text = element_text(size = 8)
-  )
+       caption = "Source: World Bank | By: Bin Chen") + # <4>
+  theme_void() + # <5>
+  theme(legend.position = "bottom",
+        legend.title = element_text(size = 10),
+        plot.title = element_text(hjust = 0.5, size = 11)) # <6>
 ```
+1. Set up the plot.
+2. Create a spatial feature plot using the world map geometry and fill color based on life expectancy.
+3. Set the color gradient for life expectancy.
+4. Add titles and captions.
+5. Remove the background.
+6. Adjust the legend position and title size.
+7. Adjust the plot title position and size.
+
 
 
 

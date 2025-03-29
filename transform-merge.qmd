@@ -1,44 +1,56 @@
----
-title: "Data Transform & Merging"
-format: html
----
+# Data Transformation and Merging
 
-In this notebook, I will explore the life expectancy data from the [World Bank]("https://data.worldbank.org/indicator/SP.DYN.LE00.IN"). The dataset was last updated on March 24, 2025, contains the life expectancy at birth for various countries over the years.
+## Overview 
 
-This case study will focus on the following aspects:
+In this chapter, we will explore the life expectancy data across countries. Life expectancy is a key indicator of a country's overall health and well-being. By analyzing this data, we can identify trends and disparities in life expectancy across different regions and countries.
 
--  Data Wrangling: Transforming wide data to long data format
--  Data Visualization: Create a map of life expectancy by country
+### About the data
 
-## Set up
+This dataset was downloaded from the World Bank website and saved as a CSV file named `life_expectancy.csv`, stored in the `data` folder. The dataset was last updated on March 24, 2025, contains the life expectancy at birth for various countries over the years.
 
-Let's start by loading the necessary libraries and the dataset.
+### Learning Objectives
+This chapter will demonstrate two data wrangling techniques:
 
-```{r}
+-  Transforming wide data to long data format using `pivot_longer()`.
+-  Merging datasets using `left_join()` for map visualization.
+
+## Load data and packages
+
+To merge the life expectancy data with the world map data, we will use the `rnaturalearth` package for world map data.
+
+```{r message=FALSE}
 library(tidyverse) 
-library(rnaturalearth) # For world map data
+library(rnaturalearth) # install if not available
 ```
 
 ```{r}
 # Load the life expectancy data
-df <- read_csv("data/life_expectancy.csv")
+lifex <- read_csv("data/life_expectancy.csv")
 ```
 
 ```{r}
-glimpse(df)
+glimpse(lifex)
 ```
 
-Based on the output of `glimpse()`, we can see that the dataset contains 217 rows and 69 columns. Each row is a country, and each column represents the life expectancy at birth for a specific year.
+Based on the output of `glimpse()`, we can see that the dataset contains 217 rows and 69 columns. However, the last 2 columns contain all NA values, so we may want to remove them from analysis.
 
-However, this is not a clean format for data visualization. We need to transform this wide data format to a long data format using the `pivot_longer()` function.
+You’ll notice that this format isn’t ideal for data visualization. Columns 5 to 67 represent years, with their values corresponding to life expectancy for each year. However, a cleaner format would be a long data structure, where each row represents a country, a year, and the corresponding life expectancy.
+
+To achieve this, we need to convert the wide format into a long format using the `pivot_longer()` function.
 
 ## Transform Wide to Long Data
 
-We found there are NAs for data in 2023 and after. So we will only select columns from 2022 and before, that is columns 5 to 67.
+Let's check this [animation](https://www.garrickadenbuie.com/project/tidyexplain/#pivot-wider-and-longer) made by Garrick Aden-Buie to understand the transformation from wide to long data format.
+
+```{r}
+# include a gif
+knitr::include_graphics("images/tidyr-pivoting.gif")
+```
+
 
 ```{r}
 # Transform wide data to long data format
-df_long <- df |> 
+lifex_long <- lifex |> 
   rename(country = `Country Name`,
          country_code = `Country Code`) |>
   pivot_longer(cols = 5:67, 
@@ -49,30 +61,68 @@ df_long <- df |>
 ```
 
 ```{r}
-glimpse(df_long)
+glimpse(lifex_long)
 ```
 
 ```{r}
-summary(df_long)
+summary(lifex_long)
 ```
 
-## Merging with World Map Data
+## Merging with World Map Data: mutating join
 
+OK, now we have cleaned up the life expectancy data and transformed it into a long format. Next, we will merge this data with the world map data to prepare for map visualization.
 
+We will load the world map data from the package `rnaturalearth`, which provides spatial data for countries.
+
+### Load World Map Data
 ```{r}
-# Load world map data
 world <- ne_countries(scale = "medium", returnclass = "sf") |>
   select(iso_a3, geometry)
+```
 
+
+### Merge Data by `left_join()`
+Then, we will use the `left_join()` function to merge the life expectancy data with the world map data based on the `country_code` and `iso_a3` columns.
+
+Here is how the `left_join()` function works:
+
+```{r}
+knitr::include_graphics("images/left-join.gif")
+```
+
+::: callout-important
+## which data to be left? 
+Here we will use `left_join` to merge the world map data with the life expectancy data based on the country codes. The reason we let `world` be the left table is that we want to keep all countries in the world map data, even if they don't have life expectancy data. Otherwise, we would lose some countries in the map.
+:::
+
+```{r}
 # Merge life expectancy data with world map data
-df_merge <- df_long |>
-  filter(year == 2022) |>
-  left_join(world, by = c("country_code" = "iso_a3"))
+df_merge <- world |>
+  left_join(lifex_long, by = c("iso_a3" = "country_code"))
 ```
 
 ```{r}
 glimpse(df_merge)
 ```
+
+```{r}
+summary(df_merge)
+```
+Here we found there are some NAs for year and life_expectancy, which means some countries don't have life expectancy data in some years.
+
+### Clean up NAs and spatial features
+
+```{r}
+df_merge |>
+  filter(is.na(year) | is.na(life_expectancy))
+```
+
+```{r}
+library(sf)
+df_merge <- df_merge |>
+  filter(!is.na(year) & !is.na(life_expectancy))
+```
+
 
 
 ## Save the Merged Data
@@ -83,5 +133,5 @@ save(df_merge, file = "out/expectancy_merged.RData")
 ```
 
 
-
+See @sec-lifexmap for following data analysis and visualization.
 

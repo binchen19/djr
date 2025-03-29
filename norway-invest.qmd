@@ -7,14 +7,11 @@ format: html
 
 ## Overview
 
-In this notebook, we will analyze the Norwegian Government Pension Fund Global (GPFG), the world’s largest sovereign wealth fund, to understand where it invests.
-The fund is managed by Norges Bank Investment Management (NBIM), a division of the Norwegian Central Bank.
+In this notebook, we will analyze the Norwegian Government Pension Fund Global (GPFG), the world’s largest sovereign wealth fund, to understand where it invests. The fund is managed by Norges Bank Investment Management (NBIM), a division of the Norwegian Central Bank.
 
 ### About the Data
 
-We will use investment data from the NBIM website, which details the fund’s holdings across different asset classes, sectors, and countries for the year 2024.
--  The original dataset, downloaded from NBIM, is in Excel format (`EQ_2024_Country.xlsx`).
--  For convenience, it has been renamed to `gpfg-2024.xlsx` and stored in the `data` folder.
+We will use investment data from the NBIM website, which details the fund’s holdings across different asset classes, sectors, and countries for the year 2024. The original dataset, downloaded from NBIM, is in Excel format (`EQ_2024_Country.xlsx`). For convenience, it has been renamed to `gpfg-2024.xlsx` and stored in the `data` folder.
 
 ### Objectives
 
