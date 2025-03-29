@@ -1,9 +1,16 @@
----
-title: "Data Analysis"
-format: html
----
+# Data Analysis I
 
-## Establishing Facts: Single Variable Analysis
+In this chapter, we will begin analyzing data to answer questions from a journalistic perspective. I have categorized the questions into three types, each with a corresponding analytical approach:
+
+| Question Type           | Story Angle                                       | Example Functions        |
+|-------------------------|--------------------------------------------------|--------------------------|
+| Single Variable Analysis | Understanding distributions and key statistics  | `summary()`, `table()`, `unique()` |
+| Time-Based Analysis     | Identifying trends and patterns over time        | `group_by()`, `geom_line()` |
+| Group Comparisons      | Comparing differences across categories           | `group_by()`, `summarise()` |
+
+We will use the `hksalary_cleaned.RData` to demonstrate these analytical approaches.
+
+## Single Variable Analysis
 
 ```{r}
 library(tidyverse)
@@ -38,8 +45,6 @@ df_clean |>
 ## `count()`
 Using `count()` on a single variable in this dataset may not provide meaningful insights, as it simply counts the frequency of each category. However, in other contexts—such as the "Billboard Hot100" dataset—`count()` is useful for counting the number of hot100 songs by each artist, or the number of weeks each song was on the chart.
 :::
-
-
 
 ### Salary Baseline Analysis
 ```{r}

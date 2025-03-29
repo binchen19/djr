@@ -84,7 +84,7 @@ world <- ne_countries(scale = "medium", returnclass = "sf") |>
 ### Merge Data by `left_join()`
 Then, we will use the `left_join()` function to merge the life expectancy data with the world map data based on the `country_code` and `iso_a3` columns.
 
-Here is how the `left_join()` function works:
+Here is how the `left_join()` function works (by Garrick Aden-Buie):
 
 ```{r}
 knitr::include_graphics("images/left-join.gif")

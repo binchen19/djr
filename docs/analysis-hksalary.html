@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 11&nbsp; Mapping Global Life Expectancy</title>
+<title>Data Journalism with R - 6&nbsp; Data Analysis I</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./norway-invest.html" rel="next">
-<link href="./map-usa-election.html" rel="prev">
+<link href="./analysis-lifex.html" rel="next">
+<link href="./transform-merge.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-lifex.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-hksalary.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./analysis-hksalary.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-hksalary.html" class="sidebar-item-text sidebar-link">
+  <a href="./analysis-hksalary.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></span></a>
   </div>
 </li>
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link active">
+  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></a>
   </div>
 </li>
@@ -326,27 +326,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up"><span class="header-section-number">11.1</span> Set up</a></li>
-  <li><a href="#overview-of-life-expectancy" id="toc-overview-of-life-expectancy" class="nav-link" data-scroll-target="#overview-of-life-expectancy"><span class="header-section-number">11.2</span> Overview of Life Expectancy</a>
+  <li><a href="#single-variable-analysis" id="toc-single-variable-analysis" class="nav-link active" data-scroll-target="#single-variable-analysis"><span class="header-section-number">6.1</span> Single Variable Analysis</a>
   <ul class="collapse">
-  <li><a href="#top-10-countriesregions-with-highest-life-expectancy" id="toc-top-10-countriesregions-with-highest-life-expectancy" class="nav-link" data-scroll-target="#top-10-countriesregions-with-highest-life-expectancy">Top 10 Countries/Regions with Highest Life Expectancy</a></li>
+  <li><a href="#unique-values" id="toc-unique-values" class="nav-link" data-scroll-target="#unique-values">Unique Values</a></li>
+  <li><a href="#salary-baseline-analysis" id="toc-salary-baseline-analysis" class="nav-link" data-scroll-target="#salary-baseline-analysis">Salary Baseline Analysis</a></li>
   </ul></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">11.3</span> Data Visualization</a>
+  <li><a href="#tracking-changes-time-based-analysis" id="toc-tracking-changes-time-based-analysis" class="nav-link" data-scroll-target="#tracking-changes-time-based-analysis"><span class="header-section-number">6.2</span> Tracking Changes: Time-Based Analysis</a>
   <ul class="collapse">
-  <li><a href="#bar-plot-life-expectancy-in-2022-by-10-major-countries" id="toc-bar-plot-life-expectancy-in-2022-by-10-major-countries" class="nav-link" data-scroll-target="#bar-plot-life-expectancy-in-2022-by-10-major-countries">Bar Plot: Life Expectancy in 2022 by 10 Major Countries</a></li>
-  <li><a href="#line-plot-life-expectancy-trend-in-china" id="toc-line-plot-life-expectancy-trend-in-china" class="nav-link" data-scroll-target="#line-plot-life-expectancy-trend-in-china">Line Plot: Life expectancy trend in China</a></li>
-  <li><a href="#multiple-lines" id="toc-multiple-lines" class="nav-link" data-scroll-target="#multiple-lines">Multiple Lines</a></li>
-  <li><a href="#map-plot-life-expectancy-by-country-in-2022" id="toc-map-plot-life-expectancy-by-country-in-2022" class="nav-link" data-scroll-target="#map-plot-life-expectancy-by-country-in-2022">Map Plot: Life Expectancy by Country in 2022</a></li>
+  <li><a href="#salary-evolution-2014-2023" id="toc-salary-evolution-2014-2023" class="nav-link" data-scroll-target="#salary-evolution-2014-2023">Salary Evolution 2014-2023</a></li>
   </ul></li>
+  <li><a href="#revealing-disparities-group-comparisons" id="toc-revealing-disparities-group-comparisons" class="nav-link" data-scroll-target="#revealing-disparities-group-comparisons"><span class="header-section-number">6.3</span> Revealing Disparities: Group Comparisons</a>
+  <ul class="collapse">
+  <li><a href="#degree-level-comparison" id="toc-degree-level-comparison" class="nav-link" data-scroll-target="#degree-level-comparison">Degree Level Comparison</a></li>
+  <li><a href="#top-earning-fields" id="toc-top-earning-fields" class="nav-link" data-scroll-target="#top-earning-fields">Top Earning Fields</a></li>
+  </ul></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">6.4</span> Key Functions Recap</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-lifex.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-hksalary.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./analysis-hksalary.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-lifexmap" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></h1>
 </div>
 
 
@@ -363,8 +366,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="set-up" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="set-up"><span class="header-section-number">11.1</span> Set up</h2>
+<p>In this chapter, we will begin analyzing data to answer questions from a journalistic perspective. I have categorized the questions into three types, each with a corresponding analytical approach:</p>
+<table class="table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 49%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question Type</th>
+<th>Story Angle</th>
+<th>Example Functions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Single Variable Analysis</td>
+<td>Understanding distributions and key statistics</td>
+<td><code>summary()</code>, <code>table()</code>, <code>unique()</code></td>
+</tr>
+<tr class="even">
+<td>Time-Based Analysis</td>
+<td>Identifying trends and patterns over time</td>
+<td><code>group_by()</code>, <code>geom_line()</code></td>
+</tr>
+<tr class="odd">
+<td>Group Comparisons</td>
+<td>Comparing differences across categories</td>
+<td><code>group_by()</code>, <code>summarise()</code></td>
+</tr>
+</tbody>
+</table>
+<p>We will use the <code>hksalary_cleaned.RData</code> to demonstrate these analytical approaches.</p>
+<section id="single-variable-analysis" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="single-variable-analysis"><span class="header-section-number">6.1</span> Single Variable Analysis</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -379,190 +415,245 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># For world map data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"out/expectancy_merged.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"out/hksalary_cleaned.RData"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 368
+Columns: 4
+$ year     &lt;int&gt; 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2…
+$ level    &lt;chr&gt; "Sub-degree", "Sub-degree", "Sub-degree", "Sub-degree", "Sub-…
+$ category &lt;chr&gt; "Medicine, Dentistry and Health", "Sciences", "Engineering an…
+$ salary   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155, 346, 148, 154, 157, 155, 1…</code></pre>
 </div>
-</section>
-<section id="overview-of-life-expectancy" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="overview-of-life-expectancy"><span class="header-section-number">11.2</span> Overview of Life Expectancy</h2>
-<p>Here let’s start by looking at the summary statistics of worldwide life expectancy in the most recent year available (2022).</p>
+</div>
+<section id="unique-values" class="level3">
+<h3 class="anchored" data-anchor-id="unique-values">Unique Values</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics of worldwide life expectancy in 2022</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df_merge <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_life_expectancy =</span> <span class="fu">mean</span>(life_expectancy),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_life_expectancy =</span> <span class="fu">median</span>(life_expectancy),</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_life_expectancy =</span> <span class="fu">min</span>(life_expectancy),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_life_expectancy =</span> <span class="fu">max</span>(life_expectancy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique degree levels</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["mean_life_expectancy"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["median_life_expectancy"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["min_life_expectancy"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["max_life_expectancy"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["geometry"],"name":[5],"type":["s_MULTIP"],"align":["right"]}],"data":[{"1":"72.18787","2":"73.4345","3":"52.997","4":"85.377","5":"<s_MULTIP>","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["level"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Sub-degree"},{"1":"Undergraduate"},{"1":"Taught Postgraduate"},{"1":"Research Postgraduate"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<section id="top-10-countriesregions-with-highest-life-expectancy" class="level3">
-<h3 class="anchored" data-anchor-id="top-10-countriesregions-with-highest-life-expectancy">Top 10 Countries/Regions with Highest Life Expectancy</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top 10 countries with the highest life expectancy in 2022</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_merge <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(life_expectancy)) <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unique categories</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df_clean<span class="sc">$</span>category)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Medicine, Dentistry and Health" "Sciences"                      
+[3] "Engineering and Technology"     "Business and Management"       
+[5] "Social Sciences"                "Arts and Humanities"           
+[7] "Education"                     </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+unique() vs distinct()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>unique()</code> function returns a vector of unique values, while <code>distinct()</code> returns a data frame with unique rows.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Category distribution</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(category) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["iso_a3"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["life_expectancy"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["geometry"],"name":[5],"type":["s_MULTIP"],"align":["right"]}],"data":[{"1":"MAC","2":"Macao SAR, China","3":"2022","4":"85.37700","5":"<s_MULTIP>","_rn_":"1"},{"1":"LIE","2":"Liechtenstein","3":"2022","4":"84.31951","5":"<s_MULTIP>","_rn_":"2"},{"1":"JPN","2":"Japan","3":"2022","4":"83.99634","5":"<s_MULTIP>","_rn_":"3"},{"1":"HKG","2":"Hong Kong SAR, China","3":"2022","4":"83.66098","5":"<s_MULTIP>","_rn_":"4"},{"1":"PYF","2":"French Polynesia","3":"2022","4":"83.55000","5":"<s_MULTIP>","_rn_":"5"},{"1":"CHE","2":"Switzerland","3":"2022","4":"83.45366","5":"<s_MULTIP>","_rn_":"6"},{"1":"FRO","2":"Faroe Islands","3":"2022","4":"83.30000","5":"<s_MULTIP>","_rn_":"7"},{"1":"AUS","2":"Australia","3":"2022","4":"83.20000","5":"<s_MULTIP>","_rn_":"8"},{"1":"SWE","2":"Sweden","3":"2022","4":"83.10976","5":"<s_MULTIP>","_rn_":"9"},{"1":"ESP","2":"Spain","3":"2022","4":"83.08293","5":"<s_MULTIP>","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["category"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Arts and Humanities","2":"56"},{"1":"Education","2":"56"},{"1":"Engineering and Technology","2":"56"},{"1":"Sciences","2":"56"},{"1":"Social Sciences","2":"56"},{"1":"Medicine, Dentistry and Health","2":"47"},{"1":"Business and Management","2":"41"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>count()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using <code>count()</code> on a single variable in this dataset may not provide meaningful insights, as it simply counts the frequency of each category. However, in other contexts—such as the “Billboard Hot100” dataset—<code>count()</code> is useful for counting the number of hot100 songs by each artist, or the number of weeks each song was on the chart.</p>
+</div>
+</div>
+</section>
+<section id="salary-baseline-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="salary-baseline-analysis">Salary Baseline Analysis</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Overall salary distribution</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg =</span> <span class="fu">mean</span>(salary),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(salary),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_10 =</span> <span class="fu">quantile</span>(salary, <span class="fl">0.9</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["avg"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["top_10"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"283.7772","2":"269","3":"418.2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="data-visualization" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">11.3</span> Data Visualization</h2>
-<section id="bar-plot-life-expectancy-in-2022-by-10-major-countries" class="level3">
-<h3 class="anchored" data-anchor-id="bar-plot-life-expectancy-in-2022-by-10-major-countries">Bar Plot: Life Expectancy in 2022 by 10 Major Countries</h3>
+<section id="tracking-changes-time-based-analysis" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="tracking-changes-time-based-analysis"><span class="header-section-number">6.2</span> Tracking Changes: Time-Based Analysis</h2>
+<section id="salary-evolution-2014-2023" class="level3">
+<h3 class="anchored" data-anchor-id="salary-evolution-2014-2023">Salary Evolution 2014-2023</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of 10 major countries (with highest GDP)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>country_list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"China"</span>, <span class="st">"Japan"</span>, <span class="st">"Germany"</span>, <span class="st">"India"</span>, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"United Kingdom"</span>, <span class="st">"France"</span>, <span class="st">"Brazil"</span>, <span class="st">"Italy"</span>, <span class="st">"Canada"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_salary =</span> <span class="fu">mean</span>(salary)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["avg_salary"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2009","2":"220.7857"},{"1":"2010","2":"224.7778"},{"1":"2011","2":"231.8929"},{"1":"2012","2":"241.8148"},{"1":"2013","2":"252.4615"},{"1":"2014","2":"267.3704"},{"1":"2015","2":"276.5556"},{"1":"2016","2":"284.9231"},{"1":"2017","2":"291.3077"},{"1":"2018","2":"324.8846"},{"1":"2019","2":"320.1600"},{"1":"2020","2":"339.1200"},{"1":"2021","2":"349.8800"},{"1":"2022","2":"369.9600"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_merge <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> country_list) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country, life_expectancy), <span class="at">y =</span> life_expectancy)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Life Expectancy in 2022 by 10 Major Countries"</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Country"</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life Expectancy at Birth"</span>,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Country"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: World Bank | Author: Bin Chen"</span>) <span class="sc">+</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(life_expectancy, <span class="dv">1</span>)), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_salary =</span> <span class="fu">mean</span>(salary))<span class="sc">|&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">change =</span> avg_salary <span class="sc">-</span> <span class="fu">lag</span>(avg_salary),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_change =</span> change<span class="sc">/</span><span class="fu">lag</span>(avg_salary)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="map-lifex_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["avg_salary"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["change"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["pct_change"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2009","2":"220.7857","3":"NA","4":"NA"},{"1":"2010","2":"224.7778","3":"3.992063","4":"0.01808117"},{"1":"2011","2":"231.8929","3":"7.115079","4":"0.03165384"},{"1":"2012","2":"241.8148","3":"9.921958","4":"0.04278682"},{"1":"2013","2":"252.4615","3":"10.646724","4":"0.04402842"},{"1":"2014","2":"267.3704","3":"14.908832","4":"0.05905387"},{"1":"2015","2":"276.5556","3":"9.185185","4":"0.03435379"},{"1":"2016","2":"284.9231","3":"8.367521","4":"0.03025620"},{"1":"2017","2":"291.3077","3":"6.384615","4":"0.02240821"},{"1":"2018","2":"324.8846","3":"33.576923","4":"0.11526274"},{"1":"2019","2":"320.1600","3":"-4.724615","4":"-0.01454244"},{"1":"2020","2":"339.1200","3":"18.960000","4":"0.05922039"},{"1":"2021","2":"349.8800","3":"10.760000","4":"0.03172918"},{"1":"2022","2":"369.9600","3":"20.080000","4":"0.05739111"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>lag()</code> Function
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>lag()</code> function is used to compute the difference between the current and previous year’s average salary. This helps identify trends and changes over time.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="revealing-disparities-group-comparisons" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="revealing-disparities-group-comparisons"><span class="header-section-number">6.3</span> Revealing Disparities: Group Comparisons</h2>
+<section id="degree-level-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="degree-level-comparison">Degree Level Comparison</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(level) <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_salary =</span> <span class="fu">mean</span>(salary))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["level"],"name":[1],"type":["chr"],"align":["left"]},{"label":["avg_salary"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Research Postgraduate","2":"332.7143"},{"1":"Sub-degree","2":"190.9535"},{"1":"Taught Postgraduate","2":"356.5000"},{"1":"Undergraduate","2":"252.4796"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
 </div>
 </section>
-<section id="line-plot-life-expectancy-trend-in-china" class="level3">
-<h3 class="anchored" data-anchor-id="line-plot-life-expectancy-trend-in-china">Line Plot: Life expectancy trend in China</h3>
+<section id="top-earning-fields" class="level3">
+<h3 class="anchored" data-anchor-id="top-earning-fields">Top Earning Fields</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Life expectancy trend in China</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df_merge <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"China"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> life_expectancy)) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Life Expectancy Trend in China"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life Expectancy at Birth"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: World Bank | Author: Bin Chen"</span>) <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(category) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_salary =</span> <span class="fu">mean</span>(salary))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="map-lifex_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["category"],"name":[1],"type":["chr"],"align":["left"]},{"label":["avg_salary"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Arts and Humanities","2":"250.0893"},{"1":"Business and Management","2":"277.1220"},{"1":"Education","2":"285.8393"},{"1":"Engineering and Technology","2":"265.3571"},{"1":"Medicine, Dentistry and Health","2":"373.3830"},{"1":"Sciences","2":"252.5893"},{"1":"Social Sciences","2":"294.6786"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
 </div>
 </section>
-<section id="multiple-lines" class="level3">
-<h3 class="anchored" data-anchor-id="multiple-lines">Multiple Lines</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Life expectancy trend in the 10 major countries</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df_merge <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> country_list) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> life_expectancy, <span class="at">color =</span> country)) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Life Expectancy Trend in 10 Major Countries"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">" "</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">" "</span>,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: World Bank | Author: Bin Chen"</span>) <span class="sc">+</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span> </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="map-lifex_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
-<section id="map-plot-life-expectancy-by-country-in-2022" class="level3">
-<h3 class="anchored" data-anchor-id="map-plot-life-expectancy-by-country-in-2022">Map Plot: Life Expectancy by Country in 2022</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map of life expectancy by country in 2022</span></span>
-<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2" aria-hidden="true" tabindex="-1"></a>df_merge <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>()) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-9-5" class="code-annotation-target"><a href="#annotated-cell-9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> life_expectancy)) <span class="sc">+</span></span>
-<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, </span>
-<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">high =</span> <span class="st">"#3182bd"</span>,</span>
-<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na.value =</span> <span class="st">"grey90"</span>, </span>
-<span id="annotated-cell-9-9"><a href="#annotated-cell-9-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">name =</span> <span class="st">"Life Expectancy"</span>, </span>
-<span id="annotated-cell-9-10"><a href="#annotated-cell-9-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
-<span id="annotated-cell-9-11"><a href="#annotated-cell-9-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">barwidth =</span> <span class="dv">10</span>,</span>
-<span id="annotated-cell-9-12"><a href="#annotated-cell-9-12" aria-hidden="true" tabindex="-1"></a>                        <span class="at">barheight =</span> <span class="fl">0.5</span>,</span>
-<span id="annotated-cell-9-13"><a href="#annotated-cell-9-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">title.position =</span> <span class="st">"top"</span>,</span>
-<span id="annotated-cell-9-14"><a href="#annotated-cell-9-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">title.hjust =</span> <span class="fl">0.5</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-9-15" class="code-annotation-target"><a href="#annotated-cell-9-15" aria-hidden="true" tabindex="-1"></a>                      )) <span class="sc">+</span></span>
-<span id="annotated-cell-9-16"><a href="#annotated-cell-9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Life Expectancy at Birth by Country in 2022"</span>,</span>
-<span id="annotated-cell-9-17"><a href="#annotated-cell-9-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Life Expectancy at Birth"</span>,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-9-18" class="code-annotation-target"><a href="#annotated-cell-9-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: World Bank | By: Bin Chen"</span>) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-9-19" class="code-annotation-target"><a href="#annotated-cell-9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="annotated-cell-9-20"><a href="#annotated-cell-9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="annotated-cell-9-21"><a href="#annotated-cell-9-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-9-22" class="code-annotation-target"><a href="#annotated-cell-9-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">11</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="1">Set up the plot.</span>
-</dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="5" data-code-annotation="2">Create a spatial feature plot using the world map geometry and fill color based on life expectancy.</span>
-</dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="15" data-code-annotation="3">Set the color gradient for life expectancy.</span>
-</dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="18" data-code-annotation="4">Add titles and captions.</span>
-</dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="19" data-code-annotation="5">Remove the background.</span>
-</dd>
-<dt data-target-cell="annotated-cell-9" data-target-annotation="6">6</dt>
-<dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="22" data-code-annotation="6">Adjust the legend position and title size.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="map-lifex_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="key-functions-recap" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">6.4</span> Key Functions Recap</h2>
+<table class="table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 25%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Function</strong></th>
+<th><strong>Package</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Example Use</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>distinct()</code></td>
+<td><code>dplyr</code></td>
+<td>Returns unique rows based on specified columns</td>
+<td><code>df_clean |&gt; distinct(level)</code></td>
+</tr>
+<tr class="even">
+<td><code>unique()</code></td>
+<td>Base R</td>
+<td>Returns unique values in a vector</td>
+<td><code>unique(df_clean$category)</code></td>
+</tr>
+<tr class="odd">
+<td><code>count()</code></td>
+<td><code>dplyr</code></td>
+<td>Counts frequency of unique values in a column</td>
+<td><code>df_clean |&gt; count(category) |&gt; arrange(desc(n))</code></td>
+</tr>
+<tr class="even">
+<td><code>summarise()</code></td>
+<td><code>dplyr</code></td>
+<td>Computes summary statistics for variables</td>
+<td><code>df_clean |&gt; summarise(avg = mean(salary), median = median(salary), top_10 = quantile(salary, 0.9))</code></td>
+</tr>
+<tr class="odd">
+<td><code>group_by()</code></td>
+<td><code>dplyr</code></td>
+<td>Groups data by a variable for summary operations</td>
+<td><code>df_clean |&gt; group_by(year) |&gt; summarise(avg_salary = mean(salary))</code></td>
+</tr>
+<tr class="even">
+<td><code>mutate()</code></td>
+<td><code>dplyr</code></td>
+<td>Creates or modifies columns in a data frame</td>
+<td><code>df_clean |&gt; mutate(change = avg_salary - lag(avg_salary), pct_change = change/lag(avg_salary))</code></td>
+</tr>
+<tr class="odd">
+<td><code>lag()</code></td>
+<td><code>dplyr</code></td>
+<td>Computes the lag of a vector (previous values)</td>
+<td><code>lag(avg_salary)</code></td>
+</tr>
+</tbody>
+</table>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -955,13 +1046,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./map-usa-election.html" class="pagination-link  aria-label=" &lt;span="" us="" election="" 2024&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span>
+      <a href="./transform-merge.html" class="pagination-link  aria-label=" &lt;span="" transformation="" and="" merging&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transformation and Merging</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./norway-invest.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>GPFG Investments</span>">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./analysis-lifex.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Data Analysis II</span>">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Analysis II</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

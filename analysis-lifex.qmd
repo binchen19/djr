@@ -1,0 +1,90 @@
+# Data Analysis II
+
+## Overview 
+
+In this chapter, we will use a different dataset to demonstrate the three types of questions that are often asked in journalistic reporting.
+
+### About the data
+
+This dataset was downloaded from the World Bank website and saved as a CSV file named `life_expectancy.csv`, stored in the `data` folder. The dataset was last updated on March 24, 2025, contains the life expectancy at birth for various countries over the years.
+
+### Learning Objectives
+
+This chapter will demonstrate three types of data analysis:
+
+-  Single Variable Analysis: Analyzing the distribution of global life expectancy.
+-  Time-Based Analysis: Tracking changes in China's life expectancy over time.
+-  Group Comparisons: Comparing life expectancy across different countries.
+
+## Load data and packages
+
+```{r}
+library(tidyverse)
+lifex <- read_csv("data/life_expectancy.csv")
+```
+
+## Data Wrangling
+```{r}
+lifex_clean <- lifex |> 
+  select(-`Indicator Name`, -`Indicator Code`, -`Country Code`) |>
+  pivot_longer(cols = -`Country Name`, 
+               names_to = "year", 
+               values_to = "life_expectancy") |>
+  mutate(year = as.numeric(year)) |>
+  select(country = `Country Name`, year, life_expectancy) |>
+  drop_na()
+
+glimpse(lifex_clean)
+```
+
+
+
+## Single Variable Analysis: Understanding Global Life Expectancy Distribution
+
+```{r}
+# Summary statistics of life expectancy
+lifex_clean |> 
+  summarise(
+    avg = mean(life_expectancy, na.rm = TRUE),
+    median = median(life_expectancy, na.rm = TRUE),
+    min = min(life_expectancy, na.rm = TRUE),
+    max = max(life_expectancy, na.rm = TRUE)
+  )
+```
+
+```{r}
+# visualize the distribution of life expectancy
+hist(lifex_clean$life_expectancy, 
+     main = "Global Life Expectancy Distribution",
+     xlab = "Life Expectancy",
+     col = "skyblue",
+     border = "black")
+```
+## Time-Based Analysis: Tracking Changes in China's Life Expectancy
+
+```{r}
+lifex_clean |>
+  filter(country == "China") |>
+  ggplot(aes(x = year, y = life_expectancy)) +
+  geom_line(color = "steelblue") +
+  labs(title = "Life Expectancy in China Over Time",
+       x = "Year",
+       y = "Life Expectancy") +
+  theme_minimal()
+```
+## Group Comparisons: Comparing Life Expectancy Across Countries
+
+```{r}
+lifex_clean |>
+  filter(year == 2022) |>
+  top_n(10, life_expectancy) |>
+  ggplot(aes(x = reorder(country, life_expectancy), y = life_expectancy)) +
+  geom_col(fill = "skyblue") +
+  coord_flip() +
+  labs(title = "Life Expectancy Across Countries",
+       x = "Country",
+       y = "Life Expectancy") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 8))
+```
+

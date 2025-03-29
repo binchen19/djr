@@ -23,7 +23,8 @@ book:
       - transform-merge.qmd
     - part: "Data Analysis"
       chapters:
-      - data-analysis.qmd
+      - analysis-hksalary.qmd
+      - analysis-lifex.qmd
     - part: "Data Visualization"
       chapters:
       - visual-01.qmd
