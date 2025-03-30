@@ -29,7 +29,6 @@ book:
       chapters:
       - visual-01.qmd
       - visual-02.qmd
-      - map-usa-election.qmd
       - map-lifex.qmd
       - norway-invest.qmd
     - part: "Special Topics"
@@ -41,6 +40,7 @@ book:
       - hot100.qmd
       - olympics.qmd
       - employment.qmd
+      - map-usa-election.qmd
       
       
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 11&nbsp; Mapping Global Life Expectancy</title>
+<title>Data Journalism with R - 10&nbsp; Mapping Global Life Expectancy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./norway-invest.html" rel="next">
-<link href="./map-usa-election.html" rel="prev">
+<link href="./visual-02.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-lifex.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-lifex.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transformation and Merging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></span></a>
   </div>
 </li>
       </ul>
@@ -246,20 +246,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map-usa-election.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./map-lifex.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span></a>
   </div>
 </li>
       </ul>
@@ -276,13 +270,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto-pub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Quarto Webiste</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Quarto Webiste</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -299,19 +293,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-usa-election.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span></a>
   </div>
 </li>
       </ul>
@@ -326,12 +326,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up"><span class="header-section-number">11.1</span> Set up</a></li>
-  <li><a href="#overview-of-life-expectancy" id="toc-overview-of-life-expectancy" class="nav-link" data-scroll-target="#overview-of-life-expectancy"><span class="header-section-number">11.2</span> Overview of Life Expectancy</a>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up"><span class="header-section-number">10.1</span> Set up</a></li>
+  <li><a href="#overview-of-life-expectancy" id="toc-overview-of-life-expectancy" class="nav-link" data-scroll-target="#overview-of-life-expectancy"><span class="header-section-number">10.2</span> Overview of Life Expectancy</a>
   <ul class="collapse">
   <li><a href="#top-10-countriesregions-with-highest-life-expectancy" id="toc-top-10-countriesregions-with-highest-life-expectancy" class="nav-link" data-scroll-target="#top-10-countriesregions-with-highest-life-expectancy">Top 10 Countries/Regions with Highest Life Expectancy</a></li>
   </ul></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">11.3</span> Data Visualization</a>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">10.3</span> Data Visualization</a>
   <ul class="collapse">
   <li><a href="#bar-plot-life-expectancy-in-2022-by-10-major-countries" id="toc-bar-plot-life-expectancy-in-2022-by-10-major-countries" class="nav-link" data-scroll-target="#bar-plot-life-expectancy-in-2022-by-10-major-countries">Bar Plot: Life Expectancy in 2022 by 10 Major Countries</a></li>
   <li><a href="#line-plot-life-expectancy-trend-in-china" id="toc-line-plot-life-expectancy-trend-in-china" class="nav-link" data-scroll-target="#line-plot-life-expectancy-trend-in-china">Line Plot: Life expectancy trend in China</a></li>
@@ -344,9 +344,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-lifex.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-lifex.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-lifexmap" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></h1>
+<h1 class="title"><span id="sec-lifexmap" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></h1>
 </div>
 
 
@@ -363,8 +363,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="set-up" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="set-up"><span class="header-section-number">11.1</span> Set up</h2>
+<section id="set-up" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="set-up"><span class="header-section-number">10.1</span> Set up</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -384,8 +384,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"out/expectancy_merged.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="overview-of-life-expectancy" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="overview-of-life-expectancy"><span class="header-section-number">11.2</span> Overview of Life Expectancy</h2>
+<section id="overview-of-life-expectancy" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="overview-of-life-expectancy"><span class="header-section-number">10.2</span> Overview of Life Expectancy</h2>
 <p>Here let’s start by looking at the summary statistics of worldwide life expectancy in the most recent year available (2022).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics of worldwide life expectancy in 2022</span></span>
@@ -421,8 +421,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="data-visualization" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">11.3</span> Data Visualization</h2>
+<section id="data-visualization" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">10.3</span> Data Visualization</h2>
 <section id="bar-plot-life-expectancy-in-2022-by-10-major-countries" class="level3">
 <h3 class="anchored" data-anchor-id="bar-plot-life-expectancy-in-2022-by-10-major-countries">Bar Plot: Life Expectancy in 2022 by 10 Major Countries</h3>
 <div class="cell">
@@ -955,13 +955,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./map-usa-election.html" class="pagination-link  aria-label=" &lt;span="" us="" election="" 2024&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span>
+      <a href="./visual-02.html" class="pagination-link  aria-label=" &lt;span="" 2.0&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./norway-invest.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>GPFG Investments</span>">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./norway-invest.html" class="pagination-link" aria-label="<span class='chapter-number'>11</span>&nbsp; <span class='chapter-title'>GPFG Investments</span>">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

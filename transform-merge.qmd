@@ -91,6 +91,9 @@ world <- ne_countries(scale = "medium", returnclass = "sf") |>
   select(iso_a3, geometry)
 ```
 
+::: callout-note
+`ne_countries()` function from the `rnaturalearth` package returns a spatial feature object with country geometries. `ne` stands for Natural Earth, which is a public domain map dataset. We select the `iso_a3` column as the country code (because it's in the same format as the `country` column in the world bank data) and the `geometry` column for plotting.
+:::
 
 ### Merge Data by `left_join()`
 Then, we will use the `left_join()` function to merge the life expectancy data with the world map data based on the `country_code` and `iso_a3` columns.
