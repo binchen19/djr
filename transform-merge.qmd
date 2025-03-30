@@ -1,4 +1,4 @@
-# Data Transformation and Merging
+# Pivoting and Joining
 
 ## Overview 
 
@@ -37,6 +37,17 @@ Based on the output of `glimpse()`, we can see that the dataset contains 217 row
 You’ll notice that this format isn’t ideal for data visualization. Columns 5 to 67 represent years, with their values corresponding to life expectancy for each year. However, a cleaner format would be a long data structure, where each row represents a country, a year, and the corresponding life expectancy.
 
 To achieve this, we need to convert the wide format into a long format using the `pivot_longer()` function.
+
+## Long vs Wide Data
+
+In R, we generally prefer working with the **long** data (tidy) format for data analysis, as it aligns with the principles of tidy data. A typical tidy dataset follows these rules:
+
+-  Each variable has its own column.
+-  Each observation has its own row.
+-  Each value has its own cell.
+
+In contrast, wide data format has multiple columns for the same variable, which can make it harder to work with for data analysis and visualization. For example, in this life expectancy dataset, each year is represented as a separate column, however, ideally we want all years to be in a single column named "year", and all values to be in a single column named "life_expectancy".
+
 
 ## Transform Wide to Long Data
 

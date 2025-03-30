@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 5&nbsp; Data Transformation and Merging</title>
+<title>Data Journalism with R - 5&nbsp; Pivoting and Joining</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transformation and Merging</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -195,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transformation and Merging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></span></a>
   </div>
 </li>
       </ul>
@@ -332,23 +332,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   </ul></li>
   <li><a href="#load-data-and-packages" id="toc-load-data-and-packages" class="nav-link" data-scroll-target="#load-data-and-packages"><span class="header-section-number">5.2</span> Load data and packages</a></li>
-  <li><a href="#transform-wide-to-long-data" id="toc-transform-wide-to-long-data" class="nav-link" data-scroll-target="#transform-wide-to-long-data"><span class="header-section-number">5.3</span> Transform Wide to Long Data</a></li>
-  <li><a href="#merging-with-world-map-data-mutating-join" id="toc-merging-with-world-map-data-mutating-join" class="nav-link" data-scroll-target="#merging-with-world-map-data-mutating-join"><span class="header-section-number">5.4</span> Merging with World Map Data: mutating join</a>
+  <li><a href="#long-vs-wide-data" id="toc-long-vs-wide-data" class="nav-link" data-scroll-target="#long-vs-wide-data"><span class="header-section-number">5.3</span> Long vs Wide Data</a></li>
+  <li><a href="#transform-wide-to-long-data" id="toc-transform-wide-to-long-data" class="nav-link" data-scroll-target="#transform-wide-to-long-data"><span class="header-section-number">5.4</span> Transform Wide to Long Data</a></li>
+  <li><a href="#merging-with-world-map-data-mutating-join" id="toc-merging-with-world-map-data-mutating-join" class="nav-link" data-scroll-target="#merging-with-world-map-data-mutating-join"><span class="header-section-number">5.5</span> Merging with World Map Data: mutating join</a>
   <ul class="collapse">
   <li><a href="#load-world-map-data" id="toc-load-world-map-data" class="nav-link" data-scroll-target="#load-world-map-data">Load World Map Data</a></li>
   <li><a href="#merge-data-by-left_join" id="toc-merge-data-by-left_join" class="nav-link" data-scroll-target="#merge-data-by-left_join">Merge Data by <code>left_join()</code></a></li>
   <li><a href="#clean-up-nas-and-spatial-features" id="toc-clean-up-nas-and-spatial-features" class="nav-link" data-scroll-target="#clean-up-nas-and-spatial-features">Clean up NAs and spatial features</a></li>
   </ul></li>
-  <li><a href="#save-the-merged-data" id="toc-save-the-merged-data" class="nav-link" data-scroll-target="#save-the-merged-data"><span class="header-section-number">5.5</span> Save the Merged Data</a></li>
+  <li><a href="#save-the-merged-data" id="toc-save-the-merged-data" class="nav-link" data-scroll-target="#save-the-merged-data"><span class="header-section-number">5.6</span> Save the Merged Data</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transformation and Merging</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transformation and Merging</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></h1>
 </div>
 
 
@@ -484,8 +485,18 @@ $ ...69            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <p>You’ll notice that this format isn’t ideal for data visualization. Columns 5 to 67 represent years, with their values corresponding to life expectancy for each year. However, a cleaner format would be a long data structure, where each row represents a country, a year, and the corresponding life expectancy.</p>
 <p>To achieve this, we need to convert the wide format into a long format using the <code>pivot_longer()</code> function.</p>
 </section>
-<section id="transform-wide-to-long-data" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="transform-wide-to-long-data"><span class="header-section-number">5.3</span> Transform Wide to Long Data</h2>
+<section id="long-vs-wide-data" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="long-vs-wide-data"><span class="header-section-number">5.3</span> Long vs Wide Data</h2>
+<p>In R, we generally prefer working with the <strong>long</strong> data (tidy) format for data analysis, as it aligns with the principles of tidy data. A typical tidy dataset follows these rules:</p>
+<ul>
+<li>Each variable has its own column.</li>
+<li>Each observation has its own row.</li>
+<li>Each value has its own cell.</li>
+</ul>
+<p>In contrast, wide data format has multiple columns for the same variable, which can make it harder to work with for data analysis and visualization. For example, in this life expectancy dataset, each year is represented as a separate column, however, ideally we want all years to be in a single column named “year”, and all values to be in a single column named “life_expectancy”.</p>
+</section>
+<section id="transform-wide-to-long-data" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="transform-wide-to-long-data"><span class="header-section-number">5.4</span> Transform Wide to Long Data</h2>
 <p>Let’s check this <a href="https://www.garrickadenbuie.com/project/tidyexplain/#pivot-wider-and-longer">animation</a> made by Garrick Aden-Buie to understand the transformation from wide to long data format.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># include a gif</span></span>
@@ -534,8 +545,8 @@ $ life_expectancy &lt;dbl&gt; 64.152, 64.537, 64.752, 65.132, 65.294, 65.502, 66
 </div>
 </div>
 </section>
-<section id="merging-with-world-map-data-mutating-join" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="merging-with-world-map-data-mutating-join"><span class="header-section-number">5.4</span> Merging with World Map Data: mutating join</h2>
+<section id="merging-with-world-map-data-mutating-join" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="merging-with-world-map-data-mutating-join"><span class="header-section-number">5.5</span> Merging with World Map Data: mutating join</h2>
 <p>OK, now we have cleaned up the life expectancy data and transformed it into a long format. Next, we will merge this data with the world map data to prepare for map visualization.</p>
 <p>We will load the world map data from the package <code>rnaturalearth</code>, which provides spatial data for countries.</p>
 <section id="load-world-map-data" class="level3">
@@ -638,8 +649,8 @@ $ geometry        &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((31.28789 -2..., MULT
 </div>
 </section>
 </section>
-<section id="save-the-merged-data" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="save-the-merged-data"><span class="header-section-number">5.5</span> Save the Merged Data</h2>
+<section id="save-the-merged-data" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="save-the-merged-data"><span class="header-section-number">5.6</span> Save the Merged Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the merged data to .RData</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(df_merge, <span class="at">file =</span> <span class="st">"out/expectancy_merged.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
