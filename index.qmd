@@ -1,5 +1,9 @@
 # Preface {.unnumbered}
 
+::: callout-note
+This book is built with [Quarto]("https://quarto.org/"), and its source files are hosted on this [GitHub repository]("https://github.com/binchen19/djr").
+:::
+
 ## About this book
 
 This book is a collection of my notes from the Data Journalism courses I have been teaching at The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.
@@ -17,3 +21,8 @@ I am an Assistant Professor at the Journalism and Media Studies Centre, the Univ
 ## Acknowledgements
 
 This book is inspired by the [Reporting with Data in R](https://utdata.github.io/rwdir/) book by two professors at the University of Texas at Austin, *Christian McDonald* and *Josephine Lukito*. I would like to thank them for their great work and for sharing their materials with the public. 
+
+::: callout-note
+## License
+This book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt the content for non-commercial purposes, as long as you give appropriate credit and distribute your contributions under the same license.
+:::
