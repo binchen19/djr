@@ -625,12 +625,12 @@
   {
     "objectID": "map-usa-election.html",
     "href": "map-usa-election.html",
-    "title": "9  Map: US election 2024",
+    "title": "17  Mapping US election 2024",
     "section": "",
-    "text": "9.1 Load the necessary libraries\n# install the usmap package if you haven't already\nlibrary(usmap)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors",
+    "text": "17.1 Load the necessary libraries\n# install the usmap package if you haven't already\nlibrary(usmap)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors",
     "crumbs": [
-      "Data Visualization",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Map: US election 2024</span>"
+      "Case Studies",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Mapping US election 2024</span>"
     ]
   },
   {
@@ -1219,34 +1219,34 @@
   {
     "objectID": "map-usa-election.html#create-the-election-results-data",
     "href": "map-usa-election.html#create-the-election-results-data",
-    "title": "9  Map: US election 2024",
-    "section": "9.2 Create the election results data",
-    "text": "9.2 Create the election results data\nSince the accurate election results data is not available, I will create a simplified dataset with the winner of the 2024 presidential election in each state. The dataset contains two columns: state and winner. The state column contains the two-letter abbreviation for each state, and the winner column contains the name of the candidate who won the state.\nThe reason I use the two-letter abbreviation for each state is that the usmap package requires the state names to be in this format to plot the map correctly.\nHere, I use the data.frame() function to create a data frame election_data with the 2024 US presidential election results data. The state column contains the two-letter abbreviation for each state, and the winner column contains the name of the candidate who won the state.\n\n# Election results data\nelection_data &lt;- data.frame(\n  state = c(\"AL\", \"AK\", \"AZ\", \"AR\", \"CA\",\n            \"CO\", \"CT\", \"DE\", \"FL\", \"GA\",\n            \"HI\", \"ID\", \"IL\", \"IN\", \"IA\", \"KS\", \n            \"KY\", \"LA\", \"ME\", \"MD\", \"MA\",\n            \"MI\", \"MN\", \"MS\", \"MO\", \"MT\",\n            \"NE\", \"NV\", \"NH\", \"NJ\", \"NM\",\n            \"NY\", \"NC\", \"ND\", \"OH\", \"OK\",\n            \"OR\", \"PA\", \"RI\", \"SC\",\n            \"SD\", \"TN\", \"TX\", \"UT\", \"VT\", \"VA\",\n            \"WA\", \"WV\", \"WI\", \"WY\"),\n  winner = c(\"Trump\", \"Trump\", \"Harris\", \"Trump\", \"Harris\",\n             \"Harris\", \"Harris\", \"Harris\", \"Trump\", \"Trump\",\n             \"Harris\", \"Trump\", \"Harris\", \"Trump\", \"Trump\", \"Trump\",\n             \"Trump\", \"Trump\", \"Harris\", \"Harris\", \"Harris\",\n             \"Harris\", \"Harris\", \"Trump\", \"Trump\", \"Trump\",\n             \"Trump\", \"Harris\", \"Harris\", \"Harris\", \"Harris\",\n             \"Harris\", \"Trump\", \"Trump\", \"Trump\", \"Trump\",\n             \"Harris\", \"Harris\", \"Harris\", \"Trump\",\n             \"Trump\", \"Trump\", \"Trump\", \"Trump\", \"Harris\", \"Harris\",\n             \"Harris\", \"Trump\", \"Harris\", \"Trump\")\n)",
+    "title": "17  Mapping US election 2024",
+    "section": "17.2 Create the election results data",
+    "text": "17.2 Create the election results data\nSince the accurate election results data is not available, I will create a simplified dataset with the winner of the 2024 presidential election in each state. The dataset contains two columns: state and winner. The state column contains the two-letter abbreviation for each state, and the winner column contains the name of the candidate who won the state.\nThe reason I use the two-letter abbreviation for each state is that the usmap package requires the state names to be in this format to plot the map correctly.\nHere, I use the data.frame() function to create a data frame election_data with the 2024 US presidential election results data. The state column contains the two-letter abbreviation for each state, and the winner column contains the name of the candidate who won the state.\n\n# Election results data\nelection_data &lt;- data.frame(\n  state = c(\"AL\", \"AK\", \"AZ\", \"AR\", \"CA\",\n            \"CO\", \"CT\", \"DE\", \"FL\", \"GA\",\n            \"HI\", \"ID\", \"IL\", \"IN\", \"IA\", \"KS\", \n            \"KY\", \"LA\", \"ME\", \"MD\", \"MA\",\n            \"MI\", \"MN\", \"MS\", \"MO\", \"MT\",\n            \"NE\", \"NV\", \"NH\", \"NJ\", \"NM\",\n            \"NY\", \"NC\", \"ND\", \"OH\", \"OK\",\n            \"OR\", \"PA\", \"RI\", \"SC\",\n            \"SD\", \"TN\", \"TX\", \"UT\", \"VT\", \"VA\",\n            \"WA\", \"WV\", \"WI\", \"WY\"),\n  winner = c(\"Trump\", \"Trump\", \"Harris\", \"Trump\", \"Harris\",\n             \"Harris\", \"Harris\", \"Harris\", \"Trump\", \"Trump\",\n             \"Harris\", \"Trump\", \"Harris\", \"Trump\", \"Trump\", \"Trump\",\n             \"Trump\", \"Trump\", \"Harris\", \"Harris\", \"Harris\",\n             \"Harris\", \"Harris\", \"Trump\", \"Trump\", \"Trump\",\n             \"Trump\", \"Harris\", \"Harris\", \"Harris\", \"Harris\",\n             \"Harris\", \"Trump\", \"Trump\", \"Trump\", \"Trump\",\n             \"Harris\", \"Harris\", \"Harris\", \"Trump\",\n             \"Trump\", \"Trump\", \"Trump\", \"Trump\", \"Harris\", \"Harris\",\n             \"Harris\", \"Trump\", \"Harris\", \"Trump\")\n)",
     "crumbs": [
-      "Data Visualization",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Map: US election 2024</span>"
+      "Case Studies",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Mapping US election 2024</span>"
     ]
   },
   {
     "objectID": "map-usa-election.html#explore-the-election_data",
     "href": "map-usa-election.html#explore-the-election_data",
-    "title": "9  Map: US election 2024",
-    "section": "9.3 Explore the election_data",
-    "text": "9.3 Explore the election_data\n\n# Display the first few rows of the election_data data frame\nhead(election_data)\n\n\n  \n\n\n\n\nglimpse(election_data)\n\nRows: 50\nColumns: 2\n$ state  &lt;chr&gt; \"AL\", \"AK\", \"AZ\", \"AR\", \"CA\", \"CO\", \"CT\", \"DE\", \"FL\", \"GA\", \"HI…\n$ winner &lt;chr&gt; \"Trump\", \"Trump\", \"Harris\", \"Trump\", \"Harris\", \"Harris\", \"Harri…",
+    "title": "17  Mapping US election 2024",
+    "section": "17.3 Explore the election_data",
+    "text": "17.3 Explore the election_data\n\n# Display the first few rows of the election_data data frame\nhead(election_data)\n\n\n  \n\n\n\n\nglimpse(election_data)\n\nRows: 50\nColumns: 2\n$ state  &lt;chr&gt; \"AL\", \"AK\", \"AZ\", \"AR\", \"CA\", \"CO\", \"CT\", \"DE\", \"FL\", \"GA\", \"HI…\n$ winner &lt;chr&gt; \"Trump\", \"Trump\", \"Harris\", \"Trump\", \"Harris\", \"Harris\", \"Harri…",
     "crumbs": [
-      "Data Visualization",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Map: US election 2024</span>"
+      "Case Studies",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Mapping US election 2024</span>"
     ]
   },
   {
     "objectID": "map-usa-election.html#visualization",
     "href": "map-usa-election.html#visualization",
-    "title": "9  Map: US election 2024",
-    "section": "9.4 Visualization",
-    "text": "9.4 Visualization\nIt is very common to see news outlets to use maps to visualize election results. This is also because states are the basic unit of the US presidential election and it provides a clear and intuitive way to show the distribution of votes across the country.\nHere, I will use the plot_usmap() function from the usmap package to create a map of the United States with the election results.\n\n# Plotting the map with election results\n1plot_usmap(data = election_data, values = \"winner\", lines = \"white\") +\n2  scale_fill_manual(values = c(\"Trump\" = \"red\", \"Harris\" = \"blue\")) +\n3  labs(title = \"2024 US Presidential Election Results\",\n       fill = \"Winner\") + \n4  theme_minimal() +\n  # remove grid lines and axis \n5  theme(panel.grid = element_blank(),\n        axis.text = element_blank(), \n        axis.title = element_blank())\n\n\n1\n\nThe plot_usmap() function creates a map of the United States with the election results. The data argument specifies the data frame containing the election results data, and the values argument specifies the column in the data frame that contains the winner of each state.\n\n2\n\nThe scale_fill_manual() function customizes the fill colors of the map based on the winner of each state. In this case, I use red for Trump and blue for Harris.\n\n3\n\nThe labs() function adds a title to the map and labels the legend with “Winner”.\n\n4\n\nThe theme_minimal() function sets the theme of the plot to a minimal style.\n\n5\n\nThe theme() function is used to remove grid lines and axis labels from the plot to make it cleaner and more focused on the election results.",
+    "title": "17  Mapping US election 2024",
+    "section": "17.4 Visualization",
+    "text": "17.4 Visualization\nIt is very common to see news outlets to use maps to visualize election results. This is also because states are the basic unit of the US presidential election and it provides a clear and intuitive way to show the distribution of votes across the country.\nHere, I will use the plot_usmap() function from the usmap package to create a map of the United States with the election results.\n\n# Plotting the map with election results\n1plot_usmap(data = election_data, values = \"winner\", lines = \"white\") +\n2  scale_fill_manual(values = c(\"Trump\" = \"red\", \"Harris\" = \"blue\")) +\n3  labs(title = \"2024 US Presidential Election Results\",\n       fill = \"Winner\") + \n4  theme_minimal() +\n  # remove grid lines and axis \n5  theme(panel.grid = element_blank(),\n        axis.text = element_blank(), \n        axis.title = element_blank())\n\n\n1\n\nThe plot_usmap() function creates a map of the United States with the election results. The data argument specifies the data frame containing the election results data, and the values argument specifies the column in the data frame that contains the winner of each state.\n\n2\n\nThe scale_fill_manual() function customizes the fill colors of the map based on the winner of each state. In this case, I use red for Trump and blue for Harris.\n\n3\n\nThe labs() function adds a title to the map and labels the legend with “Winner”.\n\n4\n\nThe theme_minimal() function sets the theme of the plot to a minimal style.\n\n5\n\nThe theme() function is used to remove grid lines and axis labels from the plot to make it cleaner and more focused on the election results.",
     "crumbs": [
-      "Data Visualization",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Map: US election 2024</span>"
+      "Case Studies",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Mapping US election 2024</span>"
     ]
   },
   {

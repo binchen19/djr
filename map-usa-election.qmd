@@ -1,5 +1,5 @@
 ---
-title: "Map: US election 2024"
+title: "Mapping US election 2024"
 format: html
 ---
 

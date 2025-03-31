@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 9&nbsp; Map: US election 2024</title>
+<title>Data Journalism with R - 17&nbsp; Mapping US election 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./map-lifex.html" rel="next">
-<link href="./visual-02.html" rel="prev">
+<link href="./employment.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-usa-election.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./map-usa-election.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mapping US election 2024</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -195,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Transform &amp; Merging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></span></a>
   </div>
 </li>
       </ul>
@@ -211,8 +210,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
+  <a href="./analysis-hksalary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-lifex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Analysis II</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,25 +234,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-usa-election.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Map: World Life Expectancy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span></a>
   </div>
 </li>
       </ul>
@@ -264,13 +269,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./quarto-pub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto Webiste</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Quarto Webiste</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -287,19 +292,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-usa-election.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mapping US election 2024</span></span></a>
   </div>
 </li>
       </ul>
@@ -314,19 +325,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-the-necessary-libraries" id="toc-load-the-necessary-libraries" class="nav-link active" data-scroll-target="#load-the-necessary-libraries"><span class="header-section-number">9.1</span> Load the necessary libraries</a></li>
-  <li><a href="#create-the-election-results-data" id="toc-create-the-election-results-data" class="nav-link" data-scroll-target="#create-the-election-results-data"><span class="header-section-number">9.2</span> Create the election results data</a></li>
-  <li><a href="#explore-the-election_data" id="toc-explore-the-election_data" class="nav-link" data-scroll-target="#explore-the-election_data"><span class="header-section-number">9.3</span> Explore the <code>election_data</code></a></li>
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">9.4</span> Visualization</a></li>
+  <li><a href="#load-the-necessary-libraries" id="toc-load-the-necessary-libraries" class="nav-link active" data-scroll-target="#load-the-necessary-libraries"><span class="header-section-number">17.1</span> Load the necessary libraries</a></li>
+  <li><a href="#create-the-election-results-data" id="toc-create-the-election-results-data" class="nav-link" data-scroll-target="#create-the-election-results-data"><span class="header-section-number">17.2</span> Create the election results data</a></li>
+  <li><a href="#explore-the-election_data" id="toc-explore-the-election_data" class="nav-link" data-scroll-target="#explore-the-election_data"><span class="header-section-number">17.3</span> Explore the <code>election_data</code></a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><span class="header-section-number">17.4</span> Visualization</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-usa-election.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./map-usa-election.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mapping US election 2024</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Map: US election 2024</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Mapping US election 2024</span></h1>
 </div>
 
 
@@ -357,8 +368,8 @@ Note
 <p>The <code>usmap</code> package is a simple and easy-to-use package for creating maps of the United States in R. It provides a convenient way to plot data on a map of the United States and customize the appearance of the map.</p>
 </div>
 </div>
-<section id="load-the-necessary-libraries" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="load-the-necessary-libraries"><span class="header-section-number">9.1</span> Load the necessary libraries</h2>
+<section id="load-the-necessary-libraries" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="load-the-necessary-libraries"><span class="header-section-number">17.1</span> Load the necessary libraries</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install the usmap package if you haven't already</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usmap)</span>
@@ -377,8 +388,8 @@ Note
 </div>
 </div>
 </section>
-<section id="create-the-election-results-data" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="create-the-election-results-data"><span class="header-section-number">9.2</span> Create the election results data</h2>
+<section id="create-the-election-results-data" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="create-the-election-results-data"><span class="header-section-number">17.2</span> Create the election results data</h2>
 <p>Since the accurate election results data is not available, I will create a simplified dataset with the winner of the 2024 presidential election in each state. The dataset contains two columns: <code>state</code> and <code>winner</code>. The <code>state</code> column contains the two-letter abbreviation for each state, and the <code>winner</code> column contains the name of the candidate who won the state.</p>
 <p>The reason I use the two-letter abbreviation for each state is that the <code>usmap</code> package requires the state names to be in this format to plot the map correctly.</p>
 <p>Here, I use the <code>data.frame()</code> function to create a data frame <code>election_data</code> with the 2024 US presidential election results data. The <code>state</code> column contains the two-letter abbreviation for each state, and the <code>winner</code> column contains the name of the candidate who won the state.</p>
@@ -408,8 +419,8 @@ Note
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="explore-the-election_data" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="explore-the-election_data"><span class="header-section-number">9.3</span> Explore the <code>election_data</code></h2>
+<section id="explore-the-election_data" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="explore-the-election_data"><span class="header-section-number">17.3</span> Explore the <code>election_data</code></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the election_data data frame</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(election_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -431,8 +442,8 @@ $ winner &lt;chr&gt; "Trump", "Trump", "Harris", "Trump", "Harris", "Harris", "H
 </div>
 </div>
 </section>
-<section id="visualization" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="visualization"><span class="header-section-number">9.4</span> Visualization</h2>
+<section id="visualization" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="visualization"><span class="header-section-number">17.4</span> Visualization</h2>
 <p>It is very common to see news outlets to use maps to visualize election results. This is also because states are the basic unit of the US presidential election and it provides a clear and intuitive way to show the distribution of votes across the country.</p>
 <p>Here, I will use the <code>plot_usmap()</code> function from the <code>usmap</code> package to create a map of the United States with the election results.</p>
 <div class="cell">
@@ -872,14 +883,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./visual-02.html" class="pagination-link  aria-label=" &lt;span="" 2.0&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span>
+      <a href="./employment.html" class="pagination-link  aria-label=" &lt;span="" university="" graduate="" employment="" situation&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./map-lifex.html" class="pagination-link" aria-label="<span class='chapter-number'>10</span>&nbsp; <span class='chapter-title'>Map: World Life Expectancy</span>">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Map: World Life Expectancy</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
