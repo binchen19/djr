@@ -43,7 +43,7 @@ book:
       - map-usa-election.qmd
     - part: "Appendix"
       chapters:
-      - resources.qmd
+      - links.qmd
       
       
 
