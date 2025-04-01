@@ -41,6 +41,9 @@ book:
       - olympics.qmd
       - employment.qmd
       - map-usa-election.qmd
+    - part: "Appendix"
+      chapters:
+      - resources.qmd
       
       
 

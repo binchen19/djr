@@ -1787,5 +1787,71 @@
       "Data Import & Wrangling",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Pivoting and Joining</span>"
     ]
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "18  Useful Links",
+    "section": "",
+    "text": "18.1 Software",
+    "crumbs": [
+      "Appendix",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Useful Links</span>"
+    ]
+  },
+  {
+    "objectID": "resources.html#software",
+    "href": "resources.html#software",
+    "title": "18  Useful Links",
+    "section": "",
+    "text": "Download R\nDownload RStudio\nDownload Quarto\nSign up for Quarto Pub account",
+    "crumbs": [
+      "Appendix",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Useful Links</span>"
+    ]
+  },
+  {
+    "objectID": "resources.html#where-to-find-data-driven-news-stories",
+    "href": "resources.html#where-to-find-data-driven-news-stories",
+    "title": "18  Useful Links",
+    "section": "18.2 Where to find data-driven news stories",
+    "text": "18.2 Where to find data-driven news stories\n\nNew York Times’ Up Shot\nFiveThirtyEight\nBBC Visual & Data Journalism\nFinancial Times Visual Journalism\nThe Guardian Data",
+    "crumbs": [
+      "Appendix",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Useful Links</span>"
+    ]
+  },
+  {
+    "objectID": "resources.html#where-to-find-real-world-datasets",
+    "href": "resources.html#where-to-find-real-world-datasets",
+    "title": "18  Useful Links",
+    "section": "18.3 Where to find real-world datasets",
+    "text": "18.3 Where to find real-world datasets\n\nKaggle\nGoogle Dataset Search\nHK Government Public Data\nWorld Bank\nOur World in Data\nTidytuesday\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen looking for datasets for data journalism project, one should avoid survey data and synthetic data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like WHO or Pew Research Center.",
+    "crumbs": [
+      "Appendix",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Useful Links</span>"
+    ]
+  },
+  {
+    "objectID": "resources.html#r-learning",
+    "href": "resources.html#r-learning",
+    "title": "18  Useful Links",
+    "section": "18.4 R Learning",
+    "text": "18.4 R Learning\n\nR for Data Science\nggplot2: Elegant Graphics for Data Analysis (3e)\nR Graphics Cookbook, 2nd edition\nR for Journalists",
+    "crumbs": [
+      "Appendix",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Useful Links</span>"
+    ]
+  },
+  {
+    "objectID": "resources.html#final-projects-examples",
+    "href": "resources.html#final-projects-examples",
+    "title": "18  Useful Links",
+    "section": "18.5 Final Projects Examples",
+    "text": "18.5 Final Projects Examples\n\n24 Fall\n\nHK Elderly Abuse\nUS Mass Shooting 2024\nCN Movie Revenue\nHK Child Abuse\nEsports Revenue\nCarbon Emissions",
+    "crumbs": [
+      "Appendix",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Useful Links</span>"
+    ]
   }
 ]

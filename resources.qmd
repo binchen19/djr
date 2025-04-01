@@ -1,0 +1,42 @@
+# Useful Links
+
+## Software
+- [Download R](https://www.r-project.org/)
+- [Download RStudio](https://posit.co/download/rstudio-desktop/)
+- [Download Quarto](https://quarto.org/docs/get-started/)
+- [Sign up for Quarto Pub account](https://quartopub.com/)
+
+## Where to find data-driven news stories
+- [New York Times' Up Shot](https://www.nytimes.com/section/upshot)
+- [FiveThirtyEight](https://abcnews.go.com/538)
+- [BBC Visual & Data Journalism](https://medium.com/@bbc_visual_and_data_journalism)
+- [Financial Times Visual Journalism](https://www.ft.com/visual-and-data-journalism)
+- [The Guardian Data](https://www.theguardian.com/data)
+
+## Where to find real-world datasets
+- [Kaggle](https://www.kaggle.com/datasets)
+- [Google Dataset Search](https://datasetsearch.research.google.com/)
+- [HK Government Public Data](https://data.gov.hk/en/)
+- [World Bank](https://data.worldbank.org/)
+- [Our World in Data](https://ourworldindata.org/data)
+- [Tidytuesday](https://github.com/rfordatascience/tidytuesday)
+
+::: callout-warning
+When looking for datasets for data journalism project, one should avoid **survey** data and **synthetic** data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like [WHO](https://www.who.int/data) or [Pew Research Center](https://www.pewresearch.org/).
+:::
+
+## R Learning
+- [R for Data Science](https://r4ds.had.co.nz/)
+- [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/)
+- [R Graphics Cookbook, 2nd edition](https://r-graphics.org/)
+- [R for Journalists](https://r-journalism.com/)
+
+## Final Projects Examples
+
+### 24 Fall
+- [HK Elderly Abuse](https://yongershen.quarto.pub/yonger-final-project-dj/)
+- [US Mass Shooting 2024](https://cindy-ningxy.quarto.pub/xiuyuan-final-project/)
+- [CN Movie Revenue](https://angelicawan927.quarto.pub/angelicazhixin_final/)
+- [HK Child Abuse](https://tesstang.quarto.pub/xinyue_final_project/)
+- [Esports Revenue](https://eveqiao.quarto.pub/yushan_finalproject/)
+- [Carbon Emissions](https://lanqingm.quarto.pub/carbon-emissions/)
