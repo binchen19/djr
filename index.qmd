@@ -1,9 +1,8 @@
 # Preface {.unnumbered}
 
-::: callout-note
-This book is built with [Quarto]("https://quarto.org/"), and its source files are hosted on this [GitHub repository]("https://github.com/binchen19/djr").
+::: {.callout-note}
+This book is built with [Quarto](https://quarto.org/), and its source files are hosted on this [GitHub repository](https://github.com/binchen19/djr).
 :::
-
 ## About this book
 
 This book is a collection of my notes from the Data Journalism courses I have been teaching at The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.
