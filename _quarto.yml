@@ -41,9 +41,8 @@ book:
       - olympics.qmd
       - employment.qmd
       - map-usa-election.qmd
-    - part: "Appendix"
-      chapters:
-      - links.qmd
+  appendices:
+    - links.qmd
       
       
 
