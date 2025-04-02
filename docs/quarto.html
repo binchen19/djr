@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Bin Chen">
-<meta name="dcterms.date" content="2025-04-02">
 
-<title>Data Journalism with R</title>
+<title>Data Journalism with R - Appendix B — Quarto Website</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./install.html" rel="next">
+<link href="./debate.html" rel="next">
+<link href="./links.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -109,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -275,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></span></a>
   </div>
 </li>
@@ -297,43 +330,43 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">B.1</span> Installation</a>
   <ul class="collapse">
-  <li><a href="#about-this-book" id="toc-about-this-book" class="nav-link" data-scroll-target="#about-this-book">About this book</a></li>
-  <li><a href="#about-the-author" id="toc-about-the-author" class="nav-link" data-scroll-target="#about-the-author">About the author</a>
+  <li><a href="#install-quarto" id="toc-install-quarto" class="nav-link" data-scroll-target="#install-quarto">Install Quarto</a></li>
+  <li><a href="#install-the-quarto-r-package" id="toc-install-the-quarto-r-package" class="nav-link" data-scroll-target="#install-the-quarto-r-package">Install the Quarto R Package</a></li>
+  <li><a href="#verify-installation" id="toc-verify-installation" class="nav-link" data-scroll-target="#verify-installation">Verify Installation</a></li>
+  <li><a href="#create-a-quarto-pub-account" id="toc-create-a-quarto-pub-account" class="nav-link" data-scroll-target="#create-a-quarto-pub-account">Create a Quarto Pub Account</a></li>
+  </ul></li>
+  <li><a href="#quarto-publish-with-rstudio" id="toc-quarto-publish-with-rstudio" class="nav-link" data-scroll-target="#quarto-publish-with-rstudio"><span class="header-section-number">B.2</span> Quarto Publish with RStudio</a>
   <ul class="collapse">
-  <li><a href="#bin-chen" id="toc-bin-chen" class="nav-link" data-scroll-target="#bin-chen">Bin Chen</a></li>
+  <li><a href="#create-a-new-quarto-website-project" id="toc-create-a-new-quarto-website-project" class="nav-link" data-scroll-target="#create-a-new-quarto-website-project">Create a New Quarto Website Project</a></li>
+  <li><a href="#edit-website-content" id="toc-edit-website-content" class="nav-link" data-scroll-target="#edit-website-content">Edit Website Content</a></li>
+  <li><a href="#preview-your-website-locally" id="toc-preview-your-website-locally" class="nav-link" data-scroll-target="#preview-your-website-locally">Preview Your Website Locally</a></li>
+  <li><a href="#publish-your-website" id="toc-publish-your-website" class="nav-link" data-scroll-target="#publish-your-website">Publish Your Website</a></li>
+  <li><a href="#view-your-published-website" id="toc-view-your-published-website" class="nav-link" data-scroll-target="#view-your-published-website">View Your Published Website</a></li>
   </ul></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  <li><a href="#updating-quarto-website" id="toc-updating-quarto-website" class="nav-link" data-scroll-target="#updating-quarto-website"><span class="header-section-number">B.3</span> Updating Quarto Website</a></li>
+  <li><a href="#updating-content" id="toc-updating-content" class="nav-link" data-scroll-target="#updating-content"><span class="header-section-number">B.4</span> Updating Content</a>
+  <ul class="collapse">
+  <li><a href="#updating-structure" id="toc-updating-structure" class="nav-link" data-scroll-target="#updating-structure">Updating Structure</a></li>
   </ul></li>
+  <li><a href="#remove-quarto-webiste" id="toc-remove-quarto-webiste" class="nav-link" data-scroll-target="#remove-quarto-webiste"><span class="header-section-number">B.5</span> Remove Quarto Webiste</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Data Journalism with R</h1>
+<h1 class="title">Appendix B — Quarto Website</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Bin Chen </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">April 2, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -343,53 +376,173 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
+<p>This note is a step-by-step guide to publishing on Quarto Pub with RStudio.</p>
+<section id="installation" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">B.1</span> Installation</h2>
+<section id="install-quarto" class="level3">
+<h3 class="anchored" data-anchor-id="install-quarto">Install Quarto</h3>
+<ul>
+<li><p>Download Quarto: Go to <a href="https://quarto.org/">Quarto</a> website and download the installer for your operating system (Windows/macOS/Linux).</p></li>
+<li><p>Run the Installer: Follow the prompts to install Quarto. This adds the <code>quarto</code> command-line tool to your system.</p></li>
+</ul>
+</section>
+<section id="install-the-quarto-r-package" class="level3">
+<h3 class="anchored" data-anchor-id="install-the-quarto-r-package">Install the Quarto R Package</h3>
+<ul>
+<li>Open RStudio</li>
+<li>Install the Quarto R package by running the following command in the <strong>console</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quarto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Restart RStudio to ensure the Quarto integration works properly.</li>
+</ul>
+</section>
+<section id="verify-installation" class="level3">
+<h3 class="anchored" data-anchor-id="verify-installation">Verify Installation</h3>
+<ul>
+<li>Open the <strong>Terminal</strong> pane in RStudio (not <strong>Console</strong>).</li>
+<li>Type <code>quarto check</code> and press Enter.</li>
+<li>Confirm that Quarto and required dependencies (e.g., Pandoc) are installed. Fix any issues if prompted.</li>
+</ul>
+</section>
+<section id="create-a-quarto-pub-account" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-quarto-pub-account">Create a Quarto Pub Account</h3>
+<ul>
+<li>Go to <a href="https://quartopub.com/">Quarto Pub</a> and sign up for a free account.</li>
+<li>Verify your email to activate the account.</li>
+</ul>
+</section>
+</section>
+<section id="quarto-publish-with-rstudio" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="quarto-publish-with-rstudio"><span class="header-section-number">B.2</span> Quarto Publish with RStudio</h2>
+<section id="create-a-new-quarto-website-project" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-new-quarto-website-project">Create a New Quarto Website Project</h3>
+<ul>
+<li>In RStudio, go to File &gt; New Project &gt; New Directory &gt; <strong>Quarto Website</strong>.</li>
+<li>Name your project (e.g., <code>firstname-website</code>) and choose a save location (e.g., under your <code>djr</code> folder).</li>
+<li>Click Create Project: This generates a basic website template with <code>index.qmd</code> and <code>about.qmd</code>.</li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Quarto Website Structure
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This book is built with <a href="https://quarto.org/">Quarto</a>, and its source files are hosted on this <a href="https://github.com/binchen19/djr">GitHub repository</a>.</p>
+<ul>
+<li><code>.Rproj</code>: RStudio project file</li>
+<li><code>index.qmd</code>: Homepage content</li>
+<li><code>about.qmd</code>: About page content</li>
+<li><code>_quarto.yml</code>: Site configuration settings</li>
+<li><code>styles.css</code>: Custom CSS styles</li>
+</ul>
 </div>
 </div>
-<section id="about-this-book" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-book">About this book</h2>
-<p>This book is a collection of my notes from the Data Journalism courses I have been teaching at The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.</p>
-<p>While originally designed as a companion for my students, I hope this book will also benefit a wider audience—including journalists, aspiring data storytellers, and students interested in learning R for data analysis. Through practical examples and real-world case studies, this book provides a hands-on approach to integrating data into storytelling.</p>
-<p>Hope you find it useful! 🤗</p>
 </section>
-<section id="about-the-author" class="level2">
-<h2 class="anchored" data-anchor-id="about-the-author">About the author</h2>
-<section id="bin-chen" class="level3">
-<h3 class="anchored" data-anchor-id="bin-chen">Bin Chen</h3>
-<p>I am an Assistant Professor at the Journalism and Media Studies Centre, the University of Hong Kong. My research interests include computational social science, social media and politics, and comparative media studies. At HKU, I teach Data Journalism courses at both the undergraduate and postgraduate levels.</p>
+<section id="edit-website-content" class="level3">
+<h3 class="anchored" data-anchor-id="edit-website-content">Edit Website Content</h3>
+<ul>
+<li>Edit <code>index.qmd</code> to add content to your homepage.</li>
+<li>Edit <code>about.qmd</code> to add an about page.</li>
+<li>Modify the <code>_quarto.yml</code> file to configure site settings (title, navigation, theme).</li>
+</ul>
 </section>
+<section id="preview-your-website-locally" class="level3">
+<h3 class="anchored" data-anchor-id="preview-your-website-locally">Preview Your Website Locally</h3>
+<ul>
+<li>Click the <strong>Render</strong> button in RStudio to preview your website.</li>
+</ul>
 </section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>This book is inspired by the <a href="https://utdata.github.io/rwdir/">Reporting with Data in R</a> book by two professors at the University of Texas at Austin, <em>Christian McDonald</em> and <em>Josephine Lukito</em>. I would like to thank them for their great work and for sharing their materials with the public.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="publish-your-website" class="level3">
+<h3 class="anchored" data-anchor-id="publish-your-website">Publish Your Website</h3>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-License
+Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This book is licensed under a <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>. You are free to share and adapt the content for non-commercial purposes, as long as you give appropriate credit and distribute your contributions under the same license.</p>
+<p>Use your direction keys to navigate and select options, and press <code>Enter</code> to confirm your choices.</p>
 </div>
 </div>
-
-
+<ul>
+<li>Open the <strong>Terminal</strong> pane in RStudio.</li>
+<li>Type <code>quarto publish</code> and press Enter.</li>
+<li><code>Provider?</code>: Select <code>Quarto Pub</code> as your publishing destination.</li>
+<li>Authorize the connection to Quarto Pub.</li>
+<li><code>Publishing with account?</code>: Confirm your Quarto pub account.</li>
+<li><code>Site name?</code>: Confirm your site name.</li>
+<li>Follow the on-screen instructions to complete the publishing process.</li>
+</ul>
 </section>
+<section id="view-your-published-website" class="level3">
+<h3 class="anchored" data-anchor-id="view-your-published-website">View Your Published Website</h3>
+<ul>
+<li>Once the publishing process is complete, your website will be live at <code>https://quartopub.com/yourusername/yourprojectname</code>.</li>
+<li>Share the link with others to showcase your work!</li>
+</ul>
+</section>
+</section>
+<section id="updating-quarto-website" class="level2" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="updating-quarto-website"><span class="header-section-number">B.3</span> Updating Quarto Website</h2>
+</section>
+<section id="updating-content" class="level2" data-number="B.4">
+<h2 data-number="B.4" class="anchored" data-anchor-id="updating-content"><span class="header-section-number">B.4</span> Updating Content</h2>
+<ul>
+<li>To update your website, make changes to your <code>.qmd</code> files and re-publish using <code>quarto publish</code>.</li>
+<li><code>Publish updates to:</code> Confirm site link and press Enter.</li>
+<li>Your website will be automatically updated with the new content.</li>
+</ul>
+<section id="updating-structure" class="level3">
+<h3 class="anchored" data-anchor-id="updating-structure">Updating Structure</h3>
+<p>Let’s say if you want your website have 4 pages:</p>
+<ul>
+<li>Home page to show the content of <code>index.qmd</code></li>
+<li>About page to show the content of <code>about.qmd</code></li>
+<li><code>Data Cleaning</code> to show the content of <code>data-cleaning.qmd</code></li>
+<li><code>Data Analysis</code> to show the content of <code>data-analysis.qmd</code></li>
+</ul>
+<p>First, in addition to the existing <code>index.qmd</code> and <code>about.qmd</code>, you need to create two new <code>.qmd</code> files:</p>
+<ul>
+<li><code>data-cleaning.qmd</code></li>
+<li><code>data-analysis.qmd</code>.</li>
+</ul>
+<p>Then, you need to modify the <code>_quarto.yml</code> file to add the new pages to the navigation bar.</p>
+<ul>
+<li><p>Open <code>_quarto.yml</code> in RStudio.</p></li>
+<li><p>Revise your <code>nav_bar</code> section to include the new pages:</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nav_bar</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Home</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.html</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> About</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> about.html</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Data Cleaning</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> data-cleaning.html</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Data Analysis</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> data-analysis.html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Save the <code>_quarto.yml</code> file.</li>
+<li>Click the <strong>Render</strong> button in RStudio to preview your updated website.</li>
+<li>Publish your updated website using <code>quarto publish</code>.</li>
+</ul>
+</section>
+</section>
+<section id="remove-quarto-webiste" class="level2" data-number="B.5">
+<h2 data-number="B.5" class="anchored" data-anchor-id="remove-quarto-webiste"><span class="header-section-number">B.5</span> Remove Quarto Webiste</h2>
+<ul>
+<li>Go to your Quarto Pub account.</li>
+<li>Click on the project you want to delete.</li>
+<li>Click <code>Delete Site</code> to remove the website from Quarto Pub.</li>
+</ul>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -782,10 +935,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./links.html" class="pagination-link  aria-label=" &lt;span="" links&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./install.html" class="pagination-link" aria-label="<span class='chapter-number'>1</span>&nbsp; <span class='chapter-title'>Intro to R and RStudio</span>">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./debate.html" class="pagination-link" aria-label="<span class='chapter-number'>C</span>&nbsp; <span class='chapter-title'>Text Analysis</span>">
+        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Text Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

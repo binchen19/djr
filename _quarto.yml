@@ -31,10 +31,6 @@ book:
       - visual-02.qmd
       - map-lifex.qmd
       - norway-invest.qmd
-    - part: "Special Topics"
-      chapters:
-      - quarto-pub.qmd
-      - debate.qmd
     - part: "Case Studies"
       chapters:
       - hot100.qmd
@@ -43,6 +39,9 @@ book:
       - map-usa-election.qmd
   appendices:
     - links.qmd
+    - quarto.qmd
+    - debate.qmd
+    
       
       
 

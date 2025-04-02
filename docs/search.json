@@ -1919,5 +1919,203 @@
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
     ]
+  },
+  {
+    "objectID": "quarto.html",
+    "href": "quarto.html",
+    "title": "Appendix B — Quarto Website",
+    "section": "",
+    "text": "B.1 Installation",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#install-quarto",
+    "href": "quarto.html#install-quarto",
+    "title": "Appendix B — Quarto Website",
+    "section": "",
+    "text": "Download Quarto: Go to Quarto website and download the installer for your operating system (Windows/macOS/Linux).\nRun the Installer: Follow the prompts to install Quarto. This adds the quarto command-line tool to your system.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#install-the-quarto-r-package",
+    "href": "quarto.html#install-the-quarto-r-package",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.2 Install the Quarto R Package",
+    "text": "B.2 Install the Quarto R Package\n\nOpen RStudio\nInstall the Quarto R package by running the following command in the console:\n\ninstall.packages(\"quarto\")\n\nRestart RStudio to ensure the Quarto integration works properly.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#verify-installation",
+    "href": "quarto.html#verify-installation",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.3 Verify Installation",
+    "text": "B.3 Verify Installation\n\nOpen the Terminal pane in RStudio (not Console).\nType quarto check and press Enter.\nConfirm that Quarto and required dependencies (e.g., Pandoc) are installed. Fix any issues if prompted.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#create-a-quarto-pub-account",
+    "href": "quarto.html#create-a-quarto-pub-account",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.4 Create a Quarto Pub Account",
+    "text": "B.4 Create a Quarto Pub Account\n\nGo to Quarto Pub and sign up for a free account.\nVerify your email to activate the account.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#create-a-new-quarto-website-project",
+    "href": "quarto.html#create-a-new-quarto-website-project",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.5 Create a New Quarto Website Project",
+    "text": "B.5 Create a New Quarto Website Project\n\nIn RStudio, go to File &gt; New Project &gt; New Directory &gt; Quarto Website.\nName your project (e.g., firstname-website) and choose a save location (e.g., under your djr folder).\nClick Create Project: This generates a basic website template with index.qmd and about.qmd.\n\n\n\n\n\n\n\nQuarto Website Structure\n\n\n\n\n.Rproj: RStudio project file\nindex.qmd: Homepage content\nabout.qmd: About page content\n_quarto.yml: Site configuration settings\nstyles.css: Custom CSS styles",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#customize-your-website",
+    "href": "quarto.html#customize-your-website",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.6 Customize Your Website",
+    "text": "B.6 Customize Your Website\n\nEdit index.qmd to add content to your homepage.\nEdit about.qmd to add an about page.\nModify the _quarto.yml file to configure site settings (title, navigation, theme).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#preview-your-website-locally",
+    "href": "quarto.html#preview-your-website-locally",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.7 Preview Your Website Locally",
+    "text": "B.7 Preview Your Website Locally\n\nClick the Render button in RStudio to preview your website.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#publish-your-website",
+    "href": "quarto.html#publish-your-website",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.8 Publish Your Website",
+    "text": "B.8 Publish Your Website\n\n\n\n\n\n\nTip\n\n\n\nUse your direction keys to navigate and select options, and press Enter to confirm your choices.\n\n\n\nOpen the Terminal pane in RStudio.\nType quarto publish and press Enter.\nProvider?: Select Quarto Pub as your publishing destination.\nAuthorize the connection to Quarto Pub.\nPublishing with account?: Confirm your Quarto pub account.\nSite name?: Confirm your site name.\nFollow the on-screen instructions to complete the publishing process.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#view-your-published-website",
+    "href": "quarto.html#view-your-published-website",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.9 View Your Published Website",
+    "text": "B.9 View Your Published Website\n\nOnce the publishing process is complete, your website will be live at https://quartopub.com/yourusername/yourprojectname.\nShare the link with others to showcase your work!",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#common-issues-and-solutions",
+    "href": "quarto.html#common-issues-and-solutions",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.10 Common Issues and Solutions",
+    "text": "B.10 Common Issues and Solutions",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#updating-website-content",
+    "href": "quarto.html#updating-website-content",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.10 Updating Website Content",
+    "text": "B.10 Updating Website Content\n\nTo update your website, make changes to your .qmd files and re-publish using quarto publish.\nPublish updates to: Confirm site link and press Enter.\nYour website will be automatically updated with the new content.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#updating-webiste-structure",
+    "href": "quarto.html#updating-webiste-structure",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.11 Updating Webiste Structure",
+    "text": "B.11 Updating Webiste Structure\nLet’s say if you want your website have 4 pages:\n\nHome page to show the content of index.qmd\nAbout page to show the content of about.qmd\nData Cleaning to show the content of data-cleaning.qmd\nData Analysis to show the content of data-analysis.qmd\n\nFirst, in addition to the existing index.qmd and about.qmd, you need to create two new .qmd files:\n\ndata-cleaning.qmd\ndata-analysis.qmd.\n\nThen, you need to modify the _quarto.yml file to add the new pages to the navigation bar.\n\nOpen _quarto.yml in RStudio.\nRevise your nav_bar section to include the new pages:\n\nnav_bar:\n  - text: Home\n    href: index.html\n  - text: About\n    href: about.html\n  - text: Data Cleaning\n    href: data-cleaning.html\n  - text: Data Analysis\n    href: data-analysis.html\n\nSave the _quarto.yml file.\nClick the Render button in RStudio to preview your updated website.\nPublish your updated website using quarto publish.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#installation",
+    "href": "quarto.html#installation",
+    "title": "Appendix B — Quarto Website",
+    "section": "",
+    "text": "Install Quarto\n\nDownload Quarto: Go to Quarto website and download the installer for your operating system (Windows/macOS/Linux).\nRun the Installer: Follow the prompts to install Quarto. This adds the quarto command-line tool to your system.\n\n\n\nInstall the Quarto R Package\n\nOpen RStudio\nInstall the Quarto R package by running the following command in the console:\n\ninstall.packages(\"quarto\")\n\nRestart RStudio to ensure the Quarto integration works properly.\n\n\n\nVerify Installation\n\nOpen the Terminal pane in RStudio (not Console).\nType quarto check and press Enter.\nConfirm that Quarto and required dependencies (e.g., Pandoc) are installed. Fix any issues if prompted.\n\n\n\nCreate a Quarto Pub Account\n\nGo to Quarto Pub and sign up for a free account.\nVerify your email to activate the account.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#quarto-publish-with-rstudio",
+    "href": "quarto.html#quarto-publish-with-rstudio",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.2 Quarto Publish with RStudio",
+    "text": "B.2 Quarto Publish with RStudio\n\nCreate a New Quarto Website Project\n\nIn RStudio, go to File &gt; New Project &gt; New Directory &gt; Quarto Website.\nName your project (e.g., firstname-website) and choose a save location (e.g., under your djr folder).\nClick Create Project: This generates a basic website template with index.qmd and about.qmd.\n\n\n\n\n\n\n\nQuarto Website Structure\n\n\n\n\n.Rproj: RStudio project file\nindex.qmd: Homepage content\nabout.qmd: About page content\n_quarto.yml: Site configuration settings\nstyles.css: Custom CSS styles\n\n\n\n\n\nEdit Website Content\n\nEdit index.qmd to add content to your homepage.\nEdit about.qmd to add an about page.\nModify the _quarto.yml file to configure site settings (title, navigation, theme).\n\n\n\nPreview Your Website Locally\n\nClick the Render button in RStudio to preview your website.\n\n\n\nPublish Your Website\n\n\n\n\n\n\nTip\n\n\n\nUse your direction keys to navigate and select options, and press Enter to confirm your choices.\n\n\n\nOpen the Terminal pane in RStudio.\nType quarto publish and press Enter.\nProvider?: Select Quarto Pub as your publishing destination.\nAuthorize the connection to Quarto Pub.\nPublishing with account?: Confirm your Quarto pub account.\nSite name?: Confirm your site name.\nFollow the on-screen instructions to complete the publishing process.\n\n\n\nView Your Published Website\n\nOnce the publishing process is complete, your website will be live at https://quartopub.com/yourusername/yourprojectname.\nShare the link with others to showcase your work!",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#updating-quarto-website",
+    "href": "quarto.html#updating-quarto-website",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.3 Updating Quarto Website",
+    "text": "B.3 Updating Quarto Website",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#updating-content",
+    "href": "quarto.html#updating-content",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.4 Updating Content",
+    "text": "B.4 Updating Content\n\nTo update your website, make changes to your .qmd files and re-publish using quarto publish.\nPublish updates to: Confirm site link and press Enter.\nYour website will be automatically updated with the new content.\n\n\nUpdating Structure\nLet’s say if you want your website have 4 pages:\n\nHome page to show the content of index.qmd\nAbout page to show the content of about.qmd\nData Cleaning to show the content of data-cleaning.qmd\nData Analysis to show the content of data-analysis.qmd\n\nFirst, in addition to the existing index.qmd and about.qmd, you need to create two new .qmd files:\n\ndata-cleaning.qmd\ndata-analysis.qmd.\n\nThen, you need to modify the _quarto.yml file to add the new pages to the navigation bar.\n\nOpen _quarto.yml in RStudio.\nRevise your nav_bar section to include the new pages:\n\nnav_bar:\n  - text: Home\n    href: index.html\n  - text: About\n    href: about.html\n  - text: Data Cleaning\n    href: data-cleaning.html\n  - text: Data Analysis\n    href: data-analysis.html\n\nSave the _quarto.yml file.\nClick the Render button in RStudio to preview your updated website.\nPublish your updated website using quarto publish.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
+  },
+  {
+    "objectID": "quarto.html#remove-quarto-webiste",
+    "href": "quarto.html#remove-quarto-webiste",
+    "title": "Appendix B — Quarto Website",
+    "section": "B.5 Remove Quarto Webiste",
+    "text": "B.5 Remove Quarto Webiste\n\nGo to your Quarto Pub account.\nClick on the project you want to delete.\nClick Delete Site to remove the website from Quarto Pub.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
+    ]
   }
 ]
