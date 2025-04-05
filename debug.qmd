@@ -1,0 +1,175 @@
+# Errors and Debugging {.unnumbered}
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+```
+
+Even experienced programmers encounter errors daily. This chapter will help you understand common error types in R and develop systematic debugging strategies for data journalism projects.
+
+## Understanding R Messages
+
+R communicates through three types of feedback that appear in your console:
+
+::: {.callout-note}
+### Message Types at a Glance
+| **Type**    | **Icon** | **Meaning**                                  | **Example**                     |
+|-------------|----------|----------------------------------------------|----------------------------------|
+| Message     | ℹ        | Informational note                          | `library()` loading messages    |
+| Warning     | ⚠️       | Potential issue (code still runs)           | `NA` in calculations           |
+| Error       | ✖        | Critical problem (code stops)               | Missing function arguments      |
+:::
+
+### 1. Messages
+These blue notes provide non-critical information. Example:
+```r
+message("This is an FYI – check your data source if unexpected")
+```
+
+### 2. Warnings
+Yellow alerts indicate potential issues. Your code runs, but results might be suspect:
+```r
+c(1, 2, NA) |> mean(na.rm = FALSE)
+# Warning: NA detected – did you want na.rm = TRUE?
+```
+
+### 3. Errors
+Red stops mean critical failures. Code execution halts immediately:
+```r
+read_csv("nonexistent_file.csv")
+# Error: 'nonexistent_file.csv' does not exist
+```
+
+## Common Errors & Solutions {#sec-common-errors}
+
+### 1. Object Not Found (`object 'x' not found`)
+
+**What Happened?**  
+R can't locate a variable or dataset you referenced.
+
+**Check:**
+- Spelling mistakes: `sumarry()` vs `summary()`
+- Scope issues: Created in different environment/chunk?
+- Execution order: Did you run the creation code?
+
+```r
+# Common mistake
+population_density <- pop / area
+print(population_dentsy)  # Typo in variable name
+```
+
+### 2. Missing Functions (`could not find function`)
+
+**What Happened?**  
+R doesn't recognize the function name.
+
+**Fix:**
+1. Check spelling: `str_detect()` vs `str_detect`
+2. Load required package: 
+   ```r
+   library(stringr)  # For string manipulation functions
+   ```
+3. Install missing package: 
+   ```r
+   install.packages("janitor")  # First-time installation
+   ```
+
+### 3. Syntax Issues (`unexpected symbol`)
+
+**What Happened?**  
+Invalid characters or structure in your code.
+
+**Common Culprits:**
+- Reserved words as variables: `if <- 5`
+- Special characters: `data$2023` (use backticks: ``data$`2023` ``)
+- Missing operators: `sqrt(16  # Missing closing parenthesis`
+
+::: {.callout-warning}
+### Prohibited Names
+Avoid these reserved words for variables:
+`if`, `else`, `function`, `for`, `while`, `repeat`, `break`, `next`
+:::
+
+### 4. Incomplete Code (`unexpected end of input`)
+
+**What Happened?**  
+R reached the end of your code while expecting more.
+
+**Check For:**
+- Unclosed parentheses: `mean(c(1, 5, 10)`
+- Missing commas: `tribble(~Name, ~Age ("Alice", 25))`
+- Unfinished pipes: 
+  ```r
+  mtcars |> 
+    filter(mpg > 20) |>
+    select(mpg, cyl  # Missing closing )
+  ```
+
+## Debugging Workflow {#sec-debugging}
+
+Follow this systematic approach when encountering errors:
+
+::: {.callout-tip}
+### Debugging Checklist
+1. **Read** the error message carefully
+2. **Isolate** the problem (reproduce in new chunk)
+3. **Check** variable states with `str()` or `glimpse()`
+4. **Test** components individually
+5. **Search** error message (Google/R community forums)
+6. **Ask** peers or AI with [reproducible example](https://reprex.tidyverse.org/)
+:::
+
+### Helpful Techniques
+
+**1. Documented Help**
+```r
+?filter        # Base R help
+??"regex"      # Search documentation
+vignette("dplyr")  # Package overview
+```
+
+**2. Contextual Checks**
+```r
+mtcars |> 
+  filter(mpg > 20) |>  # Error here?
+  select(mpg, cyl)
+
+# Test filter separately
+mtcars |> filter(mpg > 20)  # Reveals missing package?
+```
+
+**3. AI Prompt Template**  
+When seeking help, provide:
+```
+1. Your goal
+2. Error message
+3. Relevant code snippet
+4. Sample data (use `dput(head(your_data))`)
+5. What you've tried
+```
+
+## Prevention Strategies
+
+1. **Write Modular Code**  
+   Break scripts into small, testable chunks
+
+2. **Use Consistent Style**  
+   Follow [tidyverse style guide](https://style.tidyverse.org/)
+
+3. **Implement Version Control**  
+   For big projects, use Git to track changes and revert mistakes
+
+
+Remember: Debugging is a normal part of programming. Each error resolved makes you a better analyst. In data journalism, thorough debugging ensures the accuracy of your stories and maintains public trust in your work.
+
+---
+
+::: {.callout-important}
+### Key Takeaways
+- Always read error messages completely
+- Reproduce errors in minimal examples
+- Use systematic elimination to find causes
+- Document solutions for future reference
+:::

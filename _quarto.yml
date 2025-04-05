@@ -33,6 +33,7 @@ book:
       - norway-invest.qmd
     - part: "Case Studies"
       chapters:
+      - debate.qmd
       - hot100.qmd
       - olympics.qmd
       - employment.qmd
@@ -40,7 +41,9 @@ book:
   appendices:
     - links.qmd
     - quarto.qmd
-    - debate.qmd
+    - debug.qmd
+
+    
     
       
       

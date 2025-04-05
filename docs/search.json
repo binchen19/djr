@@ -2117,5 +2117,60 @@
       "Appendices",
       "<span class='chapter-number'>B</span>  <span class='chapter-title'>Quarto Website</span>"
     ]
+  },
+  {
+    "objectID": "debug.html",
+    "href": "debug.html",
+    "title": "Errors and Debugging",
+    "section": "",
+    "text": "Understanding R Messages\nR communicates through three types of feedback that appear in your console:",
+    "crumbs": [
+      "Appendices",
+      "Errors and Debugging"
+    ]
+  },
+  {
+    "objectID": "debug.html#understanding-r-messages",
+    "href": "debug.html#understanding-r-messages",
+    "title": "Errors and Debugging",
+    "section": "",
+    "text": "Message Types at a Glance\n\n\n\n\n\n\n\n\n\n\n\n\nType\nIcon\nMeaning\nExample\n\n\n\n\nMessage\nℹ\nInformational note\nlibrary() loading messages\n\n\nWarning\n⚠️\nPotential issue (code still runs)\nNA in calculations\n\n\nError\n✖\nCritical problem (code stops)\nMissing function arguments\n\n\n\n\n\n\n1. Messages\nThese blue notes provide non-critical information. Example:\nmessage(\"This is an FYI – check your data source if unexpected\")\n\n\n2. Warnings\nYellow alerts indicate potential issues. Your code runs, but results might be suspect:\nc(1, 2, NA) |&gt; mean(na.rm = FALSE)\n# Warning: NA detected – did you want na.rm = TRUE?\n\n\n3. Errors\nRed stops mean critical failures. Code execution halts immediately:\nread_csv(\"nonexistent_file.csv\")\n# Error: 'nonexistent_file.csv' does not exist",
+    "crumbs": [
+      "Appendices",
+      "Errors and Debugging"
+    ]
+  },
+  {
+    "objectID": "debug.html#sec-common-errors",
+    "href": "debug.html#sec-common-errors",
+    "title": "Errors and Debugging",
+    "section": "Common Errors & Solutions",
+    "text": "Common Errors & Solutions\n\n1. Object Not Found (object 'x' not found)\nWhat Happened?\nR can’t locate a variable or dataset you referenced.\nCheck: - Spelling mistakes: sumarry() vs summary() - Scope issues: Created in different environment/chunk? - Execution order: Did you run the creation code?\n# Common mistake\npopulation_density &lt;- pop / area\nprint(population_dentsy)  # Typo in variable name\n\n\n2. Missing Functions (could not find function)\nWhat Happened?\nR doesn’t recognize the function name.\nFix: 1. Check spelling: str_detect() vs str_detect 2. Load required package: r    library(stringr)  # For string manipulation functions 3. Install missing package: r    install.packages(\"janitor\")  # First-time installation\n\n\n3. Syntax Issues (unexpected symbol)\nWhat Happened?\nInvalid characters or structure in your code.\nCommon Culprits: - Reserved words as variables: if &lt;- 5 - Special characters: data$2023 (use backticks: data$`2023`) - Missing operators: sqrt(16  # Missing closing parenthesis\n\n\n\n\n\n\nProhibited Names\n\n\n\nAvoid these reserved words for variables: if, else, function, for, while, repeat, break, next\n\n\n\n\n4. Incomplete Code (unexpected end of input)\nWhat Happened?\nR reached the end of your code while expecting more.\nCheck For: - Unclosed parentheses: mean(c(1, 5, 10) - Missing commas: tribble(~Name, ~Age (\"Alice\", 25)) - Unfinished pipes: r   mtcars |&gt;      filter(mpg &gt; 20) |&gt;     select(mpg, cyl  # Missing closing )",
+    "crumbs": [
+      "Appendices",
+      "Errors and Debugging"
+    ]
+  },
+  {
+    "objectID": "debug.html#sec-debugging",
+    "href": "debug.html#sec-debugging",
+    "title": "Errors and Debugging",
+    "section": "Debugging Workflow",
+    "text": "Debugging Workflow\nFollow this systematic approach when encountering errors:\n\n\n\n\n\n\nDebugging Checklist\n\n\n\n\nRead the error message carefully\nIsolate the problem (reproduce in new chunk)\nCheck variable states with str() or glimpse()\nTest components individually\nSearch error message (Google/R community forums)\nAsk peers or AI with reproducible example\n\n\n\n\nHelpful Techniques\n1. Documented Help\n?filter        # Base R help\n??\"regex\"      # Search documentation\nvignette(\"dplyr\")  # Package overview\n2. Contextual Checks\nmtcars |&gt; \n  filter(mpg &gt; 20) |&gt;  # Error here?\n  select(mpg, cyl)\n\n# Test filter separately\nmtcars |&gt; filter(mpg &gt; 20)  # Reveals missing package?\n3. AI Prompt Template\nWhen seeking help, provide:\n1. Your goal\n2. Error message\n3. Relevant code snippet\n4. Sample data (use `dput(head(your_data))`)\n5. What you've tried",
+    "crumbs": [
+      "Appendices",
+      "Errors and Debugging"
+    ]
+  },
+  {
+    "objectID": "debug.html#prevention-strategies",
+    "href": "debug.html#prevention-strategies",
+    "title": "Errors and Debugging",
+    "section": "Prevention Strategies",
+    "text": "Prevention Strategies\n\nWrite Modular Code\nBreak scripts into small, testable chunks\nUse Consistent Style\nFollow tidyverse style guide\nImplement Version Control\nFor big projects, use Git to track changes and revert mistakes\n\nRemember: Debugging is a normal part of programming. Each error resolved makes you a better analyst. In data journalism, thorough debugging ensures the accuracy of your stories and maintains public trust in your work.\n\n\n\n\n\n\n\nKey Takeaways\n\n\n\n\nAlways read error messages completely\nReproduce errors in minimal examples\nUse systematic elimination to find causes\nDocument solutions for future reference",
+    "crumbs": [
+      "Appendices",
+      "Errors and Debugging"
+    ]
   }
 ]

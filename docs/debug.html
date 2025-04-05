@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - Appendix B — Quarto Website</title>
+<title>Data Journalism with R - Errors and Debugging</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./debug.html" rel="next">
-<link href="./links.html" rel="prev">
+<link href="./quarto.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,6 +101,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -115,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./debug.html">Errors and Debugging</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -314,13 +315,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quarto.html" class="sidebar-item-text sidebar-link active">
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+  <a href="./debug.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Errors and Debugging</span></a>
   </div>
 </li>
@@ -336,36 +337,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation"><span class="header-section-number">B.1</span> Installation</a>
+  <li><a href="#understanding-r-messages" id="toc-understanding-r-messages" class="nav-link active" data-scroll-target="#understanding-r-messages">Understanding R Messages</a>
   <ul class="collapse">
-  <li><a href="#install-quarto" id="toc-install-quarto" class="nav-link" data-scroll-target="#install-quarto">Install Quarto</a></li>
-  <li><a href="#install-the-quarto-r-package" id="toc-install-the-quarto-r-package" class="nav-link" data-scroll-target="#install-the-quarto-r-package">Install the Quarto R Package</a></li>
-  <li><a href="#verify-installation" id="toc-verify-installation" class="nav-link" data-scroll-target="#verify-installation">Verify Installation</a></li>
-  <li><a href="#create-a-quarto-pub-account" id="toc-create-a-quarto-pub-account" class="nav-link" data-scroll-target="#create-a-quarto-pub-account">Create a Quarto Pub Account</a></li>
+  <li><a href="#messages" id="toc-messages" class="nav-link" data-scroll-target="#messages">1. Messages</a></li>
+  <li><a href="#warnings" id="toc-warnings" class="nav-link" data-scroll-target="#warnings">2. Warnings</a></li>
+  <li><a href="#errors" id="toc-errors" class="nav-link" data-scroll-target="#errors">3. Errors</a></li>
   </ul></li>
-  <li><a href="#quarto-publish-with-rstudio" id="toc-quarto-publish-with-rstudio" class="nav-link" data-scroll-target="#quarto-publish-with-rstudio"><span class="header-section-number">B.2</span> Quarto Publish with RStudio</a>
+  <li><a href="#sec-common-errors" id="toc-sec-common-errors" class="nav-link" data-scroll-target="#sec-common-errors">Common Errors &amp; Solutions</a>
   <ul class="collapse">
-  <li><a href="#create-a-new-quarto-website-project" id="toc-create-a-new-quarto-website-project" class="nav-link" data-scroll-target="#create-a-new-quarto-website-project">Create a New Quarto Website Project</a></li>
-  <li><a href="#edit-website-content" id="toc-edit-website-content" class="nav-link" data-scroll-target="#edit-website-content">Edit Website Content</a></li>
-  <li><a href="#preview-your-website-locally" id="toc-preview-your-website-locally" class="nav-link" data-scroll-target="#preview-your-website-locally">Preview Your Website Locally</a></li>
-  <li><a href="#publish-your-website" id="toc-publish-your-website" class="nav-link" data-scroll-target="#publish-your-website">Publish Your Website</a></li>
-  <li><a href="#view-your-published-website" id="toc-view-your-published-website" class="nav-link" data-scroll-target="#view-your-published-website">View Your Published Website</a></li>
+  <li><a href="#object-not-found-object-x-not-found" id="toc-object-not-found-object-x-not-found" class="nav-link" data-scroll-target="#object-not-found-object-x-not-found">1. Object Not Found (<code>object 'x' not found</code>)</a></li>
+  <li><a href="#missing-functions-could-not-find-function" id="toc-missing-functions-could-not-find-function" class="nav-link" data-scroll-target="#missing-functions-could-not-find-function">2. Missing Functions (<code>could not find function</code>)</a></li>
+  <li><a href="#syntax-issues-unexpected-symbol" id="toc-syntax-issues-unexpected-symbol" class="nav-link" data-scroll-target="#syntax-issues-unexpected-symbol">3. Syntax Issues (<code>unexpected symbol</code>)</a></li>
+  <li><a href="#incomplete-code-unexpected-end-of-input" id="toc-incomplete-code-unexpected-end-of-input" class="nav-link" data-scroll-target="#incomplete-code-unexpected-end-of-input">4. Incomplete Code (<code>unexpected end of input</code>)</a></li>
   </ul></li>
-  <li><a href="#updating-quarto-website" id="toc-updating-quarto-website" class="nav-link" data-scroll-target="#updating-quarto-website"><span class="header-section-number">B.3</span> Updating Quarto Website</a></li>
-  <li><a href="#updating-content" id="toc-updating-content" class="nav-link" data-scroll-target="#updating-content"><span class="header-section-number">B.4</span> Updating Content</a>
+  <li><a href="#sec-debugging" id="toc-sec-debugging" class="nav-link" data-scroll-target="#sec-debugging">Debugging Workflow</a>
   <ul class="collapse">
-  <li><a href="#updating-structure" id="toc-updating-structure" class="nav-link" data-scroll-target="#updating-structure">Updating Structure</a></li>
+  <li><a href="#helpful-techniques" id="toc-helpful-techniques" class="nav-link" data-scroll-target="#helpful-techniques">Helpful Techniques</a></li>
   </ul></li>
-  <li><a href="#remove-quarto-webiste" id="toc-remove-quarto-webiste" class="nav-link" data-scroll-target="#remove-quarto-webiste"><span class="header-section-number">B.5</span> Remove Quarto Webiste</a></li>
+  <li><a href="#prevention-strategies" id="toc-prevention-strategies" class="nav-link" data-scroll-target="#prevention-strategies">Prevention Strategies</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./debug.html">Errors and Debugging</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix B — Quarto Website</h1>
+<h1 class="title">Errors and Debugging</h1>
 </div>
 
 
@@ -382,171 +380,194 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This note is a step-by-step guide to publishing on Quarto Pub with RStudio.</p>
-<section id="installation" class="level2" data-number="B.1">
-<h2 data-number="B.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">B.1</span> Installation</h2>
-<section id="install-quarto" class="level3">
-<h3 class="anchored" data-anchor-id="install-quarto">Install Quarto</h3>
-<ul>
-<li><p>Download Quarto: Go to <a href="https://quarto.org/">Quarto</a> website and download the installer for your operating system (Windows/macOS/Linux).</p></li>
-<li><p>Run the Installer: Follow the prompts to install Quarto. This adds the <code>quarto</code> command-line tool to your system.</p></li>
-</ul>
-</section>
-<section id="install-the-quarto-r-package" class="level3">
-<h3 class="anchored" data-anchor-id="install-the-quarto-r-package">Install the Quarto R Package</h3>
-<ul>
-<li>Open RStudio</li>
-<li>Install the Quarto R package by running the following command in the <strong>console</strong>:</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quarto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Restart RStudio to ensure the Quarto integration works properly.</li>
-</ul>
-</section>
-<section id="verify-installation" class="level3">
-<h3 class="anchored" data-anchor-id="verify-installation">Verify Installation</h3>
-<ul>
-<li>Open the <strong>Terminal</strong> pane in RStudio (not <strong>Console</strong>).</li>
-<li>Type <code>quarto check</code> and press Enter.</li>
-<li>Confirm that Quarto and required dependencies (e.g., Pandoc) are installed. Fix any issues if prompted.</li>
-</ul>
-</section>
-<section id="create-a-quarto-pub-account" class="level3">
-<h3 class="anchored" data-anchor-id="create-a-quarto-pub-account">Create a Quarto Pub Account</h3>
-<ul>
-<li>Go to <a href="https://quartopub.com/">Quarto Pub</a> and sign up for a free account.</li>
-<li>Verify your email to activate the account.</li>
-</ul>
-</section>
-</section>
-<section id="quarto-publish-with-rstudio" class="level2" data-number="B.2">
-<h2 data-number="B.2" class="anchored" data-anchor-id="quarto-publish-with-rstudio"><span class="header-section-number">B.2</span> Quarto Publish with RStudio</h2>
-<section id="create-a-new-quarto-website-project" class="level3">
-<h3 class="anchored" data-anchor-id="create-a-new-quarto-website-project">Create a New Quarto Website Project</h3>
-<ul>
-<li>In RStudio, go to File &gt; New Project &gt; New Directory &gt; <strong>Quarto Website</strong>.</li>
-<li>Name your project (e.g., <code>firstname-website</code>) and choose a save location (e.g., under your <code>djr</code> folder).</li>
-<li>Click Create Project: This generates a basic website template with <code>index.qmd</code> and <code>about.qmd</code>.</li>
-</ul>
+<p>Even experienced programmers encounter errors daily. This chapter will help you understand common error types in R and develop systematic debugging strategies for data journalism projects.</p>
+<section id="understanding-r-messages" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-r-messages">Understanding R Messages</h2>
+<p>R communicates through three types of feedback that appear in your console:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Quarto Website Structure
+Message Types at a Glance
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li><code>.Rproj</code>: RStudio project file</li>
-<li><code>index.qmd</code>: Homepage content</li>
-<li><code>about.qmd</code>: About page content</li>
-<li><code>_quarto.yml</code>: Site configuration settings</li>
-<li><code>styles.css</code>: Custom CSS styles</li>
-</ul>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 44%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Type</strong></th>
+<th><strong>Icon</strong></th>
+<th><strong>Meaning</strong></th>
+<th><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Message</td>
+<td>ℹ</td>
+<td>Informational note</td>
+<td><code>library()</code> loading messages</td>
+</tr>
+<tr class="even">
+<td>Warning</td>
+<td>⚠️</td>
+<td>Potential issue (code still runs)</td>
+<td><code>NA</code> in calculations</td>
+</tr>
+<tr class="odd">
+<td>Error</td>
+<td>✖</td>
+<td>Critical problem (code stops)</td>
+<td>Missing function arguments</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="messages" class="level3">
+<h3 class="anchored" data-anchor-id="messages">1. Messages</h3>
+<p>These blue notes provide non-critical information. Example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"This is an FYI – check your data source if unexpected"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="warnings" class="level3">
+<h3 class="anchored" data-anchor-id="warnings">2. Warnings</h3>
+<p>Yellow alerts indicate potential issues. Your code runs, but results might be suspect:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>) <span class="sc">|&gt;</span> <span class="fu">mean</span>(<span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Warning: NA detected – did you want na.rm = TRUE?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="errors" class="level3">
+<h3 class="anchored" data-anchor-id="errors">3. Errors</h3>
+<p>Red stops mean critical failures. Code execution halts immediately:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"nonexistent_file.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: 'nonexistent_file.csv' does not exist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="sec-common-errors" class="level2">
+<h2 class="anchored" data-anchor-id="sec-common-errors">Common Errors &amp; Solutions</h2>
+<section id="object-not-found-object-x-not-found" class="level3">
+<h3 class="anchored" data-anchor-id="object-not-found-object-x-not-found">1. Object Not Found (<code>object 'x' not found</code>)</h3>
+<p><strong>What Happened?</strong><br>
+R can’t locate a variable or dataset you referenced.</p>
+<p><strong>Check:</strong> - Spelling mistakes: <code>sumarry()</code> vs <code>summary()</code> - Scope issues: Created in different environment/chunk? - Execution order: Did you run the creation code?</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Common mistake</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>population_density <span class="ot">&lt;-</span> pop <span class="sc">/</span> area</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_dentsy)  <span class="co"># Typo in variable name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="missing-functions-could-not-find-function" class="level3">
+<h3 class="anchored" data-anchor-id="missing-functions-could-not-find-function">2. Missing Functions (<code>could not find function</code>)</h3>
+<p><strong>What Happened?</strong><br>
+R doesn’t recognize the function name.</p>
+<p><strong>Fix:</strong> 1. Check spelling: <code>str_detect()</code> vs <code>str_detect</code> 2. Load required package: <code>r    library(stringr)  # For string manipulation functions</code> 3. Install missing package: <code>r    install.packages("janitor")  # First-time installation</code></p>
+</section>
+<section id="syntax-issues-unexpected-symbol" class="level3">
+<h3 class="anchored" data-anchor-id="syntax-issues-unexpected-symbol">3. Syntax Issues (<code>unexpected symbol</code>)</h3>
+<p><strong>What Happened?</strong><br>
+Invalid characters or structure in your code.</p>
+<p><strong>Common Culprits:</strong> - Reserved words as variables: <code>if &lt;- 5</code> - Special characters: <code>data$2023</code> (use backticks: <code>data$`2023`</code>) - Missing operators: <code>sqrt(16  # Missing closing parenthesis</code></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Prohibited Names
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Avoid these reserved words for variables: <code>if</code>, <code>else</code>, <code>function</code>, <code>for</code>, <code>while</code>, <code>repeat</code>, <code>break</code>, <code>next</code></p>
 </div>
 </div>
 </section>
-<section id="edit-website-content" class="level3">
-<h3 class="anchored" data-anchor-id="edit-website-content">Edit Website Content</h3>
-<ul>
-<li>Edit <code>index.qmd</code> to add content to your homepage.</li>
-<li>Edit <code>about.qmd</code> to add an about page.</li>
-<li>Modify the <code>_quarto.yml</code> file to configure site settings (title, navigation, theme).</li>
-</ul>
+<section id="incomplete-code-unexpected-end-of-input" class="level3">
+<h3 class="anchored" data-anchor-id="incomplete-code-unexpected-end-of-input">4. Incomplete Code (<code>unexpected end of input</code>)</h3>
+<p><strong>What Happened?</strong><br>
+R reached the end of your code while expecting more.</p>
+<p><strong>Check For:</strong> - Unclosed parentheses: <code>mean(c(1, 5, 10)</code> - Missing commas: <code>tribble(~Name, ~Age ("Alice", 25))</code> - Unfinished pipes: <code>r   mtcars |&gt;      filter(mpg &gt; 20) |&gt;     select(mpg, cyl  # Missing closing )</code></p>
 </section>
-<section id="preview-your-website-locally" class="level3">
-<h3 class="anchored" data-anchor-id="preview-your-website-locally">Preview Your Website Locally</h3>
-<ul>
-<li>Click the <strong>Render</strong> button in RStudio to preview your website.</li>
-</ul>
 </section>
-<section id="publish-your-website" class="level3">
-<h3 class="anchored" data-anchor-id="publish-your-website">Publish Your Website</h3>
+<section id="sec-debugging" class="level2">
+<h2 class="anchored" data-anchor-id="sec-debugging">Debugging Workflow</h2>
+<p>Follow this systematic approach when encountering errors:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Debugging Checklist
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use your direction keys to navigate and select options, and press <code>Enter</code> to confirm your choices.</p>
+<ol type="1">
+<li><strong>Read</strong> the error message carefully</li>
+<li><strong>Isolate</strong> the problem (reproduce in new chunk)</li>
+<li><strong>Check</strong> variable states with <code>str()</code> or <code>glimpse()</code></li>
+<li><strong>Test</strong> components individually</li>
+<li><strong>Search</strong> error message (Google/R community forums)</li>
+<li><strong>Ask</strong> peers or AI with <a href="https://reprex.tidyverse.org/">reproducible example</a></li>
+</ol>
 </div>
 </div>
-<ul>
-<li>Open the <strong>Terminal</strong> pane in RStudio.</li>
-<li>Type <code>quarto publish</code> and press Enter.</li>
-<li><code>Provider?</code>: Select <code>Quarto Pub</code> as your publishing destination.</li>
-<li>Authorize the connection to Quarto Pub.</li>
-<li><code>Publishing with account?</code>: Confirm your Quarto pub account.</li>
-<li><code>Site name?</code>: Confirm your site name.</li>
-<li>Follow the on-screen instructions to complete the publishing process.</li>
-</ul>
-</section>
-<section id="view-your-published-website" class="level3">
-<h3 class="anchored" data-anchor-id="view-your-published-website">View Your Published Website</h3>
-<ul>
-<li>Once the publishing process is complete, your website will be live at <code>https://quartopub.com/yourusername/yourprojectname</code>.</li>
-<li>Share the link with others to showcase your work!</li>
-</ul>
-</section>
-</section>
-<section id="updating-quarto-website" class="level2" data-number="B.3">
-<h2 data-number="B.3" class="anchored" data-anchor-id="updating-quarto-website"><span class="header-section-number">B.3</span> Updating Quarto Website</h2>
-</section>
-<section id="updating-content" class="level2" data-number="B.4">
-<h2 data-number="B.4" class="anchored" data-anchor-id="updating-content"><span class="header-section-number">B.4</span> Updating Content</h2>
-<ul>
-<li>To update your website, make changes to your <code>.qmd</code> files and re-publish using <code>quarto publish</code>.</li>
-<li><code>Publish updates to:</code> Confirm site link and press Enter.</li>
-<li>Your website will be automatically updated with the new content.</li>
-</ul>
-<section id="updating-structure" class="level3">
-<h3 class="anchored" data-anchor-id="updating-structure">Updating Structure</h3>
-<p>Let’s say if you want your website have 4 pages:</p>
-<ul>
-<li>Home page to show the content of <code>index.qmd</code></li>
-<li>About page to show the content of <code>about.qmd</code></li>
-<li><code>Data Cleaning</code> to show the content of <code>data-cleaning.qmd</code></li>
-<li><code>Data Analysis</code> to show the content of <code>data-analysis.qmd</code></li>
-</ul>
-<p>First, in addition to the existing <code>index.qmd</code> and <code>about.qmd</code>, you need to create two new <code>.qmd</code> files:</p>
-<ul>
-<li><code>data-cleaning.qmd</code></li>
-<li><code>data-analysis.qmd</code>.</li>
-</ul>
-<p>Then, you need to modify the <code>_quarto.yml</code> file to add the new pages to the navigation bar.</p>
-<ul>
-<li><p>Open <code>_quarto.yml</code> in RStudio.</p></li>
-<li><p>Revise your <code>nav_bar</code> section to include the new pages:</p></li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nav_bar</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Home</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.html</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> About</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> about.html</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Data Cleaning</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> data-cleaning.html</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Data Analysis</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> data-analysis.html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Save the <code>_quarto.yml</code> file.</li>
-<li>Click the <strong>Render</strong> button in RStudio to preview your updated website.</li>
-<li>Publish your updated website using <code>quarto publish</code>.</li>
-</ul>
+<section id="helpful-techniques" class="level3">
+<h3 class="anchored" data-anchor-id="helpful-techniques">Helpful Techniques</h3>
+<p><strong>1. Documented Help</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>?filter        <span class="co"># Base R help</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>??<span class="st">"regex"</span>      <span class="co"># Search documentation</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vignette</span>(<span class="st">"dplyr"</span>)  <span class="co"># Package overview</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>2. Contextual Checks</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span>) <span class="sc">|&gt;</span>  <span class="co"># Error here?</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, cyl)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Test filter separately</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span>)  <span class="co"># Reveals missing package?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>3. AI Prompt Template</strong><br>
+When seeking help, provide:</p>
+<pre><code>1. Your goal
+2. Error message
+3. Relevant code snippet
+4. Sample data (use `dput(head(your_data))`)
+5. What you've tried</code></pre>
 </section>
 </section>
-<section id="remove-quarto-webiste" class="level2" data-number="B.5">
-<h2 data-number="B.5" class="anchored" data-anchor-id="remove-quarto-webiste"><span class="header-section-number">B.5</span> Remove Quarto Webiste</h2>
+<section id="prevention-strategies" class="level2">
+<h2 class="anchored" data-anchor-id="prevention-strategies">Prevention Strategies</h2>
+<ol type="1">
+<li><p><strong>Write Modular Code</strong><br>
+Break scripts into small, testable chunks</p></li>
+<li><p><strong>Use Consistent Style</strong><br>
+Follow <a href="https://style.tidyverse.org/">tidyverse style guide</a></p></li>
+<li><p><strong>Implement Version Control</strong><br>
+For big projects, use Git to track changes and revert mistakes</p></li>
+</ol>
+<p>Remember: Debugging is a normal part of programming. Each error resolved makes you a better analyst. In data journalism, thorough debugging ensures the accuracy of your stories and maintains public trust in your work.</p>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Takeaways
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Go to your Quarto Pub account.</li>
-<li>Click on the project you want to delete.</li>
-<li>Click <code>Delete Site</code> to remove the website from Quarto Pub.</li>
+<li>Always read error messages completely</li>
+<li>Reproduce errors in minimal examples</li>
+<li>Use systematic elimination to find causes</li>
+<li>Document solutions for future reference</li>
 </ul>
+</div>
+</div>
 
 
 </section>
@@ -941,14 +962,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./links.html" class="pagination-link  aria-label=" &lt;span="" links&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span>
+      <a href="./quarto.html" class="pagination-link  aria-label=" &lt;span="" website&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./debug.html" class="pagination-link" aria-label="Errors and Debugging">
-        <span class="nav-page-text">Errors and Debugging</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
