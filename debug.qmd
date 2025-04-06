@@ -1,11 +1,4 @@
-# Errors and Debugging {.unnumbered}
-
-```{r}
-#| echo: false
-#| warning: false
-#| message: false
-library(tidyverse)
-```
+# Errors and Debugging
 
 Even experienced programmers encounter errors daily. This chapter will help you understand common error types in R and develop systematic debugging strategies for data journalism projects.
 

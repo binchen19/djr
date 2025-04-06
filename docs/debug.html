@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - Errors and Debugging</title>
+<title>Data Journalism with R - Appendix C — Errors and Debugging</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,8 +101,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -116,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./debug.html">Errors and Debugging</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./debug.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -322,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debug.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Errors and Debugging</span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></span></a>
   </div>
 </li>
       </ul>
@@ -337,33 +335,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#understanding-r-messages" id="toc-understanding-r-messages" class="nav-link active" data-scroll-target="#understanding-r-messages">Understanding R Messages</a>
+  <li><a href="#understanding-r-messages" id="toc-understanding-r-messages" class="nav-link active" data-scroll-target="#understanding-r-messages"><span class="header-section-number">C.1</span> Understanding R Messages</a>
   <ul class="collapse">
   <li><a href="#messages" id="toc-messages" class="nav-link" data-scroll-target="#messages">1. Messages</a></li>
   <li><a href="#warnings" id="toc-warnings" class="nav-link" data-scroll-target="#warnings">2. Warnings</a></li>
   <li><a href="#errors" id="toc-errors" class="nav-link" data-scroll-target="#errors">3. Errors</a></li>
   </ul></li>
-  <li><a href="#sec-common-errors" id="toc-sec-common-errors" class="nav-link" data-scroll-target="#sec-common-errors">Common Errors &amp; Solutions</a>
+  <li><a href="#sec-common-errors" id="toc-sec-common-errors" class="nav-link" data-scroll-target="#sec-common-errors"><span class="header-section-number">C.2</span> Common Errors &amp; Solutions</a>
   <ul class="collapse">
   <li><a href="#object-not-found-object-x-not-found" id="toc-object-not-found-object-x-not-found" class="nav-link" data-scroll-target="#object-not-found-object-x-not-found">1. Object Not Found (<code>object 'x' not found</code>)</a></li>
   <li><a href="#missing-functions-could-not-find-function" id="toc-missing-functions-could-not-find-function" class="nav-link" data-scroll-target="#missing-functions-could-not-find-function">2. Missing Functions (<code>could not find function</code>)</a></li>
   <li><a href="#syntax-issues-unexpected-symbol" id="toc-syntax-issues-unexpected-symbol" class="nav-link" data-scroll-target="#syntax-issues-unexpected-symbol">3. Syntax Issues (<code>unexpected symbol</code>)</a></li>
   <li><a href="#incomplete-code-unexpected-end-of-input" id="toc-incomplete-code-unexpected-end-of-input" class="nav-link" data-scroll-target="#incomplete-code-unexpected-end-of-input">4. Incomplete Code (<code>unexpected end of input</code>)</a></li>
   </ul></li>
-  <li><a href="#sec-debugging" id="toc-sec-debugging" class="nav-link" data-scroll-target="#sec-debugging">Debugging Workflow</a>
+  <li><a href="#sec-debugging" id="toc-sec-debugging" class="nav-link" data-scroll-target="#sec-debugging"><span class="header-section-number">C.3</span> Debugging Workflow</a>
   <ul class="collapse">
   <li><a href="#helpful-techniques" id="toc-helpful-techniques" class="nav-link" data-scroll-target="#helpful-techniques">Helpful Techniques</a></li>
   </ul></li>
-  <li><a href="#prevention-strategies" id="toc-prevention-strategies" class="nav-link" data-scroll-target="#prevention-strategies">Prevention Strategies</a></li>
+  <li><a href="#prevention-strategies" id="toc-prevention-strategies" class="nav-link" data-scroll-target="#prevention-strategies"><span class="header-section-number">C.4</span> Prevention Strategies</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./debug.html">Errors and Debugging</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./debug.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Errors and Debugging</h1>
+<h1 class="title">Appendix C — Errors and Debugging</h1>
 </div>
 
 
@@ -381,8 +379,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Even experienced programmers encounter errors daily. This chapter will help you understand common error types in R and develop systematic debugging strategies for data journalism projects.</p>
-<section id="understanding-r-messages" class="level2">
-<h2 class="anchored" data-anchor-id="understanding-r-messages">Understanding R Messages</h2>
+<section id="understanding-r-messages" class="level2" data-number="C.1">
+<h2 data-number="C.1" class="anchored" data-anchor-id="understanding-r-messages"><span class="header-section-number">C.1</span> Understanding R Messages</h2>
 <p>R communicates through three types of feedback that appear in your console:</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -450,8 +448,8 @@ Message Types at a Glance
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: 'nonexistent_file.csv' does not exist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="sec-common-errors" class="level2">
-<h2 class="anchored" data-anchor-id="sec-common-errors">Common Errors &amp; Solutions</h2>
+<section id="sec-common-errors" class="level2" data-number="C.2">
+<h2 data-number="C.2" class="anchored" data-anchor-id="sec-common-errors"><span class="header-section-number">C.2</span> Common Errors &amp; Solutions</h2>
 <section id="object-not-found-object-x-not-found" class="level3">
 <h3 class="anchored" data-anchor-id="object-not-found-object-x-not-found">1. Object Not Found (<code>object 'x' not found</code>)</h3>
 <p><strong>What Happened?</strong><br>
@@ -493,8 +491,8 @@ R reached the end of your code while expecting more.</p>
 <p><strong>Check For:</strong> - Unclosed parentheses: <code>mean(c(1, 5, 10)</code> - Missing commas: <code>tribble(~Name, ~Age ("Alice", 25))</code> - Unfinished pipes: <code>r   mtcars |&gt;      filter(mpg &gt; 20) |&gt;     select(mpg, cyl  # Missing closing )</code></p>
 </section>
 </section>
-<section id="sec-debugging" class="level2">
-<h2 class="anchored" data-anchor-id="sec-debugging">Debugging Workflow</h2>
+<section id="sec-debugging" class="level2" data-number="C.3">
+<h2 data-number="C.3" class="anchored" data-anchor-id="sec-debugging"><span class="header-section-number">C.3</span> Debugging Workflow</h2>
 <p>Follow this systematic approach when encountering errors:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -538,8 +536,8 @@ When seeking help, provide:</p>
 5. What you've tried</code></pre>
 </section>
 </section>
-<section id="prevention-strategies" class="level2">
-<h2 class="anchored" data-anchor-id="prevention-strategies">Prevention Strategies</h2>
+<section id="prevention-strategies" class="level2" data-number="C.4">
+<h2 data-number="C.4" class="anchored" data-anchor-id="prevention-strategies"><span class="header-section-number">C.4</span> Prevention Strategies</h2>
 <ol type="1">
 <li><p><strong>Write Modular Code</strong><br>
 Break scripts into small, testable chunks</p></li>
