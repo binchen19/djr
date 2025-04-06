@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Errors and Debugging</span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></span></a>
   </div>
 </li>
       </ul>
@@ -354,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#updating-quarto-website" id="toc-updating-quarto-website" class="nav-link" data-scroll-target="#updating-quarto-website"><span class="header-section-number">B.3</span> Updating Quarto Website</a></li>
   <li><a href="#updating-content" id="toc-updating-content" class="nav-link" data-scroll-target="#updating-content"><span class="header-section-number">B.4</span> Updating Content</a>
   <ul class="collapse">
-  <li><a href="#updating-structure" id="toc-updating-structure" class="nav-link" data-scroll-target="#updating-structure">Updating Structure</a></li>
+  <li><a href="#website-structure" id="toc-website-structure" class="nav-link" data-scroll-target="#website-structure">Website Structure</a></li>
   </ul></li>
   <li><a href="#remove-quarto-webiste" id="toc-remove-quarto-webiste" class="nav-link" data-scroll-target="#remove-quarto-webiste"><span class="header-section-number">B.5</span> Remove Quarto Webiste</a></li>
   </ul>
@@ -505,8 +505,8 @@ Tip
 <li><code>Publish updates to:</code> Confirm site link and press Enter.</li>
 <li>Your website will be automatically updated with the new content.</li>
 </ul>
-<section id="updating-structure" class="level3">
-<h3 class="anchored" data-anchor-id="updating-structure">Updating Structure</h3>
+<section id="website-structure" class="level3">
+<h3 class="anchored" data-anchor-id="website-structure">Website Structure</h3>
 <p>Let’s say if you want your website have 4 pages:</p>
 <ul>
 <li>Home page to show the content of <code>index.qmd</code></li>
@@ -538,6 +538,19 @@ Tip
 <li>Click the <strong>Render</strong> button in RStudio to preview your updated website.</li>
 <li>Publish your updated website using <code>quarto publish</code>.</li>
 </ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each .qmd file should be self-contained. This means: (1) Load all required packages using <code>library()</code> at the top of each file. (2) Load any data needed directly in that file. Do not assume code from other .qmd files will run before this one.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="remove-quarto-webiste" class="level2" data-number="B.5">
@@ -946,8 +959,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./debug.html" class="pagination-link" aria-label="Errors and Debugging">
-        <span class="nav-page-text">Errors and Debugging</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./debug.html" class="pagination-link" aria-label="<span class='chapter-number'>C</span>&nbsp; <span class='chapter-title'>Errors and Debugging</span>">
+        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

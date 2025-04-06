@@ -83,7 +83,7 @@ Use your direction keys to navigate and select options, and press `Enter` to con
 -  `Publish updates to:` Confirm site link and press Enter.
 -  Your website will be automatically updated with the new content.
 
-### Updating Structure
+### Website Structure
 
 Let's say if you want your website have 4 pages:
 
@@ -116,6 +116,12 @@ nav_bar:
 -  Save the `_quarto.yml` file.
 -  Click the **Render** button in RStudio to preview your updated website.
 -  Publish your updated website using `quarto publish`.
+
+
+::: callout-important
+Each .qmd file should be self-contained. This means: (1) Load all required packages using `library()` at the top of each file. (2) Load any data needed directly in that file. Do not assume code from other .qmd files will run before this one.
+:::
+
 
 ## Remove Quarto Webiste
 
