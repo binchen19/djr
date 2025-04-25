@@ -1,4 +1,4 @@
-# Functions for Final Project
+# Final Project Extras
 
 This notebook summarizes some common functions to be used to organize the final project (Quarto Website).
 
