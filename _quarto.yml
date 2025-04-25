@@ -37,11 +37,11 @@ book:
       - hot100.qmd
       - olympics.qmd
       - employment.qmd
-      - map-usa-election.qmd
   appendices:
     - links.qmd
     - quarto.qmd
     - debug.qmd
+    - final_project_notes.qmd
 
     
     
