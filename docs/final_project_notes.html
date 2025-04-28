@@ -414,7 +414,10 @@ htmlwidgets::saveWidget(p2, "out/interactive_plot.html", selfcontained = TRUE)</
 <p>In your home page, you can insert the saved interactive plot using:</p>
 <pre><code># Insert the `interactive_plot.html`
 library(htmltools) # install if not already installed
-htmltools::includeHTML("out/interactive_plot.html")</code></pre>
+tags$iframe(
+src = "out/interactive_plot.html", 
+width = "800px", 
+height = "600px")</code></pre>
 </section>
 </section>
 <section id="arranging-plots" class="level2" data-number="D.4">

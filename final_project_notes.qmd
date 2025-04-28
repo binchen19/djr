@@ -54,7 +54,10 @@ In your home page, you can insert the saved interactive plot using:
 ```
 # Insert the `interactive_plot.html`
 library(htmltools) # install if not already installed
-htmltools::includeHTML("out/interactive_plot.html")
+tags$iframe(
+src = "out/interactive_plot.html", 
+width = "800px", 
+height = "600px")
 ```
 ## Arranging Plots
 
