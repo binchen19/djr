@@ -8,10 +8,11 @@ This notebook summarizes some common functions to be used to organize the final 
 
 Suppose you have cleaned your data and stored it in a cleaned version called `df_clean`. You want to save it as an `.RData` file for later use.
 
-```
+```{r eval = FALSE}
 # Save cleaned data "df_clean" to .RData
 save(df_clean, file = "cleaned_data.RData")
 ```
+
 
 ## Data Analysis & Visualization
 
@@ -19,7 +20,7 @@ save(df_clean, file = "cleaned_data.RData")
 
 At the beginning of your analysis, you need to load the cleaned data you saved earlier.
 
-```
+```{r eval=FALSE}
 # Load cleaned data
 load("cleaned_data.RData")
 ```
@@ -29,10 +30,11 @@ load("cleaned_data.RData")
 ### Static Plots
 Suppose you have created a scatter plot `p1` using `ggplot2` and want to save it as a PNG file.
 
-```
+```{r eval=FALSE}
 # Save plot as PNG
 ggsave("out/scatter_plot.png", plot = p1, width = 8, height = 6, dpi = 300)
 ```
+
 
 In your home page, you can insert the saved plot using (**no codechunk is needed**):
 
@@ -44,21 +46,21 @@ In your home page, you can insert the saved plot using (**no codechunk is needed
 
 Suppose you have created an interactive plot `p2` using `plotly` and want to save it as an HTML file.
 
-```
-# Save interactive plot as HTML
+```{r eval = FALSE}
 library(htmlwidgets) # install if not already installed
 htmlwidgets::saveWidget(p2, "out/interactive_plot.html", selfcontained = TRUE)
 ```
+
 In your home page, you can insert the saved interactive plot using:
 
-```
-# Insert the `interactive_plot.html`
+```{r eval = FALSE}
 library(htmltools) # install if not already installed
 tags$iframe(
 src = "out/interactive_plot.html", 
 width = "800px", 
 height = "600px")
 ```
+
 ## Arranging Plots
 
 You can also arrange multiple plots in a grid layout using the `ggpubr` package.
