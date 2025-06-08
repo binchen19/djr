@@ -44,6 +44,7 @@ knitr::include_graphics("images/install-r-rstudio.png")
 
     -   Windows: `C:/Users/[YourName]/Documents/djr`
     -   Mac: `/Users/[YourName]/Documents/djr`
+    -   Linux: `/home/[YourName]/Documents/djr`
 
 2.  Use **lowercase letters only** (avoid spaces/special characters)
 
@@ -80,7 +81,7 @@ Optimize your setup through:
 knitr::include_graphics("images/rstudio-ide.png")
 ```
 
-Download full [RStudio IDE cheatsheets](cheatsheets/rstudio-ide.pdf)
+Download the full [RStudio IDE cheatsheet](cheatsheets/rstudio-ide.pdf)
 
 ## Essential Packages Installation
 
@@ -164,7 +165,7 @@ Here is an example of a code chunk in a R Markdown file:
 knitr::include_graphics("images/rmarkdown.png")
 ```
 
-Download full [RMarkdown cheatsheets](cheatsheets/rmarkdown.pdf)
+Download the full [RMarkdown cheatsheet](cheatsheets/rmarkdown.pdf)
 
 ### Render the R Markdown file
 
@@ -190,7 +191,7 @@ Don't run `install.packages("praise")` in the R Markdown file, as this would pre
 
 | Functionality | Command / Shortcut | Example Use |
 |-------------------------|-----------------------------|------------------|
-| Insert code chunk (Windows) | `Ctrl + Alt + I` | \- |
+| Insert code chunk (Windows, Linux) | `Ctrl + Alt + I` | \- |
 | Insert code chunk (Mac) | `Cmd + Option + I` | \- |
 | Install R packages | `install.packages("package_name")` | `install.packages("ggplot2")` |
 | Load R packages | `library(package_name)` | `library(ggplot2)` |
