@@ -31,12 +31,4 @@ When looking for datasets for data journalism project, one should avoid **survey
 - [R Graphics Cookbook, 2nd edition](https://r-graphics.org/)
 - [R for Journalists](https://r-journalism.com/)
 
-## Final Projects Examples
 
-### 24 Fall
-- [HK Elderly Abuse](https://yongershen.quarto.pub/yonger-final-project-dj/)
-- [US Mass Shooting 2024](https://cindy-ningxy.quarto.pub/xiuyuan-final-project/)
-- [CN Movie Revenue](https://angelicawan927.quarto.pub/angelicazhixin_final/)
-- [HK Child Abuse](https://tesstang.quarto.pub/xinyue_final_project/)
-- [Esports Revenue](https://eveqiao.quarto.pub/yushan_finalproject/)
-- [Carbon Emissions](https://lanqingm.quarto.pub/carbon-emissions/)

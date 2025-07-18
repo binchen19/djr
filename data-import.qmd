@@ -45,7 +45,7 @@ library(tidyverse)
 
 # Hong Kong graduates salary data
 
-data_url = "https://res.data.gov.hk/api/get-download-file?name=https%3A%2F%2Fwww.ugcs.gov.hk%2Fdatagovhk%2FAverage_Annual_Salaries_FT_Employment(Eng).csv"
+data_url = "https://www.ugcs.gov.hk/datagovhk/Average_Annual_Salaries_FT_Employment(Eng).csv"
 hksalary_download <- read_csv(data_url)
 
 hksalary_download

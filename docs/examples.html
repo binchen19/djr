@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - Appendix D — Final Project Extras</title>
+<title>Data Journalism with R - Appendix E — Sample Projects</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./examples.html" rel="next">
-<link href="./debug.html" rel="prev">
+<link href="./final_project_notes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,8 +67,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 
 </head>
@@ -117,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./final_project_notes.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project Extras</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./examples.html"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sample Projects</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -322,13 +285,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link active">
+  <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project Extras</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples.html" class="sidebar-item-text sidebar-link">
+  <a href="./examples.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sample Projects</span></span></a>
   </div>
 </li>
@@ -344,29 +307,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link active" data-scroll-target="#data-cleaning"><span class="header-section-number">D.1</span> Data Cleaning</a>
+  <li><a href="#outstanding-final-projects-from-past-semesters" id="toc-outstanding-final-projects-from-past-semesters" class="nav-link active" data-scroll-target="#outstanding-final-projects-from-past-semesters"><span class="header-section-number">E.1</span> 🌟 Outstanding Final Projects from Past Semesters</a>
   <ul class="collapse">
-  <li><a href="#save-cleaned-data" id="toc-save-cleaned-data" class="nav-link" data-scroll-target="#save-cleaned-data">Save Cleaned Data</a></li>
+  <li><a href="#fall-2024" id="toc-fall-2024" class="nav-link" data-scroll-target="#fall-2024">🗓️ Fall 2024</a></li>
+  <li><a href="#spring-2025" id="toc-spring-2025" class="nav-link" data-scroll-target="#spring-2025">🗓️ Spring 2025</a></li>
   </ul></li>
-  <li><a href="#data-analysis-visualization" id="toc-data-analysis-visualization" class="nav-link" data-scroll-target="#data-analysis-visualization"><span class="header-section-number">D.2</span> Data Analysis &amp; Visualization</a>
-  <ul class="collapse">
-  <li><a href="#load-cleaned-data" id="toc-load-cleaned-data" class="nav-link" data-scroll-target="#load-cleaned-data">Load Cleaned Data</a></li>
-  </ul></li>
-  <li><a href="#save-plots-and-insert-in-home-page" id="toc-save-plots-and-insert-in-home-page" class="nav-link" data-scroll-target="#save-plots-and-insert-in-home-page"><span class="header-section-number">D.3</span> Save Plots and Insert in Home Page</a>
-  <ul class="collapse">
-  <li><a href="#static-plots" id="toc-static-plots" class="nav-link" data-scroll-target="#static-plots">Static Plots</a></li>
-  <li><a href="#interactive-plots" id="toc-interactive-plots" class="nav-link" data-scroll-target="#interactive-plots">Interactive Plots</a></li>
-  </ul></li>
-  <li><a href="#arranging-plots" id="toc-arranging-plots" class="nav-link" data-scroll-target="#arranging-plots"><span class="header-section-number">D.4</span> Arranging Plots</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./final_project_notes.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project Extras</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./examples.html"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sample Projects</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix D — Final Project Extras</h1>
+<h1 class="title">Appendix E — Sample Projects</h1>
 </div>
 
 
@@ -383,95 +337,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This notebook summarizes some common functions to be used to organize the final project (Quarto Website).</p>
-<section id="data-cleaning" class="level2" data-number="D.1">
-<h2 data-number="D.1" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">D.1</span> Data Cleaning</h2>
-<section id="save-cleaned-data" class="level3">
-<h3 class="anchored" data-anchor-id="save-cleaned-data">Save Cleaned Data</h3>
-<p>Suppose you have cleaned your data and stored it in a cleaned version called <code>df_clean</code>. You want to save it as an <code>.RData</code> file for later use.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save cleaned data "df_clean" to .RData</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(df_clean, <span class="at">file =</span> <span class="st">"cleaned_data.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="outstanding-final-projects-from-past-semesters" class="level2" data-number="E.1">
+<h2 data-number="E.1" class="anchored" data-anchor-id="outstanding-final-projects-from-past-semesters"><span class="header-section-number">E.1</span> 🌟 Outstanding Final Projects from Past Semesters</h2>
+<p>Explore some of the most outstanding final projects submitted by students in <strong>JMSC1003: Fundamentals of Data Journalism</strong>. These examples showcase the creativity, analytical skills, and storytelling abilities developed throughout the course.</p>
+<hr>
+<section id="fall-2024" class="level3">
+<h3 class="anchored" data-anchor-id="fall-2024">🗓️ Fall 2024</h3>
+<ul>
+<li><a href="https://yongershen.quarto.pub/yonger-final-project-dj/">HK Elderly Abuse</a> — <em>Shen, Yonger</em></li>
+<li><a href="https://cindy-ningxy.quarto.pub/xiuyuan-final-project/">US Mass Shootings in 2024</a> — <em>Ning, Xiuyuan Cindy</em></li>
+<li><a href="https://angelicawan927.quarto.pub/angelicazhixin_final/">China’s Movie Revenue</a> — <em>Wan, Zhixin Angelica</em></li>
+<li><a href="https://tesstang.quarto.pub/xinyue_final_project/">Child Abuse Cases in Hong Kong</a> — <em>Tang, Xinyue Tess</em></li>
+<li><a href="https://eveqiao.quarto.pub/yushan_finalproject/">Esports Revenue Trends</a> — <em>Qiao, Yushan Eve</em></li>
+<li><a href="https://lanqingm.quarto.pub/carbon-emissions/">Tracking Carbon Emissions</a> — <em>Mao, Lanqing</em></li>
+</ul>
+<hr>
 </section>
+<section id="spring-2025" class="level3">
+<h3 class="anchored" data-anchor-id="spring-2025">🗓️ Spring 2025</h3>
+<section id="undergraduate-students" class="level4">
+<h4 class="anchored" data-anchor-id="undergraduate-students">Undergraduate students</h4>
+<ul>
+<li><a href="https://sarahjody.quarto.pub/sarahjody-finalproject-website/">War on Drugs in the Philippines (2016–2022)</a> — <em>Siquig Castañeto, Sarah Jody</em></li>
+<li><a href="https://snow-brandon.quarto.pub/brandon-finalproject/">The Journey of Women in the Olympics (1896–2024)</a> — <em>Feng, Brandon</em></li>
+<li><a href="https://ethanlim.quarto.pub/ethan-website/">Global Migration Deaths</a> — <em>Lim, Haan Hoong Ethan</em></li>
+<li><a href="https://chloechan.quarto.pub/demo-website/">Trends in SEN Student Numbers (2019–2024)</a> — <em>Chan, Lok Yiu Chloe</em></li>
+<li><a href="https://huangshixian.quarto.pub/olympic-performance/">Olympic Performance Over Time</a> — <em>Huang, Shixian</em></li>
+<li><a href="https://chonwun-shen.quarto.pub/shen-chon-wuns-final-project/">Global Video Game Preference 2024</a> - <em>Shen, Chon Wun</em></li>
+<li><a href="https://joshuakwok.quarto.pub/joshuakwok-quarto/analysis.html">Government Funding Allocation to National Sports Associations</a> — <em>Kwok, Joshua</em></li>
+</ul>
 </section>
-<section id="data-analysis-visualization" class="level2" data-number="D.2">
-<h2 data-number="D.2" class="anchored" data-anchor-id="data-analysis-visualization"><span class="header-section-number">D.2</span> Data Analysis &amp; Visualization</h2>
-<section id="load-cleaned-data" class="level3">
-<h3 class="anchored" data-anchor-id="load-cleaned-data">Load Cleaned Data</h3>
-<p>At the beginning of your analysis, you need to load the cleaned data you saved earlier.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load cleaned data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"cleaned_data.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="save-plots-and-insert-in-home-page" class="level2" data-number="D.3">
-<h2 data-number="D.3" class="anchored" data-anchor-id="save-plots-and-insert-in-home-page"><span class="header-section-number">D.3</span> Save Plots and Insert in Home Page</h2>
-<section id="static-plots" class="level3">
-<h3 class="anchored" data-anchor-id="static-plots">Static Plots</h3>
-<p>Suppose you have created a scatter plot <code>p1</code> using <code>ggplot2</code> and want to save it as a PNG file.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save plot as PNG</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"out/scatter_plot.png"</span>, <span class="at">plot =</span> p1, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In your home page, you can insert the saved plot using (<strong>no codechunk is needed</strong>):</p>
-<pre><code>![Scatter Plot](out/scatter_plot.png)</code></pre>
-</section>
-<section id="interactive-plots" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-plots">Interactive Plots</h3>
-<p>Suppose you have created an interactive plot <code>p2</code> using <code>plotly</code> and want to save it as an HTML file.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmlwidgets) <span class="co"># install if not already installed</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>htmlwidgets<span class="sc">::</span><span class="fu">saveWidget</span>(p2, <span class="st">"out/interactive_plot.html"</span>, <span class="at">selfcontained =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>In your home page, you can insert the saved interactive plot using:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmltools) <span class="co"># install if not already installed</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tags<span class="sc">$</span><span class="fu">iframe</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">src =</span> <span class="st">"out/interactive_plot.html"</span>, </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">width =</span> <span class="st">"800px"</span>, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">height =</span> <span class="st">"600px"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="arranging-plots" class="level2" data-number="D.4">
-<h2 data-number="D.4" class="anchored" data-anchor-id="arranging-plots"><span class="header-section-number">D.4</span> Arranging Plots</h2>
-<p>You can also arrange multiple plots in a grid layout using the <code>ggpubr</code> package.</p>
-<p>Suppose you have two plots <code>p1</code> and <code>p2</code> and want to arrange them in a 1x2 grid.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required libraries</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use mtcars as the cleaned dataset</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> mtcars</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create two plots</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_clean, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatter Plot of Weight vs MPG"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Weight (1000 lbs)"</span>, <span class="at">y =</span> <span class="st">"Miles per Gallon"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_clean, <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> qsec)) <span class="sc">+</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"darkgreen"</span>) <span class="sc">+</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Line Plot of Horsepower vs 1/4 Mile Time"</span>,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Horsepower"</span>, <span class="at">y =</span> <span class="st">"1/4 Mile Time (sec)"</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange plots in a 1x2 grid</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>arranged_plot <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>arranged_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="final_project_notes_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="masters-students" class="level4">
+<h4 class="anchored" data-anchor-id="masters-students">Master’s students</h4>
+<ul>
+<li><a href="https://lexitian.quarto.pub/website/">Global EV Revolution</a> — <em>Tian, Xinlu Lexi</em></li>
+<li><a href="https://cindyxie.quarto.pub/cindy-website/">Global HIV/AIDS Condition</a> — <em>Xie, Xindi Cindy</em></li>
+<li><a href="https://rubypeng.quarto.pub/httpquartopubcomrubypengglobal-animal-health-outbreak-report/">Global Animal Health Outbreak Report</a> — <em>Peng, Ruixin Ruby</em></li>
+</ul>
+<hr>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -864,14 +771,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./debug.html" class="pagination-link  aria-label=" &lt;span="" and="" debugging&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></span>
+      <a href="./final_project_notes.html" class="pagination-link  aria-label=" &lt;span="" project="" extras&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project Extras</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./examples.html" class="pagination-link" aria-label="<span class='chapter-number'>E</span>&nbsp; <span class='chapter-title'>Sample Projects</span>">
-        <span class="nav-page-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sample Projects</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

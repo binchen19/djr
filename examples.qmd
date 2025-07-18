@@ -1,0 +1,39 @@
+# Sample Projects
+
+## 🌟 Outstanding Final Projects from Past Semesters
+
+Explore some of the most outstanding final projects submitted by students in **JMSC1003: Fundamentals of Data Journalism**. These examples showcase the creativity, analytical skills, and storytelling abilities developed throughout the course.
+
+---
+
+### 🗓️ Fall 2024
+- [HK Elderly Abuse](https://yongershen.quarto.pub/yonger-final-project-dj/) — *Shen, Yonger*
+- [US Mass Shootings in 2024](https://cindy-ningxy.quarto.pub/xiuyuan-final-project/) — *Ning, Xiuyuan Cindy*
+- [China's Movie Revenue](https://angelicawan927.quarto.pub/angelicazhixin_final/) — *Wan, Zhixin Angelica*
+- [Child Abuse Cases in Hong Kong](https://tesstang.quarto.pub/xinyue_final_project/) — *Tang, Xinyue Tess*
+- [Esports Revenue Trends](https://eveqiao.quarto.pub/yushan_finalproject/) — *Qiao, Yushan Eve*
+- [Tracking Carbon Emissions](https://lanqingm.quarto.pub/carbon-emissions/) — *Mao, Lanqing*
+
+---
+
+### 🗓️ Spring 2025
+
+#### Undergraduate students
+- [War on Drugs in the Philippines (2016–2022)](https://sarahjody.quarto.pub/sarahjody-finalproject-website/) — *Siquig Castañeto, Sarah Jody*
+- [The Journey of Women in the Olympics (1896–2024)](https://snow-brandon.quarto.pub/brandon-finalproject/) — *Feng, Brandon*
+- [Global Migration Deaths](https://ethanlim.quarto.pub/ethan-website/) — *Lim, Haan Hoong Ethan*
+- [Trends in SEN Student Numbers (2019–2024)](https://chloechan.quarto.pub/demo-website/) — *Chan, Lok Yiu Chloe*
+- [Olympic Performance Over Time](https://huangshixian.quarto.pub/olympic-performance/) — *Huang, Shixian*
+- [Global Video Game Preference 2024](https://chonwun-shen.quarto.pub/shen-chon-wuns-final-project/) - *Shen, Chon Wun*
+- [Government Funding Allocation to National Sports Associations](https://joshuakwok.quarto.pub/joshuakwok-quarto/analysis.html) — *Kwok, Joshua*
+
+#### Master's students
+- [Global EV Revolution](https://lexitian.quarto.pub/website/) — *Tian, Xinlu Lexi*
+- [Global HIV/AIDS Condition](https://cindyxie.quarto.pub/cindy-website/) — *Xie, Xindi Cindy*
+- [Global Animal Health Outbreak Report](https://rubypeng.quarto.pub/httpquartopubcomrubypengglobal-animal-health-outbreak-report/) — *Peng, Ruixin Ruby*
+
+---
+
+
+
+

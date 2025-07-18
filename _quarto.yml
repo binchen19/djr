@@ -42,6 +42,7 @@ book:
     - quarto.qmd
     - debug.qmd
     - final_project_notes.qmd
+    - examples.qmd
 
     
     
