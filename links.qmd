@@ -6,20 +6,29 @@
 - [Download Quarto](https://quarto.org/docs/get-started/)
 - [Sign up for Quarto Pub account](https://quartopub.com/)
 
-## Where to find data-driven news stories
-- [New York Times' Up Shot](https://www.nytimes.com/section/upshot)
-- [FiveThirtyEight](https://abcnews.go.com/538)
-- [BBC Visual & Data Journalism](https://medium.com/@bbc_visual_and_data_journalism)
-- [Financial Times Visual Journalism](https://www.ft.com/visual-and-data-journalism)
-- [The Guardian Data](https://www.theguardian.com/data)
+## Where to find data news?
 
-## Where to find real-world datasets
-- [Kaggle](https://www.kaggle.com/datasets)
+- [Caixin 財新-數字說](https://datanews.caixin.com/)
+- [Initium Media 端傳媒-數洞](https://theinitium.com/column/data)
+- [SCMP Infographics](https://www.scmp.com/infographic/)
+- [The New York Times – The Upshot](https://www.nytimes.com/section/upshot)  
+- [Reuters Graphics](https://www.reuters.com/graphics/)  
+- [Bloomberg Graphics](https://www.bloomberg.com/graphics/)  
+- [Financial Times – Visual & Data Journalism](https://www.ft.com/visual-and-data-journalism)  
+- [Our World in Data](https://ourworldindata.org)
+
+## Where to find datasets?
+
+- [DATA.GOV.HK](https://data.gov.hk/en/)
+- [Census and Statistics Department (HK)](https://www.censtatd.gov.hk/)
+- [Kaggle Datasets](https://www.kaggle.com/datasets)
 - [Google Dataset Search](https://datasetsearch.research.google.com/)
-- [HK Government Public Data](https://data.gov.hk/en/)
-- [World Bank](https://data.worldbank.org/)
-- [Our World in Data](https://ourworldindata.org/data)
-- [Tidytuesday](https://github.com/rfordatascience/tidytuesday)
+- [Our World in Data](https://ourworldindata.org)
+- [World Bank Data](https://data.worldbank.org/)
+- [United Nations Data Portal](https://data.un.org/)
+- [OECD Data](https://data.oecd.org/)
+- [Eurostat](https://ec.europa.eu/eurostat)
+- [U.S. Government Open Data (data.gov)](https://www.data.gov/)
 
 ::: callout-warning
 When looking for datasets for data journalism project, one should avoid **survey** data and **synthetic** data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like [WHO](https://www.who.int/data) or [Pew Research Center](https://www.pewresearch.org/).

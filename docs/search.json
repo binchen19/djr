@@ -1133,7 +1133,7 @@
     "href": "links.html#where-to-find-data-driven-news-stories",
     "title": "Appendix A — Useful Links",
     "section": "A.2 Where to find data-driven news stories",
-    "text": "A.2 Where to find data-driven news stories\n\nNew York Times’ Up Shot\nFiveThirtyEight\nBBC Visual & Data Journalism\nFinancial Times Visual Journalism\nThe Guardian Data",
+    "text": "A.2 Where to find data-driven news stories\n\n財新-數字說\nSCMP Infographics\nInitium Media 端傳媒-數洞\nThe New York Times – The Upshot\n\nReuters Graphics\n\nBloomberg Graphics\n\nFinancial Times – Visual & Data Journalism\n\nOur World in Data\n\nWashington Post – Data and Graphics",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
@@ -1357,6 +1357,39 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>E</span>  <span class='chapter-title'>Sample Projects</span>"
+    ]
+  },
+  {
+    "objectID": "links.html#where-to-find-data-news",
+    "href": "links.html#where-to-find-data-news",
+    "title": "Appendix A — Useful Links",
+    "section": "A.2 Where to find data news?",
+    "text": "A.2 Where to find data news?\n\nCaixin 財新-數字說\nInitium Media 端傳媒-數洞\nSCMP Infographics\nThe New York Times – The Upshot\n\nReuters Graphics\n\nBloomberg Graphics\n\nFinancial Times – Visual & Data Journalism\n\nOur World in Data",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
+    ]
+  },
+  {
+    "objectID": "links.html#where-to-find-datasets-for-data-journalism",
+    "href": "links.html#where-to-find-datasets-for-data-journalism",
+    "title": "Appendix A — Useful Links",
+    "section": "A.3 Where to find datasets for data journalism",
+    "text": "A.3 Where to find datasets for data journalism\n\nDATA.GOV.HK\nCensus and Statistics Department (HK)\nKaggle Datasets\nGoogle Dataset Search\nOur World in Data\nWorld Bank Data\nUnited Nations Data Portal\nOECD Data\nEurostat\nU.S. Government Open Data (data.gov)\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen looking for datasets for data journalism project, one should avoid survey data and synthetic data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like WHO or Pew Research Center.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
+    ]
+  },
+  {
+    "objectID": "links.html#where-to-find-datasets",
+    "href": "links.html#where-to-find-datasets",
+    "title": "Appendix A — Useful Links",
+    "section": "A.3 Where to find datasets?",
+    "text": "A.3 Where to find datasets?\n\nDATA.GOV.HK\nCensus and Statistics Department (HK)\nKaggle Datasets\nGoogle Dataset Search\nOur World in Data\nWorld Bank Data\nUnited Nations Data Portal\nOECD Data\nEurostat\nU.S. Government Open Data (data.gov)\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen looking for datasets for data journalism project, one should avoid survey data and synthetic data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like WHO or Pew Research Center.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
     ]
   }
 ]
