@@ -16,6 +16,8 @@
 - [Bloomberg Graphics](https://www.bloomberg.com/graphics/)  
 - [Financial Times – Visual & Data Journalism](https://www.ft.com/visual-and-data-journalism)  
 - [Our World in Data](https://ourworldindata.org)
+- [NBC News](https://www.nbcnews.com/datagraphics)
+- [The Marshall Project](https://www.themarshallproject.org/)
 
 ## Where to find datasets?
 
@@ -29,6 +31,12 @@
 - [OECD Data](https://data.oecd.org/)
 - [Eurostat](https://ec.europa.eu/eurostat)
 - [U.S. Government Open Data (data.gov)](https://www.data.gov/)
+- [Humanitaria](https://data.humdata.org/)
+- [IMF Data Portal](https://data.imf.org/)
+- [UN Office on Drugs and Crime (UNODC)](https://dataunodc.un.org/)n Data Exchange]
+- [Climate Data Online (NOAA)](https://www.ncdc.noaa.gov/cdo-web/)
+- [Bureau of Justice Statistics (U.S.)](https://bjs.ojp.gov/)
+- [IHME Global Health Data](https://www.healthdata.org/)
 
 ::: callout-warning
 When looking for datasets for data journalism project, one should avoid **survey** data and **synthetic** data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like [WHO](https://www.who.int/data) or [Pew Research Center](https://www.pewresearch.org/).
