@@ -891,7 +891,7 @@
     "href": "debate.html#word-cloud",
     "title": "12  Text Analysis",
     "section": "12.8 Word Cloud",
-    "text": "12.8 Word Cloud\n\nlibrary(wordcloud)\n\nLoading required package: RColorBrewer\n\nlibrary(RColorBrewer)\n\n\n# Filter word counts for each candidate\nharris_words &lt;- word_counts %&gt;%\n  filter(speaker == \"Harris\")\n\ntrump_words &lt;- word_counts %&gt;%\n  filter(speaker == \"Trump\")\n\n\nSingle Plot\n\nwordcloud(words = harris_words$word, \n          freq = harris_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Blues\"),\n          scale = c(4, 0.5))\ntitle(\"Harris\")\n\n\n\n\n\n\n\n\n\n\nSide-by-Side\n\n# Set up the plotting area for two plots\npar(mfrow = c(1, 2))\n\n# Word cloud for Harris\nwordcloud(words = harris_words$word, \n          freq = harris_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Blues\"),\n          scale = c(4, 0.5))\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : ensuring could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : focusing could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : government could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : investing could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : knowing could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : protecting could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : stop could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : understanding could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : understands could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : woman could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : zelenskyy could not be fit on page. It will not be plotted.\n\ntitle(\"Harris\")\n\n# Word cloud for Trump\nwordcloud(words = trump_words$word, \n          freq = trump_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Reds\"),\n          scale = c(4, 0.5))\ntitle(\"Trump\")",
+    "text": "12.8 Word Cloud\n\nlibrary(wordcloud)\n\nLoading required package: RColorBrewer\n\nlibrary(RColorBrewer)\n\n\n# Filter word counts for each candidate\nharris_words &lt;- word_counts %&gt;%\n  filter(speaker == \"Harris\")\n\ntrump_words &lt;- word_counts %&gt;%\n  filter(speaker == \"Trump\")\n\n\nSingle Plot\n\nwordcloud(words = harris_words$word, \n          freq = harris_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Blues\"),\n          scale = c(4, 0.5))\ntitle(\"Harris\")\n\n\n\n\n\n\n\n\n\n\nSide-by-Side\n\n# Set up the plotting area for two plots\npar(mfrow = c(1, 2))\n\n# Word cloud for Harris\nwordcloud(words = harris_words$word, \n          freq = harris_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Blues\"),\n          scale = c(4, 0.5))\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : deserve could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : ensuring could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : focusing could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : increase could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : jobs could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : lies could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : manufacturing could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : protecting could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : raised could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : standing could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : taliban could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : understanding could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : understands could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : woman could not be fit on page. It will not be plotted.\n\n\nWarning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq\n= 2, : zelenskyy could not be fit on page. It will not be plotted.\n\ntitle(\"Harris\")\n\n# Word cloud for Trump\nwordcloud(words = trump_words$word, \n          freq = trump_words$n, \n          min.freq = 2,\n          max.words = 100,\n          random.order = FALSE, \n          rot.per = 0.35, \n          colors = brewer.pal(8, \"Reds\"),\n          scale = c(4, 0.5))\ntitle(\"Trump\")",
     "crumbs": [
       "Case Studies",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Text Analysis</span>"
@@ -1129,22 +1129,22 @@
     ]
   },
   {
-    "objectID": "links.html#where-to-find-data-driven-news-stories",
-    "href": "links.html#where-to-find-data-driven-news-stories",
+    "objectID": "links.html#where-to-find-data-news",
+    "href": "links.html#where-to-find-data-news",
     "title": "Appendix A — Useful Links",
-    "section": "A.2 Where to find data-driven news stories",
-    "text": "A.2 Where to find data-driven news stories\n\n財新-數字說\nSCMP Infographics\nInitium Media 端傳媒-數洞\nThe New York Times – The Upshot\n\nReuters Graphics\n\nBloomberg Graphics\n\nFinancial Times – Visual & Data Journalism\n\nOur World in Data\n\nWashington Post – Data and Graphics",
+    "section": "A.2 Where to find data news?",
+    "text": "A.2 Where to find data news?\n\nCaixin 財新-數字說\nInitium Media 端傳媒-數洞\nSCMP Infographics\nThe New York Times – The Upshot\n\nReuters Graphics\n\nBloomberg Graphics\n\nFinancial Times – Visual & Data Journalism\n\nOur World in Data\nNBC News\nThe Marshall Project",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
     ]
   },
   {
-    "objectID": "links.html#where-to-find-real-world-datasets",
-    "href": "links.html#where-to-find-real-world-datasets",
+    "objectID": "links.html#where-to-find-datasets",
+    "href": "links.html#where-to-find-datasets",
     "title": "Appendix A — Useful Links",
-    "section": "A.3 Where to find real-world datasets",
-    "text": "A.3 Where to find real-world datasets\n\nKaggle\nGoogle Dataset Search\nHK Government Public Data\nWorld Bank\nOur World in Data\nTidytuesday\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen looking for datasets for data journalism project, one should avoid survey data and synthetic data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like WHO or Pew Research Center.",
+    "section": "A.3 Where to find datasets?",
+    "text": "A.3 Where to find datasets?\n\nDATA.GOV.HK\nCensus and Statistics Department (HK)\nKaggle Datasets\nGoogle Dataset Search\nOur World in Data\nWorld Bank Data\nUnited Nations Data Portal\nOECD Data\nEurostat\nU.S. Government Open Data (data.gov)\nHumanitaria\nIMF Data Portal\nUN Office on Drugs and Crime (UNODC)\nClimate Data Online (NOAA)\nBureau of Justice Statistics (U.S.)\nIHME Global Health Data\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen looking for datasets for data journalism project, one should avoid survey data and synthetic data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like WHO or Pew Research Center.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
@@ -1357,39 +1357,6 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>E</span>  <span class='chapter-title'>Sample Projects</span>"
-    ]
-  },
-  {
-    "objectID": "links.html#where-to-find-data-news",
-    "href": "links.html#where-to-find-data-news",
-    "title": "Appendix A — Useful Links",
-    "section": "A.2 Where to find data news?",
-    "text": "A.2 Where to find data news?\n\nCaixin 財新-數字說\nInitium Media 端傳媒-數洞\nSCMP Infographics\nThe New York Times – The Upshot\n\nReuters Graphics\n\nBloomberg Graphics\n\nFinancial Times – Visual & Data Journalism\n\nOur World in Data\nNBC News\nThe Marshall Project",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
-    ]
-  },
-  {
-    "objectID": "links.html#where-to-find-datasets-for-data-journalism",
-    "href": "links.html#where-to-find-datasets-for-data-journalism",
-    "title": "Appendix A — Useful Links",
-    "section": "A.3 Where to find datasets for data journalism",
-    "text": "A.3 Where to find datasets for data journalism\n\nDATA.GOV.HK\nCensus and Statistics Department (HK)\nKaggle Datasets\nGoogle Dataset Search\nOur World in Data\nWorld Bank Data\nUnited Nations Data Portal\nOECD Data\nEurostat\nU.S. Government Open Data (data.gov)\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen looking for datasets for data journalism project, one should avoid survey data and synthetic data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like WHO or Pew Research Center.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
-    ]
-  },
-  {
-    "objectID": "links.html#where-to-find-datasets",
-    "href": "links.html#where-to-find-datasets",
-    "title": "Appendix A — Useful Links",
-    "section": "A.3 Where to find datasets?",
-    "text": "A.3 Where to find datasets?\n\nDATA.GOV.HK\nCensus and Statistics Department (HK)\nKaggle Datasets\nGoogle Dataset Search\nOur World in Data\nWorld Bank Data\nUnited Nations Data Portal\nOECD Data\nEurostat\nU.S. Government Open Data (data.gov)\nHumanitaria\nIMF Data Portal\nUN Office on Drugs and Crime (UNODC)n Data Exchange]\nClimate Data Online (NOAA)\nBureau of Justice Statistics (U.S.)\nIHME Global Health Data\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen looking for datasets for data journalism project, one should avoid survey data and synthetic data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like WHO or Pew Research Center.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
     ]
   }
 ]
