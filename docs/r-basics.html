@@ -344,19 +344,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#concepts" id="toc-concepts" class="nav-link active" data-scroll-target="#concepts"><span class="header-section-number">2.1</span> Concepts</a></li>
-  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">2.2</span> Syntax</a></li>
-  <li><a href="#data-type" id="toc-data-type" class="nav-link" data-scroll-target="#data-type"><span class="header-section-number">2.3</span> Data Type</a></li>
-  <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures"><span class="header-section-number">2.4</span> Data Structures</a></li>
-  <li><a href="#errorswarningsmessages" id="toc-errorswarningsmessages" class="nav-link" data-scroll-target="#errorswarningsmessages"><span class="header-section-number">2.5</span> Errors/Warnings/Messages</a>
+  <li><a href="#coding-basics" id="toc-coding-basics" class="nav-link active" data-scroll-target="#coding-basics"><span class="header-section-number">2.1</span> Coding Basics</a>
+  <ul class="collapse">
+  <li><a href="#basic-arithmetic-in-r" id="toc-basic-arithmetic-in-r" class="nav-link" data-scroll-target="#basic-arithmetic-in-r">Basic Arithmetic in R</a></li>
+  <li><a href="#creating-objects" id="toc-creating-objects" class="nav-link" data-scroll-target="#creating-objects">Creating Objects</a></li>
+  <li><a href="#combining-elements-into-a-vector" id="toc-combining-elements-into-a-vector" class="nav-link" data-scroll-target="#combining-elements-into-a-vector">Combining Elements into a Vector</a></li>
+  <li><a href="#assignment-statement-structure" id="toc-assignment-statement-structure" class="nav-link" data-scroll-target="#assignment-statement-structure">Assignment Statement Structure</a></li>
+  </ul></li>
+  <li><a href="#comments-in-code" id="toc-comments-in-code" class="nav-link" data-scroll-target="#comments-in-code"><span class="header-section-number">2.2</span> Comments in Code</a></li>
+  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions"><span class="header-section-number">2.3</span> Naming Conventions</a></li>
+  <li><a href="#calling-functions" id="toc-calling-functions" class="nav-link" data-scroll-target="#calling-functions"><span class="header-section-number">2.4</span> Calling Functions</a></li>
+  <li><a href="#common-data-types" id="toc-common-data-types" class="nav-link" data-scroll-target="#common-data-types"><span class="header-section-number">2.5</span> Common Data Types</a>
+  <ul class="collapse">
+  <li><a href="#numeric" id="toc-numeric" class="nav-link" data-scroll-target="#numeric">Numeric</a></li>
+  <li><a href="#character" id="toc-character" class="nav-link" data-scroll-target="#character">Character</a></li>
+  <li><a href="#logical" id="toc-logical" class="nav-link" data-scroll-target="#logical">Logical</a></li>
+  <li><a href="#date" id="toc-date" class="nav-link" data-scroll-target="#date">Date</a></li>
+  </ul></li>
+  <li><a href="#data-frame" id="toc-data-frame" class="nav-link" data-scroll-target="#data-frame"><span class="header-section-number">2.6</span> Data Frame</a></li>
+  <li><a href="#errorswarningsmessages" id="toc-errorswarningsmessages" class="nav-link" data-scroll-target="#errorswarningsmessages"><span class="header-section-number">2.7</span> Errors/Warnings/Messages</a>
   <ul class="collapse">
   <li><a href="#debug-tips" id="toc-debug-tips" class="nav-link" data-scroll-target="#debug-tips">Debug Tips?</a></li>
-  </ul></li>
-  <li><a href="#coding-habits" id="toc-coding-habits" class="nav-link" data-scroll-target="#coding-habits"><span class="header-section-number">2.6</span> Coding habits</a>
-  <ul class="collapse">
   <li><a href="#tips-for-learning-r-coding" id="toc-tips-for-learning-r-coding" class="nav-link" data-scroll-target="#tips-for-learning-r-coding">Tips for learning R coding</a></li>
   </ul></li>
-  <li><a href="#key-functions" id="toc-key-functions" class="nav-link" data-scroll-target="#key-functions"><span class="header-section-number">2.7</span> Key Functions</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.8</span> Exercises</a>
+  <ul class="collapse">
+  <li><a href="#identify-errors" id="toc-identify-errors" class="nav-link" data-scroll-target="#identify-errors">Identify Errors</a></li>
+  <li><a href="#rstudio-shortcuts" id="toc-rstudio-shortcuts" class="nav-link" data-scroll-target="#rstudio-shortcuts">RStudio Shortcuts</a></li>
+  </ul></li>
+  <li><a href="#key-functions" id="toc-key-functions" class="nav-link" data-scroll-target="#key-functions"><span class="header-section-number">2.9</span> Key Functions</a></li>
   </ul>
 </nav>
     </div>
@@ -382,58 +398,205 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="concepts" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="concepts"><span class="header-section-number">2.1</span> Concepts</h2>
-<ul>
-<li><p><strong>Console</strong>: The area in RStudio where you can type and run R code. However, you may <strong>not</strong> want to write codes in the console because it is not saved and hard to reproduce.</p></li>
-<li><p><strong>Objects</strong>: A variable, function, or data structure in R. Objects have names and values.</p></li>
-<li><p><strong>Variable</strong>: A variable is a place to store data. It has a name and a value. For example, <code>x &lt;- 5</code> creates a variable <code>x</code> and assigns the value <code>5</code> to it.</p></li>
-<li><p><strong>Function</strong>: A function is a block of code that performs a specific task. For example, <code>mean(x)</code> calculates the mean of the variable <code>x</code>.</p></li>
-<li><p><strong>Data frame</strong>: A data frame is a two-dimensional data structure that stores data in rows and columns. For example, <code>data.frame(x = 1:5, y = letters[1:5])</code> creates a data frame with two columns <code>x</code> and <code>y</code>.</p></li>
-</ul>
+<p>Now, you have a basic understanding of R/RStudio, R Project, and R Markdown. Next, we will cover some fundamental syntax and concepts in R programming.</p>
+<section id="coding-basics" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="coding-basics"><span class="header-section-number">2.1</span> Coding Basics</h2>
+<section id="basic-arithmetic-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="basic-arithmetic-in-r">Basic Arithmetic in R</h3>
+<p>You can use R as a calculator to perform basic arithmetic operations. Here are some examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span> <span class="sc">/</span> <span class="dv">26</span> <span class="sc">*</span> <span class="dv">27</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25.96154</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">25</span> <span class="sc">+</span> <span class="dv">26</span>) <span class="sc">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25.5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1</code></pre>
+</div>
+</div>
 </section>
-<section id="syntax" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="syntax"><span class="header-section-number">2.2</span> Syntax</h2>
-<ul>
-<li><p><strong>Assignment operator (<code>&lt;-</code>)</strong>: The assignment operator is used to assign a value to a variable. For example, <code>x &lt;- 5</code> assigns the value <code>5</code> to the variable <code>x</code>.</p></li>
-<li><p><strong>Comment (<code>#</code>)</strong>: The comment symbol <code>#</code> is used to add comments to R code. Comments are not executed and are used to explain the code.</p></li>
-<li><p><strong>Pipe Operator(<code>|&gt;</code>)</strong>: The pipe operator <code>|&gt;</code> (also <code>%&gt;%</code>) is used to chain multiple functions together. It takes the output of one function and passes it as the input to the next function. For example, <code>data |&gt; filter(x &gt; 5) |&gt; select(y)</code> filters the data frame <code>data</code> to include rows where <code>x</code> is greater than <code>5</code> and then selects the column <code>y</code>.</p></li>
-<li><p><strong>Vectors(<code>c()</code>)</strong>: A vector is a one-dimensional data structure that stores a sequence of values. For example, <code>c(1, 2, 3, 4, 5)</code> creates a vector with the values <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>, and <code>5</code>. Here <code>c()</code> refers to combine.</p></li>
-</ul>
+<section id="creating-objects" class="level3">
+<h3 class="anchored" data-anchor-id="creating-objects">Creating Objects</h3>
+<p>You can create objects (variables) in R using the assignment operator <code>&lt;-</code>. Here are some examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2025</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the value of <code>x</code> is stored but not printed. To print the value of <code>x</code>, you can simply type <code>x</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2025</code></pre>
+</div>
+</div>
 </section>
-<section id="data-type" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="data-type"><span class="header-section-number">2.3</span> Data Type</h2>
-<ul>
-<li><strong>Integer</strong>: A data type that represents whole numbers. For example, <code>5</code>, <code>10</code>, and <code>-3</code> are integer values.</li>
-</ul>
+<section id="combining-elements-into-a-vector" class="level3">
+<h3 class="anchored" data-anchor-id="combining-elements-into-a-vector">Combining Elements into a Vector</h3>
+<p>You can combine multiple elements into a vector using the <code>c()</code> function. Here are some examples:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">19</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li><strong>Numeric</strong>: A data type that represents numbers. For example, <code>3.14</code>, and <code>-2.5</code> are numeric values.</li>
-</ul>
+<p>Again, if you want to view the content of the vector <code>ages</code>, you can simply type <code>ages</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fl">3.14</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">2.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21 22 19</code></pre>
 </div>
-<ul>
-<li><strong>Character</strong>: A data type that represents text. For example, <code>"hello"</code>, <code>"R"</code>, and <code>"data analysis"</code> are character values.</li>
-</ul>
+</div>
+<p>Basic arithmetic operations can also be performed on vectors, affecting each element of the vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Your Name"</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>language <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"R"</span>, <span class="st">"Python"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ages <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22 23 20</code></pre>
 </div>
-<ul>
-<li><strong>Logical</strong>: A data type that represents <code>TRUE</code> or <code>FALSE</code> values. Logical values are used in conditional statements and comparisons.</li>
-</ul>
+</div>
+</section>
+<section id="assignment-statement-structure" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-statement-structure">Assignment Statement Structure</h3>
+<p>All R assignment statements follow the same structure:</p>
+<pre><code>object_name &lt;- value</code></pre>
+<p>When reading the code, think of it as “object name gets value.” To save time, use the shortcut <code>Alt + -</code> (Windows) or <code>Option + -</code> (Mac) to insert the assignment operator <code>&lt;-</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>=</code> can also be used for assignment, but it is generally recommended to use <code>&lt;-</code> for assignment in R to avoid confusion with the equality operator <code>==</code>, which is used for comparisons.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="comments-in-code" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="comments-in-code"><span class="header-section-number">2.2</span> Comments in Code</h2>
+<p>R ignores any text following a <code>#</code> symbol on the same line. You can use comments to explain your code or add notes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>is_student <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>is_teacher <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vector of birth year</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>birth_year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1995</span>, <span class="dv">2003</span>, <span class="dv">2007</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate age in 2025</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2025</span> <span class="sc">-</span> birth_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30 22 18</code></pre>
 </div>
-<ul>
-<li><strong>date</strong>: A data type that represents dates. For example, <code>as.Date("2024-09-07")</code> creates a date object representing September 7, 2024.</li>
-</ul>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use comments to explain the why behind your code, not the how or what. This presents confusion in the future, especially when revisiting complex projects or after a long time.</p>
+</div>
+</div>
+</section>
+<section id="naming-conventions" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="naming-conventions"><span class="header-section-number">2.3</span> Naming Conventions</h2>
+<p>Object names must start with a letter and can contain letters, numbers, underscores (<code>_</code>), abd periods(<code>.</code>). We recommend using <code>snake_case</code> for multi-word object names, which means using lowercase letters and underscores to separate words (e.g., <code>birth_year</code>, <code>student_name</code>).</p>
+<pre><code># this is a good object name
+birth_year</code></pre>
+<pre><code># this is a bad object name
+BirthYear
+birth-year
+birth year </code></pre>
+<p>Remember R is case-sensitive, so <code>birth_year</code> and <code>Birth_Year</code> are considered different objects.</p>
+</section>
+<section id="calling-functions" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="calling-functions"><span class="header-section-number">2.4</span> Calling Functions</h2>
+<p>R provides a variaty of built-in functions. They are called by typing the function name followed by parentheses <code>()</code>. If the function requires arguments, you can pass them inside the parentheses.</p>
+<pre><code>function_name(argument1 = value1, argument2 = value2, ...)</code></pre>
+<p>For example, to create a sequence of numbers from 1 to 10, you can use the <code>seq()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<p>You can omit argument names if the order is clear:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>RStudio has an auto-complete feature that suggests function names and arguments as you type. You can also call <code>?function_name</code> to access the help file for that function.</p>
+</div>
+</div>
+</section>
+<section id="common-data-types" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="common-data-types"><span class="header-section-number">2.5</span> Common Data Types</h2>
+<p>There are several data types in R, but we will focus on four common ones: numeric, character, logical, and date.</p>
+<section id="numeric" class="level3">
+<h3 class="anchored" data-anchor-id="numeric">Numeric</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the data type of ages</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+</section>
+<section id="character" class="level3">
+<h3 class="anchored" data-anchor-id="character">Character</h3>
+<p>Charater data type represents text or string values. Character values are enclosed in double quotes (<code>"</code>) or single quotes (<code>'</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>language <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"R"</span>, <span class="st">"Python"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+</section>
+<section id="logical" class="level3">
+<h3 class="anchored" data-anchor-id="logical">Logical</h3>
+<p>Logical data type represents boolean values, which can be either <code>TRUE</code> or <code>FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create logical variables</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>is_student <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(is_student)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"</code></pre>
+</div>
+</div>
+</section>
+<section id="date" class="level3">
+<h3 class="anchored" data-anchor-id="date">Date</h3>
+<p>Date data type represents dates. Standard date format in R is <code>YYYY-MM-DD</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2024-09-07"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(today)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -448,24 +611,23 @@ Warning
 </div>
 </div>
 </section>
-<section id="data-structures" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="data-structures"><span class="header-section-number">2.4</span> Data Structures</h2>
-<p>We will talk about three common data structures in R: vector, data frame, and list. There are also other data structures in R, such as matrix and array, but we will not use them in this course.</p>
-<ul>
-<li><strong>Vector</strong>: A one-dimensional data structure that stores a sequence of values. Vectors can be numeric, character, logical, or factor.</li>
-</ul>
+</section>
+<section id="data-frame" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="data-frame"><span class="header-section-number">2.6</span> Data Frame</h2>
+<p>Data frame is a two-dimensional data structure that stores data in <em>rows</em> and <em>columns</em>. Eacb row represents an observation, and each column represents a variable.</p>
+<p>We can build a data frame using the <code>data.frame()</code> function.</p>
+<p>First, let’s create a data frame with two columns: <code>name</code> and <code>age</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vectors for each column</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li><strong>Data Frame</strong>: A two-dimensional data structure that stores data in rows and columns. Data frames are used to store structured data and are commonly used in data analysis.</li>
-</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>))</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -474,6 +636,7 @@ Warning
 </div>
 </div>
 </div>
+<p>This is a 3x2 data frame with 3 rows and 2 columns.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -491,8 +654,8 @@ Note
 <li><strong>List</strong>: A data structure that stores a collection of objects. Lists can contain vectors, matrices, data frames, and other lists.</li>
 </ul>
 </section>
-<section id="errorswarningsmessages" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="errorswarningsmessages"><span class="header-section-number">2.5</span> Errors/Warnings/Messages</h2>
+<section id="errorswarningsmessages" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="errorswarningsmessages"><span class="header-section-number">2.7</span> Errors/Warnings/Messages</h2>
 <ul>
 <li><p><strong>Error</strong>: An error occurs when R encounters a problem that prevents it from executing the code. Errors are displayed in red text and typically include an error message that describes the problem.</p></li>
 <li><p><strong>Warning</strong>: A warning occurs when R encounters a potential problem but is able to continue executing the code. Warnings are displayed in yellow text and typically include a warning message that describes the potential issue.</p></li>
@@ -521,14 +684,6 @@ Note
 <li><p><strong>Posting your questions</strong>: If you are still unable to resolve the error, ask for help. Post your code and the error message on the RStudio Community or another forum to get assistance from the community.</p></li>
 </ul>
 </section>
-</section>
-<section id="coding-habits" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="coding-habits"><span class="header-section-number">2.6</span> Coding habits</h2>
-<ul>
-<li><p><strong>Comment your code</strong>: Add comments to your code to explain what it does. Comments make your code easier to understand and maintain.</p></li>
-<li><p><strong>Use meaningful variable names</strong>: Choose variable names that are descriptive and meaningful. Avoid using single-letter variable names like <code>x</code> or <code>y</code>. Also, please avoid using reserved words in R, such as <code>mean</code>, <code>sum</code>, <code>data</code>, etc, and do NOT use space, dash, or other special characters in variable names. It is always recommended to use underscore <code>_</code> to separate words in variable names. Again, use all lowercase letters in variable names to make your life easier.</p></li>
-<li><p><strong>Organize your code</strong>: Organize your code into sections using comments or markdown headers. This makes it easier to navigate and understand your code.</p></li>
-</ul>
 <section id="tips-for-learning-r-coding" class="level3">
 <h3 class="anchored" data-anchor-id="tips-for-learning-r-coding">Tips for learning R coding</h3>
 <ul>
@@ -537,19 +692,29 @@ Note
 <li><p><strong>Practice, practice, practice</strong>: The more you practice writing R code, the more comfortable and proficient you will become.</p></li>
 <li><p><strong>Call <code>?</code> for help</strong>: If you are unsure about how to use a function or need more information, you can call <code>?function_name</code> to access the help file for that function.</p></li>
 </ul>
-<p>Some extra notes on using the <code>?</code> operator: In R or RStudio, you can always use the <code>?</code> operator to call for help on a function or dataset, but the specific syntax may differ - depends on whether the package containing that function or dataset is loaded. Here’s how it works:</p>
-<ul>
-<li><p><strong>For Loaded Packages</strong>: If the package is already loaded using <code>library()</code> or <code>require()</code>, you can directly use the <code>?</code> operator with the name of the function or dataset. For example, if you have already loaded the <code>ggplot2</code> package (included in <code>tidyverse</code>), you can simply write <code>?ggplot</code> to get help on the <code>ggplot</code> function.</p></li>
-<li><p><strong>For Unloaded Packages</strong>: If the package is not loaded, RStudio does not automatically know where to look for documentation unless you specify the package name. In this case, you have two options:</p>
-<ul>
-<li><p><strong>Load the Package</strong>: You can first load the package using <code>library(packagename)</code> and then use the <code>?</code> operator as usual.</p></li>
-<li><p><strong>Direct Specification</strong>: You can directly specify the package when using the <code>?</code> operator, even if it’s not loaded. You do this by using <code>?packagename::functionname</code>. For example, to get help on the ggplot function in ggplot2 without loading the package, you would write <code>?ggplot2::ggplot</code>.</p></li>
-</ul></li>
-</ul>
 </section>
 </section>
-<section id="key-functions" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="key-functions"><span class="header-section-number">2.7</span> Key Functions</h2>
+<section id="exercises" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.8</span> Exercises</h2>
+<section id="identify-errors" class="level3">
+<h3 class="anchored" data-anchor-id="identify-errors">Identify Errors</h3>
+<pre><code>my_variable &lt;- 10
+my_varıable
+# Error: object 'my_varıable' not found</code></pre>
+<pre><code>my_vector &lt;- (1, 2, 3, 4, 5)
+mean(my_vector)
+# Error: unexpected ',' in "my_vector &lt;- (1,"</code></pre>
+<pre><code>my_vector1 &lt;- C(1, 2, 3, 4, 5)
+mean(my_vector1)
+# Error in `contrasts&lt;-`(`*tmp*`, how.many, value = contr) : contrasts can be applied only to factors with 2 or more levels</code></pre>
+</section>
+<section id="rstudio-shortcuts" class="level3">
+<h3 class="anchored" data-anchor-id="rstudio-shortcuts">RStudio Shortcuts</h3>
+<p><code>Option + Shift + K</code>/ <code>Alt + Shift + K</code>. What happens? How can you achieve the same through the menus?</p>
+</section>
+</section>
+<section id="key-functions" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="key-functions"><span class="header-section-number">2.9</span> Key Functions</h2>
 <table class="table">
 <colgroup>
 <col style="width: 28%">
@@ -580,34 +745,14 @@ Note
 <td><code>df &lt;- data.frame(id=1:3)</code></td>
 </tr>
 <tr class="even">
-<td><code>` |&gt; `</code></td>
-<td>Pipe operator</td>
-<td><code>`df |&gt; filter(age &gt; 20)`</code></td>
-</tr>
-<tr class="odd">
-<td><code>library()</code></td>
-<td>Load package</td>
-<td><code>library(tidyverse)</code></td>
-</tr>
-<tr class="even">
-<td><code>install.packages()</code></td>
-<td>Install package</td>
-<td><code>install.packages("dplyr")</code></td>
-</tr>
-<tr class="odd">
 <td><code>?</code></td>
 <td>Get help</td>
 <td><code>?ggplot</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>#</code></td>
 <td>Add comment</td>
 <td><code># Calculate average</code></td>
-</tr>
-<tr class="odd">
-<td><code>str()</code></td>
-<td>Check structure</td>
-<td><code>str(df)</code></td>
 </tr>
 </tbody>
 </table>

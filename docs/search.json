@@ -132,7 +132,7 @@
     "href": "r-basics.html",
     "title": "2  R Coding Basics",
     "section": "",
-    "text": "2.1 Concepts",
+    "text": "2.1 Coding Basics",
     "crumbs": [
       "Getting Started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
@@ -175,8 +175,8 @@
     "objectID": "r-basics.html#data-structures",
     "href": "r-basics.html#data-structures",
     "title": "2  R Coding Basics",
-    "section": "2.4 Data Structures",
-    "text": "2.4 Data Structures\nWe will talk about three common data structures in R: vector, data frame, and list. There are also other data structures in R, such as matrix and array, but we will not use them in this course.\n\nVector: A one-dimensional data structure that stores a sequence of values. Vectors can be numeric, character, logical, or factor.\n\n\nnumbers &lt;- c(1, 2, 3, 4, 5)\n\n\nData Frame: A two-dimensional data structure that stores data in rows and columns. Data frames are used to store structured data and are commonly used in data analysis.\n\n\n# Create a data frame\ndf &lt;- data.frame(\n  name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  age = c(25, 30, 35))\ndf\n\n\n  \n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn this course, we will primarily work with data frames.\n\n\n\nList: A data structure that stores a collection of objects. Lists can contain vectors, matrices, data frames, and other lists.",
+    "section": "2.6 Data Structures",
+    "text": "2.6 Data Structures\nWe will talk about three common data structures in R: vector, data frame, and list. There are also other data structures in R, such as matrix and array, but we will not use them in this course.\n\nVector: A one-dimensional data structure that stores a sequence of values. Vectors can be numeric, character, logical, or factor.\n\n\nnumbers &lt;- c(1, 2, 3, 4, 5)\n\n\nData Frame: A two-dimensional data structure that stores data in rows and columns. Data frames are used to store structured data and are commonly used in data analysis.\n\n\n# Create a data frame\ndf &lt;- data.frame(\n  name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  age = c(25, 30, 35))\ndf\n\n\n  \n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIn this course, we will primarily work with data frames.\n\n\n\nList: A data structure that stores a collection of objects. Lists can contain vectors, matrices, data frames, and other lists.",
     "crumbs": [
       "Getting Started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
@@ -186,8 +186,8 @@
     "objectID": "r-basics.html#errorswarningsmessages",
     "href": "r-basics.html#errorswarningsmessages",
     "title": "2  R Coding Basics",
-    "section": "2.5 Errors/Warnings/Messages",
-    "text": "2.5 Errors/Warnings/Messages\n\nError: An error occurs when R encounters a problem that prevents it from executing the code. Errors are displayed in red text and typically include an error message that describes the problem.\nWarning: A warning occurs when R encounters a potential problem but is able to continue executing the code. Warnings are displayed in yellow text and typically include a warning message that describes the potential issue.\nMessage: A message is a general output from R that provides information about the code execution. Messages are displayed in white text and are used to convey information about the code.\n\n\n\n\n\n\n\nNote\n\n\n\nYou may ignore the messages, but you should always pay attention to errors and warnings.\n\n\n\nDebug Tips?\n\nRead the error message: The error message provides information about what went wrong. Read the error message carefully to understand the problem.\nCheck the code: Review the code that caused the error. Look for syntax errors, missing parentheses, brackets, or quotation marks, and other common mistakes.\nUse the help panel: RStudio has a help panel that provides information about functions, packages, and error messages. Use the help panel to look up information related to the error.\nSearch online: If you are unable to resolve the error, search online for solutions. Websites like Stack Overflow, RStudio Community, and the R documentation can be helpful resources.\nPosting your questions: If you are still unable to resolve the error, ask for help. Post your code and the error message on the RStudio Community or another forum to get assistance from the community.",
+    "section": "2.7 Errors/Warnings/Messages",
+    "text": "2.7 Errors/Warnings/Messages\n\nError: An error occurs when R encounters a problem that prevents it from executing the code. Errors are displayed in red text and typically include an error message that describes the problem.\nWarning: A warning occurs when R encounters a potential problem but is able to continue executing the code. Warnings are displayed in yellow text and typically include a warning message that describes the potential issue.\nMessage: A message is a general output from R that provides information about the code execution. Messages are displayed in white text and are used to convey information about the code.\n\n\n\n\n\n\n\nNote\n\n\n\nYou may ignore the messages, but you should always pay attention to errors and warnings.\n\n\n\nDebug Tips?\n\nRead the error message: The error message provides information about what went wrong. Read the error message carefully to understand the problem.\nCheck the code: Review the code that caused the error. Look for syntax errors, missing parentheses, brackets, or quotation marks, and other common mistakes.\nUse the help panel: RStudio has a help panel that provides information about functions, packages, and error messages. Use the help panel to look up information related to the error.\nSearch online: If you are unable to resolve the error, search online for solutions. Websites like Stack Overflow, RStudio Community, and the R documentation can be helpful resources.\nPosting your questions: If you are still unable to resolve the error, ask for help. Post your code and the error message on the RStudio Community or another forum to get assistance from the community.\n\n\n\nTips for learning R coding\n\n“Copy, Paste, and Tweak”: When writing code, it’s common to copy and paste existing code and then tweak it to fit your needs. This can save time and reduce errors.\n“Save, Save, Save”: Save your work frequently to avoid losing your progress.\nPractice, practice, practice: The more you practice writing R code, the more comfortable and proficient you will become.\nCall ? for help: If you are unsure about how to use a function or need more information, you can call ?function_name to access the help file for that function.",
     "crumbs": [
       "Getting Started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
@@ -208,8 +208,8 @@
     "objectID": "r-basics.html#key-functions",
     "href": "r-basics.html#key-functions",
     "title": "2  R Coding Basics",
-    "section": "2.7 Key Functions",
-    "text": "2.7 Key Functions\n\n\n\n\n\n\n\n\nCommand\nPurpose\nExample\n\n\n\n\n&lt;-\nAssign value\nx &lt;- 5\n\n\nc()\nCreate vector\nages &lt;- c(21, 25, 19)\n\n\ndata.frame()\nCreate data frame\ndf &lt;- data.frame(id=1:3)\n\n\n` |&gt; `\nPipe operator\n`df |&gt; filter(age &gt; 20)`\n\n\nlibrary()\nLoad package\nlibrary(tidyverse)\n\n\ninstall.packages()\nInstall package\ninstall.packages(\"dplyr\")\n\n\n?\nGet help\n?ggplot\n\n\n#\nAdd comment\n# Calculate average\n\n\nstr()\nCheck structure\nstr(df)",
+    "section": "2.9 Key Functions",
+    "text": "2.9 Key Functions\n\n\n\n\n\n\n\n\nCommand\nPurpose\nExample\n\n\n\n\n&lt;-\nAssign value\nx &lt;- 5\n\n\nc()\nCreate vector\nages &lt;- c(21, 25, 19)\n\n\ndata.frame()\nCreate data frame\ndf &lt;- data.frame(id=1:3)\n\n\n?\nGet help\n?ggplot\n\n\n#\nAdd comment\n# Calculate average",
     "crumbs": [
       "Getting Started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
@@ -1357,6 +1357,83 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>E</span>  <span class='chapter-title'>Sample Projects</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#coding-basics",
+    "href": "r-basics.html#coding-basics",
+    "title": "2  R Coding Basics",
+    "section": "",
+    "text": "Basic Arithmetic in R\nYou can use R as a calculator to perform basic arithmetic operations. Here are some examples:\n\n25 / 26 * 27\n\n[1] 25.96154\n\n\n\n(25 + 26) / 2\n\n[1] 25.5\n\n\n\ncos(pi)\n\n[1] -1\n\n\n\n\nCreating Objects\nYou can create objects (variables) in R using the assignment operator &lt;-. Here are some examples:\n\nx &lt;- 2025\n\nNote that the value of x is stored but not printed. To print the value of x, you can simply type x.\n\nx\n\n[1] 2025\n\n\n\n\nCombining Elements into a Vector\nYou can combine multiple elements into a vector using the c() function. Here are some examples:\n\nages &lt;- c(21, 22, 19)\n\nAgain, if you want to view the content of the vector ages, you can simply type ages.\n\nages\n\n[1] 21 22 19\n\n\nBasic arithmetic operations can also be performed on vectors, affecting each element of the vector.\n\nages + 1\n\n[1] 22 23 20\n\n\n\n\nAssignment Statement Structure\nAll R assignment statements follow the same structure:\nobject_name &lt;- value\nWhen reading the code, think of it as “object name gets value.” To save time, use the shortcut Alt + - (Windows) or Option + - (Mac) to insert the assignment operator &lt;-.\n\n\n\n\n\n\nNote\n\n\n\n= can also be used for assignment, but it is generally recommended to use &lt;- for assignment in R to avoid confusion with the equality operator ==, which is used for comparisons.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#comments-in-code",
+    "href": "r-basics.html#comments-in-code",
+    "title": "2  R Coding Basics",
+    "section": "2.2 Comments in Code",
+    "text": "2.2 Comments in Code\nR ignores any text following a # symbol on the same line. You can use comments to explain your code or add notes.\n\n# Create vector of birth year\nbirth_year &lt;- c(1995, 2003, 2007)\n\n# Calculate age in 2025\n2025 - birth_year\n\n[1] 30 22 18\n\n\n\n\n\n\n\n\nTip\n\n\n\nUse comments to explain the why behind your code, not the how or what. This presents confusion in the future, especially when revisiting complex projects or after a long time.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#naming-conventions",
+    "href": "r-basics.html#naming-conventions",
+    "title": "2  R Coding Basics",
+    "section": "2.3 Naming Conventions",
+    "text": "2.3 Naming Conventions\nObject names must start with a letter and can contain letters, numbers, underscores (_), abd periods(.). We recommend using snake_case for multi-word object names, which means using lowercase letters and underscores to separate words (e.g., birth_year, student_name).\n# this is a good object name\nbirth_year\n# this is a bad object name\nBirthYear\nbirth-year\nbirth year \nRemember R is case-sensitive, so birth_year and Birth_Year are considered different objects.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#calling-functions",
+    "href": "r-basics.html#calling-functions",
+    "title": "2  R Coding Basics",
+    "section": "2.4 Calling Functions",
+    "text": "2.4 Calling Functions\nR provides a variaty of built-in functions. They are called by typing the function name followed by parentheses (). If the function requires arguments, you can pass them inside the parentheses.\nfunction_name(argument1 = value1, argument2 = value2, ...)\nFor example, to create a sequence of numbers from 1 to 10, you can use the seq() function:\n\nseq(from = 1, to = 10)\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n\nYou can omit argument names if the order is clear:\n\nseq(1, 10)\n\n [1]  1  2  3  4  5  6  7  8  9 10\n\n\n\n\n\n\n\n\nTip\n\n\n\nRStudio has an auto-complete feature that suggests function names and arguments as you type. You can also call ?function_name to access the help file for that function.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#common-data-types",
+    "href": "r-basics.html#common-data-types",
+    "title": "2  R Coding Basics",
+    "section": "2.5 Common Data Types",
+    "text": "2.5 Common Data Types\nThere are several data types in R, but we will focus on four common ones: numeric, character, logical, and date.\n\nNumeric\n\n# check the data type of ages\nclass(ages)\n\n[1] \"numeric\"\n\n\n\n\nCharacter\nCharater data type represents text or string values. Character values are enclosed in double quotes (\") or single quotes (').\n\nlanguage &lt;- c(\"R\", \"Python\")\n\nclass(language)\n\n[1] \"character\"\n\n\n\n\nLogical\nLogical data type represents boolean values, which can be either TRUE or FALSE.\n\n# create logical variables\nis_student &lt;- FALSE\n\nclass(is_student)\n\n[1] \"logical\"\n\n\n\n\nDate\nDate data type represents dates. Standard date format in R is YYYY-MM-DD.\n\ntoday &lt;- as.Date(\"2024-09-07\")\n\nclass(today)\n\n[1] \"Date\"\n\n\n\n\n\n\n\n\nWarning\n\n\n\nTo create a date object in R, you can use the as.Date() function with the date in the format YYYY-MM-DD. If you just use x &lt;- \"2024-09-07\", it will be a character type.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#exercises",
+    "href": "r-basics.html#exercises",
+    "title": "2  R Coding Basics",
+    "section": "2.8 Exercises",
+    "text": "2.8 Exercises\n\nIdentify Errors\nmy_variable &lt;- 10\nmy_varıable\n# Error: object 'my_varıable' not found\nmy_vector &lt;- (1, 2, 3, 4, 5)\nmean(my_vector)\n# Error: unexpected ',' in \"my_vector &lt;- (1,\"\nmy_vector1 &lt;- C(1, 2, 3, 4, 5)\nmean(my_vector1)\n# Error in `contrasts&lt;-`(`*tmp*`, how.many, value = contr) : contrasts can be applied only to factors with 2 or more levels\n\n\nRStudio Shortcuts\nOption + Shift + K/ Alt + Shift + K. What happens? How can you achieve the same through the menus?",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "r-basics.html#data-frame",
+    "href": "r-basics.html#data-frame",
+    "title": "2  R Coding Basics",
+    "section": "2.6 Data Frame",
+    "text": "2.6 Data Frame\nData frame is a two-dimensional data structure that stores data in rows and columns. Eacb row represents an observation, and each column represents a variable.\nWe can build a data frame using the data.frame() function.\nFirst, let’s create a data frame with two columns: name and age.\n\n# Create vectors for each column\nname &lt;- c(\"Alice\", \"Bob\", \"Charlie\")\nage &lt;- c(25, 30, 35)\n\n\n# Create a data frame\ndf &lt;- data.frame(\n  name = c(\"Alice\", \"Bob\", \"Charlie\"),\n  age = c(25, 30, 35))\ndf\n\n\n  \n\n\n\nThis is a 3x2 data frame with 3 rows and 2 columns.\n\n\n\n\n\n\nNote\n\n\n\nIn this course, we will primarily work with data frames.\n\n\n\nList: A data structure that stores a collection of objects. Lists can contain vectors, matrices, data frames, and other lists.",
+    "crumbs": [
+      "Getting Started",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
     ]
   }
 ]

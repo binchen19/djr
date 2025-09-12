@@ -3,78 +3,192 @@ title: "R Coding Basics"
 format: html
 ---
 
+Now, you have a basic understanding of R/RStudio, R Project, and R Markdown. Next, we will cover some fundamental syntax and concepts in R programming.
 
-## Concepts
 
--   **Console**: The area in RStudio where you can type and run R code. However, you may **not** want to write codes in the console because it is not saved and hard to reproduce.
+## Coding Basics
 
--   **Objects**: A variable, function, or data structure in R. Objects have names and values.
+### Basic Arithmetic in R
 
--   **Variable**: A variable is a place to store data. It has a name and a value. For example, `x <- 5` creates a variable `x` and assigns the value `5` to it.
-
--   **Function**: A function is a block of code that performs a specific task. For example, `mean(x)` calculates the mean of the variable `x`.
-
--   **Data frame**: A data frame is a two-dimensional data structure that stores data in rows and columns. For example, `data.frame(x = 1:5, y = letters[1:5])` creates a data frame with two columns `x` and `y`.
-
-## Syntax
-
--   **Assignment operator (`<-`)**: The assignment operator is used to assign a value to a variable. For example, `x <- 5` assigns the value `5` to the variable `x`.
-
--   **Comment (`#`)**: The comment symbol `#` is used to add comments to R code. Comments are not executed and are used to explain the code.
-
--   **Pipe Operator(`|>`)**: The pipe operator `|>` (also `%>%`) is used to chain multiple functions together. It takes the output of one function and passes it as the input to the next function. For example, `data |> filter(x > 5) |> select(y)` filters the data frame `data` to include rows where `x` is greater than `5` and then selects the column `y`.
-
--   **Vectors(`c()`)**: A vector is a one-dimensional data structure that stores a sequence of values. For example, `c(1, 2, 3, 4, 5)` creates a vector with the values `1`, `2`, `3`, `4`, and `5`. Here `c()` refers to combine.
-
-## Data Type
-
--   **Integer**: A data type that represents whole numbers. For example, `5`, `10`, and `-3` are integer values.
+You can use R as a calculator to perform basic arithmetic operations. Here are some examples:
 
 ```{r}
-x <- 5
+25 / 26 * 27
 ```
 
--   **Numeric**: A data type that represents numbers. For example, `3.14`, and `-2.5` are numeric values.
-
 ```{r}
-y <- 3.14
-z <- -2.5
+(25 + 26) / 2
 ```
 
--   **Character**: A data type that represents text. For example, `"hello"`, `"R"`, and `"data analysis"` are character values.
 
 ```{r}
-name <- "Your Name"
+cos(pi)
+```
+
+### Creating Objects
+
+You can create objects (variables) in R using the assignment operator `<-`. Here are some examples:
+
+```{r}
+x <- 2025
+```
+
+Note that the value of `x` is stored but not printed. To print the value of `x`, you can simply type `x`.
+
+```{r}
+x
+```
+
+### Combining Elements into a Vector
+
+You can combine multiple elements into a vector using the `c()` function. Here are some examples:
+
+```{r}
+ages <- c(21, 22, 19)
+```
+
+Again, if you want to view the content of the vector `ages`, you can simply type `ages`.
+
+```{r}
+ages
+```
+
+Basic arithmetic operations can also be performed on vectors, affecting each element of the vector.
+
+```{r}
+ages + 1
+```
+
+### Assignment Statement Structure
+
+All R assignment statements follow the same structure:
+
+```
+object_name <- value
+```
+
+When reading the code, think of it as "object name gets value." To save time, use the shortcut `Alt + -` (Windows) or `Option + -` (Mac) to insert the assignment operator `<-`.
+
+::: {.callout-note}
+`=` can also be used for assignment, but it is generally recommended to use `<-` for assignment in R to avoid confusion with the equality operator `==`, which is used for comparisons.
+:::
+
+## Comments in Code
+
+R ignores any text following a `#` symbol on the same line. You can use comments to explain your code or add notes.
+
+```{r}
+# Create vector of birth year
+birth_year <- c(1995, 2003, 2007)
+
+# Calculate age in 2025
+2025 - birth_year
+```
+
+::: {.callout-tip}
+Use comments to explain the why behind your code, not the how or what. This presents confusion in the future, especially when revisiting complex projects or after a long time.
+:::
+
+## Naming Conventions
+
+Object names must start with a letter and can contain letters, numbers, underscores (`_`), abd periods(`.`). We recommend using `snake_case` for multi-word object names, which means using lowercase letters and underscores to separate words (e.g., `birth_year`, `student_name`).
+
+```
+# this is a good object name
+birth_year
+```
+```
+# this is a bad object name
+BirthYear
+birth-year
+birth year 
+```
+
+Remember R is case-sensitive, so `birth_year` and `Birth_Year` are considered different objects.
+
+## Calling Functions
+
+R provides a variaty of built-in functions. They are called by typing the function name followed by parentheses `()`. If the function requires arguments, you can pass them inside the parentheses.
+
+```
+function_name(argument1 = value1, argument2 = value2, ...)
+```
+
+For example, to create a sequence of numbers from 1 to 10, you can use the `seq()` function:
+
+```{r}
+seq(from = 1, to = 10)
+```
+
+You can omit argument names if the order is clear:
+
+```{r}
+seq(1, 10)
+```
+
+
+::: callout-tip
+RStudio has an auto-complete feature that suggests function names and arguments as you type. You can also call `?function_name` to access the help file for that function.
+:::
+
+## Common Data Types
+
+There are several data types in R, but we will focus on four common ones: numeric, character, logical, and date.
+
+### Numeric
+
+```{r}
+# check the data type of ages
+class(ages)
+```
+### Character
+
+Charater data type represents text or string values. Character values are enclosed in double quotes (`"`) or single quotes (`'`).
+
+```{r}
 language <- c("R", "Python")
-```
 
--   **Logical**: A data type that represents `TRUE` or `FALSE` values. Logical values are used in conditional statements and comparisons.
+class(language)
+```
+### Logical
+
+Logical data type represents boolean values, which can be either `TRUE` or `FALSE`.
 
 ```{r}
-# Logical
+# create logical variables
 is_student <- FALSE
-is_teacher <- TRUE
+
+class(is_student)
 ```
 
--   **date**: A data type that represents dates. For example, `as.Date("2024-09-07")` creates a date object representing September 7, 2024.
+### Date
+
+Date data type represents dates. Standard date format in R is `YYYY-MM-DD`.
+
+```{r}
+today <- as.Date("2024-09-07")
+
+class(today)
+```
+
 
 ::: {.callout-warning}
 To create a date object in R, you can use the `as.Date()` function with the date in the format `YYYY-MM-DD`. If you just use `x <- "2024-09-07"`, it will be a character type.
 :::
 
-## Data Structures
+## Data Frame
 
-We will talk about three common data structures in R: vector, data frame, and list. There are also other data structures in R, such as matrix and array, but we will not use them in this course.
+Data frame is a two-dimensional data structure that stores data in *rows* and *columns*. Eacb row represents an observation, and each column represents a variable.
 
--   **Vector**: A one-dimensional data structure that stores a sequence of values. Vectors can be numeric, character, logical, or factor.
+We can build a data frame using the `data.frame()` function.
+
+First, let's create a data frame with two columns: `name` and `age`.
 
 ```{r}
-numbers <- c(1, 2, 3, 4, 5)
+# Create vectors for each column
+name <- c("Alice", "Bob", "Charlie")
+age <- c(25, 30, 35)
 ```
-
-
-
--   **Data Frame**: A two-dimensional data structure that stores data in rows and columns. Data frames are used to store structured data and are commonly used in data analysis.
 
 ```{r}
 # Create a data frame
@@ -83,6 +197,9 @@ df <- data.frame(
   age = c(25, 30, 35))
 df
 ```
+
+This is a 3x2 data frame with 3 rows and 2 columns.
+
 
 ::: callout-note
 In this course, we will primarily work with data frames.
@@ -114,13 +231,6 @@ You may ignore the messages, but you should always pay attention to errors and w
 
 -   **Posting your questions**: If you are still unable to resolve the error, ask for help. Post your code and the error message on the RStudio Community or another forum to get assistance from the community.
 
-## Coding habits
-
--   **Comment your code**: Add comments to your code to explain what it does. Comments make your code easier to understand and maintain.
-
--   **Use meaningful variable names**: Choose variable names that are descriptive and meaningful. Avoid using single-letter variable names like `x` or `y`. Also, please avoid using reserved words in R, such as `mean`, `sum`, `data`, etc, and do NOT use space, dash, or other special characters in variable names. It is always recommended to use underscore `_` to separate words in variable names. Again, use all lowercase letters in variable names to make your life easier.
-
--   **Organize your code**: Organize your code into sections using comments or markdown headers. This makes it easier to navigate and understand your code.
 
 ### Tips for learning R coding
 
@@ -132,15 +242,33 @@ You may ignore the messages, but you should always pay attention to errors and w
 
 -   **Call `?` for help**: If you are unsure about how to use a function or need more information, you can call `?function_name` to access the help file for that function.
 
-Some extra notes on using the `?` operator: In R or RStudio, you can always use the `?` operator to call for help on a function or dataset, but the specific syntax may differ - depends on whether the package containing that function or dataset is loaded. Here’s how it works:
+## Exercises
 
--   **For Loaded Packages**: If the package is already loaded using `library()` or `require()`, you can directly use the `?` operator with the name of the function or dataset. For example, if you have already loaded the `ggplot2` package (included in `tidyverse`), you can simply write `?ggplot` to get help on the `ggplot` function.
+### Identify Errors
 
--   **For Unloaded Packages**: If the package is not loaded, RStudio does not automatically know where to look for documentation unless you specify the package name. In this case, you have two options:
+```
+my_variable <- 10
+my_varıable
+# Error: object 'my_varıable' not found
+```
 
-    -   **Load the Package**: You can first load the package using `library(packagename)` and then use the `?` operator as usual.
+```
+my_vector <- (1, 2, 3, 4, 5)
+mean(my_vector)
+# Error: unexpected ',' in "my_vector <- (1,"
+```
 
-    -   **Direct Specification**: You can directly specify the package when using the `?` operator, even if it’s not loaded. You do this by using `?packagename::functionname`. For example, to get help on the ggplot function in ggplot2 without loading the package, you would write `?ggplot2::ggplot`.
+```
+my_vector1 <- C(1, 2, 3, 4, 5)
+mean(my_vector1)
+# Error in `contrasts<-`(`*tmp*`, how.many, value = contr) : contrasts can be applied only to factors with 2 or more levels
+```
+
+
+### RStudio Shortcuts
+
+`Option + Shift + K `/ `Alt + Shift + K`. What happens? How can you achieve the same through the menus?
+
     
 ## Key Functions 
 
@@ -149,9 +277,5 @@ Some extra notes on using the `?` operator: In R or RStudio, you can always use 
 | `<-`                  | Assign value         | `x <- 5`                          |
 | `c()`                 | Create vector        | `ages <- c(21, 25, 19)`           |
 | `data.frame()`        | Create data frame    | `df <- data.frame(id=1:3)`        |
-| `` ` |> ` ``           | Pipe operator        | `` `df |> filter(age > 20)` ``    |
-| `library()`           | Load package         | `library(tidyverse)`              |
-| `install.packages()`  | Install package      | `install.packages("dplyr")`       |
 | `?`                   | Get help             | `?ggplot`                         |
 | `#`                   | Add comment          | `# Calculate average`             |
-| `str()`               | Check structure      | `str(df)`                         |
