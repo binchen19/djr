@@ -440,7 +440,7 @@
     "href": "analysis-hksalary.html",
     "title": "6  Data Analysis I",
     "section": "",
-    "text": "6.1 Single Variable Analysis\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nload(\"out/hksalary_cleaned.RData\")\nglimpse(df_clean)\n\nRows: 368\nColumns: 4\n$ year     &lt;int&gt; 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2…\n$ level    &lt;chr&gt; \"Sub-degree\", \"Sub-degree\", \"Sub-degree\", \"Sub-degree\", \"Sub-…\n$ category &lt;chr&gt; \"Medicine, Dentistry and Health\", \"Sciences\", \"Engineering an…\n$ salary   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155, 346, 148, 154, 157, 155, 1…",
+    "text": "6.1 Single Variable Analysis\nlibrary(tidyverse)\n\nWarning: package 'ggplot2' was built under R version 4.3.3\n\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nload(\"out/hksalary_cleaned.RData\")\nglimpse(df_clean)\n\nRows: 368\nColumns: 4\n$ year     &lt;int&gt; 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2009, 2…\n$ level    &lt;chr&gt; \"Sub-degree\", \"Sub-degree\", \"Sub-degree\", \"Sub-degree\", \"Sub-…\n$ category &lt;chr&gt; \"Medicine, Dentistry and Health\", \"Sciences\", \"Engineering an…\n$ salary   &lt;dbl&gt; 292, 125, 125, 139, 163, 122, 155, 346, 148, 154, 157, 155, 1…",
     "crumbs": [
       "Data Analysis",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Analysis I</span>"
@@ -462,7 +462,7 @@
     "href": "analysis-hksalary.html#tracking-changes-time-based-analysis",
     "title": "6  Data Analysis I",
     "section": "6.2 Tracking Changes: Time-Based Analysis",
-    "text": "6.2 Tracking Changes: Time-Based Analysis\n\nSalary Evolution 2014-2023\n\ndf_clean |&gt; \n  group_by(year) |&gt; \n  summarise(avg_salary = mean(salary)) \n\n\n  \n\n\n\n\ndf_clean |&gt; \n  group_by(year) |&gt; \n  summarise(avg_salary = mean(salary))|&gt; \n  mutate(\n    change = avg_salary - lag(avg_salary),\n    pct_change = change/lag(avg_salary)\n  )\n\n\n  \n\n\n\n\n\n\n\n\n\nlag() Function\n\n\n\nThe lag() function is used to compute the difference between the current and previous year’s average salary. This helps identify trends and changes over time.",
+    "text": "6.2 Tracking Changes: Time-Based Analysis\n\nSalary Evolution 2014-2023\n\ndf_clean |&gt; \n  group_by(year) |&gt; \n  summarise(avg_salary = mean(salary)) \n\n\n  \n\n\n\nLet’s check these animations to understand how group_by() and summarise() work.\n\n# group_by cat1\nknitr::include_graphics(\"images/grp-summarize-01.mp4\")\n\n\n\nVideo\n\n\n\n\n\n# group_by cat2\nknitr::include_graphics(\"images/grp-summarize-02.mp4\")\n\n\n\nVideo\n\n\n\n\n\n# group_by cat1 and cat2\nknitr::include_graphics(\"images/grp-summarize-03.mp4\")\n\n\n\nVideo\n\n\n\n\n\ndf_clean |&gt; \n  group_by(year) |&gt; \n  summarise(avg_salary = mean(salary))|&gt; \n  mutate(\n    change = avg_salary - lag(avg_salary),\n    pct_change = change/lag(avg_salary)\n  )\n\n\n  \n\n\n\n\n\n\n\n\n\nlag() Function\n\n\n\nThe lag() function is used to compute the difference between the current and previous year’s average salary. This helps identify trends and changes over time.",
     "crumbs": [
       "Data Analysis",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Data Analysis I</span>"
@@ -1133,7 +1133,7 @@
     "href": "links.html#where-to-find-data-news",
     "title": "Appendix A — Useful Links",
     "section": "A.2 Where to find data news?",
-    "text": "A.2 Where to find data news?\n\nCaixin 財新-數字說\nInitium Media 端傳媒-數洞\nSCMP Infographics\nThe New York Times – The Upshot\n\nReuters Graphics\n\nBloomberg Graphics\n\nFinancial Times – Visual & Data Journalism\n\nOur World in Data\nNBC News\nThe Marshall Project",
+    "text": "A.2 Where to find data news?\n\nCaixin 財新-數字說\nInitium Media 端傳媒-數洞\nSCMP Infographics\nThe New York Times – The Upshot\n\nReuters Graphics\n\nBloomberg Graphics\n\nFinancial Times – Visual & Data Journalism\n\nOur World in Data\nNBC News\nThe Marshall Project\nGlobal Investigative Journalism Network",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
@@ -1434,6 +1434,17 @@
     "crumbs": [
       "Getting Started",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>R Coding Basics</span>"
+    ]
+  },
+  {
+    "objectID": "links.html#data-journalism-guides",
+    "href": "links.html#data-journalism-guides",
+    "title": "Appendix A — Useful Links",
+    "section": "A.5 Data Journalism Guides",
+    "text": "A.5 Data Journalism Guides\n\nIntroduction to Investigative Journalism: Data Journalism\n4 Common Angles Data Journalists Use to Tell Stories\nFrom Data to Storytelling: Concept and Design Tips from the Financial Times’ John Burn-Murdoch",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Useful Links</span>"
     ]
   }
 ]

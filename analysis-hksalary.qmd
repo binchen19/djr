@@ -67,6 +67,26 @@ df_clean |>
   summarise(avg_salary = mean(salary)) 
 ```
 
+
+Let's check these animations to understand how `group_by()` and `summarise()` work.
+
+```{r}
+# group_by cat1
+knitr::include_graphics("images/grp-summarize-01.mp4")
+```
+
+
+```{r}
+# group_by cat2
+knitr::include_graphics("images/grp-summarize-02.mp4")
+```
+
+```{r}
+# group_by cat1 and cat2
+knitr::include_graphics("images/grp-summarize-03.mp4")
+```
+
+
 ```{r}
 df_clean |> 
   group_by(year) |> 

@@ -18,6 +18,7 @@
 - [Our World in Data](https://ourworldindata.org)
 - [NBC News](https://www.nbcnews.com/datagraphics)
 - [The Marshall Project](https://www.themarshallproject.org/)
+- [Global Investigative Journalism Network](https://gijn.org/?s=data+journalism)
 
 ## Where to find datasets?
 
@@ -47,5 +48,14 @@ When looking for datasets for data journalism project, one should avoid **survey
 - [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/)
 - [R Graphics Cookbook, 2nd edition](https://r-graphics.org/)
 - [R for Journalists](https://r-journalism.com/)
+
+## Data Journalism Guides
+
+- [Introduction to Investigative Journalism: Data Journalism](https://gijn.org/resource/introduction-investigative-journalism-data-journalism/)
+- [4 Common Angles Data Journalists Use to Tell Stories](https://gijn.org/stories/4-common-angles-data-journalists-use-to-tell-stories/)
+- [From Data to Storytelling: Concept and Design Tips from the Financial Times’ John Burn-Murdoch](https://gijn.org/stories/data-visualization-storytelling-tips-john-burn-murdoch/)
+- 
+
+
 
 
