@@ -38,6 +38,9 @@ glimpse(lifex_clean)
 ```
 
 
+```{r eval=FALSE}
+write_csv(lifex_clean, "out/life_expectancy_clean.csv")
+```
 
 ## Single Variable Analysis: Understanding Global Life Expectancy Distribution
 

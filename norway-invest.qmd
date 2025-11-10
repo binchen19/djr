@@ -156,7 +156,7 @@ To create a pie chart in ggplot2, we use `coord_polar("y", start = 0)` to conver
 ### Top 10 Companies in China and Hong Kong SAR that GPFG Invested in 2024
 
 ```{r}
-# Filter companies in China and Hong Kong SAR
+# top10 in HK
 top_hk <- df_clean |>
   filter(country == "Hong Kong") |>
   top_n(10, market_value_usd) |>
@@ -165,8 +165,9 @@ top_hk <- df_clean |>
 
 top_hk
 ```
+
 ```{r}
-# Make two bar charts by facet_wrap
+# Top10 in China
 top_china <- df_clean |>
   filter(country == "China") |>
   top_n(10, market_value_usd) |>
@@ -175,6 +176,38 @@ top_china <- df_clean |>
 
 top_china
 ```
+
+```{r}
+# top10 in HK and China, two bar charts using facet_wrap
+
+df_clean |>
+  filter(country %in% c("China", "Hong Kong")) |>
+  group_by(country) |>
+  top_n(10, market_value_usd) |>
+  ungroup() |>
+  mutate(name = fct_reorder(name, market_value_usd)) |>
+  ggplot(aes(x = name, y = market_value_usd / 1e9, fill = country)) + # <1>
+  geom_col() + # <2>
+  coord_flip() + # <3>
+  scale_y_continuous(labels = scales::label_dollar(suffix = "B")) + # <4>
+  labs(
+    title = "Top 10 Companies in China and Hong Kong Invested by GPFG in 2024",
+    x = " ",
+    y = " ",
+    fill = "Country",
+    caption = "Source: GPFG | By Bin Chen"
+  ) + # <5>
+  facet_wrap(~country, scales = "free_y") + # <6>
+  theme_bw() # <7>
+```
+1. Set the x-axis as the company name and the y-axis as the market value in billions.
+2. Create a bar plot.
+3. Flip the coordinates to make it horizontal.
+4. Format the y-axis labels as dollars in billions.
+5. Add the title, x and y labels, legend title, and caption.
+6. Use `facet_wrap` to create separate plots for China and Hong Kong with free y-scales.
+7. Apply a bw theme to the plot.
+
 
 ## Map: Investment Distribution Across Countries
 
