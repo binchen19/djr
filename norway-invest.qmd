@@ -197,7 +197,7 @@ df_clean |>
     fill = "Country",
     caption = "Source: GPFG | By Bin Chen"
   ) + # <5>
-  facet_wrap(~country, scales = "free_y") + # <6>
+  facet_wrap(~country, scales = "free_y", ncol = 1) + # <6>
   theme_bw() # <7>
 ```
 1. Set the x-axis as the company name and the y-axis as the market value in billions.
