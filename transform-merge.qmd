@@ -111,8 +111,8 @@ Here we will use `left_join` to merge the world map data with the life expectanc
 
 ```{r}
 # Merge life expectancy data with world map data
-df_merge <- world |>
-  left_join(lifex_long, by = c("iso_a3" = "country_code"))
+df_merge <- lifex_long |>
+  left_join(world, by = c("country_code" = "iso_a3"))
 ```
 
 ```{r}
@@ -126,17 +126,17 @@ Here we found there are some NAs for year and life_expectancy, which means some 
 
 ### Clean up NAs and spatial features
 
-```{r}
-df_merge |>
-  filter(is.na(year) | is.na(life_expectancy))
-```
 
 ```{r}
 library(sf)
 df_merge <- df_merge |>
   filter(!is.na(year) & !is.na(life_expectancy))
+# rows number reduced from 16758 to 16124 (there are 634 missing values in life_expectancy column)
 ```
 
+```{r}
+country_list <- world$iso_a3
+```
 
 
 ## Save the Merged Data
