@@ -1,5 +1,19 @@
 # Data Analysis I
 
+::: {.callout-note}
+## Part 3: Data Analysis
+
+With your data now cleaned and ready, it's time to ask the questions that matter for journalism. Data analysis isn't about running tests—it's about discovering why something matters for your audience.
+
+**What you'll learn:**
+- Transform raw statistics into story angles
+- Recognize patterns that signal newsworthy trends
+- Compare groups to find inequality or change
+- Use data exploration to generate questions instead of just reporting answers
+
+In this part, you'll work with real Hong Kong employment data and global health statistics to see how analytical techniques reveal different story angles from the same dataset.
+:::
+
 In this chapter, we will begin analyzing data to answer questions from a journalistic perspective. I have categorized the questions into three types, each with a corresponding analytical approach:
 
 | Question Type           | Story Angle                                       | Example Functions        |

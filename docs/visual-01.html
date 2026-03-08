@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -269,14 +269,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -287,8 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -356,7 +356,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#more-customization" id="toc-more-customization" class="nav-link" data-scroll-target="#more-customization">More Customization</a></li>
   <li><a href="#specify-aes-in-multi-layer-plots" id="toc-specify-aes-in-multi-layer-plots" class="nav-link" data-scroll-target="#specify-aes-in-multi-layer-plots">Specify <code>aes()</code> in multi-layer plots</a></li>
   </ul></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">8.4</span> Practice</a></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">8.4</span> Key Functions Recap</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">8.5</span> Practice</a></li>
   </ul>
 </nav>
     </div>
@@ -382,6 +383,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Part 4: Data Visualization
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A good visualization can clarify your findings in seconds; a bad one can mislead. In this part, you’ll learn to create chart that not only communicate your story but also guide your audience to the right conclusion.</p>
+<p><strong>What you’ll learn:</strong> - Build charts that support your narrative - Choose the right visualization for your data - Customize appearance for publication quality - Create interactive maps that reveal geographic patterns - Tell complete data stories through visualization</p>
+<p>Data visualization is where technical skill meets journalism craft. Your analysis is complete—now make people <em>see</em> why your story matters.</p>
+</div>
+</div>
 <section id="overview" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">8.1</span> Overview</h2>
 <p>We will use the <code>ggplot2</code> package to create visualizations for the data analysis results.</p>
@@ -399,11 +415,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -812,8 +828,119 @@ Tip
 </div>
 </section>
 </section>
-<section id="practice" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="practice"><span class="header-section-number">8.4</span> Practice</h2>
+<section id="key-functions-recap" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">8.4</span> Key Functions Recap</h2>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Function</strong></th>
+<th><strong>Package</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Example Use</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ggplot()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a new ggplot object</td>
+<td><code>ggplot(aes(x = level, y = avg_salary))</code></td>
+</tr>
+<tr class="even">
+<td><code>aes()</code></td>
+<td><code>ggplot2</code></td>
+<td>Specify aesthetic mappings (x, y, color, fill)</td>
+<td><code>aes(x = level, y = avg_salary, fill = level)</code></td>
+</tr>
+<tr class="odd">
+<td><code>geom_col()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a bar chart</td>
+<td><code>geom_col(width = 0.7)</code></td>
+</tr>
+<tr class="even">
+<td><code>geom_line()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a line plot</td>
+<td><code>geom_line()</code></td>
+</tr>
+<tr class="odd">
+<td><code>geom_point()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add points to a plot</td>
+<td><code>geom_point(aes(shape = level))</code></td>
+</tr>
+<tr class="even">
+<td><code>geom_text()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add text labels to a plot</td>
+<td><code>geom_text(aes(label = avg_salary), vjust = -0.5, size = 3)</code></td>
+</tr>
+<tr class="odd">
+<td><code>labs()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add titles, labels, and captions</td>
+<td><code>labs(title = "...", x = "...", y = "...", color = "...")</code></td>
+</tr>
+<tr class="even">
+<td><code>theme_minimal()</code>, <code>theme_bw()</code>, <code>theme_light()</code></td>
+<td><code>ggplot2</code></td>
+<td>Apply pre-made themes</td>
+<td><code>theme_bw()</code></td>
+</tr>
+<tr class="odd">
+<td><code>theme()</code></td>
+<td><code>ggplot2</code></td>
+<td>Customize plot appearance</td>
+<td><code>theme(legend.position = "none")</code></td>
+</tr>
+<tr class="even">
+<td><code>scale_fill_manual()</code></td>
+<td><code>ggplot2</code></td>
+<td>Manually specify fill colors</td>
+<td><code>scale_fill_manual(values = colors)</code></td>
+</tr>
+<tr class="odd">
+<td><code>scale_color_brewer()</code></td>
+<td><code>ggplot2</code></td>
+<td>Use ColorBrewer color palettes</td>
+<td><code>scale_color_brewer(palette = "Set1")</code></td>
+</tr>
+<tr class="even">
+<td><code>group_by()</code></td>
+<td><code>dplyr</code></td>
+<td>Group data by one or more variables</td>
+<td><code>group_by(year, level)</code></td>
+</tr>
+<tr class="odd">
+<td><code>summarise()</code></td>
+<td><code>dplyr</code></td>
+<td>Compute summary statistics for groups</td>
+<td><code>summarise(avg_salary = mean(salary))</code></td>
+</tr>
+<tr class="even">
+<td><code>filter()</code></td>
+<td><code>dplyr</code></td>
+<td>Filter rows based on conditions</td>
+<td><code>filter(year == 2022)</code></td>
+</tr>
+<tr class="odd">
+<td><code>round()</code></td>
+<td>Base R</td>
+<td>Round numeric values to specified digits</td>
+<td><code>round(mean(salary), 2)</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="practice" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="practice"><span class="header-section-number">8.5</span> Practice</h2>
 <ul>
 <li><p>Make a bar chart to show the average annual salary of graduates by <code>category</code> for the most recent academic year (2022).</p></li>
 <li><p>Make a line plot to show the average annual salary of graduates by <code>category</code> over the years.</p></li>

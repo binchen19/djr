@@ -149,3 +149,17 @@ save(df_merge, file = "out/expectancy_merged.RData")
 
 See @sec-lifexmap for following data analysis and visualization.
 
+## Key Functions Recap
+
+| **Function**         | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
+|----------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `pivot_longer()`     | `tidyr`         | Transform wide data to long format                | `lifex |> pivot_longer(cols = 5:67, names_to = "year", values_to = "life_expectancy")`                       |
+| `left_join()`        | `dplyr`         | Merge datasets keeping all rows from left table   | `lifex_long |> left_join(world, by = c("country_code" = "iso_a3"))`                                           |
+| `ne_countries()`     | `rnaturalearth` | Load world map spatial data                       | `ne_countries(scale = "medium", returnclass = "sf")`                                                         |
+| `rename()`           | `dplyr`         | Rename columns in a data frame                    | `rename(country = Country Name, country_code = Country Code)`                                                |
+| `select()`           | `dplyr`         | Select specific columns                          | `select(country, country_code, year, life_expectancy)`                                                       |
+| `filter()`           | `dplyr`         | Filter rows based on conditions                  | `filter(!is.na(year) & !is.na(life_expectancy))`                                                              |
+| `is.na()`            | Base R          | Test for missing values                          | `filter(!is.na(life_expectancy))`                                                                             |
+| `mutate()`           | `dplyr`         | Create or modify columns                         | `mutate(year = as.numeric(year))`                                                                             |
+| `save()`             | Base R          | Save R objects to .RData file                    | `save(df_merge, file = "out/expectancy_merged.RData")`                                                        |
+

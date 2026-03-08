@@ -33,10 +33,10 @@ book:
       - norway-invest.qmd
     - part: "Case Studies"
       chapters:
-      - debate.qmd
       - hot100.qmd
-      - olympics.qmd
       - employment.qmd
+      - olympics.qmd
+      - debate.qmd
   appendices:
     - links.qmd
     - quarto.qmd

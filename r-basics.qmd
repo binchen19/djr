@@ -3,7 +3,7 @@ title: "R Coding Basics"
 format: html
 ---
 
-Now, you have a basic understanding of R/RStudio, R Project, and R Markdown. Next, we will cover some fundamental syntax and concepts in R programming.
+Now, you have a basic understanding of R/RStudio, R Project, and R Markdown. Next, we will cover some fundamental syntax and concepts in R programming. These basics form the foundation for data journalism: from loading election data and survey results to calculating statistics that reveal hidden stories in the numbers.
 
 
 ## Coding Basics
@@ -86,12 +86,12 @@ birth_year <- c(1995, 2003, 2007)
 ```
 
 ::: {.callout-tip}
-Use comments to explain the why behind your code, not the how or what. This presents confusion in the future, especially when revisiting complex projects or after a long time.
+Use comments to explain the why behind your code, not the how or what. This prevents confusion in the future, especially when revisiting complex projects or after a long time.
 :::
 
 ## Naming Conventions
 
-Object names must start with a letter and can contain letters, numbers, underscores (`_`), abd periods(`.`). We recommend using `snake_case` for multi-word object names, which means using lowercase letters and underscores to separate words (e.g., `birth_year`, `student_name`).
+Object names must start with a letter and can contain letters, numbers, underscores (`_`), and periods(`.`). We recommend using `snake_case` for multi-word object names, which means using lowercase letters and underscores to separate words (e.g., `birth_year`, `student_name`).
 
 ```
 # this is a good object name
@@ -108,7 +108,7 @@ Remember R is case-sensitive, so `birth_year` and `Birth_Year` are considered di
 
 ## Calling Functions
 
-R provides a variaty of built-in functions. They are called by typing the function name followed by parentheses `()`. If the function requires arguments, you can pass them inside the parentheses.
+R provides a variety of built-in functions. They are called by typing the function name followed by parentheses `()`. If the function requires arguments, you can pass them inside the parentheses.
 
 ```
 function_name(argument1 = value1, argument2 = value2, ...)
@@ -127,7 +127,7 @@ seq(1, 10)
 ```
 
 
-::: callout-tip
+::: {.callout-tip}
 RStudio has an auto-complete feature that suggests function names and arguments as you type. You can also call `?function_name` to access the help file for that function.
 :::
 
@@ -143,7 +143,7 @@ class(ages)
 ```
 ### Character
 
-Charater data type represents text or string values. Character values are enclosed in double quotes (`"`) or single quotes (`'`).
+Character data type represents text or string values. Character values are enclosed in double quotes (`"`) or single quotes (`'`).
 
 ```{r}
 language <- c("R", "Python")
@@ -166,29 +166,23 @@ class(is_student)
 Date data type represents dates. Standard date format in R is `YYYY-MM-DD`.
 
 ```{r}
-today <- as.Date("2024-09-07")
+today <- as.Date("2025-03-02")
 
 class(today)
 ```
 
 
 ::: {.callout-warning}
-To create a date object in R, you can use the `as.Date()` function with the date in the format `YYYY-MM-DD`. If you just use `x <- "2024-09-07"`, it will be a character type.
+To create a date object in R, you can use the `as.Date()` function with the date in the format `YYYY-MM-DD`. If you just use `x <- "2025-03-02"`, it will be a character type.
 :::
 
 ## Data Frame
 
-Data frame is a two-dimensional data structure that stores data in *rows* and *columns*. Eacb row represents an observation, and each column represents a variable.
+Data frame is a two-dimensional data structure that stores data in *rows* and *columns*. Each row represents an observation, and each column represents a variable. Think of it as a spreadsheet: rows are individual records (a news story, survey respondent, or election result) and columns are attributes (title, date published, views).
 
 We can build a data frame using the `data.frame()` function.
 
-First, let's create a data frame with two columns: `name` and `age`.
-
-```{r}
-# Create vectors for each column
-name <- c("Alice", "Bob", "Charlie")
-age <- c(25, 30, 35)
-```
+First, let's create a simple data frame with two columns: `name` and `age`.
 
 ```{r}
 # Create a data frame
@@ -200,12 +194,43 @@ df
 
 This is a 3x2 data frame with 3 rows and 2 columns.
 
+### Exploring a Data Frame
 
-::: callout-note
-In this course, we will primarily work with data frames.
+In journalism, you often start with a dataset you've obtained (election results, crime statistics, public spending). R provides several functions to quickly understand what you're working with:
+
+```{r}
+# View the first few rows
+head(df)
+
+# Check the number of rows and columns
+nrow(df)
+ncol(df)
+
+# See column names
+colnames(df)
+
+# Get structure and data types
+str(df)
+```
+
+### Journalism Example
+
+Here's a more realistic example: a dataset of news articles with views and engagement:
+
+```{r}
+articles <- data.frame(
+  title = c("Election Results Shock Markets", "Climate Report Released", "Survey: Public Trust Declining"),
+  date = as.Date(c("2025-03-01", "2025-02-28", "2025-02-27")),
+  views = c(45000, 32000, 28000),
+  shares = c(3200, 1800, 1500),
+  section = c("Politics", "Environment", "Society"))
+
+head(articles)
+```
+
+::: {.callout-note}
+In this course, we will primarily work with data frames and use the tidyverse package to manipulate, analyze, and visualize them for storytelling.
 :::
-
--   **List**: A data structure that stores a collection of objects. Lists can contain vectors, matrices, data frames, and other lists.
 
 ## Errors/Warnings/Messages
 
@@ -234,13 +259,23 @@ You may ignore the messages, but you should always pay attention to errors and w
 
 ### Tips for learning R coding
 
--   **"Copy, Paste, and Tweak"**: When writing code, it's common to copy and paste existing code and then tweak it to fit your needs. This can save time and reduce errors.
+-   **"Copy, Paste, and Tweak"**: When writing code, it's common to copy and paste existing code and then tweak it to fit your needs. This can save time and reduce errors. Once you have a working script that analyzes one dataset, adapting it for another is much faster.
 
--   **"Save, Save, Save"**: Save your work frequently to avoid losing your progress.
+-   **"Save, Save, Save"**: Save your work frequently to avoid losing your progress. For journalism projects, also keep a clear record of what analysis you did—this becomes your methodology document.
 
--   **Practice, practice, practice**: The more you practice writing R code, the more comfortable and proficient you will become.
+-   **Practice, practice, practice**: The more you practice writing R code, the more comfortable and proficient you will become. Start with simple data questions and gradually tackle more complex analyses.
 
 -   **Call `?` for help**: If you are unsure about how to use a function or need more information, you can call `?function_name` to access the help file for that function.
+
+### Best Practices for Data Journalism Projects
+
+-   **Name your scripts clearly**: Use meaningful names like `analysis_election_2025.R` or `data_cleaning_covid_survey.R` so you know what each script does months later.
+
+-   **Document your data sources**: Add comments at the top of your script noting where the data came from, when you obtained it, and any data issues you discovered.
+
+-   **Organize your project**: Keep related files in the same R Project, with separate folders for raw data, processed data, scripts, and visualizations.
+
+-   **Validate your results**: Always double-check calculations and findings against the original data before publishing. A single mistake can undermine your credibility.
 
 ## Exercises
 

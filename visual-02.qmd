@@ -320,3 +320,29 @@ To save a plot as an image file, we can use the `ggsave()` function. Here we wil
 #| eval: false
 ggsave("bar_chart.png", p1, width = 8, height = 6, dpi = 300)
 ```
+
+## Key Functions Recap
+
+| **Function**                | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
+|-----------------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `glimpse()`                 | `dplyr`         | Get quick overview of data frame structure        | `glimpse(df_clean)`                                                                                          |
+| `count()`                   | `dplyr`         | Count occurrences of unique values                | `count(location)`                                                                                            |
+| `n()`                       | `dplyr`         | Get number of rows in current group               | `summarize(num_of_wildfires = n())`                                                                          |
+| `group_by()`                | `dplyr`         | Group data by one or more variables              | `group_by(location)`                                                                                         |
+| `summarize()`               | `dplyr`         | Compute summary statistics for groups            | `summarize(avg_burnt_area = mean(area))`                                                                     |
+| `arrange()`                 | `dplyr`         | Sort rows by one or more columns                 | `arrange(desc(num_of_wildfires))`                                                                            |
+| `year()`                    | `lubridate`     | Extract year component from date                 | `year(date)`                                                                                                 |
+| `ggplot()`                  | `ggplot2`       | Create a new ggplot object                        | `ggplot(aes(x = location, y = n))`                                                                           |
+| `aes()`                     | `ggplot2`       | Specify aesthetic mappings (x, y, color, fill)   | `aes(x = location, y = n, color = location)`                                                                 |
+| `geom_col()`                | `ggplot2`       | Create a bar chart                               | `geom_col(fill = "red")`                                                                                     |
+| `geom_line()`               | `ggplot2`       | Create a line plot                               | `geom_line()`                                                                                                |
+| `geom_point()`              | `ggplot2`       | Add points to a plot                             | `geom_point(size = 2)`                                                                                       |
+| `geom_text()`               | `ggplot2`       | Add text labels to a plot                        | `geom_text(aes(label = n), vjust = -0.5, hjust = 1.1)`                                                       |
+| `labs()`                    | `ggplot2`       | Add titles, labels, and captions                 | `labs(title = "...", x = "County", y = "Number of Wildfires")`                                               |
+| `coord_flip()`              | `ggplot2`       | Flip x and y axes                                | `coord_flip()`                                                                                               |
+| `facet_wrap()`              | `ggplot2`       | Create multiple plots based on categorical var   | `facet_wrap(~location)`                                                                                      |
+| `theme_bw()`, `theme_classic()`, `theme_minimal()` | `ggplot2` | Apply pre-made themes | `theme_bw()`                                                                          |
+| `theme()`                   | `ggplot2`       | Customize plot appearance                        | `theme(legend.position = "none")`                                                                             |
+| `fct_reorder()`             | `forcats`       | Reorder levels of a categorical variable         | `fct_reorder(location, n)`                                                                                   |
+| `ggplotly()`                | `plotly`        | Convert ggplot to interactive plotly plot        | `ggplotly(p1)`                                                                                               |
+| `ggsave()`                  | `ggplot2`       | Save plot as image file                          | `ggsave("bar_chart.png", p1, width = 8, height = 6, dpi = 300)`                                              |

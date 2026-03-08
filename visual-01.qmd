@@ -3,6 +3,21 @@ title: "ggplot Bascis"
 format: html
 ---
 
+::: {.callout-note}
+## Part 4: Data Visualization
+
+A good visualization can clarify your findings in seconds; a bad one can mislead. In this part, you'll learn to create chart that not only communicate your story but also guide your audience to the right conclusion.
+
+**What you'll learn:**
+- Build charts that support your narrative
+- Choose the right visualization for your data
+- Customize appearance for publication quality
+- Create interactive maps that reveal geographic patterns
+- Tell complete data stories through visualization
+
+Data visualization is where technical skill meets journalism craft. Your analysis is complete—now make people *see* why your story matters.
+:::
+
 ## Overview
 
 We will use the `ggplot2` package to create visualizations for the data analysis results.
@@ -222,6 +237,26 @@ df_clean |>
 ```
 
 1.  Add a `shape = "Level of Study"` in the `labs()` function, making both the color and shape legends appear as one unified legend, labeled “Level of Study.”
+
+## Key Functions Recap
+
+| **Function**                | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
+|-----------------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `ggplot()`                  | `ggplot2`       | Create a new ggplot object                        | `ggplot(aes(x = level, y = avg_salary))`                                                                     |
+| `aes()`                     | `ggplot2`       | Specify aesthetic mappings (x, y, color, fill)   | `aes(x = level, y = avg_salary, fill = level)`                                                               |
+| `geom_col()`                | `ggplot2`       | Create a bar chart                               | `geom_col(width = 0.7)`                                                                                      |
+| `geom_line()`               | `ggplot2`       | Create a line plot                               | `geom_line()`                                                                                                |
+| `geom_point()`              | `ggplot2`       | Add points to a plot                             | `geom_point(aes(shape = level))`                                                                             |
+| `geom_text()`               | `ggplot2`       | Add text labels to a plot                        | `geom_text(aes(label = avg_salary), vjust = -0.5, size = 3)`                                                 |
+| `labs()`                    | `ggplot2`       | Add titles, labels, and captions                 | `labs(title = "...", x = "...", y = "...", color = "...")`                                                   |
+| `theme_minimal()`, `theme_bw()`, `theme_light()` | `ggplot2` | Apply pre-made themes | `theme_bw()`                                                                                  |
+| `theme()`                   | `ggplot2`       | Customize plot appearance                        | `theme(legend.position = "none")`                                                                             |
+| `scale_fill_manual()`       | `ggplot2`       | Manually specify fill colors                     | `scale_fill_manual(values = colors)`                                                                          |
+| `scale_color_brewer()`      | `ggplot2`       | Use ColorBrewer color palettes                   | `scale_color_brewer(palette = "Set1")`                                                                        |
+| `group_by()`                | `dplyr`         | Group data by one or more variables              | `group_by(year, level)`                                                                                      |
+| `summarise()`               | `dplyr`         | Compute summary statistics for groups            | `summarise(avg_salary = mean(salary))`                                                                        |
+| `filter()`                  | `dplyr`         | Filter rows based on conditions                  | `filter(year == 2022)`                                                                                       |
+| `round()`                   | Base R          | Round numeric values to specified digits         | `round(mean(salary), 2)`                                                                                     |
 
 ## Practice
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 13&nbsp; Billboard Hot100</title>
+<title>Data Journalism with R - 12&nbsp; Billboard Hot100</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./olympics.html" rel="next">
-<link href="./debate.html" rel="prev">
+<link href="./employment.html" rel="next">
+<link href="./norway-invest.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./debate.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./hot100.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./hot100.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -269,14 +269,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -287,8 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,38 +344,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-packages" id="toc-load-packages" class="nav-link active" data-scroll-target="#load-packages"><span class="header-section-number">13.1</span> Load Packages</a></li>
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="header-section-number">13.2</span> Import Data</a></li>
-  <li><a href="#data-inspection" id="toc-data-inspection" class="nav-link" data-scroll-target="#data-inspection"><span class="header-section-number">13.3</span> Data Inspection</a>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link active" data-scroll-target="#load-packages"><span class="header-section-number">12.1</span> Load Packages</a></li>
+  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="header-section-number">12.2</span> Import Data</a></li>
+  <li><a href="#data-inspection" id="toc-data-inspection" class="nav-link" data-scroll-target="#data-inspection"><span class="header-section-number">12.3</span> Data Inspection</a>
   <ul class="collapse">
   <li><a href="#str-structure-of-the-data" id="toc-str-structure-of-the-data" class="nav-link" data-scroll-target="#str-structure-of-the-data"><code>str()</code>: Structure of the Data</a></li>
   <li><a href="#summary-summary-of-the-data" id="toc-summary-summary-of-the-data" class="nav-link" data-scroll-target="#summary-summary-of-the-data"><code>summary()</code>: Summary of the Data</a></li>
   <li><a href="#check-missing-values" id="toc-check-missing-values" class="nav-link" data-scroll-target="#check-missing-values">check missing values</a></li>
   </ul></li>
-  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">13.4</span> Data Cleaning</a>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">12.4</span> Data Cleaning</a>
   <ul class="collapse">
   <li><a href="#rename-columns" id="toc-rename-columns" class="nav-link" data-scroll-target="#rename-columns">Rename Columns</a></li>
   <li><a href="#convert-data-types" id="toc-convert-data-types" class="nav-link" data-scroll-target="#convert-data-types">Convert Data Types</a></li>
   </ul></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">13.5</span> Data Analysis</a>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">12.5</span> Data Analysis</a>
   <ul class="collapse">
   <li><a href="#single-variable-descriptive-statistics" id="toc-single-variable-descriptive-statistics" class="nav-link" data-scroll-target="#single-variable-descriptive-statistics">Single Variable Descriptive Statistics</a></li>
   <li><a href="#multiple-variables" id="toc-multiple-variables" class="nav-link" data-scroll-target="#multiple-variables">Multiple Variables</a></li>
   </ul></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">13.6</span> Data Visualization</a>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">12.6</span> Data Visualization</a>
   <ul class="collapse">
   <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart">Bar Chart</a></li>
   <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart">Line Chart</a></li>
   </ul></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">12.7</span> Key Functions Recap</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./debate.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./hot100.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./hot100.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></h1>
 </div>
 
 
@@ -392,17 +393,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="load-packages" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">13.1</span> Load Packages</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Welcome to Case Studies
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You’ve now completed the foundation chapters covering R basics, data wrangling, analysis, and visualization. The following case studies put all these skills together in realistic journalism scenarios.</p>
+<p>Each case study increases in complexity, building on skills from previous chapters. Work through them in order for the best learning experience, or jump to a case study that interests you and reference earlier chapters as needed.</p>
+</div>
+</div>
+<section id="load-packages" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">12.1</span> Load Packages</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -410,8 +425,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="import-data" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="import-data"><span class="header-section-number">13.2</span> Import Data</h2>
+<section id="import-data" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="import-data"><span class="header-section-number">12.2</span> Import Data</h2>
 <p>This dataset is downloaded from <a href="https://www.kaggle.com/datasets/ludmin/billboard?select=hot100.csv">Kaggle</a>, which contains the Billboard Hot 100 chart data from 1958 to 2024.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hot100.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -428,8 +443,8 @@ date (1): Date
 </div>
 </div>
 </section>
-<section id="data-inspection" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="data-inspection"><span class="header-section-number">13.3</span> Data Inspection</h2>
+<section id="data-inspection" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="data-inspection"><span class="header-section-number">12.3</span> Data Inspection</h2>
 <section id="str-structure-of-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="str-structure-of-the-data"><code>str()</code>: Structure of the Data</h3>
 <div class="cell">
@@ -508,8 +523,8 @@ date (1): Date
 </div>
 </section>
 </section>
-<section id="data-cleaning" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">13.4</span> Data Cleaning</h2>
+<section id="data-cleaning" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">12.4</span> Data Cleaning</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -610,8 +625,8 @@ Can you answer these questions?
 </div>
 </section>
 </section>
-<section id="data-analysis" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">13.5</span> Data Analysis</h2>
+<section id="data-analysis" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">12.5</span> Data Analysis</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename df2 as hot100</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -741,8 +756,8 @@ Note
 </section>
 </section>
 </section>
-<section id="data-visualization" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">13.6</span> Data Visualization</h2>
+<section id="data-visualization" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">12.6</span> Data Visualization</h2>
 <section id="bar-chart" class="level3">
 <h3 class="anchored" data-anchor-id="bar-chart">Bar Chart</h3>
 <p>Bar chart is used to show the frequency of each category. Bar chart is a good choice when you want to show the relationship between a numerical variable and a categorical variable (e.g., song, artist).</p>
@@ -837,9 +852,228 @@ Note
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="key-functions-recap" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">12.7</span> Key Functions Recap</h2>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Function</strong></th>
+<th><strong>Package</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Example Use</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_csv()</code></td>
+<td><code>readr</code></td>
+<td>Read CSV files into R</td>
+<td><code>read_csv("data/hot100.csv")</code></td>
+</tr>
+<tr class="even">
+<td><code>str()</code></td>
+<td>Base R</td>
+<td>Display data structure and types</td>
+<td><code>str(df)</code></td>
+</tr>
+<tr class="odd">
+<td><code>summary()</code></td>
+<td>Base R</td>
+<td>Generate summary statistics</td>
+<td><code>summary(hot100$date)</code></td>
+</tr>
+<tr class="even">
+<td><code>summarise_all()</code></td>
+<td><code>dplyr</code></td>
+<td>Apply summary function to all columns</td>
+<td><code>summarise_all(~sum(is.na(.)))</code></td>
+</tr>
+<tr class="odd">
+<td><code>is.na()</code></td>
+<td>Base R</td>
+<td>Test for missing values</td>
+<td><code>is.na(df)</code></td>
+</tr>
+<tr class="even">
+<td><code>rename()</code></td>
+<td><code>dplyr</code></td>
+<td>Rename columns in a data frame</td>
+<td><code>rename(date = Date, song = Song)</code></td>
+</tr>
+<tr class="odd">
+<td><code>mutate()</code></td>
+<td><code>dplyr</code></td>
+<td>Create or modify columns</td>
+<td><code>mutate(weeks_in_charts = as.numeric(weeks_in_charts))</code></td>
+</tr>
+<tr class="even">
+<td><code>as.numeric()</code></td>
+<td>Base R</td>
+<td>Convert values to numeric type</td>
+<td><code>as.numeric(weeks_in_charts)</code></td>
+</tr>
+<tr class="odd">
+<td><code>filter()</code></td>
+<td><code>dplyr</code></td>
+<td>Filter rows based on conditions</td>
+<td><code>filter(rank == 1, year(date) &gt;= 2015)</code></td>
+</tr>
+<tr class="even">
+<td><code>distinct()</code></td>
+<td><code>dplyr</code></td>
+<td>Return distinct rows</td>
+<td><code>distinct(artist, song)</code></td>
+</tr>
+<tr class="odd">
+<td><code>group_by()</code></td>
+<td><code>dplyr</code></td>
+<td>Group data by one or more variables</td>
+<td><code>group_by(artist)</code></td>
+</tr>
+<tr class="even">
+<td><code>summarise()</code></td>
+<td><code>dplyr</code></td>
+<td>Compute summary statistics for groups</td>
+<td><code>summarise(n = n())</code></td>
+</tr>
+<tr class="odd">
+<td><code>arrange()</code></td>
+<td><code>dplyr</code></td>
+<td>Sort rows by one or more columns</td>
+<td><code>arrange(-appearance)</code></td>
+</tr>
+<tr class="even">
+<td><code>count()</code></td>
+<td><code>dplyr</code></td>
+<td>Count occurrences of unique values</td>
+<td><code>count(artist, sort = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td><code>slice_head()</code></td>
+<td><code>dplyr</code></td>
+<td>Select first n rows from each group</td>
+<td><code>slice_head(n = 10)</code></td>
+</tr>
+<tr class="even">
+<td><code>head()</code></td>
+<td>Base R</td>
+<td>Get first n rows of data</td>
+<td><code>head(10)</code></td>
+</tr>
+<tr class="odd">
+<td><code>table()</code></td>
+<td>Base R</td>
+<td>Build contingency table of counts</td>
+<td><code>table(hot100$artist)</code></td>
+</tr>
+<tr class="even">
+<td><code>sort()</code></td>
+<td>Base R</td>
+<td>Sort vector elements</td>
+<td><code>sort(decreasing = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td><code>year()</code></td>
+<td><code>lubridate</code></td>
+<td>Extract year component from date</td>
+<td><code>year(date)</code></td>
+</tr>
+<tr class="even">
+<td><code>ggplot()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a new ggplot object</td>
+<td><code>ggplot(aes(x = artist, y = appearance))</code></td>
+</tr>
+<tr class="odd">
+<td><code>aes()</code></td>
+<td><code>ggplot2</code></td>
+<td>Specify aesthetic mappings (x, y, color, fill)</td>
+<td><code>aes(x = reorder(artist, appearance), y = appearance, fill = appearance)</code></td>
+</tr>
+<tr class="even">
+<td><code>geom_col()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a bar chart</td>
+<td><code>geom_col(show.legend = FALSE)</code></td>
+</tr>
+<tr class="odd">
+<td><code>geom_line()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a line plot</td>
+<td><code>geom_line()</code></td>
+</tr>
+<tr class="even">
+<td><code>geom_point()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add points to a plot</td>
+<td><code>geom_point()</code></td>
+</tr>
+<tr class="odd">
+<td><code>geom_text()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add text labels to a plot</td>
+<td><code>geom_text(aes(label = appearance), hjust = -0.2, size = 3)</code></td>
+</tr>
+<tr class="even">
+<td><code>coord_flip()</code></td>
+<td><code>ggplot2</code></td>
+<td>Flip x and y axes</td>
+<td><code>coord_flip()</code></td>
+</tr>
+<tr class="odd">
+<td><code>scale_fill_gradient()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create gradient color scale for fill</td>
+<td><code>scale_fill_gradient(low = "lightblue", high = "darkblue")</code></td>
+</tr>
+<tr class="even">
+<td><code>labs()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add titles, labels, and captions</td>
+<td><code>labs(title = "...", x = "Artist", y = "Number of No. 1 Songs")</code></td>
+</tr>
+<tr class="odd">
+<td><code>str_wrap()</code></td>
+<td><code>stringr</code></td>
+<td>Wrap long strings for display</td>
+<td><code>str_wrap("Adele, Taylor Swift, and Mariah Carey are the top 3 artists...")</code></td>
+</tr>
+<tr class="even">
+<td><code>theme_minimal()</code></td>
+<td><code>ggplot2</code></td>
+<td>Apply minimal theme</td>
+<td><code>theme_minimal(base_size = 10)</code></td>
+</tr>
+<tr class="odd">
+<td><code>element_text()</code></td>
+<td><code>ggplot2</code></td>
+<td>Customize text elements in themes</td>
+<td><code>element_text(face = "bold", size = 12)</code></td>
+</tr>
+<tr class="even">
+<td><code>theme()</code></td>
+<td><code>ggplot2</code></td>
+<td>Customize plot appearance</td>
+<td><code>theme(plot.title = element_text(face = "bold", size = 12))</code></td>
+</tr>
+<tr class="odd">
+<td><code>reorder()</code></td>
+<td>Base R</td>
+<td>Reorder levels of a variable</td>
+<td><code>reorder(artist, appearance)</code></td>
+</tr>
+</tbody>
+</table>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1232,13 +1466,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./debate.html" class="pagination-link  aria-label=" &lt;span="" analysis&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span>
+      <a href="./norway-invest.html" class="pagination-link  aria-label=" &lt;span="" investments&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./olympics.html" class="pagination-link" aria-label="<span class='chapter-number'>14</span>&nbsp; <span class='chapter-title'>Paris 2024 Olympics</span>">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./employment.html" class="pagination-link" aria-label="<span class='chapter-number'>13</span>&nbsp; <span class='chapter-title'>HK University Graduate Employment Situation</span>">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
