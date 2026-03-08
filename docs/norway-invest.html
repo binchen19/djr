@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-11-14">
+<meta name="dcterms.date" content="2026-03-08">
 
 <title>Data Journalism with R - 11&nbsp; GPFG Investments</title>
 <style>
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./debate.html" rel="next">
+<link href="./hot100.html" rel="next">
 <link href="./map-lifex.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -270,14 +270,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -288,8 +288,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -363,6 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#load-the-world-map-data" id="toc-load-the-world-map-data" class="nav-link" data-scroll-target="#load-the-world-map-data">Load the World Map Data</a></li>
   <li><a href="#merge-the-world-map-data-with-investment-data" id="toc-merge-the-world-map-data-with-investment-data" class="nav-link" data-scroll-target="#merge-the-world-map-data-with-investment-data">Merge the World Map Data with Investment Data</a></li>
   </ul></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">11.6</span> Key Functions Recap</a></li>
   </ul>
 </nav>
     </div>
@@ -383,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2025</p>
+      <p class="date">March 8, 2026</p>
     </div>
   </div>
   
@@ -851,9 +852,228 @@ Which data to be left?
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="key-functions-recap" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">11.6</span> Key Functions Recap</h2>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Function</strong></th>
+<th><strong>Package</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Example Use</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_excel()</code></td>
+<td><code>readxl</code></td>
+<td>Read Excel files into R</td>
+<td><code>read_excel("data/gpfg-2024.xlsx")</code></td>
+</tr>
+<tr class="even">
+<td><code>glimpse()</code></td>
+<td><code>dplyr</code></td>
+<td>Get quick overview of data frame structure</td>
+<td><code>glimpse(df)</code></td>
+</tr>
+<tr class="odd">
+<td><code>rename()</code></td>
+<td><code>dplyr</code></td>
+<td>Rename columns in a data frame</td>
+<td><code>rename(region = Region, country = Country)</code></td>
+</tr>
+<tr class="even">
+<td><code>select()</code></td>
+<td><code>dplyr</code></td>
+<td>Select specific columns</td>
+<td><code>select(region, country, name, industry, market_value_usd)</code></td>
+</tr>
+<tr class="odd">
+<td><code>group_by()</code></td>
+<td><code>dplyr</code></td>
+<td>Group data by one or more variables</td>
+<td><code>group_by(country)</code></td>
+</tr>
+<tr class="even">
+<td><code>summarise()</code></td>
+<td><code>dplyr</code></td>
+<td>Compute summary statistics for groups</td>
+<td><code>summarise(total_investment = sum(market_value_usd))</code></td>
+</tr>
+<tr class="odd">
+<td><code>top_n()</code></td>
+<td><code>dplyr</code></td>
+<td>Select top n rows by value</td>
+<td><code>top_n(10, total_investment)</code></td>
+</tr>
+<tr class="even">
+<td><code>filter()</code></td>
+<td><code>dplyr</code></td>
+<td>Filter rows based on conditions</td>
+<td><code>filter(country %in% c("China", "Hong Kong"))</code></td>
+</tr>
+<tr class="odd">
+<td><code>ungroup()</code></td>
+<td><code>dplyr</code></td>
+<td>Remove grouping from data frame</td>
+<td><code>ungroup()</code></td>
+</tr>
+<tr class="even">
+<td><code>mutate()</code></td>
+<td><code>dplyr</code></td>
+<td>Create or modify columns</td>
+<td><code>mutate(name = fct_reorder(name, market_value_usd))</code></td>
+</tr>
+<tr class="odd">
+<td><code>arrange()</code></td>
+<td><code>dplyr</code></td>
+<td>Sort rows by one or more columns</td>
+<td><code>arrange(desc(total_investment))</code></td>
+</tr>
+<tr class="even">
+<td><code>ggplot()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a new ggplot object</td>
+<td><code>ggplot(aes(x = reorder(country, total_investment), y = total_investment / 1e9))</code></td>
+</tr>
+<tr class="odd">
+<td><code>aes()</code></td>
+<td><code>ggplot2</code></td>
+<td>Specify aesthetic mappings (x, y, color, fill)</td>
+<td><code>aes(x = name, y = market_value_usd / 1e9, fill = country)</code></td>
+</tr>
+<tr class="even">
+<td><code>geom_col()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a bar chart</td>
+<td><code>geom_col(fill = "skyblue")</code></td>
+</tr>
+<tr class="odd">
+<td><code>geom_text()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add text labels to a plot</td>
+<td><code>geom_text(aes(label = paste0("$", round(total_investment / 1e9, 1), "B")), hjust = -0.1, size = 3)</code></td>
+</tr>
+<tr class="even">
+<td><code>coord_flip()</code></td>
+<td><code>ggplot2</code></td>
+<td>Flip x and y axes</td>
+<td><code>coord_flip()</code></td>
+</tr>
+<tr class="odd">
+<td><code>scale_y_continuous()</code></td>
+<td><code>ggplot2</code></td>
+<td>Customize continuous y-axis scale</td>
+<td><code>scale_y_continuous(limits = c(0, 800), labels = scales::label_dollar(suffix = "B"))</code></td>
+</tr>
+<tr class="even">
+<td><code>labs()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add titles, labels, and captions</td>
+<td><code>labs(title = "...", x = " ", y = " ")</code></td>
+</tr>
+<tr class="odd">
+<td><code>theme_bw()</code></td>
+<td><code>ggplot2</code></td>
+<td>Apply black-and-white theme</td>
+<td><code>theme_bw()</code></td>
+</tr>
+<tr class="even">
+<td><code>reorder()</code></td>
+<td>Base R</td>
+<td>Reorder levels of a variable</td>
+<td><code>reorder(country, total_investment)</code></td>
+</tr>
+<tr class="odd">
+<td><code>fct_reorder()</code></td>
+<td><code>forcats</code></td>
+<td>Reorder levels of a categorical variable</td>
+<td><code>fct_reorder(name, market_value_usd)</code></td>
+</tr>
+<tr class="even">
+<td><code>geom_bar()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a bar chart (with stat = “identity”)</td>
+<td><code>geom_bar(stat = "identity", width = 1, color = "white")</code></td>
+</tr>
+<tr class="odd">
+<td><code>coord_polar()</code></td>
+<td><code>ggplot2</code></td>
+<td>Use polar coordinates (for pie charts)</td>
+<td><code>coord_polar("y", start = 0)</code></td>
+</tr>
+<tr class="even">
+<td><code>scale_fill_manual()</code></td>
+<td><code>ggplot2</code></td>
+<td>Manually specify fill colors</td>
+<td><code>scale_fill_manual(values = blue_palette)</code></td>
+</tr>
+<tr class="odd">
+<td><code>ifelse()</code></td>
+<td>Base R</td>
+<td>Conditional operation</td>
+<td><code>ifelse(p &gt;= 0.05, paste0(region, "\\n", round(p * 100, 1), "%"), "")</code></td>
+</tr>
+<tr class="even">
+<td><code>position_stack()</code></td>
+<td><code>ggplot2</code></td>
+<td>Stack position adjustment</td>
+<td><code>position_stack(vjust = 0.5)</code></td>
+</tr>
+<tr class="odd">
+<td><code>theme_void()</code></td>
+<td><code>ggplot2</code></td>
+<td>Remove background, gridlines, and axes</td>
+<td><code>theme_void()</code></td>
+</tr>
+<tr class="even">
+<td><code>ne_countries()</code></td>
+<td><code>rnaturalearth</code></td>
+<td>Load world map spatial data</td>
+<td><code>ne_countries(scale = "medium", returnclass = "sf")</code></td>
+</tr>
+<tr class="odd">
+<td><code>left_join()</code></td>
+<td><code>dplyr</code></td>
+<td>Merge datasets keeping all rows from left table</td>
+<td><code>left_join(world_map, world_invest, by = c("name_long" = "country"))</code></td>
+</tr>
+<tr class="even">
+<td><code>replace_na()</code></td>
+<td><code>tidyr</code></td>
+<td>Replace NA values with a specified value</td>
+<td><code>replace_na(total_investment, 0)</code></td>
+</tr>
+<tr class="odd">
+<td><code>geom_sf()</code></td>
+<td><code>ggplot2</code></td>
+<td>Plot spatial features (map geometries)</td>
+<td><code>geom_sf(aes(geometry = geometry, fill = total_investment_B))</code></td>
+</tr>
+<tr class="even">
+<td><code>scale_fill_gradient()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create gradient color scale for fill</td>
+<td><code>scale_fill_gradient(low = "#deebf7", high = "#3182bd", trans = "log")</code></td>
+</tr>
+<tr class="odd">
+<td><code>theme()</code></td>
+<td><code>ggplot2</code></td>
+<td>Customize plot appearance</td>
+<td><code>theme(legend.position = "none")</code></td>
+</tr>
+</tbody>
+</table>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1251,8 +1471,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./debate.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>Text Analysis</span>">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./hot100.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>Billboard Hot100</span>">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -270,3 +270,41 @@ world_merge |>
 5. Add the title, subtitle, and caption.
 6. Apply a void theme to remove the background.
 7. Remove the legend for a cleaner look.
+
+## Key Functions Recap
+
+| **Function**                | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
+|-----------------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `read_excel()`              | `readxl`        | Read Excel files into R                          | `read_excel("data/gpfg-2024.xlsx")`                                                                          |
+| `glimpse()`                 | `dplyr`         | Get quick overview of data frame structure        | `glimpse(df)`                                                                                                |
+| `rename()`                  | `dplyr`         | Rename columns in a data frame                    | `rename(region = Region, country = Country)`                                                                 |
+| `select()`                  | `dplyr`         | Select specific columns                          | `select(region, country, name, industry, market_value_usd)`                                                   |
+| `group_by()`                | `dplyr`         | Group data by one or more variables              | `group_by(country)`                                                                                          |
+| `summarise()`               | `dplyr`         | Compute summary statistics for groups            | `summarise(total_investment = sum(market_value_usd))`                                                         |
+| `top_n()`                   | `dplyr`         | Select top n rows by value                       | `top_n(10, total_investment)`                                                                                |
+| `filter()`                  | `dplyr`         | Filter rows based on conditions                  | `filter(country %in% c("China", "Hong Kong"))`                                                                |
+| `ungroup()`                 | `dplyr`         | Remove grouping from data frame                  | `ungroup()`                                                                                                  |
+| `mutate()`                  | `dplyr`         | Create or modify columns                         | `mutate(name = fct_reorder(name, market_value_usd))`                                                          |
+| `arrange()`                 | `dplyr`         | Sort rows by one or more columns                 | `arrange(desc(total_investment))`                                                                             |
+| `ggplot()`                  | `ggplot2`       | Create a new ggplot object                        | `ggplot(aes(x = reorder(country, total_investment), y = total_investment / 1e9))`                             |
+| `aes()`                     | `ggplot2`       | Specify aesthetic mappings (x, y, color, fill)   | `aes(x = name, y = market_value_usd / 1e9, fill = country)`                                                   |
+| `geom_col()`                | `ggplot2`       | Create a bar chart                               | `geom_col(fill = "skyblue")`                                                                                 |
+| `geom_text()`               | `ggplot2`       | Add text labels to a plot                        | `geom_text(aes(label = paste0("$", round(total_investment / 1e9, 1), "B")), hjust = -0.1, size = 3)`         |
+| `coord_flip()`              | `ggplot2`       | Flip x and y axes                                | `coord_flip()`                                                                                               |
+| `scale_y_continuous()`      | `ggplot2`       | Customize continuous y-axis scale                | `scale_y_continuous(limits = c(0, 800), labels = scales::label_dollar(suffix = "B"))`                        |
+| `labs()`                    | `ggplot2`       | Add titles, labels, and captions                 | `labs(title = "...", x = " ", y = " ")`                                                                      |
+| `theme_bw()`                | `ggplot2`       | Apply black-and-white theme                      | `theme_bw()`                                                                                                 |
+| `reorder()`                 | Base R          | Reorder levels of a variable                     | `reorder(country, total_investment)`                                                                          |
+| `fct_reorder()`             | `forcats`       | Reorder levels of a categorical variable         | `fct_reorder(name, market_value_usd)`                                                                         |
+| `geom_bar()`                | `ggplot2`       | Create a bar chart (with stat = "identity")      | `geom_bar(stat = "identity", width = 1, color = "white")`                                                     |
+| `coord_polar()`             | `ggplot2`       | Use polar coordinates (for pie charts)           | `coord_polar("y", start = 0)`                                                                                 |
+| `scale_fill_manual()`       | `ggplot2`       | Manually specify fill colors                     | `scale_fill_manual(values = blue_palette)`                                                                    |
+| `ifelse()`                  | Base R          | Conditional operation                            | `ifelse(p >= 0.05, paste0(region, "\\n", round(p * 100, 1), "%"), "")`                                        |
+| `position_stack()`          | `ggplot2`       | Stack position adjustment                        | `position_stack(vjust = 0.5)`                                                                                 |
+| `theme_void()`              | `ggplot2`       | Remove background, gridlines, and axes           | `theme_void()`                                                                                               |
+| `ne_countries()`            | `rnaturalearth` | Load world map spatial data                       | `ne_countries(scale = "medium", returnclass = "sf")`                                                          |
+| `left_join()`               | `dplyr`         | Merge datasets keeping all rows from left table   | `left_join(world_map, world_invest, by = c("name_long" = "country"))`                                         |
+| `replace_na()`              | `tidyr`         | Replace NA values with a specified value         | `replace_na(total_investment, 0)`                                                                             |
+| `geom_sf()`                 | `ggplot2`       | Plot spatial features (map geometries)           | `geom_sf(aes(geometry = geometry, fill = total_investment_B))`                                                 |
+| `scale_fill_gradient()`     | `ggplot2`       | Create gradient color scale for fill              | `scale_fill_gradient(low = "#deebf7", high = "#3182bd", trans = "log")`                                       |
+| `theme()`                   | `ggplot2`       | Customize plot appearance                        | `theme(legend.position = "none")`                                                                             |

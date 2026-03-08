@@ -2,6 +2,21 @@
 title: "Data Import"
 format: html
 ---
+
+::: {.callout-note}
+## Part 2: Data Import & Wrangling
+
+In this part, you'll learn how to get data into R and transform it into usable form. Data journalism starts here. While exciting stories hide in data, that data is often messy, scattered across multiple files, or structured in ways that aren't ideal for analysis.
+
+**What you'll learn:**
+- Import data from various sources (CSV, Excel, URLs)
+- Clean and reshape data for analysis
+- Join multiple datasets together
+- Prepare publication-ready datasets
+
+These are not exciting skills to discuss at parties, but they're essential. Studies suggest data professionals spend 70-80% of their time wrangling data before ever touching analysis. Master this foundation, and everything else becomes easier.
+:::
+
 ## Importing Data in R
 
 ### Built-in Datasets from Packages
@@ -62,7 +77,7 @@ In data analysis projects, importing local files is more common than importing d
 -  **RDS Files**: Binary format for storing R objects, preserving their structure and class information.
 -  **RData Files**: Binary format for saving multiple R objects in a single file, often used for workspaces.
 
-::: callout-note
+::: {.callout-note}
 For this course, we will focus on **CSV** files, as they are simple and widely used.
 :::
 
@@ -70,7 +85,7 @@ For this course, we will focus on **CSV** files, as they are simple and widely u
 
 First, we download the CSV file from the web and save it locally as `hksalary.csv`. Then, we import it using the `read_csv()` function from the `readr` package.
 
-::: callout-important
+::: {.callout-important}
 ## `read_csv()` vs. `read.csv()`
 Note that `read_csv()` from `readr` is preferred over `read.csv()` from base R for its speed and consistency. In this course, we recommend using `read_csv()` for CSV files.
 :::
@@ -89,7 +104,7 @@ hksalary
 | **Relative**  | `data/hksalary.csv`         | Default in projects  |
 | **Absolute**  | `C:/Users/.../hksalary.csv` | Temporary analysis   |
 
-::: callout-tip
+::: {.callout-tip}
 ## Relative Path
 Use relative paths for portability and to avoid hardcoding directory paths.
 :::

@@ -3,6 +3,7 @@
 ## Set up
 ```{r}
 library(tidyverse)
+library(sf) # For spatial data operations
 library(rnaturalearth) # For world map data
 
 load("out/expectancy_merged.RData")
@@ -15,6 +16,7 @@ Here let's start by looking at the summary statistics of worldwide life expectan
 ```{r}
 # Summary statistics of worldwide life expectancy in 2022
 df_merge |>
+  st_drop_geometry() |>
   filter(year == 2022) |>
   summarise(mean_life_expectancy = mean(life_expectancy),
             median_life_expectancy = median(life_expectancy),
@@ -27,6 +29,7 @@ df_merge |>
 ```{r}
 # Top 10 countries with the highest life expectancy in 2022
 df_merge |>
+  st_drop_geometry() |>
   filter(year == 2022) |>
   arrange(desc(life_expectancy)) |>
   head(10)
@@ -45,6 +48,7 @@ country_list <- c("United States", "China", "Japan", "Germany", "India",
 
 ```{r}
 df_merge |>
+  st_drop_geometry() |>
   filter(year == 2022) |>
   filter(country %in% country_list) |>
   ggplot(aes(x = reorder(country, life_expectancy), y = life_expectancy)) +
@@ -64,6 +68,7 @@ df_merge |>
 ```{r}
 # Life expectancy trend in China
 df_merge |>
+  st_drop_geometry() |>
   filter(country == "China") |>
   ggplot(aes(x = year, y = life_expectancy)) +
   geom_line(color = "steelblue") +
@@ -79,6 +84,7 @@ df_merge |>
 ```{r}
 # Life expectancy trend in the 10 major countries
 df_merge |>
+  st_drop_geometry() |>
   filter(country %in% country_list) |>
   ggplot(aes(x = year, y = life_expectancy, color = country)) +
   geom_line() +
@@ -87,7 +93,7 @@ df_merge |>
        y = " ",
        caption = "Source: World Bank | Author: Bin Chen") +
   theme_minimal() +
-  facet_wrap(~country, scales = "free_y") + 
+  facet_wrap(~country, scales = "free_y") +
   theme(legend.position = "none")
 ```
 
@@ -97,12 +103,12 @@ df_merge |>
 # Map of life expectancy by country in 2022
 df_merge |>
   filter(year == 2022) |>
-  ggplot(aes()) + # <1> 
+  ggplot(aes()) + # <1>
   geom_sf(aes(geometry = geometry, fill = life_expectancy)) + # <2>
-  scale_fill_gradient(low = "white", 
+  scale_fill_gradient(low = "white",
                       high = "#3182bd",
-                      na.value = "grey90", 
-                      name = "Life Expectancy", 
+                      na.value = "grey90",
+                      name = "Life Expectancy",
                       guide = guide_colorbar(
                         barwidth = 10,
                         barheight = 0.5,
@@ -124,6 +130,32 @@ df_merge |>
 5. Remove the background.
 6. Adjust the legend position and title size.
 7. Adjust the plot title position and size.
+
+## Key Functions Recap
+
+| **Function**                | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
+|-----------------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `st_drop_geometry()`        | `sf`            | Remove spatial geometry from sf object            | `df_merge \| st_drop_geometry()`                                                                              |
+| `geom_sf()`                 | `ggplot2`       | Plot spatial features (map geometries)           | `geom_sf(aes(geometry = geometry, fill = life_expectancy))`                                                   |
+| `scale_fill_gradient()`     | `ggplot2`       | Create gradient color scale for fill              | `scale_fill_gradient(low = "white", high = "#3182bd", na.value = "grey90")`                                   |
+| `guide_colorbar()`          | `ggplot2`       | Customize the colorbar legend                    | `guide_colorbar(barwidth = 10, barheight = 0.5, title.position = "top")`                                      |
+| `theme_void()`              | `ggplot2`       | Remove background, gridlines, and axes           | `theme_void()`                                                                                               |
+| `element_text()`            | `ggplot2`       | Customize text elements in themes                | `element_text(size = 10, hjust = 0.5)`                                                                        |
+| `filter()`                  | `dplyr`         | Filter rows based on conditions                  | `filter(year == 2022)`                                                                                       |
+| `arrange()`                 | `dplyr`         | Sort rows by one or more columns                 | `arrange(desc(life_expectancy))`                                                                              |
+| `summarise()`               | `dplyr`         | Compute summary statistics for groups            | `summarise(mean_life_expectancy = mean(life_expectancy))`                                                     |
+| `head()`                    | Base R          | Get first n rows of data                         | `head(10)`                                                                                                   |
+| `ggplot()`                  | `ggplot2`       | Create a new ggplot object                        | `ggplot(aes(x = country, y = life_expectancy))`                                                               |
+| `aes()`                     | `ggplot2`       | Specify aesthetic mappings (x, y, color, fill)   | `aes(x = year, y = life_expectancy, color = country)`                                                         |
+| `geom_col()`                | `ggplot2`       | Create a bar chart                               | `geom_col(fill = "steelblue")`                                                                                |
+| `geom_line()`               | `ggplot2`       | Create a line plot                               | `geom_line(color = "steelblue")`                                                                              |
+| `geom_text()`               | `ggplot2`       | Add text labels to a plot                        | `geom_text(aes(label = round(life_expectancy, 1)), hjust = -0.1, size = 3)`                                   |
+| `labs()`                    | `ggplot2`       | Add titles, labels, and captions                 | `labs(title = "...", x = "Country", y = "Life Expectancy at Birth")`                                          |
+| `coord_flip()`              | `ggplot2`       | Flip x and y axes                                | `coord_flip()`                                                                                               |
+| `facet_wrap()`              | `ggplot2`       | Create multiple plots based on categorical var   | `facet_wrap(~country, scales = "free_y")`                                                                     |
+| `theme_minimal()`           | `ggplot2`       | Apply minimal theme                              | `theme_minimal()`                                                                                            |
+| `theme()`                   | `ggplot2`       | Customize plot appearance                        | `theme(legend.position = "bottom", plot.title = element_text())`                                              |
+| `reorder()`                 | Base R          | Reorder levels of a variable                     | `reorder(country, life_expectancy)`                                                                           |
 
 
 

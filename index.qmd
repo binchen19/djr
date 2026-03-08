@@ -3,25 +3,82 @@
 ::: {.callout-note}
 This book is built with [Quarto](https://quarto.org/), and its source files are hosted on this [GitHub repository](https://github.com/binchen19/djr).
 :::
-## About this book
+## About This Book
 
-This book is a collection of my notes from the Data Journalism courses I have been teaching at The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.
+This is a practical guide to data journalism using R, built from my teaching experience at The University of Hong Kong.
 
-While originally designed as a companion for my students, I hope this book will also benefit a wider audience—including journalists, aspiring data storytellers, and students interested in learning R for data analysis. Through practical examples and real-world case studies, this book provides a hands-on approach to integrating data into storytelling.
+Data journalism is a skill. Like any skill, you learn it by doing. This book combines foundational R knowledge with real-world examples and case studies, so you start with journalism questions and learn the R tools needed to answer them.
 
-Hope you find it useful! 🤗
+In the age of AI, it is often argued that automated systems can analyze data more efficiently than human journalists. Efficiency, however, is not the same as understanding. Learning the fundamentals of data analysis remains essential. A solid grasp of core concepts allows you to interpret results correctly, evaluate AI-generated outputs critically, and ask better questions when using AI tools. This book aims to equip journalists and students with the analytical foundation needed to use AI not passively, but thoughtfully and responsibly.
+
+## What You'll Learn
+
+By working through this book, you'll gain practical skills in:
+
+- **R Fundamentals**: Variables, data types, functions—the building blocks of data analysis
+- **Data Import & Wrangling**: Load messy real-world data and transform it for analysis using tidyverse
+- **Data Analysis**: Calculate statistics, find trends, and identify newsworthy patterns
+- **Data Visualization**: Create charts and graphics that tell compelling stories
+- **Hands-on Journalism**: Analyze real datasets and produce journalism-ready insights
+
+## Structure of This Book
+
+This book is organized in five progressive parts:
+
+1. **Getting Started** — Set up R/RStudio and learn basic syntax
+2. **Data Import & Wrangling** — Load data and prepare it for analysis (the real work of data journalism)
+3. **Data Analysis** — Calculate statistics and find patterns using tidyverse
+4. **Data Visualization** — Create publication-ready charts and interactive maps
+5. **Case Studies** — Complete real-world examples applying all skills together
+
+Each chapter builds on previous material, but you can also jump to specific case studies if you're learning the skills in your own projects.
+
+## Who Should Read This
+
+This book is for:
+- **Journalists** wanting to add data analysis to your reporting toolkit
+- **Journalism students** learning how to find and tell data-driven stories
+- **Data storytellers** interested in using R for analysis and visualization
+- **Anyone with a journalism question and a dataset** who wants to find the answer
+
+You do **not** need prior programming experience. We start from scratch and assume no background in coding.
+
+This is **not** a computer science textbook. It's focused on what's useful for journalism, not theoretical completeness. We skip topics that don't matter for your work.
+
+## Prerequisites
+
+To use this book, you'll need:
+- A computer (Mac, Windows, or Linux)
+- R and RStudio installed (Chapter 1 covers this)
+- Curiosity about stories hiding in data
+- Persistence when code doesn't work on the first try (totally normal!)
+
+That's it. Everything else is in this book.
+
+## How to Use This Book
+
+**Read sequentially (recommended):** Start with Chapter 1 and work through. Each chapter assumes knowledge from previous ones.
+
+**Focus on what you need:** If you're working on a specific journalism project, you can jump to relevant chapters and reference earlier material as needed.
+
+**Code along:** The best way to learn is by running the code examples. Don't just read—type them into RStudio and experiment.
+
+**Use the case studies:** Chapters "Case Studies" contain complete, realistic examples you can adapt for your own datasets.
+
+**Refer back:** Bookmark the Key Functions tables at the end of each chapter. You'll use them often.
 
 ## About the author
 
 ### Bin Chen
 
-I am an Assistant Professor at the Journalism and Media Studies Centre, the University of Hong Kong. My research interests include computational social science, social media and politics, and comparative media studies. At HKU, I teach Data Journalism courses at both the undergraduate and postgraduate levels.
+I am an Assistant Professor at the School of Future Media, University of Hong Kong. I teach Data Journalism courses at both undergraduate and postgraduate levels. My research interests include computational social science, social media and politics, and comparative media studies. 
 
 ## Acknowledgements
 
 This book is inspired by the [Reporting with Data in R](https://utdata.github.io/rwdir/) book by two professors at the University of Texas at Austin, *Christian McDonald* and *Josephine Lukito*. I would like to thank them for their great work and for sharing their materials with the public. 
 
-::: callout-note
+::: {.callout-note}
 ## License
+
 This book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt the content for non-commercial purposes, as long as you give appropriate credit and distribute your contributions under the same license.
 :::

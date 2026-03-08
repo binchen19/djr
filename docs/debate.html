@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 12&nbsp; Text Analysis</title>
+<title>Data Journalism with R - 15&nbsp; Text Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./hot100.html" rel="next">
-<link href="./norway-invest.html" rel="prev">
+<link href="./links.html" rel="next">
+<link href="./olympics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./debate.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./debate.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./debate.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -269,14 +269,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -287,8 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,46 +344,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#text-analysis-with-r-2024-us-presidential-debate" id="toc-text-analysis-with-r-2024-us-presidential-debate" class="nav-link active" data-scroll-target="#text-analysis-with-r-2024-us-presidential-debate"><span class="header-section-number">12.1</span> Text Analysis with R: 2024 US Presidential Debate</a></li>
-  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">12.2</span> Load Packages</a></li>
-  <li><a href="#cleaning-text-data-to-data-frame" id="toc-cleaning-text-data-to-data-frame" class="nav-link" data-scroll-target="#cleaning-text-data-to-data-frame"><span class="header-section-number">12.3</span> Cleaning Text Data to Data Frame</a>
+  <li><a href="#text-analysis-with-r-2024-us-presidential-debate" id="toc-text-analysis-with-r-2024-us-presidential-debate" class="nav-link active" data-scroll-target="#text-analysis-with-r-2024-us-presidential-debate"><span class="header-section-number">15.1</span> Text Analysis with R: 2024 US Presidential Debate</a></li>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link" data-scroll-target="#load-packages"><span class="header-section-number">15.2</span> Load Packages</a></li>
+  <li><a href="#cleaning-text-data-to-data-frame" id="toc-cleaning-text-data-to-data-frame" class="nav-link" data-scroll-target="#cleaning-text-data-to-data-frame"><span class="header-section-number">15.3</span> Cleaning Text Data to Data Frame</a>
   <ul class="collapse">
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
   <li><a href="#parse-transcripts-to-a-data-frame" id="toc-parse-transcripts-to-a-data-frame" class="nav-link" data-scroll-target="#parse-transcripts-to-a-data-frame">Parse transcripts to a data frame</a></li>
   </ul></li>
-  <li><a href="#import-cleaned-data" id="toc-import-cleaned-data" class="nav-link" data-scroll-target="#import-cleaned-data"><span class="header-section-number">12.4</span> Import Cleaned Data</a></li>
-  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">12.5</span> Data Cleaning</a>
+  <li><a href="#import-cleaned-data" id="toc-import-cleaned-data" class="nav-link" data-scroll-target="#import-cleaned-data"><span class="header-section-number">15.4</span> Import Cleaned Data</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">15.5</span> Data Cleaning</a>
   <ul class="collapse">
   <li><a href="#filter-out-non-candidate-speakers" id="toc-filter-out-non-candidate-speakers" class="nav-link" data-scroll-target="#filter-out-non-candidate-speakers">Filter Out Non-Candidate Speakers</a></li>
   <li><a href="#standardize-speaker-names" id="toc-standardize-speaker-names" class="nav-link" data-scroll-target="#standardize-speaker-names">Standardize Speaker Names</a></li>
   </ul></li>
-  <li><a href="#text-analysis" id="toc-text-analysis" class="nav-link" data-scroll-target="#text-analysis"><span class="header-section-number">12.6</span> Text Analysis</a>
+  <li><a href="#text-analysis" id="toc-text-analysis" class="nav-link" data-scroll-target="#text-analysis"><span class="header-section-number">15.6</span> Text Analysis</a>
   <ul class="collapse">
   <li><a href="#tokenize-and-remove-stop-words" id="toc-tokenize-and-remove-stop-words" class="nav-link" data-scroll-target="#tokenize-and-remove-stop-words">Tokenize and Remove Stop Words</a></li>
   <li><a href="#analyze-top-words" id="toc-analyze-top-words" class="nav-link" data-scroll-target="#analyze-top-words">Analyze Top Words</a></li>
   <li><a href="#analyze-top-word-pairs-bigrams" id="toc-analyze-top-word-pairs-bigrams" class="nav-link" data-scroll-target="#analyze-top-word-pairs-bigrams">Analyze Top Word Pairs (Bigrams)</a></li>
   </ul></li>
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="header-section-number">12.7</span> Plot</a>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot"><span class="header-section-number">15.7</span> Plot</a>
   <ul class="collapse">
   <li><a href="#top-words" id="toc-top-words" class="nav-link" data-scroll-target="#top-words">Top words</a></li>
   <li><a href="#top-bigrams" id="toc-top-bigrams" class="nav-link" data-scroll-target="#top-bigrams">Top Bigrams</a></li>
   </ul></li>
-  <li><a href="#word-cloud" id="toc-word-cloud" class="nav-link" data-scroll-target="#word-cloud"><span class="header-section-number">12.8</span> Word Cloud</a>
+  <li><a href="#word-cloud" id="toc-word-cloud" class="nav-link" data-scroll-target="#word-cloud"><span class="header-section-number">15.8</span> Word Cloud</a>
   <ul class="collapse">
   <li><a href="#single-plot" id="toc-single-plot" class="nav-link" data-scroll-target="#single-plot">Single Plot</a></li>
   <li><a href="#side-by-side" id="toc-side-by-side" class="nav-link" data-scroll-target="#side-by-side">Side-by-Side</a></li>
   </ul></li>
-  <li><a href="#compare-on-fixed-categories" id="toc-compare-on-fixed-categories" class="nav-link" data-scroll-target="#compare-on-fixed-categories"><span class="header-section-number">12.9</span> Compare on fixed categories</a></li>
-  <li><a href="#heatmap" id="toc-heatmap" class="nav-link" data-scroll-target="#heatmap"><span class="header-section-number">12.10</span> Heatmap</a></li>
+  <li><a href="#compare-on-fixed-categories" id="toc-compare-on-fixed-categories" class="nav-link" data-scroll-target="#compare-on-fixed-categories"><span class="header-section-number">15.9</span> Compare on fixed categories</a></li>
+  <li><a href="#heatmap" id="toc-heatmap" class="nav-link" data-scroll-target="#heatmap"><span class="header-section-number">15.10</span> Heatmap</a></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">15.11</span> Key Functions Recap</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./debate.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./debate.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./debate.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></h1>
 <p class="subtitle lead">2024 US Presidential Debate</p>
 </div>
 
@@ -401,20 +402,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="text-analysis-with-r-2024-us-presidential-debate" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="text-analysis-with-r-2024-us-presidential-debate"><span class="header-section-number">12.1</span> Text Analysis with R: 2024 US Presidential Debate</h2>
+<section id="text-analysis-with-r-2024-us-presidential-debate" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="text-analysis-with-r-2024-us-presidential-debate"><span class="header-section-number">15.1</span> Text Analysis with R: 2024 US Presidential Debate</h2>
 </section>
-<section id="load-packages" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">12.2</span> Load Packages</h2>
+<section id="load-packages" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">15.2</span> Load Packages</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
@@ -424,8 +425,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="cleaning-text-data-to-data-frame" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="cleaning-text-data-to-data-frame"><span class="header-section-number">12.3</span> Cleaning Text Data to Data Frame</h2>
+<section id="cleaning-text-data-to-data-frame" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="cleaning-text-data-to-data-frame"><span class="header-section-number">15.3</span> Cleaning Text Data to Data Frame</h2>
 <section id="import" class="level3">
 <h3 class="anchored" data-anchor-id="import">Import</h3>
 <div class="cell">
@@ -493,8 +494,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="import-cleaned-data" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="import-cleaned-data"><span class="header-section-number">12.4</span> Import Cleaned Data</h2>
+<section id="import-cleaned-data" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="import-cleaned-data"><span class="header-section-number">15.4</span> Import Cleaned Data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -594,8 +595,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="data-cleaning" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">12.5</span> Data Cleaning</h2>
+<section id="data-cleaning" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">15.5</span> Data Cleaning</h2>
 <section id="filter-out-non-candidate-speakers" class="level3">
 <h3 class="anchored" data-anchor-id="filter-out-non-candidate-speakers">Filter Out Non-Candidate Speakers</h3>
 <div class="cell">
@@ -616,8 +617,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="text-analysis" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="text-analysis"><span class="header-section-number">12.6</span> Text Analysis</h2>
+<section id="text-analysis" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="text-analysis"><span class="header-section-number">15.6</span> Text Analysis</h2>
 <section id="tokenize-and-remove-stop-words" class="level3">
 <h3 class="anchored" data-anchor-id="tokenize-and-remove-stop-words">Tokenize and Remove Stop Words</h3>
 <div class="cell">
@@ -734,8 +735,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="plot" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="plot"><span class="header-section-number">12.7</span> Plot</h2>
+<section id="plot" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="plot"><span class="header-section-number">15.7</span> Plot</h2>
 <section id="top-words" class="level3">
 <h3 class="anchored" data-anchor-id="top-words">Top words</h3>
 <div class="cell">
@@ -779,8 +780,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="word-cloud" class="level2" data-number="12.8">
-<h2 data-number="12.8" class="anchored" data-anchor-id="word-cloud"><span class="header-section-number">12.8</span> Word Cloud</h2>
+<section id="word-cloud" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="word-cloud"><span class="header-section-number">15.8</span> Word Cloud</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -834,27 +835,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : deserve could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : ensuring could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : focusing could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : increase could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : jobs could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : lies could not be fit on page. It will not be plotted.</code></pre>
+= 2, : people could not be fit on page. It will not be plotted.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
@@ -862,23 +843,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : protecting could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : raised could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : standing could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
 = 2, : taliban could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : understanding could not be fit on page. It will not be plotted.</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
@@ -886,24 +851,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
-= 2, : woman could not be fit on page. It will not be plotted.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in wordcloud(words = harris_words$word, freq = harris_words$n, min.freq
 = 2, : zelenskyy could not be fit on page. It will not be plotted.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Harris"</span>)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Word cloud for Trump</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="at">words =</span> trump_words<span class="sc">$</span>word, </span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">freq =</span> trump_words<span class="sc">$</span>n, </span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">min.freq =</span> <span class="dv">2</span>,</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">max.words =</span> <span class="dv">100</span>,</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">rot.per =</span> <span class="fl">0.35</span>, </span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Reds"</span>),</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="fl">0.5</span>))</span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Trump"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Harris"</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Word cloud for Trump</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(<span class="at">words =</span> trump_words<span class="sc">$</span>word, </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">freq =</span> trump_words<span class="sc">$</span>n, </span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">min.freq =</span> <span class="dv">2</span>,</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">max.words =</span> <span class="dv">100</span>,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">random.order =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">rot.per =</span> <span class="fl">0.35</span>, </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Reds"</span>),</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="fl">0.5</span>))</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Trump"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -914,28 +875,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="compare-on-fixed-categories" class="level2" data-number="12.9">
-<h2 data-number="12.9" class="anchored" data-anchor-id="compare-on-fixed-categories"><span class="header-section-number">12.9</span> Compare on fixed categories</h2>
+<section id="compare-on-fixed-categories" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="compare-on-fixed-categories"><span class="header-section-number">15.9</span> Compare on fixed categories</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the list of agenda keywords</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>agenda_keywords <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"border"</span>, <span class="st">"abortion"</span>, <span class="st">"economy"</span>, <span class="st">"immigration"</span>, <span class="st">"health"</span>, <span class="st">"security"</span>, <span class="st">"israel"</span>, <span class="st">"russia"</span>, <span class="st">"china"</span>, <span class="st">"ukraine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the list of agenda keywords</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>agenda_keywords <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"border"</span>, <span class="st">"abortion"</span>, <span class="st">"economy"</span>, <span class="st">"immigration"</span>, <span class="st">"health"</span>, <span class="st">"security"</span>, <span class="st">"israel"</span>, <span class="st">"russia"</span>, <span class="st">"china"</span>, <span class="st">"ukraine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert words to lowercase</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>tidy_data_clean <span class="ot">&lt;-</span> tidy_data_clean <span class="sc">%&gt;%</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">tolower</span>(word))</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter words that are in the agenda_keywords list</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>agenda_data <span class="ot">&lt;-</span> tidy_data_clean <span class="sc">%&gt;%</span></span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(word <span class="sc">%in%</span> agenda_keywords)</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the frequency of each keyword per candidate</span></span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>agenda_counts <span class="ot">&lt;-</span> agenda_data <span class="sc">%&gt;%</span></span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(speaker, word) <span class="sc">%&gt;%</span></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(speaker, <span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert words to lowercase</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>tidy_data_clean <span class="ot">&lt;-</span> tidy_data_clean <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">tolower</span>(word))</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter words that are in the agenda_keywords list</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>agenda_data <span class="ot">&lt;-</span> tidy_data_clean <span class="sc">%&gt;%</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(word <span class="sc">%in%</span> agenda_keywords)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the frequency of each keyword per candidate</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>agenda_counts <span class="ot">&lt;-</span> agenda_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(speaker, word) <span class="sc">%&gt;%</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(speaker, <span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(agenda_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(agenda_counts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   speaker        word  n
 1   Harris    security  9
@@ -961,21 +922,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="heatmap" class="level2" data-number="12.10">
-<h2 data-number="12.10" class="anchored" data-anchor-id="heatmap"><span class="header-section-number">12.10</span> Heatmap</h2>
+<section id="heatmap" class="level2" data-number="15.10">
+<h2 data-number="15.10" class="anchored" data-anchor-id="heatmap"><span class="header-section-number">15.10</span> Heatmap</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a heatmap</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(agenda_counts, <span class="fu">aes</span>(<span class="at">x =</span> word, <span class="at">y =</span> speaker, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Agenda Keyword Frequencies Heatmap"</span>,</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">" "</span>,</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">" "</span>) <span class="sc">+</span></span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove grid</span></span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a heatmap</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(agenda_counts, <span class="fu">aes</span>(<span class="at">x =</span> word, <span class="at">y =</span> speaker, <span class="at">fill =</span> n)) <span class="sc">+</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Agenda Keyword Frequencies Heatmap"</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">" "</span>,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">" "</span>) <span class="sc">+</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove grid</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -984,6 +945,249 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="key-functions-recap" class="level2" data-number="15.11">
+<h2 data-number="15.11" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">15.11</span> Key Functions Recap</h2>
+<table class="table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 24%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Function</strong></th>
+<th><strong>Package</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Example Use</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>readLines()</code></td>
+<td>Base R</td>
+<td>Read lines from a text file</td>
+<td><code>readLines("data/debate.txt")</code></td>
+</tr>
+<tr class="even">
+<td><code>str_detect()</code></td>
+<td><code>stringr</code></td>
+<td>Detect pattern matching in strings</td>
+<td><code>str_detect(line, speaker_pattern)</code></td>
+</tr>
+<tr class="odd">
+<td><code>str_split_fixed()</code></td>
+<td><code>stringr</code></td>
+<td>Split string into fixed number of pieces</td>
+<td><code>str_split_fixed(line, ":", 2)</code></td>
+</tr>
+<tr class="even">
+<td><code>str_trim()</code></td>
+<td><code>stringr</code></td>
+<td>Remove leading/trailing whitespace</td>
+<td><code>str_trim(split_line[1])</code></td>
+</tr>
+<tr class="odd">
+<td><code>rbind()</code></td>
+<td>Base R</td>
+<td>Bind rows of data frames together</td>
+<td><code>rbind(data, data.frame(speaker = current_speaker, text = current_text))</code></td>
+</tr>
+<tr class="even">
+<td><code>skim()</code></td>
+<td><code>skimr</code></td>
+<td>Quick data summary and exploration</td>
+<td><code>skim(df)</code></td>
+</tr>
+<tr class="odd">
+<td><code>unique()</code></td>
+<td>Base R</td>
+<td>Extract unique values</td>
+<td><code>unique(df$speaker)</code></td>
+</tr>
+<tr class="even">
+<td><code>filter()</code></td>
+<td><code>dplyr</code></td>
+<td>Filter rows based on conditions</td>
+<td><code>filter(speaker == "HARRIS" \| speaker == "TRUMP")</code></td>
+</tr>
+<tr class="odd">
+<td><code>ifelse()</code></td>
+<td>Base R</td>
+<td>Vector conditional function</td>
+<td><code>ifelse(df1$speaker == "HARRIS", "Harris", "Trump")</code></td>
+</tr>
+<tr class="even">
+<td><code>unnest_tokens()</code></td>
+<td><code>tidytext</code></td>
+<td>Tokenize text into individual words</td>
+<td><code>unnest_tokens(word, text)</code></td>
+</tr>
+<tr class="odd">
+<td><code>anti_join()</code></td>
+<td><code>dplyr</code></td>
+<td>Keep rows not matching another table</td>
+<td><code>anti_join(stop_words, by = "word")</code></td>
+</tr>
+<tr class="even">
+<td><code>count()</code></td>
+<td><code>dplyr</code></td>
+<td>Count occurrences of unique values</td>
+<td><code>count(speaker, word, sort = TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td><code>group_by()</code></td>
+<td><code>dplyr</code></td>
+<td>Group data by one or more variables</td>
+<td><code>group_by(speaker)</code></td>
+</tr>
+<tr class="even">
+<td><code>top_n()</code></td>
+<td><code>dplyr</code></td>
+<td>Select top n rows by value</td>
+<td><code>top_n(10, n)</code></td>
+</tr>
+<tr class="odd">
+<td><code>ungroup()</code></td>
+<td><code>dplyr</code></td>
+<td>Remove grouping from data frame</td>
+<td><code>ungroup()</code></td>
+</tr>
+<tr class="even">
+<td><code>arrange()</code></td>
+<td><code>dplyr</code></td>
+<td>Sort rows by one or more columns</td>
+<td><code>arrange(speaker, -n)</code></td>
+</tr>
+<tr class="odd">
+<td><code>separate()</code></td>
+<td><code>tidyr</code></td>
+<td>Separate a column into multiple columns</td>
+<td><code>separate(bigram, into = c("word1", "word2"), sep = " ")</code></td>
+</tr>
+<tr class="even">
+<td><code>unite()</code></td>
+<td><code>tidyr</code></td>
+<td>Unite multiple columns into one</td>
+<td><code>unite(bigram, word1, word2, sep = " ")</code></td>
+</tr>
+<tr class="odd">
+<td><code>mutate()</code></td>
+<td><code>dplyr</code></td>
+<td>Create or modify columns</td>
+<td><code>mutate(word = tolower(word))</code></td>
+</tr>
+<tr class="even">
+<td><code>tolower()</code></td>
+<td>Base R</td>
+<td>Convert strings to lowercase</td>
+<td><code>tolower(word)</code></td>
+</tr>
+<tr class="odd">
+<td><code>reorder_within()</code></td>
+<td><code>tidytext</code></td>
+<td>Reorder factor within groups for visualization</td>
+<td><code>reorder_within(word, n, speaker)</code></td>
+</tr>
+<tr class="even">
+<td><code>ggplot()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a new ggplot object</td>
+<td><code>ggplot(aes(word, n, fill = speaker))</code></td>
+</tr>
+<tr class="odd">
+<td><code>aes()</code></td>
+<td><code>ggplot2</code></td>
+<td>Specify aesthetic mappings (x, y, color, fill)</td>
+<td><code>aes(x = word, y = speaker, fill = n)</code></td>
+</tr>
+<tr class="even">
+<td><code>geom_col()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a bar chart</td>
+<td><code>geom_col(show.legend = FALSE)</code></td>
+</tr>
+<tr class="odd">
+<td><code>geom_tile()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create a heatmap (tile plot)</td>
+<td><code>geom_tile()</code></td>
+</tr>
+<tr class="even">
+<td><code>facet_wrap()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create multiple plots based on categorical var</td>
+<td><code>facet_wrap(~speaker, scales = "free_y")</code></td>
+</tr>
+<tr class="odd">
+<td><code>coord_flip()</code></td>
+<td><code>ggplot2</code></td>
+<td>Flip x and y axes</td>
+<td><code>coord_flip()</code></td>
+</tr>
+<tr class="even">
+<td><code>scale_x_reordered()</code></td>
+<td><code>tidytext</code></td>
+<td>Apply reordered scale to x-axis</td>
+<td><code>scale_x_reordered()</code></td>
+</tr>
+<tr class="odd">
+<td><code>scale_fill_gradient()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create gradient color scale for fill</td>
+<td><code>scale_fill_gradient(low = "white", high = "red")</code></td>
+</tr>
+<tr class="even">
+<td><code>labs()</code></td>
+<td><code>ggplot2</code></td>
+<td>Add titles, labels, and captions</td>
+<td><code>labs(title = "...", x = "Words", y = "Frequency")</code></td>
+</tr>
+<tr class="odd">
+<td><code>theme_minimal()</code></td>
+<td><code>ggplot2</code></td>
+<td>Apply minimal theme</td>
+<td><code>theme_minimal()</code></td>
+</tr>
+<tr class="even">
+<td><code>element_blank()</code></td>
+<td><code>ggplot2</code></td>
+<td>Create blank (invisible) element</td>
+<td><code>element_blank()</code></td>
+</tr>
+<tr class="odd">
+<td><code>theme()</code></td>
+<td><code>ggplot2</code></td>
+<td>Customize plot appearance</td>
+<td><code>theme(panel.grid.major = element_blank())</code></td>
+</tr>
+<tr class="even">
+<td><code>wordcloud()</code></td>
+<td><code>wordcloud</code></td>
+<td>Create a word cloud visualization</td>
+<td><code>wordcloud(words = harris_words$word, freq = harris_words$n, max.words = 100)</code></td>
+</tr>
+<tr class="odd">
+<td><code>brewer.pal()</code></td>
+<td><code>RColorBrewer</code></td>
+<td>Generate color palettes</td>
+<td><code>brewer.pal(8, "Blues")</code></td>
+</tr>
+<tr class="even">
+<td><code>par()</code></td>
+<td>Base R</td>
+<td>Set or query graphical parameters</td>
+<td><code>par(mfrow = c(1, 2))</code></td>
+</tr>
+<tr class="odd">
+<td><code>data()</code></td>
+<td>Base R</td>
+<td>Load built-in datasets</td>
+<td><code>data("stop_words")</code></td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -1378,13 +1582,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./norway-invest.html" class="pagination-link  aria-label=" &lt;span="" investments&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span>
+      <a 2024="" href="./olympics.html" class="pagination-link  aria-label=" &lt;span="" olympics&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./hot100.html" class="pagination-link" aria-label="<span class='chapter-number'>13</span>&nbsp; <span class='chapter-title'>Billboard Hot100</span>">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./links.html" class="pagination-link" aria-label="<span class='chapter-number'>A</span>&nbsp; <span class='chapter-title'>Useful Links</span>">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

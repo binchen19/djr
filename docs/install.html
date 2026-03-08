@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 1&nbsp; Intro to R and RStudio</title>
+<title>Data Journalism with R - 1&nbsp; Installation &amp; Setup</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -269,14 +269,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -287,8 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -360,26 +360,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#your-first-project" id="toc-your-first-project" class="nav-link" data-scroll-target="#your-first-project"><span class="header-section-number">1.6</span> Your First Project</a>
   <ul class="collapse">
   <li><a href="#create-an-r-project" id="toc-create-an-r-project" class="nav-link" data-scroll-target="#create-an-r-project">Create an R Project</a></li>
-  <li><a href="#create-r-markdown-file" id="toc-create-r-markdown-file" class="nav-link" data-scroll-target="#create-r-markdown-file">Create R Markdown File</a></li>
+  <li><a href="#create-your-first-document" id="toc-create-your-first-document" class="nav-link" data-scroll-target="#create-your-first-document">Create Your First Document</a></li>
+  <li><a href="#quick-test" id="toc-quick-test" class="nav-link" data-scroll-target="#quick-test">Quick Test</a></li>
   </ul></li>
-  <li><a href="#writing-your-first-rmd-document" id="toc-writing-your-first-rmd-document" class="nav-link" data-scroll-target="#writing-your-first-rmd-document"><span class="header-section-number">1.7</span> Writing Your First RMD Document</a>
+  <li><a href="#writing-your-first-document" id="toc-writing-your-first-document" class="nav-link" data-scroll-target="#writing-your-first-document"><span class="header-section-number">1.7</span> Writing Your First Document</a>
   <ul class="collapse">
-  <li><a href="#metadata" id="toc-metadata" class="nav-link" data-scroll-target="#metadata">Metadata</a></li>
-  <li><a href="#text-content" id="toc-text-content" class="nav-link" data-scroll-target="#text-content">Text Content</a></li>
-  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks">Code Chunks</a></li>
-  <li><a href="#render-the-r-markdown-file" id="toc-render-the-r-markdown-file" class="nav-link" data-scroll-target="#render-the-r-markdown-file">Render the R Markdown file</a></li>
+  <li><a href="#yaml-metadata-document-header" id="toc-yaml-metadata-document-header" class="nav-link" data-scroll-target="#yaml-metadata-document-header">YAML Metadata (Document Header)</a></li>
+  <li><a href="#text-code" id="toc-text-code" class="nav-link" data-scroll-target="#text-code">Text &amp; Code</a></li>
+  <li><a href="#render-the-document" id="toc-render-the-document" class="nav-link" data-scroll-target="#render-the-document">Render the Document</a></li>
   </ul></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">2</span> Practice</a></li>
-  <li><a href="#key-functions-and-shortcuts" id="toc-key-functions-and-shortcuts" class="nav-link" data-scroll-target="#key-functions-and-shortcuts"><span class="header-section-number">3</span> Key Functions and Shortcuts</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">1.8</span> Next Steps</a></li>
+  <li><a href="#key-functions-and-shortcuts" id="toc-key-functions-and-shortcuts" class="nav-link" data-scroll-target="#key-functions-and-shortcuts"><span class="header-section-number">2</span> Key Functions and Shortcuts</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></h1>
 </div>
 
 
@@ -396,6 +396,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Part 1: Getting Started
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before you can analyze data, you need to set up your tools. This part walks you through installation and introduces R basics—the foundation for everything that follows.</p>
+<p><strong>What you’ll learn:</strong> - Install R and RStudio on your computer - Understand basic R syntax and how code works - Work with variables, functions, and data types - Run your first data analysis</p>
+<p>Don’t rush these chapters. A solid foundation makes the rest of the book much easier.</p>
+</div>
+</div>
 <section id="why-learn-r-for-data-journalism" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="why-learn-r-for-data-journalism"><span class="header-section-number">1.1</span> Why Learn R for Data Journalism?</h2>
 <p>Data journalism requires tools that combine statistical rigor with storytelling capabilities. R provides:</p>
@@ -423,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/install-r-rstudio.png" class="img-fluid figure-img" width="1116"></p>
+<p><img src="images/install-r-rstudio.png" class="img-fluid figure-img"></p>
 <figcaption>RStudio Interface</figcaption>
 </figure>
 </div>
@@ -531,7 +546,7 @@ Important
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/rstudio-ide.png" class="img-fluid figure-img" width="2292"></p>
+<p><img src="images/rstudio-ide.png" class="img-fluid figure-img"></p>
 <figcaption>RStudio IDE Cheatsheet Preview</figcaption>
 </figure>
 </div>
@@ -558,91 +573,45 @@ Important
 <h3 class="anchored" data-anchor-id="create-an-r-project">Create an R Project</h3>
 <ol type="1">
 <li><strong>File &gt; New Project &gt; New Directory</strong></li>
-<li>Name: <code>firstname-week1</code> (e.g., <code>bin-week1</code>)</li>
+<li>Name: <code>yourname-week1</code> (e.g., <code>bin-week1</code>)</li>
 <li>Browse to your <code>djr</code> folder</li>
 <li>Click <strong>Create Project</strong></li>
 </ol>
+<p>Once created, your project folder will be the “main workspace” for all your work. Keep all your scripts, data, and outputs organized here. This is essential for reproducibility and managing your workflow.</p>
 </section>
-<section id="create-r-markdown-file" class="level3">
-<h3 class="anchored" data-anchor-id="create-r-markdown-file">Create R Markdown File</h3>
+<section id="create-your-first-document" class="level3">
+<h3 class="anchored" data-anchor-id="create-your-first-document">Create Your First Document</h3>
 <ol type="1">
-<li><strong>File &gt; New File &gt; R Markdown</strong></li>
-<li>Title: “My First R Markdown”</li>
-<li>Author: Your name</li>
+<li><strong>File &gt; New File &gt; R Markdown</strong> (or Quarto document)</li>
+<li>Title: “My First Analysis”</li>
+<li>Author: Your Name</li>
 <li>Default HTML output</li>
+<li>Save the file as <code>analysis.Rmd</code></li>
 </ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Why R Markdown?</strong> - Combine narrative and code - Export to multiple formats: HTML, PDF, Word - Track changes with version control</p>
-</div>
-</div>
 </section>
-</section>
-<section id="writing-your-first-rmd-document" class="level2" data-number="1.7">
-<h2 data-number="1.7" class="anchored" data-anchor-id="writing-your-first-rmd-document"><span class="header-section-number">1.7</span> Writing Your First RMD Document</h2>
-<p>Once you have created a new R Markdown file, you can start writing in it. R Markdown files use a combination of Markdown and R code to create dynamic documents. You can include text, code chunks, and output in your R Markdown file.</p>
-<section id="metadata" class="level3">
-<h3 class="anchored" data-anchor-id="metadata">Metadata</h3>
-<p>On top right of the R Markdown file, you will see a YAML front matter section, which is used to define metadata for the document. This metadata is enclosed within triple-dashed lines.</p>
-<p>You can specify metadata such as the title, author, date, and output format in the YAML front matter section. Here is an example of metadata in a R Markdown file:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Data Journalism"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Week 1"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Bin Chen"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"Jan 20, 2025"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="text-content" class="level3">
-<h3 class="anchored" data-anchor-id="text-content">Text Content</h3>
-<p>You can write narrative text in your R Markdown file using Markdown syntax. Markdown is a lightweight markup language that allows you to format text using simple and intuitive syntax. You can use Markdown to create headings, lists, links, images, and more.</p>
-<p>Here is an example of Markdown text in a R Markdown file: - <strong>Heading</strong>: <code># Heading 1</code> - <strong>Bold</strong>: <code>**bold text**</code> - <strong>List</strong>: <code>- item 1</code> - <strong>Link</strong>: <code>[link text](https://www.example.com)</code> - <strong>Image</strong>: <code>![](path/to/image.png)</code> - <strong>Code</strong>: <code>`code`</code></p>
-</section>
-<section id="code-chunks" class="level3">
-<h3 class="anchored" data-anchor-id="code-chunks">Code Chunks</h3>
-<p>You can include R code in your R Markdown file using code chunks. Code chunks are enclosed within three backticks and curly braces, indicating the language of the code (in this case, R).</p>
-<p>You can insert a code chunk by clicking the green “+” icon in the top right corner of the R Markdown file and selecting “R”, or you can user the keyboard shortcut “Ctrl + Alt + I” on Windows or “Cmd + Option + I” on Mac.</p>
-<p>Here is an example of a code chunk in a R Markdown file:</p>
+<section id="quick-test" class="level3">
+<h3 class="anchored" data-anchor-id="quick-test">Quick Test</h3>
+<p>Now that you have a fresh R Markdown document, test that everything works:</p>
+<ol type="1">
+<li>Replace the template content with:</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the tidyverse package</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a simple dataset</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">publication =</span> <span class="fu">c</span>(<span class="st">"NYT"</span>, <span class="st">"BBC"</span>, <span class="st">"Reuters"</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">readers =</span> <span class="fu">c</span>(<span class="dv">150000</span>, <span class="dv">200000</span>, <span class="dv">120000</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># View the data</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/rmarkdown.png" class="img-fluid figure-img" width="2292"></p>
-<figcaption>RMarkdown Cheatsheet Preview</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>Download full <a href="cheatsheets/rmarkdown.pdf">RMarkdown cheatsheets</a></p>
-</section>
-<section id="render-the-r-markdown-file" class="level3">
-<h3 class="anchored" data-anchor-id="render-the-r-markdown-file">Render the R Markdown file</h3>
-<p>Once you have written your R Markdown file, you can render it to create a dynamic document. To render the R Markdown file, click the “knit” button in the top right corner of the R Markdown file. This will run the R code chunks and generate the output in the specified format.</p>
-</section>
-</section>
-<section id="practice" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Practice</h1>
-<p>Now, lets practice creating a new R project and a new R Markdown file in RStudio.</p>
-<ul>
-<li>Create a R project named “yourfirstname-week1” in your “djr” folder.</li>
-<li>Create a new R Markdown file named “yourfirstname-week1” in the R project you just created.</li>
-<li>Write a short bio about you (about 50 words) in the R Markdown file.</li>
-<li>Install the packages “praise” by running <code>install.packages("praise")</code> in <em>console</em>. (NOT IN R Markdown)</li>
-<li>Insert a code chunk in the R Markdown file and run <code>library(praise)</code> to load the package.</li>
-<li>Insert another code chunk and run <code>praise()</code> to generate a random compliment.</li>
-<li>Render the R Markdown file to html format.</li>
-</ul>
+<ol start="2" type="1">
+<li>Click <strong>Render</strong> to generate the output.</li>
+</ol>
+<p>If everything works, congratulations! You’re ready for data analysis.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -653,70 +622,108 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Don’t run <code>install.packages("praise")</code> in the R Markdown file, as this would prevent your R Markdown file from rendering properly. Always run package installation in the console.</p>
+<p>If you get an error, make sure you: - Installed R and RStudio (in that order) - Installed the tidyverse package via <code>install.packages("tidyverse")</code> in the <strong>Console</strong> - Used <code>library()</code> (not <code>install.packages()</code>) inside your document</p>
 </div>
 </div>
 </section>
-<section id="key-functions-and-shortcuts" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Key Functions and Shortcuts</h1>
+</section>
+<section id="writing-your-first-document" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="writing-your-first-document"><span class="header-section-number">1.7</span> Writing Your First Document</h2>
+<p>R Markdown (or Quarto) files combine text, code, and output in a single document. Here’s the basic structure:</p>
+<section id="yaml-metadata-document-header" class="level3">
+<h3 class="anchored" data-anchor-id="yaml-metadata-document-header">YAML Metadata (Document Header)</h3>
+<p>The top of your file defines settings:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Data Journalism"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Week 1"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Bin Chen"</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"Jan 20, 2025"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="text-code" class="level3">
+<h3 class="anchored" data-anchor-id="text-code">Text &amp; Code</h3>
+<p>Write narrative using regular text and Markdown formatting: - <code>**bold**</code> for bold text - <code># Heading</code> for section headers - <code>- item</code> for lists - <code>[link text](url)</code> for links</p>
+<p>Insert R code using code chunks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your R code goes here</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Insert a code chunk with <code>Ctrl + Alt + I</code> (Windows) or <code>Cmd + Option + I</code> (Mac).</p>
+</section>
+<section id="render-the-document" class="level3">
+<h3 class="anchored" data-anchor-id="render-the-document">Render the Document</h3>
+<p>Click <strong>Render</strong> (or <strong>Knit</strong> in older R Markdown) to generate the output. R will run all code chunks and create an HTML file.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Never run <code>install.packages()</code> inside your document. Always run package installation in the <strong>Console</strong> first, then use <code>library()</code> in your document to load it.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="next-steps" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">1.8</span> Next Steps</h2>
+<p>You now have R, RStudio, and the essential packages installed. You’re ready to start learning R basics and analyzing data for journalism.</p>
+<p>Move on to the next chapter: <strong>R Coding Basics</strong>.</p>
+</section>
+<section id="key-functions-and-shortcuts" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Key Functions and Shortcuts</h1>
 <table class="table">
 <colgroup>
-<col style="width: 34%">
-<col style="width: 40%">
-<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Functionality</th>
-<th>Command / Shortcut</th>
-<th>Example Use</th>
+<th>Shortcut/Command</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Insert code chunk (Windows)</td>
 <td><code>Ctrl + Alt + I</code></td>
-<td>-</td>
+<td>Add R code to document</td>
 </tr>
 <tr class="even">
 <td>Insert code chunk (Mac)</td>
 <td><code>Cmd + Option + I</code></td>
-<td>-</td>
+<td>Add R code to document</td>
 </tr>
 <tr class="odd">
-<td>Install R packages</td>
+<td>Install packages</td>
 <td><code>install.packages("package_name")</code></td>
-<td><code>install.packages("ggplot2")</code></td>
+<td><code>install.packages("tidyverse")</code></td>
 </tr>
 <tr class="even">
-<td>Load R packages</td>
+<td>Load packages</td>
 <td><code>library(package_name)</code></td>
-<td><code>library(ggplot2)</code></td>
-</tr>
-<tr class="odd">
-<td>Create dynamic documents</td>
-<td><code>rmarkdown</code></td>
-<td><code>rmarkdown::render("report.Rmd")</code></td>
-</tr>
-<tr class="even">
-<td>Tidyverse for data science</td>
-<td><code>tidyverse</code></td>
 <td><code>library(tidyverse)</code></td>
 </tr>
 <tr class="odd">
-<td>Dynamic report generation</td>
-<td><code>knitr</code></td>
-<td><code>knitr::kable(head(mtcars))</code></td>
+<td>Render document</td>
+<td>Click <strong>Render</strong> button</td>
+<td>Generate HTML/PDF output</td>
 </tr>
 <tr class="even">
-<td>Convert R Markdown to various formats</td>
-<td><code>quarto</code></td>
-<td><code>quarto render document.qmd</code></td>
+<td>Get help on function</td>
+<td><code>?function_name</code></td>
+<td><code>?mean</code></td>
 </tr>
 <tr class="odd">
-<td>Generate random compliments</td>
-<td><code>praise</code></td>
-<td><code>praise::praise()</code></td>
+<td>View workspace</td>
+<td><code>ls()</code></td>
+<td>List all objects in memory</td>
 </tr>
 </tbody>
 </table>

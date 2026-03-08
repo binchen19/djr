@@ -1,8 +1,16 @@
 # Data Analysis II
 
-## Overview 
+## Overview
 
 In this chapter, we will use a different dataset to demonstrate the three types of questions that are often asked in journalistic reporting.
+
+::: {.callout-note}
+## Building on Previous Chapters
+
+The life expectancy data you learned to transform in the previous chapter (transform-merge.qmd) is now ready for analysis. In this chapter, we'll take that transformed data and apply analytical techniques to answer journalism questions about global health trends.
+
+**Data connection:** The life expectancy dataset used here (`life_expectancy.csv`) can be transformed using the `pivot_longer()` technique covered in the previous chapter to create the merged dataset (`expectancy_merged.RData`) that will be used for visualization later.
+:::
 
 ### About the data
 
@@ -91,3 +99,16 @@ lifex_clean |>
   theme(axis.text.y = element_text(size = 8))
 ```
 
+## Key Functions Recap
+
+| **Function**         | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
+|----------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `read_csv()`         | `readr`         | Import data from CSV files                        | `lifex <- read_csv("data/life_expectancy.csv")`                                                              |
+| `pivot_longer()`     | `tidyr`         | Transform wide data to long format                | `lifex |> pivot_longer(cols = -Country Name, names_to = "year", values_to = "life_expectancy")`              |
+| `mutate()`           | `dplyr`         | Create or modify columns                         | `mutate(year = as.numeric(year))`                                                                             |
+| `select()`           | `dplyr`         | Select specific columns                          | `select(country = Country Name, year, life_expectancy)`                                                       |
+| `drop_na()`          | `tidyr`         | Remove rows with missing values                  | `drop_na()`                                                                                                    |
+| `summarise()`        | `dplyr`         | Compute summary statistics                       | `summarise(avg = mean(life_expectancy, na.rm = TRUE), median = median(life_expectancy, na.rm = TRUE))`      |
+| `filter()`           | `dplyr`         | Filter rows based on conditions                  | `filter(country == "China")`                                                                                   |
+| `top_n()`            | `dplyr`         | Select top n rows by value                       | `top_n(10, life_expectancy)`                                                                                   |
+| `reorder()`          | Base R          | Reorder factor levels for plotting                | `reorder(country, life_expectancy)`                                                                            |

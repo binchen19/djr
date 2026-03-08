@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Bin Chen">
-<meta name="dcterms.date" content="2025-11-14">
+<meta name="dcterms.date" content="2026-03-08">
 
 <title>Data Journalism with R</title>
 <style>
@@ -125,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -234,14 +234,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -252,8 +252,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -311,7 +311,12 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
   <ul class="collapse">
-  <li><a href="#about-this-book" id="toc-about-this-book" class="nav-link" data-scroll-target="#about-this-book">About this book</a></li>
+  <li><a href="#about-this-book" id="toc-about-this-book" class="nav-link" data-scroll-target="#about-this-book">About This Book</a></li>
+  <li><a href="#what-youll-learn" id="toc-what-youll-learn" class="nav-link" data-scroll-target="#what-youll-learn">What You’ll Learn</a></li>
+  <li><a href="#structure-of-this-book" id="toc-structure-of-this-book" class="nav-link" data-scroll-target="#structure-of-this-book">Structure of This Book</a></li>
+  <li><a href="#who-should-read-this" id="toc-who-should-read-this" class="nav-link" data-scroll-target="#who-should-read-this">Who Should Read This</a></li>
+  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#how-to-use-this-book" id="toc-how-to-use-this-book" class="nav-link" data-scroll-target="#how-to-use-this-book">How to Use This Book</a></li>
   <li><a href="#about-the-author" id="toc-about-the-author" class="nav-link" data-scroll-target="#about-the-author">About the author</a>
   <ul class="collapse">
   <li><a href="#bin-chen" id="toc-bin-chen" class="nav-link" data-scroll-target="#bin-chen">Bin Chen</a></li>
@@ -343,7 +348,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2025</p>
+      <p class="date">March 8, 2026</p>
     </div>
   </div>
   
@@ -371,16 +376,58 @@ Note
 </div>
 </div>
 <section id="about-this-book" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-book">About this book</h2>
-<p>This book is a collection of my notes from the Data Journalism courses I have been teaching at The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.</p>
-<p>While originally designed as a companion for my students, I hope this book will also benefit a wider audience—including journalists, aspiring data storytellers, and students interested in learning R for data analysis. Through practical examples and real-world case studies, this book provides a hands-on approach to integrating data into storytelling.</p>
-<p>Hope you find it useful! 🤗</p>
+<h2 class="anchored" data-anchor-id="about-this-book">About This Book</h2>
+<p>This is a practical guide to data journalism using R, built from my teaching experience at The University of Hong Kong.</p>
+<p>Data journalism is a skill. Like any skill, you learn it by doing. This book combines foundational R knowledge with real-world examples and case studies, so you start with journalism questions and learn the R tools needed to answer them.</p>
+<p>In the age of AI, it is often argued that automated systems can analyze data more efficiently than human journalists. Efficiency, however, is not the same as understanding. Learning the fundamentals of data analysis remains essential. A solid grasp of core concepts allows you to interpret results correctly, evaluate AI-generated outputs critically, and ask better questions when using AI tools. This book aims to equip journalists and students with the analytical foundation needed to use AI not passively, but thoughtfully and responsibly.</p>
+</section>
+<section id="what-youll-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-youll-learn">What You’ll Learn</h2>
+<p>By working through this book, you’ll gain practical skills in:</p>
+<ul>
+<li><strong>R Fundamentals</strong>: Variables, data types, functions—the building blocks of data analysis</li>
+<li><strong>Data Import &amp; Wrangling</strong>: Load messy real-world data and transform it for analysis using tidyverse</li>
+<li><strong>Data Analysis</strong>: Calculate statistics, find trends, and identify newsworthy patterns</li>
+<li><strong>Data Visualization</strong>: Create charts and graphics that tell compelling stories</li>
+<li><strong>Hands-on Journalism</strong>: Analyze real datasets and produce journalism-ready insights</li>
+</ul>
+</section>
+<section id="structure-of-this-book" class="level2">
+<h2 class="anchored" data-anchor-id="structure-of-this-book">Structure of This Book</h2>
+<p>This book is organized in five progressive parts:</p>
+<ol type="1">
+<li><strong>Getting Started</strong> — Set up R/RStudio and learn basic syntax</li>
+<li><strong>Data Import &amp; Wrangling</strong> — Load data and prepare it for analysis (the real work of data journalism)</li>
+<li><strong>Data Analysis</strong> — Calculate statistics and find patterns using tidyverse</li>
+<li><strong>Data Visualization</strong> — Create publication-ready charts and interactive maps</li>
+<li><strong>Case Studies</strong> — Complete real-world examples applying all skills together</li>
+</ol>
+<p>Each chapter builds on previous material, but you can also jump to specific case studies if you’re learning the skills in your own projects.</p>
+</section>
+<section id="who-should-read-this" class="level2">
+<h2 class="anchored" data-anchor-id="who-should-read-this">Who Should Read This</h2>
+<p>This book is for: - <strong>Journalists</strong> wanting to add data analysis to your reporting toolkit - <strong>Journalism students</strong> learning how to find and tell data-driven stories - <strong>Data storytellers</strong> interested in using R for analysis and visualization - <strong>Anyone with a journalism question and a dataset</strong> who wants to find the answer</p>
+<p>You do <strong>not</strong> need prior programming experience. We start from scratch and assume no background in coding.</p>
+<p>This is <strong>not</strong> a computer science textbook. It’s focused on what’s useful for journalism, not theoretical completeness. We skip topics that don’t matter for your work.</p>
+</section>
+<section id="prerequisites" class="level2">
+<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
+<p>To use this book, you’ll need: - A computer (Mac, Windows, or Linux) - R and RStudio installed (Chapter 1 covers this) - Curiosity about stories hiding in data - Persistence when code doesn’t work on the first try (totally normal!)</p>
+<p>That’s it. Everything else is in this book.</p>
+</section>
+<section id="how-to-use-this-book" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-use-this-book">How to Use This Book</h2>
+<p><strong>Read sequentially (recommended):</strong> Start with Chapter 1 and work through. Each chapter assumes knowledge from previous ones.</p>
+<p><strong>Focus on what you need:</strong> If you’re working on a specific journalism project, you can jump to relevant chapters and reference earlier material as needed.</p>
+<p><strong>Code along:</strong> The best way to learn is by running the code examples. Don’t just read—type them into RStudio and experiment.</p>
+<p><strong>Use the case studies:</strong> Chapters “Case Studies” contain complete, realistic examples you can adapt for your own datasets.</p>
+<p><strong>Refer back:</strong> Bookmark the Key Functions tables at the end of each chapter. You’ll use them often.</p>
 </section>
 <section id="about-the-author" class="level2">
 <h2 class="anchored" data-anchor-id="about-the-author">About the author</h2>
 <section id="bin-chen" class="level3">
 <h3 class="anchored" data-anchor-id="bin-chen">Bin Chen</h3>
-<p>I am an Assistant Professor at the Journalism and Media Studies Centre, the University of Hong Kong. My research interests include computational social science, social media and politics, and comparative media studies. At HKU, I teach Data Journalism courses at both the undergraduate and postgraduate levels.</p>
+<p>I am an Assistant Professor at the School of Future Media, University of Hong Kong. I teach Data Journalism courses at both undergraduate and postgraduate levels. My research interests include computational social science, social media and politics, and comparative media studies.</p>
 </section>
 </section>
 <section id="acknowledgements" class="level2">
@@ -796,8 +843,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./install.html" class="pagination-link" aria-label="<span class='chapter-number'>1</span>&nbsp; <span class='chapter-title'>Intro to R and RStudio</span>">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./install.html" class="pagination-link" aria-label="<span class='chapter-number'>1</span>&nbsp; <span class='chapter-title'>Installation &amp; Setup</span>">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -269,14 +269,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -287,8 +287,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -354,6 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#single-variable-analysis-understanding-global-life-expectancy-distribution" id="toc-single-variable-analysis-understanding-global-life-expectancy-distribution" class="nav-link" data-scroll-target="#single-variable-analysis-understanding-global-life-expectancy-distribution"><span class="header-section-number">7.4</span> Single Variable Analysis: Understanding Global Life Expectancy Distribution</a></li>
   <li><a href="#time-based-analysis-tracking-changes-in-chinas-life-expectancy" id="toc-time-based-analysis-tracking-changes-in-chinas-life-expectancy" class="nav-link" data-scroll-target="#time-based-analysis-tracking-changes-in-chinas-life-expectancy"><span class="header-section-number">7.5</span> Time-Based Analysis: Tracking Changes in China’s Life Expectancy</a></li>
   <li><a href="#group-comparisons-comparing-life-expectancy-across-countries" id="toc-group-comparisons-comparing-life-expectancy-across-countries" class="nav-link" data-scroll-target="#group-comparisons-comparing-life-expectancy-across-countries"><span class="header-section-number">7.6</span> Group Comparisons: Comparing Life Expectancy Across Countries</a></li>
+  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">7.7</span> Key Functions Recap</a></li>
   </ul>
 </nav>
     </div>
@@ -382,6 +383,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="overview" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">7.1</span> Overview</h2>
 <p>In this chapter, we will use a different dataset to demonstrate the three types of questions that are often asked in journalistic reporting.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Building on Previous Chapters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The life expectancy data you learned to transform in the previous chapter (transform-merge.qmd) is now ready for analysis. In this chapter, we’ll take that transformed data and apply analytical techniques to answer journalism questions about global health trends.</p>
+<p><strong>Data connection:</strong> The life expectancy dataset used here (<code>life_expectancy.csv</code>) can be transformed using the <code>pivot_longer()</code> technique covered in the previous chapter to create the merged dataset (<code>expectancy_merged.RData</code>) that will be used for visualization later.</p>
+</div>
+</div>
 <section id="about-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="about-the-data">About the data</h3>
 <p>This dataset was downloaded from the World Bank website and saved as a CSV file named <code>life_expectancy.csv</code>, stored in the <code>data</code> folder. The dataset was last updated on March 24, 2025, contains the life expectancy at birth for various countries over the years.</p>
@@ -534,6 +549,81 @@ $ life_expectancy &lt;dbl&gt; 64.152, 64.537, 64.752, 65.132, 65.294, 65.502, 66
 </div>
 </div>
 </div>
+</section>
+<section id="key-functions-recap" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">7.7</span> Key Functions Recap</h2>
+<table class="table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 8%">
+<col style="width: 25%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Function</strong></th>
+<th><strong>Package</strong></th>
+<th><strong>Purpose</strong></th>
+<th><strong>Example Use</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_csv()</code></td>
+<td><code>readr</code></td>
+<td>Import data from CSV files</td>
+<td><code>lifex &lt;- read_csv("data/life_expectancy.csv")</code></td>
+</tr>
+<tr class="even">
+<td><code>pivot_longer()</code></td>
+<td><code>tidyr</code></td>
+<td>Transform wide data to long format</td>
+<td><code>lifex |&gt; pivot_longer(cols = -Country Name, names_to = "year", values_to = "life_expectancy")</code></td>
+</tr>
+<tr class="odd">
+<td><code>mutate()</code></td>
+<td><code>dplyr</code></td>
+<td>Create or modify columns</td>
+<td><code>mutate(year = as.numeric(year))</code></td>
+</tr>
+<tr class="even">
+<td><code>select()</code></td>
+<td><code>dplyr</code></td>
+<td>Select specific columns</td>
+<td><code>select(country = Country Name, year, life_expectancy)</code></td>
+</tr>
+<tr class="odd">
+<td><code>drop_na()</code></td>
+<td><code>tidyr</code></td>
+<td>Remove rows with missing values</td>
+<td><code>drop_na()</code></td>
+</tr>
+<tr class="even">
+<td><code>summarise()</code></td>
+<td><code>dplyr</code></td>
+<td>Compute summary statistics</td>
+<td><code>summarise(avg = mean(life_expectancy, na.rm = TRUE), median = median(life_expectancy, na.rm = TRUE))</code></td>
+</tr>
+<tr class="odd">
+<td><code>filter()</code></td>
+<td><code>dplyr</code></td>
+<td>Filter rows based on conditions</td>
+<td><code>filter(country == "China")</code></td>
+</tr>
+<tr class="even">
+<td><code>top_n()</code></td>
+<td><code>dplyr</code></td>
+<td>Select top n rows by value</td>
+<td><code>top_n(10, life_expectancy)</code></td>
+</tr>
+<tr class="odd">
+<td><code>reorder()</code></td>
+<td>Base R</td>
+<td>Reorder factor levels for plotting</td>
+<td><code>reorder(country, life_expectancy)</code></td>
+</tr>
+</tbody>
+</table>
 
 
 </section>

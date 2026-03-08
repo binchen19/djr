@@ -1,6 +1,20 @@
 ---
-title: "Intro to R and RStudio"
+title: "Installation & Setup"
 ---
+
+::: {.callout-note}
+## Part 1: Getting Started
+
+Before you can analyze data, you need to set up your tools. This part walks you through installation and introduces R basics—the foundation for everything that follows.
+
+**What you'll learn:**
+- Install R and RStudio on your computer
+- Understand basic R syntax and how code works
+- Work with variables, functions, and data types
+- Run your first data analysis
+
+Don't rush these chapters. A solid foundation makes the rest of the book much easier.
+:::
 
 ## Why Learn R for Data Journalism?
 
@@ -32,7 +46,7 @@ knitr::include_graphics("images/install-r-rstudio.png")
 2.  Choose **Download RStudio Desktop**
 3.  Install using default options
 
-::: callout-important
+::: {.callout-important}
 **Installation Order Matters!** Always install R **before** RStudio - the IDE needs the base R engine to function.
 :::
 
@@ -103,31 +117,61 @@ install.packages(c(
 
 ### Create an R Project
 
-1.  **File \> New Project \> New Directory**
-2.  Name: `firstname-week1` (e.g., `bin-week1`)
+1.  **File > New Project > New Directory**
+2.  Name: `yourname-week1` (e.g., `bin-week1`)
 3.  Browse to your `djr` folder
 4.  Click **Create Project**
 
-### Create R Markdown File
+Once created, your project folder will be the "main workspace" for all your work. Keep all your scripts, data, and outputs organized here. This is essential for reproducibility and managing your workflow.
 
-1.  **File \> New File \> R Markdown**
-2.  Title: "My First R Markdown"
-3.  Author: Your name
+### Create Your First Document
+
+1.  **File > New File > R Markdown** (or Quarto document)
+2.  Title: "My First Analysis"
+3.  Author: Your Name
 4.  Default HTML output
+5.  Save the file as `analysis.Rmd`
 
-::: callout-note
-**Why R Markdown?** - Combine narrative and code - Export to multiple formats: HTML, PDF, Word - Track changes with version control
+### Quick Test
+
+Now that you have a fresh R Markdown document, test that everything works:
+
+1. Replace the template content with:
+
+```{r}
+#| eval: false
+
+# Load the tidyverse package
+library(tidyverse)
+
+# Create a simple dataset
+data <- data.frame(
+  publication = c("NYT", "BBC", "Reuters"),
+  readers = c(150000, 200000, 120000)
+)
+
+# View the data
+data
+```
+
+2. Click **Render** to generate the output.
+
+If everything works, congratulations! You're ready for data analysis.
+
+::: {.callout-warning}
+If you get an error, make sure you:
+- Installed R and RStudio (in that order)
+- Installed the tidyverse package via `install.packages("tidyverse")` in the **Console**
+- Used `library()` (not `install.packages()`) inside your document
 :::
 
-## Writing Your First RMD Document
+## Writing Your First Document
 
-Once you have created a new R Markdown file, you can start writing in it. R Markdown files use a combination of Markdown and R code to create dynamic documents. You can include text, code chunks, and output in your R Markdown file.
+R Markdown (or Quarto) files combine text, code, and output in a single document. Here's the basic structure:
 
-### Metadata
+### YAML Metadata (Document Header)
 
-On top right of the R Markdown file, you will see a YAML front matter section, which is used to define metadata for the document. This metadata is enclosed within triple-dashed lines.
-
-You can specify metadata such as the title, author, date, and output format in the YAML front matter section. Here is an example of metadata in a R Markdown file:
+The top of your file defines settings:
 
 ``` yaml
 ---
@@ -139,64 +183,47 @@ format: html
 ---
 ```
 
-### Text Content
+### Text & Code
 
-You can write narrative text in your R Markdown file using Markdown syntax. Markdown is a lightweight markup language that allows you to format text using simple and intuitive syntax. You can use Markdown to create headings, lists, links, images, and more.
+Write narrative using regular text and Markdown formatting:
+- `**bold**` for bold text
+- `# Heading` for section headers
+- `- item` for lists
+- `[link text](url)` for links
 
-Here is an example of Markdown text in a R Markdown file: - **Heading**: `# Heading 1` - **Bold**: `**bold text**` - **List**: `- item 1` - **Link**: `[link text](https://www.example.com)` - **Image**: `![](path/to/image.png)` - **Code**: `` `code` ``
-
-### Code Chunks
-
-You can include R code in your R Markdown file using code chunks. Code chunks are enclosed within three backticks and curly braces, indicating the language of the code (in this case, R).
-
-You can insert a code chunk by clicking the green "+" icon in the top right corner of the R Markdown file and selecting "R", or you can user the keyboard shortcut "Ctrl + Alt + I" on Windows or "Cmd + Option + I" on Mac.
-
-Here is an example of a code chunk in a R Markdown file:
+Insert R code using code chunks:
 
 ```{r}
-#| echo: true
 #| eval: false
+
+# Your R code goes here
 1 + 1
 ```
 
-```{r}
-#| echo: false
-#| fig-cap: "RMarkdown Cheatsheet Preview"
-knitr::include_graphics("images/rmarkdown.png")
-```
+Insert a code chunk with `Ctrl + Alt + I` (Windows) or `Cmd + Option + I` (Mac).
 
-Download full [RMarkdown cheatsheets](cheatsheets/rmarkdown.pdf)
+### Render the Document
 
-### Render the R Markdown file
+Click **Render** (or **Knit** in older R Markdown) to generate the output. R will run all code chunks and create an HTML file.
 
-Once you have written your R Markdown file, you can render it to create a dynamic document. To render the R Markdown file, click the "knit" button in the top right corner of the R Markdown file. This will run the R code chunks and generate the output in the specified format.
-
-# Practice
-
-Now, lets practice creating a new R project and a new R Markdown file in RStudio.
-
--   Create a R project named "yourfirstname-week1" in your "djr" folder.
--   Create a new R Markdown file named "yourfirstname-week1" in the R project you just created.
--   Write a short bio about you (about 50 words) in the R Markdown file.
--   Install the packages "praise" by running `install.packages("praise")` in *console*. (NOT IN R Markdown)
--   Insert a code chunk in the R Markdown file and run `library(praise)` to load the package.
--   Insert another code chunk and run `praise()` to generate a random compliment.
--   Render the R Markdown file to html format.
-
-::: callout-warning
-Don't run `install.packages("praise")` in the R Markdown file, as this would prevent your R Markdown file from rendering properly. Always run package installation in the console.
+::: {.callout-tip}
+Never run `install.packages()` inside your document. Always run package installation in the **Console** first, then use `library()` in your document to load it.
 :::
+
+## Next Steps
+
+You now have R, RStudio, and the essential packages installed. You're ready to start learning R basics and analyzing data for journalism.
+
+Move on to the next chapter: **R Coding Basics**.
 
 # Key Functions and Shortcuts
 
-| Functionality | Command / Shortcut | Example Use |
-|-------------------------|-----------------------------|------------------|
-| Insert code chunk (Windows) | `Ctrl + Alt + I` | \- |
-| Insert code chunk (Mac) | `Cmd + Option + I` | \- |
-| Install R packages | `install.packages("package_name")` | `install.packages("ggplot2")` |
-| Load R packages | `library(package_name)` | `library(ggplot2)` |
-| Create dynamic documents | `rmarkdown` | `rmarkdown::render("report.Rmd")` |
-| Tidyverse for data science | `tidyverse` | `library(tidyverse)` |
-| Dynamic report generation | `knitr` | `knitr::kable(head(mtcars))` |
-| Convert R Markdown to various formats | `quarto` | `quarto render document.qmd` |
-| Generate random compliments | `praise` | `praise::praise()` |
+| Functionality | Shortcut/Command | Purpose |
+|---|---|---|
+| Insert code chunk (Windows) | `Ctrl + Alt + I` | Add R code to document |
+| Insert code chunk (Mac) | `Cmd + Option + I` | Add R code to document |
+| Install packages | `install.packages("package_name")` | `install.packages("tidyverse")` |
+| Load packages | `library(package_name)` | `library(tidyverse)` |
+| Render document | Click **Render** button | Generate HTML/PDF output |
+| Get help on function | `?function_name` | `?mean` |
+| View workspace | `ls()` | List all objects in memory |
