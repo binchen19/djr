@@ -1,27 +1,86 @@
-# Preface {.unnumbered}
+---
+title: "Data Journalism with R"
+---
 
-::: {.callout-note}
-This book is built with [Quarto](https://quarto.org/), and its source files are hosted on this [GitHub repository](https://github.com/binchen19/djr).
-:::
 ## About this book
 
-This book is a collection of my notes from the Data Journalism courses I have been teaching at The University of Hong Kong. The course is centered around using R for data analysis, equipping students with the skills to collect, clean, analyze, and visualize data in a journalistic context.
+This book is a practical introduction to using R for data journalism. It is
+designed for undergraduate journalism students, including students who have
+never programmed before. The aim is not only to write correct code, but to use
+data as evidence: to understand where it came from, test what it can support,
+find a defensible story, and communicate uncertainty honestly.
 
-While originally designed as a companion for my students, I hope this book will also benefit a wider audience—including journalists, aspiring data storytellers, and students interested in learning R for data analysis. Through practical examples and real-world case studies, this book provides a hands-on approach to integrating data into storytelling.
+The chapters follow one newsroom workflow:
 
-Hope you find it useful! 🤗
+1. set up a reproducible R and Quarto project;
+2. inspect the source and state the unit of analysis;
+3. clean and validate the data;
+4. calculate meaningful measures with explicit denominators;
+5. explore patterns before choosing a story;
+6. design visual evidence for an audience; and
+7. report what the analysis can and cannot show.
 
-## About the author
+## The main dataset
 
-### Bin Chen
+The core chapters use the year-end equity holdings of Norway's Government
+Pension Fund Global, published by Norges Bank Investment Management (NBIM).
+The dataset is well suited to learning because each row represents a named
+equity holding at a particular year-end and includes geography, industry,
+market value, voting rights, and ownership.
 
-I am an Assistant Professor at the Journalism and Media Studies Centre, the University of Hong Kong. My research interests include computational social science, social media and politics, and comparative media studies. At HKU, I teach Data Journalism courses at both the undergraduate and postgraduate levels.
+We deliberately work in stages:
 
-## Acknowledgements
+- The **latest-year snapshot** is used first for importing, filtering, grouping, and
+  basic charts.
+- The **rolling ten-year panel** is introduced after students understand grain,
+  validation, and joins.
+- The complete **archive from 1998 onward** is reserved for advanced work because the
+  long series contains changes in coverage, classifications, and company names.
 
-This book is inspired by the [Reporting with Data in R](https://utdata.github.io/rwdir/) book by two professors at the University of Texas at Austin, *Christian McDonald* and *Josephine Lukito*. I would like to thank them for their great work and for sharing their materials with the public. 
-
-::: callout-note
-## License
-This book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt the content for non-commercial purposes, as long as you give appropriate credit and distribute your contributions under the same license.
+::: {.callout-important title="Language matters"}
+The data record year-end holdings. They do not record purchases, sales,
+investment performance, or money “received” by a company. Throughout the book,
+we use phrases such as *the fund held* or *the reported market value was*.
 :::
+
+The source files and the preparation process are documented in the
+[data audit](reports/gpfg-data-audit.md). The public source is the
+[NBIM all-investments database](https://www.nbim.no/en/investments/all-investments/).
+Students can download the stable teaching files from the repository's
+[`data/processed` directory](https://github.com/binchen19/djr/tree/main/data/processed).
+
+## Why keep the Hong Kong employment data?
+
+The graduate employment dataset remains an important later case study. Unlike
+the company-level holdings data, it contains aggregated cells whose
+denominators are distributed across rows. That makes it ideal for learning how
+official statistics can be double-counted or misinterpreted. Students first
+gain confidence with the cleaner holdings data, then confront the harder
+employment structure with more analytical tools.
+
+## How to use each chapter
+
+Every core chapter contains:
+
+- learning objectives;
+- a newsroom question;
+- a source and grain check;
+- a guided analysis;
+- validation checks;
+- an independent task; and
+- a reporting note about claim limits.
+
+Type the code yourself instead of copying everything at once. Before running a
+pipeline, say in plain language what you expect it to do. After running it,
+check whether the row count, categories, and totals make sense.
+
+## Course standard
+
+By the end of the course, a successful project should be reproducible by
+another person and should answer five questions clearly:
+
+1. Where did the data come from?
+2. What does one row represent?
+3. What cleaning and exclusions were made?
+4. What evidence supports the main claim?
+5. What important limitation remains?

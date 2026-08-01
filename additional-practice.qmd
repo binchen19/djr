@@ -1,0 +1,147 @@
+---
+title: "Additional Practice Labs"
+---
+
+These labs transfer the core workflow to datasets with different structures.
+They are designed for class, homework, or revision rather than as worked
+solutions. Begin each lab by writing the source, grain, denominator, and claim
+limit before analyzing.
+
+## Lab A: Hong Kong graduate salary averages
+
+```{r}
+library(tidyverse)
+
+salary <- read_csv(
+  "data/hksalary.csv",
+  show_col_types = FALSE
+) |>
+  rename(
+    academic_year = `Academic Year`,
+    level = `Level of Study`,
+    programme = `Broad Academic Programme Category`,
+    average_salary_hkd_thousands = `Average Annual Salary (HK$'000)`
+  ) |>
+  mutate(
+    year_start = as.integer(str_sub(academic_year, 1, 4))
+  )
+
+glimpse(salary)
+```
+
+### Grain and limitation
+
+One row represents an **already aggregated average salary** for one academic
+year, level of study, and broad programme category. The file does not contain
+individual graduates or the number of graduates behind each average.
+
+Therefore, this is not a defensible overall annual mean:
+
+```{r}
+#| eval: false
+salary |>
+  summarise(mean_of_means = mean(average_salary_hkd_thousands), .by = year_start)
+```
+
+The code gives every programme-level cell equal weight, even if the underlying
+numbers of graduates differ greatly. Without counts, a weighted overall average
+cannot be reconstructed.
+
+### Tasks
+
+1. Check whether `year_start + level + programme` is unique.
+2. Choose one level and compare the same programme categories over time.
+3. Identify programme categories that enter or leave the data.
+4. Plot like-for-like changes for no more than five programmes.
+5. Write a headline that refers to programme-level published averages, not the
+   “average Hong Kong graduate.”
+6. List the additional data needed to calculate an overall graduate-weighted
+   average.
+
+### Required checks
+
+- no duplicated analytical keys;
+- same units in every year;
+- same programme labels at both comparison endpoints; and
+- explicit treatment of missing programme-years.
+
+## Lab B: World Bank life expectancy
+
+The file is in wide form: one row per country or aggregate area, with one column
+for each year.
+
+```{r}
+life_wide <- read_csv(
+  "data/life_expectancy.csv",
+  show_col_types = FALSE
+)
+
+life_long <- life_wide |>
+  select(-matches("^\\.\\.\\.")) |>
+  pivot_longer(
+    cols = matches("^[0-9]{4}$"),
+    names_to = "year",
+    values_to = "life_expectancy"
+  ) |>
+  transmute(
+    country = `Country Name`,
+    country_code = `Country Code`,
+    indicator = `Indicator Name`,
+    year = as.integer(year),
+    life_expectancy
+  )
+
+glimpse(life_long)
+```
+
+### Grain and limitation
+
+After reshaping, one row represents one published country-or-aggregate estimate
+for one year. The file includes regional and income-group aggregates alongside
+countries. Pooling every row as if it were a country would mix incompatible
+geographies and double-count populations.
+
+For a beginner comparison, define a small list of actual places explicitly:
+
+```{r}
+selected_places <- c(
+  "Hong Kong SAR, China",
+  "Japan",
+  "Singapore",
+  "Korea, Rep."
+)
+
+life_selected <- life_long |>
+  filter(country %in% selected_places)
+```
+
+### Tasks
+
+1. Confirm that each selected country-year is unique.
+2. Count missing years by country before filtering them out.
+3. Compare 2000 and 2022 using absolute change in years.
+4. Create a line chart with a common y-axis.
+5. Find the largest one-year rise or fall and verify it against the World Bank
+   source before describing it as a real event.
+6. Explain why pooling all country-years into one correlation or regression
+   would confuse differences between countries with changes within countries.
+
+### Required checks
+
+- no aggregate areas in the selected comparison;
+- no duplicate country-years;
+- the same indicator code across all rows;
+- missingness reported by country and year; and
+- endpoint values checked against the publisher.
+
+## Submission template
+
+For either lab, submit:
+
+1. **Question** — one sentence;
+2. **Source** — publisher, URL, reporting period, and access date;
+3. **Grain** — one sentence before and after aggregation;
+4. **Method** — the transformations and denominator;
+5. **Checks** — at least three machine-readable tests;
+6. **Evidence** — one table and one chart; and
+7. **Claim limit** — one paragraph on what the file cannot establish.

@@ -1,165 +1,201 @@
 ---
-title: "Data Import"
-format: html
+title: "Find, Audit, and Import Data"
 ---
-## Importing Data in R
 
-### Built-in Datasets from Packages
+## Learning objectives
 
-R comes with a variety of built-in datasets that can be loaded directly from packages, here are some popular ones:
+By the end of this chapter, you should be able to:
 
+- evaluate a source before opening the data;
+- distinguish raw, processed, and analysis-ready files;
+- import CSV and Excel files with explicit paths;
+- inspect dimensions, names, types, and parsing problems; and
+- write a one-sentence statement of the unit of analysis.
 
-| Package       | Key Datasets          | Load Command         |
-|---------------|-----------------------|----------------------|
-| `datasets`    | mtcars, iris          | Built-in             |
-| `ggplot2`     | diamonds, mpg         | `library(tidyverse)` |
-| `nycflights13`| flights, weather      | `install.packages()` |
-| `gapminder`   | gapminder             | `library(gapminder)` |
+## Newsroom question
 
-**Usage Example:**
-```{r}
-#| eval: false
-mtcars
+> What did Norway's sovereign wealth fund report holding at the latest year-end,
+> and what can this file legitimately tell us?
+
+The analysis begins before R. Open the
+[NBIM all-investments page](https://www.nbim.no/en/investments/all-investments/)
+and record:
+
+- publisher and institutional responsibility;
+- reporting date;
+- asset type;
+- available file formats;
+- definitions or terms of use;
+- update frequency; and
+- the URL and date you accessed it.
+
+Authority does not remove the need for scrutiny. Official data can contain
+classification changes, revisions, omissions, and definitions that differ from
+ordinary language.
+
+## Raw, processed, and analysis-ready
+
+This project uses three layers:
+
+```{mermaid}
+flowchart LR
+  A["Official annual Excel files"] --> B["Reproducible preparation script"]
+  B --> C["Clean UTF-8 CSV and RDS files"]
+  C --> D["Chapter-specific analysis"]
 ```
 
-### Downloading External Data
+- **Raw files** are unchanged evidence from the publisher.
+- **Processed files** standardize names, types, dates, and provenance.
+- **Analysis objects** are filtered or aggregated for a specific question.
 
-#### From TidyTuesday
+Never overwrite the raw evidence with a cleaned file.
+
+For this chapter, download or use
+[the cleaned latest-year snapshot](https://raw.githubusercontent.com/binchen19/djr/main/data/processed/gpfg_equities_latest.csv).
+The canonical teaching files are kept once in the repository rather than
+duplicated inside the rendered website. The cleaning process is documented in
+`scripts/prepare_gpfg.R` and the
+[data audit](reports/gpfg-data-audit.md).
+
+## Import a CSV
+
 ```{r}
-#| eval: false
-#install.packages("tidytuesdayR")
-library(tidytuesdayR)
-
-# Load 2024 Olympics data
-tuesdata <- tt_load('2024-08-06')  
-olympics <- tuesdata$olympics
-```
-
-#### Direct from URL
-```{r}
-#| eval: true
-#| message: false
-#| warning: false
-
 library(tidyverse)
 
-# Hong Kong graduates salary data
+gpfg_latest <- read_csv(
+  "data/processed/gpfg_equities_latest.csv",
+  show_col_types = FALSE
+)
 
-data_url = "https://www.ugcs.gov.hk/datagovhk/Average_Annual_Salaries_FT_Employment(Eng).csv"
-hksalary_download <- read_csv(data_url)
-
-hksalary_download
+latest_year <- unique(gpfg_latest$year)
+stopifnot(length(latest_year) == 1)
 ```
 
+Use a project-relative path. The code should work on another student's
+computer after they open the same project.
 
-### Local File Import
+Immediately inspect the result:
 
-In data analysis projects, importing local files is more common than importing data from the web. Here are some common file types and their uses:
+```{r}
+dim(gpfg_latest)
+names(gpfg_latest)
+glimpse(gpfg_latest)
+problems(gpfg_latest)
+```
 
--  **CSV Files**: Simple, human-readable, and widely supported. Ideal for tabular data.
--  **Excel Files**: Used for spreadsheets with multiple sheets or formatting. Imported with `readxl` or `openxlsx`.
--  **SPSS, SAS, Stata Files**: Common in social science and survey research. Use specialized R packages to import.
--  **RDS Files**: Binary format for storing R objects, preserving their structure and class information.
--  **RData Files**: Binary format for saving multiple R objects in a single file, often used for workspaces.
+`dim()` reports the number of rows and columns. `problems()` should return an empty
+table. An empty parsing-problem table does not prove the values are correct; it
+only means `read_csv()` did not detect a conversion failure.
 
-::: callout-note
-For this course, we will focus on **CSV** files, as they are simple and widely used.
+## State the grain
+
+Before calculating anything, finish this sentence:
+
+> One row represents one equity holding reported by NBIM at the latest year-end.
+
+Most rows name companies, but some names may be funds or other listed issuers.
+The source has no transaction identifier. A row does **not** represent a
+purchase, a sale, a return, or an amount paid to the named company.
+
+Check whether the apparent identifier is unique:
+
+```{r}
+gpfg_latest |>
+  count(company) |>
+  filter(n > 1)
+```
+
+The result should have no rows, showing that published company names are unique within
+this snapshot. That does not make a company name a stable identifier across
+years.
+
+## Read the variables as evidence
+
+```{r}
+gpfg_dictionary <- read_csv(
+  "data/processed/gpfg_data_dictionary.csv",
+  show_col_types = FALSE
+)
+
+gpfg_dictionary |>
+  select(variable, description, unit_or_example)
+```
+
+Pay particular attention to units:
+
+- `market_value_nok` is the year-end holding value in Norwegian kroner;
+- `market_value_usd` is the same snapshot converted to US dollars;
+- `ownership_pct` and `voting_pct` are stored in **percentage points**, so
+  `0.65` means `0.65%`; and
+- `country` is the investment market, while `incorporation_country` is the
+  issuer's legal incorporation country.
+
+## Import the official Excel file
+
+The raw official download is an Excel workbook. The following reads the latest
+archived source directly:
+
+```{r}
+library(readxl)
+
+latest_raw_file <- unique(gpfg_latest$source_file)
+stopifnot(length(latest_raw_file) == 1)
+
+gpfg_raw_latest <- read_excel(
+  file.path("data/raw/gpfg", latest_raw_file),
+  sheet = "Holdings Report"
+)
+
+names(gpfg_raw_latest)
+```
+
+The cleaned CSV uses easier `snake_case` names and adds the year, report date,
+source file, and source URL. Those additions are provenance, not new reporting
+from NBIM.
+
+::: {.callout-note title="Why the preparation script uses Excel"}
+NBIM's CSV and Excel exports have the same visible source columns, but the CSV
+export leaves incorporation country blank. The Excel files retain it and also
+store money and percentage fields as numeric values. The original CSV exports
+are still archived for comparison.
 :::
 
-### CSV Files with `readr` (`tidyverse`) package
+## A compact source audit
 
-First, we download the CSV file from the web and save it locally as `hksalary.csv`. Then, we import it using the `read_csv()` function from the `readr` package.
+Create a data diary entry before analysis:
 
-::: callout-important
-## `read_csv()` vs. `read.csv()`
-Note that `read_csv()` from `readr` is preferred over `read.csv()` from base R for its speed and consistency. In this course, we recommend using `read_csv()` for CSV files.
-:::
+| Question | Answer for this file |
+|---|---|
+| Publisher | Norges Bank Investment Management |
+| Asset type | Listed equities |
+| Reporting date | Latest available year-end |
+| Grain | One reported equity holding at year-end |
+| Main measures | Market value, ownership, voting rights |
+| Key limitation | Snapshot values do not reveal transactions or returns |
+| Local raw file | The `source_file` recorded in the processed snapshot |
+| Cleaning record | `scripts/prepare_gpfg.R` |
 
-```{r}
-#| eval: true
-# Relative path (recommended)
-hksalary <- read_csv("data/hksalary.csv")
-hksalary
-```
-
-#### File Path Management
-
-| Path Type     | Example                     | When to Use          |
-|---------------|-----------------------------|----------------------|
-| **Relative**  | `data/hksalary.csv`         | Default in projects  |
-| **Absolute**  | `C:/Users/.../hksalary.csv` | Temporary analysis   |
-
-::: callout-tip
-## Relative Path
-Use relative paths for portability and to avoid hardcoding directory paths.
-:::
-
-
-
-## Data Inspection
-
-After importing data, it's essential to inspect it to understand its structure and contents. Here are some common functions to help you get started:
-
-### First Look Tools
-
-- **`head()`**: Shows the first few rows of the dataset.
+## Validation checkpoint
 
 ```{r}
-# First 6 rows
-head(hksalary)
+stopifnot(nrow(gpfg_latest) > 0)
+stopifnot(!anyNA(gpfg_latest$company))
+stopifnot(!anyNA(gpfg_latest$market_value_nok))
+stopifnot(all(gpfg_latest$market_value_nok >= 0))
+stopifnot(all(gpfg_latest$year == latest_year))
 ```
 
--  **`glimpse()`**: Provides a concise summary of the dataset's structure.
+These checks encode justified expectations for the latest-year teaching file. They
+should not be copied blindly to the full archive, which contains legitimate
+historical negative records.
 
+## Independent task
 
-```{r}
-# # Tidyverse alternative to str()
-glimpse(hksalary)  
-```
+Choose one row and trace it from the processed CSV back to the official Excel
+file. Submit:
 
--  **`summary()`**: Displays a statistical summary of the dataset.
-
-```{r}
-summary(hksalary)
-```
-
-| Function     | Output Focus             | Tidyverse Equivalent |
-|--------------|--------------------------|----------------------|
-| `head()`     | Top rows                 | `slice_head()`       |
-| `str()`      | Data types & structure   | `glimpse()`          |
-
-
-## Practice: Import `hksalary.csv` Data
-
-### Step-by-Step Practice
-
-1. **Setup Workspace**
-   - Create `import-practice` project
-   - Make `/data` subfolder
-
-2. **Store Data**
-   - Download [Hong Kong Graduates Annual Salary Data](https://www.ugcs.gov.hk/datagovhk/Average_Annual_Salaries_FT_Employment(Eng).csv)
-   - Save as `hksalary.csv` in `/data`
-
-3. **Import Data**
-   ```{r}
-   library(tidyverse)
-   hksalary <- read_csv("data/hksalary.csv")
-   ```
-
-4. **Initial Inspection**
-   ```{r}
-   #| eval: false
-   glimpse(hksalary)
-   summary(hksalary)
-   ```
-
-## Key Functions Recap
-
-| Task                | Function                 | Example                     |
-|---------------------|--------------------------|-----------------------------|
-| Load package        | `library()`              | `library(tidyverse)`        |
-| Read CSV            | `read_csv()`             | `read_csv("data/file.csv")` |
-| View structure      | `glimpse()`/`str()`      | `glimpse(df)`               |
-| Show first rows     | `head()`                 | `head(df, n = 10)`          |
-| Statistical summary | `summary()`              | `summary(df$salary)`        |
+1. the company, country, and NOK market value;
+2. the row's meaning in plain language;
+3. one claim the row supports;
+4. one tempting claim it does not support; and
+5. a screenshot or code output showing the values agree across the two files.

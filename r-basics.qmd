@@ -1,281 +1,235 @@
 ---
-title: "R Coding Basics"
-format: html
+title: "R Basics for Journalists"
 ---
 
-Now, you have a basic understanding of R/RStudio, R Project, and R Markdown. Next, we will cover some fundamental syntax and concepts in R programming.
+## Learning objectives
 
+By the end of this chapter, you should be able to:
 
-## Coding Basics
+- create and inspect R objects;
+- distinguish numbers, text, logical values, dates, and missing values;
+- use comparison and logical operators;
+- call functions and read an error message;
+- work with vectors and data frames; and
+- translate a short pipeline into plain language.
 
-### Basic Arithmetic in R
+## Start with a question
 
-You can use R as a calculator to perform basic arithmetic operations. Here are some examples:
-
-```{r}
-25 / 26 * 27
-```
-
-```{r}
-(25 + 26) / 2
-```
-
+Code is easier to understand when it answers a concrete question. Imagine a
+reporter has the number of records in four annual data releases:
 
 ```{r}
-cos(pi)
+records <- c(8985, 9106, 9157, 9202)
+years <- c(2016, 2017, 2018, 2019)
 ```
 
-### Creating Objects
-
-You can create objects (variables) in R using the assignment operator `<-`. Here are some examples:
+`<-` assigns a value to a name. `c()` combines values into a vector. The
+objects remain available until the R session ends or they are removed.
 
 ```{r}
-x <- 2025
+length(records)
+mean(records)
+records[1]
 ```
 
-Note that the value of `x` is stored but not printed. To print the value of `x`, you can simply type `x`.
+Read each expression aloud: “the length of `records`,” “the mean of
+`records`,” and “the first value in `records`.”
+
+## Names and assignment
+
+Use short, descriptive names written in `snake_case`:
 
 ```{r}
-x
+latest_year <- 2025
+source_name <- "Norges Bank Investment Management"
+data_checked <- TRUE
 ```
 
-### Combining Elements into a Vector
+R is case-sensitive. `latest_year` and `Latest_year` would be different
+objects. Avoid names such as `data`, `mean`, or `filter` when a more specific
+name is available, because those names already describe common objects or
+functions.
 
-You can combine multiple elements into a vector using the `c()` function. Here are some examples:
+## Data types
+
+The type of a value determines which operations make sense.
 
 ```{r}
-ages <- c(21, 22, 19)
+typeof(1500)                 # double: a number
+typeof("1500")               # character: text
+typeof(TRUE)                 # logical
+typeof(as.Date("2025-12-31")) # double internally, with a Date class
 ```
 
-Again, if you want to view the content of the vector `ages`, you can simply type `ages`.
+Quotation marks turn a value into text. R cannot safely add `10` to `"1500"`
+until the text is converted and checked.
 
 ```{r}
-ages
+as.numeric("1500") + 10
 ```
 
-Basic arithmetic operations can also be performed on vectors, affecting each element of the vector.
+Do not convert blindly. Values such as `"not reported"` carry information
+about the source and should usually become an explicit missing value only after
+you document the rule.
+
+## Comparisons and logical conditions
+
+Comparisons return `TRUE` or `FALSE`.
 
 ```{r}
-ages + 1
+latest_year == 2025
+latest_year != 2024
+records > 9100
 ```
 
-### Assignment Statement Structure
+Use `==` to compare values. A single `=` is normally used to name a function
+argument.
 
-All R assignment statements follow the same structure:
+Logical operators combine conditions:
 
+| Operator | Meaning | Example |
+|---|---|---|
+| `&` | and | `year >= 2016 & year <= 2025` |
+| `|` | or | `country == "China" | country == "Japan"` |
+| `!` | not | `!is.na(value)` |
+| `%in%` | belongs to a set | `country %in% c("China", "Japan")` |
+
+```{r}
+years[years >= 2017 & years <= 2019]
 ```
-object_name <- value
+
+## Missing values are not zero
+
+R represents a missing value as `NA`. Missing is not the same as zero, an empty
+string, or “no.”
+
+```{r}
+ownership <- c(0.8, 1.2, NA, 0.5)
+
+mean(ownership)
+mean(ownership, na.rm = TRUE)
+sum(is.na(ownership))
 ```
 
-When reading the code, think of it as "object name gets value." To save time, use the shortcut `Alt + -` (Windows) or `Option + -` (Mac) to insert the assignment operator `<-`.
+The first mean is `NA` because R refuses to pretend the missing observation is
+known. `na.rm = TRUE` tells R to calculate from available values. That may be
+appropriate, but the reporter still needs to ask why the value is missing and
+whether the remaining cases are representative.
 
-::: {.callout-note}
-`=` can also be used for assignment, but it is generally recommended to use `<-` for assignment in R to avoid confusion with the equality operator `==`, which is used for comparisons.
+::: {.callout-warning title="A newsroom rule"}
+Never replace `NA` with zero just to make code run. First determine whether the
+source means “none,” “not applicable,” “not collected,” or “not reported.”
 :::
 
-## Comments in Code
+## Functions and arguments
 
-R ignores any text following a `#` symbol on the same line. You can use comments to explain your code or add notes.
-
-```{r}
-# Create vector of birth year
-birth_year <- c(1995, 2003, 2007)
-
-# Calculate age in 2025
-2025 - birth_year
-```
-
-::: {.callout-tip}
-Use comments to explain the why behind your code, not the how or what. This presents confusion in the future, especially when revisiting complex projects or after a long time.
-:::
-
-## Naming Conventions
-
-Object names must start with a letter and can contain letters, numbers, underscores (`_`), abd periods(`.`). We recommend using `snake_case` for multi-word object names, which means using lowercase letters and underscores to separate words (e.g., `birth_year`, `student_name`).
-
-```
-# this is a good object name
-birth_year
-```
-```
-# this is a bad object name
-BirthYear
-birth-year
-birth year 
-```
-
-Remember R is case-sensitive, so `birth_year` and `Birth_Year` are considered different objects.
-
-## Calling Functions
-
-R provides a variaty of built-in functions. They are called by typing the function name followed by parentheses `()`. If the function requires arguments, you can pass them inside the parentheses.
-
-```
-function_name(argument1 = value1, argument2 = value2, ...)
-```
-
-For example, to create a sequence of numbers from 1 to 10, you can use the `seq()` function:
+A function takes inputs and returns a result.
 
 ```{r}
-seq(from = 1, to = 10)
+round(mean(records), digits = 1)
 ```
 
-You can omit argument names if the order is clear:
+Here `records` is the main input and `digits = 1` is a named argument. Use
+`?round` in the Console to open the help page.
+
+When a function does not behave as expected, inspect the input before changing
+the code:
 
 ```{r}
-seq(1, 10)
+class(records)
+length(records)
+summary(records)
 ```
 
+## Data frames
 
-::: callout-tip
-RStudio has an auto-complete feature that suggests function names and arguments as you type. You can also call `?function_name` to access the help file for that function.
-:::
-
-## Common Data Types
-
-There are several data types in R, but we will focus on four common ones: numeric, character, logical, and date.
-
-### Numeric
+A data frame is a rectangular collection of variables. A tibble is the modern
+tidyverse version.
 
 ```{r}
-# check the data type of ages
-class(ages)
-```
-### Character
+library(tidyverse)
 
-Charater data type represents text or string values. Character values are enclosed in double quotes (`"`) or single quotes (`'`).
+annual <- tibble(
+  year = years,
+  holding_records = records,
+  audited = c(TRUE, TRUE, TRUE, TRUE)
+)
+
+annual
+```
+
+Each column should contain one variable, each row should contain one
+observation, and each cell should contain one value. This “tidy” structure is a
+goal, not an assumption: real journalism datasets often need to be reshaped.
+
+Useful inspection functions include:
 
 ```{r}
-language <- c("R", "Python")
-
-class(language)
+dim(annual)
+names(annual)
+glimpse(annual)
+summary(annual)
 ```
-### Logical
 
-Logical data type represents boolean values, which can be either `TRUE` or `FALSE`.
+## Pipes make a sequence readable
+
+The base R pipe `|>` passes the result on the left into the function on the
+right.
 
 ```{r}
-# create logical variables
-is_student <- FALSE
-
-class(is_student)
+annual |>
+  filter(year >= 2017) |>
+  arrange(desc(holding_records))
 ```
 
-### Date
+Translate the pipeline before running it:
 
-Date data type represents dates. Standard date format in R is `YYYY-MM-DD`.
+> Start with `annual`, keep years from 2017 onward, then order the remaining
+> rows from the largest record count to the smallest.
+
+One line should usually perform one meaningful step. This makes the analysis
+easier to check and explain to an editor.
+
+## Checkpoint exercise
+
+Create this vector:
 
 ```{r}
-today <- as.Date("2024-09-07")
-
-class(today)
+values <- c(120, 150, NA, 90, 200)
 ```
 
+Answer the following with R:
 
-::: {.callout-warning}
-To create a date object in R, you can use the `as.Date()` function with the date in the format `YYYY-MM-DD`. If you just use `x <- "2024-09-07"`, it will be a character type.
-:::
+1. How many values are recorded?
+2. How many are missing?
+3. What is the median of the available values?
+4. Which available values are at least 150?
+5. Why would replacing the missing value with zero change the story?
 
-## Data Frame
-
-Data frame is a two-dimensional data structure that stores data in *rows* and *columns*. Eacb row represents an observation, and each column represents a variable.
-
-We can build a data frame using the `data.frame()` function.
-
-First, let's create a data frame with two columns: `name` and `age`.
+<details>
+<summary>Show one possible solution</summary>
 
 ```{r}
-# Create vectors for each column
-name <- c("Alice", "Bob", "Charlie")
-age <- c(25, 30, 35)
+length(values)
+sum(is.na(values))
+median(values, na.rm = TRUE)
+values[!is.na(values) & values >= 150]
 ```
 
-```{r}
-# Create a data frame
-df <- data.frame(
-  name = c("Alice", "Bob", "Charlie"),
-  age = c(25, 30, 35))
-df
-```
+Replacing `NA` with zero would assert that the true value is zero. It would
+lower the median and turn an unknown observation into a factual claim.
 
-This is a 3x2 data frame with 3 rows and 2 columns.
+</details>
 
+## Independent task
 
-::: callout-note
-In this course, we will primarily work with data frames.
-:::
+Build a tibble with five possible data sources for a local story. Include:
 
--   **List**: A data structure that stores a collection of objects. Lists can contain vectors, matrices, data frames, and other lists.
+- `source` as text;
+- `year` as a number;
+- `downloaded` as a logical value; and
+- `notes` with at least one `NA`.
 
-## Errors/Warnings/Messages
-
--   **Error**: An error occurs when R encounters a problem that prevents it from executing the code. Errors are displayed in red text and typically include an error message that describes the problem.
-
--   **Warning**: A warning occurs when R encounters a potential problem but is able to continue executing the code. Warnings are displayed in yellow text and typically include a warning message that describes the potential issue.
-
--   **Message**: A message is a general output from R that provides information about the code execution. Messages are displayed in white text and are used to convey information about the code.
-
-::: {.callout-note}
-You may ignore the messages, but you should always pay attention to errors and warnings.
-:::
-
-### Debug Tips?
-
--   **Read the error message**: The error message provides information about what went wrong. Read the error message carefully to understand the problem.
-
--   **Check the code**: Review the code that caused the error. Look for syntax errors, missing parentheses, brackets, or quotation marks, and other common mistakes.
-
--   **Use the help panel**: RStudio has a help panel that provides information about functions, packages, and error messages. Use the help panel to look up information related to the error.
-
--   **Search online**: If you are unable to resolve the error, search online for solutions. Websites like Stack Overflow, RStudio Community, and the R documentation can be helpful resources.
-
--   **Posting your questions**: If you are still unable to resolve the error, ask for help. Post your code and the error message on the RStudio Community or another forum to get assistance from the community.
-
-
-### Tips for learning R coding
-
--   **"Copy, Paste, and Tweak"**: When writing code, it's common to copy and paste existing code and then tweak it to fit your needs. This can save time and reduce errors.
-
--   **"Save, Save, Save"**: Save your work frequently to avoid losing your progress.
-
--   **Practice, practice, practice**: The more you practice writing R code, the more comfortable and proficient you will become.
-
--   **Call `?` for help**: If you are unsure about how to use a function or need more information, you can call `?function_name` to access the help file for that function.
-
-## Exercises
-
-### Identify Errors
-
-```
-my_variable <- 10
-my_varıable
-# Error: object 'my_varıable' not found
-```
-
-```
-my_vector <- (1, 2, 3, 4, 5)
-mean(my_vector)
-# Error: unexpected ',' in "my_vector <- (1,"
-```
-
-```
-my_vector1 <- C(1, 2, 3, 4, 5)
-mean(my_vector1)
-# Error in `contrasts<-`(`*tmp*`, how.many, value = contr) : contrasts can be applied only to factors with 2 or more levels
-```
-
-
-### RStudio Shortcuts
-
-`Option + Shift + K `/ `Alt + Shift + K`. What happens? How can you achieve the same through the menus?
-
-    
-## Key Functions 
-
-| Command               | Purpose              | Example                           |
-|-----------------------|----------------------|-----------------------------------|
-| `<-`                  | Assign value         | `x <- 5`                          |
-| `c()`                 | Create vector        | `ages <- c(21, 25, 19)`           |
-| `data.frame()`        | Create data frame    | `df <- data.frame(id=1:3)`        |
-| `?`                   | Get help             | `?ggplot`                         |
-| `#`                   | Add comment          | `# Calculate average`             |
+Then write a pipeline that keeps downloaded sources from 2024 onward. Under the
+code, explain the pipeline in one sentence and state what `NA` means in your
+`notes` column.

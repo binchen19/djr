@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 5&nbsp; Pivoting and Joining</title>
+<title>Data Journalism with R - 7&nbsp; Combine Years, Join Tables, and Reshape Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./analysis-hksalary.html" rel="next">
+<link href="./analysis-gpfg.html" rel="next">
 <link href="./data-wrangling.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -145,13 +145,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Journalism with R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Getting Started</span></a>
+ <span class="menu-text">Foundations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,13 +160,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
   </div>
 </li>
       </ul>
@@ -174,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Data Import &amp; Wrangling</span></a>
+ <span class="menu-text">A Reproducible Data Workflow</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,19 +189,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
   </div>
 </li>
       </ul>
@@ -203,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Data Analysis</span></a>
+ <span class="menu-text">Visual Evidence and Storytelling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,14 +229,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-hksalary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Analysis II</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
   </div>
 </li>
       </ul>
@@ -226,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Data Visualization</span></a>
+ <span class="menu-text">Transfer Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -234,26 +264,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
   </div>
 </li>
       </ul>
@@ -261,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Case Studies</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -269,67 +305,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project Extras</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sample Projects</span></span></a>
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -344,30 +339,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">5.1</span> Overview</a>
-  <ul class="collapse">
-  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the data</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
-  </ul></li>
-  <li><a href="#load-data-and-packages" id="toc-load-data-and-packages" class="nav-link" data-scroll-target="#load-data-and-packages"><span class="header-section-number">5.2</span> Load data and packages</a></li>
-  <li><a href="#long-vs-wide-data" id="toc-long-vs-wide-data" class="nav-link" data-scroll-target="#long-vs-wide-data"><span class="header-section-number">5.3</span> Long vs Wide Data</a></li>
-  <li><a href="#transform-wide-to-long-data" id="toc-transform-wide-to-long-data" class="nav-link" data-scroll-target="#transform-wide-to-long-data"><span class="header-section-number">5.4</span> Transform Wide to Long Data</a></li>
-  <li><a href="#merging-with-world-map-data-mutating-join" id="toc-merging-with-world-map-data-mutating-join" class="nav-link" data-scroll-target="#merging-with-world-map-data-mutating-join"><span class="header-section-number">5.5</span> Merging with World Map Data: mutating join</a>
-  <ul class="collapse">
-  <li><a href="#load-world-map-data" id="toc-load-world-map-data" class="nav-link" data-scroll-target="#load-world-map-data">Load World Map Data</a></li>
-  <li><a href="#merge-data-by-left_join" id="toc-merge-data-by-left_join" class="nav-link" data-scroll-target="#merge-data-by-left_join">Merge Data by <code>left_join()</code></a></li>
-  <li><a href="#clean-up-nas-and-spatial-features" id="toc-clean-up-nas-and-spatial-features" class="nav-link" data-scroll-target="#clean-up-nas-and-spatial-features">Clean up NAs and spatial features</a></li>
-  </ul></li>
-  <li><a href="#save-the-merged-data" id="toc-save-the-merged-data" class="nav-link" data-scroll-target="#save-the-merged-data"><span class="header-section-number">5.6</span> Save the Merged Data</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">7.1</span> Learning objectives</a></li>
+  <li><a href="#newsroom-question" id="toc-newsroom-question" class="nav-link" data-scroll-target="#newsroom-question"><span class="header-section-number">7.2</span> Newsroom question</a></li>
+  <li><a href="#stack-observations-with-bind_rows" id="toc-stack-observations-with-bind_rows" class="nav-link" data-scroll-target="#stack-observations-with-bind_rows"><span class="header-section-number">7.3</span> Stack observations with <code>bind_rows()</code></a></li>
+  <li><a href="#join-variables-with-left_join" id="toc-join-variables-with-left_join" class="nav-link" data-scroll-target="#join-variables-with-left_join"><span class="header-section-number">7.4</span> Join variables with <code>left_join()</code></a></li>
+  <li><a href="#audit-unmatched-keys" id="toc-audit-unmatched-keys" class="nav-link" data-scroll-target="#audit-unmatched-keys"><span class="header-section-number">7.5</span> Audit unmatched keys</a></li>
+  <li><a href="#summarise-before-comparing-years" id="toc-summarise-before-comparing-years" class="nav-link" data-scroll-target="#summarise-before-comparing-years"><span class="header-section-number">7.6</span> Summarise before comparing years</a></li>
+  <li><a href="#pivot-to-compare-columns" id="toc-pivot-to-compare-columns" class="nav-link" data-scroll-target="#pivot-to-compare-columns"><span class="header-section-number">7.7</span> Pivot to compare columns</a></li>
+  <li><a href="#what-a-join-cannot-solve" id="toc-what-a-join-cannot-solve" class="nav-link" data-scroll-target="#what-a-join-cannot-solve"><span class="header-section-number">7.8</span> What a join cannot solve</a></li>
+  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">7.9</span> Independent task</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Wrangling</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></h1>
 </div>
 
 
@@ -384,309 +373,248 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">5.1</span> Overview</h2>
-<p>In this chapter, we will explore the life expectancy data across countries. Life expectancy is a key indicator of a country’s overall health and well-being. By analyzing this data, we can identify trends and disparities in life expectancy across different regions and countries.</p>
-<section id="about-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="about-the-data">About the data</h3>
-<p>This dataset was downloaded from the World Bank website and saved as a CSV file named <code>life_expectancy.csv</code>, stored in the <code>data</code> folder. The dataset was last updated on March 24, 2025, contains the life expectancy at birth for various countries over the years.</p>
-</section>
-<section id="learning-objectives" class="level3">
-<h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
-<p>This chapter will demonstrate two data wrangling techniques:</p>
+<section id="learning-objectives" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">7.1</span> Learning objectives</h2>
+<p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>Transforming wide data to long data format using <code>pivot_longer()</code>.</li>
-<li>Merging datasets using <code>left_join()</code> for map visualization.</li>
+<li>distinguish stacking rows from joining columns;</li>
+<li>combine annual files while preserving the report year and source;</li>
+<li>use join keys and relationship checks deliberately;</li>
+<li>audit matched and unmatched records; and</li>
+<li>pivot between long and wide forms without losing the unit of analysis.</li>
 </ul>
 </section>
-</section>
-<section id="load-data-and-packages" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="load-data-and-packages"><span class="header-section-number">5.2</span> Load data and packages</h2>
-<p>To merge the life expectancy data with the world map data, we will use the <code>rnaturalearth</code> package for world map data.</p>
+<section id="newsroom-question" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="newsroom-question"><span class="header-section-number">7.2</span> Newsroom question</h2>
+<blockquote class="blockquote">
+<p>How did the geographic distribution of reported equity holdings change from the first to the latest year in the rolling teaching panel?</p>
+</blockquote>
+<p>This question requires more than one snapshot. The prepared panel contains ten year-end files:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># install if not available</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the life expectancy data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lifex <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/life_expectancy.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-Rows: 266 Columns: 69
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: "," chr
-(4): Country Name, Country Code, Indicator Name, Indicator Code dbl (63): 1960,
-1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, ... lgl (2): 2023,
-...69
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-• `` -&gt; `...69`</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(lifex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 266
-Columns: 69
-$ `Country Name`   &lt;chr&gt; "Aruba", "Africa Eastern and Southern", "Afghanistan"…
-$ `Country Code`   &lt;chr&gt; "ABW", "AFE", "AFG", "AFW", "AGO", "ALB", "AND", "ARB…
-$ `Indicator Name` &lt;chr&gt; "Life expectancy at birth, total (years)", "Life expe…
-$ `Indicator Code` &lt;chr&gt; "SP.DYN.LE00.IN", "SP.DYN.LE00.IN", "SP.DYN.LE00.IN",…
-$ `1960`           &lt;dbl&gt; 64.15200, 44.09883, 32.53500, 37.84614, 38.21100, 54.…
-$ `1961`           &lt;dbl&gt; 64.53700, 44.40108, 33.06800, 38.16548, 37.26700, 55.…
-$ `1962`           &lt;dbl&gt; 64.75200, 44.76804, 33.54700, 38.73579, 37.53900, 56.…
-$ `1963`           &lt;dbl&gt; 65.13200, 44.92569, 34.01600, 39.06327, 37.82400, 57.…
-$ `1964`           &lt;dbl&gt; 65.29400, 45.49893, 34.49400, 39.33362, 38.13100, 58.…
-$ `1965`           &lt;dbl&gt; 65.50200, 45.51282, 34.95300, 39.61488, 38.49500, 60.…
-$ `1966`           &lt;dbl&gt; 66.06300, 45.26340, 35.45300, 39.83348, 38.75700, 60.…
-$ `1967`           &lt;dbl&gt; 66.43900, 45.93304, 35.92400, 39.46643, 39.09200, 61.…
-$ `1968`           &lt;dbl&gt; 66.75700, 46.22975, 36.41800, 40.07945, 39.48400, 62.…
-$ `1969`           &lt;dbl&gt; 67.16800, 46.43694, 36.91000, 40.34288, 39.82900, 63.…
-$ `1970`           &lt;dbl&gt; 67.58300, 46.72371, 37.41800, 41.02645, 40.19000, 64.…
-$ `1971`           &lt;dbl&gt; 67.97500, 47.20967, 37.92300, 41.54788, 40.55400, 65.…
-$ `1972`           &lt;dbl&gt; 68.57700, 46.91316, 38.44400, 42.24128, 40.90500, 66.…
-$ `1973`           &lt;dbl&gt; 69.09200, 47.72271, 39.00300, 42.84673, 41.27000, 67.…
-$ `1974`           &lt;dbl&gt; 69.50300, 47.63436, 39.55000, 43.48896, 41.65200, 67.…
-$ `1975`           &lt;dbl&gt; 69.76200, 47.79288, 40.10000, 44.19265, 41.19100, 68.…
-$ `1976`           &lt;dbl&gt; 70.03500, 48.37347, 40.64500, 44.99494, 41.16300, 68.…
-$ `1977`           &lt;dbl&gt; 70.26400, 48.65676, 41.22800, 45.71210, 41.43700, 69.…
-$ `1978`           &lt;dbl&gt; 70.49400, 48.78190, 40.27100, 46.26202, 41.83000, 69.…
-$ `1979`           &lt;dbl&gt; 70.77800, 49.27690, 39.08600, 46.66625, 42.17500, 69.…
-$ `1980`           &lt;dbl&gt; 71.06600, 49.65491, 39.61800, 47.00825, 42.44900, 70.…
-$ `1981`           &lt;dbl&gt; 71.72200, 50.08262, 40.16400, 47.29049, 42.77200, 70.…
-$ `1982`           &lt;dbl&gt; 71.95900, 50.33266, 37.76600, 47.52312, 43.05100, 71.…
-$ `1983`           &lt;dbl&gt; 72.10500, 48.75816, 38.18700, 47.77922, 42.09200, 71.…
-$ `1984`           &lt;dbl&gt; 72.25100, 48.71600, 33.32900, 47.92625, 42.35300, 71.…
-$ `1985`           &lt;dbl&gt; 72.38800, 49.08027, 33.55000, 48.01570, 42.64800, 71.…
-$ `1986`           &lt;dbl&gt; 72.46200, 49.71145, 39.39600, 48.06035, 42.84300, 71.…
-$ `1987`           &lt;dbl&gt; 72.78900, 50.11539, 39.84400, 48.22949, 40.91700, 72.…
-$ `1988`           &lt;dbl&gt; 73.04700, 49.37453, 43.95800, 48.50468, 41.54500, 72.…
-$ `1989`           &lt;dbl&gt; 73.02300, 50.72100, 45.15800, 48.68021, 41.76500, 72.…
-$ `1990`           &lt;dbl&gt; 73.07600, 50.64266, 45.96700, 48.63821, 41.89300, 73.…
-$ `1991`           &lt;dbl&gt; 73.10000, 50.41606, 46.66300, 48.64873, 43.81300, 73.…
-$ `1992`           &lt;dbl&gt; 73.17900, 49.97447, 47.59600, 48.72149, 42.20900, 73.…
-$ `1993`           &lt;dbl&gt; 73.22500, 50.28794, 51.46600, 48.81533, 42.10100, 73.…
-$ `1994`           &lt;dbl&gt; 73.27200, 50.91639, 51.49500, 48.66470, 43.42200, 74.…
-$ `1995`           &lt;dbl&gt; 73.34900, 51.01604, 52.54400, 48.76475, 45.84900, 74.…
-$ `1996`           &lt;dbl&gt; 73.44800, 50.81934, 53.24300, 48.88525, 46.03300, 74.…
-$ `1997`           &lt;dbl&gt; 73.45200, 50.98197, 53.63400, 49.05807, 46.30600, 73.…
-$ `1998`           &lt;dbl&gt; 73.49100, 50.32711, 52.94300, 49.30990, 45.05700, 74.…
-$ `1999`           &lt;dbl&gt; 73.56100, 51.25887, 54.84600, 49.72643, 45.38600, 75.…
-$ `2000`           &lt;dbl&gt; 73.56900, 51.98699, 55.29800, 50.19459, 46.02400, 75.…
-$ `2001`           &lt;dbl&gt; 73.64700, 52.21224, 55.79800, 50.53735, 46.59000, 75.…
-$ `2002`           &lt;dbl&gt; 73.72600, 52.56278, 56.45400, 50.89809, 47.38600, 75.…
-$ `2003`           &lt;dbl&gt; 73.75200, 53.03630, 57.34400, 51.37161, 49.61700, 76.…
-$ `2004`           &lt;dbl&gt; 73.57600, 53.55188, 57.94400, 51.78477, 50.59200, 76.…
-$ `2005`           &lt;dbl&gt; 73.81100, 54.22295, 58.36100, 52.30806, 51.57000, 76.…
-$ `2006`           &lt;dbl&gt; 74.02600, 55.15772, 58.68400, 52.79254, 52.36900, 76.…
-$ `2007`           &lt;dbl&gt; 74.21000, 55.93784, 59.11100, 53.20900, 53.64200, 77.…
-$ `2008`           &lt;dbl&gt; 74.14700, 56.68074, 59.85200, 53.59415, 54.63300, 77.…
-$ `2009`           &lt;dbl&gt; 74.56000, 57.62151, 60.36400, 54.11171, 55.75200, 77.…
-$ `2010`           &lt;dbl&gt; 75.40400, 58.41032, 60.85100, 54.50047, 56.72600, 77.…
-$ `2011`           &lt;dbl&gt; 75.46500, 59.29332, 61.41900, 54.96017, 57.59600, 78.…
-$ `2012`           &lt;dbl&gt; 75.53100, 60.05153, 61.92300, 55.28394, 58.62300, 78.…
-$ `2013`           &lt;dbl&gt; 75.63600, 60.71003, 62.41700, 55.61514, 59.30700, 78.…
-$ `2014`           &lt;dbl&gt; 75.60100, 61.33881, 62.54500, 55.86366, 60.04000, 78.…
-$ `2015`           &lt;dbl&gt; 75.68300, 61.85686, 62.65900, 56.13527, 60.65500, 78.…
-$ `2016`           &lt;dbl&gt; 75.61700, 62.44464, 63.13600, 56.51809, 61.09200, 78.…
-$ `2017`           &lt;dbl&gt; 75.90300, 62.92481, 63.01600, 56.82663, 61.68000, 79.…
-$ `2018`           &lt;dbl&gt; 76.07200, 63.36704, 63.08100, 57.12971, 62.14400, 79.…
-$ `2019`           &lt;dbl&gt; 76.24800, 63.75475, 63.56500, 57.50029, 62.44800, 79.…
-$ `2020`           &lt;dbl&gt; 75.72300, 63.30979, 62.57500, 57.18067, 62.26100, 76.…
-$ `2021`           &lt;dbl&gt; 74.62600, 62.44909, 61.98200, 56.94647, 61.64300, 76.…
-$ `2022`           &lt;dbl&gt; 74.99200, 62.88846, 62.87900, 57.58911, 61.92900, 76.…
-$ `2023`           &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ ...69            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</code></pre>
-</div>
-</div>
-<p>Based on the output of <code>glimpse()</code>, we can see that the dataset contains 217 rows and 69 columns. However, the last 2 columns contain all NA values, so we may want to remove them from analysis.</p>
-<p>You’ll notice that this format isn’t ideal for data visualization. Columns 5 to 67 represent years, with their values corresponding to life expectancy for each year. However, a cleaner format would be a long data structure, where each row represents a country, a year, and the corresponding life expectancy.</p>
-<p>To achieve this, we need to convert the wide format into a long format using the <code>pivot_longer()</code> function.</p>
-</section>
-<section id="long-vs-wide-data" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="long-vs-wide-data"><span class="header-section-number">5.3</span> Long vs Wide Data</h2>
-<p>In R, we generally prefer working with the <strong>long</strong> data (tidy) format for data analysis, as it aligns with the principles of tidy data. A typical tidy dataset follows these rules:</p>
-<ul>
-<li>Each variable has its own column.</li>
-<li>Each observation has its own row.</li>
-<li>Each value has its own cell.</li>
-</ul>
-<p>In contrast, wide data format has multiple columns for the same variable, which can make it harder to work with for data analysis and visualization. For example, in this life expectancy dataset, each year is represented as a separate column, however, ideally we want all years to be in a single column named “year”, and all values to be in a single column named “life_expectancy”.</p>
-</section>
-<section id="transform-wide-to-long-data" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="transform-wide-to-long-data"><span class="header-section-number">5.4</span> Transform Wide to Long Data</h2>
-<p>Let’s check this <a href="https://www.garrickadenbuie.com/project/tidyexplain/#pivot-wider-and-longer">animation</a> made by Garrick Aden-Buie to understand the transformation from wide to long data format.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># include a gif</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/tidyr-pivoting.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/tidyr-pivoting.gif" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Transform wide data to long data format</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lifex_long <span class="ot">&lt;-</span> lifex <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">country =</span> <span class="st">`</span><span class="at">Country Name</span><span class="st">`</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">country_code =</span> <span class="st">`</span><span class="at">Country Code</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">67</span>, </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>, </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"life_expectancy"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year)) <span class="sc">|&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, country_code, year, life_expectancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(lifex_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 16,758
-Columns: 4
-$ country         &lt;chr&gt; "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", …
-$ country_code    &lt;chr&gt; "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW"…
-$ year            &lt;dbl&gt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, …
-$ life_expectancy &lt;dbl&gt; 64.152, 64.537, 64.752, 65.132, 65.294, 65.502, 66.063…</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lifex_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   country          country_code            year      life_expectancy
- Length:16758       Length:16758       Min.   :1960   Min.   :11.99  
- Class :character   Class :character   1st Qu.:1975   1st Qu.:57.03  
- Mode  :character   Mode  :character   Median :1991   Median :66.96  
-                                       Mean   :1991   Mean   :64.39  
-                                       3rd Qu.:2007   3rd Qu.:72.65  
-                                       Max.   :2022   Max.   :85.53  
-                                                      NA's   :634    </code></pre>
-</div>
-</div>
-</section>
-<section id="merging-with-world-map-data-mutating-join" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="merging-with-world-map-data-mutating-join"><span class="header-section-number">5.5</span> Merging with World Map Data: mutating join</h2>
-<p>OK, now we have cleaned up the life expectancy data and transformed it into a long format. Next, we will merge this data with the world map data to prepare for map visualization.</p>
-<p>We will load the world map data from the package <code>rnaturalearth</code>, which provides spatial data for countries.</p>
-<section id="load-world-map-data" class="level3">
-<h3 class="anchored" data-anchor-id="load-world-map-data">Load World Map Data</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(iso_a3, geometry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>ne_countries()</code> function from the <code>rnaturalearth</code> package returns a spatial feature object with country geometries. <code>ne</code> stands for Natural Earth, which is a public domain map dataset. We select the <code>iso_a3</code> column as the country code (because it’s in the same format as the <code>country</code> column in the world bank data) and the <code>geometry</code> column for plotting.</p>
-</div>
-</div>
-</section>
-<section id="merge-data-by-left_join" class="level3">
-<h3 class="anchored" data-anchor-id="merge-data-by-left_join">Merge Data by <code>left_join()</code></h3>
-<p>Then, we will use the <code>left_join()</code> function to merge the life expectancy data with the world map data based on the <code>country_code</code> and <code>iso_a3</code> columns.</p>
-<p>Here is how the <code>left_join()</code> function works (by Garrick Aden-Buie):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/left-join.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images/left-join.gif" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-which data to be left?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Here we will use <code>left_join</code> to merge the world map data with the life expectancy data based on the country codes. The reason we let <code>world</code> be the left table is that we want to keep all countries in the world map data, even if they don’t have life expectancy data. Otherwise, we would lose some countries in the map.</p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge life expectancy data with world map data</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df_merge <span class="ot">&lt;-</span> world <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(lifex_long, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"iso_a3"</span> <span class="ot">=</span> <span class="st">"country_code"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_merge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 13,386
-Columns: 5
-$ iso_a3          &lt;chr&gt; "ZWE", "ZWE", "ZWE", "ZWE", "ZWE", "ZWE", "ZWE", "ZWE"…
-$ country         &lt;chr&gt; "Zimbabwe", "Zimbabwe", "Zimbabwe", "Zimbabwe", "Zimba…
-$ year            &lt;dbl&gt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, …
-$ life_expectancy &lt;dbl&gt; 53.235, 53.619, 54.071, 54.549, 54.994, 55.459, 55.889…
-$ geometry        &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON (((31.28789 -2..., MULTIPOLY…</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df_merge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    iso_a3            country               year      life_expectancy
- Length:13386       Length:13386       Min.   :1960   Min.   :11.99  
- Class :character   Class :character   1st Qu.:1975   1st Qu.:57.53  
- Mode  :character   Mode  :character   Median :1991   Median :67.31  
-                                       Mean   :1991   Mean   :64.57  
-                                       3rd Qu.:2007   3rd Qu.:72.83  
-                                       Max.   :2022   Max.   :85.53  
-                                       NA's   :30     NA's   :601    
-          geometry    
- MULTIPOLYGON :13386  
- epsg:4326    :    0  
- +proj=long...:    0  
-                      
-                      
-                      
-                      </code></pre>
-</div>
-</div>
-<p>Here we found there are some NAs for year and life_expectancy, which means some countries don’t have life expectancy data in some years.</p>
-</section>
-<section id="clean-up-nas-and-spatial-features" class="level3">
-<h3 class="anchored" data-anchor-id="clean-up-nas-and-spatial-features">Clean up NAs and spatial features</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_merge <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(year) <span class="sc">|</span> <span class="fu">is.na</span>(life_expectancy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg_panel <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_last_10_years.rds"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>panel_years <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(gpfg_panel<span class="sc">$</span>year))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>start_year <span class="ot">&lt;-</span> <span class="fu">min</span>(panel_years)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>end_year <span class="ot">&lt;-</span> <span class="fu">max</span>(panel_years)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(panel_years) <span class="sc">==</span> <span class="dv">10</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">diff</span>(panel_years) <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["iso_a3"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["life_expectancy"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["geometry"],"name":[5],"type":["s_MULTIP"],"align":["right"]}],"data":[{"1":"VAT","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"1"},{"1":"MNP","2":"Northern Mariana Islands","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"2"},{"1":"MNP","2":"Northern Mariana Islands","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"3"},{"1":"MNP","2":"Northern Mariana Islands","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"4"},{"1":"MNP","2":"Northern Mariana Islands","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"5"},{"1":"MNP","2":"Northern Mariana Islands","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"6"},{"1":"MNP","2":"Northern Mariana Islands","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"7"},{"1":"MNP","2":"Northern Mariana Islands","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"8"},{"1":"MNP","2":"Northern Mariana Islands","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"9"},{"1":"MNP","2":"Northern Mariana Islands","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"10"},{"1":"MNP","2":"Northern Mariana Islands","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"11"},{"1":"MNP","2":"Northern Mariana Islands","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"12"},{"1":"MNP","2":"Northern Mariana Islands","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"13"},{"1":"MNP","2":"Northern Mariana Islands","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"14"},{"1":"MNP","2":"Northern Mariana Islands","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"15"},{"1":"MNP","2":"Northern Mariana Islands","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"16"},{"1":"MNP","2":"Northern Mariana Islands","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"17"},{"1":"MNP","2":"Northern Mariana Islands","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"18"},{"1":"MNP","2":"Northern Mariana Islands","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"19"},{"1":"MNP","2":"Northern Mariana Islands","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"20"},{"1":"MNP","2":"Northern Mariana Islands","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"21"},{"1":"MNP","2":"Northern Mariana Islands","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"22"},{"1":"MNP","2":"Northern Mariana Islands","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"23"},{"1":"MNP","2":"Northern Mariana Islands","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"24"},{"1":"MNP","2":"Northern Mariana Islands","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"25"},{"1":"MNP","2":"Northern Mariana Islands","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"26"},{"1":"MNP","2":"Northern Mariana Islands","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"27"},{"1":"MNP","2":"Northern Mariana Islands","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"28"},{"1":"MNP","2":"Northern Mariana Islands","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"29"},{"1":"MNP","2":"Northern Mariana Islands","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"30"},{"1":"MNP","2":"Northern Mariana Islands","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"31"},{"1":"MNP","2":"Northern Mariana Islands","3":"1990","4":"NA","5":"<s_MULTIP>","_rn_":"32"},{"1":"MNP","2":"Northern Mariana Islands","3":"1991","4":"NA","5":"<s_MULTIP>","_rn_":"33"},{"1":"MNP","2":"Northern Mariana Islands","3":"1992","4":"NA","5":"<s_MULTIP>","_rn_":"34"},{"1":"MNP","2":"Northern Mariana Islands","3":"1993","4":"NA","5":"<s_MULTIP>","_rn_":"35"},{"1":"MNP","2":"Northern Mariana Islands","3":"1994","4":"NA","5":"<s_MULTIP>","_rn_":"36"},{"1":"MNP","2":"Northern Mariana Islands","3":"1995","4":"NA","5":"<s_MULTIP>","_rn_":"37"},{"1":"MNP","2":"Northern Mariana Islands","3":"1996","4":"NA","5":"<s_MULTIP>","_rn_":"38"},{"1":"MNP","2":"Northern Mariana Islands","3":"1997","4":"NA","5":"<s_MULTIP>","_rn_":"39"},{"1":"MNP","2":"Northern Mariana Islands","3":"1998","4":"NA","5":"<s_MULTIP>","_rn_":"40"},{"1":"MNP","2":"Northern Mariana Islands","3":"1999","4":"NA","5":"<s_MULTIP>","_rn_":"41"},{"1":"MNP","2":"Northern Mariana Islands","3":"2000","4":"NA","5":"<s_MULTIP>","_rn_":"42"},{"1":"MNP","2":"Northern Mariana Islands","3":"2001","4":"NA","5":"<s_MULTIP>","_rn_":"43"},{"1":"MNP","2":"Northern Mariana Islands","3":"2002","4":"NA","5":"<s_MULTIP>","_rn_":"44"},{"1":"MNP","2":"Northern Mariana Islands","3":"2003","4":"NA","5":"<s_MULTIP>","_rn_":"45"},{"1":"MNP","2":"Northern Mariana Islands","3":"2004","4":"NA","5":"<s_MULTIP>","_rn_":"46"},{"1":"MNP","2":"Northern Mariana Islands","3":"2005","4":"NA","5":"<s_MULTIP>","_rn_":"47"},{"1":"MNP","2":"Northern Mariana Islands","3":"2006","4":"NA","5":"<s_MULTIP>","_rn_":"48"},{"1":"MNP","2":"Northern Mariana Islands","3":"2007","4":"NA","5":"<s_MULTIP>","_rn_":"49"},{"1":"MNP","2":"Northern Mariana Islands","3":"2008","4":"NA","5":"<s_MULTIP>","_rn_":"50"},{"1":"MNP","2":"Northern Mariana Islands","3":"2009","4":"NA","5":"<s_MULTIP>","_rn_":"51"},{"1":"MNP","2":"Northern Mariana Islands","3":"2010","4":"NA","5":"<s_MULTIP>","_rn_":"52"},{"1":"MNP","2":"Northern Mariana Islands","3":"2011","4":"NA","5":"<s_MULTIP>","_rn_":"53"},{"1":"MNP","2":"Northern Mariana Islands","3":"2012","4":"NA","5":"<s_MULTIP>","_rn_":"54"},{"1":"MNP","2":"Northern Mariana Islands","3":"2013","4":"NA","5":"<s_MULTIP>","_rn_":"55"},{"1":"MNP","2":"Northern Mariana Islands","3":"2014","4":"NA","5":"<s_MULTIP>","_rn_":"56"},{"1":"MNP","2":"Northern Mariana Islands","3":"2015","4":"NA","5":"<s_MULTIP>","_rn_":"57"},{"1":"MNP","2":"Northern Mariana Islands","3":"2016","4":"NA","5":"<s_MULTIP>","_rn_":"58"},{"1":"MNP","2":"Northern Mariana Islands","3":"2017","4":"NA","5":"<s_MULTIP>","_rn_":"59"},{"1":"MNP","2":"Northern Mariana Islands","3":"2018","4":"NA","5":"<s_MULTIP>","_rn_":"60"},{"1":"MNP","2":"Northern Mariana Islands","3":"2019","4":"NA","5":"<s_MULTIP>","_rn_":"61"},{"1":"MNP","2":"Northern Mariana Islands","3":"2020","4":"NA","5":"<s_MULTIP>","_rn_":"62"},{"1":"MNP","2":"Northern Mariana Islands","3":"2021","4":"NA","5":"<s_MULTIP>","_rn_":"63"},{"1":"MNP","2":"Northern Mariana Islands","3":"2022","4":"NA","5":"<s_MULTIP>","_rn_":"64"},{"1":"ASM","2":"American Samoa","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"65"},{"1":"ASM","2":"American Samoa","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"66"},{"1":"ASM","2":"American Samoa","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"67"},{"1":"ASM","2":"American Samoa","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"68"},{"1":"ASM","2":"American Samoa","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"69"},{"1":"ASM","2":"American Samoa","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"70"},{"1":"ASM","2":"American Samoa","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"71"},{"1":"ASM","2":"American Samoa","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"72"},{"1":"ASM","2":"American Samoa","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"73"},{"1":"ASM","2":"American Samoa","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"74"},{"1":"ASM","2":"American Samoa","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"75"},{"1":"ASM","2":"American Samoa","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"76"},{"1":"ASM","2":"American Samoa","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"77"},{"1":"ASM","2":"American Samoa","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"78"},{"1":"ASM","2":"American Samoa","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"79"},{"1":"ASM","2":"American Samoa","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"80"},{"1":"ASM","2":"American Samoa","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"81"},{"1":"ASM","2":"American Samoa","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"82"},{"1":"ASM","2":"American Samoa","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"83"},{"1":"ASM","2":"American Samoa","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"84"},{"1":"ASM","2":"American Samoa","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"85"},{"1":"ASM","2":"American Samoa","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"86"},{"1":"ASM","2":"American Samoa","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"87"},{"1":"ASM","2":"American Samoa","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"88"},{"1":"ASM","2":"American Samoa","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"89"},{"1":"ASM","2":"American Samoa","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"90"},{"1":"ASM","2":"American Samoa","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"91"},{"1":"ASM","2":"American Samoa","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"92"},{"1":"ASM","2":"American Samoa","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"93"},{"1":"ASM","2":"American Samoa","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"94"},{"1":"ASM","2":"American Samoa","3":"1990","4":"NA","5":"<s_MULTIP>","_rn_":"95"},{"1":"ASM","2":"American Samoa","3":"1991","4":"NA","5":"<s_MULTIP>","_rn_":"96"},{"1":"ASM","2":"American Samoa","3":"1992","4":"NA","5":"<s_MULTIP>","_rn_":"97"},{"1":"ASM","2":"American Samoa","3":"1993","4":"NA","5":"<s_MULTIP>","_rn_":"98"},{"1":"ASM","2":"American Samoa","3":"1994","4":"NA","5":"<s_MULTIP>","_rn_":"99"},{"1":"ASM","2":"American Samoa","3":"1995","4":"NA","5":"<s_MULTIP>","_rn_":"100"},{"1":"ASM","2":"American Samoa","3":"1996","4":"NA","5":"<s_MULTIP>","_rn_":"101"},{"1":"ASM","2":"American Samoa","3":"1997","4":"NA","5":"<s_MULTIP>","_rn_":"102"},{"1":"ASM","2":"American Samoa","3":"1998","4":"NA","5":"<s_MULTIP>","_rn_":"103"},{"1":"ASM","2":"American Samoa","3":"1999","4":"NA","5":"<s_MULTIP>","_rn_":"104"},{"1":"ASM","2":"American Samoa","3":"2000","4":"NA","5":"<s_MULTIP>","_rn_":"105"},{"1":"ASM","2":"American Samoa","3":"2001","4":"NA","5":"<s_MULTIP>","_rn_":"106"},{"1":"ASM","2":"American Samoa","3":"2002","4":"NA","5":"<s_MULTIP>","_rn_":"107"},{"1":"ASM","2":"American Samoa","3":"2003","4":"NA","5":"<s_MULTIP>","_rn_":"108"},{"1":"ASM","2":"American Samoa","3":"2004","4":"NA","5":"<s_MULTIP>","_rn_":"109"},{"1":"ASM","2":"American Samoa","3":"2005","4":"NA","5":"<s_MULTIP>","_rn_":"110"},{"1":"ASM","2":"American Samoa","3":"2006","4":"NA","5":"<s_MULTIP>","_rn_":"111"},{"1":"ASM","2":"American Samoa","3":"2007","4":"NA","5":"<s_MULTIP>","_rn_":"112"},{"1":"ASM","2":"American Samoa","3":"2008","4":"NA","5":"<s_MULTIP>","_rn_":"113"},{"1":"ASM","2":"American Samoa","3":"2009","4":"NA","5":"<s_MULTIP>","_rn_":"114"},{"1":"ASM","2":"American Samoa","3":"2010","4":"NA","5":"<s_MULTIP>","_rn_":"115"},{"1":"ASM","2":"American Samoa","3":"2011","4":"NA","5":"<s_MULTIP>","_rn_":"116"},{"1":"ASM","2":"American Samoa","3":"2012","4":"NA","5":"<s_MULTIP>","_rn_":"117"},{"1":"ASM","2":"American Samoa","3":"2013","4":"NA","5":"<s_MULTIP>","_rn_":"118"},{"1":"ASM","2":"American Samoa","3":"2014","4":"NA","5":"<s_MULTIP>","_rn_":"119"},{"1":"ASM","2":"American Samoa","3":"2015","4":"NA","5":"<s_MULTIP>","_rn_":"120"},{"1":"ASM","2":"American Samoa","3":"2016","4":"NA","5":"<s_MULTIP>","_rn_":"121"},{"1":"ASM","2":"American Samoa","3":"2017","4":"NA","5":"<s_MULTIP>","_rn_":"122"},{"1":"ASM","2":"American Samoa","3":"2018","4":"NA","5":"<s_MULTIP>","_rn_":"123"},{"1":"ASM","2":"American Samoa","3":"2019","4":"NA","5":"<s_MULTIP>","_rn_":"124"},{"1":"ASM","2":"American Samoa","3":"2020","4":"NA","5":"<s_MULTIP>","_rn_":"125"},{"1":"ASM","2":"American Samoa","3":"2021","4":"NA","5":"<s_MULTIP>","_rn_":"126"},{"1":"ASM","2":"American Samoa","3":"2022","4":"NA","5":"<s_MULTIP>","_rn_":"127"},{"1":"SGS","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"128"},{"1":"IOT","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"129"},{"1":"SHN","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"130"},{"1":"PCN","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"131"},{"1":"AIA","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"132"},{"1":"FLK","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"133"},{"1":"CYM","2":"Cayman Islands","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"134"},{"1":"CYM","2":"Cayman Islands","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"135"},{"1":"CYM","2":"Cayman Islands","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"136"},{"1":"CYM","2":"Cayman Islands","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"137"},{"1":"CYM","2":"Cayman Islands","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"138"},{"1":"CYM","2":"Cayman Islands","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"139"},{"1":"CYM","2":"Cayman Islands","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"140"},{"1":"CYM","2":"Cayman Islands","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"141"},{"1":"CYM","2":"Cayman Islands","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"142"},{"1":"CYM","2":"Cayman Islands","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"143"},{"1":"CYM","2":"Cayman Islands","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"144"},{"1":"CYM","2":"Cayman Islands","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"145"},{"1":"CYM","2":"Cayman Islands","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"146"},{"1":"CYM","2":"Cayman Islands","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"147"},{"1":"CYM","2":"Cayman Islands","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"148"},{"1":"CYM","2":"Cayman Islands","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"149"},{"1":"CYM","2":"Cayman Islands","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"150"},{"1":"CYM","2":"Cayman Islands","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"151"},{"1":"CYM","2":"Cayman Islands","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"152"},{"1":"CYM","2":"Cayman Islands","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"153"},{"1":"CYM","2":"Cayman Islands","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"154"},{"1":"CYM","2":"Cayman Islands","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"155"},{"1":"CYM","2":"Cayman Islands","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"156"},{"1":"CYM","2":"Cayman Islands","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"157"},{"1":"CYM","2":"Cayman Islands","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"158"},{"1":"CYM","2":"Cayman Islands","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"159"},{"1":"CYM","2":"Cayman Islands","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"160"},{"1":"CYM","2":"Cayman Islands","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"161"},{"1":"CYM","2":"Cayman Islands","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"162"},{"1":"CYM","2":"Cayman Islands","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"163"},{"1":"CYM","2":"Cayman Islands","3":"1990","4":"NA","5":"<s_MULTIP>","_rn_":"164"},{"1":"CYM","2":"Cayman Islands","3":"1991","4":"NA","5":"<s_MULTIP>","_rn_":"165"},{"1":"CYM","2":"Cayman Islands","3":"1992","4":"NA","5":"<s_MULTIP>","_rn_":"166"},{"1":"CYM","2":"Cayman Islands","3":"1993","4":"NA","5":"<s_MULTIP>","_rn_":"167"},{"1":"CYM","2":"Cayman Islands","3":"1994","4":"NA","5":"<s_MULTIP>","_rn_":"168"},{"1":"CYM","2":"Cayman Islands","3":"1995","4":"NA","5":"<s_MULTIP>","_rn_":"169"},{"1":"CYM","2":"Cayman Islands","3":"1996","4":"NA","5":"<s_MULTIP>","_rn_":"170"},{"1":"CYM","2":"Cayman Islands","3":"1997","4":"NA","5":"<s_MULTIP>","_rn_":"171"},{"1":"CYM","2":"Cayman Islands","3":"1998","4":"NA","5":"<s_MULTIP>","_rn_":"172"},{"1":"CYM","2":"Cayman Islands","3":"1999","4":"NA","5":"<s_MULTIP>","_rn_":"173"},{"1":"CYM","2":"Cayman Islands","3":"2000","4":"NA","5":"<s_MULTIP>","_rn_":"174"},{"1":"CYM","2":"Cayman Islands","3":"2001","4":"NA","5":"<s_MULTIP>","_rn_":"175"},{"1":"CYM","2":"Cayman Islands","3":"2002","4":"NA","5":"<s_MULTIP>","_rn_":"176"},{"1":"CYM","2":"Cayman Islands","3":"2003","4":"NA","5":"<s_MULTIP>","_rn_":"177"},{"1":"CYM","2":"Cayman Islands","3":"2004","4":"NA","5":"<s_MULTIP>","_rn_":"178"},{"1":"CYM","2":"Cayman Islands","3":"2005","4":"NA","5":"<s_MULTIP>","_rn_":"179"},{"1":"CYM","2":"Cayman Islands","3":"2006","4":"NA","5":"<s_MULTIP>","_rn_":"180"},{"1":"CYM","2":"Cayman Islands","3":"2007","4":"NA","5":"<s_MULTIP>","_rn_":"181"},{"1":"CYM","2":"Cayman Islands","3":"2008","4":"NA","5":"<s_MULTIP>","_rn_":"182"},{"1":"CYM","2":"Cayman Islands","3":"2009","4":"NA","5":"<s_MULTIP>","_rn_":"183"},{"1":"CYM","2":"Cayman Islands","3":"2011","4":"NA","5":"<s_MULTIP>","_rn_":"184"},{"1":"CYM","2":"Cayman Islands","3":"2012","4":"NA","5":"<s_MULTIP>","_rn_":"185"},{"1":"CYM","2":"Cayman Islands","3":"2013","4":"NA","5":"<s_MULTIP>","_rn_":"186"},{"1":"CYM","2":"Cayman Islands","3":"2014","4":"NA","5":"<s_MULTIP>","_rn_":"187"},{"1":"CYM","2":"Cayman Islands","3":"2015","4":"NA","5":"<s_MULTIP>","_rn_":"188"},{"1":"CYM","2":"Cayman Islands","3":"2016","4":"NA","5":"<s_MULTIP>","_rn_":"189"},{"1":"CYM","2":"Cayman Islands","3":"2017","4":"NA","5":"<s_MULTIP>","_rn_":"190"},{"1":"CYM","2":"Cayman Islands","3":"2018","4":"NA","5":"<s_MULTIP>","_rn_":"191"},{"1":"CYM","2":"Cayman Islands","3":"2019","4":"NA","5":"<s_MULTIP>","_rn_":"192"},{"1":"CYM","2":"Cayman Islands","3":"2020","4":"NA","5":"<s_MULTIP>","_rn_":"193"},{"1":"CYM","2":"Cayman Islands","3":"2022","4":"NA","5":"<s_MULTIP>","_rn_":"194"},{"1":"MSR","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"195"},{"1":"JEY","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"196"},{"1":"GGY","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"197"},{"1":"TWN","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"198"},{"1":"-99","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"199"},{"1":"SYC","2":"Seychelles","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"200"},{"1":"SYC","2":"Seychelles","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"201"},{"1":"SYC","2":"Seychelles","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"202"},{"1":"SYC","2":"Seychelles","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"203"},{"1":"SYC","2":"Seychelles","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"204"},{"1":"SYC","2":"Seychelles","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"205"},{"1":"SYC","2":"Seychelles","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"206"},{"1":"SYC","2":"Seychelles","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"207"},{"1":"SYC","2":"Seychelles","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"208"},{"1":"SYC","2":"Seychelles","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"209"},{"1":"SYC","2":"Seychelles","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"210"},{"1":"SYC","2":"Seychelles","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"211"},{"1":"SYC","2":"Seychelles","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"212"},{"1":"SYC","2":"Seychelles","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"213"},{"1":"SYC","2":"Seychelles","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"214"},{"1":"SYC","2":"Seychelles","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"215"},{"1":"SYC","2":"Seychelles","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"216"},{"1":"SYC","2":"Seychelles","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"217"},{"1":"SYC","2":"Seychelles","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"218"},{"1":"SYC","2":"Seychelles","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"219"},{"1":"SMR","2":"San Marino","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"220"},{"1":"SMR","2":"San Marino","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"221"},{"1":"SMR","2":"San Marino","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"222"},{"1":"SMR","2":"San Marino","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"223"},{"1":"SMR","2":"San Marino","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"224"},{"1":"SMR","2":"San Marino","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"225"},{"1":"SMR","2":"San Marino","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"226"},{"1":"SMR","2":"San Marino","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"227"},{"1":"SMR","2":"San Marino","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"228"},{"1":"SMR","2":"San Marino","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"229"},{"1":"SMR","2":"San Marino","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"230"},{"1":"SMR","2":"San Marino","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"231"},{"1":"SMR","2":"San Marino","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"232"},{"1":"SMR","2":"San Marino","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"233"},{"1":"SMR","2":"San Marino","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"234"},{"1":"SMR","2":"San Marino","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"235"},{"1":"SMR","2":"San Marino","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"236"},{"1":"SMR","2":"San Marino","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"237"},{"1":"SMR","2":"San Marino","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"238"},{"1":"SMR","2":"San Marino","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"239"},{"1":"SMR","2":"San Marino","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"240"},{"1":"SMR","2":"San Marino","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"241"},{"1":"SMR","2":"San Marino","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"242"},{"1":"SMR","2":"San Marino","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"243"},{"1":"SMR","2":"San Marino","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"244"},{"1":"SMR","2":"San Marino","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"245"},{"1":"SMR","2":"San Marino","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"246"},{"1":"SMR","2":"San Marino","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"247"},{"1":"SMR","2":"San Marino","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"248"},{"1":"SMR","2":"San Marino","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"249"},{"1":"SMR","2":"San Marino","3":"1990","4":"NA","5":"<s_MULTIP>","_rn_":"250"},{"1":"SMR","2":"San Marino","3":"1991","4":"NA","5":"<s_MULTIP>","_rn_":"251"},{"1":"SMR","2":"San Marino","3":"1992","4":"NA","5":"<s_MULTIP>","_rn_":"252"},{"1":"SMR","2":"San Marino","3":"1993","4":"NA","5":"<s_MULTIP>","_rn_":"253"},{"1":"SMR","2":"San Marino","3":"1994","4":"NA","5":"<s_MULTIP>","_rn_":"254"},{"1":"SMR","2":"San Marino","3":"1995","4":"NA","5":"<s_MULTIP>","_rn_":"255"},{"1":"SMR","2":"San Marino","3":"1996","4":"NA","5":"<s_MULTIP>","_rn_":"256"},{"1":"SMR","2":"San Marino","3":"1997","4":"NA","5":"<s_MULTIP>","_rn_":"257"},{"1":"SMR","2":"San Marino","3":"1998","4":"NA","5":"<s_MULTIP>","_rn_":"258"},{"1":"SMR","2":"San Marino","3":"1999","4":"NA","5":"<s_MULTIP>","_rn_":"259"},{"1":"SMR","2":"San Marino","3":"2000","4":"NA","5":"<s_MULTIP>","_rn_":"260"},{"1":"SMR","2":"San Marino","3":"2001","4":"NA","5":"<s_MULTIP>","_rn_":"261"},{"1":"SMR","2":"San Marino","3":"2002","4":"NA","5":"<s_MULTIP>","_rn_":"262"},{"1":"SMR","2":"San Marino","3":"2003","4":"NA","5":"<s_MULTIP>","_rn_":"263"},{"1":"SMR","2":"San Marino","3":"2004","4":"NA","5":"<s_MULTIP>","_rn_":"264"},{"1":"SMR","2":"San Marino","3":"2005","4":"NA","5":"<s_MULTIP>","_rn_":"265"},{"1":"SMR","2":"San Marino","3":"2006","4":"NA","5":"<s_MULTIP>","_rn_":"266"},{"1":"SMR","2":"San Marino","3":"2007","4":"NA","5":"<s_MULTIP>","_rn_":"267"},{"1":"SMR","2":"San Marino","3":"2008","4":"NA","5":"<s_MULTIP>","_rn_":"268"},{"1":"SMR","2":"San Marino","3":"2009","4":"NA","5":"<s_MULTIP>","_rn_":"269"},{"1":"SMR","2":"San Marino","3":"2010","4":"NA","5":"<s_MULTIP>","_rn_":"270"},{"1":"SMR","2":"San Marino","3":"2011","4":"NA","5":"<s_MULTIP>","_rn_":"271"},{"1":"SMR","2":"San Marino","3":"2012","4":"NA","5":"<s_MULTIP>","_rn_":"272"},{"1":"SMR","2":"San Marino","3":"2013","4":"NA","5":"<s_MULTIP>","_rn_":"273"},{"1":"SMR","2":"San Marino","3":"2014","4":"NA","5":"<s_MULTIP>","_rn_":"274"},{"1":"SMR","2":"San Marino","3":"2015","4":"NA","5":"<s_MULTIP>","_rn_":"275"},{"1":"SMR","2":"San Marino","3":"2016","4":"NA","5":"<s_MULTIP>","_rn_":"276"},{"1":"SMR","2":"San Marino","3":"2017","4":"NA","5":"<s_MULTIP>","_rn_":"277"},{"1":"SMR","2":"San Marino","3":"2018","4":"NA","5":"<s_MULTIP>","_rn_":"278"},{"1":"SMR","2":"San Marino","3":"2019","4":"NA","5":"<s_MULTIP>","_rn_":"279"},{"1":"SMR","2":"San Marino","3":"2020","4":"NA","5":"<s_MULTIP>","_rn_":"280"},{"1":"SMR","2":"San Marino","3":"2021","4":"NA","5":"<s_MULTIP>","_rn_":"281"},{"1":"SMR","2":"San Marino","3":"2022","4":"NA","5":"<s_MULTIP>","_rn_":"282"},{"1":"PLW","2":"Palau","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"283"},{"1":"PLW","2":"Palau","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"284"},{"1":"PLW","2":"Palau","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"285"},{"1":"PLW","2":"Palau","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"286"},{"1":"PLW","2":"Palau","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"287"},{"1":"PLW","2":"Palau","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"288"},{"1":"PLW","2":"Palau","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"289"},{"1":"PLW","2":"Palau","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"290"},{"1":"PLW","2":"Palau","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"291"},{"1":"PLW","2":"Palau","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"292"},{"1":"PLW","2":"Palau","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"293"},{"1":"PLW","2":"Palau","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"294"},{"1":"PLW","2":"Palau","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"295"},{"1":"PLW","2":"Palau","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"296"},{"1":"PLW","2":"Palau","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"297"},{"1":"PLW","2":"Palau","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"298"},{"1":"PLW","2":"Palau","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"299"},{"1":"PLW","2":"Palau","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"300"},{"1":"PLW","2":"Palau","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"301"},{"1":"PLW","2":"Palau","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"302"},{"1":"PLW","2":"Palau","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"303"},{"1":"PLW","2":"Palau","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"304"},{"1":"PLW","2":"Palau","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"305"},{"1":"PLW","2":"Palau","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"306"},{"1":"PLW","2":"Palau","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"307"},{"1":"PLW","2":"Palau","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"308"},{"1":"PLW","2":"Palau","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"309"},{"1":"PLW","2":"Palau","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"310"},{"1":"PLW","2":"Palau","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"311"},{"1":"PLW","2":"Palau","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"312"},{"1":"PLW","2":"Palau","3":"1991","4":"NA","5":"<s_MULTIP>","_rn_":"313"},{"1":"PLW","2":"Palau","3":"1992","4":"NA","5":"<s_MULTIP>","_rn_":"314"},{"1":"PLW","2":"Palau","3":"1993","4":"NA","5":"<s_MULTIP>","_rn_":"315"},{"1":"PLW","2":"Palau","3":"1994","4":"NA","5":"<s_MULTIP>","_rn_":"316"},{"1":"PLW","2":"Palau","3":"1996","4":"NA","5":"<s_MULTIP>","_rn_":"317"},{"1":"PLW","2":"Palau","3":"1997","4":"NA","5":"<s_MULTIP>","_rn_":"318"},{"1":"PLW","2":"Palau","3":"1998","4":"NA","5":"<s_MULTIP>","_rn_":"319"},{"1":"PLW","2":"Palau","3":"1999","4":"NA","5":"<s_MULTIP>","_rn_":"320"},{"1":"PLW","2":"Palau","3":"2001","4":"NA","5":"<s_MULTIP>","_rn_":"321"},{"1":"PLW","2":"Palau","3":"2002","4":"NA","5":"<s_MULTIP>","_rn_":"322"},{"1":"PLW","2":"Palau","3":"2003","4":"NA","5":"<s_MULTIP>","_rn_":"323"},{"1":"PLW","2":"Palau","3":"2004","4":"NA","5":"<s_MULTIP>","_rn_":"324"},{"1":"PLW","2":"Palau","3":"2006","4":"NA","5":"<s_MULTIP>","_rn_":"325"},{"1":"PLW","2":"Palau","3":"2007","4":"NA","5":"<s_MULTIP>","_rn_":"326"},{"1":"PLW","2":"Palau","3":"2008","4":"NA","5":"<s_MULTIP>","_rn_":"327"},{"1":"PLW","2":"Palau","3":"2009","4":"NA","5":"<s_MULTIP>","_rn_":"328"},{"1":"PLW","2":"Palau","3":"2010","4":"NA","5":"<s_MULTIP>","_rn_":"329"},{"1":"PLW","2":"Palau","3":"2011","4":"NA","5":"<s_MULTIP>","_rn_":"330"},{"1":"PLW","2":"Palau","3":"2012","4":"NA","5":"<s_MULTIP>","_rn_":"331"},{"1":"PLW","2":"Palau","3":"2013","4":"NA","5":"<s_MULTIP>","_rn_":"332"},{"1":"PLW","2":"Palau","3":"2014","4":"NA","5":"<s_MULTIP>","_rn_":"333"},{"1":"PLW","2":"Palau","3":"2015","4":"NA","5":"<s_MULTIP>","_rn_":"334"},{"1":"PLW","2":"Palau","3":"2016","4":"NA","5":"<s_MULTIP>","_rn_":"335"},{"1":"PLW","2":"Palau","3":"2017","4":"NA","5":"<s_MULTIP>","_rn_":"336"},{"1":"PLW","2":"Palau","3":"2018","4":"NA","5":"<s_MULTIP>","_rn_":"337"},{"1":"PLW","2":"Palau","3":"2019","4":"NA","5":"<s_MULTIP>","_rn_":"338"},{"1":"PLW","2":"Palau","3":"2020","4":"NA","5":"<s_MULTIP>","_rn_":"339"},{"1":"PLW","2":"Palau","3":"2021","4":"NA","5":"<s_MULTIP>","_rn_":"340"},{"1":"PLW","2":"Palau","3":"2022","4":"NA","5":"<s_MULTIP>","_rn_":"341"},{"1":"-99","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"342"},{"1":"NIU","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"343"},{"1":"COK","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"344"},{"1":"CUW","2":"Curacao","3":"2010","4":"NA","5":"<s_MULTIP>","_rn_":"345"},{"1":"CUW","2":"Curacao","3":"2018","4":"NA","5":"<s_MULTIP>","_rn_":"346"},{"1":"CUW","2":"Curacao","3":"2019","4":"NA","5":"<s_MULTIP>","_rn_":"347"},{"1":"CUW","2":"Curacao","3":"2020","4":"NA","5":"<s_MULTIP>","_rn_":"348"},{"1":"CUW","2":"Curacao","3":"2021","4":"NA","5":"<s_MULTIP>","_rn_":"349"},{"1":"CUW","2":"Curacao","3":"2022","4":"NA","5":"<s_MULTIP>","_rn_":"350"},{"1":"ESH","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"351"},{"1":"MCO","2":"Monaco","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"352"},{"1":"MCO","2":"Monaco","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"353"},{"1":"MCO","2":"Monaco","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"354"},{"1":"MCO","2":"Monaco","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"355"},{"1":"MCO","2":"Monaco","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"356"},{"1":"MCO","2":"Monaco","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"357"},{"1":"MCO","2":"Monaco","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"358"},{"1":"MCO","2":"Monaco","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"359"},{"1":"MCO","2":"Monaco","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"360"},{"1":"MCO","2":"Monaco","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"361"},{"1":"MCO","2":"Monaco","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"362"},{"1":"MCO","2":"Monaco","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"363"},{"1":"MCO","2":"Monaco","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"364"},{"1":"MCO","2":"Monaco","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"365"},{"1":"MCO","2":"Monaco","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"366"},{"1":"MCO","2":"Monaco","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"367"},{"1":"MCO","2":"Monaco","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"368"},{"1":"MCO","2":"Monaco","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"369"},{"1":"MCO","2":"Monaco","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"370"},{"1":"MCO","2":"Monaco","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"371"},{"1":"MCO","2":"Monaco","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"372"},{"1":"MCO","2":"Monaco","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"373"},{"1":"MCO","2":"Monaco","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"374"},{"1":"MCO","2":"Monaco","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"375"},{"1":"MCO","2":"Monaco","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"376"},{"1":"MCO","2":"Monaco","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"377"},{"1":"MCO","2":"Monaco","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"378"},{"1":"MCO","2":"Monaco","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"379"},{"1":"MCO","2":"Monaco","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"380"},{"1":"MCO","2":"Monaco","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"381"},{"1":"MCO","2":"Monaco","3":"1990","4":"NA","5":"<s_MULTIP>","_rn_":"382"},{"1":"MCO","2":"Monaco","3":"1991","4":"NA","5":"<s_MULTIP>","_rn_":"383"},{"1":"MCO","2":"Monaco","3":"1992","4":"NA","5":"<s_MULTIP>","_rn_":"384"},{"1":"MCO","2":"Monaco","3":"1993","4":"NA","5":"<s_MULTIP>","_rn_":"385"},{"1":"MCO","2":"Monaco","3":"1994","4":"NA","5":"<s_MULTIP>","_rn_":"386"},{"1":"MCO","2":"Monaco","3":"1995","4":"NA","5":"<s_MULTIP>","_rn_":"387"},{"1":"MCO","2":"Monaco","3":"1996","4":"NA","5":"<s_MULTIP>","_rn_":"388"},{"1":"MCO","2":"Monaco","3":"1997","4":"NA","5":"<s_MULTIP>","_rn_":"389"},{"1":"MCO","2":"Monaco","3":"1998","4":"NA","5":"<s_MULTIP>","_rn_":"390"},{"1":"MCO","2":"Monaco","3":"1999","4":"NA","5":"<s_MULTIP>","_rn_":"391"},{"1":"MCO","2":"Monaco","3":"2000","4":"NA","5":"<s_MULTIP>","_rn_":"392"},{"1":"MCO","2":"Monaco","3":"2001","4":"NA","5":"<s_MULTIP>","_rn_":"393"},{"1":"MCO","2":"Monaco","3":"2002","4":"NA","5":"<s_MULTIP>","_rn_":"394"},{"1":"MCO","2":"Monaco","3":"2003","4":"NA","5":"<s_MULTIP>","_rn_":"395"},{"1":"MCO","2":"Monaco","3":"2004","4":"NA","5":"<s_MULTIP>","_rn_":"396"},{"1":"MCO","2":"Monaco","3":"2005","4":"NA","5":"<s_MULTIP>","_rn_":"397"},{"1":"MCO","2":"Monaco","3":"2006","4":"NA","5":"<s_MULTIP>","_rn_":"398"},{"1":"MCO","2":"Monaco","3":"2007","4":"NA","5":"<s_MULTIP>","_rn_":"399"},{"1":"MCO","2":"Monaco","3":"2008","4":"NA","5":"<s_MULTIP>","_rn_":"400"},{"1":"MCO","2":"Monaco","3":"2009","4":"NA","5":"<s_MULTIP>","_rn_":"401"},{"1":"MCO","2":"Monaco","3":"2010","4":"NA","5":"<s_MULTIP>","_rn_":"402"},{"1":"MCO","2":"Monaco","3":"2011","4":"NA","5":"<s_MULTIP>","_rn_":"403"},{"1":"MCO","2":"Monaco","3":"2012","4":"NA","5":"<s_MULTIP>","_rn_":"404"},{"1":"MCO","2":"Monaco","3":"2013","4":"NA","5":"<s_MULTIP>","_rn_":"405"},{"1":"MCO","2":"Monaco","3":"2014","4":"NA","5":"<s_MULTIP>","_rn_":"406"},{"1":"MCO","2":"Monaco","3":"2015","4":"NA","5":"<s_MULTIP>","_rn_":"407"},{"1":"MCO","2":"Monaco","3":"2016","4":"NA","5":"<s_MULTIP>","_rn_":"408"},{"1":"MCO","2":"Monaco","3":"2017","4":"NA","5":"<s_MULTIP>","_rn_":"409"},{"1":"MCO","2":"Monaco","3":"2018","4":"NA","5":"<s_MULTIP>","_rn_":"410"},{"1":"MCO","2":"Monaco","3":"2019","4":"NA","5":"<s_MULTIP>","_rn_":"411"},{"1":"MCO","2":"Monaco","3":"2020","4":"NA","5":"<s_MULTIP>","_rn_":"412"},{"1":"MCO","2":"Monaco","3":"2021","4":"NA","5":"<s_MULTIP>","_rn_":"413"},{"1":"MCO","2":"Monaco","3":"2022","4":"NA","5":"<s_MULTIP>","_rn_":"414"},{"1":"LIE","2":"Liechtenstein","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"415"},{"1":"LIE","2":"Liechtenstein","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"416"},{"1":"LIE","2":"Liechtenstein","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"417"},{"1":"LIE","2":"Liechtenstein","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"418"},{"1":"LIE","2":"Liechtenstein","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"419"},{"1":"LIE","2":"Liechtenstein","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"420"},{"1":"LIE","2":"Liechtenstein","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"421"},{"1":"LIE","2":"Liechtenstein","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"422"},{"1":"LIE","2":"Liechtenstein","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"423"},{"1":"LIE","2":"Liechtenstein","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"424"},{"1":"LIE","2":"Liechtenstein","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"425"},{"1":"LIE","2":"Liechtenstein","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"426"},{"1":"LIE","2":"Liechtenstein","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"427"},{"1":"LIE","2":"Liechtenstein","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"428"},{"1":"LIE","2":"Liechtenstein","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"429"},{"1":"LIE","2":"Liechtenstein","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"430"},{"1":"LIE","2":"Liechtenstein","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"431"},{"1":"LIE","2":"Liechtenstein","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"432"},{"1":"LIE","2":"Liechtenstein","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"433"},{"1":"LIE","2":"Liechtenstein","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"434"},{"1":"LIE","2":"Liechtenstein","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"435"},{"1":"LIE","2":"Liechtenstein","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"436"},{"1":"LIE","2":"Liechtenstein","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"437"},{"1":"LIE","2":"Liechtenstein","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"438"},{"1":"LIE","2":"Liechtenstein","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"439"},{"1":"LIE","2":"Liechtenstein","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"440"},{"1":"LIE","2":"Liechtenstein","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"441"},{"1":"LIE","2":"Liechtenstein","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"442"},{"1":"LIE","2":"Liechtenstein","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"443"},{"1":"LIE","2":"Liechtenstein","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"444"},{"1":"LIE","2":"Liechtenstein","3":"1990","4":"NA","5":"<s_MULTIP>","_rn_":"445"},{"1":"LIE","2":"Liechtenstein","3":"1991","4":"NA","5":"<s_MULTIP>","_rn_":"446"},{"1":"LIE","2":"Liechtenstein","3":"1992","4":"NA","5":"<s_MULTIP>","_rn_":"447"},{"1":"LIE","2":"Liechtenstein","3":"1993","4":"NA","5":"<s_MULTIP>","_rn_":"448"},{"1":"-99","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"449"},{"1":"ISR","2":"Israel","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"450"},{"1":"ISR","2":"Israel","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"451"},{"1":"ISR","2":"Israel","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"452"},{"1":"ISR","2":"Israel","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"453"},{"1":"PSE","2":"West Bank and Gaza","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"454"},{"1":"PSE","2":"West Bank and Gaza","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"455"},{"1":"PSE","2":"West Bank and Gaza","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"456"},{"1":"PSE","2":"West Bank and Gaza","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"457"},{"1":"PSE","2":"West Bank and Gaza","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"458"},{"1":"PSE","2":"West Bank and Gaza","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"459"},{"1":"PSE","2":"West Bank and Gaza","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"460"},{"1":"PSE","2":"West Bank and Gaza","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"461"},{"1":"PSE","2":"West Bank and Gaza","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"462"},{"1":"PSE","2":"West Bank and Gaza","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"463"},{"1":"PSE","2":"West Bank and Gaza","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"464"},{"1":"PSE","2":"West Bank and Gaza","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"465"},{"1":"PSE","2":"West Bank and Gaza","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"466"},{"1":"PSE","2":"West Bank and Gaza","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"467"},{"1":"PSE","2":"West Bank and Gaza","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"468"},{"1":"PSE","2":"West Bank and Gaza","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"469"},{"1":"PSE","2":"West Bank and Gaza","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"470"},{"1":"PSE","2":"West Bank and Gaza","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"471"},{"1":"PSE","2":"West Bank and Gaza","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"472"},{"1":"PSE","2":"West Bank and Gaza","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"473"},{"1":"PSE","2":"West Bank and Gaza","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"474"},{"1":"PSE","2":"West Bank and Gaza","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"475"},{"1":"PSE","2":"West Bank and Gaza","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"476"},{"1":"PSE","2":"West Bank and Gaza","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"477"},{"1":"PSE","2":"West Bank and Gaza","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"478"},{"1":"PSE","2":"West Bank and Gaza","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"479"},{"1":"PSE","2":"West Bank and Gaza","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"480"},{"1":"PSE","2":"West Bank and Gaza","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"481"},{"1":"PSE","2":"West Bank and Gaza","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"482"},{"1":"PSE","2":"West Bank and Gaza","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"483"},{"1":"-99","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"484"},{"1":"SPM","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"485"},{"1":"WLF","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"486"},{"1":"BLM","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"487"},{"1":"ATF","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"488"},{"1":"ALA","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"489"},{"1":"GRL","2":"Greenland","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"490"},{"1":"GRL","2":"Greenland","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"491"},{"1":"GRL","2":"Greenland","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"492"},{"1":"GRL","2":"Greenland","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"493"},{"1":"GRL","2":"Greenland","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"494"},{"1":"GRL","2":"Greenland","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"495"},{"1":"GRL","2":"Greenland","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"496"},{"1":"GRL","2":"Greenland","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"497"},{"1":"GRL","2":"Greenland","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"498"},{"1":"GRL","2":"Greenland","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"499"},{"1":"GRL","2":"Greenland","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"500"},{"1":"GRL","2":"Greenland","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"501"},{"1":"GRL","2":"Greenland","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"502"},{"1":"GRL","2":"Greenland","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"503"},{"1":"GRL","2":"Greenland","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"504"},{"1":"GRL","2":"Greenland","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"505"},{"1":"GRL","2":"Greenland","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"506"},{"1":"GRL","2":"Greenland","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"507"},{"1":"FRO","2":"Faroe Islands","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"508"},{"1":"FRO","2":"Faroe Islands","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"509"},{"1":"FRO","2":"Faroe Islands","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"510"},{"1":"FRO","2":"Faroe Islands","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"511"},{"1":"FRO","2":"Faroe Islands","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"512"},{"1":"FRO","2":"Faroe Islands","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"513"},{"1":"FRO","2":"Faroe Islands","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"514"},{"1":"FRO","2":"Faroe Islands","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"515"},{"1":"FRO","2":"Faroe Islands","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"516"},{"1":"FRO","2":"Faroe Islands","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"517"},{"1":"FRO","2":"Faroe Islands","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"518"},{"1":"FRO","2":"Faroe Islands","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"519"},{"1":"FRO","2":"Faroe Islands","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"520"},{"1":"FRO","2":"Faroe Islands","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"521"},{"1":"FRO","2":"Faroe Islands","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"522"},{"1":"FRO","2":"Faroe Islands","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"523"},{"1":"FRO","2":"Faroe Islands","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"524"},{"1":"FRO","2":"Faroe Islands","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"525"},{"1":"FRO","2":"Faroe Islands","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"526"},{"1":"FRO","2":"Faroe Islands","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"527"},{"1":"FRO","2":"Faroe Islands","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"528"},{"1":"FRO","2":"Faroe Islands","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"529"},{"1":"FRO","2":"Faroe Islands","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"530"},{"1":"FRO","2":"Faroe Islands","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"531"},{"1":"-99","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"532"},{"1":"-99","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"533"},{"1":"HMD","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"534"},{"1":"NFK","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"535"},{"1":"-99","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"536"},{"1":"AND","2":"Andorra","3":"1960","4":"NA","5":"<s_MULTIP>","_rn_":"537"},{"1":"AND","2":"Andorra","3":"1961","4":"NA","5":"<s_MULTIP>","_rn_":"538"},{"1":"AND","2":"Andorra","3":"1962","4":"NA","5":"<s_MULTIP>","_rn_":"539"},{"1":"AND","2":"Andorra","3":"1963","4":"NA","5":"<s_MULTIP>","_rn_":"540"},{"1":"AND","2":"Andorra","3":"1964","4":"NA","5":"<s_MULTIP>","_rn_":"541"},{"1":"AND","2":"Andorra","3":"1965","4":"NA","5":"<s_MULTIP>","_rn_":"542"},{"1":"AND","2":"Andorra","3":"1966","4":"NA","5":"<s_MULTIP>","_rn_":"543"},{"1":"AND","2":"Andorra","3":"1967","4":"NA","5":"<s_MULTIP>","_rn_":"544"},{"1":"AND","2":"Andorra","3":"1968","4":"NA","5":"<s_MULTIP>","_rn_":"545"},{"1":"AND","2":"Andorra","3":"1969","4":"NA","5":"<s_MULTIP>","_rn_":"546"},{"1":"AND","2":"Andorra","3":"1970","4":"NA","5":"<s_MULTIP>","_rn_":"547"},{"1":"AND","2":"Andorra","3":"1971","4":"NA","5":"<s_MULTIP>","_rn_":"548"},{"1":"AND","2":"Andorra","3":"1972","4":"NA","5":"<s_MULTIP>","_rn_":"549"},{"1":"AND","2":"Andorra","3":"1973","4":"NA","5":"<s_MULTIP>","_rn_":"550"},{"1":"AND","2":"Andorra","3":"1974","4":"NA","5":"<s_MULTIP>","_rn_":"551"},{"1":"AND","2":"Andorra","3":"1975","4":"NA","5":"<s_MULTIP>","_rn_":"552"},{"1":"AND","2":"Andorra","3":"1976","4":"NA","5":"<s_MULTIP>","_rn_":"553"},{"1":"AND","2":"Andorra","3":"1977","4":"NA","5":"<s_MULTIP>","_rn_":"554"},{"1":"AND","2":"Andorra","3":"1978","4":"NA","5":"<s_MULTIP>","_rn_":"555"},{"1":"AND","2":"Andorra","3":"1979","4":"NA","5":"<s_MULTIP>","_rn_":"556"},{"1":"AND","2":"Andorra","3":"1980","4":"NA","5":"<s_MULTIP>","_rn_":"557"},{"1":"AND","2":"Andorra","3":"1981","4":"NA","5":"<s_MULTIP>","_rn_":"558"},{"1":"AND","2":"Andorra","3":"1982","4":"NA","5":"<s_MULTIP>","_rn_":"559"},{"1":"AND","2":"Andorra","3":"1983","4":"NA","5":"<s_MULTIP>","_rn_":"560"},{"1":"AND","2":"Andorra","3":"1984","4":"NA","5":"<s_MULTIP>","_rn_":"561"},{"1":"AND","2":"Andorra","3":"1985","4":"NA","5":"<s_MULTIP>","_rn_":"562"},{"1":"AND","2":"Andorra","3":"1986","4":"NA","5":"<s_MULTIP>","_rn_":"563"},{"1":"AND","2":"Andorra","3":"1987","4":"NA","5":"<s_MULTIP>","_rn_":"564"},{"1":"AND","2":"Andorra","3":"1988","4":"NA","5":"<s_MULTIP>","_rn_":"565"},{"1":"AND","2":"Andorra","3":"1989","4":"NA","5":"<s_MULTIP>","_rn_":"566"},{"1":"AND","2":"Andorra","3":"1990","4":"NA","5":"<s_MULTIP>","_rn_":"567"},{"1":"AND","2":"Andorra","3":"1991","4":"NA","5":"<s_MULTIP>","_rn_":"568"},{"1":"AND","2":"Andorra","3":"1992","4":"NA","5":"<s_MULTIP>","_rn_":"569"},{"1":"AND","2":"Andorra","3":"1993","4":"NA","5":"<s_MULTIP>","_rn_":"570"},{"1":"AND","2":"Andorra","3":"1994","4":"NA","5":"<s_MULTIP>","_rn_":"571"},{"1":"AND","2":"Andorra","3":"1995","4":"NA","5":"<s_MULTIP>","_rn_":"572"},{"1":"AND","2":"Andorra","3":"1996","4":"NA","5":"<s_MULTIP>","_rn_":"573"},{"1":"AND","2":"Andorra","3":"1997","4":"NA","5":"<s_MULTIP>","_rn_":"574"},{"1":"AND","2":"Andorra","3":"1998","4":"NA","5":"<s_MULTIP>","_rn_":"575"},{"1":"AND","2":"Andorra","3":"1999","4":"NA","5":"<s_MULTIP>","_rn_":"576"},{"1":"AND","2":"Andorra","3":"2000","4":"NA","5":"<s_MULTIP>","_rn_":"577"},{"1":"AND","2":"Andorra","3":"2001","4":"NA","5":"<s_MULTIP>","_rn_":"578"},{"1":"AND","2":"Andorra","3":"2002","4":"NA","5":"<s_MULTIP>","_rn_":"579"},{"1":"AND","2":"Andorra","3":"2003","4":"NA","5":"<s_MULTIP>","_rn_":"580"},{"1":"AND","2":"Andorra","3":"2004","4":"NA","5":"<s_MULTIP>","_rn_":"581"},{"1":"AND","2":"Andorra","3":"2005","4":"NA","5":"<s_MULTIP>","_rn_":"582"},{"1":"AND","2":"Andorra","3":"2006","4":"NA","5":"<s_MULTIP>","_rn_":"583"},{"1":"AND","2":"Andorra","3":"2007","4":"NA","5":"<s_MULTIP>","_rn_":"584"},{"1":"AND","2":"Andorra","3":"2008","4":"NA","5":"<s_MULTIP>","_rn_":"585"},{"1":"AND","2":"Andorra","3":"2009","4":"NA","5":"<s_MULTIP>","_rn_":"586"},{"1":"AND","2":"Andorra","3":"2010","4":"NA","5":"<s_MULTIP>","_rn_":"587"},{"1":"AND","2":"Andorra","3":"2011","4":"NA","5":"<s_MULTIP>","_rn_":"588"},{"1":"AND","2":"Andorra","3":"2012","4":"NA","5":"<s_MULTIP>","_rn_":"589"},{"1":"AND","2":"Andorra","3":"2013","4":"NA","5":"<s_MULTIP>","_rn_":"590"},{"1":"AND","2":"Andorra","3":"2014","4":"NA","5":"<s_MULTIP>","_rn_":"591"},{"1":"AND","2":"Andorra","3":"2015","4":"NA","5":"<s_MULTIP>","_rn_":"592"},{"1":"AND","2":"Andorra","3":"2016","4":"NA","5":"<s_MULTIP>","_rn_":"593"},{"1":"AND","2":"Andorra","3":"2017","4":"NA","5":"<s_MULTIP>","_rn_":"594"},{"1":"AND","2":"Andorra","3":"2018","4":"NA","5":"<s_MULTIP>","_rn_":"595"},{"1":"AND","2":"Andorra","3":"2019","4":"NA","5":"<s_MULTIP>","_rn_":"596"},{"1":"AND","2":"Andorra","3":"2020","4":"NA","5":"<s_MULTIP>","_rn_":"597"},{"1":"AND","2":"Andorra","3":"2021","4":"NA","5":"<s_MULTIP>","_rn_":"598"},{"1":"AND","2":"Andorra","3":"2022","4":"NA","5":"<s_MULTIP>","_rn_":"599"},{"1":"-99","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"600"},{"1":"ATA","2":"NA","3":"NA","4":"NA","5":"<s_MULTIP>","_rn_":"601"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"2016","2":"8985"},{"1":"2017","2":"9106"},{"1":"2018","2":"9157"},{"1":"2019","2":"9202"},{"1":"2020","2":"9123"},{"1":"2021","2":"9338"},{"1":"2022","2":"9228"},{"1":"2023","2":"8859"},{"1":"2024","2":"8659"},{"1":"2025","2":"7201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
+<p>The input grain is one equity holding at one year-end. The same published name may appear in several years, so the pair <code>year + company</code>—not <code>company</code> alone—is the apparent key for this teaching period.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'sf' was built under R version 4.3.3</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>duplicate_keys <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, company) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>duplicate_keys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["company"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_merge <span class="ot">&lt;-</span> df_merge <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(year) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(life_expectancy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-</section>
-<section id="save-the-merged-data" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="save-the-merged-data"><span class="header-section-number">5.6</span> Save the Merged Data</h2>
+<section id="stack-observations-with-bind_rows" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="stack-observations-with-bind_rows"><span class="header-section-number">7.3</span> Stack observations with <code>bind_rows()</code></h2>
+<p>When tables have the same variables and represent different observations, stack their rows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the merged data to .RData</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(df_merge, <span class="at">file =</span> <span class="st">"out/expectancy_merged.RData"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gpfg_start <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> start_year)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>gpfg_latest <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> end_year)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>two_years <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(gpfg_start, gpfg_latest)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>two_years <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"2016","2":"8985"},{"1":"2025","2":"7201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<p>See <a href="map-lifex.html" class="quarto-xref"><span>Chapter 10</span></a> for following data analysis and visualization.</p>
+</div>
+</div>
+<p>The report year must exist before stacking. Otherwise, identical-looking rows from different snapshots cannot be distinguished.</p>
+<p>The complete preparation script reads all available official annual Excel files, extracts the year from each filename, standardizes names and types, and then uses <code>map_dfr()</code> to combine them. The key pattern is:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>raw_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/raw/gpfg"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">"xlsx$"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> raw_files <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(read_one_annual_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>read_one_annual_file()</code> is defined and validated in <code>scripts/prepare_gpfg.R</code>. Keeping that logic in a script prevents every chapter from cleaning the same files differently.</p>
+</section>
+<section id="join-variables-with-left_join" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="join-variables-with-left_join"><span class="header-section-number">7.4</span> Join variables with <code>left_join()</code></h2>
+<p>A join adds columns by matching keys. First create a one-row-per-year table:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>annual_totals <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">annual_market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">annual_records =</span> <span class="fu">n</span>(),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> year</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Join each year’s total back to every holding in that year:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rows_before <span class="ot">&lt;-</span> <span class="fu">nrow</span>(gpfg_panel)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>gpfg_with_share <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    annual_totals,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"year"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">relationship =</span> <span class="st">"many-to-one"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">share_of_annual_value =</span> market_value_nok <span class="sc">/</span> annual_market_value_nok</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(gpfg_with_share) <span class="sc">==</span> rows_before)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>relationship = "many-to-one"</code> documents the expectation that many holdings match exactly one annual total. If the right-hand table accidentally contains two rows for a year, the join fails instead of silently duplicating holdings.</p>
+</section>
+<section id="audit-unmatched-keys" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="audit-unmatched-keys"><span class="header-section-number">7.5</span> Audit unmatched keys</h2>
+<p>Never assume that two tables use the same labels. Before mapping, for example, country names may differ:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>country_lookup_example <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"China"</span>, <span class="st">"Japan"</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">short_label =</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"China"</span>, <span class="st">"Japan"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>gpfg_latest <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(country_lookup_example, <span class="at">by =</span> <span class="st">"country"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Australia"},{"1":"Austria"},{"1":"Bangladesh"},{"1":"Belgium"},{"1":"Brazil"},{"1":"Canada"},{"1":"Chile"},{"1":"Colombia"},{"1":"Czech Republic"},{"1":"Denmark"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><code>anti_join()</code> answers “which keys on the left have no match on the right?” A missing match is not automatically safe to drop. It may reveal a spelling difference, a changed country name, a different definition, or genuinely missing reference data.</p>
+<p>Use these checks around a consequential join:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>left_only  <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(left_table, right_table, <span class="at">by =</span> <span class="st">"key"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>right_only <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(right_table, left_table, <span class="at">by =</span> <span class="st">"key"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>joined <span class="ot">&lt;-</span> left_table <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(right_table, <span class="at">by =</span> <span class="st">"key"</span>, <span class="at">relationship =</span> <span class="st">"many-to-one"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(joined) <span class="sc">==</span> <span class="fu">nrow</span>(left_table))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summarise-before-comparing-years" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="summarise-before-comparing-years"><span class="header-section-number">7.6</span> Summarise before comparing years</h2>
+<p>Company names are not stable identifiers across a decade. For the main trend analysis, aggregate to a defensible grain such as country-year:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>country_year <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(year, country)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>country_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"2016","2":"Australia","3":"1.009225e+11","4":"288"},{"1":"2016","2":"Austria","3":"1.588864e+10","4":"34"},{"1":"2016","2":"Bahrain","3":"2.566640e+08","4":"1"},{"1":"2016","2":"Bangladesh","3":"9.602422e+08","4":"15"},{"1":"2016","2":"Belgium","3":"4.510874e+10","4":"52"},{"1":"2016","2":"Botswana","3":"5.057764e+07","4":"2"},{"1":"2016","2":"Brazil","3":"3.650548e+10","4":"122"},{"1":"2016","2":"Canada","3":"1.013023e+11","4":"253"},{"1":"2016","2":"Chile","3":"5.972937e+09","4":"32"},{"1":"2016","2":"China","3":"1.267706e+11","4":"515"},{"1":"2016","2":"Colombia","3":"2.616791e+09","4":"14"},{"1":"2016","2":"Croatia","3":"2.930380e+08","4":"10"},{"1":"2016","2":"Czech Republic","3":"5.114329e+08","4":"3"},{"1":"2016","2":"Denmark","3":"4.771729e+10","4":"44"},{"1":"2016","2":"Egypt","3":"1.981059e+09","4":"41"},{"1":"2016","2":"Estonia","3":"9.532192e+07","4":"6"},{"1":"2016","2":"Finland","3":"3.013288e+10","4":"57"},{"1":"2016","2":"France","3":"2.484587e+11","4":"225"},{"1":"2016","2":"Germany","3":"2.671861e+11","4":"198"},{"1":"2016","2":"Ghana","3":"1.720114e+07","4":"2"},{"1":"2016","2":"Greece","3":"3.603534e+09","4":"31"},{"1":"2016","2":"Hong Kong","3":"6.192814e+10","4":"212"},{"1":"2016","2":"Hungary","3":"5.726736e+08","4":"8"},{"1":"2016","2":"India","3":"4.551342e+10","4":"256"},{"1":"2016","2":"Indonesia","3":"1.185190e+10","4":"62"},{"1":"2016","2":"Ireland","3":"5.509198e+09","4":"16"},{"1":"2016","2":"Israel","3":"1.133451e+10","4":"81"},{"1":"2016","2":"Italy","3":"6.992189e+10","4":"117"},{"1":"2016","2":"Japan","3":"4.316595e+11","4":"1443"},{"1":"2016","2":"Jordan","3":"4.695255e+07","4":"1"},{"1":"2016","2":"Kazakhstan","3":"1.050211e+08","4":"2"},{"1":"2016","2":"Kenya","3":"9.732574e+08","4":"15"},{"1":"2016","2":"Kuwait","3":"9.567172e+08","4":"9"},{"1":"2016","2":"Latvia","3":"1.231392e+07","4":"3"},{"1":"2016","2":"Lithuania","3":"5.046178e+07","4":"5"},{"1":"2016","2":"Malaysia","3":"1.215526e+10","4":"196"},{"1":"2016","2":"Mauritius","3":"5.966648e+07","4":"2"},{"1":"2016","2":"Mexico","3":"1.674715e+10","4":"69"},{"1":"2016","2":"Morocco","3":"6.956126e+08","4":"17"},{"1":"2016","2":"Netherlands","3":"7.351131e+10","4":"64"},{"1":"2016","2":"New Zealand","3":"5.252237e+09","4":"40"},{"1":"2016","2":"Nigeria","3":"4.226886e+08","4":"11"},{"1":"2016","2":"Oman","3":"3.068594e+08","4":"4"},{"1":"2016","2":"Peru","3":"9.686456e+08","4":"25"},{"1":"2016","2":"Philippines","3":"6.129995e+09","4":"38"},{"1":"2016","2":"Poland","3":"5.797947e+09","4":"92"},{"1":"2016","2":"Portugal","3":"6.885181e+09","4":"20"},{"1":"2016","2":"Qatar","3":"6.643908e+08","4":"7"},{"1":"2016","2":"Romania","3":"8.288998e+08","4":"10"},{"1":"2016","2":"Russia","3":"2.320585e+10","4":"51"},{"1":"2016","2":"Saudi Arabia","3":"3.933159e+09","4":"34"},{"1":"2016","2":"Singapore","3":"2.337271e+10","4":"112"},{"1":"2016","2":"Slovenia","3":"7.064236e+07","4":"1"},{"1":"2016","2":"South Africa","3":"2.713818e+10","4":"93"},{"1":"2016","2":"South Korea","3":"7.776578e+10","4":"440"},{"1":"2016","2":"Spain","3":"7.707876e+10","4":"75"},{"1":"2016","2":"Sri Lanka","3":"5.656812e+08","4":"13"},{"1":"2016","2":"Sweden","3":"9.128385e+10","4":"155"},{"1":"2016","2":"Switzerland","3":"2.282706e+11","4":"126"},{"1":"2016","2":"Taiwan","3":"7.152579e+10","4":"435"},{"1":"2016","2":"Tanzania","3":"4.463506e+06","4":"1"},{"1":"2016","2":"Thailand","3":"1.594454e+10","4":"123"},{"1":"2016","2":"Tunisia","3":"1.598105e+08","4":"11"},{"1":"2016","2":"Turkey","3":"8.065186e+09","4":"48"},{"1":"2016","2":"Uganda","3":"1.204935e+07","4":"1"},{"1":"2016","2":"Ukraine","3":"2.504526e+08","4":"4"},{"1":"2016","2":"United Arab Emirates","3":"2.248982e+09","4":"15"},{"1":"2016","2":"United Kingdom","3":"4.769530e+11","4":"426"},{"1":"2016","2":"United States","3":"1.769204e+12","4":"2015"},{"1":"2016","2":"Vietnam","3":"2.217501e+09","4":"36"},{"1":"2017","2":"Australia","3":"1.229137e+11","4":"310"},{"1":"2017","2":"Austria","3":"1.808227e+10","4":"33"},{"1":"2017","2":"Bahrain","3":"4.648565e+08","4":"1"},{"1":"2017","2":"Bangladesh","3":"1.999157e+09","4":"20"},{"1":"2017","2":"Belgium","3":"4.892536e+10","4":"51"},{"1":"2017","2":"Brazil","3":"4.926451e+10","4":"133"},{"1":"2017","2":"Canada","3":"1.279340e+11","4":"223"},{"1":"2017","2":"Chile","3":"8.029434e+09","4":"33"},{"1":"2017","2":"China","3":"2.026933e+11","4":"564"},{"1":"2017","2":"Colombia","3":"2.641852e+09","4":"11"},{"1":"2017","2":"Croatia","3":"2.950260e+08","4":"12"},{"1":"2017","2":"Czech Republic","3":"2.646242e+08","4":"2"},{"1":"2017","2":"Denmark","3":"6.268710e+10","4":"46"},{"1":"2017","2":"Egypt","3":"3.062678e+09","4":"46"},{"1":"2017","2":"Estonia","3":"1.162831e+08","4":"6"},{"1":"2017","2":"Finland","3":"3.266087e+10","4":"53"},{"1":"2017","2":"France","3":"2.892697e+11","4":"229"},{"1":"2017","2":"Germany","3":"3.445476e+11","4":"193"},{"1":"2017","2":"Ghana","3":"1.442280e+07","4":"1"},{"1":"2017","2":"Greece","3":"4.580115e+09","4":"30"},{"1":"2017","2":"Hong Kong","3":"7.959382e+10","4":"216"},{"1":"2017","2":"Hungary","3":"4.305331e+08","4":"8"},{"1":"2017","2":"India","3":"6.630141e+10","4":"272"},{"1":"2017","2":"Indonesia","3":"1.600026e+10","4":"64"},{"1":"2017","2":"Ireland","3":"6.533189e+09","4":"16"},{"1":"2017","2":"Israel","3":"9.978449e+09","4":"85"},{"1":"2017","2":"Italy","3":"9.312989e+10","4":"126"},{"1":"2017","2":"Japan","3":"5.170735e+11","4":"1507"},{"1":"2017","2":"Jordan","3":"4.046573e+07","4":"1"},{"1":"2017","2":"Kenya","3":"9.575555e+08","4":"14"},{"1":"2017","2":"Kuwait","3":"1.065477e+09","4":"10"},{"1":"2017","2":"Latvia","3":"2.372751e+07","4":"4"},{"1":"2017","2":"Lithuania","3":"5.914820e+07","4":"7"},{"1":"2017","2":"Malaysia","3":"1.516052e+10","4":"173"},{"1":"2017","2":"Mauritius","3":"6.771558e+07","4":"1"},{"1":"2017","2":"Mexico","3":"1.992951e+10","4":"74"},{"1":"2017","2":"Morocco","3":"8.467394e+08","4":"18"},{"1":"2017","2":"Netherlands","3":"1.008029e+11","4":"62"},{"1":"2017","2":"New Zealand","3":"6.575372e+09","4":"44"},{"1":"2017","2":"Nigeria","3":"7.708169e+08","4":"10"},{"1":"2017","2":"Oman","3":"3.059772e+08","4":"3"},{"1":"2017","2":"Peru","3":"1.137781e+09","4":"29"},{"1":"2017","2":"Philippines","3":"9.189499e+09","4":"40"},{"1":"2017","2":"Poland","3":"7.861575e+09","4":"91"},{"1":"2017","2":"Portugal","3":"9.583579e+09","4":"22"},{"1":"2017","2":"Qatar","3":"2.629481e+08","4":"7"},{"1":"2017","2":"Romania","3":"7.096060e+08","4":"10"},{"1":"2017","2":"Russia","3":"2.270563e+10","4":"51"},{"1":"2017","2":"Saudi Arabia","3":"6.801263e+09","4":"42"},{"1":"2017","2":"Singapore","3":"2.774711e+10","4":"107"},{"1":"2017","2":"Slovenia","3":"3.538454e+08","4":"7"},{"1":"2017","2":"South Africa","3":"4.060899e+10","4":"97"},{"1":"2017","2":"South Korea","3":"1.104426e+11","4":"463"},{"1":"2017","2":"Spain","3":"1.000201e+11","4":"84"},{"1":"2017","2":"Sri Lanka","3":"6.971180e+08","4":"14"},{"1":"2017","2":"Sweden","3":"1.025496e+11","4":"155"},{"1":"2017","2":"Switzerland","3":"2.611674e+11","4":"128"},{"1":"2017","2":"Taiwan","3":"9.080568e+10","4":"436"},{"1":"2017","2":"Tanzania","3":"2.166889e+06","4":"1"},{"1":"2017","2":"Thailand","3":"2.289966e+10","4":"134"},{"1":"2017","2":"Tunisia","3":"1.746103e+08","4":"12"},{"1":"2017","2":"Turkey","3":"1.063125e+10","4":"51"},{"1":"2017","2":"Ukraine","3":"5.187171e+08","4":"2"},{"1":"2017","2":"United Arab Emirates","3":"2.503376e+09","4":"20"},{"1":"2017","2":"United Kingdom","3":"5.485807e+11","4":"403"},{"1":"2017","2":"United States","3":"2.042110e+12","4":"1944"},{"1":"2017","2":"Vietnam","3":"4.369173e+09","4":"44"},{"1":"2018","2":"Australia","3":"1.169376e+11","4":"312"},{"1":"2018","2":"Austria","3":"1.238783e+10","4":"32"},{"1":"2018","2":"Bahrain","3":"4.843142e+08","4":"1"},{"1":"2018","2":"Bangladesh","3":"1.757049e+09","4":"20"},{"1":"2018","2":"Belgium","3":"3.498734e+10","4":"50"},{"1":"2018","2":"Brazil","3":"5.345140e+10","4":"120"},{"1":"2018","2":"Canada","3":"1.185369e+11","4":"211"},{"1":"2018","2":"Chile","3":"7.420141e+09","4":"34"},{"1":"2018","2":"China","3":"1.977423e+11","4":"602"},{"1":"2018","2":"Colombia","3":"3.929061e+09","4":"15"},{"1":"2018","2":"Croatia","3":"2.984139e+08","4":"12"},{"1":"2018","2":"Czech Republic","3":"3.193222e+08","4":"3"},{"1":"2018","2":"Denmark","3":"5.140950e+10","4":"42"},{"1":"2018","2":"Egypt","3":"3.708595e+09","4":"56"},{"1":"2018","2":"Estonia","3":"9.087757e+07","4":"6"},{"1":"2018","2":"Finland","3":"4.145943e+10","4":"53"},{"1":"2018","2":"France","3":"2.783295e+11","4":"220"},{"1":"2018","2":"Germany","3":"2.679861e+11","4":"195"},{"1":"2018","2":"Ghana","3":"8.601907e+06","4":"1"},{"1":"2018","2":"Greece","3":"3.263759e+09","4":"34"},{"1":"2018","2":"Hong Kong","3":"6.923556e+10","4":"193"},{"1":"2018","2":"Hungary","3":"6.413125e+08","4":"9"},{"1":"2018","2":"Iceland","3":"1.264564e+07","4":"1"},{"1":"2018","2":"India","3":"6.404967e+10","4":"253"},{"1":"2018","2":"Indonesia","3":"1.515440e+10","4":"75"},{"1":"2018","2":"Ireland","3":"6.328229e+09","4":"19"},{"1":"2018","2":"Israel","3":"1.053571e+10","4":"80"},{"1":"2018","2":"Italy","3":"7.824695e+10","4":"131"},{"1":"2018","2":"Japan","3":"4.865980e+11","4":"1571"},{"1":"2018","2":"Jordan","3":"5.634832e+06","4":"1"},{"1":"2018","2":"Kenya","3":"9.187177e+08","4":"17"},{"1":"2018","2":"Kuwait","3":"1.324049e+09","4":"10"},{"1":"2018","2":"Latvia","3":"1.849653e+07","4":"4"},{"1":"2018","2":"Lithuania","3":"7.009570e+07","4":"7"},{"1":"2018","2":"Malaysia","3":"1.359146e+10","4":"152"},{"1":"2018","2":"Malta","3":"4.744336e+06","4":"1"},{"1":"2018","2":"Mauritius","3":"7.043740e+07","4":"1"},{"1":"2018","2":"Mexico","3":"1.774024e+10","4":"62"},{"1":"2018","2":"Moldova","3":"6.777447e+06","4":"1"},{"1":"2018","2":"Morocco","3":"8.590962e+08","4":"23"},{"1":"2018","2":"Netherlands","3":"9.403696e+10","4":"64"},{"1":"2018","2":"New Zealand","3":"6.757503e+09","4":"50"},{"1":"2018","2":"Nigeria","3":"7.546375e+08","4":"12"},{"1":"2018","2":"Oman","3":"3.756441e+08","4":"3"},{"1":"2018","2":"Peru","3":"1.890277e+09","4":"27"},{"1":"2018","2":"Philippines","3":"6.598828e+09","4":"36"},{"1":"2018","2":"Poland","3":"1.205729e+10","4":"114"},{"1":"2018","2":"Portugal","3":"8.418147e+09","4":"21"},{"1":"2018","2":"Qatar","3":"3.167478e+08","4":"6"},{"1":"2018","2":"Romania","3":"8.874944e+08","4":"10"},{"1":"2018","2":"Russia","3":"2.337929e+10","4":"48"},{"1":"2018","2":"Saudi Arabia","3":"9.000522e+09","4":"44"},{"1":"2018","2":"Singapore","3":"2.738803e+10","4":"105"},{"1":"2018","2":"Slovenia","3":"6.174747e+08","4":"7"},{"1":"2018","2":"South Africa","3":"3.678115e+10","4":"90"},{"1":"2018","2":"South Korea","3":"9.629843e+10","4":"501"},{"1":"2018","2":"Spain","3":"9.546982e+10","4":"85"},{"1":"2018","2":"Sri Lanka","3":"8.511327e+08","4":"16"},{"1":"2018","2":"Sweden","3":"9.011418e+10","4":"149"},{"1":"2018","2":"Switzerland","3":"2.450586e+11","4":"130"},{"1":"2018","2":"Taiwan","3":"9.034031e+10","4":"447"},{"1":"2018","2":"Tanzania","3":"4.883575e+06","4":"1"},{"1":"2018","2":"Thailand","3":"2.069104e+10","4":"104"},{"1":"2018","2":"Tunisia","3":"1.279295e+08","4":"12"},{"1":"2018","2":"Turkey","3":"6.126143e+09","4":"58"},{"1":"2018","2":"Ukraine","3":"5.473852e+08","4":"3"},{"1":"2018","2":"United Arab Emirates","3":"3.000816e+09","4":"19"},{"1":"2018","2":"United Kingdom","3":"5.123465e+11","4":"394"},{"1":"2018","2":"United States","3":"2.124600e+12","4":"1929"},{"1":"2018","2":"Vietnam","3":"3.991805e+09","4":"42"},{"1":"2019","2":"Australia","3":"1.451506e+11","4":"302"},{"1":"2019","2":"Austria","3":"1.417079e+10","4":"31"},{"1":"2019","2":"Bahrain","3":"3.422627e+08","4":"1"},{"1":"2019","2":"Bangladesh","3":"1.653080e+09","4":"22"},{"1":"2019","2":"Belgium","3":"4.360487e+10","4":"52"},{"1":"2019","2":"Botswana","3":"1.204658e+07","4":"2"},{"1":"2019","2":"Brazil","3":"6.724171e+10","4":"136"},{"1":"2019","2":"Canada","3":"1.564674e+11","4":"195"},{"1":"2019","2":"Chile","3":"6.835306e+09","4":"33"},{"1":"2019","2":"China","3":"3.087379e+11","4":"795"},{"1":"2019","2":"Colombia","3":"4.639286e+09","4":"15"},{"1":"2019","2":"Croatia","3":"3.696658e+08","4":"10"},{"1":"2019","2":"Cyprus","3":"2.454119e+07","4":"1"},{"1":"2019","2":"Czech Republic","3":"5.554111e+08","4":"3"},{"1":"2019","2":"Denmark","3":"7.095389e+10","4":"41"},{"1":"2019","2":"Egypt","3":"4.659491e+09","4":"41"},{"1":"2019","2":"Estonia","3":"8.429315e+07","4":"5"},{"1":"2019","2":"Finland","3":"4.623572e+10","4":"45"},{"1":"2019","2":"France","3":"3.685366e+11","4":"204"},{"1":"2019","2":"Germany","3":"3.433438e+11","4":"188"},{"1":"2019","2":"Ghana","3":"4.618073e+06","4":"1"},{"1":"2019","2":"Greece","3":"3.657323e+09","4":"30"},{"1":"2019","2":"Hong Kong","3":"8.173098e+10","4":"178"},{"1":"2019","2":"Hungary","3":"7.856151e+08","4":"8"},{"1":"2019","2":"Iceland","3":"1.054600e+08","4":"2"},{"1":"2019","2":"India","3":"8.272985e+10","4":"317"},{"1":"2019","2":"Indonesia","3":"1.639273e+10","4":"79"},{"1":"2019","2":"Ireland","3":"7.198055e+09","4":"15"},{"1":"2019","2":"Israel","3":"1.196791e+10","4":"84"},{"1":"2019","2":"Italy","3":"9.724740e+10","4":"146"},{"1":"2019","2":"Japan","3":"6.050955e+11","4":"1542"},{"1":"2019","2":"Kenya","3":"1.059541e+09","4":"12"},{"1":"2019","2":"Kuwait","3":"4.326603e+09","4":"14"},{"1":"2019","2":"Kyrgyzstan","3":"5.496142e+07","4":"1"},{"1":"2019","2":"Latvia","3":"1.740236e+07","4":"4"},{"1":"2019","2":"Lithuania","3":"9.894122e+07","4":"6"},{"1":"2019","2":"Malaysia","3":"1.810248e+10","4":"146"},{"1":"2019","2":"Mauritius","3":"1.215057e+08","4":"2"},{"1":"2019","2":"Mexico","3":"2.089407e+10","4":"60"},{"1":"2019","2":"Moldova","3":"3.484178e+07","4":"1"},{"1":"2019","2":"Morocco","3":"8.339564e+08","4":"22"},{"1":"2019","2":"Netherlands","3":"1.369133e+11","4":"59"},{"1":"2019","2":"New Zealand","3":"9.976201e+09","4":"47"},{"1":"2019","2":"Nigeria","3":"5.745562e+08","4":"13"},{"1":"2019","2":"Oman","3":"4.506974e+08","4":"3"},{"1":"2019","2":"Peru","3":"2.700987e+07","4":"5"},{"1":"2019","2":"Philippines","3":"9.063507e+09","4":"31"},{"1":"2019","2":"Poland","3":"1.430118e+10","4":"122"},{"1":"2019","2":"Portugal","3":"9.342312e+09","4":"20"},{"1":"2019","2":"Qatar","3":"7.355068e+08","4":"6"},{"1":"2019","2":"Romania","3":"8.699757e+08","4":"9"},{"1":"2019","2":"Russia","3":"3.168537e+10","4":"51"},{"1":"2019","2":"Saudi Arabia","3":"3.650691e+09","4":"37"},{"1":"2019","2":"Singapore","3":"3.457358e+10","4":"93"},{"1":"2019","2":"Slovenia","3":"8.401258e+08","4":"7"},{"1":"2019","2":"South Africa","3":"4.300318e+10","4":"101"},{"1":"2019","2":"South Korea","3":"1.128113e+11","4":"473"},{"1":"2019","2":"Spain","3":"1.172198e+11","4":"79"},{"1":"2019","2":"Sri Lanka","3":"1.004900e+09","4":"20"},{"1":"2019","2":"Sweden","3":"1.152769e+11","4":"146"},{"1":"2019","2":"Switzerland","3":"3.329859e+11","4":"130"},{"1":"2019","2":"Taiwan","3":"1.259979e+11","4":"448"},{"1":"2019","2":"Tanzania","3":"7.940186e+06","4":"1"},{"1":"2019","2":"Thailand","3":"2.766737e+10","4":"128"},{"1":"2019","2":"Tunisia","3":"1.472755e+08","4":"12"},{"1":"2019","2":"Turkey","3":"7.056890e+09","4":"53"},{"1":"2019","2":"Ukraine","3":"4.199597e+08","4":"3"},{"1":"2019","2":"United Arab Emirates","3":"7.799109e+09","4":"18"},{"1":"2019","2":"United Kingdom","3":"6.264961e+11","4":"375"},{"1":"2019","2":"United States","3":"2.841769e+12","4":"1877"},{"1":"2019","2":"Vietnam","3":"4.205032e+09","4":"43"},{"1":"2020","2":"Australia","3":"1.583210e+11","4":"308"},{"1":"2020","2":"Austria","3":"1.106622e+10","4":"32"},{"1":"2020","2":"Bahrain","3":"4.093318e+08","4":"1"},{"1":"2020","2":"Bangladesh","3":"2.126383e+09","4":"20"},{"1":"2020","2":"Belgium","3":"4.057583e+10","4":"52"},{"1":"2020","2":"Botswana","3":"7.286528e+06","4":"2"},{"1":"2020","2":"Brazil","3":"4.552401e+10","4":"151"},{"1":"2020","2":"Canada","3":"1.548205e+11","4":"173"},{"1":"2020","2":"Chile","3":"6.764082e+09","4":"36"},{"1":"2020","2":"China","3":"4.191423e+11","4":"736"},{"1":"2020","2":"Colombia","3":"3.036341e+09","4":"10"},{"1":"2020","2":"Croatia","3":"3.096338e+08","4":"8"},{"1":"2020","2":"Cyprus","3":"7.522090e+06","4":"1"},{"1":"2020","2":"Czech Republic","3":"5.864606e+08","4":"2"},{"1":"2020","2":"Denmark","3":"9.522037e+10","4":"42"},{"1":"2020","2":"Egypt","3":"4.826144e+09","4":"33"},{"1":"2020","2":"Estonia","3":"7.564930e+07","4":"5"},{"1":"2020","2":"Finland","3":"5.080823e+10","4":"48"},{"1":"2020","2":"France","3":"3.840968e+11","4":"197"},{"1":"2020","2":"Germany","3":"3.575987e+11","4":"199"},{"1":"2020","2":"Greece","3":"3.186502e+09","4":"32"},{"1":"2020","2":"Hong Kong","3":"8.525559e+10","4":"169"},{"1":"2020","2":"Hungary","3":"7.259560e+08","4":"6"},{"1":"2020","2":"Iceland","3":"1.595093e+07","4":"1"},{"1":"2020","2":"India","3":"1.038461e+11","4":"317"},{"1":"2020","2":"Indonesia","3":"1.569334e+10","4":"79"},{"1":"2020","2":"Ireland","3":"1.052042e+10","4":"14"},{"1":"2020","2":"Israel","3":"1.090351e+10","4":"81"},{"1":"2020","2":"Italy","3":"9.363161e+10","4":"141"},{"1":"2020","2":"Japan","3":"6.522880e+11","4":"1499"},{"1":"2020","2":"Kenya","3":"8.436080e+08","4":"12"},{"1":"2020","2":"Kuwait","3":"2.855157e+09","4":"13"},{"1":"2020","2":"Kyrgyzstan","3":"4.174176e+07","4":"1"},{"1":"2020","2":"Latvia","3":"2.167120e+07","4":"4"},{"1":"2020","2":"Lithuania","3":"2.164023e+08","4":"6"},{"1":"2020","2":"Malaysia","3":"1.942354e+10","4":"145"},{"1":"2020","2":"Mauritius","3":"7.385058e+07","4":"1"},{"1":"2020","2":"Mexico","3":"2.194601e+10","4":"63"},{"1":"2020","2":"Moldova","3":"3.605854e+07","4":"1"},{"1":"2020","2":"Morocco","3":"9.573239e+08","4":"24"},{"1":"2020","2":"Netherlands","3":"1.550901e+11","4":"58"},{"1":"2020","2":"New Zealand","3":"1.253913e+10","4":"50"},{"1":"2020","2":"Nigeria","3":"5.044756e+08","4":"13"},{"1":"2020","2":"Oman","3":"3.094774e+07","4":"2"},{"1":"2020","2":"Peru","3":"2.202158e+08","4":"6"},{"1":"2020","2":"Philippines","3":"8.851063e+09","4":"35"},{"1":"2020","2":"Poland","3":"1.488970e+10","4":"125"},{"1":"2020","2":"Portugal","3":"1.097420e+10","4":"17"},{"1":"2020","2":"Qatar","3":"4.979964e+09","4":"12"},{"1":"2020","2":"Romania","3":"8.494509e+08","4":"9"},{"1":"2020","2":"Russia","3":"2.333587e+10","4":"47"},{"1":"2020","2":"Saudi Arabia","3":"1.664850e+09","4":"24"},{"1":"2020","2":"Singapore","3":"3.353792e+10","4":"87"},{"1":"2020","2":"Slovenia","3":"8.143284e+08","4":"7"},{"1":"2020","2":"South Africa","3":"4.276332e+10","4":"92"},{"1":"2020","2":"South Korea","3":"1.576188e+11","4":"500"},{"1":"2020","2":"Spain","3":"1.133109e+11","4":"77"},{"1":"2020","2":"Sri Lanka","3":"9.039609e+08","4":"13"},{"1":"2020","2":"Sweden","3":"1.527430e+11","4":"149"},{"1":"2020","2":"Switzerland","3":"3.586415e+11","4":"130"},{"1":"2020","2":"Taiwan","3":"1.700972e+11","4":"472"},{"1":"2020","2":"Thailand","3":"2.503608e+10","4":"139"},{"1":"2020","2":"Tunisia","3":"1.102825e+08","4":"10"},{"1":"2020","2":"Turkey","3":"6.231629e+09","4":"34"},{"1":"2020","2":"Ukraine","3":"2.381186e+08","4":"3"},{"1":"2020","2":"United Arab Emirates","3":"6.791175e+09","4":"19"},{"1":"2020","2":"United Kingdom","3":"5.707066e+11","4":"367"},{"1":"2020","2":"United States","3":"3.336087e+12","4":"1928"},{"1":"2020","2":"Vietnam","3":"5.017359e+09","4":"33"},{"1":"2021","2":"Australia","3":"1.691584e+11","4":"341"},{"1":"2021","2":"Austria","3":"1.430744e+10","4":"34"},{"1":"2021","2":"Bahrain","3":"6.574463e+08","4":"1"},{"1":"2021","2":"Bangladesh","3":"1.868577e+09","4":"10"},{"1":"2021","2":"Belgium","3":"4.709241e+10","4":"52"},{"1":"2021","2":"Brazil","3":"3.994213e+10","4":"174"},{"1":"2021","2":"Canada","3":"1.807360e+11","4":"176"},{"1":"2021","2":"Chile","3":"4.977155e+09","4":"34"},{"1":"2021","2":"China","3":"3.350038e+11","4":"676"},{"1":"2021","2":"Colombia","3":"2.711948e+09","4":"11"},{"1":"2021","2":"Croatia","3":"2.738667e+08","4":"8"},{"1":"2021","2":"Cyprus","3":"9.941324e+06","4":"1"},{"1":"2021","2":"Czech Republic","3":"3.690771e+08","4":"2"},{"1":"2021","2":"Denmark","3":"1.048027e+11","4":"45"},{"1":"2021","2":"Egypt","3":"4.907715e+09","4":"33"},{"1":"2021","2":"Estonia","3":"1.106537e+08","4":"6"},{"1":"2021","2":"Finland","3":"6.652335e+10","4":"49"},{"1":"2021","2":"France","3":"4.339669e+11","4":"190"},{"1":"2021","2":"Germany","3":"3.628123e+11","4":"212"},{"1":"2021","2":"Greece","3":"3.308734e+09","4":"32"},{"1":"2021","2":"Hong Kong","3":"7.833681e+10","4":"156"},{"1":"2021","2":"Hungary","3":"1.742914e+09","4":"5"},{"1":"2021","2":"Iceland","3":"1.095274e+07","4":"1"},{"1":"2021","2":"India","3":"1.440901e+11","4":"375"},{"1":"2021","2":"Indonesia","3":"1.530954e+10","4":"83"},{"1":"2021","2":"Ireland","3":"9.265909e+09","4":"14"},{"1":"2021","2":"Israel","3":"1.409338e+10","4":"77"},{"1":"2021","2":"Italy","3":"1.038773e+11","4":"151"},{"1":"2021","2":"Japan","3":"6.299429e+11","4":"1515"},{"1":"2021","2":"Kenya","3":"1.605948e+09","4":"13"},{"1":"2021","2":"Kuwait","3":"4.205271e+09","4":"13"},{"1":"2021","2":"Kyrgyzstan","3":"4.279200e+07","4":"1"},{"1":"2021","2":"Latvia","3":"5.582674e+06","4":"2"},{"1":"2021","2":"Lithuania","3":"9.975192e+07","4":"4"},{"1":"2021","2":"Malaysia","3":"1.693068e+10","4":"147"},{"1":"2021","2":"Mexico","3":"2.329421e+10","4":"56"},{"1":"2021","2":"Moldova","3":"4.598710e+07","4":"1"},{"1":"2021","2":"Morocco","3":"8.947163e+07","4":"6"},{"1":"2021","2":"Netherlands","3":"2.088618e+11","4":"66"},{"1":"2021","2":"New Zealand","3":"1.029862e+10","4":"48"},{"1":"2021","2":"Nigeria","3":"2.644654e+08","4":"8"},{"1":"2021","2":"Peru","3":"2.966774e+08","4":"6"},{"1":"2021","2":"Philippines","3":"8.901816e+09","4":"40"},{"1":"2021","2":"Poland","3":"1.581246e+10","4":"109"},{"1":"2021","2":"Portugal","3":"9.217468e+09","4":"17"},{"1":"2021","2":"Qatar","3":"8.415210e+09","4":"16"},{"1":"2021","2":"Romania","3":"8.960136e+08","4":"10"},{"1":"2021","2":"Russia","3":"2.743163e+10","4":"51"},{"1":"2021","2":"Singapore","3":"3.520161e+10","4":"87"},{"1":"2021","2":"Slovenia","3":"8.680573e+08","4":"7"},{"1":"2021","2":"South Africa","3":"3.300678e+10","4":"83"},{"1":"2021","2":"South Korea","3":"1.519525e+11","4":"525"},{"1":"2021","2":"Spain","3":"1.065759e+11","4":"74"},{"1":"2021","2":"Sri Lanka","3":"7.050668e+08","4":"20"},{"1":"2021","2":"Sweden","3":"1.819348e+11","4":"174"},{"1":"2021","2":"Switzerland","3":"4.097376e+11","4":"134"},{"1":"2021","2":"Taiwan","3":"2.019290e+11","4":"473"},{"1":"2021","2":"Thailand","3":"2.525914e+10","4":"156"},{"1":"2021","2":"Tunisia","3":"1.715212e+07","4":"1"},{"1":"2021","2":"Turkey","3":"4.277675e+09","4":"42"},{"1":"2021","2":"Ukraine","3":"2.200908e+08","4":"3"},{"1":"2021","2":"United Arab Emirates","3":"1.017018e+10","4":"20"},{"1":"2021","2":"United Kingdom","3":"6.502782e+11","4":"370"},{"1":"2021","2":"United States","3":"3.972126e+12","4":"2060"},{"1":"2021","2":"Vietnam","3":"6.664180e+09","4":"31"},{"1":"2022","2":"Australia","3":"1.985025e+11","4":"371"},{"1":"2022","2":"Austria","3":"1.057128e+10","4":"30"},{"1":"2022","2":"Bahrain","3":"9.868250e+08","4":"1"},{"1":"2022","2":"Bangladesh","3":"1.527301e+09","4":"9"},{"1":"2022","2":"Belgium","3":"4.334820e+10","4":"49"},{"1":"2022","2":"Brazil","3":"4.587307e+10","4":"127"},{"1":"2022","2":"Canada","3":"1.831233e+11","4":"173"},{"1":"2022","2":"Chile","3":"7.459951e+09","4":"35"},{"1":"2022","2":"China","3":"3.283251e+11","4":"694"},{"1":"2022","2":"Colombia","3":"2.801309e+09","4":"12"},{"1":"2022","2":"Croatia","3":"1.654378e+08","4":"5"},{"1":"2022","2":"Czech Republic","3":"2.056165e+08","4":"3"},{"1":"2022","2":"Denmark","3":"1.139332e+11","4":"42"},{"1":"2022","2":"Egypt","3":"1.895663e+09","4":"18"},{"1":"2022","2":"Estonia","3":"9.694506e+07","4":"5"},{"1":"2022","2":"Finland","3":"6.575653e+10","4":"45"},{"1":"2022","2":"France","3":"4.192284e+11","4":"165"},{"1":"2022","2":"Germany","3":"3.262036e+11","4":"200"},{"1":"2022","2":"Greece","3":"4.142664e+09","4":"37"},{"1":"2022","2":"Hong Kong","3":"8.410802e+10","4":"133"},{"1":"2022","2":"Hungary","3":"1.610400e+09","4":"5"},{"1":"2022","2":"India","3":"1.740349e+11","4":"416"},{"1":"2022","2":"Indonesia","3":"2.264690e+10","4":"85"},{"1":"2022","2":"Ireland","3":"8.786102e+09","4":"10"},{"1":"2022","2":"Israel","3":"1.314063e+10","4":"70"},{"1":"2022","2":"Italy","3":"9.503138e+10","4":"144"},{"1":"2022","2":"Japan","3":"6.319608e+11","4":"1533"},{"1":"2022","2":"Kenya","3":"1.457826e+09","4":"12"},{"1":"2022","2":"Kuwait","3":"7.973117e+09","4":"13"},{"1":"2022","2":"Kyrgyzstan","3":"2.373102e+07","4":"1"},{"1":"2022","2":"Latvia","3":"2.436021e+06","4":"1"},{"1":"2022","2":"Lithuania","3":"6.881168e+07","4":"3"},{"1":"2022","2":"Malaysia","3":"1.868856e+10","4":"156"},{"1":"2022","2":"Mexico","3":"2.827444e+10","4":"55"},{"1":"2022","2":"Moldova","3":"2.868433e+07","4":"1"},{"1":"2022","2":"Morocco","3":"4.476931e+07","4":"2"},{"1":"2022","2":"Netherlands","3":"1.924990e+11","4":"62"},{"1":"2022","2":"New Zealand","3":"9.993701e+09","4":"48"},{"1":"2022","2":"Nigeria","3":"2.468258e+08","4":"6"},{"1":"2022","2":"Peru","3":"2.080182e+08","4":"6"},{"1":"2022","2":"Philippines","3":"8.066923e+09","4":"41"},{"1":"2022","2":"Poland","3":"1.253808e+10","4":"104"},{"1":"2022","2":"Portugal","3":"1.131658e+10","4":"15"},{"1":"2022","2":"Qatar","3":"1.092566e+10","4":"17"},{"1":"2022","2":"Romania","3":"6.737126e+08","4":"9"},{"1":"2022","2":"Russia","3":"2.872661e+09","4":"51"},{"1":"2022","2":"Singapore","3":"4.210491e+10","4":"87"},{"1":"2022","2":"Slovenia","3":"6.737458e+08","4":"6"},{"1":"2022","2":"South Africa","3":"3.484062e+10","4":"78"},{"1":"2022","2":"South Korea","3":"1.342965e+11","4":"550"},{"1":"2022","2":"Spain","3":"1.110857e+11","4":"72"},{"1":"2022","2":"Sri Lanka","3":"3.495791e+08","4":"22"},{"1":"2022","2":"Sweden","3":"1.430626e+11","4":"159"},{"1":"2022","2":"Switzerland","3":"3.881625e+11","4":"122"},{"1":"2022","2":"Taiwan","3":"1.686563e+11","4":"491"},{"1":"2022","2":"Thailand","3":"2.892030e+10","4":"161"},{"1":"2022","2":"Tunisia","3":"1.520221e+07","4":"1"},{"1":"2022","2":"Turkey","3":"1.198898e+10","4":"38"},{"1":"2022","2":"Ukraine","3":"1.374327e+08","4":"2"},{"1":"2022","2":"United Arab Emirates","3":"1.740199e+10","4":"31"},{"1":"2022","2":"United Kingdom","3":"6.110088e+11","4":"358"},{"1":"2022","2":"United States","3":"3.790665e+12","4":"1990"},{"1":"2022","2":"Vietnam","3":"5.100104e+09","4":"40"},{"1":"2023","2":"Australia","3":"2.254995e+11","4":"343"},{"1":"2023","2":"Austria","3":"1.390854e+10","4":"28"},{"1":"2023","2":"Bahrain","3":"2.908176e+08","4":"1"},{"1":"2023","2":"Bangladesh","3":"1.529051e+09","4":"10"},{"1":"2023","2":"Belgium","3":"5.478250e+10","4":"44"},{"1":"2023","2":"Brazil","3":"6.686221e+10","4":"126"},{"1":"2023","2":"Canada","3":"2.168681e+11","4":"158"},{"1":"2023","2":"Chile","3":"7.685667e+09","4":"32"},{"1":"2023","2":"China","3":"3.396105e+11","4":"710"},{"1":"2023","2":"Colombia","3":"2.488402e+09","4":"9"},{"1":"2023","2":"Croatia","3":"2.095347e+08","4":"4"},{"1":"2023","2":"Czech Republic","3":"1.669000e+08","4":"2"},{"1":"2023","2":"Denmark","3":"1.577311e+11","4":"39"},{"1":"2023","2":"Egypt","3":"1.367588e+09","4":"16"},{"1":"2023","2":"Estonia","3":"1.308279e+08","4":"5"},{"1":"2023","2":"Finland","3":"5.950382e+10","4":"39"},{"1":"2023","2":"France","3":"4.764485e+11","4":"138"},{"1":"2023","2":"Germany","3":"3.995604e+11","4":"185"},{"1":"2023","2":"Greece","3":"6.880656e+09","4":"35"},{"1":"2023","2":"Hong Kong","3":"7.197147e+10","4":"124"},{"1":"2023","2":"Hungary","3":"2.691215e+09","4":"7"},{"1":"2023","2":"India","3":"2.436467e+11","4":"459"},{"1":"2023","2":"Indonesia","3":"2.619682e+10","4":"87"},{"1":"2023","2":"Ireland","3":"1.027329e+10","4":"10"},{"1":"2023","2":"Israel","3":"1.531380e+10","4":"76"},{"1":"2023","2":"Italy","3":"1.134573e+11","4":"133"},{"1":"2023","2":"Japan","3":"7.912716e+11","4":"1481"},{"1":"2023","2":"Kenya","3":"9.362093e+08","4":"12"},{"1":"2023","2":"Kuwait","3":"6.994462e+09","4":"13"},{"1":"2023","2":"Kyrgyzstan","3":"1.337995e+07","4":"1"},{"1":"2023","2":"Latvia","3":"2.392063e+06","4":"1"},{"1":"2023","2":"Liechtenstein","3":"1.733084e+07","4":"1"},{"1":"2023","2":"Lithuania","3":"8.589096e+07","4":"3"},{"1":"2023","2":"Malaysia","3":"2.077018e+10","4":"180"},{"1":"2023","2":"Mexico","3":"3.964898e+10","4":"55"},{"1":"2023","2":"Moldova","3":"3.848189e+07","4":"1"},{"1":"2023","2":"Morocco","3":"1.501700e+08","4":"4"},{"1":"2023","2":"Netherlands","3":"2.473869e+11","4":"59"},{"1":"2023","2":"New Zealand","3":"1.085649e+10","4":"38"},{"1":"2023","2":"Nigeria","3":"1.898531e+08","4":"6"},{"1":"2023","2":"Panama","3":"2.531785e+06","4":"1"},{"1":"2023","2":"Peru","3":"4.426893e+07","4":"4"},{"1":"2023","2":"Philippines","3":"8.938015e+09","4":"38"},{"1":"2023","2":"Poland","3":"1.612962e+10","4":"102"},{"1":"2023","2":"Portugal","3":"1.765611e+10","4":"13"},{"1":"2023","2":"Qatar","3":"1.240289e+10","4":"17"},{"1":"2023","2":"Romania","3":"7.931170e+08","4":"8"},{"1":"2023","2":"Russia","3":"1.423129e+09","4":"52"},{"1":"2023","2":"Singapore","3":"5.011851e+10","4":"81"},{"1":"2023","2":"Slovenia","3":"6.963136e+08","4":"6"},{"1":"2023","2":"South Africa","3":"3.748498e+10","4":"86"},{"1":"2023","2":"South Korea","3":"1.963082e+11","4":"513"},{"1":"2023","2":"Spain","3":"1.365572e+11","4":"61"},{"1":"2023","2":"Sri Lanka","3":"5.709942e+08","4":"21"},{"1":"2023","2":"Sweden","3":"1.684331e+11","4":"145"},{"1":"2023","2":"Switzerland","3":"4.571607e+11","4":"114"},{"1":"2023","2":"Taiwan","3":"2.331807e+11","4":"496"},{"1":"2023","2":"Thailand","3":"2.730554e+10","4":"165"},{"1":"2023","2":"Tunisia","3":"1.481101e+07","4":"1"},{"1":"2023","2":"Türkiye","3":"1.326393e+10","4":"39"},{"1":"2023","2":"Ukraine","3":"3.491067e+07","4":"2"},{"1":"2023","2":"United Arab Emirates","3":"2.199512e+10","4":"36"},{"1":"2023","2":"United Kingdom","3":"7.020007e+11","4":"338"},{"1":"2023","2":"United States","3":"5.434238e+12","4":"1807"},{"1":"2023","2":"Vietnam","3":"6.099771e+09","4":"38"},{"1":"2024","2":"Australia","3":"2.377047e+11","4":"318"},{"1":"2024","2":"Austria","3":"1.203456e+10","4":"24"},{"1":"2024","2":"Bangladesh","3":"1.612038e+09","4":"12"},{"1":"2024","2":"Belgium","3":"5.161597e+10","4":"42"},{"1":"2024","2":"Brazil","3":"5.455247e+10","4":"111"},{"1":"2024","2":"Canada","3":"2.847346e+11","4":"143"},{"1":"2024","2":"Chile","3":"7.909071e+09","4":"34"},{"1":"2024","2":"China","3":"4.622155e+11","4":"651"},{"1":"2024","2":"Colombia","3":"1.689197e+09","4":"7"},{"1":"2024","2":"Croatia","3":"2.030633e+08","4":"3"},{"1":"2024","2":"Czech Republic","3":"4.617645e+07","4":"2"},{"1":"2024","2":"Denmark","3":"1.531341e+11","4":"41"},{"1":"2024","2":"Egypt","3":"1.139124e+09","4":"14"},{"1":"2024","2":"Estonia","3":"2.267632e+08","4":"5"},{"1":"2024","2":"Finland","3":"4.795752e+10","4":"39"},{"1":"2024","2":"France","3":"4.366455e+11","4":"132"},{"1":"2024","2":"Germany","3":"4.499493e+11","4":"177"},{"1":"2024","2":"Greece","3":"9.527346e+09","4":"41"},{"1":"2024","2":"Hong Kong","3":"8.128365e+10","4":"112"},{"1":"2024","2":"Hungary","3":"3.011921e+09","4":"7"},{"1":"2024","2":"India","3":"3.499488e+11","4":"550"},{"1":"2024","2":"Indonesia","3":"2.643844e+10","4":"86"},{"1":"2024","2":"Ireland","3":"1.477462e+10","4":"12"},{"1":"2024","2":"Israel","3":"2.219832e+10","4":"65"},{"1":"2024","2":"Italy","3":"1.280751e+11","4":"112"},{"1":"2024","2":"Japan","3":"9.551953e+11","4":"1436"},{"1":"2024","2":"Kenya","3":"1.971347e+09","4":"11"},{"1":"2024","2":"Kuwait","3":"8.290547e+09","4":"13"},{"1":"2024","2":"Kyrgyzstan","3":"3.658710e+05","4":"1"},{"1":"2024","2":"Latvia","3":"1.788783e+06","4":"1"},{"1":"2024","2":"Liechtenstein","3":"8.963468e+06","4":"1"},{"1":"2024","2":"Lithuania","3":"1.311298e+08","4":"3"},{"1":"2024","2":"Luxembourg","3":"1.255531e+09","4":"1"},{"1":"2024","2":"Malaysia","3":"3.072466e+10","4":"217"},{"1":"2024","2":"Mexico","3":"3.081060e+10","4":"53"},{"1":"2024","2":"Moldova","3":"3.305206e+07","4":"1"},{"1":"2024","2":"Morocco","3":"2.438214e+08","4":"4"},{"1":"2024","2":"Netherlands","3":"2.575384e+11","4":"58"},{"1":"2024","2":"New Zealand","3":"1.183070e+10","4":"34"},{"1":"2024","2":"Panama","3":"5.419600e+05","4":"1"},{"1":"2024","2":"Peru","3":"9.030868e+07","4":"4"},{"1":"2024","2":"Philippines","3":"9.657049e+09","4":"39"},{"1":"2024","2":"Poland","3":"1.396199e+10","4":"88"},{"1":"2024","2":"Portugal","3":"1.345966e+10","4":"10"},{"1":"2024","2":"Qatar","3":"1.251470e+10","4":"16"},{"1":"2024","2":"Romania","3":"3.507683e+08","4":"4"},{"1":"2024","2":"Russia","3":"2.361167e+09","4":"49"},{"1":"2024","2":"Singapore","3":"7.231306e+10","4":"66"},{"1":"2024","2":"Slovenia","3":"8.290974e+08","4":"6"},{"1":"2024","2":"South Africa","3":"5.304343e+10","4":"94"},{"1":"2024","2":"South Korea","3":"1.643228e+11","4":"485"},{"1":"2024","2":"Spain","3":"1.305988e+11","4":"55"},{"1":"2024","2":"Sri Lanka","3":"1.040059e+09","4":"17"},{"1":"2024","2":"Sweden","3":"1.654022e+11","4":"151"},{"1":"2024","2":"Switzerland","3":"4.578182e+11","4":"111"},{"1":"2024","2":"Taiwan","3":"3.487516e+11","4":"508"},{"1":"2024","2":"Thailand","3":"2.960946e+10","4":"166"},{"1":"2024","2":"Türkiye","3":"1.787259e+10","4":"44"},{"1":"2024","2":"Ukraine","3":"1.212173e+07","4":"1"},{"1":"2024","2":"United Arab Emirates","3":"3.475033e+10","4":"42"},{"1":"2024","2":"United Kingdom","3":"7.641186e+11","4":"325"},{"1":"2024","2":"United States","3":"8.166284e+12","4":"1758"},{"1":"2024","2":"Vietnam","3":"7.942365e+09","4":"45"},{"1":"2025","2":"Australia","3":"2.400520e+11","4":"291"},{"1":"2025","2":"Austria","3":"1.725468e+10","4":"21"},{"1":"2025","2":"Bangladesh","3":"1.181396e+09","4":"6"},{"1":"2025","2":"Belgium","3":"6.010034e+10","4":"36"},{"1":"2025","2":"Brazil","3":"5.716985e+10","4":"90"},{"1":"2025","2":"Canada","3":"3.764633e+11","4":"142"},{"1":"2025","2":"Chile","3":"1.148435e+10","4":"34"},{"1":"2025","2":"China","3":"5.441163e+11","4":"638"},{"1":"2025","2":"Colombia","3":"2.051164e+09","4":"8"},{"1":"2025","2":"Czech Republic","3":"5.457331e+07","4":"2"},{"1":"2025","2":"Denmark","3":"1.093733e+11","4":"37"},{"1":"2025","2":"Egypt","3":"1.316847e+09","4":"9"},{"1":"2025","2":"Finland","3":"6.442476e+10","4":"31"},{"1":"2025","2":"France","3":"4.284206e+11","4":"116"},{"1":"2025","2":"Germany","3":"4.741372e+11","4":"136"},{"1":"2025","2":"Greece","3":"1.437266e+10","4":"29"},{"1":"2025","2":"Hong Kong","3":"8.864960e+10","4":"106"},{"1":"2025","2":"Hungary","3":"4.488846e+09","4":"8"},{"1":"2025","2":"India","3":"3.181693e+11","4":"573"},{"1":"2025","2":"Indonesia","3":"2.035753e+10","4":"76"},{"1":"2025","2":"Ireland","3":"2.337184e+10","4":"9"},{"1":"2025","2":"Israel","3":"2.103292e+10","4":"29"},{"1":"2025","2":"Italy","3":"1.622150e+11","4":"96"},{"1":"2025","2":"Japan","3":"9.705254e+11","4":"1096"},{"1":"2025","2":"Jordan","3":"2.505483e+07","4":"1"},{"1":"2025","2":"Kenya","3":"2.283814e+09","4":"11"},{"1":"2025","2":"Kuwait","3":"8.458605e+09","4":"13"},{"1":"2025","2":"Kyrgyzstan","3":"3.489810e+05","4":"1"},{"1":"2025","2":"Latvia","3":"2.020076e+07","4":"1"},{"1":"2025","2":"Liechtenstein","3":"4.628144e+07","4":"1"},{"1":"2025","2":"Lithuania","3":"1.955251e+08","4":"1"},{"1":"2025","2":"Malaysia","3":"2.825647e+10","4":"200"},{"1":"2025","2":"Mexico","3":"3.756626e+10","4":"44"},{"1":"2025","2":"Morocco","3":"2.074894e+08","4":"2"},{"1":"2025","2":"Netherlands","3":"2.677235e+11","4":"48"},{"1":"2025","2":"New Zealand","3":"9.464122e+09","4":"28"},{"1":"2025","2":"Panama","3":"8.516025e+07","4":"1"},{"1":"2025","2":"Peru","3":"3.729966e+08","4":"4"},{"1":"2025","2":"Philippines","3":"7.013953e+09","4":"36"},{"1":"2025","2":"Poland","3":"2.295480e+10","4":"74"},{"1":"2025","2":"Portugal","3":"8.691770e+09","4":"8"},{"1":"2025","2":"Qatar","3":"1.153257e+10","4":"16"},{"1":"2025","2":"Romania","3":"1.542550e+07","4":"1"},{"1":"2025","2":"Russia","3":"1.371423e+09","4":"46"},{"1":"2025","2":"Singapore","3":"6.373859e+10","4":"63"},{"1":"2025","2":"Slovenia","3":"3.551770e+08","4":"1"},{"1":"2025","2":"South Africa","3":"8.530207e+10","4":"75"},{"1":"2025","2":"South Korea","3":"2.785010e+11","4":"410"},{"1":"2025","2":"Spain","3":"1.689165e+11","4":"45"},{"1":"2025","2":"Sri Lanka","3":"6.298300e+08","4":"11"},{"1":"2025","2":"Sweden","3":"1.800494e+11","4":"132"},{"1":"2025","2":"Switzerland","3":"4.580753e+11","4":"94"},{"1":"2025","2":"Taiwan","3":"4.066431e+11","4":"339"},{"1":"2025","2":"Thailand","3":"2.375458e+10","4":"152"},{"1":"2025","2":"Türkiye","3":"1.738380e+10","4":"79"},{"1":"2025","2":"Ukraine","3":"1.973770e+07","4":"1"},{"1":"2025","2":"United Arab Emirates","3":"3.470169e+10","4":"46"},{"1":"2025","2":"United Kingdom","3":"7.488452e+11","4":"248"},{"1":"2025","2":"United States","3":"8.294346e+12","4":"1306"},{"1":"2025","2":"Vietnam","3":"4.687653e+09","4":"43"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>One row now represents one country in one year.</p>
+</section>
+<section id="pivot-to-compare-columns" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="pivot-to-compare-columns"><span class="header-section-number">7.7</span> Pivot to compare columns</h2>
+<p>Long data are usually easiest for analysis and plotting. Wide data can make a two-year comparison easier to read:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>country_change <span class="ot">&lt;-</span> country_year <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(start_year, end_year)) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">if_else</span>(year <span class="sc">==</span> start_year, <span class="st">"start"</span>, <span class="st">"end"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, country, market_value_nok) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> period,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> market_value_nok,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">"value_"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">absolute_change_nok =</span> value_end <span class="sc">-</span> value_start,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_change =</span> absolute_change_nok <span class="sc">/</span> value_start</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>country_change <span class="sc">|&gt;</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(absolute_change_nok)) <span class="sc">|&gt;</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value_start"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["value_end"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["absolute_change_nok"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["percent_change"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"United States","2":"1.769204e+12","3":"8.294346e+12","4":"6.525142e+12","5":"3.6881784"},{"1":"Japan","2":"4.316595e+11","3":"9.705254e+11","4":"5.388658e+11","5":"1.2483585"},{"1":"China","2":"1.267706e+11","3":"5.441163e+11","4":"4.173457e+11","5":"3.2921345"},{"1":"Taiwan","2":"7.152579e+10","3":"4.066431e+11","4":"3.351174e+11","5":"4.6852657"},{"1":"Canada","2":"1.013023e+11","3":"3.764633e+11","4":"2.751611e+11","5":"2.7162379"},{"1":"India","2":"4.551342e+10","3":"3.181693e+11","4":"2.726559e+11","5":"5.9906702"},{"1":"United Kingdom","2":"4.769530e+11","3":"7.488452e+11","4":"2.718922e+11","5":"0.5700608"},{"1":"Switzerland","2":"2.282706e+11","3":"4.580753e+11","4":"2.298047e+11","5":"1.0067204"},{"1":"Germany","2":"2.671861e+11","3":"4.741372e+11","4":"2.069511e+11","5":"0.7745581"},{"1":"South Korea","2":"7.776578e+10","3":"2.785010e+11","4":"2.007352e+11","5":"2.5812795"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Inspect missing values after the pivot. A country present in the latest year but absent in the starting year has no valid percent change because the denominator is missing or zero.</p>
+<p>Return to long form with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>country_change <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, value_start, value_end) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"value_"</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">"value_"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"market_value_nok"</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">if_else</span>(year <span class="sc">==</span> <span class="st">"start"</span>, start_year, end_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Australia","2":"2016","3":"1.009225e+11"},{"1":"Australia","2":"2025","3":"2.400520e+11"},{"1":"Austria","2":"2016","3":"1.588864e+10"},{"1":"Austria","2":"2025","3":"1.725468e+10"},{"1":"Bahrain","2":"2016","3":"2.566640e+08"},{"1":"Bahrain","2":"2025","3":"NA"},{"1":"Bangladesh","2":"2016","3":"9.602422e+08"},{"1":"Bangladesh","2":"2025","3":"1.181396e+09"},{"1":"Belgium","2":"2016","3":"4.510874e+10"},{"1":"Belgium","2":"2025","3":"6.010034e+10"},{"1":"Botswana","2":"2016","3":"5.057764e+07"},{"1":"Botswana","2":"2025","3":"NA"},{"1":"Brazil","2":"2016","3":"3.650548e+10"},{"1":"Brazil","2":"2025","3":"5.716985e+10"},{"1":"Canada","2":"2016","3":"1.013023e+11"},{"1":"Canada","2":"2025","3":"3.764633e+11"},{"1":"Chile","2":"2016","3":"5.972937e+09"},{"1":"Chile","2":"2025","3":"1.148435e+10"},{"1":"China","2":"2016","3":"1.267706e+11"},{"1":"China","2":"2025","3":"5.441163e+11"},{"1":"Colombia","2":"2016","3":"2.616791e+09"},{"1":"Colombia","2":"2025","3":"2.051164e+09"},{"1":"Croatia","2":"2016","3":"2.930380e+08"},{"1":"Croatia","2":"2025","3":"NA"},{"1":"Czech Republic","2":"2016","3":"5.114329e+08"},{"1":"Czech Republic","2":"2025","3":"5.457331e+07"},{"1":"Denmark","2":"2016","3":"4.771729e+10"},{"1":"Denmark","2":"2025","3":"1.093733e+11"},{"1":"Egypt","2":"2016","3":"1.981059e+09"},{"1":"Egypt","2":"2025","3":"1.316847e+09"},{"1":"Estonia","2":"2016","3":"9.532192e+07"},{"1":"Estonia","2":"2025","3":"NA"},{"1":"Finland","2":"2016","3":"3.013288e+10"},{"1":"Finland","2":"2025","3":"6.442476e+10"},{"1":"France","2":"2016","3":"2.484587e+11"},{"1":"France","2":"2025","3":"4.284206e+11"},{"1":"Germany","2":"2016","3":"2.671861e+11"},{"1":"Germany","2":"2025","3":"4.741372e+11"},{"1":"Ghana","2":"2016","3":"1.720114e+07"},{"1":"Ghana","2":"2025","3":"NA"},{"1":"Greece","2":"2016","3":"3.603534e+09"},{"1":"Greece","2":"2025","3":"1.437266e+10"},{"1":"Hong Kong","2":"2016","3":"6.192814e+10"},{"1":"Hong Kong","2":"2025","3":"8.864960e+10"},{"1":"Hungary","2":"2016","3":"5.726736e+08"},{"1":"Hungary","2":"2025","3":"4.488846e+09"},{"1":"India","2":"2016","3":"4.551342e+10"},{"1":"India","2":"2025","3":"3.181693e+11"},{"1":"Indonesia","2":"2016","3":"1.185190e+10"},{"1":"Indonesia","2":"2025","3":"2.035753e+10"},{"1":"Ireland","2":"2016","3":"5.509198e+09"},{"1":"Ireland","2":"2025","3":"2.337184e+10"},{"1":"Israel","2":"2016","3":"1.133451e+10"},{"1":"Israel","2":"2025","3":"2.103292e+10"},{"1":"Italy","2":"2016","3":"6.992189e+10"},{"1":"Italy","2":"2025","3":"1.622150e+11"},{"1":"Japan","2":"2016","3":"4.316595e+11"},{"1":"Japan","2":"2025","3":"9.705254e+11"},{"1":"Jordan","2":"2016","3":"4.695255e+07"},{"1":"Jordan","2":"2025","3":"2.505483e+07"},{"1":"Kazakhstan","2":"2016","3":"1.050211e+08"},{"1":"Kazakhstan","2":"2025","3":"NA"},{"1":"Kenya","2":"2016","3":"9.732574e+08"},{"1":"Kenya","2":"2025","3":"2.283814e+09"},{"1":"Kuwait","2":"2016","3":"9.567172e+08"},{"1":"Kuwait","2":"2025","3":"8.458605e+09"},{"1":"Latvia","2":"2016","3":"1.231392e+07"},{"1":"Latvia","2":"2025","3":"2.020076e+07"},{"1":"Lithuania","2":"2016","3":"5.046178e+07"},{"1":"Lithuania","2":"2025","3":"1.955251e+08"},{"1":"Malaysia","2":"2016","3":"1.215526e+10"},{"1":"Malaysia","2":"2025","3":"2.825647e+10"},{"1":"Mauritius","2":"2016","3":"5.966648e+07"},{"1":"Mauritius","2":"2025","3":"NA"},{"1":"Mexico","2":"2016","3":"1.674715e+10"},{"1":"Mexico","2":"2025","3":"3.756626e+10"},{"1":"Morocco","2":"2016","3":"6.956126e+08"},{"1":"Morocco","2":"2025","3":"2.074894e+08"},{"1":"Netherlands","2":"2016","3":"7.351131e+10"},{"1":"Netherlands","2":"2025","3":"2.677235e+11"},{"1":"New Zealand","2":"2016","3":"5.252237e+09"},{"1":"New Zealand","2":"2025","3":"9.464122e+09"},{"1":"Nigeria","2":"2016","3":"4.226886e+08"},{"1":"Nigeria","2":"2025","3":"NA"},{"1":"Oman","2":"2016","3":"3.068594e+08"},{"1":"Oman","2":"2025","3":"NA"},{"1":"Peru","2":"2016","3":"9.686456e+08"},{"1":"Peru","2":"2025","3":"3.729966e+08"},{"1":"Philippines","2":"2016","3":"6.129995e+09"},{"1":"Philippines","2":"2025","3":"7.013953e+09"},{"1":"Poland","2":"2016","3":"5.797947e+09"},{"1":"Poland","2":"2025","3":"2.295480e+10"},{"1":"Portugal","2":"2016","3":"6.885181e+09"},{"1":"Portugal","2":"2025","3":"8.691770e+09"},{"1":"Qatar","2":"2016","3":"6.643908e+08"},{"1":"Qatar","2":"2025","3":"1.153257e+10"},{"1":"Romania","2":"2016","3":"8.288998e+08"},{"1":"Romania","2":"2025","3":"1.542550e+07"},{"1":"Russia","2":"2016","3":"2.320585e+10"},{"1":"Russia","2":"2025","3":"1.371423e+09"},{"1":"Saudi Arabia","2":"2016","3":"3.933159e+09"},{"1":"Saudi Arabia","2":"2025","3":"NA"},{"1":"Singapore","2":"2016","3":"2.337271e+10"},{"1":"Singapore","2":"2025","3":"6.373859e+10"},{"1":"Slovenia","2":"2016","3":"7.064236e+07"},{"1":"Slovenia","2":"2025","3":"3.551770e+08"},{"1":"South Africa","2":"2016","3":"2.713818e+10"},{"1":"South Africa","2":"2025","3":"8.530207e+10"},{"1":"South Korea","2":"2016","3":"7.776578e+10"},{"1":"South Korea","2":"2025","3":"2.785010e+11"},{"1":"Spain","2":"2016","3":"7.707876e+10"},{"1":"Spain","2":"2025","3":"1.689165e+11"},{"1":"Sri Lanka","2":"2016","3":"5.656812e+08"},{"1":"Sri Lanka","2":"2025","3":"6.298300e+08"},{"1":"Sweden","2":"2016","3":"9.128385e+10"},{"1":"Sweden","2":"2025","3":"1.800494e+11"},{"1":"Switzerland","2":"2016","3":"2.282706e+11"},{"1":"Switzerland","2":"2025","3":"4.580753e+11"},{"1":"Taiwan","2":"2016","3":"7.152579e+10"},{"1":"Taiwan","2":"2025","3":"4.066431e+11"},{"1":"Tanzania","2":"2016","3":"4.463506e+06"},{"1":"Tanzania","2":"2025","3":"NA"},{"1":"Thailand","2":"2016","3":"1.594454e+10"},{"1":"Thailand","2":"2025","3":"2.375458e+10"},{"1":"Tunisia","2":"2016","3":"1.598105e+08"},{"1":"Tunisia","2":"2025","3":"NA"},{"1":"Turkey","2":"2016","3":"8.065186e+09"},{"1":"Turkey","2":"2025","3":"NA"},{"1":"Uganda","2":"2016","3":"1.204935e+07"},{"1":"Uganda","2":"2025","3":"NA"},{"1":"Ukraine","2":"2016","3":"2.504526e+08"},{"1":"Ukraine","2":"2025","3":"1.973770e+07"},{"1":"United Arab Emirates","2":"2016","3":"2.248982e+09"},{"1":"United Arab Emirates","2":"2025","3":"3.470169e+10"},{"1":"United Kingdom","2":"2016","3":"4.769530e+11"},{"1":"United Kingdom","2":"2025","3":"7.488452e+11"},{"1":"United States","2":"2016","3":"1.769204e+12"},{"1":"United States","2":"2025","3":"8.294346e+12"},{"1":"Vietnam","2":"2016","3":"2.217501e+09"},{"1":"Vietnam","2":"2025","3":"4.687653e+09"},{"1":"Kyrgyzstan","2":"2016","3":"NA"},{"1":"Kyrgyzstan","2":"2025","3":"3.489810e+05"},{"1":"Liechtenstein","2":"2016","3":"NA"},{"1":"Liechtenstein","2":"2025","3":"4.628144e+07"},{"1":"Panama","2":"2016","3":"NA"},{"1":"Panama","2":"2025","3":"8.516025e+07"},{"1":"Türkiye","2":"2016","3":"NA"},{"1":"Türkiye","2":"2025","3":"1.738380e+10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="what-a-join-cannot-solve" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="what-a-join-cannot-solve"><span class="header-section-number">7.8</span> What a join cannot solve</h2>
+<p>A join matches labels; it does not prove that the matched records represent the same real-world entity. Over ten years, company names can change because of mergers, demergers, punctuation, rebranding, or data-entry conventions. Only 3,285 published names appear in all ten teaching snapshots.</p>
+<p>For beginner analysis, use country-, region-, or carefully defined industry-level trends. Treat company-level longitudinal matching as an advanced record-linkage project requiring external identifiers and manual verification.</p>
+</section>
+<section id="independent-task" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">7.9</span> Independent task</h2>
+<p>Choose three countries and create a country-year table for the rolling ten-year period. Then:</p>
+<ol type="1">
+<li>confirm there is at most one row per country-year;</li>
+<li>pivot it wide and calculate start-to-end change;</li>
+<li>identify any missing starting or ending values;</li>
+<li>pivot it back to long form; and</li>
+<li>write a methods note explaining why the result is about year-end market value, not net investment flows.</li>
+</ol>
 
 
 </section>
@@ -1081,13 +1009,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data-wrangling.html" class="pagination-link  aria-label=" &lt;span="" wrangling&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span>
+      <a href="./data-wrangling.html" class="pagination-link  aria-label=" &lt;span="" data="" without="" losing="" its="" meaning&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./analysis-hksalary.html" class="pagination-link" aria-label="<span class='chapter-number'>6</span>&nbsp; <span class='chapter-title'>Data Analysis I</span>">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./analysis-gpfg.html" class="pagination-link" aria-label="<span class='chapter-number'>8</span>&nbsp; <span class='chapter-title'>Find Patterns in a Single Snapshot</span>">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1098,7 +1026,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright © 2025 Bin Chen</p>
+<p>Copyright © 2026 Bin Chen</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

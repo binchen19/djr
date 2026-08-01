@@ -1,0 +1,10 @@
+check,passed
+All expected years are present,TRUE
+All source files use the expected schema,TRUE
+Company is present in every record,TRUE
+Country is present in every record,TRUE
+NOK market value is present in every record,TRUE
+NOK market values are finite when present,TRUE
+Teaching-period NOK market values are non-negative,TRUE
+Teaching-period ownership percentages are between 0 and 100,TRUE
+Teaching-period voting percentages are between 0 and 100,TRUE

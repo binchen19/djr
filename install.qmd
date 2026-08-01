@@ -1,202 +1,156 @@
 ---
-title: "Intro to R and RStudio"
+title: "Set Up R, RStudio, and Quarto"
 ---
 
-## Why Learn R for Data Journalism?
+## Learning objectives
 
-Data journalism requires tools that combine statistical rigor with storytelling capabilities. R provides:
+By the end of this chapter, you should be able to:
 
--   **Reproducible analysis** through script-based workflows
--   **Advanced visualization** for impactful storytelling
--   **Open-source community** with continuous innovation
--   **Professional-grade tools** used by NYT, BBC, and Reuters etc.
+- explain the different jobs of R, RStudio, and Quarto;
+- create and open an RStudio Project;
+- run code in the Console and in a Quarto document;
+- install a package once and load it in a working session; and
+- render a reproducible HTML page.
 
-## Installing the Tools
+## Three tools, three jobs
 
-### Step 1: Install R
+**R** is the language and calculation engine. **RStudio** is the working
+environment where you write code, inspect data, and manage files. **Quarto**
+combines prose, code, results, and citations in one reproducible document.
 
-1.  Visit [CRAN Mirror](https://cran.r-project.org/)
-2.  Select your operating system (Windows/Mac/Linux)
-3.  Download the **latest version** (≥4.3.0 recommended)
-4.  Run the installer with default settings
-
-### Step 2: Install RStudio
-
-```{r}
-#| echo: false
-#| fig-cap: "RStudio Interface"
-knitr::include_graphics("images/install-r-rstudio.png")
+```{mermaid}
+flowchart LR
+  A["R code"] --> B["R computes"]
+  C["Prose and citations"] --> D["Quarto document"]
+  B --> D
+  D --> E["HTML story, report, or website"]
 ```
 
-1.  Go to [posit.co/download](https://posit.co/download/rstudio-desktop/)
-2.  Choose **Download RStudio Desktop**
-3.  Install using default options
+Install R from [CRAN](https://cran.r-project.org/), then install
+[RStudio Desktop](https://posit.co/download/rstudio-desktop/). Current RStudio
+releases include Quarto. If the **Render** button is visible when you open a
+`.qmd` file, Quarto is available.
 
-::: callout-important
-**Installation Order Matters!** Always install R **before** RStudio - the IDE needs the base R engine to function.
-:::
+## Work inside a project
 
-## First-Time Setup
+An RStudio Project gives your analysis a stable home. It prevents the most
+common beginner problem: code that works only because R is looking in an
+unknown folder.
 
-### Organizing Your Workspace
+1. Choose **File → New Project → Existing Directory**.
+2. Select the folder containing this textbook.
+3. Confirm that the Files pane shows `_quarto.yml`, `index.qmd`, and `data/`.
 
-1.  Create a project folder:
-
-    -   Windows: `C:/Users/[YourName]/Documents/djr`
-    -   Mac: `/Users/[YourName]/Documents/djr`
-
-2.  Use **lowercase letters only** (avoid spaces/special characters)
+The project folder is now the starting point for relative paths. For example:
 
 ```{r}
-#| eval: false
-#| echo: true
-# Create folder from R Console (alternative method)
-dir.create("~/Documents/djr")
+file.exists("data/processed/gpfg_equities_latest.csv")
 ```
 
-### Configuring RStudio
+The result should be `TRUE`. Do not solve path problems with a long personal
+path such as `/Users/name/Desktop/course/...`; that path will fail on another
+computer.
 
-Optimize your setup through:
+## Console, script, and Quarto document
 
-1.  **Tools \> Global Options \> General**
-    -   **Uncheck** everything above the "Other" panel
-    -   Set "Save workspace" to **Never**
-2.  **Tools \> Global Options \> Code**
-    -   Enable "Soft-wrap R source files"
-    -   Check "Use native pipe operator \|\>"
+Use the **Console** for quick experiments. Use an `.R` script for reusable data
+preparation. Use a `.qmd` document when the explanation, code, output, and
+sources belong together.
 
-## Understanding the RStudio Interface
+Try this in the Console:
 
-| Position | Panel | Purpose | Key Features |
-|-----------------|-----------------|--------------------|------------------|
-| **Top-Left** | Source | Code editing | Scripts, R Markdown, notebooks |
-| **Bottom-Left** | Console | Direct code execution | Immediate feedback, debugging |
-| **Top-Right** | Environment | Active data objects | Variable inspection |
-| **Bottom-Right** | Files/Help | Navigation & documentation | Package help, file browsing |
-
-```{r}
-#| echo: false
-#| fig-cap: "RStudio IDE Cheatsheet Preview"
-knitr::include_graphics("images/rstudio-ide.png")
+```r
+2 + 2
 ```
 
-Download full [RStudio IDE cheatsheets](cheatsheets/rstudio-ide.pdf)
+Then create a Quarto document with **File → New File → Quarto Document** and
+place this code in a code chunk:
 
-## Essential Packages Installation
+````markdown
+```{r}
+headline <- "A reproducible result"
+headline
+```
+````
 
-Run this in the **Console**:
+Click **Render**. Quarto runs the document from the beginning in a fresh
+session. A document that renders is stronger evidence of reproducibility than
+code that only works interactively.
+
+## Packages
+
+Packages extend R. Installation and loading are different actions.
+
+Run installation once in the Console:
+
+```r
+install.packages("tidyverse")
+```
+
+Load the package in every new R session or at the top of a chapter:
 
 ```{r}
-#| eval: false
-#| echo: true
+library(tidyverse)
+```
+
+Do not put `install.packages()` in a rendered chapter. Rendering should not
+change a reader's computer or pause to ask which download server to use.
+
+For this book, install the main packages with:
+
+```r
 install.packages(c(
-  "tidyverse",   # Data wrangling & visualization
-  "rmarkdown",   # Dynamic reporting
-  "quarto",      # Modern publishing
-  "knitr",       # Document processing
-  "janitor"      # Data cleaning
+  "tidyverse", "readxl", "scales", "ggrepel", "sf",
+  "rnaturalearth", "rnaturalearthdata", "tidytext"
 ))
 ```
 
+## A five-minute system check
 
-## Your First Project
+Create `setup-check.qmd` and render the following:
 
-### Create an R Project
-
-1.  **File \> New Project \> New Directory**
-2.  Name: `firstname-week1` (e.g., `bin-week1`)
-3.  Browse to your `djr` folder
-4.  Click **Create Project**
-
-### Create R Markdown File
-
-1.  **File \> New File \> R Markdown**
-2.  Title: "My First R Markdown"
-3.  Author: Your name
-4.  Default HTML output
-
-::: callout-note
-**Why R Markdown?** - Combine narrative and code - Export to multiple formats: HTML, PDF, Word - Track changes with version control
-:::
-
-## Writing Your First RMD Document
-
-Once you have created a new R Markdown file, you can start writing in it. R Markdown files use a combination of Markdown and R code to create dynamic documents. You can include text, code chunks, and output in your R Markdown file.
-
-### Metadata
-
-On top right of the R Markdown file, you will see a YAML front matter section, which is used to define metadata for the document. This metadata is enclosed within triple-dashed lines.
-
-You can specify metadata such as the title, author, date, and output format in the YAML front matter section. Here is an example of metadata in a R Markdown file:
-
-``` yaml
+````markdown
 ---
-title: "Data Journalism"
-subtitle: "Week 1"
-author: "Bin Chen"
-date: "Jan 20, 2025"
+title: "Setup check"
 format: html
 ---
-```
-
-### Text Content
-
-You can write narrative text in your R Markdown file using Markdown syntax. Markdown is a lightweight markup language that allows you to format text using simple and intuitive syntax. You can use Markdown to create headings, lists, links, images, and more.
-
-Here is an example of Markdown text in a R Markdown file: - **Heading**: `# Heading 1` - **Bold**: `**bold text**` - **List**: `- item 1` - **Link**: `[link text](https://www.example.com)` - **Image**: `![](path/to/image.png)` - **Code**: `` `code` ``
-
-### Code Chunks
-
-You can include R code in your R Markdown file using code chunks. Code chunks are enclosed within three backticks and curly braces, indicating the language of the code (in this case, R).
-
-You can insert a code chunk by clicking the green "+" icon in the top right corner of the R Markdown file and selecting "R", or you can user the keyboard shortcut "Ctrl + Alt + I" on Windows or "Cmd + Option + I" on Mac.
-
-Here is an example of a code chunk in a R Markdown file:
 
 ```{r}
-#| echo: true
-#| eval: false
-1 + 1
+library(tidyverse)
+
+check <- tibble(
+  tool = c("R", "tidyverse", "course data"),
+  ready = c(
+    TRUE,
+    packageVersion("dplyr") > "1.0.0",
+    file.exists("data/processed/gpfg_equities_latest.csv")
+  )
+)
+
+check
 ```
+````
 
-```{r}
-#| echo: false
-#| fig-cap: "RMarkdown Cheatsheet Preview"
-knitr::include_graphics("images/rmarkdown.png")
-```
+All three values in `ready` should be `TRUE`.
 
-Download full [RMarkdown cheatsheets](cheatsheets/rmarkdown.pdf)
+## Common setup problems
 
-### Render the R Markdown file
+| Symptom | Likely cause | First check |
+|---|---|---|
+| `there is no package called ...` | The package is not installed | Run `install.packages()` in the Console |
+| `could not find function ...` | The package is installed but not loaded | Run `library(...)` near the top |
+| `cannot open file ...` | The project or relative path is wrong | Run `getwd()` and `file.exists()` |
+| Code works line by line but Render fails | An object was created only in the Console | Restart R and render from the beginning |
+| A package cannot be installed | R or system software is too old | Record the exact error before changing anything |
 
-Once you have written your R Markdown file, you can render it to create a dynamic document. To render the R Markdown file, click the "knit" button in the top right corner of the R Markdown file. This will run the R code chunks and generate the output in the specified format.
+## Independent task
 
-# Practice
+Create a small Quarto page that:
 
-Now, lets practice creating a new R project and a new R Markdown file in RStudio.
+1. loads `tidyverse`;
+2. creates a three-row tibble about three possible story ideas;
+3. filters the table to one idea; and
+4. renders successfully after **Session → Restart R**.
 
--   Create a R project named "yourfirstname-week1" in your "djr" folder.
--   Create a new R Markdown file named "yourfirstname-week1" in the R project you just created.
--   Write a short bio about you (about 50 words) in the R Markdown file.
--   Install the packages "praise" by running `install.packages("praise")` in *console*. (NOT IN R Markdown)
--   Insert a code chunk in the R Markdown file and run `library(praise)` to load the package.
--   Insert another code chunk and run `praise()` to generate a random compliment.
--   Render the R Markdown file to html format.
-
-::: callout-warning
-Don't run `install.packages("praise")` in the R Markdown file, as this would prevent your R Markdown file from rendering properly. Always run package installation in the console.
-:::
-
-# Key Functions and Shortcuts
-
-| Functionality | Command / Shortcut | Example Use |
-|-------------------------|-----------------------------|------------------|
-| Insert code chunk (Windows) | `Ctrl + Alt + I` | \- |
-| Insert code chunk (Mac) | `Cmd + Option + I` | \- |
-| Install R packages | `install.packages("package_name")` | `install.packages("ggplot2")` |
-| Load R packages | `library(package_name)` | `library(ggplot2)` |
-| Create dynamic documents | `rmarkdown` | `rmarkdown::render("report.Rmd")` |
-| Tidyverse for data science | `tidyverse` | `library(tidyverse)` |
-| Dynamic report generation | `knitr` | `knitr::kable(head(mtcars))` |
-| Convert R Markdown to various formats | `quarto` | `quarto render document.qmd` |
-| Generate random compliments | `praise` | `praise::praise()` |
+At the bottom, add a short note explaining why a successful fresh render is a
+useful newsroom check.

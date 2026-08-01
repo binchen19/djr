@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-11-14">
 
-<title>Data Journalism with R - 11&nbsp; GPFG Investments</title>
+<title>Data Journalism with R - 13&nbsp; From Analysis to a Data Story</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./debate.html" rel="next">
-<link href="./map-lifex.html" rel="prev">
+<link href="./employment.html" rel="next">
+<link href="./map-gpfg.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -118,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./norway-invest.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Visual Evidence and Storytelling</a></li><li class="breadcrumb-item"><a href="./norway-invest.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,13 +145,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Journalism with R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Getting Started</span></a>
+ <span class="menu-text">Foundations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -161,13 +160,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Intro to R and RStudio</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
   </div>
 </li>
       </ul>
@@ -175,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Data Import &amp; Wrangling</span></a>
+ <span class="menu-text">A Reproducible Data Workflow</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -184,19 +189,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
   </div>
 </li>
       </ul>
@@ -204,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Data Analysis</span></a>
+ <span class="menu-text">Visual Evidence and Storytelling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,14 +229,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-hksalary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Analysis II</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
   </div>
 </li>
       </ul>
@@ -227,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Data Visualization</span></a>
+ <span class="menu-text">Transfer Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -235,26 +264,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
   </div>
 </li>
       </ul>
@@ -262,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Case Studies</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -270,67 +305,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project Extras</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sample Projects</span></span></a>
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -345,34 +339,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">11.1</span> Overview</a>
-  <ul class="collapse">
-  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the Data</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  </ul></li>
-  <li><a href="#data-import-and-wrangling" id="toc-data-import-and-wrangling" class="nav-link" data-scroll-target="#data-import-and-wrangling"><span class="header-section-number">11.2</span> Data Import and Wrangling</a></li>
-  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">11.3</span> Data Cleaning</a></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">11.4</span> Data Analysis</a>
-  <ul class="collapse">
-  <li><a href="#which-countries-received-the-most-investment-from-gpfg-in-2024" id="toc-which-countries-received-the-most-investment-from-gpfg-in-2024" class="nav-link" data-scroll-target="#which-countries-received-the-most-investment-from-gpfg-in-2024">Which countries received the most investment from GPFG in 2024?</a></li>
-  <li><a href="#which-regions-had-the-highest-investment-from-gpfg-in-2024" id="toc-which-regions-had-the-highest-investment-from-gpfg-in-2024" class="nav-link" data-scroll-target="#which-regions-had-the-highest-investment-from-gpfg-in-2024">Which regions had the highest investment from GPFG in 2024?</a></li>
-  <li><a href="#top-10-companies-in-china-and-hong-kong-sar-that-gpfg-invested-in-2024" id="toc-top-10-companies-in-china-and-hong-kong-sar-that-gpfg-invested-in-2024" class="nav-link" data-scroll-target="#top-10-companies-in-china-and-hong-kong-sar-that-gpfg-invested-in-2024">Top 10 Companies in China and Hong Kong SAR that GPFG Invested in 2024</a></li>
-  </ul></li>
-  <li><a href="#map-investment-distribution-across-countries" id="toc-map-investment-distribution-across-countries" class="nav-link" data-scroll-target="#map-investment-distribution-across-countries"><span class="header-section-number">11.5</span> Map: Investment Distribution Across Countries</a>
-  <ul class="collapse">
-  <li><a href="#load-the-world-map-data" id="toc-load-the-world-map-data" class="nav-link" data-scroll-target="#load-the-world-map-data">Load the World Map Data</a></li>
-  <li><a href="#merge-the-world-map-data-with-investment-data" id="toc-merge-the-world-map-data-with-investment-data" class="nav-link" data-scroll-target="#merge-the-world-map-data-with-investment-data">Merge the World Map Data with Investment Data</a></li>
-  </ul></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">13.1</span> Learning objectives</a></li>
+  <li><a href="#the-reporting-frame" id="toc-the-reporting-frame" class="nav-link" data-scroll-target="#the-reporting-frame"><span class="header-section-number">13.2</span> The reporting frame</a></li>
+  <li><a href="#build-an-evidence-table" id="toc-build-an-evidence-table" class="nav-link" data-scroll-target="#build-an-evidence-table"><span class="header-section-number">13.3</span> Build an evidence table</a></li>
+  <li><a href="#three-defensible-findings" id="toc-three-defensible-findings" class="nav-link" data-scroll-target="#three-defensible-findings"><span class="header-section-number">13.4</span> Three defensible findings</a></li>
+  <li><a href="#separate-evidence-from-explanation" id="toc-separate-evidence-from-explanation" class="nav-link" data-scroll-target="#separate-evidence-from-explanation"><span class="header-section-number">13.5</span> Separate evidence from explanation</a></li>
+  <li><a href="#verify-representative-records" id="toc-verify-representative-records" class="nav-link" data-scroll-target="#verify-representative-records"><span class="header-section-number">13.6</span> Verify representative records</a></li>
+  <li><a href="#a-methods-note-readers-can-understand" id="toc-a-methods-note-readers-can-understand" class="nav-link" data-scroll-target="#a-methods-note-readers-can-understand"><span class="header-section-number">13.7</span> A methods note readers can understand</a></li>
+  <li><a href="#story-structure" id="toc-story-structure" class="nav-link" data-scroll-target="#story-structure"><span class="header-section-number">13.8</span> Story structure</a></li>
+  <li><a href="#independent-newsroom-assignment" id="toc-independent-newsroom-assignment" class="nav-link" data-scroll-target="#independent-newsroom-assignment"><span class="header-section-number">13.9</span> Independent newsroom assignment</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./norway-invest.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Visual Evidence and Storytelling</a></li><li class="breadcrumb-item"><a href="./norway-invest.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></h1>
-<p class="subtitle lead">Investments by Country in 2024</p>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></h1>
 </div>
 
 
@@ -380,12 +364,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 14, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -395,465 +373,202 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">11.1</span> Overview</h2>
-<p>In this notebook, we will analyze the Norwegian Government Pension Fund Global (GPFG), the world’s largest sovereign wealth fund, to understand where it invests. The fund is managed by Norges Bank Investment Management (NBIM), a division of the Norwegian Central Bank.</p>
-<section id="about-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="about-the-data">About the Data</h3>
-<p>We will use investment data from the NBIM website, which details the fund’s holdings across different asset classes, sectors, and countries for the year 2024. The original dataset, downloaded from NBIM, is in Excel format (<code>EQ_2024_Country.xlsx</code>). For convenience, it has been renamed to <code>gpfg-2024.xlsx</code> and stored in the <code>data</code> folder.</p>
-</section>
-<section id="objectives" class="level3">
-<h3 class="anchored" data-anchor-id="objectives">Objectives</h3>
-<p>In this analysis, we aim to answer the following questions: - 1. Which <strong>countries</strong> received the most investment from GPFG in 2024? - 2. Which <strong>regions</strong> had the highest investment from GPFG in 2024? - 3. What are the top 10 companies in China that GPFG invested in during 2024?</p>
-<p>To visualize the findings, we will create:</p>
+<section id="learning-objectives" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">13.1</span> Learning objectives</h2>
+<p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>A <strong>bar</strong> plot of the top 10 countries that received the most investment.</li>
-<li>A <strong>pie</strong> chart showing the regional distribution of GPFG’s investments.</li>
-<li>A world <strong>map</strong> illustrating investment distribution across countries.</li>
+<li>turn exploratory findings into a focused story hypothesis;</li>
+<li>build an evidence table before drafting;</li>
+<li>separate description, interpretation, and explanation;</li>
+<li>verify a financial claim against the source; and</li>
+<li>write a transparent methods and limitations note.</li>
 </ul>
 </section>
-</section>
-<section id="data-import-and-wrangling" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="data-import-and-wrangling"><span class="header-section-number">11.2</span> Data Import and Wrangling</h2>
-<p>Let’s start by importing the necessary libraries and loading the data.</p>
+<section id="the-reporting-frame" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="the-reporting-frame"><span class="header-section-number">13.2</span> The reporting frame</h2>
+<p>We now combine the skills from the core workflow. The possible story is not “where Norway sent money in the latest year.” The data do not contain transactions. A defensible frame is:</p>
+<blockquote class="blockquote">
+<p>How concentrated were NBIM’s reported equity holdings at the latest year-end, and how did their nominal market value change over the previous decade?</p>
+</blockquote>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/gpfg-2024.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 8,659
-Columns: 9
-$ Region                  &lt;chr&gt; "Oceania", "Oceania", "Oceania", "Oceania", "O…
-$ Country                 &lt;chr&gt; "Australia", "Australia", "Australia", "Austra…
-$ Name                    &lt;chr&gt; "Abacus Group", "Abacus Storage King", "Accent…
-$ Industry                &lt;chr&gt; "Real Estate", "Real Estate", "Consumer Discre…
-$ `Market Value(NOK)`     &lt;dbl&gt; 45639589, 48005740, 63775786, 70590539, 818396…
-$ `Market Value(USD)`     &lt;dbl&gt; 4018507, 4226843, 5615376, 6215406, 720588, 88…
-$ Voting                  &lt;dbl&gt; 0.66, 0.46, 0.68, 3.00, 0.38, 3.00, 1.19, 1.68…
-$ Ownership               &lt;dbl&gt; 0.66, 0.46, 0.68, 3.00, 0.38, 3.00, 1.19, 1.68…
-$ `Incorporation Country` &lt;chr&gt; "Australia", "Australia", "Australia", "Austra…</code></pre>
-</div>
-</div>
-<p>The dataset looks pretty clean, the only issue is the column names <code>Market Value(USD)</code> is a bit long, so we will rename it to <code>market_usd</code> for easier access.</p>
-</section>
-<section id="data-cleaning" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">11.3</span> Data Cleaning</h2>
-<p>Let’s rename the columns that we will use to lowercase for easier access.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the column</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">region =</span> <span class="st">`</span><span class="at">Region</span><span class="st">`</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> <span class="st">`</span><span class="at">Country</span><span class="st">`</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">`</span><span class="at">Name</span><span class="st">`</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">industry =</span> <span class="st">`</span><span class="at">Industry</span><span class="st">`</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_usd =</span> <span class="st">`</span><span class="at">Market Value(USD)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(region, country, name, industry, market_value_usd)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 8,659
-Columns: 5
-$ region           &lt;chr&gt; "Oceania", "Oceania", "Oceania", "Oceania", "Oceania"…
-$ country          &lt;chr&gt; "Australia", "Australia", "Australia", "Australia", "…
-$ name             &lt;chr&gt; "Abacus Group", "Abacus Storage King", "Accent Group …
-$ industry         &lt;chr&gt; "Real Estate", "Real Estate", "Consumer Discretionary…
-$ market_value_usd &lt;dbl&gt; 4018507, 4226843, 5615376, 6215406, 720588, 8879029, …</code></pre>
-</div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>gpfg_latest <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_latest.csv"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>gpfg_panel <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_last_10_years.rds"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>latest_year <span class="ot">&lt;-</span> <span class="fu">unique</span>(gpfg_latest<span class="sc">$</span>year)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>panel_years <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(gpfg_panel<span class="sc">$</span>year))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>start_year <span class="ot">&lt;-</span> <span class="fu">min</span>(panel_years)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>end_year <span class="ot">&lt;-</span> <span class="fu">max</span>(panel_years)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(latest_year) <span class="sc">==</span> <span class="dv">1</span>, latest_year <span class="sc">==</span> end_year)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>total_latest_nok <span class="ot">&lt;-</span> <span class="fu">sum</span>(gpfg_latest<span class="sc">$</span>market_value_nok)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>country_evidence <span class="ot">&lt;-</span> gpfg_latest <span class="sc">|&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok), <span class="at">.by =</span> country) <span class="sc">|&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> market_value_nok <span class="sc">/</span> <span class="fu">sum</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok))</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>industry_evidence <span class="ot">&lt;-</span> gpfg_latest <span class="sc">|&gt;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok), <span class="at">.by =</span> industry) <span class="sc">|&gt;</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> market_value_nok <span class="sc">/</span> <span class="fu">sum</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok))</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>largest_holding <span class="ot">&lt;-</span> gpfg_latest <span class="sc">|&gt;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>annual_evidence <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok), <span class="at">.by =</span> year) <span class="sc">|&gt;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>decade_change <span class="ot">&lt;-</span> annual_evidence<span class="sc">$</span>market_value_nok[annual_evidence<span class="sc">$</span>year <span class="sc">==</span> end_year] <span class="sc">/</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  annual_evidence<span class="sc">$</span>market_value_nok[annual_evidence<span class="sc">$</span>year <span class="sc">==</span> start_year] <span class="sc">-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="data-analysis" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">11.4</span> Data Analysis</h2>
-<section id="which-countries-received-the-most-investment-from-gpfg-in-2024" class="level3">
-<h3 class="anchored" data-anchor-id="which-countries-received-the-most-investment-from-gpfg-in-2024">Which countries received the most investment from GPFG in 2024?</h3>
+<section id="build-an-evidence-table" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="build-an-evidence-table"><span class="header-section-number">13.3</span> Build an evidence table</h2>
+<p>Draft from checked evidence, not from memory or a chart image.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum of market value by country</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>top_country <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_investment =</span> <span class="fu">sum</span>(market_value_usd)) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, total_investment) </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>top_country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>evidence_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">proposed_claim =</span> <span class="fu">c</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"Total reported equity market value in "</span>, latest_year),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Largest investment market and its share"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Largest industry and its share"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Largest individual holding"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"Change in nominal NOK value from "</span>, start_year, <span class="st">" to "</span>, end_year)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">evidence =</span> <span class="fu">c</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="fu">round</span>(total_latest_nok <span class="sc">/</span> <span class="fl">1e12</span>, <span class="dv">2</span>), <span class="st">" trillion NOK"</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      country_evidence<span class="sc">$</span>country[<span class="dv">1</span>],</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">": "</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">percent</span>(country_evidence<span class="sc">$</span>share[<span class="dv">1</span>], <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      industry_evidence<span class="sc">$</span>industry[<span class="dv">1</span>],</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="st">": "</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">percent</span>(industry_evidence<span class="sc">$</span>share[<span class="dv">1</span>], <span class="at">accuracy =</span> <span class="fl">0.1</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    largest_holding<span class="sc">$</span>company,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">percent</span>(decade_change, <span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">verification =</span> <span class="fu">c</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Reconcile company rows with country and industry totals"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Check denominator equals the full latest-year equity total"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Check 2021 classification definitions"</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Verify the company row in the official Excel file"</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Confirm both endpoints and describe values as nominal snapshots"</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>evidence_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_investment"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Canada","2":"25070513718"},{"1":"China","2":"40697476028"},{"1":"France","2":"38446073683"},{"1":"Germany","2":"39617456529"},{"1":"India","2":"30812536952"},{"1":"Japan","2":"84103712757"},{"1":"Switzerland","2":"40310302707"},{"1":"Taiwan","2":"30707132007"},{"1":"United Kingdom","2":"67279655923"},{"1":"United States","2":"719030800204"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["proposed_claim"],"name":[1],"type":["chr"],"align":["left"]},{"label":["evidence"],"name":[2],"type":["chr"],"align":["left"]},{"label":["verification"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Total reported equity market value in 2025","2":"15.18 trillion NOK","3":"Reconcile company rows with country and industry totals"},{"1":"Largest investment market and its share","2":"United States: 54.6%","3":"Check denominator equals the full latest-year equity total"},{"1":"Largest industry and its share","2":"Technology: 28.4%","3":"Check 2021 classification definitions"},{"1":"Largest individual holding","2":"NVIDIA Corp","3":"Verify the company row in the official Excel file"},{"1":"Change in nominal NOK value from 2016 to 2025","2":"223%","3":"Confirm both endpoints and describe values as nominal snapshots"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
+<p>An evidence table helps an editor see which sentence rests on which calculation and what still needs reporting.</p>
+</section>
+<section id="three-defensible-findings" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="three-defensible-findings"><span class="header-section-number">13.4</span> Three defensible findings</h2>
+<p>The computed evidence supports statements such as:</p>
+<ol type="1">
+<li>The 2025 file reports approximately 15.18 trillion NOK in listed-equity holdings.</li>
+<li>United States was the largest investment market, accounting for 54.6% of the reported equity market value.</li>
+<li>The nominal NOK value at the end of 2025 was 223% higher than at the end of 2016.</li>
+</ol>
+<p>Each sentence identifies the reporting period and measure. None says that the fund transferred that amount during the reporting year or earned that percentage as a return.</p>
+</section>
+<section id="separate-evidence-from-explanation" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="separate-evidence-from-explanation"><span class="header-section-number">13.5</span> Separate evidence from explanation</h2>
+<p>The holdings files can describe:</p>
+<ul>
+<li>the year-end value of a named holding;</li>
+<li>the number of reported holdings;</li>
+<li>country, region, and industry totals;</li>
+<li>ownership and voting stakes; and</li>
+<li>changes between snapshots.</li>
+</ul>
+<p>They cannot by themselves explain why a value changed. Possible explanations require other evidence, such as:</p>
+<ul>
+<li>NBIM annual reports and mandate documents;</li>
+<li>transaction or flow data;</li>
+<li>security-price and exchange-rate changes;</li>
+<li>company mergers, spin-offs, and name changes;</li>
+<li>interviews with NBIM or independent specialists; and</li>
+<li>documentation of classification changes.</li>
+</ul>
+<p>A story can report a pattern first and then test competing explanations. It should not promote a plausible explanation to a fact without evidence.</p>
+</section>
+<section id="verify-representative-records" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="verify-representative-records"><span class="header-section-number">13.6</span> Verify representative records</h2>
+<p>Before drafting:</p>
+<ol type="1">
+<li>check at least three top-ranked company rows in the official Excel file;</li>
+<li>recalculate the main total through a second grouping route;</li>
+<li>confirm every percentage denominator;</li>
+<li>inspect unmatched categories used in joins or maps;</li>
+<li>compare the latest values with NBIM’s own published summary where the definitions align; and</li>
+<li>record the source date, download date, and script version.</li>
+</ol>
+<p>For example, country and industry totals should reconcile with the company-row total:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar plot of the top 10 countries by investment</span></span>
-<span id="annotated-cell-6-2"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>top_country <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-3" class="code-annotation-target"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(country, total_investment), <span class="at">y =</span> total_investment <span class="sc">/</span> <span class="fl">1e9</span>)) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-4" class="code-annotation-target"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>) <span class="sc">+</span></span>
-<span id="annotated-cell-6-5"><a href="#annotated-cell-6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"$"</span>, <span class="fu">round</span>(total_investment <span class="sc">/</span> <span class="fl">1e9</span>, <span class="dv">1</span>), <span class="st">"B"</span>)), </span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-6" class="code-annotation-target"><a href="#annotated-cell-6-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-6-7" class="code-annotation-target"><a href="#annotated-cell-6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-6-8" class="code-annotation-target"><a href="#annotated-cell-6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">800</span>), <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">"B"</span>)) <span class="sc">+</span></span>
-<span id="annotated-cell-6-9"><a href="#annotated-cell-6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="annotated-cell-6-10"><a href="#annotated-cell-6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 Countries by Investment from GPFG in 2024"</span>,</span>
-<span id="annotated-cell-6-11"><a href="#annotated-cell-6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"The US, Japan, and the UK received the highest investments"</span>,</span>
-<span id="annotated-cell-6-12"><a href="#annotated-cell-6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">" "</span>,</span>
-<span id="annotated-cell-6-13"><a href="#annotated-cell-6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">" "</span>,</span>
-<span id="annotated-cell-6-14"><a href="#annotated-cell-6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: GPFG | By Bin Chen"</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-6-15" class="code-annotation-target"><a href="#annotated-cell-6-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="7" onclick="event.preventDefault();">7</a><span id="annotated-cell-6-16" class="code-annotation-target"><a href="#annotated-cell-6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="3" data-code-annotation="1">Set the x-axis as the country and the y-axis as the total investment in billions.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="4" data-code-annotation="2">Create a bar plot with a sky-blue color.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="6" data-code-annotation="3">Add the investment amount as text on the bars.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="7" data-code-annotation="4">Flip the coordinates to make it horizontal.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="8" data-code-annotation="5">Set the y-axis limits and format the labels as dollars in billions.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="6">6</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="15" data-code-annotation="6">Add the title, subtitle, and caption.</span>
-</dd>
-<dt data-target-cell="annotated-cell-6" data-target-annotation="7">7</dt>
-<dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="16" data-code-annotation="7">Apply a bw theme to the plot.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="norway-invest_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">isTRUE</span>(<span class="fu">all.equal</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(country_evidence<span class="sc">$</span>market_value_nok),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  total_latest_nok</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">isTRUE</span>(<span class="fu">all.equal</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(industry_evidence<span class="sc">$</span>market_value_nok),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  total_latest_nok</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="which-regions-had-the-highest-investment-from-gpfg-in-2024" class="level3">
-<h3 class="anchored" data-anchor-id="which-regions-had-the-highest-investment-from-gpfg-in-2024">Which regions had the highest investment from GPFG in 2024?</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum of market value by region</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>top_region <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_investment =</span> <span class="fu">sum</span>(market_value_usd)) <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(total_investment))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>top_region</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_investment"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"North America","2":"744101313922"},{"1":"Europe","2":"275852730957"},{"1":"Asia","2":"223736623399"},{"1":"Oceania","2":"21971272634"},{"1":"Latin America","2":"8369222381"},{"1":"Middle East","2":"6846130166"},{"1":"Africa","2":"4965746624"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a pie chart of the regional distribution of investments</span></span>
-<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>blue_palette <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#1f77b4"</span>, <span class="st">"#2b8cbe"</span>, <span class="st">"#3182bd"</span>, <span class="st">"#6baed6"</span>, <span class="st">"#9ecae1"</span>, <span class="st">"#c6dbef"</span>, <span class="st">"#deebf7"</span>)</span>
-<span id="annotated-cell-8-3"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a>top_region <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-5" class="code-annotation-target"><a href="#annotated-cell-8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">p =</span> total_investment <span class="sc">/</span> <span class="fu">sum</span>(total_investment)) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-8-6" class="code-annotation-target"><a href="#annotated-cell-8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> total_investment, <span class="at">fill =</span> <span class="fu">reorder</span>(region, <span class="sc">-</span>p))) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-8-7" class="code-annotation-target"><a href="#annotated-cell-8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-8-8" class="code-annotation-target"><a href="#annotated-cell-8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-8-9" class="code-annotation-target"><a href="#annotated-cell-8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> blue_palette) <span class="sc">+</span></span>
-<span id="annotated-cell-8-10"><a href="#annotated-cell-8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">ifelse</span>(p <span class="sc">&gt;=</span> <span class="fl">0.05</span>, </span>
-<span id="annotated-cell-8-11"><a href="#annotated-cell-8-11" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">paste0</span>(region, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">round</span>(p <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>), <span class="st">""</span>)),</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-8-12" class="code-annotation-target"><a href="#annotated-cell-8-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="annotated-cell-8-13"><a href="#annotated-cell-8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="annotated-cell-8-14"><a href="#annotated-cell-8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Regional Distribution of GPFG Investments in 2024"</span>,</span>
-<span id="annotated-cell-8-15"><a href="#annotated-cell-8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Europe received the highest investments"</span>,</span>
-<span id="annotated-cell-8-16"><a href="#annotated-cell-8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Region"</span>,</span>
-<span id="annotated-cell-8-17"><a href="#annotated-cell-8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: GPFG | By Bin Chen"</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="7" onclick="event.preventDefault();">7</a><span id="annotated-cell-8-18" class="code-annotation-target"><a href="#annotated-cell-8-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="8" onclick="event.preventDefault();">8</a><span id="annotated-cell-8-19" class="code-annotation-target"><a href="#annotated-cell-8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="5" data-code-annotation="1">Calculate the proportion of investment by region.</span>
-</dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="6" data-code-annotation="2">Set the x-axis as an empty string and the y-axis as the total investment.</span>
-</dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="7" data-code-annotation="3">Create a bar plot with the identity statistic and white borders.</span>
-</dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="8" data-code-annotation="4">Use polar coordinates for the pie chart.</span>
-</dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="9" data-code-annotation="5">Set the fill colors using a blue palette.</span>
-</dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="6">6</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="12" data-code-annotation="6">Add text labels for regions with a proportion greater than 5%.</span>
-</dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="7">7</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="18" data-code-annotation="7">Add the title, subtitle, and caption.</span>
-</dd>
-<dt data-target-cell="annotated-cell-8" data-target-annotation="8">8</dt>
-<dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="19" data-code-annotation="8">Apply a void theme to remove the background.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="norway-invest_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Pie Chart with ggplot2
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Pie charts are not recommended for data visualization due to the difficulty in comparing the size of the slices. However, they can be used effectively for showing proportions in a circular format. To create a pie chart in ggplot2, we use <code>coord_polar("y", start = 0)</code> to convert the bar plot into a pie chart.</p>
-</div>
-</div>
+<section id="a-methods-note-readers-can-understand" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="a-methods-note-readers-can-understand"><span class="header-section-number">13.7</span> A methods note readers can understand</h2>
+<blockquote class="blockquote">
+<p>We downloaded NBIM’s official year-end listed-equity holdings for 2016–2025 and analyzed the standardized files in R. Each row represents one reported holding at one year-end. We summed nominal market values in Norwegian kroner by investment market and industry and calculated shares using the full annual equity total. Snapshot changes combine prices, currencies, purchases, sales, and changes in portfolio composition; they are not investment flows or returns. We did not match companies longitudinally because published names are not stable identifiers.</p>
+</blockquote>
 </section>
-<section id="top-10-companies-in-china-and-hong-kong-sar-that-gpfg-invested-in-2024" class="level3">
-<h3 class="anchored" data-anchor-id="top-10-companies-in-china-and-hong-kong-sar-that-gpfg-invested-in-2024">Top 10 Companies in China and Hong Kong SAR that GPFG Invested in 2024</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># top10 in HK</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>top_hk <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Hong Kong"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, market_value_usd) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, market_value_usd) <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_usd))</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>top_hk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_usd"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"AIA Group Ltd","2":"1478828837"},{"1":"Hong Kong Exchanges & Clearing Ltd","2":"885499622"},{"1":"BOC Hong Kong Holdings Ltd","2":"378040133"},{"1":"Techtronic Industries Co Ltd","2":"327948538"},{"1":"Galaxy Entertainment Group Ltd","2":"316524204"},{"1":"Sun Hung Kai Properties Ltd","2":"308829825"},{"1":"Shenzhou International Group Holdings Ltd","2":"291374594"},{"1":"Link REIT","2":"242688654"},{"1":"CK Hutchison Holdings Ltd","2":"233776731"},{"1":"Lenovo Group Ltd","2":"224220454"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Top10 in China</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>top_china <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"China"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, market_value_usd) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, market_value_usd) <span class="sc">|&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_usd))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>top_china</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_usd"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Tencent Holdings Ltd","2":"6672234732"},{"1":"Alibaba Group Holding Ltd","2":"4408363460"},{"1":"Meituan","2":"2073346374"},{"1":"PDD Holdings Inc","2":"1360790262"},{"1":"China Construction Bank Corp","2":"1131008851"},{"1":"Xiaomi Corp","2":"969772273"},{"1":"Trip.com Group Ltd","2":"861229016"},{"1":"JD.com Inc","2":"705878713"},{"1":"Industrial & Commercial Bank of China Ltd","2":"691136571"},{"1":"China Merchants Bank Co Ltd","2":"661476391"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># top10 in HK and China, two bar charts using facet_wrap</span></span>
-<span id="annotated-cell-11-2"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-11-3"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-11-4"><a href="#annotated-cell-11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"Hong Kong"</span>)) <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-11-5"><a href="#annotated-cell-11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-11-6"><a href="#annotated-cell-11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">10</span>, market_value_usd) <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-11-7"><a href="#annotated-cell-11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="annotated-cell-11-8"><a href="#annotated-cell-11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> <span class="fu">fct_reorder</span>(name, market_value_usd)) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-11-9" class="code-annotation-target"><a href="#annotated-cell-11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> market_value_usd <span class="sc">/</span> <span class="fl">1e9</span>, <span class="at">fill =</span> country)) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-11-10" class="code-annotation-target"><a href="#annotated-cell-11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-11-11" class="code-annotation-target"><a href="#annotated-cell-11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-11-12" class="code-annotation-target"><a href="#annotated-cell-11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>(<span class="at">suffix =</span> <span class="st">"B"</span>)) <span class="sc">+</span></span>
-<span id="annotated-cell-11-13"><a href="#annotated-cell-11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="annotated-cell-11-14"><a href="#annotated-cell-11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 Companies in China and Hong Kong Invested by GPFG in 2024"</span>,</span>
-<span id="annotated-cell-11-15"><a href="#annotated-cell-11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">" "</span>,</span>
-<span id="annotated-cell-11-16"><a href="#annotated-cell-11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">" "</span>,</span>
-<span id="annotated-cell-11-17"><a href="#annotated-cell-11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Country"</span>,</span>
-<span id="annotated-cell-11-18"><a href="#annotated-cell-11-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: GPFG | By Bin Chen"</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-11-19" class="code-annotation-target"><a href="#annotated-cell-11-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-11-20" class="code-annotation-target"><a href="#annotated-cell-11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>country, <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="7" onclick="event.preventDefault();">7</a><span id="annotated-cell-11-21" class="code-annotation-target"><a href="#annotated-cell-11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-11" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="9" data-code-annotation="1">Set the x-axis as the company name and the y-axis as the market value in billions.</span>
-</dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="10" data-code-annotation="2">Create a bar plot.</span>
-</dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="11" data-code-annotation="3">Flip the coordinates to make it horizontal.</span>
-</dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="12" data-code-annotation="4">Format the y-axis labels as dollars in billions.</span>
-</dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="19" data-code-annotation="5">Add the title, x and y labels, legend title, and caption.</span>
-</dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="6">6</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="20" data-code-annotation="6">Use <code>facet_wrap</code> to create separate plots for China and Hong Kong with free y-scales.</span>
-</dd>
-<dt data-target-cell="annotated-cell-11" data-target-annotation="7">7</dt>
-<dd>
-<span data-code-cell="annotated-cell-11" data-code-lines="21" data-code-annotation="7">Apply a bw theme to the plot.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="norway-invest_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="story-structure" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="story-structure"><span class="header-section-number">13.8</span> Story structure</h2>
+<p>A concise data story could use this order:</p>
+<ol type="1">
+<li><strong>Lead:</strong> the strongest verified concentration finding.</li>
+<li><strong>Nut paragraph:</strong> what the data cover and why the pattern matters.</li>
+<li><strong>Evidence:</strong> a ranked chart and exact values.</li>
+<li><strong>Context:</strong> the ten-year nominal trend.</li>
+<li><strong>Reporting:</strong> expert or institutional explanations tested against evidence.</li>
+<li><strong>Limitations:</strong> snapshot, classification, currency, and identity caveats.</li>
+<li><strong>Methods/source box:</strong> links, dates, code, and definitions.</li>
+</ol>
 </section>
-</section>
-<section id="map-investment-distribution-across-countries" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="map-investment-distribution-across-countries"><span class="header-section-number">11.5</span> Map: Investment Distribution Across Countries</h2>
-<section id="load-the-world-map-data" class="level3">
-<h3 class="anchored" data-anchor-id="load-the-world-map-data">Load the World Map Data</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth) <span class="co"># For world map data</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="merge-the-world-map-data-with-investment-data" class="level3">
-<h3 class="anchored" data-anchor-id="merge-the-world-map-data-with-investment-data">Merge the World Map Data with Investment Data</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum of market value by country</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>world_invest <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_investment =</span> <span class="fu">sum</span>(market_value_usd)) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_investment <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>When looking at the country format in both datasets, we see that the <code>country</code> column in the investment data is in full name format, which corresponds to the <code>name_long</code> column in the world map data. We will use this column to merge the two datasets.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the world map data with investment data</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>world_merge <span class="ot">&lt;-</span> <span class="fu">left_join</span>(world_map, world_invest, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name_long"</span> <span class="ot">=</span> <span class="st">"country"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_investment =</span> <span class="fu">replace_na</span>(total_investment, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name_long, total_investment, geometry)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(world_merge)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  name_long         total_investment             geometry  
- Length:242         Min.   :0.000e+00   MULTIPOLYGON :242  
- Class :character   1st Qu.:0.000e+00   epsg:4326    :  0  
- Mode  :character   Median :0.000e+00   +proj=long...:  0  
-                    Mean   :5.246e+09                      
-                    3rd Qu.:0.000e+00                      
-                    Max.   :7.190e+11                      </code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Which data to be left?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Here we use <code>left_join</code> to merge the world map data with the investment data based on the country names. The reason we let <code>world_map</code> be the left table is that we want to keep all countries in the world map data, even if they don’t have investment data. Otherwise, we would lose some countries in the map.</p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-15-1"><a href="#annotated-cell-15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a world map of investment distribution</span></span>
-<span id="annotated-cell-15-2"><a href="#annotated-cell-15-2" aria-hidden="true" tabindex="-1"></a>world_merge <span class="sc">|&gt;</span> </span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-3" class="code-annotation-target"><a href="#annotated-cell-15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_investment_B =</span> total_investment <span class="sc">/</span> <span class="fl">1e9</span>) <span class="sc">|&gt;</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-15-4" class="code-annotation-target"><a href="#annotated-cell-15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>()) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-15-5" class="code-annotation-target"><a href="#annotated-cell-15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry, <span class="at">fill =</span> total_investment_B)) <span class="sc">+</span></span>
-<span id="annotated-cell-15-6"><a href="#annotated-cell-15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(</span>
-<span id="annotated-cell-15-7"><a href="#annotated-cell-15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"#deebf7"</span>, </span>
-<span id="annotated-cell-15-8"><a href="#annotated-cell-15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="st">"#3182bd"</span>,</span>
-<span id="annotated-cell-15-9"><a href="#annotated-cell-15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.value =</span> <span class="st">"grey90"</span>, </span>
-<span id="annotated-cell-15-10"><a href="#annotated-cell-15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">" "</span>, </span>
-<span id="annotated-cell-15-11"><a href="#annotated-cell-15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans =</span> <span class="st">"log"</span>,</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-15-12" class="code-annotation-target"><a href="#annotated-cell-15-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="annotated-cell-15-13"><a href="#annotated-cell-15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="annotated-cell-15-14"><a href="#annotated-cell-15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Global Distribution of GPFG Investments (2024)"</span>,</span>
-<span id="annotated-cell-15-15"><a href="#annotated-cell-15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Log scale representation of investments by market value (USD, in Billions)"</span>,</span>
-<span id="annotated-cell-15-16"><a href="#annotated-cell-15-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: GPFG | Analysis by Bin Chen"</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-15-17" class="code-annotation-target"><a href="#annotated-cell-15-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-15-18" class="code-annotation-target"><a href="#annotated-cell-15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="7" onclick="event.preventDefault();">7</a><span id="annotated-cell-15-19" class="code-annotation-target"><a href="#annotated-cell-15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-annotation">
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="3" data-code-annotation="1">Convert the total investment to billions for better visualization.</span>
-</dd>
-<dt data-target-cell="annotated-cell-15" data-target-annotation="2">2</dt>
-<dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="4" data-code-annotation="2">Set the aesthetics for the plot.</span>
-</dd>
-<dt data-target-cell="annotated-cell-15" data-target-annotation="3">3</dt>
-<dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="5" data-code-annotation="3">Create a spatial feature plot using the world map geometry and fill color based on total investment.</span>
-</dd>
-<dt data-target-cell="annotated-cell-15" data-target-annotation="4">4</dt>
-<dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="12" data-code-annotation="4">Set the gradient fill colors from light blue to dark blue with a log scale.</span>
-</dd>
-<dt data-target-cell="annotated-cell-15" data-target-annotation="5">5</dt>
-<dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="17" data-code-annotation="5">Add the title, subtitle, and caption.</span>
-</dd>
-<dt data-target-cell="annotated-cell-15" data-target-annotation="6">6</dt>
-<dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="18" data-code-annotation="6">Apply a void theme to remove the background.</span>
-</dd>
-<dt data-target-cell="annotated-cell-15" data-target-annotation="7">7</dt>
-<dd>
-<span data-code-cell="annotated-cell-15" data-code-lines="19" data-code-annotation="7">Remove the legend for a cleaner look.</span>
-</dd>
-</dl>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="norway-invest_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="independent-newsroom-assignment" class="level2" data-number="13.9">
+<h2 data-number="13.9" class="anchored" data-anchor-id="independent-newsroom-assignment"><span class="header-section-number">13.9</span> Independent newsroom assignment</h2>
+<p>Develop a 600–800 word story pitch based on the holdings data. Submit:</p>
+<ul>
+<li>a one-sentence hypothesis;</li>
+<li>a five-row evidence table;</li>
+<li>one publication chart and its verification table;</li>
+<li>two external sources you would interview or consult;</li>
+<li>a methods paragraph;</li>
+<li>three claims you rejected because the data could not support them; and</li>
+<li>a headline that avoids the words <em>received</em>, <em>spent</em>, <em>profit</em>, and <em>return</em> unless you add separate evidence for those concepts.</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1246,13 +961,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./map-lifex.html" class="pagination-link  aria-label=" &lt;span="" global="" life="" expectancy&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span>
+      <a href="./map-gpfg.html" class="pagination-link  aria-label=" &lt;span="" geographic="" patterns="" carefully&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./debate.html" class="pagination-link" aria-label="<span class='chapter-number'>12</span>&nbsp; <span class='chapter-title'>Text Analysis</span>">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Text Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./employment.html" class="pagination-link" aria-label="<span class='chapter-number'>14</span>&nbsp; <span class='chapter-title'>Aggregated Official Data: Hong Kong Graduate Employment</span>">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1263,7 +978,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright © 2025 Bin Chen</p>
+<p>Copyright © 2026 Bin Chen</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

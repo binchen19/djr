@@ -1,272 +1,210 @@
 ---
-title: "GPFG Investments"
-subtitle: "Investments by Country in 2024"
-date: last-modified
-format: html
+title: "From Analysis to a Data Story"
 ---
 
-## Overview
+## Learning objectives
 
-In this notebook, we will analyze the Norwegian Government Pension Fund Global (GPFG), the world’s largest sovereign wealth fund, to understand where it invests. The fund is managed by Norges Bank Investment Management (NBIM), a division of the Norwegian Central Bank.
+By the end of this chapter, you should be able to:
 
-### About the Data
+- turn exploratory findings into a focused story hypothesis;
+- build an evidence table before drafting;
+- separate description, interpretation, and explanation;
+- verify a financial claim against the source; and
+- write a transparent methods and limitations note.
 
-We will use investment data from the NBIM website, which details the fund’s holdings across different asset classes, sectors, and countries for the year 2024. The original dataset, downloaded from NBIM, is in Excel format (`EQ_2024_Country.xlsx`). For convenience, it has been renamed to `gpfg-2024.xlsx` and stored in the `data` folder.
+## The reporting frame
 
-### Objectives
+We now combine the skills from the core workflow. The possible story is not
+“where Norway sent money in the latest year.” The data do not contain transactions. A
+defensible frame is:
 
-In this analysis, we aim to answer the following questions: 
--  1. Which **countries** received the most investment from GPFG in 2024?
--  2. Which **regions** had the highest investment from GPFG in 2024?
--  3. What are the top 10 companies in China that GPFG invested in during 2024?
-
-To visualize the findings, we will create: 
-
--  A **bar** plot of the top 10 countries that received the most investment.
--  A **pie** chart showing the regional distribution of GPFG’s investments.
--  A world **map** illustrating investment distribution across countries.
-
-## Data Import and Wrangling
-
-Let's start by importing the necessary libraries and loading the data.
+> How concentrated were NBIM's reported equity holdings at the latest year-end,
+> and how did their nominal market value change over the previous decade?
 
 ```{r}
-#| warning: FALSE
-#| message: FALSE
 library(tidyverse)
-library(readxl)
+library(scales)
+
+gpfg_latest <- read_csv(
+  "data/processed/gpfg_equities_latest.csv",
+  show_col_types = FALSE
+)
+
+gpfg_panel <- readRDS(
+  "data/processed/gpfg_equities_last_10_years.rds"
+)
+
+latest_year <- unique(gpfg_latest$year)
+panel_years <- sort(unique(gpfg_panel$year))
+start_year <- min(panel_years)
+end_year <- max(panel_years)
+
+stopifnot(length(latest_year) == 1, latest_year == end_year)
+
+total_latest_nok <- sum(gpfg_latest$market_value_nok)
+
+country_evidence <- gpfg_latest |>
+  summarise(market_value_nok = sum(market_value_nok), .by = country) |>
+  mutate(share = market_value_nok / sum(market_value_nok)) |>
+  arrange(desc(market_value_nok))
+
+industry_evidence <- gpfg_latest |>
+  summarise(market_value_nok = sum(market_value_nok), .by = industry) |>
+  mutate(share = market_value_nok / sum(market_value_nok)) |>
+  arrange(desc(market_value_nok))
+
+largest_holding <- gpfg_latest |>
+  arrange(desc(market_value_nok)) |>
+  slice_head(n = 1)
+
+annual_evidence <- gpfg_panel |>
+  summarise(market_value_nok = sum(market_value_nok), .by = year) |>
+  arrange(year)
+
+decade_change <- annual_evidence$market_value_nok[annual_evidence$year == end_year] /
+  annual_evidence$market_value_nok[annual_evidence$year == start_year] - 1
 ```
+
+## Build an evidence table
+
+Draft from checked evidence, not from memory or a chart image.
 
 ```{r}
-# Load the data
-df <- read_excel("data/gpfg-2024.xlsx")
+evidence_table <- tibble(
+  proposed_claim = c(
+    paste0("Total reported equity market value in ", latest_year),
+    "Largest investment market and its share",
+    "Largest industry and its share",
+    "Largest individual holding",
+    paste0("Change in nominal NOK value from ", start_year, " to ", end_year)
+  ),
+  evidence = c(
+    paste0(round(total_latest_nok / 1e12, 2), " trillion NOK"),
+    paste0(
+      country_evidence$country[1],
+      ": ",
+      percent(country_evidence$share[1], accuracy = 0.1)
+    ),
+    paste0(
+      industry_evidence$industry[1],
+      ": ",
+      percent(industry_evidence$share[1], accuracy = 0.1)
+    ),
+    largest_holding$company,
+    percent(decade_change, accuracy = 1)
+  ),
+  verification = c(
+    "Reconcile company rows with country and industry totals",
+    "Check denominator equals the full latest-year equity total",
+    "Check 2021 classification definitions",
+    "Verify the company row in the official Excel file",
+    "Confirm both endpoints and describe values as nominal snapshots"
+  )
+)
+
+evidence_table
 ```
+
+An evidence table helps an editor see which sentence rests on which
+calculation and what still needs reporting.
+
+## Three defensible findings
+
+The computed evidence supports statements such as:
+
+1. The `r latest_year` file reports approximately
+   `r round(total_latest_nok / 1e12, 2)` trillion NOK in listed-equity holdings.
+2. `r country_evidence$country[1]` was the largest investment market,
+   accounting for `r percent(country_evidence$share[1], accuracy = 0.1)` of the
+   reported equity market value.
+3. The nominal NOK value at the end of `r end_year` was
+   `r percent(decade_change, accuracy = 1)` higher than at the end of `r start_year`.
+
+Each sentence identifies the reporting period and measure. None says that the
+fund transferred that amount during the reporting year or earned that percentage as a return.
+
+## Separate evidence from explanation
+
+The holdings files can describe:
+
+- the year-end value of a named holding;
+- the number of reported holdings;
+- country, region, and industry totals;
+- ownership and voting stakes; and
+- changes between snapshots.
+
+They cannot by themselves explain why a value changed. Possible explanations
+require other evidence, such as:
+
+- NBIM annual reports and mandate documents;
+- transaction or flow data;
+- security-price and exchange-rate changes;
+- company mergers, spin-offs, and name changes;
+- interviews with NBIM or independent specialists; and
+- documentation of classification changes.
+
+A story can report a pattern first and then test competing explanations. It
+should not promote a plausible explanation to a fact without evidence.
+
+## Verify representative records
+
+Before drafting:
+
+1. check at least three top-ranked company rows in the official Excel file;
+2. recalculate the main total through a second grouping route;
+3. confirm every percentage denominator;
+4. inspect unmatched categories used in joins or maps;
+5. compare the latest values with NBIM's own published summary where the
+   definitions align; and
+6. record the source date, download date, and script version.
+
+For example, country and industry totals should reconcile with the company-row
+total:
 
 ```{r}
-glimpse(df)
+stopifnot(isTRUE(all.equal(
+  sum(country_evidence$market_value_nok),
+  total_latest_nok
+)))
+
+stopifnot(isTRUE(all.equal(
+  sum(industry_evidence$market_value_nok),
+  total_latest_nok
+)))
 ```
 
-The dataset looks pretty clean, the only issue is the column names `Market Value(USD)` is a bit long, so we will rename it to `market_usd` for easier access.
+## A methods note readers can understand
 
-## Data Cleaning
+> We downloaded NBIM's official year-end listed-equity holdings for `r start_year`–`r end_year`
+> and analyzed the standardized files in R. Each row represents one reported
+> holding at one year-end. We summed nominal market values in Norwegian kroner
+> by investment market and industry and calculated shares using the full annual
+> equity total. Snapshot changes combine prices, currencies, purchases, sales,
+> and changes in portfolio composition; they are not investment flows or
+> returns. We did not match companies longitudinally because published names
+> are not stable identifiers.
 
-Let's rename the columns that we will use to lowercase for easier access.
+## Story structure
 
-```{r}
-# Rename the column
-df_clean <- df |>
-  rename(
-    region = `Region`,
-    country = `Country`,
-    name = `Name`,
-    industry = `Industry`,
-    market_value_usd = `Market Value(USD)`) |>
-  select(region, country, name, industry, market_value_usd)
+A concise data story could use this order:
 
-glimpse(df_clean)
-```
-## Data Analysis
+1. **Lead:** the strongest verified concentration finding.
+2. **Nut paragraph:** what the data cover and why the pattern matters.
+3. **Evidence:** a ranked chart and exact values.
+4. **Context:** the ten-year nominal trend.
+5. **Reporting:** expert or institutional explanations tested against evidence.
+6. **Limitations:** snapshot, classification, currency, and identity caveats.
+7. **Methods/source box:** links, dates, code, and definitions.
 
-### Which countries received the most investment from GPFG in 2024?
-```{r}
-# Sum of market value by country
-top_country <- df_clean |>
-  group_by(country) |>
-  summarise(total_investment = sum(market_value_usd)) |>
-  top_n(10, total_investment) 
+## Independent newsroom assignment
 
-top_country
-```
+Develop a 600–800 word story pitch based on the holdings data. Submit:
 
-```{r}
-# Create a bar plot of the top 10 countries by investment
-top_country |>
-  ggplot(aes(x = reorder(country, total_investment), y = total_investment / 1e9)) + # <1>
-  geom_col(fill = "skyblue") + # <2>
-  geom_text(aes(label = paste0("$", round(total_investment / 1e9, 1), "B")), 
-            hjust = -0.1, size = 3) + # <3>
-  coord_flip() + # <4>
-  scale_y_continuous(limits = c(0, 800), labels = scales::label_dollar(suffix = "B")) + # <5>
-  labs(
-    title = "Top 10 Countries by Investment from GPFG in 2024",
-    subtitle = "The US, Japan, and the UK received the highest investments",
-    x = " ",
-    y = " ",
-    caption = "Source: GPFG | By Bin Chen"
-  ) + # <6>
-  theme_bw() # <7>
-```
-1. Set the x-axis as the country and the y-axis as the total investment in billions.
-2. Create a bar plot with a sky-blue color.
-3. Add the investment amount as text on the bars.
-4. Flip the coordinates to make it horizontal.
-5. Set the y-axis limits and format the labels as dollars in billions.
-6. Add the title, subtitle, and caption.
-7. Apply a bw theme to the plot.
-
-### Which regions had the highest investment from GPFG in 2024?
-
-```{r}
-# Sum of market value by region
-top_region <- df_clean |>
-  group_by(region) |>
-  summarise(total_investment = sum(market_value_usd)) |>
-  arrange(desc(total_investment))
-
-top_region
-```
-
-```{r}
-# Create a pie chart of the regional distribution of investments
-blue_palette <- c("#1f77b4", "#2b8cbe", "#3182bd", "#6baed6", "#9ecae1", "#c6dbef", "#deebf7")
-
-top_region |>
-  mutate(p = total_investment / sum(total_investment)) |> # <1>
-  ggplot(aes(x = "", y = total_investment, fill = reorder(region, -p))) + # <2>
-  geom_bar(stat = "identity", width = 1, color = "white") + # <3>
-  coord_polar("y", start = 0) + # <4>
-  scale_fill_manual(values = blue_palette) + # <5>
-  geom_text(aes(label = ifelse(p >= 0.05, 
-                               paste0(region, "\n", round(p * 100, 1), "%"), "")),
-            position = position_stack(vjust = 0.5), color = "white", size = 3) + # <6>
-  labs(
-    title = "Regional Distribution of GPFG Investments in 2024",
-    subtitle = "Europe received the highest investments",
-    fill = "Region",
-    caption = "Source: GPFG | By Bin Chen"
-  ) + # <7>
-  theme_void() # <8>
-```
-1. Calculate the proportion of investment by region.
-2. Set the x-axis as an empty string and the y-axis as the total investment.
-3. Create a bar plot with the identity statistic and white borders.
-4. Use polar coordinates for the pie chart.
-5. Set the fill colors using a blue palette.
-6. Add text labels for regions with a proportion greater than 5%.
-7. Add the title, subtitle, and caption.
-8. Apply a void theme to remove the background.
-
-::: callout-note
-## Pie Chart with ggplot2
-Pie charts are not recommended for data visualization due to the difficulty in comparing the size of the slices. However, they can be used effectively for showing proportions in a circular format.
-To create a pie chart in ggplot2, we use `coord_polar("y", start = 0)` to convert the bar plot into a pie chart.
-:::
-
-
-### Top 10 Companies in China and Hong Kong SAR that GPFG Invested in 2024
-
-```{r}
-# top10 in HK
-top_hk <- df_clean |>
-  filter(country == "Hong Kong") |>
-  top_n(10, market_value_usd) |>
-  select(name, market_value_usd) |>
-  arrange(desc(market_value_usd))
-
-top_hk
-```
-
-```{r}
-# Top10 in China
-top_china <- df_clean |>
-  filter(country == "China") |>
-  top_n(10, market_value_usd) |>
-  select(name, market_value_usd) |>
-  arrange(desc(market_value_usd))
-
-top_china
-```
-
-```{r}
-# top10 in HK and China, two bar charts using facet_wrap
-
-df_clean |>
-  filter(country %in% c("China", "Hong Kong")) |>
-  group_by(country) |>
-  top_n(10, market_value_usd) |>
-  ungroup() |>
-  mutate(name = fct_reorder(name, market_value_usd)) |>
-  ggplot(aes(x = name, y = market_value_usd / 1e9, fill = country)) + # <1>
-  geom_col() + # <2>
-  coord_flip() + # <3>
-  scale_y_continuous(labels = scales::label_dollar(suffix = "B")) + # <4>
-  labs(
-    title = "Top 10 Companies in China and Hong Kong Invested by GPFG in 2024",
-    x = " ",
-    y = " ",
-    fill = "Country",
-    caption = "Source: GPFG | By Bin Chen"
-  ) + # <5>
-  facet_wrap(~country, scales = "free_y", ncol = 1) + # <6>
-  theme_bw() # <7>
-```
-1. Set the x-axis as the company name and the y-axis as the market value in billions.
-2. Create a bar plot.
-3. Flip the coordinates to make it horizontal.
-4. Format the y-axis labels as dollars in billions.
-5. Add the title, x and y labels, legend title, and caption.
-6. Use `facet_wrap` to create separate plots for China and Hong Kong with free y-scales.
-7. Apply a bw theme to the plot.
-
-
-## Map: Investment Distribution Across Countries
-
-### Load the World Map Data
-```{r}
-library(rnaturalearth) # For world map data
-world_map <- ne_countries(scale = "medium", returnclass = "sf") 
-```
-
-### Merge the World Map Data with Investment Data
-```{r}
-# Sum of market value by country
-world_invest <- df_clean |>
-  group_by(country) |>
-  summarise(total_investment = sum(market_value_usd)) |>
-  filter(total_investment > 0)
-```
-
-When looking at the country format in both datasets, we see that the `country` column in the investment data is in full name format, which corresponds to the `name_long` column in the world map data. We will use this column to merge the two datasets.
-
-```{r}
-# Merge the world map data with investment data
-world_merge <- left_join(world_map, world_invest, by = c("name_long" = "country")) %>%
-  mutate(total_investment = replace_na(total_investment, 0)) %>%
-  select(name_long, total_investment, geometry)
-
-summary(world_merge)
-```
-
-::: callout-important
-## Which data to be left?
-Here we use `left_join` to merge the world map data with the investment data based on the country names. The reason we let `world_map` be the left table is that we want to keep all countries in the world map data, even if they don't have investment data. Otherwise, we would lose some countries in the map.
-:::
-
-```{r}
-# Create a world map of investment distribution
-world_merge |> 
-  mutate(total_investment_B = total_investment / 1e9) |> # <1>
-  ggplot(aes()) + # <2>
-  geom_sf(aes(geometry = geometry, fill = total_investment_B)) + # <3>
-  scale_fill_gradient(
-    low = "#deebf7", 
-    high = "#3182bd",
-    na.value = "grey90", 
-    name = " ", 
-    trans = "log",
-  ) + # <4>
-  labs(
-    title = "Global Distribution of GPFG Investments (2024)",
-    subtitle = "Log scale representation of investments by market value (USD, in Billions)",
-    caption = "Source: GPFG | Analysis by Bin Chen"
-  ) + # <5>
-  theme_void() + # <6>
-  theme(legend.position = "none") # <7>
-```
-1. Convert the total investment to billions for better visualization.
-2. Set the aesthetics for the plot.
-3. Create a spatial feature plot using the world map geometry and fill color based on total investment.
-4. Set the gradient fill colors from light blue to dark blue with a log scale.
-5. Add the title, subtitle, and caption.
-6. Apply a void theme to remove the background.
-7. Remove the legend for a cleaner look.
+- a one-sentence hypothesis;
+- a five-row evidence table;
+- one publication chart and its verification table;
+- two external sources you would interview or consult;
+- a methods paragraph;
+- three claims you rejected because the data could not support them; and
+- a headline that avoids the words *received*, *spent*, *profit*, and *return*
+  unless you add separate evidence for those concepts.

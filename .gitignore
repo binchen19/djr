@@ -45,3 +45,19 @@ rsconnect/
 
 /.quarto/
 
+# macOS metadata
+.DS_Store
+
+# Local AI/worktree state
+/.claude/
+
+# Reproducible NBIM source downloads
+/data/raw/gpfg/*.csv
+/data/raw/gpfg/*.xlsx
+
+# Generated spreadsheet and inspection artifacts
+/outputs/
+
+# Website builds should link to the canonical datasets in data/processed
+# instead of committing a second copy.
+/docs/data/
