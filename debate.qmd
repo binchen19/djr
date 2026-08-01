@@ -1,363 +1,226 @@
 ---
-title: "Text Analysis"
-subtitle: "2024 US Presidential Debate"
-format: html
+title: "Text as Data: The 2024 US Presidential Debate"
 ---
 
-## Text Analysis with R: 2024 US Presidential Debate
+## Learning objectives
 
-## Load Packages
+By the end of this case, you should be able to:
+
+- parse a transcript into speaker turns;
+- tokenize text while preserving the speaker;
+- compare word use with a rate rather than raw counts alone;
+- inspect words in their original context; and
+- identify interpretive limits of frequency analysis.
+
+## Import and parse the transcript
 
 ```{r}
 library(tidyverse)
 library(tidytext)
-library(skimr)
+
+transcript_lines <- read_lines("data/debate.txt") |>
+  discard(~ str_trim(.x) == "")
 ```
 
-## Cleaning Text Data to Data Frame
-
-### Import
-
-```{r}
-# Read the transcript
-transcript <- readLines("data/debate.txt")
-transcript[1:10]
-```
+The transcript marks a new speaker with capital letters followed by a colon.
+The parser below combines wrapped lines into one record per speaker turn.
 
 ```{r}
-# Remove empty lines
-transcript <- transcript[transcript != ""]
-```
+parse_transcript <- function(lines) {
+  speaker_pattern <- "^[A-Z][A-Z ]+:"
+  turns <- list()
+  current_speaker <- NA_character_
+  current_text <- character()
 
-### Parse transcripts to a data frame
-
-```{r}
-# Initialize an empty data frame
-data <- data.frame(speaker = character(),
-                   text = character(),
-                   stringsAsFactors = FALSE)
-
-# Define a regular expression pattern to detect speaker lines
-speaker_pattern <- "^[A-Z ]+:"  # Lines that start with uppercase letters followed by a colon
-# Initialize variables
-current_speaker <- NA
-current_text <- ""
-
-for (line in transcript) {
-  # Check if the line matches the speaker pattern
-  if (str_detect(line, speaker_pattern)) {
-    # If there's accumulated text, save it before moving to the next speaker
-    if (!is.na(current_speaker) && current_text != "") {
-      data <- rbind(data, data.frame(speaker = current_speaker, text = current_text, stringsAsFactors = FALSE))
-      current_text <- ""
-    }
-    # Extract the speaker
-    split_line <- str_split_fixed(line, ":", 2)
-    current_speaker <- str_trim(split_line[1])
-    # Start accumulating text
-    current_text <- str_trim(split_line[2])
-  } else {
-    # Accumulate text
-    current_text <- paste(current_text, str_trim(line))
+  save_turn <- function(speaker, text_parts) {
+    tibble(
+      speaker = speaker,
+      text = str_squish(str_c(text_parts, collapse = " "))
+    )
   }
+
+  for (line in lines) {
+    if (str_detect(line, speaker_pattern)) {
+      if (!is.na(current_speaker)) {
+        turns[[length(turns) + 1]] <- save_turn(
+          current_speaker,
+          current_text
+        )
+      }
+
+      pieces <- str_split_fixed(line, ":", 2)
+      current_speaker <- str_trim(pieces[, 1])
+      current_text <- str_trim(pieces[, 2])
+    } else {
+      current_text <- c(current_text, str_trim(line))
+    }
+  }
+
+  if (!is.na(current_speaker)) {
+    turns[[length(turns) + 1]] <- save_turn(
+      current_speaker,
+      current_text
+    )
+  }
+
+  bind_rows(turns)
 }
 
-# Add the last piece of text
-if (!is.na(current_speaker) && current_text != "") {
-  data <- rbind(data, data.frame(speaker = current_speaker, text = current_text, stringsAsFactors = FALSE))
-}
+turns <- parse_transcript(transcript_lines)
+
+turns |>
+  count(speaker, sort = TRUE)
 ```
 
+Inspect this table before filtering. Unexpected speaker labels can reveal a
+formatting problem or a false match in the regular expression.
+
 ```{r}
-# write_csv(data, "out/debate_df.csv")
+candidate_turns <- turns |>
+  filter(speaker %in% c("HARRIS", "TRUMP")) |>
+  mutate(speaker = recode(speaker, HARRIS = "Harris", TRUMP = "Trump"))
+
+stopifnot(setequal(unique(candidate_turns$speaker), c("Harris", "Trump")))
 ```
 
-## Import Cleaned Data
+One row now represents one candidate speaking turn.
+
+## Tokenize and keep denominators
 
 ```{r}
-df <- data
+all_tokens <- candidate_turns |>
+  unnest_tokens(word, text) |>
+  filter(!str_detect(word, "^[0-9]+$"))
+
+token_totals <- all_tokens |>
+  count(speaker, name = "all_tokens")
+
+token_totals
 ```
 
-```{r}
-skim(df)
-```
+The candidates produced different numbers of tokens. A raw frequency can be
+higher simply because one person spoke more. Keep the denominator before
+removing stop words.
 
 ```{r}
-unique(df$Speaker)
-```
-
-
-## Data Cleaning
-
-### Filter Out Non-Candidate Speakers
-
-```{r}
-df1 <- df |>
-  filter(speaker == "HARRIS" | speaker == "TRUMP")
-
-unique(df1$speaker)
-```
-
-### Standardize Speaker Names
-
-```{r}
-# Standardize speaker names if necessary
-df1$speaker <- ifelse(df1$speaker == "HARRIS", "Harris", "Trump")
-```
-
-## Text Analysis
-
-### Tokenize and Remove Stop Words
-
-```{r}
-# Tokenize the text column
-tidy_data <- df1 %>%
-  unnest_tokens(word, text)
-
-head(tidy_data)
-```
-
-```{r}
-# Load stop words
 data("stop_words")
 
-# Remove stop words
-tidy_data_clean <- tidy_data %>%
-  anti_join(stop_words, by = "word") %>%
-  filter(!str_detect(word, "\\d+"))
+content_tokens <- all_tokens |>
+  anti_join(stop_words, by = "word")
+
+word_rates <- content_tokens |>
+  count(speaker, word, name = "uses") |>
+  left_join(
+    token_totals,
+    by = "speaker",
+    relationship = "many-to-one"
+  ) |>
+  mutate(uses_per_1000_tokens = uses / all_tokens * 1000)
+```
+
+Stop-word removal is an editorial and linguistic choice. Negations such as
+“not” can matter greatly in political speech, and a generic English stop-word
+list may remove them. Inspect the list and document any changes.
+
+## Compare the most frequent content words
+
+```{r}
+top_words <- word_rates |>
+  group_by(speaker) |>
+  slice_max(
+    uses_per_1000_tokens,
+    n = 12,
+    with_ties = FALSE
+  ) |>
+  ungroup()
+
+top_words
 ```
 
 ```{r}
-# Calculate word frequencies
-word_counts <- tidy_data_clean %>%
-  count(speaker, word, sort = TRUE)
+top_words |>
+  mutate(word = reorder_within(word, uses_per_1000_tokens, speaker)) |>
+  ggplot(aes(x = uses_per_1000_tokens, y = word, fill = speaker)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ speaker, scales = "free_y") +
+  scale_y_reordered() +
+  labs(
+    title = "Frequently used content words differed between the candidates",
+    subtitle = "Uses per 1,000 candidate tokens after standard stop-word removal",
+    x = "Uses per 1,000 tokens",
+    y = NULL,
+    caption = "Source: supplied debate transcript; analysis choices affect results"
+  ) +
+  theme_minimal()
 ```
 
-### Analyze Top Words
+Rate normalization improves comparability but does not measure importance,
+sincerity, policy attention, or audience effect.
+
+## Bigrams preserve a little context
 
 ```{r}
-# Get top 10 words for each candidate
-top_words <- word_counts %>%
-  group_by(speaker) %>%
-  top_n(10, n) %>%
-  ungroup() %>%
-  arrange(speaker, -n)
-
-# View the result
-print(top_words)
-```
-
-### Analyze Top Word Pairs (Bigrams)
-
-```{r}
-# Create bigrams
-bigrams <- df1 %>%
-  unnest_tokens(bigram, text, token = "ngrams", n = 2)
-```
-
-```{r}
-# Separate bigrams into two words
-bigrams_separated <- bigrams %>%
-  separate(bigram, into = c("word1", "word2"), sep = " ")
-
-# Remove stop words
-bigrams_filtered <- bigrams_separated %>%
-  filter(!word1 %in% stop_words$word,
-         !word2 %in% stop_words$word) %>%
-  # remove numbers 
-  filter(!str_detect(word1, "\\d+"),
-         !str_detect(word2, "\\d+"))
-```
-
-```{r}
-# Unite the words back into bigrams
-bigram_counts <- bigrams_filtered %>%
-  unite(bigram, word1, word2, sep = " ") %>%
+bigrams <- candidate_turns |>
+  unnest_tokens(bigram, text, token = "ngrams", n = 2) |>
+  separate_wider_delim(
+    bigram,
+    delim = " ",
+    names = c("word_1", "word_2"),
+    too_few = "align_start"
+  ) |>
+  filter(
+    !word_1 %in% stop_words$word,
+    !word_2 %in% stop_words$word,
+    !is.na(word_2)
+  ) |>
+  unite(bigram, word_1, word_2, sep = " ") |>
   count(speaker, bigram, sort = TRUE)
+
+bigrams |>
+  group_by(speaker) |>
+  slice_max(n, n = 10, with_ties = FALSE) |>
+  ungroup()
 ```
+
+Bigrams retain adjacent words but still lose sentence meaning, sarcasm,
+questions, quotation, and who or what a pronoun refers to.
+
+## Return to the transcript
+
+Any word that becomes part of a story must be checked in context:
 
 ```{r}
-# Get top 10 bigrams for each candidate
-top_bigrams <- bigram_counts %>%
-  group_by(speaker) %>%
-  top_n(10, n) %>%
-  ungroup() %>%
-  arrange(speaker, -n)
-
-# View the result
-print(top_bigrams)
+candidate_turns |>
+  filter(str_detect(str_to_lower(text), "immigration")) |>
+  select(speaker, text)
 ```
 
-## Plot
+Read several examples, not just the most convenient one. Check whether the
+candidate is stating a position, responding to a moderator, quoting an
+opponent, or denying a claim.
 
-### Top words
+## Claim limits
 
-```{r}
-# Plot
-top_words %>%
-  mutate(word = reorder_within(word, n, speaker)) %>%
-  ggplot(aes(word, n, fill = speaker)) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~speaker, scales = "free_y") +
-  coord_flip() +
-  scale_x_reordered() +
-  labs(x = "Words", y = "Frequency", title = "Top Words by Candidate")
-```
+Word frequency can support a sentence such as “the word appeared at a higher
+rate in Candidate A's transcript.” It does not by itself support:
 
-### Top Bigrams
+- “Candidate A cared more about the issue”;
+- “the issue dominated the debate” without a coding rule;
+- “Candidate A was more truthful”;
+- sentiment or intent inferred from an isolated token; or
+- audience impact.
 
-```{r}
-# Plot
-top_bigrams %>%
-  mutate(bigram = reorder_within(bigram, n, speaker)) %>%
-  ggplot(aes(bigram, n, fill = speaker)) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~speaker, scales = "free_y") +
-  coord_flip() +
-  scale_x_reordered() +
-  labs(x = "Bigrams", y = "Frequency", title = "Top Bigrams by Candidate")
-```
+Transcript accuracy, moderation, speaking time, interruptions, tokenization,
+and stop-word choices all affect the result.
 
-## Word Cloud
+## Independent task
 
-```{r}
-library(wordcloud)
-library(RColorBrewer)
-```
+Choose one topic and create a small, transparent dictionary of related terms.
+Then:
 
-```{r}
-# Filter word counts for each candidate
-harris_words <- word_counts %>%
-  filter(speaker == "Harris")
-
-trump_words <- word_counts %>%
-  filter(speaker == "Trump")
-```
-
-### Single Plot
-
-```{r}
-wordcloud(words = harris_words$word, 
-          freq = harris_words$n, 
-          min.freq = 2,
-          max.words = 100,
-          random.order = FALSE, 
-          rot.per = 0.35, 
-          colors = brewer.pal(8, "Blues"),
-          scale = c(4, 0.5))
-title("Harris")
-```
-
-### Side-by-Side
-
-```{r}
-# Set up the plotting area for two plots
-par(mfrow = c(1, 2))
-
-# Word cloud for Harris
-wordcloud(words = harris_words$word, 
-          freq = harris_words$n, 
-          min.freq = 2,
-          max.words = 100,
-          random.order = FALSE, 
-          rot.per = 0.35, 
-          colors = brewer.pal(8, "Blues"),
-          scale = c(4, 0.5))
-title("Harris")
-
-# Word cloud for Trump
-wordcloud(words = trump_words$word, 
-          freq = trump_words$n, 
-          min.freq = 2,
-          max.words = 100,
-          random.order = FALSE, 
-          rot.per = 0.35, 
-          colors = brewer.pal(8, "Reds"),
-          scale = c(4, 0.5))
-title("Trump")
-```
-
-## Compare on fixed categories
-
-```{r}
-# Define the list of agenda keywords
-agenda_keywords <- c("border", "abortion", "economy", "immigration", "health", "security", "israel", "russia", "china", "ukraine")
-```
-
-```{r}
-# Convert words to lowercase
-tidy_data_clean <- tidy_data_clean %>%
-  mutate(word = tolower(word))
-
-# Filter words that are in the agenda_keywords list
-agenda_data <- tidy_data_clean %>%
-  filter(word %in% agenda_keywords)
-
-# Count the frequency of each keyword per candidate
-agenda_counts <- agenda_data %>%
-  count(speaker, word) %>%
-  arrange(speaker, desc(n))
-```
-
-```{r}
-print(agenda_counts)
-```
-
-## Heatmap
-
-```{r}
-# Create a heatmap
-ggplot(agenda_counts, aes(x = word, y = speaker, fill = n)) +
-  geom_tile() +
-  scale_fill_gradient(low = "white", high = "red") +
-  labs(title = "Agenda Keyword Frequencies Heatmap",
-       x = " ",
-       y = " ") +
-  theme_minimal() +
-  # remove grid
-  theme(panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank()
-        )
-```
-
-## Key Functions Recap
-
-| **Function**                | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
-|-----------------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `readLines()`               | Base R          | Read lines from a text file                       | `readLines("data/debate.txt")`                                                                               |
-| `str_detect()`              | `stringr`       | Detect pattern matching in strings                | `str_detect(line, speaker_pattern)`                                                                          |
-| `str_split_fixed()`         | `stringr`       | Split string into fixed number of pieces         | `str_split_fixed(line, ":", 2)`                                                                              |
-| `str_trim()`                | `stringr`       | Remove leading/trailing whitespace               | `str_trim(split_line[1])`                                                                                    |
-| `rbind()`                   | Base R          | Bind rows of data frames together                | `rbind(data, data.frame(speaker = current_speaker, text = current_text))`                                     |
-| `skim()`                    | `skimr`         | Quick data summary and exploration                | `skim(df)`                                                                                                   |
-| `unique()`                  | Base R          | Extract unique values                            | `unique(df$speaker)`                                                                                         |
-| `filter()`                  | `dplyr`         | Filter rows based on conditions                  | `filter(speaker == "HARRIS" \| speaker == "TRUMP")`                                                          |
-| `ifelse()`                  | Base R          | Vector conditional function                      | `ifelse(df1$speaker == "HARRIS", "Harris", "Trump")`                                                          |
-| `unnest_tokens()`           | `tidytext`      | Tokenize text into individual words              | `unnest_tokens(word, text)`                                                                                  |
-| `anti_join()`               | `dplyr`         | Keep rows not matching another table             | `anti_join(stop_words, by = "word")`                                                                          |
-| `count()`                   | `dplyr`         | Count occurrences of unique values                | `count(speaker, word, sort = TRUE)`                                                                          |
-| `group_by()`                | `dplyr`         | Group data by one or more variables              | `group_by(speaker)`                                                                                          |
-| `top_n()`                   | `dplyr`         | Select top n rows by value                       | `top_n(10, n)`                                                                                               |
-| `ungroup()`                 | `dplyr`         | Remove grouping from data frame                  | `ungroup()`                                                                                                  |
-| `arrange()`                 | `dplyr`         | Sort rows by one or more columns                 | `arrange(speaker, -n)`                                                                                       |
-| `separate()`                | `tidyr`         | Separate a column into multiple columns          | `separate(bigram, into = c("word1", "word2"), sep = " ")`                                                     |
-| `unite()`                   | `tidyr`         | Unite multiple columns into one                  | `unite(bigram, word1, word2, sep = " ")`                                                                     |
-| `mutate()`                  | `dplyr`         | Create or modify columns                         | `mutate(word = tolower(word))`                                                                                |
-| `tolower()`                 | Base R          | Convert strings to lowercase                     | `tolower(word)`                                                                                              |
-| `reorder_within()`          | `tidytext`      | Reorder factor within groups for visualization   | `reorder_within(word, n, speaker)`                                                                            |
-| `ggplot()`                  | `ggplot2`       | Create a new ggplot object                        | `ggplot(aes(word, n, fill = speaker))`                                                                       |
-| `aes()`                     | `ggplot2`       | Specify aesthetic mappings (x, y, color, fill)   | `aes(x = word, y = speaker, fill = n)`                                                                       |
-| `geom_col()`                | `ggplot2`       | Create a bar chart                               | `geom_col(show.legend = FALSE)`                                                                               |
-| `geom_tile()`               | `ggplot2`       | Create a heatmap (tile plot)                     | `geom_tile()`                                                                                                |
-| `facet_wrap()`              | `ggplot2`       | Create multiple plots based on categorical var   | `facet_wrap(~speaker, scales = "free_y")`                                                                     |
-| `coord_flip()`              | `ggplot2`       | Flip x and y axes                                | `coord_flip()`                                                                                               |
-| `scale_x_reordered()`       | `tidytext`      | Apply reordered scale to x-axis                  | `scale_x_reordered()`                                                                                        |
-| `scale_fill_gradient()`     | `ggplot2`       | Create gradient color scale for fill              | `scale_fill_gradient(low = "white", high = "red")`                                                            |
-| `labs()`                    | `ggplot2`       | Add titles, labels, and captions                 | `labs(title = "...", x = "Words", y = "Frequency")`                                                           |
-| `theme_minimal()`           | `ggplot2`       | Apply minimal theme                              | `theme_minimal()`                                                                                            |
-| `element_blank()`           | `ggplot2`       | Create blank (invisible) element                 | `element_blank()`                                                                                            |
-| `theme()`                   | `ggplot2`       | Customize plot appearance                        | `theme(panel.grid.major = element_blank())`                                                                   |
-| `wordcloud()`               | `wordcloud`     | Create a word cloud visualization                | `wordcloud(words = harris_words$word, freq = harris_words$n, max.words = 100)`                                |
-| `brewer.pal()`              | `RColorBrewer`  | Generate color palettes                          | `brewer.pal(8, "Blues")`                                                                                     |
-| `par()`                     | Base R          | Set or query graphical parameters                | `par(mfrow = c(1, 2))`                                                                                       |
-| `data()`                    | Base R          | Load built-in datasets                           | `data("stop_words")`                                                                                         |
+1. calculate topic-term uses per 1,000 tokens by candidate;
+2. inspect at least five turns in context for each candidate;
+3. record one false positive and one missed expression;
+4. revise the dictionary once; and
+5. write a 200-word methods note that distinguishes automated counts from your
+   qualitative interpretation.

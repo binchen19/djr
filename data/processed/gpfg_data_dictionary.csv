@@ -1,0 +1,14 @@
+variable,type,description,unit_or_example,teaching_note
+year,integer,Calendar year of the year-end holdings snapshot.,2025,"A snapshot date, not a transaction year."
+report_date,date,Official reporting date for the holdings snapshot.,2025-12-31,Use this when exact timing matters.
+region,character,NBIM geographic region assigned to the investment market.,North America,Categories may change over a long historical period.
+country,character,NBIM country or market assigned to the holding.,United States,This is not necessarily the incorporation country.
+company,character,Company or issuer name as published by NBIM.,Apple Inc,Names are not stable identifiers; mergers and renaming complicate longitudinal matching.
+industry,character,NBIM industry classification for the holding.,Technology,Classifications can change between years.
+market_value_nok,double,Year-end market value of the holding in Norwegian kroner.,NOK,"Best monetary field for comparisons across years, but values are nominal and reflect prices, currencies, purchases, and sales."
+market_value_usd,double,Year-end market value of the holding converted to US dollars.,USD,Useful for a single snapshot; exchange-rate changes affect comparisons across years.
+voting_pct,double,"Voting rights held, stored in percentage points.",0.65 means 0.65%,Do not divide by 100 unless a calculation needs a 0–1 proportion.
+ownership_pct,double,"Equity ownership held, stored in percentage points.",1.20 means 1.20%,"This is a stake, not a financial return."
+incorporation_country,character,Legal country of incorporation supplied by NBIM.,Ireland,Compare with country to distinguish incorporation from the investment market.
+source_file,character,Name of the archived official annual Excel file.,gpfg-equities-2025-12-31.xlsx,Use for provenance and debugging.
+source_url,character,Official NBIM API URL for the annual source file.,https://www.nbim.no/api/investments/v2/report/…,The URL includes the asset type and report date.

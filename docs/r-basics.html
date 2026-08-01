@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 2&nbsp; R Coding Basics</title>
+<title>Data Journalism with R - 3&nbsp; R Basics for Journalists</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data-import.html" rel="next">
+<link href="./debug.html" rel="next">
 <link href="./install.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./r-basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Foundations</a></li><li class="breadcrumb-item"><a href="./r-basics.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -145,13 +145,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Journalism with R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Getting Started</span></a>
+ <span class="menu-text">Foundations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,13 +160,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
   </div>
 </li>
       </ul>
@@ -174,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Data Import &amp; Wrangling</span></a>
+ <span class="menu-text">A Reproducible Data Workflow</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,19 +189,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
   </div>
 </li>
       </ul>
@@ -203,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Data Analysis</span></a>
+ <span class="menu-text">Visual Evidence and Storytelling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,14 +229,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-hksalary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Analysis II</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
   </div>
 </li>
       </ul>
@@ -226,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Data Visualization</span></a>
+ <span class="menu-text">Transfer Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -234,26 +264,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
   </div>
 </li>
       </ul>
@@ -261,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Case Studies</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -269,67 +305,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project Extras</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sample Projects</span></span></a>
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -344,49 +339,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#coding-basics" id="toc-coding-basics" class="nav-link active" data-scroll-target="#coding-basics"><span class="header-section-number">2.1</span> Coding Basics</a>
-  <ul class="collapse">
-  <li><a href="#basic-arithmetic-in-r" id="toc-basic-arithmetic-in-r" class="nav-link" data-scroll-target="#basic-arithmetic-in-r">Basic Arithmetic in R</a></li>
-  <li><a href="#creating-objects" id="toc-creating-objects" class="nav-link" data-scroll-target="#creating-objects">Creating Objects</a></li>
-  <li><a href="#combining-elements-into-a-vector" id="toc-combining-elements-into-a-vector" class="nav-link" data-scroll-target="#combining-elements-into-a-vector">Combining Elements into a Vector</a></li>
-  <li><a href="#assignment-statement-structure" id="toc-assignment-statement-structure" class="nav-link" data-scroll-target="#assignment-statement-structure">Assignment Statement Structure</a></li>
-  </ul></li>
-  <li><a href="#comments-in-code" id="toc-comments-in-code" class="nav-link" data-scroll-target="#comments-in-code"><span class="header-section-number">2.2</span> Comments in Code</a></li>
-  <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions"><span class="header-section-number">2.3</span> Naming Conventions</a></li>
-  <li><a href="#calling-functions" id="toc-calling-functions" class="nav-link" data-scroll-target="#calling-functions"><span class="header-section-number">2.4</span> Calling Functions</a></li>
-  <li><a href="#common-data-types" id="toc-common-data-types" class="nav-link" data-scroll-target="#common-data-types"><span class="header-section-number">2.5</span> Common Data Types</a>
-  <ul class="collapse">
-  <li><a href="#numeric" id="toc-numeric" class="nav-link" data-scroll-target="#numeric">Numeric</a></li>
-  <li><a href="#character" id="toc-character" class="nav-link" data-scroll-target="#character">Character</a></li>
-  <li><a href="#logical" id="toc-logical" class="nav-link" data-scroll-target="#logical">Logical</a></li>
-  <li><a href="#date" id="toc-date" class="nav-link" data-scroll-target="#date">Date</a></li>
-  </ul></li>
-  <li><a href="#data-frame" id="toc-data-frame" class="nav-link" data-scroll-target="#data-frame"><span class="header-section-number">2.6</span> Data Frame</a>
-  <ul class="collapse">
-  <li><a href="#exploring-a-data-frame" id="toc-exploring-a-data-frame" class="nav-link" data-scroll-target="#exploring-a-data-frame">Exploring a Data Frame</a></li>
-  <li><a href="#journalism-example" id="toc-journalism-example" class="nav-link" data-scroll-target="#journalism-example">Journalism Example</a></li>
-  </ul></li>
-  <li><a href="#errorswarningsmessages" id="toc-errorswarningsmessages" class="nav-link" data-scroll-target="#errorswarningsmessages"><span class="header-section-number">2.7</span> Errors/Warnings/Messages</a>
-  <ul class="collapse">
-  <li><a href="#debug-tips" id="toc-debug-tips" class="nav-link" data-scroll-target="#debug-tips">Debug Tips?</a></li>
-  <li><a href="#tips-for-learning-r-coding" id="toc-tips-for-learning-r-coding" class="nav-link" data-scroll-target="#tips-for-learning-r-coding">Tips for learning R coding</a></li>
-  <li><a href="#best-practices-for-data-journalism-projects" id="toc-best-practices-for-data-journalism-projects" class="nav-link" data-scroll-target="#best-practices-for-data-journalism-projects">Best Practices for Data Journalism Projects</a></li>
-  </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.8</span> Exercises</a>
-  <ul class="collapse">
-  <li><a href="#identify-errors" id="toc-identify-errors" class="nav-link" data-scroll-target="#identify-errors">Identify Errors</a></li>
-  <li><a href="#rstudio-shortcuts" id="toc-rstudio-shortcuts" class="nav-link" data-scroll-target="#rstudio-shortcuts">RStudio Shortcuts</a></li>
-  </ul></li>
-  <li><a href="#key-functions" id="toc-key-functions" class="nav-link" data-scroll-target="#key-functions"><span class="header-section-number">2.9</span> Key Functions</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">3.1</span> Learning objectives</a></li>
+  <li><a href="#start-with-a-question" id="toc-start-with-a-question" class="nav-link" data-scroll-target="#start-with-a-question"><span class="header-section-number">3.2</span> Start with a question</a></li>
+  <li><a href="#names-and-assignment" id="toc-names-and-assignment" class="nav-link" data-scroll-target="#names-and-assignment"><span class="header-section-number">3.3</span> Names and assignment</a></li>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types"><span class="header-section-number">3.4</span> Data types</a></li>
+  <li><a href="#comparisons-and-logical-conditions" id="toc-comparisons-and-logical-conditions" class="nav-link" data-scroll-target="#comparisons-and-logical-conditions"><span class="header-section-number">3.5</span> Comparisons and logical conditions</a></li>
+  <li><a href="#missing-values-are-not-zero" id="toc-missing-values-are-not-zero" class="nav-link" data-scroll-target="#missing-values-are-not-zero"><span class="header-section-number">3.6</span> Missing values are not zero</a></li>
+  <li><a href="#functions-and-arguments" id="toc-functions-and-arguments" class="nav-link" data-scroll-target="#functions-and-arguments"><span class="header-section-number">3.7</span> Functions and arguments</a></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames"><span class="header-section-number">3.8</span> Data frames</a></li>
+  <li><a href="#pipes-make-a-sequence-readable" id="toc-pipes-make-a-sequence-readable" class="nav-link" data-scroll-target="#pipes-make-a-sequence-readable"><span class="header-section-number">3.9</span> Pipes make a sequence readable</a></li>
+  <li><a href="#checkpoint-exercise" id="toc-checkpoint-exercise" class="nav-link" data-scroll-target="#checkpoint-exercise"><span class="header-section-number">3.10</span> Checkpoint exercise</a></li>
+  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">3.11</span> Independent task</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./r-basics.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Foundations</a></li><li class="breadcrumb-item"><a href="./r-basics.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></h1>
 </div>
 
 
@@ -403,422 +375,322 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Now, you have a basic understanding of R/RStudio, R Project, and R Markdown. Next, we will cover some fundamental syntax and concepts in R programming. These basics form the foundation for data journalism: from loading election data and survey results to calculating statistics that reveal hidden stories in the numbers.</p>
-<section id="coding-basics" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="coding-basics"><span class="header-section-number">2.1</span> Coding Basics</h2>
-<section id="basic-arithmetic-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="basic-arithmetic-in-r">Basic Arithmetic in R</h3>
-<p>You can use R as a calculator to perform basic arithmetic operations. Here are some examples:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">25</span> <span class="sc">/</span> <span class="dv">26</span> <span class="sc">*</span> <span class="dv">27</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 25.96154</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">25</span> <span class="sc">+</span> <span class="dv">26</span>) <span class="sc">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 25.5</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -1</code></pre>
-</div>
-</div>
+<section id="learning-objectives" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1</span> Learning objectives</h2>
+<p>By the end of this chapter, you should be able to:</p>
+<ul>
+<li>create and inspect R objects;</li>
+<li>distinguish numbers, text, logical values, dates, and missing values;</li>
+<li>use comparison and logical operators;</li>
+<li>call functions and read an error message;</li>
+<li>work with vectors and data frames; and</li>
+<li>translate a short pipeline into plain language.</li>
+</ul>
 </section>
-<section id="creating-objects" class="level3">
-<h3 class="anchored" data-anchor-id="creating-objects">Creating Objects</h3>
-<p>You can create objects (variables) in R using the assignment operator <code>&lt;-</code>. Here are some examples:</p>
+<section id="start-with-a-question" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="start-with-a-question"><span class="header-section-number">3.2</span> Start with a question</h2>
+<p>Code is easier to understand when it answers a concrete question. Imagine a reporter has the number of records in four annual data releases:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2025</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>records <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8985</span>, <span class="dv">9106</span>, <span class="dv">9157</span>, <span class="dv">9202</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2016</span>, <span class="dv">2017</span>, <span class="dv">2018</span>, <span class="dv">2019</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Note that the value of <code>x</code> is stored but not printed. To print the value of <code>x</code>, you can simply type <code>x</code>.</p>
+<p><code>&lt;-</code> assigns a value to a name. <code>c()</code> combines values into a vector. The objects remain available until the R session ends or they are removed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(records)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2025</code></pre>
+<pre><code>[1] 4</code></pre>
 </div>
-</div>
-</section>
-<section id="combining-elements-into-a-vector" class="level3">
-<h3 class="anchored" data-anchor-id="combining-elements-into-a-vector">Combining Elements into a Vector</h3>
-<p>You can combine multiple elements into a vector using the <code>c()</code> function. Here are some examples:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">19</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Again, if you want to view the content of the vector <code>ages</code>, you can simply type <code>ages</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ages</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(records)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 21 22 19</code></pre>
+<pre><code>[1] 9112.5</code></pre>
 </div>
-</div>
-<p>Basic arithmetic operations can also be performed on vectors, affecting each element of the vector.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ages <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>records[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 22 23 20</code></pre>
+<pre><code>[1] 8985</code></pre>
 </div>
 </div>
+<p>Read each expression aloud: “the length of <code>records</code>,” “the mean of <code>records</code>,” and “the first value in <code>records</code>.”</p>
 </section>
-<section id="assignment-statement-structure" class="level3">
-<h3 class="anchored" data-anchor-id="assignment-statement-structure">Assignment Statement Structure</h3>
-<p>All R assignment statements follow the same structure:</p>
-<pre><code>object_name &lt;- value</code></pre>
-<p>When reading the code, think of it as “object name gets value.” To save time, use the shortcut <code>Alt + -</code> (Windows) or <code>Option + -</code> (Mac) to insert the assignment operator <code>&lt;-</code>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>=</code> can also be used for assignment, but it is generally recommended to use <code>&lt;-</code> for assignment in R to avoid confusion with the equality operator <code>==</code>, which is used for comparisons.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="comments-in-code" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="comments-in-code"><span class="header-section-number">2.2</span> Comments in Code</h2>
-<p>R ignores any text following a <code>#</code> symbol on the same line. You can use comments to explain your code or add notes.</p>
+<section id="names-and-assignment" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="names-and-assignment"><span class="header-section-number">3.3</span> Names and assignment</h2>
+<p>Use short, descriptive names written in <code>snake_case</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create vector of birth year</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>birth_year <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1995</span>, <span class="dv">2003</span>, <span class="dv">2007</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate age in 2025</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dv">2025</span> <span class="sc">-</span> birth_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>latest_year <span class="ot">&lt;-</span> <span class="dv">2025</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>source_name <span class="ot">&lt;-</span> <span class="st">"Norges Bank Investment Management"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data_checked <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>R is case-sensitive. <code>latest_year</code> and <code>Latest_year</code> would be different objects. Avoid names such as <code>data</code>, <code>mean</code>, or <code>filter</code> when a more specific name is available, because those names already describe common objects or functions.</p>
+</section>
+<section id="data-types" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="data-types"><span class="header-section-number">3.4</span> Data types</h2>
+<p>The type of a value determines which operations make sense.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="dv">1500</span>)                 <span class="co"># double: a number</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 30 22 18</code></pre>
+<pre><code>[1] "double"</code></pre>
 </div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Use comments to explain the why behind your code, not the how or what. This prevents confusion in the future, especially when revisiting complex projects or after a long time.</p>
-</div>
-</div>
-</section>
-<section id="naming-conventions" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="naming-conventions"><span class="header-section-number">2.3</span> Naming Conventions</h2>
-<p>Object names must start with a letter and can contain letters, numbers, underscores (<code>_</code>), and periods(<code>.</code>). We recommend using <code>snake_case</code> for multi-word object names, which means using lowercase letters and underscores to separate words (e.g., <code>birth_year</code>, <code>student_name</code>).</p>
-<pre><code># this is a good object name
-birth_year</code></pre>
-<pre><code># this is a bad object name
-BirthYear
-birth-year
-birth year </code></pre>
-<p>Remember R is case-sensitive, so <code>birth_year</code> and <code>Birth_Year</code> are considered different objects.</p>
-</section>
-<section id="calling-functions" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="calling-functions"><span class="header-section-number">2.4</span> Calling Functions</h2>
-<p>R provides a variety of built-in functions. They are called by typing the function name followed by parentheses <code>()</code>. If the function requires arguments, you can pass them inside the parentheses.</p>
-<pre><code>function_name(argument1 = value1, argument2 = value2, ...)</code></pre>
-<p>For example, to create a sequence of numbers from 1 to 10, you can use the <code>seq()</code> function:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-</div>
-</div>
-<p>You can omit argument names if the order is clear:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>RStudio has an auto-complete feature that suggests function names and arguments as you type. You can also call <code>?function_name</code> to access the help file for that function.</p>
-</div>
-</div>
-</section>
-<section id="common-data-types" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="common-data-types"><span class="header-section-number">2.5</span> Common Data Types</h2>
-<p>There are several data types in R, but we will focus on four common ones: numeric, character, logical, and date.</p>
-<section id="numeric" class="level3">
-<h3 class="anchored" data-anchor-id="numeric">Numeric</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the data type of ages</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "numeric"</code></pre>
-</div>
-</div>
-</section>
-<section id="character" class="level3">
-<h3 class="anchored" data-anchor-id="character">Character</h3>
-<p>Character data type represents text or string values. Character values are enclosed in double quotes (<code>"</code>) or single quotes (<code>'</code>).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>language <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"R"</span>, <span class="st">"Python"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="st">"1500"</span>)               <span class="co"># character: text</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "character"</code></pre>
 </div>
-</div>
-</section>
-<section id="logical" class="level3">
-<h3 class="anchored" data-anchor-id="logical">Logical</h3>
-<p>Logical data type represents boolean values, which can be either <code>TRUE</code> or <code>FALSE</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create logical variables</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>is_student <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(is_student)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="cn">TRUE</span>)                 <span class="co"># logical</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "logical"</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">as.Date</span>(<span class="st">"2025-12-31"</span>)) <span class="co"># double internally, with a Date class</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "double"</code></pre>
 </div>
-</section>
-<section id="date" class="level3">
-<h3 class="anchored" data-anchor-id="date">Date</h3>
-<p>Date data type represents dates. Standard date format in R is <code>YYYY-MM-DD</code>.</p>
+</div>
+<p>Quotation marks turn a value into text. R cannot safely add <code>10</code> to <code>"1500"</code> until the text is converted and checked.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>today <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2025-03-02"</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(today)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="st">"1500"</span>) <span class="sc">+</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "Date"</code></pre>
+<pre><code>[1] 1510</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To create a date object in R, you can use the <code>as.Date()</code> function with the date in the format <code>YYYY-MM-DD</code>. If you just use <code>x &lt;- "2025-03-02"</code>, it will be a character type.</p>
-</div>
-</div>
+<p>Do not convert blindly. Values such as <code>"not reported"</code> carry information about the source and should usually become an explicit missing value only after you document the rule.</p>
 </section>
-</section>
-<section id="data-frame" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="data-frame"><span class="header-section-number">2.6</span> Data Frame</h2>
-<p>Data frame is a two-dimensional data structure that stores data in <em>rows</em> and <em>columns</em>. Each row represents an observation, and each column represents a variable. Think of it as a spreadsheet: rows are individual records (a news story, survey respondent, or election result) and columns are attributes (title, date published, views).</p>
-<p>We can build a data frame using the <code>data.frame()</code> function.</p>
-<p>First, let’s create a simple data frame with two columns: <code>name</code> and <code>age</code>.</p>
+<section id="comparisons-and-logical-conditions" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="comparisons-and-logical-conditions"><span class="header-section-number">3.5</span> Comparisons and logical conditions</h2>
+<p>Comparisons return <code>TRUE</code> or <code>FALSE</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a data frame</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>),</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">35</span>))</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["age"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alice","2":"25"},{"1":"Bob","2":"30"},{"1":"Charlie","2":"35"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>This is a 3x2 data frame with 3 rows and 2 columns.</p>
-<section id="exploring-a-data-frame" class="level3">
-<h3 class="anchored" data-anchor-id="exploring-a-data-frame">Exploring a Data Frame</h3>
-<p>In journalism, you often start with a dataset you’ve obtained (election results, crime statistics, public spending). R provides several functions to quickly understand what you’re working with:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the first few rows</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["age"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alice","2":"25","_rn_":"1"},{"1":"Bob","2":"30","_rn_":"2"},{"1":"Charlie","2":"35","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of rows and columns</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>latest_year <span class="sc">==</span> <span class="dv">2025</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 3</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>latest_year <span class="sc">!=</span> <span class="dv">2024</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See column names</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>records <span class="sc">&gt;</span> <span class="dv">9100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "name" "age" </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get structure and data types</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   3 obs. of  2 variables:
- $ name: chr  "Alice" "Bob" "Charlie"
- $ age : num  25 30 35</code></pre>
+<pre><code>[1] FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
 </div>
-</section>
-<section id="journalism-example" class="level3">
-<h3 class="anchored" data-anchor-id="journalism-example">Journalism Example</h3>
-<p>Here’s a more realistic example: a dataset of news articles with views and engagement:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>articles <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">c</span>(<span class="st">"Election Results Shock Markets"</span>, <span class="st">"Climate Report Released"</span>, <span class="st">"Survey: Public Trust Declining"</span>),</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">"2025-03-01"</span>, <span class="st">"2025-02-28"</span>, <span class="st">"2025-02-27"</span>)),</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">views =</span> <span class="fu">c</span>(<span class="dv">45000</span>, <span class="dv">32000</span>, <span class="dv">28000</span>),</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">shares =</span> <span class="fu">c</span>(<span class="dv">3200</span>, <span class="dv">1800</span>, <span class="dv">1500</span>),</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">section =</span> <span class="fu">c</span>(<span class="st">"Politics"</span>, <span class="st">"Environment"</span>, <span class="st">"Society"</span>))</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(articles)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["title"],"name":[1],"type":["chr"],"align":["left"]},{"label":["date"],"name":[2],"type":["date"],"align":["right"]},{"label":["views"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["shares"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["section"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Election Results Shock Markets","2":"2025-03-01","3":"45000","4":"3200","5":"Politics","_rn_":"1"},{"1":"Climate Report Released","2":"2025-02-28","3":"32000","4":"1800","5":"Environment","_rn_":"2"},{"1":"Survey: Public Trust Declining","2":"2025-02-27","3":"28000","4":"1500","5":"Society","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>In this course, we will primarily work with data frames and use the tidyverse package to manipulate, analyze, and visualize them for storytelling.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="errorswarningsmessages" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="errorswarningsmessages"><span class="header-section-number">2.7</span> Errors/Warnings/Messages</h2>
-<ul>
-<li><p><strong>Error</strong>: An error occurs when R encounters a problem that prevents it from executing the code. Errors are displayed in red text and typically include an error message that describes the problem.</p></li>
-<li><p><strong>Warning</strong>: A warning occurs when R encounters a potential problem but is able to continue executing the code. Warnings are displayed in yellow text and typically include a warning message that describes the potential issue.</p></li>
-<li><p><strong>Message</strong>: A message is a general output from R that provides information about the code execution. Messages are displayed in white text and are used to convey information about the code.</p></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You may ignore the messages, but you should always pay attention to errors and warnings.</p>
-</div>
-</div>
-<section id="debug-tips" class="level3">
-<h3 class="anchored" data-anchor-id="debug-tips">Debug Tips?</h3>
-<ul>
-<li><p><strong>Read the error message</strong>: The error message provides information about what went wrong. Read the error message carefully to understand the problem.</p></li>
-<li><p><strong>Check the code</strong>: Review the code that caused the error. Look for syntax errors, missing parentheses, brackets, or quotation marks, and other common mistakes.</p></li>
-<li><p><strong>Use the help panel</strong>: RStudio has a help panel that provides information about functions, packages, and error messages. Use the help panel to look up information related to the error.</p></li>
-<li><p><strong>Search online</strong>: If you are unable to resolve the error, search online for solutions. Websites like Stack Overflow, RStudio Community, and the R documentation can be helpful resources.</p></li>
-<li><p><strong>Posting your questions</strong>: If you are still unable to resolve the error, ask for help. Post your code and the error message on the RStudio Community or another forum to get assistance from the community.</p></li>
-</ul>
-</section>
-<section id="tips-for-learning-r-coding" class="level3">
-<h3 class="anchored" data-anchor-id="tips-for-learning-r-coding">Tips for learning R coding</h3>
-<ul>
-<li><p><strong>“Copy, Paste, and Tweak”</strong>: When writing code, it’s common to copy and paste existing code and then tweak it to fit your needs. This can save time and reduce errors. Once you have a working script that analyzes one dataset, adapting it for another is much faster.</p></li>
-<li><p><strong>“Save, Save, Save”</strong>: Save your work frequently to avoid losing your progress. For journalism projects, also keep a clear record of what analysis you did—this becomes your methodology document.</p></li>
-<li><p><strong>Practice, practice, practice</strong>: The more you practice writing R code, the more comfortable and proficient you will become. Start with simple data questions and gradually tackle more complex analyses.</p></li>
-<li><p><strong>Call <code>?</code> for help</strong>: If you are unsure about how to use a function or need more information, you can call <code>?function_name</code> to access the help file for that function.</p></li>
-</ul>
-</section>
-<section id="best-practices-for-data-journalism-projects" class="level3">
-<h3 class="anchored" data-anchor-id="best-practices-for-data-journalism-projects">Best Practices for Data Journalism Projects</h3>
-<ul>
-<li><p><strong>Name your scripts clearly</strong>: Use meaningful names like <code>analysis_election_2025.R</code> or <code>data_cleaning_covid_survey.R</code> so you know what each script does months later.</p></li>
-<li><p><strong>Document your data sources</strong>: Add comments at the top of your script noting where the data came from, when you obtained it, and any data issues you discovered.</p></li>
-<li><p><strong>Organize your project</strong>: Keep related files in the same R Project, with separate folders for raw data, processed data, scripts, and visualizations.</p></li>
-<li><p><strong>Validate your results</strong>: Always double-check calculations and findings against the original data before publishing. A single mistake can undermine your credibility.</p></li>
-</ul>
-</section>
-</section>
-<section id="exercises" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.8</span> Exercises</h2>
-<section id="identify-errors" class="level3">
-<h3 class="anchored" data-anchor-id="identify-errors">Identify Errors</h3>
-<pre><code>my_variable &lt;- 10
-my_varıable
-# Error: object 'my_varıable' not found</code></pre>
-<pre><code>my_vector &lt;- (1, 2, 3, 4, 5)
-mean(my_vector)
-# Error: unexpected ',' in "my_vector &lt;- (1,"</code></pre>
-<pre><code>my_vector1 &lt;- C(1, 2, 3, 4, 5)
-mean(my_vector1)
-# Error in `contrasts&lt;-`(`*tmp*`, how.many, value = contr) : contrasts can be applied only to factors with 2 or more levels</code></pre>
-</section>
-<section id="rstudio-shortcuts" class="level3">
-<h3 class="anchored" data-anchor-id="rstudio-shortcuts">RStudio Shortcuts</h3>
-<p><code>Option + Shift + K</code>/ <code>Alt + Shift + K</code>. What happens? How can you achieve the same through the menus?</p>
-</section>
-</section>
-<section id="key-functions" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="key-functions"><span class="header-section-number">2.9</span> Key Functions</h2>
+<p>Use <code>==</code> to compare values. A single <code>=</code> is normally used to name a function argument.</p>
+<p>Logical operators combine conditions:</p>
 <table class="table">
-<colgroup>
-<col style="width: 28%">
-<col style="width: 27%">
-<col style="width: 43%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Command</th>
-<th>Purpose</th>
+<th>Operator</th>
+<th>Meaning</th>
 <th>Example</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>&lt;-</code></td>
-<td>Assign value</td>
-<td><code>x &lt;- 5</code></td>
+<td><code>&amp;</code></td>
+<td>and</td>
+<td><code>year &gt;= 2016 &amp; year &lt;= 2025</code></td>
 </tr>
 <tr class="even">
-<td><code>c()</code></td>
-<td>Create vector</td>
-<td><code>ages &lt;- c(21, 25, 19)</code></td>
+<td><code>|</code></td>
+<td>or</td>
+<td><code>country == "China" | country == "Japan"</code></td>
 </tr>
 <tr class="odd">
-<td><code>data.frame()</code></td>
-<td>Create data frame</td>
-<td><code>df &lt;- data.frame(id=1:3)</code></td>
+<td><code>!</code></td>
+<td>not</td>
+<td><code>!is.na(value)</code></td>
 </tr>
 <tr class="even">
-<td><code>?</code></td>
-<td>Get help</td>
-<td><code>?ggplot</code></td>
-</tr>
-<tr class="odd">
-<td><code>#</code></td>
-<td>Add comment</td>
-<td><code># Calculate average</code></td>
+<td><code>%in%</code></td>
+<td>belongs to a set</td>
+<td><code>country %in% c("China", "Japan")</code></td>
 </tr>
 </tbody>
 </table>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>years[years <span class="sc">&gt;=</span> <span class="dv">2017</span> <span class="sc">&amp;</span> years <span class="sc">&lt;=</span> <span class="dv">2019</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2017 2018 2019</code></pre>
+</div>
+</div>
+</section>
+<section id="missing-values-are-not-zero" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="missing-values-are-not-zero"><span class="header-section-number">3.6</span> Missing values are not zero</h2>
+<p>R represents a missing value as <code>NA</code>. Missing is not the same as zero, an empty string, or “no.”</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ownership <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">1.2</span>, <span class="cn">NA</span>, <span class="fl">0.5</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ownership)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ownership, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.8333333</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(ownership))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>The first mean is <code>NA</code> because R refuses to pretend the missing observation is known. <code>na.rm = TRUE</code> tells R to calculate from available values. That may be appropriate, but the reporter still needs to ask why the value is missing and whether the remaining cases are representative.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="A newsroom rule">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A newsroom rule
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Never replace <code>NA</code> with zero just to make code run. First determine whether the source means “none,” “not applicable,” “not collected,” or “not reported.”</p>
+</div>
+</div>
+</section>
+<section id="functions-and-arguments" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="functions-and-arguments"><span class="header-section-number">3.7</span> Functions and arguments</h2>
+<p>A function takes inputs and returns a result.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(records), <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9112.5</code></pre>
+</div>
+</div>
+<p>Here <code>records</code> is the main input and <code>digits = 1</code> is a named argument. Use <code>?round</code> in the Console to open the help page.</p>
+<p>When a function does not behave as expected, inspect the input before changing the code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(records)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(records)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(records)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   8985    9076    9132    9112    9168    9202 </code></pre>
+</div>
+</div>
+</section>
+<section id="data-frames" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="data-frames"><span class="header-section-number">3.8</span> Data frames</h2>
+<p>A data frame is a rectangular collection of variables. A tibble is the modern tidyverse version.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> years,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">holding_records =</span> records,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">audited =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>annual</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["audited"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"2016","2":"8985","3":"TRUE"},{"1":"2017","2":"9106","3":"TRUE"},{"1":"2018","2":"9157","3":"TRUE"},{"1":"2019","2":"9202","3":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Each column should contain one variable, each row should contain one observation, and each cell should contain one value. This “tidy” structure is a goal, not an assumption: real journalism datasets often need to be reshaped.</p>
+<p>Useful inspection functions include:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(annual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(annual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "year"            "holding_records" "audited"        </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(annual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 4
+Columns: 3
+$ year            &lt;dbl&gt; 2016, 2017, 2018, 2019
+$ holding_records &lt;dbl&gt; 8985, 9106, 9157, 9202
+$ audited         &lt;lgl&gt; TRUE, TRUE, TRUE, TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(annual)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      year      holding_records audited       
+ Min.   :2016   Min.   :8985    Mode:logical  
+ 1st Qu.:2017   1st Qu.:9076    TRUE:4        
+ Median :2018   Median :9132                  
+ Mean   :2018   Mean   :9112                  
+ 3rd Qu.:2018   3rd Qu.:9168                  
+ Max.   :2019   Max.   :9202                  </code></pre>
+</div>
+</div>
+</section>
+<section id="pipes-make-a-sequence-readable" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="pipes-make-a-sequence-readable"><span class="header-section-number">3.9</span> Pipes make a sequence readable</h2>
+<p>The base R pipe <code>|&gt;</code> passes the result on the left into the function on the right.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>annual <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2017</span>) <span class="sc">|&gt;</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(holding_records))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["audited"],"name":[3],"type":["lgl"],"align":["right"]}],"data":[{"1":"2019","2":"9202","3":"TRUE"},{"1":"2018","2":"9157","3":"TRUE"},{"1":"2017","2":"9106","3":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Translate the pipeline before running it:</p>
+<blockquote class="blockquote">
+<p>Start with <code>annual</code>, keep years from 2017 onward, then order the remaining rows from the largest record count to the smallest.</p>
+</blockquote>
+<p>One line should usually perform one meaningful step. This makes the analysis easier to check and explain to an editor.</p>
+</section>
+<section id="checkpoint-exercise" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="checkpoint-exercise"><span class="header-section-number">3.10</span> Checkpoint exercise</h2>
+<p>Create this vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="cn">NA</span>, <span class="dv">90</span>, <span class="dv">200</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Answer the following with R:</p>
+<ol type="1">
+<li>How many values are recorded?</li>
+<li>How many are missing?</li>
+<li>What is the median of the available values?</li>
+<li>Which available values are at least 150?</li>
+<li>Why would replacing the missing value with zero change the story?</li>
+</ol>
+<details>
+<summary>
+Show one possible solution
+</summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(values))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(values, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 135</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>values[<span class="sc">!</span><span class="fu">is.na</span>(values) <span class="sc">&amp;</span> values <span class="sc">&gt;=</span> <span class="dv">150</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 150 200</code></pre>
+</div>
+</div>
+<p>Replacing <code>NA</code> with zero would assert that the true value is zero. It would lower the median and turn an unknown observation into a factual claim.</p>
+</details>
+</section>
+<section id="independent-task" class="level2" data-number="3.11">
+<h2 data-number="3.11" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">3.11</span> Independent task</h2>
+<p>Build a tibble with five possible data sources for a local story. Include:</p>
+<ul>
+<li><code>source</code> as text;</li>
+<li><code>year</code> as a number;</li>
+<li><code>downloaded</code> as a logical value; and</li>
+<li><code>notes</code> with at least one <code>NA</code>.</li>
+</ul>
+<p>Then write a pipeline that keeps downloaded sources from 2024 onward. Under the code, explain the pipeline in one sentence and state what <code>NA</code> means in your <code>notes</code> column.</p>
 
 
 </section>
@@ -1213,13 +1085,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./install.html" class="pagination-link  aria-label=" &lt;span="" &amp;="" setup&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span>
+      <a href="./install.html" class="pagination-link  aria-label=" &lt;span="" up="" r,="" rstudio,="" and="" quarto&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-import.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>Data Import</span>">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./debug.html" class="pagination-link" aria-label="<span class='chapter-number'>4</span>&nbsp; <span class='chapter-title'>Debugging Without Guessing</span>">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1230,7 +1102,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright © 2025 Bin Chen</p>
+<p>Copyright © 2026 Bin Chen</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

@@ -1,229 +1,156 @@
 ---
-title: "Installation & Setup"
+title: "Set Up R, RStudio, and Quarto"
 ---
 
-::: {.callout-note}
-## Part 1: Getting Started
+## Learning objectives
 
-Before you can analyze data, you need to set up your tools. This part walks you through installation and introduces R basics—the foundation for everything that follows.
+By the end of this chapter, you should be able to:
 
-**What you'll learn:**
-- Install R and RStudio on your computer
-- Understand basic R syntax and how code works
-- Work with variables, functions, and data types
-- Run your first data analysis
+- explain the different jobs of R, RStudio, and Quarto;
+- create and open an RStudio Project;
+- run code in the Console and in a Quarto document;
+- install a package once and load it in a working session; and
+- render a reproducible HTML page.
 
-Don't rush these chapters. A solid foundation makes the rest of the book much easier.
-:::
+## Three tools, three jobs
 
-## Why Learn R for Data Journalism?
+**R** is the language and calculation engine. **RStudio** is the working
+environment where you write code, inspect data, and manage files. **Quarto**
+combines prose, code, results, and citations in one reproducible document.
 
-Data journalism requires tools that combine statistical rigor with storytelling capabilities. R provides:
-
--   **Reproducible analysis** through script-based workflows
--   **Advanced visualization** for impactful storytelling
--   **Open-source community** with continuous innovation
--   **Professional-grade tools** used by NYT, BBC, and Reuters etc.
-
-## Installing the Tools
-
-### Step 1: Install R
-
-1.  Visit [CRAN Mirror](https://cran.r-project.org/)
-2.  Select your operating system (Windows/Mac/Linux)
-3.  Download the **latest version** (≥4.3.0 recommended)
-4.  Run the installer with default settings
-
-### Step 2: Install RStudio
-
-```{r}
-#| echo: false
-#| fig-cap: "RStudio Interface"
-knitr::include_graphics("images/install-r-rstudio.png")
+```{mermaid}
+flowchart LR
+  A["R code"] --> B["R computes"]
+  C["Prose and citations"] --> D["Quarto document"]
+  B --> D
+  D --> E["HTML story, report, or website"]
 ```
 
-1.  Go to [posit.co/download](https://posit.co/download/rstudio-desktop/)
-2.  Choose **Download RStudio Desktop**
-3.  Install using default options
+Install R from [CRAN](https://cran.r-project.org/), then install
+[RStudio Desktop](https://posit.co/download/rstudio-desktop/). Current RStudio
+releases include Quarto. If the **Render** button is visible when you open a
+`.qmd` file, Quarto is available.
 
-::: {.callout-important}
-**Installation Order Matters!** Always install R **before** RStudio - the IDE needs the base R engine to function.
-:::
+## Work inside a project
 
-## First-Time Setup
+An RStudio Project gives your analysis a stable home. It prevents the most
+common beginner problem: code that works only because R is looking in an
+unknown folder.
 
-### Organizing Your Workspace
+1. Choose **File → New Project → Existing Directory**.
+2. Select the folder containing this textbook.
+3. Confirm that the Files pane shows `_quarto.yml`, `index.qmd`, and `data/`.
 
-1.  Create a project folder:
-
-    -   Windows: `C:/Users/[YourName]/Documents/djr`
-    -   Mac: `/Users/[YourName]/Documents/djr`
-
-2.  Use **lowercase letters only** (avoid spaces/special characters)
+The project folder is now the starting point for relative paths. For example:
 
 ```{r}
-#| eval: false
-#| echo: true
-# Create folder from R Console (alternative method)
-dir.create("~/Documents/djr")
+file.exists("data/processed/gpfg_equities_latest.csv")
 ```
 
-### Configuring RStudio
+The result should be `TRUE`. Do not solve path problems with a long personal
+path such as `/Users/name/Desktop/course/...`; that path will fail on another
+computer.
 
-Optimize your setup through:
+## Console, script, and Quarto document
 
-1.  **Tools \> Global Options \> General**
-    -   **Uncheck** everything above the "Other" panel
-    -   Set "Save workspace" to **Never**
-2.  **Tools \> Global Options \> Code**
-    -   Enable "Soft-wrap R source files"
-    -   Check "Use native pipe operator \|\>"
+Use the **Console** for quick experiments. Use an `.R` script for reusable data
+preparation. Use a `.qmd` document when the explanation, code, output, and
+sources belong together.
 
-## Understanding the RStudio Interface
+Try this in the Console:
 
-| Position | Panel | Purpose | Key Features |
-|-----------------|-----------------|--------------------|------------------|
-| **Top-Left** | Source | Code editing | Scripts, R Markdown, notebooks |
-| **Bottom-Left** | Console | Direct code execution | Immediate feedback, debugging |
-| **Top-Right** | Environment | Active data objects | Variable inspection |
-| **Bottom-Right** | Files/Help | Navigation & documentation | Package help, file browsing |
-
-```{r}
-#| echo: false
-#| fig-cap: "RStudio IDE Cheatsheet Preview"
-knitr::include_graphics("images/rstudio-ide.png")
+```r
+2 + 2
 ```
 
-Download full [RStudio IDE cheatsheets](cheatsheets/rstudio-ide.pdf)
+Then create a Quarto document with **File → New File → Quarto Document** and
+place this code in a code chunk:
 
-## Essential Packages Installation
+````markdown
+```{r}
+headline <- "A reproducible result"
+headline
+```
+````
 
-Run this in the **Console**:
+Click **Render**. Quarto runs the document from the beginning in a fresh
+session. A document that renders is stronger evidence of reproducibility than
+code that only works interactively.
+
+## Packages
+
+Packages extend R. Installation and loading are different actions.
+
+Run installation once in the Console:
+
+```r
+install.packages("tidyverse")
+```
+
+Load the package in every new R session or at the top of a chapter:
 
 ```{r}
-#| eval: false
-#| echo: true
+library(tidyverse)
+```
+
+Do not put `install.packages()` in a rendered chapter. Rendering should not
+change a reader's computer or pause to ask which download server to use.
+
+For this book, install the main packages with:
+
+```r
 install.packages(c(
-  "tidyverse",   # Data wrangling & visualization
-  "rmarkdown",   # Dynamic reporting
-  "quarto",      # Modern publishing
-  "knitr",       # Document processing
-  "janitor"      # Data cleaning
+  "tidyverse", "readxl", "scales", "ggrepel", "sf",
+  "rnaturalearth", "rnaturalearthdata", "tidytext"
 ))
 ```
 
+## A five-minute system check
 
-## Your First Project
+Create `setup-check.qmd` and render the following:
 
-### Create an R Project
-
-1.  **File > New Project > New Directory**
-2.  Name: `yourname-week1` (e.g., `bin-week1`)
-3.  Browse to your `djr` folder
-4.  Click **Create Project**
-
-Once created, your project folder will be the "main workspace" for all your work. Keep all your scripts, data, and outputs organized here. This is essential for reproducibility and managing your workflow.
-
-### Create Your First Document
-
-1.  **File > New File > R Markdown** (or Quarto document)
-2.  Title: "My First Analysis"
-3.  Author: Your Name
-4.  Default HTML output
-5.  Save the file as `analysis.Rmd`
-
-### Quick Test
-
-Now that you have a fresh R Markdown document, test that everything works:
-
-1. Replace the template content with:
-
-```{r}
-#| eval: false
-
-# Load the tidyverse package
-library(tidyverse)
-
-# Create a simple dataset
-data <- data.frame(
-  publication = c("NYT", "BBC", "Reuters"),
-  readers = c(150000, 200000, 120000)
-)
-
-# View the data
-data
-```
-
-2. Click **Render** to generate the output.
-
-If everything works, congratulations! You're ready for data analysis.
-
-::: {.callout-warning}
-If you get an error, make sure you:
-- Installed R and RStudio (in that order)
-- Installed the tidyverse package via `install.packages("tidyverse")` in the **Console**
-- Used `library()` (not `install.packages()`) inside your document
-:::
-
-## Writing Your First Document
-
-R Markdown (or Quarto) files combine text, code, and output in a single document. Here's the basic structure:
-
-### YAML Metadata (Document Header)
-
-The top of your file defines settings:
-
-``` yaml
+````markdown
 ---
-title: "Data Journalism"
-subtitle: "Week 1"
-author: "Bin Chen"
-date: "Jan 20, 2025"
+title: "Setup check"
 format: html
 ---
-```
-
-### Text & Code
-
-Write narrative using regular text and Markdown formatting:
-- `**bold**` for bold text
-- `# Heading` for section headers
-- `- item` for lists
-- `[link text](url)` for links
-
-Insert R code using code chunks:
 
 ```{r}
-#| eval: false
+library(tidyverse)
 
-# Your R code goes here
-1 + 1
+check <- tibble(
+  tool = c("R", "tidyverse", "course data"),
+  ready = c(
+    TRUE,
+    packageVersion("dplyr") > "1.0.0",
+    file.exists("data/processed/gpfg_equities_latest.csv")
+  )
+)
+
+check
 ```
+````
 
-Insert a code chunk with `Ctrl + Alt + I` (Windows) or `Cmd + Option + I` (Mac).
+All three values in `ready` should be `TRUE`.
 
-### Render the Document
+## Common setup problems
 
-Click **Render** (or **Knit** in older R Markdown) to generate the output. R will run all code chunks and create an HTML file.
-
-::: {.callout-tip}
-Never run `install.packages()` inside your document. Always run package installation in the **Console** first, then use `library()` in your document to load it.
-:::
-
-## Next Steps
-
-You now have R, RStudio, and the essential packages installed. You're ready to start learning R basics and analyzing data for journalism.
-
-Move on to the next chapter: **R Coding Basics**.
-
-# Key Functions and Shortcuts
-
-| Functionality | Shortcut/Command | Purpose |
+| Symptom | Likely cause | First check |
 |---|---|---|
-| Insert code chunk (Windows) | `Ctrl + Alt + I` | Add R code to document |
-| Insert code chunk (Mac) | `Cmd + Option + I` | Add R code to document |
-| Install packages | `install.packages("package_name")` | `install.packages("tidyverse")` |
-| Load packages | `library(package_name)` | `library(tidyverse)` |
-| Render document | Click **Render** button | Generate HTML/PDF output |
-| Get help on function | `?function_name` | `?mean` |
-| View workspace | `ls()` | List all objects in memory |
+| `there is no package called ...` | The package is not installed | Run `install.packages()` in the Console |
+| `could not find function ...` | The package is installed but not loaded | Run `library(...)` near the top |
+| `cannot open file ...` | The project or relative path is wrong | Run `getwd()` and `file.exists()` |
+| Code works line by line but Render fails | An object was created only in the Console | Restart R and render from the beginning |
+| A package cannot be installed | R or system software is too old | Record the exact error before changing anything |
+
+## Independent task
+
+Create a small Quarto page that:
+
+1. loads `tidyverse`;
+2. creates a three-row tibble about three possible story ideas;
+3. filters the table to one idea; and
+4. renders successfully after **Session → Restart R**.
+
+At the bottom, add a short note explaining why a successful fresh render is a
+useful newsroom check.

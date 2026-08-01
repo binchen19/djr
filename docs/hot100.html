@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 12&nbsp; Billboard Hot100</title>
+<title>Data Journalism with R - 17&nbsp; Metric Design: Billboard Hot 100</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./employment.html" rel="next">
-<link href="./norway-invest.html" rel="prev">
+<link href="./additional-practice.html" rel="next">
+<link href="./debate.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./hot100.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./employment.html">Transfer Case Studies</a></li><li class="breadcrumb-item"><a href="./hot100.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -145,13 +145,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Journalism with R</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Getting Started</span></a>
+ <span class="menu-text">Foundations</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,13 +160,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation &amp; Setup</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Coding Basics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
   </div>
 </li>
       </ul>
@@ -174,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Data Import &amp; Wrangling</span></a>
+ <span class="menu-text">A Reproducible Data Workflow</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,19 +189,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pivoting and Joining</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
   </div>
 </li>
       </ul>
@@ -203,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Data Analysis</span></a>
+ <span class="menu-text">Visual Evidence and Storytelling</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,14 +229,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-hksalary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis I</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data Analysis II</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
   </div>
 </li>
       </ul>
@@ -226,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Data Visualization</span></a>
+ <span class="menu-text">Transfer Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -234,26 +264,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">ggplot Bascis</span></span></a>
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">ggplot 2.0</span></span></a>
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./map-lifex.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping Global Life Expectancy</span></span></a>
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span></a>
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
   </div>
 </li>
       </ul>
@@ -261,7 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Case Studies</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -269,67 +305,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Paris 2024 Olympics</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Website</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Errors and Debugging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project Extras</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./examples.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sample Projects</span></span></a>
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -344,39 +339,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#load-packages" id="toc-load-packages" class="nav-link active" data-scroll-target="#load-packages"><span class="header-section-number">12.1</span> Load Packages</a></li>
-  <li><a href="#import-data" id="toc-import-data" class="nav-link" data-scroll-target="#import-data"><span class="header-section-number">12.2</span> Import Data</a></li>
-  <li><a href="#data-inspection" id="toc-data-inspection" class="nav-link" data-scroll-target="#data-inspection"><span class="header-section-number">12.3</span> Data Inspection</a>
-  <ul class="collapse">
-  <li><a href="#str-structure-of-the-data" id="toc-str-structure-of-the-data" class="nav-link" data-scroll-target="#str-structure-of-the-data"><code>str()</code>: Structure of the Data</a></li>
-  <li><a href="#summary-summary-of-the-data" id="toc-summary-summary-of-the-data" class="nav-link" data-scroll-target="#summary-summary-of-the-data"><code>summary()</code>: Summary of the Data</a></li>
-  <li><a href="#check-missing-values" id="toc-check-missing-values" class="nav-link" data-scroll-target="#check-missing-values">check missing values</a></li>
-  </ul></li>
-  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><span class="header-section-number">12.4</span> Data Cleaning</a>
-  <ul class="collapse">
-  <li><a href="#rename-columns" id="toc-rename-columns" class="nav-link" data-scroll-target="#rename-columns">Rename Columns</a></li>
-  <li><a href="#convert-data-types" id="toc-convert-data-types" class="nav-link" data-scroll-target="#convert-data-types">Convert Data Types</a></li>
-  </ul></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">12.5</span> Data Analysis</a>
-  <ul class="collapse">
-  <li><a href="#single-variable-descriptive-statistics" id="toc-single-variable-descriptive-statistics" class="nav-link" data-scroll-target="#single-variable-descriptive-statistics">Single Variable Descriptive Statistics</a></li>
-  <li><a href="#multiple-variables" id="toc-multiple-variables" class="nav-link" data-scroll-target="#multiple-variables">Multiple Variables</a></li>
-  </ul></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization"><span class="header-section-number">12.6</span> Data Visualization</a>
-  <ul class="collapse">
-  <li><a href="#bar-chart" id="toc-bar-chart" class="nav-link" data-scroll-target="#bar-chart">Bar Chart</a></li>
-  <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart">Line Chart</a></li>
-  </ul></li>
-  <li><a href="#key-functions-recap" id="toc-key-functions-recap" class="nav-link" data-scroll-target="#key-functions-recap"><span class="header-section-number">12.7</span> Key Functions Recap</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">17.1</span> Learning objectives</a></li>
+  <li><a href="#import-and-clean" id="toc-import-and-clean" class="nav-link" data-scroll-target="#import-and-clean"><span class="header-section-number">17.2</span> Import and clean</a></li>
+  <li><a href="#define-the-period-exactly" id="toc-define-the-period-exactly" class="nav-link" data-scroll-target="#define-the-period-exactly"><span class="header-section-number">17.3</span> Define the period exactly</a></li>
+  <li><a href="#metric-1-weeks-appearing-at-no.-1" id="toc-metric-1-weeks-appearing-at-no.-1" class="nav-link" data-scroll-target="#metric-1-weeks-appearing-at-no.-1"><span class="header-section-number">17.4</span> Metric 1: weeks appearing at No.&nbsp;1</a></li>
+  <li><a href="#metric-2-distinct-no.-1-songs" id="toc-metric-2-distinct-no.-1-songs" class="nav-link" data-scroll-target="#metric-2-distinct-no.-1-songs"><span class="header-section-number">17.5</span> Metric 2: distinct No.&nbsp;1 songs</a></li>
+  <li><a href="#metric-3-longest-running-no.-1-song" id="toc-metric-3-longest-running-no.-1-song" class="nav-link" data-scroll-target="#metric-3-longest-running-no.-1-song"><span class="header-section-number">17.6</span> Metric 3: longest-running No.&nbsp;1 song</a></li>
+  <li><a href="#put-the-metric-in-the-chart-title-and-axis" id="toc-put-the-metric-in-the-chart-title-and-axis" class="nav-link" data-scroll-target="#put-the-metric-in-the-chart-title-and-axis"><span class="header-section-number">17.7</span> Put the metric in the chart title and axis</a></li>
+  <li><a href="#credit-and-identity-problems" id="toc-credit-and-identity-problems" class="nav-link" data-scroll-target="#credit-and-identity-problems"><span class="header-section-number">17.8</span> Credit and identity problems</a></li>
+  <li><a href="#validate-the-measures" id="toc-validate-the-measures" class="nav-link" data-scroll-target="#validate-the-measures"><span class="header-section-number">17.9</span> Validate the measures</a></li>
+  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">17.10</span> Independent task</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./hot100.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./employment.html">Transfer Case Studies</a></li><li class="breadcrumb-item"><a href="./hot100.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Billboard Hot100</span></h1>
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></h1>
 </div>
 
 
@@ -393,685 +374,224 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Welcome to Case Studies
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You’ve now completed the foundation chapters covering R basics, data wrangling, analysis, and visualization. The following case studies put all these skills together in realistic journalism scenarios.</p>
-<p>Each case study increases in complexity, building on skills from previous chapters. Work through them in order for the best learning experience, or jump to a case study that interests you and reference earlier chapters as needed.</p>
-</div>
-</div>
-<section id="load-packages" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="load-packages"><span class="header-section-number">12.1</span> Load Packages</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.0     ✔ tibble    3.3.0
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.2.0     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-</div>
-</section>
-<section id="import-data" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="import-data"><span class="header-section-number">12.2</span> Import Data</h2>
-<p>This dataset is downloaded from <a href="https://www.kaggle.com/datasets/ludmin/billboard?select=hot100.csv">Kaggle</a>, which contains the Billboard Hot 100 chart data from 1958 to 2024.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hot100.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 345887 Columns: 8
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (4): Song, Artist, Weeks in Charts, Image URL
-dbl  (3): Rank, Last Week, Peak Position
-date (1): Date
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-</div>
-</section>
-<section id="data-inspection" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="data-inspection"><span class="header-section-number">12.3</span> Data Inspection</h2>
-<section id="str-structure-of-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="str-structure-of-the-data"><code>str()</code>: Structure of the Data</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>spc_tbl_ [345,887 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ Date           : Date[1:345887], format: "1958-08-06" "1958-08-06" ...
- $ Song           : chr [1:345887] "Poor Little Fool" "Nel Blu Dipinto Di Blu (Volare)" "Patricia" "Splish Splash" ...
- $ Artist         : chr [1:345887] "Ricky Nelson" "Domenico Modugno" "Perez Prado And His Orchestra" "Bobby Darin" ...
- $ Rank           : num [1:345887] 1 2 3 4 5 6 7 8 9 9 ...
- $ Last Week      : num [1:345887] 1 54 2 3 5 8 4 6 12 9 ...
- $ Peak Position  : num [1:345887] 1 2 2 3 5 6 4 6 9 9 ...
- $ Weeks in Charts: chr [1:345887] "2" "2" "2" "2" ...
- $ Image URL      : chr [1:345887] "#" "https://charts-static.billboard.com/img/1958/08/domenico-modugno-x2d-180x180.jpg" "#" "https://charts-static.billboard.com/img/1958/08/bobby-darin-hm6-180x180.jpg" ...
- - attr(*, "spec")=
-  .. cols(
-  ..   Date = col_date(format = ""),
-  ..   Song = col_character(),
-  ..   Artist = col_character(),
-  ..   Rank = col_double(),
-  ..   `Last Week` = col_double(),
-  ..   `Peak Position` = col_double(),
-  ..   `Weeks in Charts` = col_character(),
-  ..   `Image URL` = col_character()
-  .. )
- - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
-</div>
-</div>
-<p>Here is the description for each column:</p>
+<section id="learning-objectives" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">17.1</span> Learning objectives</h2>
+<p>By the end of this case, you should be able to:</p>
 <ul>
-<li><code>Date</code>: the date of the chart</li>
-<li><code>Song</code>: the name of the song</li>
-<li><code>Artist</code>: the name of the artist</li>
-<li><code>Rank</code>: the position of the song on the chart</li>
-<li><code>Last Week</code>: the position of the song on the previous week’s chart</li>
-<li><code>Peak Position</code>: the highest position the song reached on the chart</li>
-<li><code>Weeks in Chart</code>: the number of weeks the song has been on the chart</li>
-<li><code>Image URL</code>: the URL of the song’s cover image</li>
+<li>state the difference between a row count and a distinct-song count;</li>
+<li>design a metric before ranking artists;</li>
+<li>label charts with the measure actually calculated;</li>
+<li>define a time period with exact dates; and</li>
+<li>identify credit and identity problems in cultural data.</li>
 </ul>
 </section>
-<section id="summary-summary-of-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="summary-summary-of-the-data"><code>summary()</code>: Summary of the Data</h3>
+<section id="import-and-clean" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="import-and-clean"><span class="header-section-number">17.2</span> Import and clean</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>hot100 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/hot100.csv"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> Date,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">song =</span> Song,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">artist =</span> Artist,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">rank =</span> Rank,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">last_week =</span> <span class="st">`</span><span class="at">Last Week</span><span class="st">`</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">peak_position =</span> <span class="st">`</span><span class="at">Peak Position</span><span class="st">`</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">weeks_in_chart =</span> <span class="st">`</span><span class="at">Weeks in Charts</span><span class="st">`</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">image_url =</span> <span class="st">`</span><span class="at">Image URL</span><span class="st">`</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">weeks_in_chart =</span> <span class="fu">parse_number</span>(weeks_in_chart)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(hot100)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      Date                Song              Artist               Rank      
- Min.   :1958-08-06   Length:345887      Length:345887      Min.   :  1.0  
- 1st Qu.:1975-03-05   Class :character   Class :character   1st Qu.: 26.0  
- Median :1991-10-09   Mode  :character   Mode  :character   Median : 51.0  
- Mean   :1991-10-05                                         Mean   : 50.5  
- 3rd Qu.:2008-05-07                                         3rd Qu.: 76.0  
- Max.   :2024-12-04                                         Max.   :100.0  
-   Last Week      Peak Position    Weeks in Charts     Image URL        
- Min.   :  1.00   Min.   :  1.00   Length:345887      Length:345887     
- 1st Qu.: 25.00   1st Qu.:  7.00   Class :character   Class :character  
- Median : 51.00   Median : 28.00   Mode  :character   Mode  :character  
- Mean   : 50.52   Mean   : 32.95                                        
- 3rd Qu.: 76.00   3rd Qu.: 55.00                                        
- Max.   :100.00   Max.   :100.00                                        </code></pre>
+<pre><code>Rows: 345,887
+Columns: 8
+$ date           &lt;date&gt; 1958-08-06, 1958-08-06, 1958-08-06, 1958-08-06, 1958-0…
+$ song           &lt;chr&gt; "Poor Little Fool", "Nel Blu Dipinto Di Blu (Volare)", …
+$ artist         &lt;chr&gt; "Ricky Nelson", "Domenico Modugno", "Perez Prado And Hi…
+$ rank           &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 11, 12, 13, 14, 15, 16, 1…
+$ last_week      &lt;dbl&gt; 1, 54, 2, 3, 5, 8, 4, 6, 12, 9, 7, 14, 10, 18, 11, 19, …
+$ peak_position  &lt;dbl&gt; 1, 2, 2, 3, 5, 6, 4, 6, 9, 9, 7, 12, 10, 14, 11, 16, 16…
+$ weeks_in_chart &lt;dbl&gt; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2…
+$ image_url      &lt;chr&gt; "#", "https://charts-static.billboard.com/img/1958/08/d…</code></pre>
 </div>
 </div>
+<p>One row represents one song’s position on one weekly chart date. A song that appears for 20 weeks contributes 20 rows. This grain makes several plausible “most successful” metrics possible—and they are not interchangeable.</p>
 </section>
-<section id="check-missing-values" class="level3">
-<h3 class="anchored" data-anchor-id="check-missing-values">check missing values</h3>
+<section id="define-the-period-exactly" class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="define-the-period-exactly"><span class="header-section-number">17.3</span> Define the period exactly</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check missing values</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_all</span>(<span class="sc">~</span><span class="fu">sum</span>(<span class="fu">is.na</span>(.)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>period_start <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">"2000-01-01"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>number_ones <span class="ot">&lt;-</span> hot100 <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">==</span> <span class="dv">1</span>, date <span class="sc">&gt;=</span> period_start)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(number_ones<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2000-01-05" "2024-12-04"</code></pre>
+</div>
+</div>
+<p>“Since 2000” is clearer than “in the 21st century” when the code uses a date boundary. If the source ends in 2024, say so in the subtitle or methods.</p>
+</section>
+<section id="metric-1-weeks-appearing-at-no.-1" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="metric-1-weeks-appearing-at-no.-1"><span class="header-section-number">17.4</span> Metric 1: weeks appearing at No.&nbsp;1</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>artist_weeks_at_number_one <span class="ot">&lt;-</span> number_ones <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(artist, <span class="at">name =</span> <span class="st">"weeks_at_number_one"</span>, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>artist_weeks_at_number_one <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Date"],"name":[1],"type":["int"],"align":["right"]},{"label":["Song"],"name":[2],"type":["int"],"align":["right"]},{"label":["Artist"],"name":[3],"type":["int"],"align":["right"]},{"label":["Rank"],"name":[4],"type":["int"],"align":["right"]},{"label":["Last Week"],"name":[5],"type":["int"],"align":["right"]},{"label":["Peak Position"],"name":[6],"type":["int"],"align":["right"]},{"label":["Weeks in Charts"],"name":[7],"type":["int"],"align":["right"]},{"label":["Image URL"],"name":[8],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]},{"label":["weeks_at_number_one"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Adele","2":"34"},{"1":"Taylor Swift","2":"33"},{"1":"Mariah Carey","2":"32"},{"1":"Drake","2":"31"},{"1":"The Black Eyed Peas","2":"28"},{"1":"Usher","2":"20"},{"1":"Lil Nas X Featuring Billy Ray Cyrus","2":"19"},{"1":"Shaboozey","2":"19"},{"1":"Ariana Grande","2":"18"},{"1":"Beyonce","2":"18"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
+<p>This metric counts weekly No.&nbsp;1 chart appearances. If one song remains No.&nbsp;1 for ten weeks, it contributes ten to the artist’s total.</p>
 </section>
-</section>
-<section id="data-cleaning" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="data-cleaning"><span class="header-section-number">12.4</span> Data Cleaning</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Do we need to clean the data? any issue with the column names? data types?</p>
-</div>
-</div>
-<section id="rename-columns" class="level3">
-<h3 class="anchored" data-anchor-id="rename-columns">Rename Columns</h3>
+<section id="metric-2-distinct-no.-1-songs" class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="metric-2-distinct-no.-1-songs"><span class="header-section-number">17.5</span> Metric 2: distinct No.&nbsp;1 songs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename all columns to be all lowercase, and ideally single words, no spaces, or snake_case</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date =</span> Date,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">song =</span> Song,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">artist =</span> Artist,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">rank =</span> Rank,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">last_week =</span> <span class="st">`</span><span class="at">Last Week</span><span class="st">`</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">peak_position =</span> <span class="st">`</span><span class="at">Peak Position</span><span class="st">`</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">weeks_in_charts =</span> <span class="st">`</span><span class="at">Weeks in Charts</span><span class="st">`</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">image_url =</span> <span class="st">`</span><span class="at">Image URL</span><span class="st">`</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># check column names and data types</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>spc_tbl_ [345,887 × 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ date           : Date[1:345887], format: "1958-08-06" "1958-08-06" ...
- $ song           : chr [1:345887] "Poor Little Fool" "Nel Blu Dipinto Di Blu (Volare)" "Patricia" "Splish Splash" ...
- $ artist         : chr [1:345887] "Ricky Nelson" "Domenico Modugno" "Perez Prado And His Orchestra" "Bobby Darin" ...
- $ rank           : num [1:345887] 1 2 3 4 5 6 7 8 9 9 ...
- $ last_week      : num [1:345887] 1 54 2 3 5 8 4 6 12 9 ...
- $ peak_position  : num [1:345887] 1 2 2 3 5 6 4 6 9 9 ...
- $ weeks_in_charts: chr [1:345887] "2" "2" "2" "2" ...
- $ image_url      : chr [1:345887] "#" "https://charts-static.billboard.com/img/1958/08/domenico-modugno-x2d-180x180.jpg" "#" "https://charts-static.billboard.com/img/1958/08/bobby-darin-hm6-180x180.jpg" ...
- - attr(*, "spec")=
-  .. cols(
-  ..   Date = col_date(format = ""),
-  ..   Song = col_character(),
-  ..   Artist = col_character(),
-  ..   Rank = col_double(),
-  ..   `Last Week` = col_double(),
-  ..   `Peak Position` = col_double(),
-  ..   `Weeks in Charts` = col_character(),
-  ..   `Image URL` = col_character()
-  .. )
- - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>artist_number_one_songs <span class="ot">&lt;-</span> number_ones <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(artist, song) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(artist, <span class="at">name =</span> <span class="st">"number_one_songs"</span>, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>artist_number_one_songs <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]},{"label":["number_one_songs"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Taylor Swift","2":"10"},{"1":"Katy Perry","2":"6"},{"1":"Rihanna","2":"6"},{"1":"Adele","2":"5"},{"1":"Ariana Grande","2":"5"},{"1":"Bruno Mars","2":"5"},{"1":"Drake","2":"5"},{"1":"BTS","2":"4"},{"1":"Beyonce","2":"4"},{"1":"Mariah Carey","2":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
+</div>
+<p>This metric counts unique artist–song pairs that reached No.&nbsp;1 at least once. The leading artist can differ from the weekly-appearance ranking because one long-running song and several shorter songs represent different kinds of chart success.</p>
 </section>
-<section id="convert-data-types" class="level3">
-<h3 class="anchored" data-anchor-id="convert-data-types">Convert Data Types</h3>
+<section id="metric-3-longest-running-no.-1-song" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="metric-3-longest-running-no.-1-song"><span class="header-section-number">17.6</span> Metric 3: longest-running No.&nbsp;1 song</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weeks_in_chart should be numeric</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> df1 <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">weeks_in_charts =</span> <span class="fu">as.numeric</span>(weeks_in_charts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: There was 1 warning in `mutate()`.
-ℹ In argument: `weeks_in_charts = as.numeric(weeks_in_charts)`.
-Caused by warning:
-! NAs introduced by coercion</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check data types</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [345,887 × 8] (S3: tbl_df/tbl/data.frame)
- $ date           : Date[1:345887], format: "1958-08-06" "1958-08-06" ...
- $ song           : chr [1:345887] "Poor Little Fool" "Nel Blu Dipinto Di Blu (Volare)" "Patricia" "Splish Splash" ...
- $ artist         : chr [1:345887] "Ricky Nelson" "Domenico Modugno" "Perez Prado And His Orchestra" "Bobby Darin" ...
- $ rank           : num [1:345887] 1 2 3 4 5 6 7 8 9 9 ...
- $ last_week      : num [1:345887] 1 54 2 3 5 8 4 6 12 9 ...
- $ peak_position  : num [1:345887] 1 2 2 3 5 6 4 6 9 9 ...
- $ weeks_in_charts: num [1:345887] 2 2 2 2 2 2 2 2 2 2 ...
- $ image_url      : chr [1:345887] "#" "https://charts-static.billboard.com/img/1958/08/domenico-modugno-x2d-180x180.jpg" "#" "https://charts-static.billboard.com/img/1958/08/bobby-darin-hm6-180x180.jpg" ...</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>song_weeks_at_number_one <span class="ot">&lt;-</span> number_ones <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    artist,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    song,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"weeks_at_number_one"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sort =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>song_weeks_at_number_one <span class="sc">|&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]},{"label":["song"],"name":[2],"type":["chr"],"align":["left"]},{"label":["weeks_at_number_one"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Lil Nas X Featuring Billy Ray Cyrus","2":"Old Town Road","3":"19"},{"1":"Shaboozey","2":"A Bar Song (Tipsy)","3":"19"},{"1":"Luis Fonsi & Daddy Yankee Featuring Justin Bieber","2":"Despacito","3":"16"},{"1":"Morgan Wallen","2":"Last Night","3":"16"},{"1":"Harry Styles","2":"As It Was","3":"15"},{"1":"Mariah Carey","2":"All I Want For Christmas Is You","3":"14"},{"1":"Mariah Carey","2":"We Belong Together","3":"14"},{"1":"Mark Ronson Featuring Bruno Mars","2":"Uptown Funk!","3":"14"},{"1":"The Black Eyed Peas","2":"I Gotta Feeling","3":"14"},{"1":"Ed Sheeran","2":"Shape Of You","3":"12"},{"1":"Eminem","2":"Lose Yourself","3":"12"},{"1":"Robin Thicke Featuring T.I. + Pharrell","2":"Blurred Lines","3":"12"},{"1":"The Black Eyed Peas","2":"Boom Boom Pow","3":"12"},{"1":"The Chainsmokers Featuring Halsey","2":"Closer","3":"12"},{"1":"Usher Featuring Lil Jon & Ludacris","2":"Yeah!","3":"12"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Can you answer these questions?
+<p>The song and artist must remain together. Grouping by song title alone could combine unrelated recordings with the same name.</p>
+</section>
+<section id="put-the-metric-in-the-chart-title-and-axis" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="put-the-metric-in-the-chart-title-and-axis"><span class="header-section-number">17.7</span> Put the metric in the chart title and axis</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>top_artists <span class="ot">&lt;-</span> artist_number_one_songs <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>top_artists <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> number_one_songs,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">fct_reorder</span>(artist, number_one_songs)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#1769AA"</span>) <span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> number_one_songs),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">3.2</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="dv">1</span>),</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.12</span>))</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Artists with the most distinct No. 1 songs since 2000"</span>,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Each artist–song pair is counted once; source through "</span>,</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">max</span>(<span class="fu">year</span>(hot100<span class="sc">$</span>date))</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Distinct songs that reached No. 1"</span>,</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Billboard Hot 100 dataset supplied with the course"</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="hot100_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
+</div>
+<p>Do not label the y-axis “number of songs” if the code counts weekly rows. That small mismatch changes the finding.</p>
+</section>
+<section id="credit-and-identity-problems" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="credit-and-identity-problems"><span class="header-section-number">17.8</span> Credit and identity problems</h2>
+<p>The <code>artist</code> field uses the credit published for each song. Collaborations can appear as one combined string, while an artist may also appear alone. Names, punctuation, featured-artist conventions, and group membership can change over time.</p>
+<p>Therefore:</p>
 <ul>
-<li>How many rows/columns in the dataset?</li>
-<li>What are the column names?</li>
-<li>What are the data types of each column?</li>
+<li>this analysis ranks published artist-credit strings;</li>
+<li>splitting collaborations requires an explicit, documented rule;</li>
+<li>a person’s total cannot be inferred safely from text matching alone; and</li>
+<li>title capitalization and remixes should be checked before deduplication.</li>
 </ul>
-</div>
-</div>
-</section>
-</section>
-<section id="data-analysis" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">12.5</span> Data Analysis</h2>
+<p>Inspect possible variants before merging them:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename df2 as hot100</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>hot100 <span class="ot">=</span> df2</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># save(hot100, file = "data/hot100.RData")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="single-variable-descriptive-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="single-variable-descriptive-statistics">Single Variable Descriptive Statistics</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># oldest and newest date</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hot100<span class="sc">$</span>date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
-"1958-08-06" "1975-03-05" "1991-10-09" "1991-10-05" "2008-05-07" "2024-12-04" </code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which artist has most appearances in the hot-100 charts?</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(hot100<span class="sc">$</span>artist) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>(<span class="at">decreasing =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
- Taylor Swift         Drake    Elton John       Madonna Kenny Chesney 
-         1574           932           888           856           782 
-   Tim McGraw Morgan Wallen   Keith Urban Stevie Wonder   Rod Stewart 
-          749           731           674           659           657 </code></pre>
-</div>
-</div>
-</section>
-<section id="multiple-variables" class="level3">
-<h3 class="anchored" data-anchor-id="multiple-variables">Multiple Variables</h3>
-<section id="which-artist-appeared-most" class="level4">
-<h4 class="anchored" data-anchor-id="which-artist-appeared-most">Which artist appeared most</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">==</span> <span class="dv">1</span>, date <span class="sc">&gt;</span> <span class="st">"2015-01-01"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(artist, song) <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(artist) <span class="sc">|&gt;</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>n) <span class="sc">|&gt;</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> artist, <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hot100_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="which-song-song-artist-has-been-on-the-charts-the-most" class="level4">
-<h4 class="anchored" data-anchor-id="which-song-song-artist-has-been-on-the-charts-the-most">Which song (song &amp; artist) has been on the charts the most?</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(song, artist) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">appearance =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>appearance) <span class="sc">|&gt;</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'song'. You can override using the
-`.groups` argument.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(artist) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(<span class="fu">str_to_lower</span>(artist), <span class="st">"taylor swift"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["song"],"name":[1],"type":["chr"],"align":["left"]},{"label":["artist"],"name":[2],"type":["chr"],"align":["left"]},{"label":["appearance"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Heat Waves","2":"Glass Animals","3":"91"},{"1":"Blinding Lights","2":"The Weeknd","3":"90"},{"1":"Radioactive","2":"Imagine Dragons","3":"87"},{"1":"Sail","2":"AWOLNATION","3":"79"},{"1":"Levitating","2":"Dua Lipa","3":"77"},{"1":"I'm Yours","2":"Jason Mraz","3":"76"},{"1":"Snooze","2":"SZA","3":"70"},{"1":"How Do I Live","2":"LeAnn Rimes","3":"69"},{"1":"Save Your Tears","2":"The Weeknd & Ariana Grande","3":"69"},{"1":"Counting Stars","2":"OneRepublic","3":"68"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Taylor Swift"},{"1":"Taylor Swift Featuring Colbie Caillat"},{"1":"Boys Like Girls Featuring Taylor Swift"},{"1":"Taylor Swift Featuring The Civil Wars"},{"1":"B.o.B Featuring Taylor Swift"},{"1":"Taylor Swift Featuring Ed Sheeran"},{"1":"Tim McGraw With Taylor Swift"},{"1":"Taylor Swift Featuring Kendrick Lamar"},{"1":"Zayn / Taylor Swift"},{"1":"Taylor Swift Featuring Ed Sheeran & Future"},{"1":"Sugarland Featuring Taylor Swift"},{"1":"Taylor Swift Featuring Brendon Urie"},{"1":"Taylor Swift Featuring Dixie Chicks"},{"1":"Taylor Swift Featuring Bon Iver"},{"1":"Taylor Swift Featuring HAIM"},{"1":"Taylor Swift Featuring The National"},{"1":"Taylor Swift Featuring Maren Morris"},{"1":"Big Red Machine Featuring Taylor Swift"},{"1":"Taylor Swift Featuring Chris Stapleton"},{"1":"Taylor Swift Featuring Phoebe Bridgers"},{"1":"Taylor Swift Featuring Gary Lightbody Of Snow Patrol"},{"1":"Ed Sheeran Featuring Taylor Swift"},{"1":"Taylor Swift Featuring Lana Del Rey"},{"1":"Taylor Swift Featuring Ice Spice"},{"1":"Taylor Swift Featuring Hayley Williams"},{"1":"Taylor Swift Featuring Fall Out Boy"},{"1":"Taylor Swift Featuring Post Malone"},{"1":"Taylor Swift Featuring Florence + The Machine"},{"1":"Gracie Abrams Featuring Taylor Swift"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
 </section>
-<section id="which-song-song-artist-was-no.-1-for-the-most-number-of-weeks" class="level4">
-<h4 class="anchored" data-anchor-id="which-song-song-artist-was-no.-1-for-the-most-number-of-weeks">Which song (song &amp; artist) was No.&nbsp;1 for the most number of weeks?</h4>
+<section id="validate-the-measures" class="level2" data-number="17.9">
+<h2 data-number="17.9" class="anchored" data-anchor-id="validate-the-measures"><span class="header-section-number">17.9</span> Validate the measures</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(song, artist) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">appearance =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>appearance) <span class="sc">|&gt;</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'song'. You can override using the
-`.groups` argument.</code></pre>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(artist_weeks_at_number_one<span class="sc">$</span>weeks_at_number_one) <span class="sc">==</span> <span class="fu">nrow</span>(number_ones)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(artist_number_one_songs<span class="sc">$</span>number_one_songs) <span class="sc">==</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nrow</span>(<span class="fu">distinct</span>(number_ones, artist, song))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["song"],"name":[1],"type":["chr"],"align":["left"]},{"label":["artist"],"name":[2],"type":["chr"],"align":["left"]},{"label":["appearance"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"A Bar Song (Tipsy)","2":"Shaboozey","3":"19"},{"1":"Old Town Road","2":"Lil Nas X Featuring Billy Ray Cyrus","3":"19"},{"1":"Despacito","2":"Luis Fonsi & Daddy Yankee Featuring Justin Bieber","3":"16"},{"1":"Last Night","2":"Morgan Wallen","3":"16"},{"1":"One Sweet Day","2":"Mariah Carey & Boyz II Men","3":"16"},{"1":"As It Was","2":"Harry Styles","3":"15"},{"1":"All I Want For Christmas Is You","2":"Mariah Carey","3":"14"},{"1":"Candle In The Wind 1997/Something About The Way You Look Tonight","2":"Elton John","3":"14"},{"1":"I Gotta Feeling","2":"The Black Eyed Peas","3":"14"},{"1":"I Will Always Love You","2":"Whitney Houston","3":"14"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
+<p>The first check reconciles weekly rows. The second reconciles distinct songs. Neither proves the source is complete, but each proves the aggregation matches its stated metric.</p>
 </section>
-<section id="which-artist-has-the-most-no.-1-songs-in-last-10-years" class="level4">
-<h4 class="anchored" data-anchor-id="which-artist-has-the-most-no.-1-songs-in-last-10-years">Which artist has the most No.&nbsp;1 songs in last 10 years?</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">year</span>(date) <span class="sc">&gt;=</span> <span class="dv">2015</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(artist, song) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(artist, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Taylor Swift","2":"8"},{"1":"Ariana Grande","2":"5"},{"1":"Drake","2":"5"},{"1":"BTS","2":"4"},{"1":"The Weeknd","2":"4"},{"1":"Justin Bieber","2":"3"},{"1":"Kendrick Lamar","2":"3"},{"1":"Olivia Rodrigo","2":"3"},{"1":"Adele","2":"2"},{"1":"Beyonce","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><code>count(artist, sort = TRUE)</code> is equivalent to <code>group_by(artist)</code> |&gt; <code>summarize(n = n())</code> |&gt; <code>arrange(desc(n))</code></p>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="data-visualization" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="data-visualization"><span class="header-section-number">12.6</span> Data Visualization</h2>
-<section id="bar-chart" class="level3">
-<h3 class="anchored" data-anchor-id="bar-chart">Bar Chart</h3>
-<p>Bar chart is used to show the frequency of each category. Bar chart is a good choice when you want to show the relationship between a numerical variable and a categorical variable (e.g., song, artist).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bar chart to show the top 10 artists with most appearances in the hot-100 charts</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">==</span> <span class="dv">1</span>, <span class="fu">year</span>(date) <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(artist) <span class="sc">|&gt;</span> </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">appearance =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>appearance) <span class="sc">|&gt;</span> </span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(artist, appearance), <span class="at">y =</span> appearance, <span class="at">fill =</span> appearance)) <span class="sc">+</span> </span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> appearance), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"lightblue"</span>, <span class="at">high =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span> </span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Top 10 Artists with Most Billboard No.1 Hits in the 21st Century"</span>,</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">str_wrap</span>(<span class="st">"Adele, Taylor Swift, and Mariah Carey are the top 3 artists with the most Billboard No.1 Hits in the 21st century."</span>),</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Artist"</span>,</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of No. 1 Songs"</span>,</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Billboard | Author: Bin Chen"</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span> </span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"gray30"</span>),</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"gray50"</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hot100_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="line-chart" class="level3">
-<h3 class="anchored" data-anchor-id="line-chart">Line Chart</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get top 10 artists with the most No. 1 songs (each song counted only once)</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>top10_artists <span class="ot">&lt;-</span> hot100 <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(artist, song) <span class="sc">|&gt;</span>  <span class="co"># Ensure each song is counted only once per artist</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(artist) <span class="sc">|&gt;</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">appearance =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span>  <span class="co"># Count unique No. 1 songs per artist</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(appearance)) <span class="sc">|&gt;</span>  <span class="co"># Sort by the number of unique songs</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)  <span class="co"># Select the top 10 artists</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the result</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>top10_artists</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["artist"],"name":[1],"type":["chr"],"align":["left"]},{"label":["appearance"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"The Beatles","2":"19"},{"1":"Mariah Carey","2":"16"},{"1":"Madonna","2":"12"},{"1":"Michael Jackson","2":"11"},{"1":"Whitney Houston","2":"11"},{"1":"Taylor Swift","2":"10"},{"1":"The Supremes","2":"10"},{"1":"Bee Gees","2":"9"},{"1":"The Rolling Stones","2":"8"},{"1":"Janet Jackson","2":"7"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># line chart to show the number of No. 1 songs for the top 10 artists</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(rank <span class="sc">==</span> <span class="dv">1</span>, artist <span class="sc">%in%</span> top10_artists<span class="sc">$</span>artist) <span class="sc">|&gt;</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(artist, <span class="at">year =</span> <span class="fu">year</span>(date)) <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">appearance =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> appearance, <span class="at">color =</span> artist)) <span class="sc">+</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Number of No. 1 Songs by Top 10 Artists"</span>,</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of No. 1 Songs"</span>,</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Artist"</span>,</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Billboard | Author: Bin Chen"</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"gray30"</span>),</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">color =</span> <span class="st">"gray50"</span>, <span class="at">hjust =</span> <span class="dv">0</span>)</span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'artist'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="hot100_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="key-functions-recap" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="key-functions-recap"><span class="header-section-number">12.7</span> Key Functions Recap</h2>
-<table class="table">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 8%">
-<col style="width: 24%">
-<col style="width: 53%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Function</strong></th>
-<th><strong>Package</strong></th>
-<th><strong>Purpose</strong></th>
-<th><strong>Example Use</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>read_csv()</code></td>
-<td><code>readr</code></td>
-<td>Read CSV files into R</td>
-<td><code>read_csv("data/hot100.csv")</code></td>
-</tr>
-<tr class="even">
-<td><code>str()</code></td>
-<td>Base R</td>
-<td>Display data structure and types</td>
-<td><code>str(df)</code></td>
-</tr>
-<tr class="odd">
-<td><code>summary()</code></td>
-<td>Base R</td>
-<td>Generate summary statistics</td>
-<td><code>summary(hot100$date)</code></td>
-</tr>
-<tr class="even">
-<td><code>summarise_all()</code></td>
-<td><code>dplyr</code></td>
-<td>Apply summary function to all columns</td>
-<td><code>summarise_all(~sum(is.na(.)))</code></td>
-</tr>
-<tr class="odd">
-<td><code>is.na()</code></td>
-<td>Base R</td>
-<td>Test for missing values</td>
-<td><code>is.na(df)</code></td>
-</tr>
-<tr class="even">
-<td><code>rename()</code></td>
-<td><code>dplyr</code></td>
-<td>Rename columns in a data frame</td>
-<td><code>rename(date = Date, song = Song)</code></td>
-</tr>
-<tr class="odd">
-<td><code>mutate()</code></td>
-<td><code>dplyr</code></td>
-<td>Create or modify columns</td>
-<td><code>mutate(weeks_in_charts = as.numeric(weeks_in_charts))</code></td>
-</tr>
-<tr class="even">
-<td><code>as.numeric()</code></td>
-<td>Base R</td>
-<td>Convert values to numeric type</td>
-<td><code>as.numeric(weeks_in_charts)</code></td>
-</tr>
-<tr class="odd">
-<td><code>filter()</code></td>
-<td><code>dplyr</code></td>
-<td>Filter rows based on conditions</td>
-<td><code>filter(rank == 1, year(date) &gt;= 2015)</code></td>
-</tr>
-<tr class="even">
-<td><code>distinct()</code></td>
-<td><code>dplyr</code></td>
-<td>Return distinct rows</td>
-<td><code>distinct(artist, song)</code></td>
-</tr>
-<tr class="odd">
-<td><code>group_by()</code></td>
-<td><code>dplyr</code></td>
-<td>Group data by one or more variables</td>
-<td><code>group_by(artist)</code></td>
-</tr>
-<tr class="even">
-<td><code>summarise()</code></td>
-<td><code>dplyr</code></td>
-<td>Compute summary statistics for groups</td>
-<td><code>summarise(n = n())</code></td>
-</tr>
-<tr class="odd">
-<td><code>arrange()</code></td>
-<td><code>dplyr</code></td>
-<td>Sort rows by one or more columns</td>
-<td><code>arrange(-appearance)</code></td>
-</tr>
-<tr class="even">
-<td><code>count()</code></td>
-<td><code>dplyr</code></td>
-<td>Count occurrences of unique values</td>
-<td><code>count(artist, sort = TRUE)</code></td>
-</tr>
-<tr class="odd">
-<td><code>slice_head()</code></td>
-<td><code>dplyr</code></td>
-<td>Select first n rows from each group</td>
-<td><code>slice_head(n = 10)</code></td>
-</tr>
-<tr class="even">
-<td><code>head()</code></td>
-<td>Base R</td>
-<td>Get first n rows of data</td>
-<td><code>head(10)</code></td>
-</tr>
-<tr class="odd">
-<td><code>table()</code></td>
-<td>Base R</td>
-<td>Build contingency table of counts</td>
-<td><code>table(hot100$artist)</code></td>
-</tr>
-<tr class="even">
-<td><code>sort()</code></td>
-<td>Base R</td>
-<td>Sort vector elements</td>
-<td><code>sort(decreasing = TRUE)</code></td>
-</tr>
-<tr class="odd">
-<td><code>year()</code></td>
-<td><code>lubridate</code></td>
-<td>Extract year component from date</td>
-<td><code>year(date)</code></td>
-</tr>
-<tr class="even">
-<td><code>ggplot()</code></td>
-<td><code>ggplot2</code></td>
-<td>Create a new ggplot object</td>
-<td><code>ggplot(aes(x = artist, y = appearance))</code></td>
-</tr>
-<tr class="odd">
-<td><code>aes()</code></td>
-<td><code>ggplot2</code></td>
-<td>Specify aesthetic mappings (x, y, color, fill)</td>
-<td><code>aes(x = reorder(artist, appearance), y = appearance, fill = appearance)</code></td>
-</tr>
-<tr class="even">
-<td><code>geom_col()</code></td>
-<td><code>ggplot2</code></td>
-<td>Create a bar chart</td>
-<td><code>geom_col(show.legend = FALSE)</code></td>
-</tr>
-<tr class="odd">
-<td><code>geom_line()</code></td>
-<td><code>ggplot2</code></td>
-<td>Create a line plot</td>
-<td><code>geom_line()</code></td>
-</tr>
-<tr class="even">
-<td><code>geom_point()</code></td>
-<td><code>ggplot2</code></td>
-<td>Add points to a plot</td>
-<td><code>geom_point()</code></td>
-</tr>
-<tr class="odd">
-<td><code>geom_text()</code></td>
-<td><code>ggplot2</code></td>
-<td>Add text labels to a plot</td>
-<td><code>geom_text(aes(label = appearance), hjust = -0.2, size = 3)</code></td>
-</tr>
-<tr class="even">
-<td><code>coord_flip()</code></td>
-<td><code>ggplot2</code></td>
-<td>Flip x and y axes</td>
-<td><code>coord_flip()</code></td>
-</tr>
-<tr class="odd">
-<td><code>scale_fill_gradient()</code></td>
-<td><code>ggplot2</code></td>
-<td>Create gradient color scale for fill</td>
-<td><code>scale_fill_gradient(low = "lightblue", high = "darkblue")</code></td>
-</tr>
-<tr class="even">
-<td><code>labs()</code></td>
-<td><code>ggplot2</code></td>
-<td>Add titles, labels, and captions</td>
-<td><code>labs(title = "...", x = "Artist", y = "Number of No. 1 Songs")</code></td>
-</tr>
-<tr class="odd">
-<td><code>str_wrap()</code></td>
-<td><code>stringr</code></td>
-<td>Wrap long strings for display</td>
-<td><code>str_wrap("Adele, Taylor Swift, and Mariah Carey are the top 3 artists...")</code></td>
-</tr>
-<tr class="even">
-<td><code>theme_minimal()</code></td>
-<td><code>ggplot2</code></td>
-<td>Apply minimal theme</td>
-<td><code>theme_minimal(base_size = 10)</code></td>
-</tr>
-<tr class="odd">
-<td><code>element_text()</code></td>
-<td><code>ggplot2</code></td>
-<td>Customize text elements in themes</td>
-<td><code>element_text(face = "bold", size = 12)</code></td>
-</tr>
-<tr class="even">
-<td><code>theme()</code></td>
-<td><code>ggplot2</code></td>
-<td>Customize plot appearance</td>
-<td><code>theme(plot.title = element_text(face = "bold", size = 12))</code></td>
-</tr>
-<tr class="odd">
-<td><code>reorder()</code></td>
-<td>Base R</td>
-<td>Reorder levels of a variable</td>
-<td><code>reorder(artist, appearance)</code></td>
-</tr>
-</tbody>
-</table>
+<section id="independent-task" class="level2" data-number="17.10">
+<h2 data-number="17.10" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">17.10</span> Independent task</h2>
+<p>Design three different measures of chart success for a decade of your choice. At least one must use weekly appearances and one must use a distinct count. Submit:</p>
+<ol type="1">
+<li>a one-sentence definition of each metric;</li>
+<li>the code and top-five table for each;</li>
+<li>one example showing how the rankings differ;</li>
+<li>a chart whose title and axis match one metric exactly; and</li>
+<li>a note about collaborations, name variants, or duplicate song titles.</li>
+</ol>
 
 
 </section>
@@ -1466,13 +986,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./norway-invest.html" class="pagination-link  aria-label=" &lt;span="" investments&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">GPFG Investments</span></span>
+      <a 2024="" href="./debate.html" class="pagination-link  aria-label=" &lt;span="" as="" data:="" the="" us="" presidential="" debate&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./employment.html" class="pagination-link" aria-label="<span class='chapter-number'>13</span>&nbsp; <span class='chapter-title'>HK University Graduate Employment Situation</span>">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK University Graduate Employment Situation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./additional-practice.html" class="pagination-link" aria-label="<span class='chapter-number'>18</span>&nbsp; <span class='chapter-title'>Additional Practice Labs</span>">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1483,7 +1003,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright © 2025 Bin Chen</p>
+<p>Copyright © 2026 Bin Chen</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;

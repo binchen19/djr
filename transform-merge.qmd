@@ -1,165 +1,245 @@
-# Pivoting and Joining
+---
+title: "Combine Years, Join Tables, and Reshape Data"
+---
 
-## Overview 
+## Learning objectives
 
-In this chapter, we will explore the life expectancy data across countries. Life expectancy is a key indicator of a country's overall health and well-being. By analyzing this data, we can identify trends and disparities in life expectancy across different regions and countries.
+By the end of this chapter, you should be able to:
 
-### About the data
+- distinguish stacking rows from joining columns;
+- combine annual files while preserving the report year and source;
+- use join keys and relationship checks deliberately;
+- audit matched and unmatched records; and
+- pivot between long and wide forms without losing the unit of analysis.
 
-This dataset was downloaded from the World Bank website and saved as a CSV file named `life_expectancy.csv`, stored in the `data` folder. The dataset was last updated on March 24, 2025, contains the life expectancy at birth for various countries over the years.
+## Newsroom question
 
-### Learning Objectives
-This chapter will demonstrate two data wrangling techniques:
+> How did the geographic distribution of reported equity holdings change from
+> the first to the latest year in the rolling teaching panel?
 
--  Transforming wide data to long data format using `pivot_longer()`.
--  Merging datasets using `left_join()` for map visualization.
-
-## Load data and packages
-
-To merge the life expectancy data with the world map data, we will use the `rnaturalearth` package for world map data.
-
-```{r message=FALSE}
-library(tidyverse) 
-library(rnaturalearth) # install if not available
-```
+This question requires more than one snapshot. The prepared panel contains ten
+year-end files:
 
 ```{r}
-# Load the life expectancy data
-lifex <- read_csv("data/life_expectancy.csv")
+library(tidyverse)
+
+gpfg_panel <- readRDS(
+  "data/processed/gpfg_equities_last_10_years.rds"
+)
+
+panel_years <- sort(unique(gpfg_panel$year))
+start_year <- min(panel_years)
+end_year <- max(panel_years)
+
+stopifnot(length(panel_years) == 10)
+stopifnot(all(diff(panel_years) == 1))
+
+gpfg_panel |>
+  count(year)
 ```
+
+The input grain is one equity holding at one year-end. The same published name
+may appear in several years, so the pair `year + company`—not `company`
+alone—is the apparent key for this teaching period.
 
 ```{r}
-glimpse(lifex)
+duplicate_keys <- gpfg_panel |>
+  count(year, company) |>
+  filter(n > 1)
+
+duplicate_keys
 ```
 
-Based on the output of `glimpse()`, we can see that the dataset contains 217 rows and 69 columns. However, the last 2 columns contain all NA values, so we may want to remove them from analysis.
+## Stack observations with `bind_rows()`
 
-You’ll notice that this format isn’t ideal for data visualization. Columns 5 to 67 represent years, with their values corresponding to life expectancy for each year. However, a cleaner format would be a long data structure, where each row represents a country, a year, and the corresponding life expectancy.
-
-To achieve this, we need to convert the wide format into a long format using the `pivot_longer()` function.
-
-## Long vs Wide Data
-
-In R, we generally prefer working with the **long** data (tidy) format for data analysis, as it aligns with the principles of tidy data. A typical tidy dataset follows these rules:
-
--  Each variable has its own column.
--  Each observation has its own row.
--  Each value has its own cell.
-
-In contrast, wide data format has multiple columns for the same variable, which can make it harder to work with for data analysis and visualization. For example, in this life expectancy dataset, each year is represented as a separate column, however, ideally we want all years to be in a single column named "year", and all values to be in a single column named "life_expectancy".
-
-
-## Transform Wide to Long Data
-
-Let's check this [animation](https://www.garrickadenbuie.com/project/tidyexplain/#pivot-wider-and-longer) made by Garrick Aden-Buie to understand the transformation from wide to long data format.
+When tables have the same variables and represent different observations,
+stack their rows:
 
 ```{r}
-# include a gif
-knitr::include_graphics("images/tidyr-pivoting.gif")
+gpfg_start <- gpfg_panel |>
+  filter(year == start_year)
+
+gpfg_latest <- gpfg_panel |>
+  filter(year == end_year)
+
+two_years <- bind_rows(gpfg_start, gpfg_latest)
+
+two_years |>
+  count(year)
 ```
 
+The report year must exist before stacking. Otherwise, identical-looking rows
+from different snapshots cannot be distinguished.
+
+The complete preparation script reads all available official annual Excel files,
+extracts the year from each filename, standardizes names and types, and then
+uses `map_dfr()` to combine them. The key pattern is:
 
 ```{r}
-# Transform wide data to long data format
-lifex_long <- lifex |> 
-  rename(country = `Country Name`,
-         country_code = `Country Code`) |>
-  pivot_longer(cols = 5:67, 
-               names_to = "year", 
-               values_to = "life_expectancy") |> 
-  mutate(year = as.numeric(year)) |>
-  select(country, country_code, year, life_expectancy)
+#| eval: false
+raw_files <- list.files(
+  "data/raw/gpfg",
+  pattern = "xlsx$",
+  full.names = TRUE
+)
+
+combined <- raw_files |>
+  map_dfr(read_one_annual_file)
 ```
+
+`read_one_annual_file()` is defined and validated in
+`scripts/prepare_gpfg.R`. Keeping that logic in a script prevents every chapter
+from cleaning the same files differently.
+
+## Join variables with `left_join()`
+
+A join adds columns by matching keys. First create a one-row-per-year table:
 
 ```{r}
-glimpse(lifex_long)
+annual_totals <- gpfg_panel |>
+  summarise(
+    annual_market_value_nok = sum(market_value_nok),
+    annual_records = n(),
+    .by = year
+  )
 ```
+
+Join each year's total back to every holding in that year:
 
 ```{r}
-summary(lifex_long)
+rows_before <- nrow(gpfg_panel)
+
+gpfg_with_share <- gpfg_panel |>
+  left_join(
+    annual_totals,
+    by = "year",
+    relationship = "many-to-one"
+  ) |>
+  mutate(
+    share_of_annual_value = market_value_nok / annual_market_value_nok
+  )
+
+stopifnot(nrow(gpfg_with_share) == rows_before)
 ```
 
-## Merging with World Map Data: mutating join
+`relationship = "many-to-one"` documents the expectation that many holdings
+match exactly one annual total. If the right-hand table accidentally contains
+two rows for a year, the join fails instead of silently duplicating holdings.
 
-OK, now we have cleaned up the life expectancy data and transformed it into a long format. Next, we will merge this data with the world map data to prepare for map visualization.
+## Audit unmatched keys
 
-We will load the world map data from the package `rnaturalearth`, which provides spatial data for countries.
-
-### Load World Map Data
-```{r}
-world <- ne_countries(scale = "medium", returnclass = "sf") |>
-  select(iso_a3, geometry)
-```
-
-::: callout-note
-`ne_countries()` function from the `rnaturalearth` package returns a spatial feature object with country geometries. `ne` stands for Natural Earth, which is a public domain map dataset. We select the `iso_a3` column as the country code (because it's in the same format as the `country` column in the world bank data) and the `geometry` column for plotting.
-:::
-
-### Merge Data by `left_join()`
-Then, we will use the `left_join()` function to merge the life expectancy data with the world map data based on the `country_code` and `iso_a3` columns.
-
-Here is how the `left_join()` function works (by Garrick Aden-Buie):
-
-```{r}
-knitr::include_graphics("images/left-join.gif")
-```
-
-::: callout-important
-## which data to be left? 
-Here we will use `left_join` to merge the world map data with the life expectancy data based on the country codes. The reason we let `world` be the left table is that we want to keep all countries in the world map data, even if they don't have life expectancy data. Otherwise, we would lose some countries in the map.
-:::
+Never assume that two tables use the same labels. Before mapping, for example,
+country names may differ:
 
 ```{r}
-# Merge life expectancy data with world map data
-df_merge <- lifex_long |>
-  left_join(world, by = c("country_code" = "iso_a3"))
+country_lookup_example <- tibble(
+  country = c("United States", "China", "Japan"),
+  short_label = c("US", "China", "Japan")
+)
+
+gpfg_latest |>
+  distinct(country) |>
+  anti_join(country_lookup_example, by = "country") |>
+  slice_head(n = 10)
 ```
+
+`anti_join()` answers “which keys on the left have no match on the right?” A
+missing match is not automatically safe to drop. It may reveal a spelling
+difference, a changed country name, a different definition, or genuinely
+missing reference data.
+
+Use these checks around a consequential join:
 
 ```{r}
-glimpse(df_merge)
+#| eval: false
+left_only  <- anti_join(left_table, right_table, by = "key")
+right_only <- anti_join(right_table, left_table, by = "key")
+
+joined <- left_table |>
+  left_join(right_table, by = "key", relationship = "many-to-one")
+
+stopifnot(nrow(joined) == nrow(left_table))
 ```
+
+## Summarise before comparing years
+
+Company names are not stable identifiers across a decade. For the main trend
+analysis, aggregate to a defensible grain such as country-year:
 
 ```{r}
-summary(df_merge)
+country_year <- gpfg_panel |>
+  summarise(
+    market_value_nok = sum(market_value_nok),
+    holding_records = n(),
+    .by = c(year, country)
+  )
+
+country_year
 ```
-Here we found there are some NAs for year and life_expectancy, which means some countries don't have life expectancy data in some years.
 
-### Clean up NAs and spatial features
+One row now represents one country in one year.
 
+## Pivot to compare columns
+
+Long data are usually easiest for analysis and plotting. Wide data can make a
+two-year comparison easier to read:
 
 ```{r}
-library(sf)
-df_merge <- df_merge |>
-  filter(!is.na(year) & !is.na(life_expectancy))
-# rows number reduced from 16758 to 16124 (there are 634 missing values in life_expectancy column)
+country_change <- country_year |>
+  filter(year %in% c(start_year, end_year)) |>
+  mutate(period = if_else(year == start_year, "start", "end")) |>
+  select(period, country, market_value_nok) |>
+  pivot_wider(
+    names_from = period,
+    values_from = market_value_nok,
+    names_prefix = "value_"
+  ) |>
+  mutate(
+    absolute_change_nok = value_end - value_start,
+    percent_change = absolute_change_nok / value_start
+  )
+
+country_change |>
+  arrange(desc(absolute_change_nok)) |>
+  slice_head(n = 10)
 ```
+
+Inspect missing values after the pivot. A country present in the latest year but absent in
+the starting year has no valid percent change because the denominator is missing or
+zero.
+
+Return to long form with:
 
 ```{r}
-country_list <- world$iso_a3
+country_change |>
+  select(country, value_start, value_end) |>
+  pivot_longer(
+    cols = starts_with("value_"),
+    names_to = "year",
+    names_prefix = "value_",
+    values_to = "market_value_nok"
+  ) |>
+  mutate(year = if_else(year == "start", start_year, end_year))
 ```
 
+## What a join cannot solve
 
-## Save the Merged Data
+A join matches labels; it does not prove that the matched records represent the
+same real-world entity. Over ten years, company names can change because of
+mergers, demergers, punctuation, rebranding, or data-entry conventions. Only
+3,285 published names appear in all ten teaching snapshots.
 
-```{r}
-# Save the merged data to .RData
-save(df_merge, file = "out/expectancy_merged.RData")
-```
+For beginner analysis, use country-, region-, or carefully defined
+industry-level trends. Treat company-level longitudinal matching as an advanced
+record-linkage project requiring external identifiers and manual verification.
 
+## Independent task
 
-See @sec-lifexmap for following data analysis and visualization.
+Choose three countries and create a country-year table for the rolling ten-year period. Then:
 
-## Key Functions Recap
-
-| **Function**         | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
-|----------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `pivot_longer()`     | `tidyr`         | Transform wide data to long format                | `lifex |> pivot_longer(cols = 5:67, names_to = "year", values_to = "life_expectancy")`                       |
-| `left_join()`        | `dplyr`         | Merge datasets keeping all rows from left table   | `lifex_long |> left_join(world, by = c("country_code" = "iso_a3"))`                                           |
-| `ne_countries()`     | `rnaturalearth` | Load world map spatial data                       | `ne_countries(scale = "medium", returnclass = "sf")`                                                         |
-| `rename()`           | `dplyr`         | Rename columns in a data frame                    | `rename(country = Country Name, country_code = Country Code)`                                                |
-| `select()`           | `dplyr`         | Select specific columns                          | `select(country, country_code, year, life_expectancy)`                                                       |
-| `filter()`           | `dplyr`         | Filter rows based on conditions                  | `filter(!is.na(year) & !is.na(life_expectancy))`                                                              |
-| `is.na()`            | Base R          | Test for missing values                          | `filter(!is.na(life_expectancy))`                                                                             |
-| `mutate()`           | `dplyr`         | Create or modify columns                         | `mutate(year = as.numeric(year))`                                                                             |
-| `save()`             | Base R          | Save R objects to .RData file                    | `save(df_merge, file = "out/expectancy_merged.RData")`                                                        |
-
+1. confirm there is at most one row per country-year;
+2. pivot it wide and calculate start-to-end change;
+3. identify any missing starting or ending values;
+4. pivot it back to long form; and
+5. write a methods note explaining why the result is about year-end market
+   value, not net investment flows.

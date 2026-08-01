@@ -12,13 +12,11 @@
 - [Initium Media 端傳媒-數洞](https://theinitium.com/column/data)
 - [SCMP Infographics](https://www.scmp.com/infographic/)
 - [The New York Times – The Upshot](https://www.nytimes.com/section/upshot)  
-- [Reuters Graphics](https://www.reuters.com/graphics/)  
-- [Bloomberg Graphics](https://www.bloomberg.com/graphics/)  
+- [Reuters Data](https://www.reuters.com/data/)
 - [Financial Times – Visual & Data Journalism](https://www.ft.com/visual-and-data-journalism)  
 - [Our World in Data](https://ourworldindata.org)
-- [NBC News](https://www.nbcnews.com/datagraphics)
+- [NBC - The Data Point](https://www.nbcnews.com/datagraphics)
 - [The Marshall Project](https://www.themarshallproject.org/)
-- [Global Investigative Journalism Network](https://gijn.org/?s=data+journalism)
 
 ## Where to find datasets?
 
@@ -32,16 +30,20 @@
 - [OECD Data](https://data.oecd.org/)
 - [Eurostat](https://ec.europa.eu/eurostat)
 - [U.S. Government Open Data (data.gov)](https://www.data.gov/)
-- [Humanitaria](https://data.humdata.org/)
+- [Humanitarian Data Exchange](https://data.humdata.org/)
 - [IMF Data Portal](https://data.imf.org/)
 - 💡[Global Investigative Journalism Network's list of databases](https://gijn.org/topic/databases/) 
 
 ::: callout-warning
-When looking for datasets for data journalism project, one should avoid **survey** data and **synthetic** data (e.g., on Kaggle, many are created for training ML models), as they have limited value in news reporting. For survey data, prefer authoritative sources like [WHO](https://www.who.int/data) or [Pew Research Center](https://www.pewresearch.org/).
+Synthetic data can be useful for learning code, but it should not be reported as
+evidence about the real world. Survey data can support strong journalism when
+the sampling frame, questionnaire, weighting, field dates, response rate, and
+uncertainty are available. Prefer authoritative publishers and read the
+methodology before using either microdata or published estimates.
 :::
 
 ## R Learning
-- [R for Data Science](https://r4ds.had.co.nz/)
+- [R for Data Science, 2nd edition](https://r4ds.hadley.nz/)
 - [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/)
 - [R Graphics Cookbook, 2nd edition](https://r-graphics.org/)
 - [R for Journalists](https://r-journalism.com/)
@@ -52,7 +54,6 @@ When looking for datasets for data journalism project, one should avoid **survey
 - [4 Common Angles Data Journalists Use to Tell Stories](https://gijn.org/stories/4-common-angles-data-journalists-use-to-tell-stories/)
 - [From Data to Storytelling: Concept and Design Tips from the Financial Times’ John Burn-Murdoch](https://gijn.org/stories/data-visualization-storytelling-tips-john-burn-murdoch/)
 - 
-
 
 
 

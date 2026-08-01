@@ -1,200 +1,211 @@
 ---
-title: "Paris 2024 Olympics"
-format: html
+title: "Unit of Analysis: Paris 2024 Medallists"
 ---
 
-## Data Import
+## Learning objectives
 
-```{r message=FALSE, warning=FALSE}
+By the end of this case, you should be able to:
+
+- distinguish athlete-medal records, unique medallists, and official medals;
+- deduplicate with a defensible identifier;
+- avoid a misleading regression on aggregated counts; and
+- audit the difference between IOC and ISO country codes.
+
+## Import and inspect
+
+```{r}
 library(tidyverse)
-df <- read_csv("data/medallists.csv")
-colnames(df)
-```
-
-## Data Clean
-
-```{r}
-df_clean <- df |>
-  select(name, gender, country, medal_type, birth_date, discipline, event, code_athlete, country_code)
-
-glimpse(df_clean)
-```
-
-## Data Analysis
-
--   Q1: Who won the most medals in Paris 2024?
--   Q2: Who won the most gold medals in Paris 2024?
--   Q3: Which country has the most medallists in Paris 2024?
-
-### Q1: Who won the most medals in Paris 2024?
-
-```{r}
-df_clean |>
-  group_by(name) |>
-  summarise(medal_count = n()) |>
-  arrange(desc(medal_count)) |>
-  head(10)
-```
-
-### Q2: Who won the most gold medals in Paris 2024?
-
-```{r}
-df_clean |>
-  filter(medal_type == "Gold Medal") |>
-  group_by(name) |>
-  summarise(gold_count = n()) |>
-  arrange(desc(gold_count)) |>
-  head(10)
-```
-
-### Q3: Which country has the most medallists in Paris 2024?
-
-```{r}
-df_clean |>
-  group_by(country) |>
-  summarise(medallist_count = n()) |>
-  arrange(desc(medallist_count)) |>
-  head(10)
-```
-
-## Visualization
-
-### Bar Chart
-
-We will use a bar chart to show top 20 country with most medallists in Paris 2024.
-
-```{r}
-df_clean |>
-  group_by(country) |>
-  summarise(medallist_count = n()) |>
-  arrange(desc(medallist_count)) |>
-  head(20) |>
-  ggplot(aes(x = reorder(country, medallist_count), y = medallist_count)) + # <1>
-  geom_col() + # <2>
-  coord_flip() + # <3>
-  labs(title = "Top 20 Countries with Most Medallists in Paris 2024",
-       x = "Country",
-       y = "Number of Medallists") +
-  theme_minimal() 
-```
-
-1.  Use `reorder()` to reorder countries based on the number of medallists.
-2.  Use `geom_col()` to create a bar chart.
-3.  Use `coord_flip()` to flip the x and y axes because we want to show the countries on the y-axis for better readability.
-
-::: callout-note
-Why do we need to "reorder()" even if we have already used "arrange()"?
-1.
-`arrange()`: This function reorders the rows of the data frame based on a variable, but it doesn’t change the internal ordering of factor levels in R.
-Factor levels determine how categorical variables (like country) are displayed on the plot’s axes.
-2.
-`reorder()`: In the aes() function of ggplot(), reorder(country, medallist_count) specifically reorders the *factor levels of country* based on the values of medallist_count.
-This ensures that when plotting, the countries with the highest medallist_count are shown in the order you want on the x-axis (or y-axis).
-:::
-
-## Key Functions Recap
-
-| **Function**                | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
-|-----------------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `read_csv()`                | `readr`         | Read CSV files into R                            | `read_csv("data/medallists.csv")`                                                                             |
-| `colnames()`                | Base R          | Get or set column names of a matrix or data frame | `colnames(df)`                                                                                               |
-| `select()`                  | `dplyr`         | Select specific columns                          | `select(name, gender, country, medal_type)`                                                                   |
-| `glimpse()`                 | `dplyr`         | Get quick overview of data frame structure        | `glimpse(df_clean)`                                                                                          |
-| `group_by()`                | `dplyr`         | Group data by one or more variables              | `group_by(country)`                                                                                          |
-| `summarise()`               | `dplyr`         | Compute summary statistics for groups            | `summarise(medallist_count = n())`                                                                            |
-| `arrange()`                 | `dplyr`         | Sort rows by one or more columns                 | `arrange(desc(medallist_count))`                                                                              |
-| `filter()`                  | `dplyr`         | Filter rows based on conditions                  | `filter(medal_type == "Gold Medal")`                                                                          |
-| `head()`                    | Base R          | Get first n rows of data                         | `head(10)`                                                                                                   |
-| `mutate()`                  | `dplyr`         | Create or modify columns                         | `mutate(age = 2024 - year(birth_date))`                                                                       |
-| `year()`                    | `lubridate`     | Extract year component from date                 | `year(birth_date)`                                                                                           |
-| `is.na()`                   | Base R          | Test for missing values                          | `is.na(age) == FALSE`                                                                                        |
-| `left_join()`               | `dplyr`         | Merge datasets keeping all rows from left table   | `left_join(world, by = c("country_code" = "iso_a3"))`                                                         |
-| `ggplot()`                  | `ggplot2`       | Create a new ggplot object                        | `ggplot(aes(x = country, y = medallist_count))`                                                               |
-| `aes()`                     | `ggplot2`       | Specify aesthetic mappings (x, y, color, fill)   | `aes(x = age, y = medallist_count, fill = medallist_count, geometry = geometry)`                              |
-| `geom_col()`                | `ggplot2`       | Create a bar chart                               | `geom_col()`                                                                                                 |
-| `geom_point()`              | `ggplot2`       | Add points to a plot (scatter plot)              | `geom_point()`                                                                                               |
-| `geom_smooth()`             | `ggplot2`       | Add smoothing line/regression to plot            | `geom_smooth(method = "lm")`                                                                                  |
-| `geom_sf()`                 | `ggplot2`       | Plot spatial features (map geometries)           | `geom_sf(aes(fill = medallist_count, geometry = geometry))`                                                    |
-| `coord_flip()`              | `ggplot2`       | Flip x and y axes                                | `coord_flip()`                                                                                               |
-| `labs()`                    | `ggplot2`       | Add titles, labels, and captions                 | `labs(title = "Top 20 Countries with Most Medallists in Paris 2024")`                                          |
-| `theme_minimal()`           | `ggplot2`       | Apply minimal theme                              | `theme_minimal()`                                                                                            |
-| `theme_bw()`                | `ggplot2`       | Apply black-and-white theme                      | `theme_bw()`                                                                                                 |
-| `scale_fill_viridis_c()`    | `ggplot2`       | Apply viridis continuous color scale for fill    | `scale_fill_viridis_c(option = "B", direction = -1, begin = 0.3, end = 0.8)`                                  |
-| `element_blank()`           | `ggplot2`       | Create blank (invisible) element                 | `element_blank()`                                                                                            |
-| `element_rect()`            | `ggplot2`       | Create rectangle element for backgrounds         | `element_rect(fill = "white", colour = NA)`                                                                   |
-| `element_text()`            | `ggplot2`       | Customize text elements in themes                | `element_text(hjust = 0.5)`                                                                                  |
-| `theme()`                   | `ggplot2`       | Customize plot appearance                        | `theme(panel.grid.major = element_blank(), legend.position = "bottom")`                                        |
-| `reorder()`                 | Base R          | Reorder levels of a variable                     | `reorder(country, medallist_count)`                                                                           |
-| `ne_countries()`            | `rnaturalearth` | Load world map spatial data                       | `ne_countries(scale = "medium", returnclass = "sf")`                                                          |
-| `n()`                       | `dplyr`         | Get number of rows in current group               | `summarise(medal_count = n())`                                                                                |### Scatter Plot
-
-We will use a scatter plot to show the relationships between the number of medals and the age of the medallists.
-
-```{r}
-df_clean |>
-  mutate(age = 2024 - year(birth_date)) |>
-  filter(is.na(age) == FALSE) |>
-  group_by(age) |>
-  summarise(medallist_count = n()) |>
-  ggplot(aes(x = age, y = medallist_count)) + # <1>
-  geom_point() + # <2>
-  geom_smooth(method = "lm") + # <3>
-  labs(title = "Relationship between Age and Number of Medallists",
-       x = "Age",
-       y = "Number of Medallists") +
-  theme_minimal()
-```
-
-1.  Use `aes()` to specify the x and y variables.
-2.  Use `geom_point()` to create a scatter plot.
-3.  Use `geom_smooth(method = "lm")` to add a linear regression line to the plot.
-
-### World map
-
-Use a world map to show the distribution of medallists in Paris 2024.
-
-Here we will use two packages: `rnaturalearth` and `rnaturalearthdata` to get the world map data.
-The `rnaturalearth` package provides access to the Natural Earth dataset, which contains a variety of geospatial data, including country boundaries.
-The `rnaturalearthdata` package contains the data files needed to create maps using the `rnaturalearth` package.
-
-```{r}
+library(sf)
 library(rnaturalearth)
 library(rnaturalearthdata)
-world <- ne_countries(scale = "medium", returnclass = "sf") # <1>
+
+medallists <- read_csv(
+  "data/medallists.csv",
+  show_col_types = FALSE
+)
+
+dim(medallists)
+n_distinct(medallists$code_athlete)
 ```
 
-1.  Use `ne_countries()` to get the world map data. The `scale` parameter specifies the level of detail for the map, and the `returnclass` parameter specifies the class of the returned object (in this case, a simple features object).
+The file has 2,315 rows but 2,054 unique athlete codes. One row represents one
+athlete associated with one medal result. An athlete with several medals has
+several rows. In a team event, one official medal produces a row for every team
+member.
+
+Therefore, the following are different measures:
+
+| Measure | Calculation | Meaning |
+|---|---|---|
+| Athlete-medal records | `n()` | Participation in medal results |
+| Unique medallists | `n_distinct(code_athlete)` | People with at least one medal record |
+| Official medals | Event-level medal awards | Not equal to athlete rows in team events |
+
+## Athletes with the most medal records
 
 ```{r}
-df_clean |>
-  group_by(country_code) |>
-  summarise(medallist_count = n()) |>
-  left_join(world, by = c("country_code" = "iso_a3")) |> # <1>
-  ggplot() + # <2>
-  geom_sf(aes(fill = medallist_count, geometry = geometry)) + # <3>
-  scale_fill_viridis_c(option = "B", direction = -1, begin = 0.3, end = 0.8) + # <4>
-  labs(title = "Distribution of Medallists in Paris 2024") +
-  theme_bw() +
-  theme(
-    panel.grid.major = element_blank(),  # Remove major grid lines
-    panel.grid.minor = element_blank(),  # Remove minor grid lines
-    axis.text = element_blank(),         # Remove axis text
-    axis.title = element_blank(),        # Remove axis titles
-    axis.ticks = element_blank(),        # Remove axis ticks
-    panel.border = element_blank(),      # Remove panel border if desired
-    plot.background = element_rect(fill = "white", colour = NA),  # Set plot background color
-    legend.position = "bottom",          # Adjust legend position
-    plot.title = element_text(hjust = 0.5)  # Center the plot title
+athlete_medal_records <- medallists |>
+  count(
+    code_athlete,
+    name,
+    country,
+    gender,
+    name = "medal_records",
+    sort = TRUE
+  )
+
+athlete_medal_records |>
+  slice_head(n = 15)
+```
+
+The accurate label is “athlete-medal records,” not simply “medals,” because the
+data represent athletes within medal results.
+
+## Unique medallists by country
+
+```{r}
+country_medallists <- medallists |>
+  filter(!is.na(country), !is.na(code_athlete)) |>
+  summarise(
+    unique_medallists = n_distinct(code_athlete),
+    athlete_medal_records = n(),
+    .by = country
+  ) |>
+  arrange(desc(unique_medallists))
+
+country_medallists |>
+  slice_head(n = 15)
+```
+
+This table is useful, but it is not the official medal table. Countries with
+large team-event rosters can accumulate many athlete-medal records from one
+official medal.
+
+## Analyze age at the athlete grain
+
+Counting medal rows by age overweights multi-medallists. Deduplicate athletes
+first:
+
+```{r}
+athletes <- medallists |>
+  filter(!is.na(code_athlete)) |>
+  distinct(code_athlete, .keep_all = TRUE) |>
+  mutate(
+    age_at_opening = as.numeric(
+      as.Date("2024-07-26") - birth_date
+    ) / 365.25
+  )
+
+athletes |>
+  summarise(
+    athletes = n(),
+    missing_birth_date = sum(is.na(birth_date)),
+    median_age = median(age_at_opening, na.rm = TRUE),
+    youngest = min(age_at_opening, na.rm = TRUE),
+    oldest = max(age_at_opening, na.rm = TRUE)
   )
 ```
 
-1.  Use `left_join()` to join the `world` data with the `df_clean` data based on the `country_code` and `iso_a3` columns. `iso_a3` is the ISO 3166-1 alpha-3 country code, such as "USA" for the United States.
-2.  Use `ggplot()` to create a plot.
-3.  Use `geom_sf()` to create a map. The `fill` aesthetic is set to `medallist_count` to color the map based on the number of medallists in each country. The `geometry` aesthetic specifies the geometry column in the `world` data, which means the map will be drawn based on the country boundaries.
-4.  Use `scale_fill_viridis_c()` to set the color scale for the map. The `option` parameter specifies the color palette, `direction` specifies the direction of the color gradient, and `begin` and `end` specify the color range.
+```{r}
+athletes |>
+  filter(!is.na(age_at_opening)) |>
+  ggplot(aes(x = age_at_opening)) +
+  geom_histogram(binwidth = 2, fill = "#1769AA", color = "white") +
+  labs(
+    title = "The age distribution of unique Paris 2024 medallists",
+    subtitle = "Each athlete is counted once, regardless of medal records",
+    x = "Age at the opening ceremony",
+    y = "Unique medallists"
+  ) +
+  theme_minimal()
+```
 
-::: callout-note
-`geom_sf` is a function in the ggplot2 package used to visualize simple features (spatial data) in R.
-It is specifically designed to handle geospatial objects, such as polygons, points, and lines that represent geographic data.
-The “sf” stands for simple features, a standard way to encode spatial vector data.
-:::
+A regression of “number of medal rows by age” on age would mostly describe the
+shape of this distribution. It would not estimate whether getting older causes
+an athlete to win more or fewer medals.
+
+## Country codes are not universal
+
+The dataset uses International Olympic Committee codes, while Natural Earth
+provides ISO-style geographic identifiers. Many codes differ: `GER` versus
+`DEU`, `SUI` versus `CHE`, and `NED` versus `NLD`. A direct code join would
+drop many countries.
+
+Use published country names with an explicit concordance for the unmatched
+labels:
+
+```{r}
+country_medallists <- country_medallists |>
+  mutate(
+    map_name = recode(
+      country,
+      "Great Britain" = "United Kingdom",
+      "Korea" = "Republic of Korea",
+      "Hong Kong, China" = "Hong Kong",
+      "Republic of Moldova" = "Moldova",
+      "Chinese Taipei" = "Taiwan",
+      "Cabo Verde" = "Republic of Cabo Verde",
+      "DPR Korea" = "Dem. Rep. Korea",
+      "IR Iran" = "Iran",
+      "Türkiye" = "Turkey",
+      "Czechia" = "Czech Republic"
+    )
+  ) |>
+  filter(!country %in% c("AIN", "EOR"))
+```
+
+`AIN` represents Individual Neutral Athletes and `EOR` represents the Refugee
+Olympic Team. Assigning either delegation to one country polygon would be a
+substantive error, so they remain in the table but are excluded from the map.
+
+```{r}
+world <- ne_countries(scale = "medium", returnclass = "sf")
+
+unmatched <- country_medallists |>
+  anti_join(
+    world |>
+      st_drop_geometry() |>
+      distinct(name_long),
+    by = c("map_name" = "name_long")
+  )
+
+unmatched
+```
+
+The result should have no rows before the spatial join.
+
+```{r}
+world_medallists <- world |>
+  filter(name_long != "Antarctica") |>
+  left_join(
+    country_medallists,
+    by = c("name_long" = "map_name"),
+    relationship = "one-to-one"
+  )
+
+ggplot(world_medallists) +
+  geom_sf(aes(fill = unique_medallists), color = "white", linewidth = 0.08) +
+  scale_fill_viridis_c(na.value = "#E5E7EB") +
+  labs(
+    title = "Unique Paris 2024 medallists by represented country",
+    fill = "Unique\nmedallists",
+    caption = paste(
+      "AIN and EOR are not assigned to country polygons.",
+      "This is not an official medal-count map."
+    )
+  ) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+## Independent task
+
+Choose one discipline and report three different counts:
+
+1. athlete-medal records;
+2. unique medallists; and
+3. distinct event–medal combinations.
+
+Explain why none should automatically be labelled “the number of official
+medals.” Add one chart at the unique-athlete grain and one validation check
+using `code_athlete`.

@@ -1,84 +1,86 @@
-# Preface {.unnumbered}
+---
+title: "Data Journalism with R"
+---
 
-::: {.callout-note}
-This book is built with [Quarto](https://quarto.org/), and its source files are hosted on this [GitHub repository](https://github.com/binchen19/djr).
+## About this book
+
+This book is a practical introduction to using R for data journalism. It is
+designed for undergraduate journalism students, including students who have
+never programmed before. The aim is not only to write correct code, but to use
+data as evidence: to understand where it came from, test what it can support,
+find a defensible story, and communicate uncertainty honestly.
+
+The chapters follow one newsroom workflow:
+
+1. set up a reproducible R and Quarto project;
+2. inspect the source and state the unit of analysis;
+3. clean and validate the data;
+4. calculate meaningful measures with explicit denominators;
+5. explore patterns before choosing a story;
+6. design visual evidence for an audience; and
+7. report what the analysis can and cannot show.
+
+## The main dataset
+
+The core chapters use the year-end equity holdings of Norway's Government
+Pension Fund Global, published by Norges Bank Investment Management (NBIM).
+The dataset is well suited to learning because each row represents a named
+equity holding at a particular year-end and includes geography, industry,
+market value, voting rights, and ownership.
+
+We deliberately work in stages:
+
+- The **latest-year snapshot** is used first for importing, filtering, grouping, and
+  basic charts.
+- The **rolling ten-year panel** is introduced after students understand grain,
+  validation, and joins.
+- The complete **archive from 1998 onward** is reserved for advanced work because the
+  long series contains changes in coverage, classifications, and company names.
+
+::: {.callout-important title="Language matters"}
+The data record year-end holdings. They do not record purchases, sales,
+investment performance, or money “received” by a company. Throughout the book,
+we use phrases such as *the fund held* or *the reported market value was*.
 :::
-## About This Book
 
-This is a practical guide to data journalism using R, built from my teaching experience at The University of Hong Kong.
+The source files and the preparation process are documented in the
+[data audit](reports/gpfg-data-audit.md). The public source is the
+[NBIM all-investments database](https://www.nbim.no/en/investments/all-investments/).
+Students can download the stable teaching files from the repository's
+[`data/processed` directory](https://github.com/binchen19/djr/tree/main/data/processed).
 
-Data journalism is a skill. Like any skill, you learn it by doing. This book combines foundational R knowledge with real-world examples and case studies, so you start with journalism questions and learn the R tools needed to answer them.
+## Why keep the Hong Kong employment data?
 
-In the age of AI, it is often argued that automated systems can analyze data more efficiently than human journalists. Efficiency, however, is not the same as understanding. Learning the fundamentals of data analysis remains essential. A solid grasp of core concepts allows you to interpret results correctly, evaluate AI-generated outputs critically, and ask better questions when using AI tools. This book aims to equip journalists and students with the analytical foundation needed to use AI not passively, but thoughtfully and responsibly.
+The graduate employment dataset remains an important later case study. Unlike
+the company-level holdings data, it contains aggregated cells whose
+denominators are distributed across rows. That makes it ideal for learning how
+official statistics can be double-counted or misinterpreted. Students first
+gain confidence with the cleaner holdings data, then confront the harder
+employment structure with more analytical tools.
 
-## What You'll Learn
+## How to use each chapter
 
-By working through this book, you'll gain practical skills in:
+Every core chapter contains:
 
-- **R Fundamentals**: Variables, data types, functions—the building blocks of data analysis
-- **Data Import & Wrangling**: Load messy real-world data and transform it for analysis using tidyverse
-- **Data Analysis**: Calculate statistics, find trends, and identify newsworthy patterns
-- **Data Visualization**: Create charts and graphics that tell compelling stories
-- **Hands-on Journalism**: Analyze real datasets and produce journalism-ready insights
+- learning objectives;
+- a newsroom question;
+- a source and grain check;
+- a guided analysis;
+- validation checks;
+- an independent task; and
+- a reporting note about claim limits.
 
-## Structure of This Book
+Type the code yourself instead of copying everything at once. Before running a
+pipeline, say in plain language what you expect it to do. After running it,
+check whether the row count, categories, and totals make sense.
 
-This book is organized in five progressive parts:
+## Course standard
 
-1. **Getting Started** — Set up R/RStudio and learn basic syntax
-2. **Data Import & Wrangling** — Load data and prepare it for analysis (the real work of data journalism)
-3. **Data Analysis** — Calculate statistics and find patterns using tidyverse
-4. **Data Visualization** — Create publication-ready charts and interactive maps
-5. **Case Studies** — Complete real-world examples applying all skills together
+By the end of the course, a successful project should be reproducible by
+another person and should answer five questions clearly:
 
-Each chapter builds on previous material, but you can also jump to specific case studies if you're learning the skills in your own projects.
-
-## Who Should Read This
-
-This book is for:
-- **Journalists** wanting to add data analysis to your reporting toolkit
-- **Journalism students** learning how to find and tell data-driven stories
-- **Data storytellers** interested in using R for analysis and visualization
-- **Anyone with a journalism question and a dataset** who wants to find the answer
-
-You do **not** need prior programming experience. We start from scratch and assume no background in coding.
-
-This is **not** a computer science textbook. It's focused on what's useful for journalism, not theoretical completeness. We skip topics that don't matter for your work.
-
-## Prerequisites
-
-To use this book, you'll need:
-- A computer (Mac, Windows, or Linux)
-- R and RStudio installed (Chapter 1 covers this)
-- Curiosity about stories hiding in data
-- Persistence when code doesn't work on the first try (totally normal!)
-
-That's it. Everything else is in this book.
-
-## How to Use This Book
-
-**Read sequentially (recommended):** Start with Chapter 1 and work through. Each chapter assumes knowledge from previous ones.
-
-**Focus on what you need:** If you're working on a specific journalism project, you can jump to relevant chapters and reference earlier material as needed.
-
-**Code along:** The best way to learn is by running the code examples. Don't just read—type them into RStudio and experiment.
-
-**Use the case studies:** Chapters "Case Studies" contain complete, realistic examples you can adapt for your own datasets.
-
-**Refer back:** Bookmark the Key Functions tables at the end of each chapter. You'll use them often.
-
-## About the author
-
-### Bin Chen
-
-I am an Assistant Professor at the School of Future Media, University of Hong Kong. I teach Data Journalism courses at both undergraduate and postgraduate levels. My research interests include computational social science, social media and politics, and comparative media studies. 
-
-## Acknowledgements
-
-This book is inspired by the [Reporting with Data in R](https://utdata.github.io/rwdir/) book by two professors at the University of Texas at Austin, *Christian McDonald* and *Josephine Lukito*. I would like to thank them for their great work and for sharing their materials with the public. 
-
-::: {.callout-note}
-## License
-
-This book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/). You are free to share and adapt the content for non-commercial purposes, as long as you give appropriate credit and distribute your contributions under the same license.
-:::
+1. Where did the data come from?
+2. What does one row represent?
+3. What cleaning and exclusions were made?
+4. What evidence supports the main claim?
+5. What important limitation remains?

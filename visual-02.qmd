@@ -1,348 +1,231 @@
 ---
-title: "ggplot 2.0"
-format: html
-prefer-html: true
+title: "Explanatory Visualization"
 ---
 
-## Learning Objectives
+## Learning objectives
 
--   Analyzing [California Wildfire Data](%22https://www.kaggle.com/datasets/vivekattri/california-wildfire-damage-2014-feb2025/data%22)
--   More on Data Visualization
-    -   Bar Chart
-        -   `coord_flip()`: Flip the x and y axes to create a horizontal bar chart.
-        -   `gemo_text()`: Add text labels to the bars, with the `vjust` and `hjust` arguments to adjust the position of the labels.
-    -   Line Chart 2.0
-        -   `geom_line()`: Connect data points with lines.
-        -   `facet_wrap()`: Create multiple plots based on a categorical variable.
+By the end of this chapter, you should be able to:
 
-## Load Packages and Data
+- design a chart around one defensible takeaway;
+- order and label comparisons clearly;
+- show units, dates, sources, and transformations;
+- remove visual elements that do not serve the evidence; and
+- write a headline and caption that match the calculation.
+
+## Begin with a chart brief
+
+Before coding, complete five lines:
+
+1. **Audience:** Who needs to understand this?
+2. **Question:** What exact comparison matters?
+3. **Takeaway:** What does the analysis show?
+4. **Chart form:** Why is this form appropriate?
+5. **Caveat:** What must the caption or story explain?
+
+We will turn the latest-year country ranking into an explanatory bar chart.
 
 ```{r}
 library(tidyverse)
+library(scales)
+
+gpfg <- read_csv(
+  "data/processed/gpfg_equities_latest.csv",
+  show_col_types = FALSE
+)
+
+latest_year <- unique(gpfg$year)
+
+country_summary <- gpfg |>
+  summarise(
+    market_value_usd = sum(market_value_usd),
+    .by = country
+  ) |>
+  mutate(share_of_total = market_value_usd / sum(market_value_usd)) |>
+  arrange(desc(market_value_usd))
+
+top_10_countries <- country_summary |>
+  slice_head(n = 10)
+
+top_country <- top_10_countries |>
+  slice_head(n = 1)
+```
+
+## Build a ranked bar chart
+
+```{r}
+country_chart <- top_10_countries |>
+  ggplot(
+    aes(
+      x = market_value_usd,
+      y = fct_reorder(country, market_value_usd)
+    )
+  ) +
+  geom_col(fill = "#1769AA", width = 0.72) +
+  geom_text(
+    aes(label = percent(share_of_total, accuracy = 0.1)),
+    hjust = -0.15,
+    size = 3.4
+  ) +
+  scale_x_continuous(
+    labels = label_dollar(scale = 1e-9, suffix = "B"),
+    expand = expansion(mult = c(0, 0.16))
+  ) +
+  labs(
+    title = paste0(
+      top_country$country,
+      " accounted for ",
+      percent(top_country$share_of_total, accuracy = 0.1),
+      " of reported equity value"
+    ),
+    subtitle = paste0("Ten largest investment markets in NBIM's ", latest_year, " year-end equity holdings"),
+    x = "Market value in US dollars",
+    y = NULL,
+    caption = paste(
+      "Labels show share of the full reported equity total.",
+      "Source: Norges Bank Investment Management."
+    )
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    plot.caption = element_text(hjust = 0)
+  )
+
+country_chart
+```
+
+The bars show exact market-value comparisons; the labels answer the denominator
+question. A rainbow palette would add categories that do not exist, so one
+color is enough.
+
+## Turn a trend into a clear line chart
+
+```{r}
+gpfg_panel <- readRDS(
+  "data/processed/gpfg_equities_last_10_years.rds"
+)
+
+annual <- gpfg_panel |>
+  summarise(
+    market_value_nok = sum(market_value_nok),
+    .by = year
+  ) |>
+  arrange(year) |>
+  mutate(market_value_nok_trillions = market_value_nok / 1e12)
+
+panel_years <- annual$year
+start_year <- min(panel_years)
+end_year <- max(panel_years)
+
+endpoints <- annual |>
+  filter(year %in% range(year))
 ```
 
 ```{r}
-load("data/wildfire.RData")
+trend_chart <- ggplot(
+  annual,
+  aes(x = year, y = market_value_nok_trillions)
+) +
+  geom_line(color = "#1769AA", linewidth = 1.1) +
+  geom_point(color = "#1769AA", size = 2) +
+  geom_text(
+    data = endpoints,
+    aes(label = paste0(round(market_value_nok_trillions, 1), " tn")),
+    vjust = -0.8,
+    fontface = "bold"
+  ) +
+  scale_x_continuous(breaks = panel_years) +
+  scale_y_continuous(
+    labels = label_number(suffix = " tn"),
+    expand = expansion(mult = c(0, 0.12))
+  ) +
+  labs(
+    title = "Reported equity market value more than tripled over the decade",
+    subtitle = paste0("Year-end holdings in nominal Norwegian kroner, ", start_year, "–", end_year),
+    x = NULL,
+    y = "NOK trillions",
+    caption = str_wrap(
+      paste(
+        "Values reflect prices, currencies, purchases, and sales; they are not investment returns.",
+        "Source: Norges Bank Investment Management."
+      ),
+      width = 110
+    )
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold"),
+    plot.title.position = "plot",
+    plot.caption = element_text(hjust = 0, size = 8.5),
+    plot.caption.position = "plot"
+  )
+
+trend_chart
 ```
 
-After loading the data, you should see a data frame called `df_clean` in your environment.
+The title is descriptive rather than causal. The subtitle states the time,
+snapshot basis, currency, and nominal units. The caption names the main
+interpretive limitation.
 
-## Data Exploration
+## Use color and annotation with restraint
 
-We can use the `glimpse()` function to get a quick overview of the data.
+Color should do a job:
 
-::: callout-note
-`glimpse()` is a function from the `dplyr` package that provides a concise summary of a data frame.
-:::
+- highlight one comparison;
+- distinguish a small number of series;
+- encode a meaningful ordered scale; or
+- signal a consistent category across several charts.
 
-```{r}
-glimpse(df_clean)
-```
+Avoid relying on red versus green alone, which is difficult for many readers.
+Check that the chart remains understandable in grayscale and that labels carry
+essential information.
 
-## Data Analysis
+Annotations should explain evidence, not repeat the axis. A useful annotation
+may identify a documented policy change, classification break, or verified
+event. Do not annotate a data jump with a causal explanation that the dataset
+cannot establish.
 
-### Questions to Answer
-
-Here we will analyze the data to answer the following questions:
-
--   Q1: Top 5 counties with the **highest number** of wildfires?
--   Q2: Top 5 counties with the highest **average burnt areas**?
--   Q3: How does the number of wildfires change over the years for each county?
-
-### Q1: Top Counties with the Highest Number of Wildfires
-
-#### Method 1: `group_by()` and `summarize()`
-
-To answer this question, we can first try the `group_by()` and `summarize()` functions to count the number of wildfires by county.
-
-```{r}
-df_clean |>
-  group_by(location) |>
-  summarize(num_of_wildfires = n()) |>
-  arrange(desc(num_of_wildfires))
-```
-
-#### Method 2: `count()`
-
-We can also use the `count()` function to achieve the same result, which is more concise.
-
-```{r}
-df_clean |>
-  count(location) |>
-  arrange(desc(n))
-```
-
-### Q2: Top 5 counties with the highest **average burnt areas**?
-
-```{r}
-df_clean |>
-  group_by(location) |>
-  summarize(avg_burnt_area = mean(area)) |>
-  arrange(desc(avg_burnt_area))
-```
-
-### Q3: How does the *average burnt area* change over the years for each county?
-
-First, we need want to translate this question to a data analysis task: calculate the number of wildfires by year for each county. That means, we need to group the data by `location` and `year`, and then compute *average burnt area* for each group.
-
-Note that the original dataframe doesn't have a `year` column. We need to extract the year from the `date` column. Here we can use the `year()` function from the `lubridate` package to extract the year from the `date` column.
-
-```{r}
-df_clean |>
-  group_by(location, year = year(date)) |>
-  summarize(avg_burnt_area = mean(area, na.rm = TRUE)) 
-```
-
-## Data Visualization
-
-### Bar Chart: Number of Wildfires by County
-
-We chose to use a bar chart to visualize the number of wildfires by county because it is a good way to compare the number of wildfires (numeric) across different counties (categorical).
-
-We start by counting the number of wildfires by county using the `count()` function, and then create a bar chart using `ggplot()`. Remember the key componenets of a bar chart:
-
--   Data: The data frame with the variables to be plotted.
--   `ggplot(aes(x, y))`: The mapping between the data and the visual properties of the plot.
--   `geom_col()`: The geometric object for a bar chart.
--   `labs()`: The labels for the title, x-axis, and y-axis.
-
-```{r}
-df_clean |>
-  count(location) |>
-  ggplot(aes(x = location, y = n)) +
-  geom_col() +
-  labs(title = "Number of Wildfires by County",
-       x = "County",
-       y = "Number of Wildfires")
-```
-
-Then, we can add more customization to the plot, such as changing the fill color (`geom_col(fill = "red")`), using a different theme(\`theme_bw\`\`).
-
-```{r}
-df_clean |>
-  count(location) |>
-  ggplot(aes(x = location, y = n)) +
-  geom_col(fill = "red") + 
-  labs(title = "Number of Wildfires by County",
-       x = "County",
-       y = "Number of Wildfires") +
-  theme_bw() 
-```
-
-Because the county names are long, we can use `coord_flip()` to flip the x and y axes to create a horizontal bar chart.
-
-```{r}
-df_clean |>
-  count(location) |>
-  ggplot(aes(x = location, y = n)) +
-  geom_col(fill = "red") +
-  labs(title = "Number of Wildfires by County",
-       x = "County",
-       y = "Number of Wildfires") +
-  theme_bw() +
-  coord_flip()
-```
-
-Then, we may want to reorder the bars by the number of wildfires. We can use the `fct_reorder()` function from the `forcats` package to reorder the bars by the number of wildfires.
-
-```{r}
-df_clean |>
-  count(location) |>
-  ggplot(aes(x = fct_reorder(location, n), y = n)) +
-  geom_col(fill = "red") +
-  labs(title = "Number of Wildfires by County",
-       x = "County",
-       y = "Number of Wildfires") +
-  theme_bw() +
-  coord_flip()
-```
-
-Finally, we can add text labels to the bars using the `geom_text()` function, with the `vjust` and `hjust` arguments to adjust the position of the labels.
-
-```{r}
-df_clean |>
-  count(location) |>
-  ggplot(aes(x = fct_reorder(location, n), y = n)) +
-  geom_col(fill = "red") +
-  labs(title = "Number of Wildfires by County",
-       x = "County",
-       y = "Number of Wildfires") +
-  theme_bw() +
-  coord_flip() +
-  geom_text(aes(label = n), vjust = 0, hjust = 1.1)
-```
-
-Let's put all the code together:
-
-```{r}
-df_clean |>
-  count(location) |> # <1>
-  ggplot(aes(x = fct_reorder(location, n), y = n)) + # <2>
-  geom_col(fill = "red") + # <3>
-  labs(title = "Number of Wildfires by County",
-       x = "County",
-       y = "Number of Wildfires") + # <4>
-  theme_bw() + # <5>
-  coord_flip() + # <6>
-  geom_text(aes(label = n), vjust = -0.5, hjust = 1.1) # <7>
-```
-
-1.  Count the number of wildfires by county.
-2.  Map the county names to the x-axis and the number of wildfires to the y-axis.
-3.  Create a bar chart with red bars.
-4.  Add labels for the title, x-axis, and y-axis.
-5.  Use a black-and-white theme.
-6.  Flip the x and y axes to create a horizontal bar chart.
-7.  Add text labels to the bars.
-
-### Line Plot: Number of Wildfires by Year for Each County
-
-We chose to use a line plot to visualize the number of wildfires by year for each county because it is a good way to show trends *over time*.
-
-Let's start by calculating the number of wildfires by year for each county using the `group_by()` and `summarize()` functions.
-
-```{r}
-df_clean |>
-  count(location, year = year(date))
-```
-
-Then, we can create a line plot using `ggplot()`. Remember the key components of a line plot: - Data: The data frame with the variables to be plotted. - `ggplot(aes(x, y))`: The mapping between the data and the visual properties of the plot. - `geom_line()`: The geometric object for a line plot. - `labs()`: The labels for the title, x-axis, and y-axis.
-
-Since we want to show the number of wildfires by year for each county, we can map the `year` to the x-axis, the number of wildfires `n` to the y-axis, and the county names (`location`) to the color.
-
-```{r}
-df_clean |>
-  count(location, year = year(date)) |>
-  ggplot(aes(x = year, y = n, color = location)) +
-  geom_line() +
-  labs(title = "Number of Wildfires by Year",
-       x = "Year",
-       y = "Number of Wildfires")
-```
-
-As we see the plot, it is not very informative because there are too many counties. We can use the `facet_wrap()` function to create multiple plots based on the `location` variable, and remove the legend using `theme(legend.position = "none")`, also, we can change the theme to `theme_bw()`.
-
-```{r}
-df_clean |>
-  count(location, year = year(date)) |>
-  ggplot(aes(x = year, y = n, color = location)) + # <1>
-  geom_line() + # <2>
-  labs(title = "Number of Wildfires by County and Year",
-       x = "Year",
-       y = "Number of wildfires") + # <3>
-  theme_bw() + # <4>
-  facet_wrap(~location) + # <5>
-  theme(legend.position = "none") # <6>
-```
-
-1.  Map the year to the x-axis, the number of wildfires to the y-axis, and the county names to the color.
-2.  Create a line plot.
-3.  Add labels for the title, x-axis, and y-axis.
-4.  Use a black-and-white theme.
-5.  Create multiple plots based on the county names.
-6.  Remove the legend.
-
-## `Plotly`: Interactive Data Visualization
-
-We can use the `plotly` package to create interactive data visualizations. Here we will create an interactive bar chart to show the number of wildfires by county.
-
-```{r}
-library(plotly)
-```
-
-### Interactive Bar Chart
-
-```{r}
-p1 <- df_clean |>
-  count(location) |>
-  ggplot(aes(x = location, y = n)) +
-  geom_col(fill = "red") +
-  labs(title = "Number of Wildfires by County",
-       x = "County",
-       y = "Number of Wildfires") +
-  theme_bw() +
-  coord_flip() 
-
-ggplotly(p1)
-```
-
-### Interactive Line Plot
-
-```{r}
-p2 <- df_clean |>
-  count(location, year = year(date)) |>
-  ggplot(aes(x = year, y = n, color = location)) +
-  geom_line() +
-  labs(title = "Number of Wildfires by Year",
-       x = "Year",
-       y = "Number of Wildfires") +
-  theme_classic()
-
-ggplotly(p2)
-```
-
-### More on `plotly`
-
-We can also create an interactive scatter plot to show the financial losses from wildfires in California. We can map the `date` to the x-axis, the `financial_loss` to the y-axis, the `cause` to the color, and create a tooltip with additional information.
-
-```{r}
-
-p3 <- df_clean |>
-  ggplot(aes(x = date, y = financial_loss, color = cause, text = paste(
-    "Date:", date,
-    "<br>Location:", location,
-    "<br>Area Burned:", area, "acres",
-    "<br>Homes Destroyed:", homes,
-    "<br>Businesses Affected:", businesses,
-    "<br>Vehicles Destroyed:", vehicles,
-    "<br>Fatalities:", fatalities
-  ))) + # <1>
-  geom_point(size = 2) + # <2>
-  labs(title = "Financial Losses from Wildfires in California",
-       x = "Date",
-       y = "Financial Loss ($)",
-       color = "Cause of Wildfire") + # <3>
-  theme_minimal() # <4>
-
-ggplotly(p3, tooltip = "text") # <5>
-```
-
-1.  Map the `date` to the x-axis, the `financial_loss` to the y-axis, the `cause` to the color, and create a tooltip with additional information. `<br>` means a line break.
-2.  Create a scatter plot.
-3.  Add labels for the title, x-axis, y-axis, and color.
-4.  Use a minimal theme.
-
-## Save the Plots
-
-To save a plot as an image file, we can use the `ggsave()` function. Here we will save the bar chart as a PNG file with a width of 8 inches, a height of 6 inches, and a resolution of 300 dpi.
+## Export with reproducible dimensions
 
 ```{r}
 #| eval: false
-ggsave("bar_chart.png", p1, width = 8, height = 6, dpi = 300)
+ggsave(
+  file.path("outputs", paste0("country-holdings-", latest_year, ".png")),
+  country_chart,
+  width = 8,
+  height = 5,
+  dpi = 300
+)
 ```
 
-## Key Functions Recap
+Choose dimensions for the publishing context. Always inspect the exported file
+at its intended display size; labels that look fine in RStudio may be unreadable
+on a phone.
 
-| **Function**                | **Package**     | **Purpose**                                       | **Example Use**                                                                                              |
-|-----------------------------|-----------------|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `glimpse()`                 | `dplyr`         | Get quick overview of data frame structure        | `glimpse(df_clean)`                                                                                          |
-| `count()`                   | `dplyr`         | Count occurrences of unique values                | `count(location)`                                                                                            |
-| `n()`                       | `dplyr`         | Get number of rows in current group               | `summarize(num_of_wildfires = n())`                                                                          |
-| `group_by()`                | `dplyr`         | Group data by one or more variables              | `group_by(location)`                                                                                         |
-| `summarize()`               | `dplyr`         | Compute summary statistics for groups            | `summarize(avg_burnt_area = mean(area))`                                                                     |
-| `arrange()`                 | `dplyr`         | Sort rows by one or more columns                 | `arrange(desc(num_of_wildfires))`                                                                            |
-| `year()`                    | `lubridate`     | Extract year component from date                 | `year(date)`                                                                                                 |
-| `ggplot()`                  | `ggplot2`       | Create a new ggplot object                        | `ggplot(aes(x = location, y = n))`                                                                           |
-| `aes()`                     | `ggplot2`       | Specify aesthetic mappings (x, y, color, fill)   | `aes(x = location, y = n, color = location)`                                                                 |
-| `geom_col()`                | `ggplot2`       | Create a bar chart                               | `geom_col(fill = "red")`                                                                                     |
-| `geom_line()`               | `ggplot2`       | Create a line plot                               | `geom_line()`                                                                                                |
-| `geom_point()`              | `ggplot2`       | Add points to a plot                             | `geom_point(size = 2)`                                                                                       |
-| `geom_text()`               | `ggplot2`       | Add text labels to a plot                        | `geom_text(aes(label = n), vjust = -0.5, hjust = 1.1)`                                                       |
-| `labs()`                    | `ggplot2`       | Add titles, labels, and captions                 | `labs(title = "...", x = "County", y = "Number of Wildfires")`                                               |
-| `coord_flip()`              | `ggplot2`       | Flip x and y axes                                | `coord_flip()`                                                                                               |
-| `facet_wrap()`              | `ggplot2`       | Create multiple plots based on categorical var   | `facet_wrap(~location)`                                                                                      |
-| `theme_bw()`, `theme_classic()`, `theme_minimal()` | `ggplot2` | Apply pre-made themes | `theme_bw()`                                                                          |
-| `theme()`                   | `ggplot2`       | Customize plot appearance                        | `theme(legend.position = "none")`                                                                             |
-| `fct_reorder()`             | `forcats`       | Reorder levels of a categorical variable         | `fct_reorder(location, n)`                                                                                   |
-| `ggplotly()`                | `plotly`        | Convert ggplot to interactive plotly plot        | `ggplotly(p1)`                                                                                               |
-| `ggsave()`                  | `ggplot2`       | Save plot as image file                          | `ggsave("bar_chart.png", p1, width = 8, height = 6, dpi = 300)`                                              |
+## Publication checklist
+
+Before publication, confirm:
+
+- the title states one evidence-backed takeaway;
+- the subtitle defines time, population, and measure;
+- axes begin at a defensible point and disclose transformations;
+- categories are sorted meaningfully;
+- units and denominators are explicit;
+- labels are readable and not clipped;
+- color has a semantic purpose;
+- the caption identifies the source and relevant caveat; and
+- every number reconciles with a table produced by the analysis.
+
+## Independent task
+
+Take one exploratory chart from the previous chapter and turn it into a
+publication chart. Submit:
+
+1. the five-line chart brief;
+2. the final chart;
+3. the table used to verify its values;
+4. alt text of no more than 100 words; and
+5. a short note describing one design choice you rejected and why.

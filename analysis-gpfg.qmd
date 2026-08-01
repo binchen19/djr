@@ -1,0 +1,199 @@
+---
+title: "Find Patterns in a Single Snapshot"
+---
+
+## Learning objectives
+
+By the end of this chapter, you should be able to:
+
+- move from a broad question to testable measures;
+- describe a skewed financial distribution with appropriate statistics;
+- distinguish rankings, shares, and concentration;
+- inspect outliers in context; and
+- write a claim that matches the evidence.
+
+## Newsroom questions
+
+We will investigate four related questions about the latest-year snapshot:
+
+1. How unequal is the distribution of holding values?
+2. Which countries and industries account for the largest shares?
+3. Which individual holdings are largest?
+4. Does a large market value necessarily mean a large ownership stake?
+
+```{r}
+library(tidyverse)
+library(scales)
+
+gpfg <- read_csv(
+  "data/processed/gpfg_equities_latest.csv",
+  show_col_types = FALSE
+)
+```
+
+The grain remains one reported equity holding at the latest year-end.
+
+## Describe the distribution
+
+Start with totals and robust summaries:
+
+```{r}
+holding_summary <- gpfg |>
+  summarise(
+    holding_records = n(),
+    total_value_nok = sum(market_value_nok),
+    mean_value_nok = mean(market_value_nok),
+    median_value_nok = median(market_value_nok),
+    p90_value_nok = quantile(market_value_nok, 0.90),
+    maximum_value_nok = max(market_value_nok)
+  )
+
+holding_summary
+```
+
+In a highly skewed distribution, the mean is pulled upward by a small number of
+very large holdings. Report the median and at least one upper percentile rather
+than presenting the mean as “typical.”
+
+```{r}
+gpfg |>
+  summarise(
+    p25 = quantile(market_value_nok, 0.25),
+    p50 = quantile(market_value_nok, 0.50),
+    p75 = quantile(market_value_nok, 0.75),
+    p90 = quantile(market_value_nok, 0.90),
+    p99 = quantile(market_value_nok, 0.99)
+  )
+```
+
+Quantiles answer a precise question: the 90th percentile is the value at or
+below which 90% of holding records fall. It is not the value of the “average
+company.”
+
+## Rank individual holdings
+
+```{r}
+largest_holdings <- gpfg |>
+  select(company, country, industry, market_value_nok, ownership_pct) |>
+  arrange(desc(market_value_nok)) |>
+  slice_head(n = 15)
+
+largest_holdings
+```
+
+Before publishing a ranking, search the source for several top rows and check
+company names, units, and whether a name describes a fund or another listed
+vehicle.
+
+Now calculate concentration with an explicit ranking and denominator:
+
+```{r}
+ranked_holdings <- gpfg |>
+  arrange(desc(market_value_nok)) |>
+  mutate(rank = row_number())
+
+total_nok <- sum(ranked_holdings$market_value_nok)
+
+ranked_holdings |>
+  summarise(
+    top_10_share = sum(market_value_nok[rank <= 10]) / total_nok,
+    top_100_share = sum(market_value_nok[rank <= 100]) / total_nok
+  )
+```
+
+Prefer transparent intermediate objects when the result will support a major
+claim.
+
+## Compare countries with a denominator
+
+```{r}
+country_summary <- gpfg |>
+  summarise(
+    market_value_nok = sum(market_value_nok),
+    companies = n_distinct(company),
+    median_holding_nok = median(market_value_nok),
+    .by = country
+  ) |>
+  mutate(share_of_total = market_value_nok / sum(market_value_nok)) |>
+  arrange(desc(market_value_nok)) |>
+  mutate(cumulative_share = cumsum(share_of_total))
+
+stopifnot(isTRUE(all.equal(sum(country_summary$share_of_total), 1)))
+```
+
+`cumsum()` uses the current row order, so it must come after sorting. Code can
+run without an error and still answer the wrong question; order is part of the
+method.
+
+This deliberate correction illustrates an important point: code can run and
+still answer the wrong question.
+
+## Compare industries
+
+```{r}
+industry_summary <- gpfg |>
+  summarise(
+    market_value_nok = sum(market_value_nok),
+    holding_records = n(),
+    median_ownership_pct = median(ownership_pct),
+    .by = industry
+  ) |>
+  mutate(share_of_total = market_value_nok / sum(market_value_nok)) |>
+  arrange(desc(market_value_nok))
+
+industry_summary
+```
+
+Industry share and number of holdings answer different questions. A sector can
+have many relatively small holdings or fewer very large ones.
+
+## Market value and ownership are different measures
+
+```{r}
+gpfg |>
+  summarise(
+    pearson = cor(market_value_nok, ownership_pct),
+    spearman = cor(market_value_nok, ownership_pct, method = "spearman")
+  )
+```
+
+Pearson correlation is sensitive to extreme values. Spearman correlation asks
+whether higher ranks on one measure tend to accompany higher ranks on the
+other. Neither correlation proves that ownership causes market value or that
+the fund “prefers” one company.
+
+Inspect exceptions directly:
+
+```{r}
+gpfg |>
+  filter(ownership_pct >= quantile(ownership_pct, 0.99)) |>
+  arrange(desc(ownership_pct)) |>
+  select(company, country, industry, market_value_nok, ownership_pct) |>
+  slice_head(n = 15)
+```
+
+## From observation to claim
+
+Use a claim ladder:
+
+| Level | Example | Evidence needed |
+|---|---|---|
+| Description | “Country A had the largest reported market value.” | Correct aggregation and source check |
+| Comparison | “Country A's share was twice Country B's.” | Shared denominator and comparable categories |
+| Trend | “The value rose over time.” | Multiple comparable snapshots |
+| Explanation | “The value rose because the fund bought more.” | Transaction or attribution evidence not present here |
+
+The single-year file supports the first two levels. It cannot explain changes over
+time, because it contains only one snapshot.
+
+## Independent task
+
+Choose either country or industry as the analytical grain. Produce a short
+newsroom memo with:
+
+1. a ranked table;
+2. a share-of-total calculation;
+3. a median and a 90th percentile;
+4. two checks that protect against double-counting; and
+5. a three-sentence finding: one descriptive claim, one comparison, and one
+   explicitly rejected causal claim.

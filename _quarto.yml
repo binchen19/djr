@@ -2,66 +2,72 @@ project:
   type: book
   output-dir: docs
   resources:
-    - v*/
+    - /reports/gpfg-data-audit.md
+    - /images/Rlogo.png
+    - /images/douban.png
+    - /images/grp-summarize-01.mp4
+    - /images/grp-summarize-02.mp4
+    - /images/grp-summarize-03.mp4
+    - /images/install-r-rstudio.png
+    - /images/left-join.gif
+    - /images/rmarkdown.png
+    - /images/rstudio-ide.png
+    - /images/tidyr-pivoting.gif
+    - /cheatsheets/rmarkdown.pdf
+    - /cheatsheets/rstudio-ide.pdf
 
 book:
   title: "Data Journalism with R"
   author: "Bin Chen"
   date: last-modified
-  page-footer: "Copyright © 2025 Bin Chen"
+  page-footer: "Copyright © 2026 Bin Chen"
   search: true
   chapters:
     - index.qmd
-    - part: "Getting Started"
+    - part: "Foundations"
       chapters:
-      - install.qmd
-      - r-basics.qmd
-    - part: "Data Import & Wrangling"
+        - install.qmd
+        - r-basics.qmd
+        - debug.qmd
+    - part: "A Reproducible Data Workflow"
       chapters:
-      - data-import.qmd
-      - data-wrangling.qmd
-      - transform-merge.qmd
-    - part: "Data Analysis"
+        - data-import.qmd
+        - data-wrangling.qmd
+        - transform-merge.qmd
+        - analysis-gpfg.qmd
+        - analysis-gpfg-trends.qmd
+    - part: "Visual Evidence and Storytelling"
       chapters:
-      - analysis-hksalary.qmd
-      - analysis-lifex.qmd
-    - part: "Data Visualization"
+        - visual-01.qmd
+        - visual-02.qmd
+        - map-gpfg.qmd
+        - norway-invest.qmd
+    - part: "Transfer Case Studies"
       chapters:
-      - visual-01.qmd
-      - visual-02.qmd
-      - map-lifex.qmd
-      - norway-invest.qmd
-    - part: "Case Studies"
-      chapters:
-      - hot100.qmd
-      - employment.qmd
-      - olympics.qmd
-      - debate.qmd
+        - employment.qmd
+        - olympics.qmd
+        - debate.qmd
+        - hot100.qmd
+        - additional-practice.qmd
   appendices:
-    - links.qmd
     - quarto.qmd
-    - debug.qmd
     - final_project_notes.qmd
-    - examples.qmd
-
-    
-    
-      
-      
+    - links.qmd
+    - references.qmd
 
 bibliography: references.bib
 
+execute:
+  warning: false
+  message: false
 
 format:
   html:
     theme: cosmo
     df-print: paged
     code-overflow: wrap
+    code-copy: true
     number-depth: 2
-
-
+    toc-depth: 3
 
 editor: source
-
-
-

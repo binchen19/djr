@@ -1,0 +1,207 @@
+---
+title: "Analyze Change Across Ten Years"
+---
+
+## Learning objectives
+
+By the end of this chapter, you should be able to:
+
+- calculate year-to-year and start-to-end changes;
+- choose a stable comparison set;
+- distinguish market-value change from purchases and performance;
+- identify classification and identity breaks; and
+- report a trend with appropriate caveats.
+
+## Newsroom question
+
+> How did the scale and geographic distribution of NBIM's reported equity
+> holdings change across the rolling ten-year teaching period?
+
+```{r}
+library(tidyverse)
+library(scales)
+
+gpfg_panel <- readRDS(
+  "data/processed/gpfg_equities_last_10_years.rds"
+)
+
+panel_years <- sort(unique(gpfg_panel$year))
+start_year <- min(panel_years)
+end_year <- max(panel_years)
+
+stopifnot(length(panel_years) == 10)
+stopifnot(all(diff(panel_years) == 1))
+```
+
+## Start with annual coverage and totals
+
+```{r}
+annual <- gpfg_panel |>
+  summarise(
+    holding_records = n(),
+    distinct_company_names = n_distinct(company),
+    market_value_nok = sum(market_value_nok),
+    .by = year
+  ) |>
+  arrange(year) |>
+  mutate(
+    annual_change_nok = market_value_nok - lag(market_value_nok),
+    annual_percent_change = market_value_nok / lag(market_value_nok) - 1
+  )
+
+annual
+```
+
+`lag()` compares a row with the preceding row, so the table must be ordered by
+year first. The first annual change is missing because the preceding year is
+outside the teaching period.
+
+The market value is nominal NOK. A change combines several possible forces:
+
+- security prices;
+- exchange rates;
+- purchases and sales;
+- companies entering or leaving the portfolio;
+- corporate events; and
+- source classifications or reporting coverage.
+
+The holdings file does not separate these components. Do not describe a rise
+in market value as “the amount Norway invested during the year.”
+
+## Calculate start-to-end change
+
+```{r}
+start_end <- annual |>
+  summarise(
+    start_year = start_year,
+    end_year = end_year,
+    start_value_nok = market_value_nok[year == start_year],
+    end_value_nok = market_value_nok[year == end_year],
+    absolute_change_nok = end_value_nok - start_value_nok,
+    percent_change = end_value_nok / start_value_nok - 1
+  )
+
+start_end
+```
+
+This is a comparison of two year-end snapshots. It is not a compounded return
+calculation.
+
+## Choose a fixed comparison set
+
+If we select the top countries separately in every year, the membership changes
+and the lines answer inconsistent questions. Instead, define the comparison
+set using the latest snapshot and then trace those same countries backward.
+
+```{r}
+top_countries_latest <- gpfg_panel |>
+  filter(year == end_year) |>
+  summarise(
+    market_value_nok = sum(market_value_nok),
+    .by = country
+  ) |>
+  slice_max(market_value_nok, n = 6, with_ties = FALSE) |>
+  pull(country)
+
+country_trends <- gpfg_panel |>
+  filter(country %in% top_countries_latest) |>
+  summarise(
+    market_value_nok = sum(market_value_nok),
+    holding_records = n(),
+    .by = c(year, country)
+  ) |>
+  arrange(country, year)
+
+country_trends
+```
+
+Check completeness:
+
+```{r}
+country_trends |>
+  count(country, name = "years_present")
+```
+
+If a country has fewer than ten years, decide whether the absence is a true
+zero, a missing record, a renamed category, or a change in investment coverage.
+
+## Compare shares as well as values
+
+Absolute market value can grow while a country's share falls. Join the annual
+denominator to the country table:
+
+```{r}
+country_trends <- country_trends |>
+  left_join(
+    annual |>
+      select(year, annual_total_nok = market_value_nok),
+    by = "year",
+    relationship = "many-to-one"
+  ) |>
+  mutate(share_of_annual_total = market_value_nok / annual_total_nok)
+
+country_trends
+```
+
+The value trend asks “how many NOK?” The share trend asks “how large a portion
+of the reported equity portfolio?” A strong story often needs both.
+
+## Audit the industry break
+
+```{r}
+gpfg_panel |>
+  filter(year %in% c(2020, 2021)) |>
+  distinct(year, industry) |>
+  arrange(year, industry)
+```
+
+The source changes from ten industry labels in 2020 to eleven in 2021.
+Consumer Goods and Consumer Services become Consumer Staples and Consumer
+Discretionary; Oil & Gas becomes Energy; and Real Estate becomes a separate
+category.
+
+Do not draw a continuous industry line across this break without either:
+
+1. building and documenting a concordance to broader categories; or
+2. presenting the pre-2021 and 2021-onward years as separate classification periods.
+
+For a beginner assignment, the second option is easier to defend.
+
+## Audit company-name persistence
+
+```{r}
+company_persistence <- gpfg_panel |>
+  distinct(year, company) |>
+  count(company, name = "years_present")
+
+company_persistence |>
+  count(years_present, name = "company_names") |>
+  arrange(years_present)
+```
+
+Only a minority of published names appear in all ten years. That pattern mixes
+real portfolio entry and exit with renaming and corporate events. A company
+trend is therefore an advanced verification task, not a simple join on text.
+
+## Reporting a defensible trend
+
+A concise methods paragraph could read:
+
+> We analyzed NBIM's year-end listed-equity holdings for `r start_year`–`r end_year` and summed
+> nominal market values in Norwegian kroner by reporting year and investment
+> market. The values describe holdings at each year-end and cannot be separated
+> into price, currency, purchase, and sale effects. Company-level matching was
+> not used because published names are not stable identifiers.
+
+## Independent task
+
+Choose one country from the fixed comparison set and produce a short trend
+memo. Include:
+
+1. annual NOK value and share of total;
+2. start-to-end absolute and percentage change;
+3. the largest annual rise and fall;
+4. a check that all ten years are present;
+5. one external reporting question that the holdings data cannot answer; and
+6. a headline that describes the evidence without implying purchases, returns,
+   or causation.
