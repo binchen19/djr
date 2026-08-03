@@ -1,4 +1,17 @@
-# References {.unnumbered}
+---
+title: "References"
+---
+
+The book's tidyverse approach draws on *R for Data Science*
+[@wickham2023r4ds], its visualization teaching draws on the third edition of
+*ggplot2: Elegant Graphics for Data Analysis* [@wickham2026ggplot2], and the
+text-analysis case follows the tidy text framework [@silge2017textmining].
+
+The main investment data come from Norges Bank Investment Management
+[@nbim2026investments], while the employment case uses data published by Hong
+Kong's University Grants Committee [@hkgov2026employment]. The website and book
+publishing guidance refers to the official Quarto documentation
+[@quarto2026docs].
 
 ::: {#refs}
 :::

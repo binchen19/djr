@@ -1,67 +1,36 @@
 ---
-title: "Debugging Without Guessing"
+title: "Debugging"
 ---
 
-## Learning objectives
+## When code does not work
 
-By the end of this chapter, you should be able to:
+Errors are a normal part of learning R. The goal is not to memorize every
+message. It is to follow the same small set of checks each time.
 
-- distinguish errors, warnings, messages, and unexpected results;
-- locate the first failing step in a pipeline;
-- inspect object names, classes, dimensions, and missing values;
-- create a small reproducible example; and
-- explain what you changed and why.
+## Errors, warnings, and messages
 
-## Four kinds of trouble
+- An **error** stops the code.
+- A **warning** allows the code to finish but reports a possible problem.
+- A **message** gives information about what a function did.
+- An **unexpected result** may appear without any warning, so always inspect
+  the output.
 
-An **error** stops execution. A **warning** allows execution to continue but
-signals a possible problem. A **message** provides information. An
-**unexpected result** may produce no warning at all, which is why validation is
-part of debugging.
+::: {.callout-tip title="Read before changing"}
+Read the final line of an error and identify the object, column, or function it
+mentions. Do not add several new functions at once in the hope that the error
+will disappear.
+:::
 
-### Error
+## A simple debugging routine
 
-```{r}
-#| error: true
-mean(c("10", "20"))
-```
+1. Run the code again and read the complete message.
+2. Check the spelling and capitalization of object and column names.
+3. Confirm that the required package was loaded.
+4. Inspect the table with `glimpse()`.
+5. Run one pipeline step at a time.
+6. Change one thing, then run the code again.
 
-The function received text when it expected numbers. The error is evidence
-about the input, not an instruction to add random code.
-
-### Warning
-
-```{r}
-#| warning: true
-as.numeric(c("10", "not reported", "20"))
-```
-
-R returns numbers and an `NA`, but warns that one conversion failed. A reporter
-should locate that source value before deciding how to handle it.
-
-### Expected `NA`, with no warning
-
-```{r}
-mean(c(10, 20, NA))
-```
-
-This result is not an error and normally produces no warning. R is following
-the rule that a mean is unknown when an input is unknown. Use
-`na.rm = TRUE` only after checking what the missing value means.
-
-## A repeatable debugging routine
-
-When code fails, use the same sequence each time.
-
-1. **Read the final error line.** Copy it into your notes.
-2. **Identify the object and function named in the error.**
-3. **Check that the object exists.** Run `ls()` or type its name.
-4. **Inspect its structure.** Use `class()`, `names()`, `dim()`, and `glimpse()`.
-5. **Run the pipeline one step at a time.** Save intermediate results.
-6. **Reduce the problem.** Test a few rows and only the relevant columns.
-7. **Change one thing.** Re-run from a fresh session after the fix.
-
-## Example: a missing column
+## Example: a column name is wrong
 
 ```{r}
 library(tidyverse)
@@ -72,7 +41,7 @@ holdings <- tibble(
 )
 ```
 
-This code fails because the column name is wrong:
+This code asks for a column that does not exist:
 
 ```{r}
 #| error: true
@@ -80,88 +49,71 @@ holdings |>
   arrange(desc(market_value))
 ```
 
-Inspect names before editing:
+`glimpse()` shows the exact column names:
 
 ```{r}
-names(holdings)
+glimpse(holdings)
 ```
 
-Now make the smallest correction:
+Make the smallest correction:
 
 ```{r}
 holdings |>
   arrange(desc(market_value_nok))
 ```
 
-Avoid “fixing” the problem by renaming every column or rewriting the whole
-pipeline. Small changes make cause and effect easier to see.
-
 ## Example: find the first bad step
 
-Suppose a long pipeline gives an unexpected result. Break it apart:
+Break a longer pipeline into small objects:
 
 ```{r}
 step_1 <- holdings |>
   filter(market_value_nok >= 100)
 
 step_2 <- step_1 |>
-  mutate(value_millions = market_value_nok / 1e6)
+  mutate(value_millions = market_value_nok / 1000000)
 
 step_1
 step_2
 ```
 
-The code runs, but the new values are tiny because the toy input was not
-actually measured in full NOK. That is a **unit error**, not a syntax error.
-Checking units and plausible ranges is therefore part of debugging.
+The code runs, but the second result is unexpectedly small. The toy values were
+not measured in full kroner. This is a unit problem, not a syntax problem.
+Code that runs can still be wrong.
 
-## Assertions turn expectations into checks
+## Check missing values with familiar functions
 
-Use `stopifnot()` for assumptions that must be true:
-
-```{r}
-stopifnot(nrow(holdings) == 3)
-stopifnot(!anyNA(holdings$company))
-stopifnot(all(holdings$market_value_nok >= 0))
-```
-
-For a real analysis, useful assertions include:
-
-- expected years are present;
-- a join does not change the row count unexpectedly;
-- key identifiers are not missing;
-- shares fall in a plausible range; and
-- subtotals reconcile with a published total.
-
-An assertion should represent a justified expectation. Do not assert that all
-financial values must be positive if the source can legitimately contain short
-positions.
-
-## Build a reproducible example
-
-When asking for help, include the smallest data and code that still reproduce
-the problem:
+Use `summarise()` to display simple checks. `is.na()` identifies missing
+values, so `sum(is.na(company))` counts missing company names:
 
 ```{r}
-problem_data <- tibble(
-  amount = c("1,200", "not reported", "900")
-)
-
-problem_data |>
-  mutate(amount_number = readr::parse_number(amount))
+holdings |>
+  summarise(
+    rows = n(),
+    missing_company_names = sum(is.na(company)),
+    smallest_value = min(market_value_nok)
+  )
 ```
 
-A useful help request states:
+The expected results are three rows, no missing company names, and a positive
+smallest value. A useful check begins with a reasonable expectation about the
+source.
+
+## Ask for help effectively
+
+Include:
 
 1. what you expected;
-2. what happened instead;
+2. what happened;
 3. the exact error or warning;
-4. a small example; and
-5. the output of `sessionInfo()` when package versions may matter.
+4. the smallest example that reproduces it; and
+5. the packages being used.
 
-## Independent task
+Do not share confidential data or passwords when asking for help.
 
-Debug this code without rewriting it from scratch:
+## Practice
+
+Find and correct the two problems in this code:
 
 ```{r}
 #| error: true
@@ -175,9 +127,16 @@ story |>
   summarise(average = mean(articles))
 ```
 
-Your answer should:
+Explain the column-name problem and decide how the missing value should be
+handled. Do not add `na.rm = TRUE` until you can explain what the `NA` means.
 
-- identify both problems;
-- show the corrected code;
-- explain the decision about the missing value; and
-- add one assertion that would catch a future data problem.
+## Takeaways
+
+| Practice | Why it helps |
+|---|---|
+| Read the message | Identifies the immediate problem |
+| Check spelling and case | Finds many object and column errors |
+| `glimpse()` | Shows names, types, and example values |
+| Run one step at a time | Locates the first step that changes unexpectedly |
+| Change one thing | Makes cause and effect easier to understand |
+| Display simple checks | Catches results that are possible in R but implausible in the story |

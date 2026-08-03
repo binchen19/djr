@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 7&nbsp; Combine Years, Join Tables, and Reshape Data</title>
+<title>Data Journalism with R - 7&nbsp; Combine and Reshape</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./analysis-gpfg.html" rel="next">
-<link href="./data-wrangling.html" rel="prev">
+<link href="./visual-01.html" rel="next">
+<link href="./analysis-gpfg.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-gpfg.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -340,23 +339,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">7.1</span> Learning objectives</a></li>
-  <li><a href="#newsroom-question" id="toc-newsroom-question" class="nav-link" data-scroll-target="#newsroom-question"><span class="header-section-number">7.2</span> Newsroom question</a></li>
-  <li><a href="#stack-observations-with-bind_rows" id="toc-stack-observations-with-bind_rows" class="nav-link" data-scroll-target="#stack-observations-with-bind_rows"><span class="header-section-number">7.3</span> Stack observations with <code>bind_rows()</code></a></li>
-  <li><a href="#join-variables-with-left_join" id="toc-join-variables-with-left_join" class="nav-link" data-scroll-target="#join-variables-with-left_join"><span class="header-section-number">7.4</span> Join variables with <code>left_join()</code></a></li>
-  <li><a href="#audit-unmatched-keys" id="toc-audit-unmatched-keys" class="nav-link" data-scroll-target="#audit-unmatched-keys"><span class="header-section-number">7.5</span> Audit unmatched keys</a></li>
-  <li><a href="#summarise-before-comparing-years" id="toc-summarise-before-comparing-years" class="nav-link" data-scroll-target="#summarise-before-comparing-years"><span class="header-section-number">7.6</span> Summarise before comparing years</a></li>
-  <li><a href="#pivot-to-compare-columns" id="toc-pivot-to-compare-columns" class="nav-link" data-scroll-target="#pivot-to-compare-columns"><span class="header-section-number">7.7</span> Pivot to compare columns</a></li>
-  <li><a href="#what-a-join-cannot-solve" id="toc-what-a-join-cannot-solve" class="nav-link" data-scroll-target="#what-a-join-cannot-solve"><span class="header-section-number">7.8</span> What a join cannot solve</a></li>
-  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">7.9</span> Independent task</a></li>
+  <li><a href="#where-this-chapter-fits" id="toc-where-this-chapter-fits" class="nav-link" data-scroll-target="#where-this-chapter-fits"><span class="header-section-number">7.2</span> Where this chapter fits</a></li>
+  <li><a href="#load-the-multi-year-data" id="toc-load-the-multi-year-data" class="nav-link" data-scroll-target="#load-the-multi-year-data"><span class="header-section-number">7.3</span> Load the multi-year data</a></li>
+  <li><a href="#stack-rows-with-bind_rows" id="toc-stack-rows-with-bind_rows" class="nav-link" data-scroll-target="#stack-rows-with-bind_rows"><span class="header-section-number">7.4</span> Stack rows with <code>bind_rows()</code></a></li>
+  <li><a href="#add-columns-with-left_join" id="toc-add-columns-with-left_join" class="nav-link" data-scroll-target="#add-columns-with-left_join"><span class="header-section-number">7.5</span> Add columns with <code>left_join()</code></a></li>
+  <li><a href="#long-and-wide-data" id="toc-long-and-wide-data" class="nav-link" data-scroll-target="#long-and-wide-data"><span class="header-section-number">7.6</span> Long and wide data</a></li>
+  <li><a href="#make-data-wider" id="toc-make-data-wider" class="nav-link" data-scroll-target="#make-data-wider"><span class="header-section-number">7.7</span> Make data wider</a></li>
+  <li><a href="#make-data-longer" id="toc-make-data-longer" class="nav-link" data-scroll-target="#make-data-longer"><span class="header-section-number">7.8</span> Make data longer</a></li>
+  <li><a href="#use-the-combined-data-to-answer-trend-questions" id="toc-use-the-combined-data-to-answer-trend-questions" class="nav-link" data-scroll-target="#use-the-combined-data-to-answer-trend-questions"><span class="header-section-number">7.9</span> Use the combined data to answer trend questions</a>
+  <ul class="collapse">
+  <li><a href="#calculate-annual-totals" id="toc-calculate-annual-totals" class="nav-link" data-scroll-target="#calculate-annual-totals">Calculate annual totals</a></li>
+  <li><a href="#calculate-year-to-year-change" id="toc-calculate-year-to-year-change" class="nav-link" data-scroll-target="#calculate-year-to-year-change">Calculate year-to-year change</a></li>
+  <li><a href="#follow-the-same-markets-over-time" id="toc-follow-the-same-markets-over-time" class="nav-link" data-scroll-target="#follow-the-same-markets-over-time">Follow the same markets over time</a></li>
+  <li><a href="#compare-amounts-and-shares" id="toc-compare-amounts-and-shares" class="nav-link" data-scroll-target="#compare-amounts-and-shares">Compare amounts and shares</a></li>
+  <li><a href="#interpret-changes-carefully" id="toc-interpret-changes-carefully" class="nav-link" data-scroll-target="#interpret-changes-carefully">Interpret changes carefully</a></li>
+  </ul></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">7.10</span> Practice</a>
+  <ul class="collapse">
+  <li><a href="#activity-1-reshape-two-years" id="toc-activity-1-reshape-two-years" class="nav-link" data-scroll-target="#activity-1-reshape-two-years">Activity 1: Reshape two years</a></li>
+  <li><a href="#activity-2-investigate-one-market-over-time" id="toc-activity-2-investigate-one-market-over-time" class="nav-link" data-scroll-target="#activity-2-investigate-one-market-over-time">Activity 2: Investigate one market over time</a></li>
+  </ul></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">7.11</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-gpfg.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./transform-merge.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></h1>
 </div>
 
 
@@ -377,244 +389,512 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="7.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">7.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>distinguish stacking rows from joining columns;</li>
-<li>combine annual files while preserving the report year and source;</li>
-<li>use join keys and relationship checks deliberately;</li>
-<li>audit matched and unmatched records; and</li>
-<li>pivot between long and wide forms without losing the unit of analysis.</li>
+<li>combine similar tables with <code>bind_rows()</code>;</li>
+<li>add columns from another table with <code>left_join()</code>;</li>
+<li>choose a suitable join key;</li>
+<li>reshape data with <code>pivot_wider()</code> and <code>pivot_longer()</code>;</li>
+<li>calculate annual totals and year-to-year change; and</li>
+<li>describe a trend without confusing it with investment flows or returns.</li>
 </ul>
 </section>
-<section id="newsroom-question" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="newsroom-question"><span class="header-section-number">7.2</span> Newsroom question</h2>
-<blockquote class="blockquote">
-<p>How did the geographic distribution of reported equity holdings change from the first to the latest year in the rolling teaching panel?</p>
-</blockquote>
-<p>This question requires more than one snapshot. The prepared panel contains ten year-end files:</p>
+<section id="where-this-chapter-fits" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="where-this-chapter-fits"><span class="header-section-number">7.2</span> Where this chapter fits</h2>
+<p>The previous chapter worked with one table. Reporting projects often contain several annual files or related tables. The tidyverse gives us tools for preparing those tables and answering questions across time:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Put similar observations underneath one another</td>
+<td><code>bind_rows()</code></td>
+</tr>
+<tr class="even">
+<td>Add variables by matching a key</td>
+<td><code>left_join()</code></td>
+</tr>
+<tr class="odd">
+<td>Change the arrangement of rows and columns</td>
+<td><code>pivot_wider()</code> or <code>pivot_longer()</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Continue in the same project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open <code>djr.Rproj</code> and create <code>05-combine-reshape.Rmd</code>. Download <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_equities_last_10_years.csv"><code>gpfg_equities_last_10_years.csv</code></a> and save it in the same <code>data</code> folder. Keep the latest-year file there too.</p>
+</div>
+</div>
+</section>
+<section id="load-the-multi-year-data" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="load-the-multi-year-data"><span class="header-section-number">7.3</span> Load the multi-year data</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg_panel <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_last_10_years.rds"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>panel_years <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(gpfg_panel<span class="sc">$</span>year))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>start_year <span class="ot">&lt;-</span> <span class="fu">min</span>(panel_years)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>end_year <span class="ot">&lt;-</span> <span class="fu">max</span>(panel_years)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(panel_years) <span class="sc">==</span> <span class="dv">10</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(<span class="fu">diff</span>(panel_years) <span class="sc">==</span> <span class="dv">1</span>))</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>gpfg_panel <span class="sc">|&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg_panel <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg_equities_last_10_years.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"2016","2":"8985"},{"1":"2017","2":"9106"},{"1":"2018","2":"9157"},{"1":"2019","2":"9202"},{"1":"2020","2":"9123"},{"1":"2021","2":"9338"},{"1":"2022","2":"9228"},{"1":"2023","2":"8859"},{"1":"2024","2":"8659"},{"1":"2025","2":"7201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"2016","2":"8985"},{"1":"2017","2":"9106"},{"1":"2018","2":"9157"},{"1":"2019","2":"9202"},{"1":"2020","2":"9123"},{"1":"2021","2":"9338"},{"1":"2022","2":"9228"},{"1":"2023","2":"8859"},{"1":"2024","2":"8659"},{"1":"2025","2":"7201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>The input grain is one equity holding at one year-end. The same published name may appear in several years, so the pair <code>year + company</code>—not <code>company</code> alone—is the apparent key for this teaching period.</p>
+<p>One row represents one reported holding in one year. The <code>year</code> column keeps observations from different files distinguishable.</p>
+<p>The result should show ten consecutive years. Check this before calculating a trend. If a year is missing, determine whether the source file is absent or whether the publisher changed the data.</p>
+</section>
+<section id="stack-rows-with-bind_rows" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="stack-rows-with-bind_rows"><span class="header-section-number">7.4</span> Stack rows with <code>bind_rows()</code></h2>
+<p>Suppose two annual tables have the same columns. <code>bind_rows()</code> places the rows of the second table below the first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>duplicate_keys <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year, company) <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>duplicate_keys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>holdings_2024 <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2024</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>holdings_2025 <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2025</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>two_years <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(holdings_2024, holdings_2025)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>two_years <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["company"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"2024","2":"8659"},{"1":"2025","2":"7201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Use <code>bind_rows()</code> when the tables describe the same variables but different observations. Make sure a year or date column exists before combining annual files.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Check names before stacking">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Check names before stacking
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Columns with the same meaning should have the same name. If one file uses <code>company</code> and another uses <code>company_name</code>, rename them consistently before using <code>bind_rows()</code>.</p>
+</div>
+</div>
+</section>
+<section id="add-columns-with-left_join" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="add-columns-with-left_join"><span class="header-section-number">7.5</span> Add columns with <code>left_join()</code></h2>
+<p>A join connects two tables by a shared column called a <strong>key</strong>. First create a country summary and a country-to-region reference table. <code>distinct()</code> keeps each country-region combination once:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>country_totals <span class="ot">&lt;-</span> holdings_2025 <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>country_regions <span class="ot">&lt;-</span> holdings_2025 <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country, region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>left_join()</code> keeps every row from the table on the left and adds matching columns from the table on the right:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>country_totals <span class="ot">&lt;-</span> country_totals <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(country_regions, <span class="at">by =</span> <span class="st">"country"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>country_totals <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["region"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Australia","2":"240051964741","3":"Oceania"},{"1":"Austria","2":"17254681590","3":"Europe"},{"1":"Bangladesh","2":"1181396167","3":"Asia"},{"1":"Belgium","2":"60100344168","3":"Europe"},{"1":"Brazil","2":"57169849232","3":"Latin America"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The essential join argument is <code>by</code>, which names the matching key. Here the value in <code>country</code> must match in both tables.</p>
+<p>Check keys that did not match with <code>anti_join()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>country_totals <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(country_regions, <span class="at">by =</span> <span class="st">"country"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["region"],"name":[3],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>An empty result means every country in the left table found a match. It does not prove that the labels themselves are correct, so important matches still need source checking.</p>
+</section>
+<section id="long-and-wide-data" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="long-and-wide-data"><span class="header-section-number">7.6</span> Long and wide data</h2>
+<p><strong>Long data</strong> usually place the year in one column and the value in another:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>country</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">market_value_nok</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>China</td>
+<td style="text-align: right;">2024</td>
+<td style="text-align: right;">…</td>
+</tr>
+<tr class="even">
+<td>China</td>
+<td style="text-align: right;">2025</td>
+<td style="text-align: right;">…</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Wide data</strong> place different years in different columns:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>country</th>
+<th style="text-align: right;">2024</th>
+<th style="text-align: right;">2025</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>China</td>
+<td style="text-align: right;">…</td>
+<td style="text-align: right;">…</td>
+</tr>
+</tbody>
+</table>
+<p>Long data are convenient for grouping and charts. Wide data can make a direct two-year comparison easier.</p>
+<p>Create a long country-year table:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>country_year <span class="ot">&lt;-</span> two_years <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country, year) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>country_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Australia","2":"2024","3":"2.377047e+11"},{"1":"Australia","2":"2025","3":"2.400520e+11"},{"1":"Austria","2":"2024","3":"1.203456e+10"},{"1":"Austria","2":"2025","3":"1.725468e+10"},{"1":"Bangladesh","2":"2024","3":"1.612038e+09"},{"1":"Bangladesh","2":"2025","3":"1.181396e+09"},{"1":"Belgium","2":"2024","3":"5.161597e+10"},{"1":"Belgium","2":"2025","3":"6.010034e+10"},{"1":"Brazil","2":"2024","3":"5.455247e+10"},{"1":"Brazil","2":"2025","3":"5.716985e+10"},{"1":"Canada","2":"2024","3":"2.847346e+11"},{"1":"Canada","2":"2025","3":"3.764633e+11"},{"1":"Chile","2":"2024","3":"7.909071e+09"},{"1":"Chile","2":"2025","3":"1.148435e+10"},{"1":"China","2":"2024","3":"4.622155e+11"},{"1":"China","2":"2025","3":"5.441163e+11"},{"1":"Colombia","2":"2024","3":"1.689197e+09"},{"1":"Colombia","2":"2025","3":"2.051164e+09"},{"1":"Croatia","2":"2024","3":"2.030633e+08"},{"1":"Czech Republic","2":"2024","3":"4.617645e+07"},{"1":"Czech Republic","2":"2025","3":"5.457331e+07"},{"1":"Denmark","2":"2024","3":"1.531341e+11"},{"1":"Denmark","2":"2025","3":"1.093733e+11"},{"1":"Egypt","2":"2024","3":"1.139124e+09"},{"1":"Egypt","2":"2025","3":"1.316847e+09"},{"1":"Estonia","2":"2024","3":"2.267632e+08"},{"1":"Finland","2":"2024","3":"4.795752e+10"},{"1":"Finland","2":"2025","3":"6.442476e+10"},{"1":"France","2":"2024","3":"4.366455e+11"},{"1":"France","2":"2025","3":"4.284206e+11"},{"1":"Germany","2":"2024","3":"4.499493e+11"},{"1":"Germany","2":"2025","3":"4.741372e+11"},{"1":"Greece","2":"2024","3":"9.527346e+09"},{"1":"Greece","2":"2025","3":"1.437266e+10"},{"1":"Hong Kong","2":"2024","3":"8.128365e+10"},{"1":"Hong Kong","2":"2025","3":"8.864960e+10"},{"1":"Hungary","2":"2024","3":"3.011921e+09"},{"1":"Hungary","2":"2025","3":"4.488846e+09"},{"1":"India","2":"2024","3":"3.499488e+11"},{"1":"India","2":"2025","3":"3.181693e+11"},{"1":"Indonesia","2":"2024","3":"2.643844e+10"},{"1":"Indonesia","2":"2025","3":"2.035753e+10"},{"1":"Ireland","2":"2024","3":"1.477462e+10"},{"1":"Ireland","2":"2025","3":"2.337184e+10"},{"1":"Israel","2":"2024","3":"2.219832e+10"},{"1":"Israel","2":"2025","3":"2.103292e+10"},{"1":"Italy","2":"2024","3":"1.280751e+11"},{"1":"Italy","2":"2025","3":"1.622150e+11"},{"1":"Japan","2":"2024","3":"9.551953e+11"},{"1":"Japan","2":"2025","3":"9.705254e+11"},{"1":"Jordan","2":"2025","3":"2.505483e+07"},{"1":"Kenya","2":"2024","3":"1.971347e+09"},{"1":"Kenya","2":"2025","3":"2.283814e+09"},{"1":"Kuwait","2":"2024","3":"8.290547e+09"},{"1":"Kuwait","2":"2025","3":"8.458605e+09"},{"1":"Kyrgyzstan","2":"2024","3":"3.658710e+05"},{"1":"Kyrgyzstan","2":"2025","3":"3.489810e+05"},{"1":"Latvia","2":"2024","3":"1.788783e+06"},{"1":"Latvia","2":"2025","3":"2.020076e+07"},{"1":"Liechtenstein","2":"2024","3":"8.963468e+06"},{"1":"Liechtenstein","2":"2025","3":"4.628144e+07"},{"1":"Lithuania","2":"2024","3":"1.311298e+08"},{"1":"Lithuania","2":"2025","3":"1.955251e+08"},{"1":"Luxembourg","2":"2024","3":"1.255531e+09"},{"1":"Malaysia","2":"2024","3":"3.072466e+10"},{"1":"Malaysia","2":"2025","3":"2.825647e+10"},{"1":"Mexico","2":"2024","3":"3.081060e+10"},{"1":"Mexico","2":"2025","3":"3.756626e+10"},{"1":"Moldova","2":"2024","3":"3.305206e+07"},{"1":"Morocco","2":"2024","3":"2.438214e+08"},{"1":"Morocco","2":"2025","3":"2.074894e+08"},{"1":"Netherlands","2":"2024","3":"2.575384e+11"},{"1":"Netherlands","2":"2025","3":"2.677235e+11"},{"1":"New Zealand","2":"2024","3":"1.183070e+10"},{"1":"New Zealand","2":"2025","3":"9.464122e+09"},{"1":"Panama","2":"2024","3":"5.419600e+05"},{"1":"Panama","2":"2025","3":"8.516025e+07"},{"1":"Peru","2":"2024","3":"9.030868e+07"},{"1":"Peru","2":"2025","3":"3.729966e+08"},{"1":"Philippines","2":"2024","3":"9.657049e+09"},{"1":"Philippines","2":"2025","3":"7.013953e+09"},{"1":"Poland","2":"2024","3":"1.396199e+10"},{"1":"Poland","2":"2025","3":"2.295480e+10"},{"1":"Portugal","2":"2024","3":"1.345966e+10"},{"1":"Portugal","2":"2025","3":"8.691770e+09"},{"1":"Qatar","2":"2024","3":"1.251470e+10"},{"1":"Qatar","2":"2025","3":"1.153257e+10"},{"1":"Romania","2":"2024","3":"3.507683e+08"},{"1":"Romania","2":"2025","3":"1.542550e+07"},{"1":"Russia","2":"2024","3":"2.361167e+09"},{"1":"Russia","2":"2025","3":"1.371423e+09"},{"1":"Singapore","2":"2024","3":"7.231306e+10"},{"1":"Singapore","2":"2025","3":"6.373859e+10"},{"1":"Slovenia","2":"2024","3":"8.290974e+08"},{"1":"Slovenia","2":"2025","3":"3.551770e+08"},{"1":"South Africa","2":"2024","3":"5.304343e+10"},{"1":"South Africa","2":"2025","3":"8.530207e+10"},{"1":"South Korea","2":"2024","3":"1.643228e+11"},{"1":"South Korea","2":"2025","3":"2.785010e+11"},{"1":"Spain","2":"2024","3":"1.305988e+11"},{"1":"Spain","2":"2025","3":"1.689165e+11"},{"1":"Sri Lanka","2":"2024","3":"1.040059e+09"},{"1":"Sri Lanka","2":"2025","3":"6.298300e+08"},{"1":"Sweden","2":"2024","3":"1.654022e+11"},{"1":"Sweden","2":"2025","3":"1.800494e+11"},{"1":"Switzerland","2":"2024","3":"4.578182e+11"},{"1":"Switzerland","2":"2025","3":"4.580753e+11"},{"1":"Taiwan","2":"2024","3":"3.487516e+11"},{"1":"Taiwan","2":"2025","3":"4.066431e+11"},{"1":"Thailand","2":"2024","3":"2.960946e+10"},{"1":"Thailand","2":"2025","3":"2.375458e+10"},{"1":"Türkiye","2":"2024","3":"1.787259e+10"},{"1":"Türkiye","2":"2025","3":"1.738380e+10"},{"1":"Ukraine","2":"2024","3":"1.212173e+07"},{"1":"Ukraine","2":"2025","3":"1.973770e+07"},{"1":"United Arab Emirates","2":"2024","3":"3.475033e+10"},{"1":"United Arab Emirates","2":"2025","3":"3.470169e+10"},{"1":"United Kingdom","2":"2024","3":"7.641186e+11"},{"1":"United Kingdom","2":"2025","3":"7.488452e+11"},{"1":"United States","2":"2024","3":"8.166284e+12"},{"1":"United States","2":"2025","3":"8.294346e+12"},{"1":"Vietnam","2":"2024","3":"7.942365e+09"},{"1":"Vietnam","2":"2025","3":"4.687653e+09"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
 </section>
-<section id="stack-observations-with-bind_rows" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="stack-observations-with-bind_rows"><span class="header-section-number">7.3</span> Stack observations with <code>bind_rows()</code></h2>
-<p>When tables have the same variables and represent different observations, stack their rows:</p>
+<section id="make-data-wider" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="make-data-wider"><span class="header-section-number">7.7</span> Make data wider</h2>
+<p><code>pivot_wider()</code> needs to know which column supplies the new column names and which column supplies their values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gpfg_start <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> start_year)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>gpfg_latest <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> end_year)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>two_years <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(gpfg_start, gpfg_latest)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>two_years <span class="sc">|&gt;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>country_wide <span class="ot">&lt;-</span> country_year <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> year,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> market_value_nok</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>country_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"2016","2":"8985"},{"1":"2025","2":"7201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2024"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["2025"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Australia","2":"2.377047e+11","3":"2.400520e+11"},{"1":"Austria","2":"1.203456e+10","3":"1.725468e+10"},{"1":"Bangladesh","2":"1.612038e+09","3":"1.181396e+09"},{"1":"Belgium","2":"5.161597e+10","3":"6.010034e+10"},{"1":"Brazil","2":"5.455247e+10","3":"5.716985e+10"},{"1":"Canada","2":"2.847346e+11","3":"3.764633e+11"},{"1":"Chile","2":"7.909071e+09","3":"1.148435e+10"},{"1":"China","2":"4.622155e+11","3":"5.441163e+11"},{"1":"Colombia","2":"1.689197e+09","3":"2.051164e+09"},{"1":"Croatia","2":"2.030633e+08","3":"NA"},{"1":"Czech Republic","2":"4.617645e+07","3":"5.457331e+07"},{"1":"Denmark","2":"1.531341e+11","3":"1.093733e+11"},{"1":"Egypt","2":"1.139124e+09","3":"1.316847e+09"},{"1":"Estonia","2":"2.267632e+08","3":"NA"},{"1":"Finland","2":"4.795752e+10","3":"6.442476e+10"},{"1":"France","2":"4.366455e+11","3":"4.284206e+11"},{"1":"Germany","2":"4.499493e+11","3":"4.741372e+11"},{"1":"Greece","2":"9.527346e+09","3":"1.437266e+10"},{"1":"Hong Kong","2":"8.128365e+10","3":"8.864960e+10"},{"1":"Hungary","2":"3.011921e+09","3":"4.488846e+09"},{"1":"India","2":"3.499488e+11","3":"3.181693e+11"},{"1":"Indonesia","2":"2.643844e+10","3":"2.035753e+10"},{"1":"Ireland","2":"1.477462e+10","3":"2.337184e+10"},{"1":"Israel","2":"2.219832e+10","3":"2.103292e+10"},{"1":"Italy","2":"1.280751e+11","3":"1.622150e+11"},{"1":"Japan","2":"9.551953e+11","3":"9.705254e+11"},{"1":"Jordan","2":"NA","3":"2.505483e+07"},{"1":"Kenya","2":"1.971347e+09","3":"2.283814e+09"},{"1":"Kuwait","2":"8.290547e+09","3":"8.458605e+09"},{"1":"Kyrgyzstan","2":"3.658710e+05","3":"3.489810e+05"},{"1":"Latvia","2":"1.788783e+06","3":"2.020076e+07"},{"1":"Liechtenstein","2":"8.963468e+06","3":"4.628144e+07"},{"1":"Lithuania","2":"1.311298e+08","3":"1.955251e+08"},{"1":"Luxembourg","2":"1.255531e+09","3":"NA"},{"1":"Malaysia","2":"3.072466e+10","3":"2.825647e+10"},{"1":"Mexico","2":"3.081060e+10","3":"3.756626e+10"},{"1":"Moldova","2":"3.305206e+07","3":"NA"},{"1":"Morocco","2":"2.438214e+08","3":"2.074894e+08"},{"1":"Netherlands","2":"2.575384e+11","3":"2.677235e+11"},{"1":"New Zealand","2":"1.183070e+10","3":"9.464122e+09"},{"1":"Panama","2":"5.419600e+05","3":"8.516025e+07"},{"1":"Peru","2":"9.030868e+07","3":"3.729966e+08"},{"1":"Philippines","2":"9.657049e+09","3":"7.013953e+09"},{"1":"Poland","2":"1.396199e+10","3":"2.295480e+10"},{"1":"Portugal","2":"1.345966e+10","3":"8.691770e+09"},{"1":"Qatar","2":"1.251470e+10","3":"1.153257e+10"},{"1":"Romania","2":"3.507683e+08","3":"1.542550e+07"},{"1":"Russia","2":"2.361167e+09","3":"1.371423e+09"},{"1":"Singapore","2":"7.231306e+10","3":"6.373859e+10"},{"1":"Slovenia","2":"8.290974e+08","3":"3.551770e+08"},{"1":"South Africa","2":"5.304343e+10","3":"8.530207e+10"},{"1":"South Korea","2":"1.643228e+11","3":"2.785010e+11"},{"1":"Spain","2":"1.305988e+11","3":"1.689165e+11"},{"1":"Sri Lanka","2":"1.040059e+09","3":"6.298300e+08"},{"1":"Sweden","2":"1.654022e+11","3":"1.800494e+11"},{"1":"Switzerland","2":"4.578182e+11","3":"4.580753e+11"},{"1":"Taiwan","2":"3.487516e+11","3":"4.066431e+11"},{"1":"Thailand","2":"2.960946e+10","3":"2.375458e+10"},{"1":"Türkiye","2":"1.787259e+10","3":"1.738380e+10"},{"1":"Ukraine","2":"1.212173e+07","3":"1.973770e+07"},{"1":"United Arab Emirates","2":"3.475033e+10","3":"3.470169e+10"},{"1":"United Kingdom","2":"7.641186e+11","3":"7.488452e+11"},{"1":"United States","2":"8.166284e+12","3":"8.294346e+12"},{"1":"Vietnam","2":"7.942365e+09","3":"4.687653e+09"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>The report year must exist before stacking. Otherwise, identical-looking rows from different snapshots cannot be distinguished.</p>
-<p>The complete preparation script reads all available official annual Excel files, extracts the year from each filename, standardizes names and types, and then uses <code>map_dfr()</code> to combine them. The key pattern is:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>raw_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/raw/gpfg"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pattern =</span> <span class="st">"xlsx$"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">full.names =</span> <span class="cn">TRUE</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> raw_files <span class="sc">|&gt;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(read_one_annual_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>read_one_annual_file()</code> is defined and validated in <code>scripts/prepare_gpfg.R</code>. Keeping that logic in a script prevents every chapter from cleaning the same files differently.</p>
+<p>Each country now has separate columns for 2024 and 2025.</p>
 </section>
-<section id="join-variables-with-left_join" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="join-variables-with-left_join"><span class="header-section-number">7.4</span> Join variables with <code>left_join()</code></h2>
-<p>A join adds columns by matching keys. First create a one-row-per-year table:</p>
+<section id="make-data-longer" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="make-data-longer"><span class="header-section-number">7.8</span> Make data longer</h2>
+<p><code>pivot_longer()</code> gathers those year columns back into two columns:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>annual_totals <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">annual_market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">annual_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> year</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Join each year’s total back to every holding in that year:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rows_before <span class="ot">&lt;-</span> <span class="fu">nrow</span>(gpfg_panel)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>gpfg_with_share <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    annual_totals,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"year"</span>,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">relationship =</span> <span class="st">"many-to-one"</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">share_of_annual_value =</span> market_value_nok <span class="sc">/</span> annual_market_value_nok</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(gpfg_with_share) <span class="sc">==</span> rows_before)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>relationship = "many-to-one"</code> documents the expectation that many holdings match exactly one annual total. If the right-hand table accidentally contains two rows for a year, the join fails instead of silently duplicating holdings.</p>
-</section>
-<section id="audit-unmatched-keys" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="audit-unmatched-keys"><span class="header-section-number">7.5</span> Audit unmatched keys</h2>
-<p>Never assume that two tables use the same labels. Before mapping, for example, country names may differ:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>country_lookup_example <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"China"</span>, <span class="st">"Japan"</span>),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">short_label =</span> <span class="fu">c</span>(<span class="st">"US"</span>, <span class="st">"China"</span>, <span class="st">"Japan"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>gpfg_latest <span class="sc">|&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(country) <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(country_lookup_example, <span class="at">by =</span> <span class="st">"country"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>country_long <span class="ot">&lt;-</span> country_wide <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">2024</span><span class="st">`</span>, <span class="st">`</span><span class="at">2025</span><span class="st">`</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"market_value_nok"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>country_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Australia"},{"1":"Austria"},{"1":"Bangladesh"},{"1":"Belgium"},{"1":"Brazil"},{"1":"Canada"},{"1":"Chile"},{"1":"Colombia"},{"1":"Czech Republic"},{"1":"Denmark"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Australia","2":"2024","3":"2.377047e+11"},{"1":"Australia","2":"2025","3":"2.400520e+11"},{"1":"Austria","2":"2024","3":"1.203456e+10"},{"1":"Austria","2":"2025","3":"1.725468e+10"},{"1":"Bangladesh","2":"2024","3":"1.612038e+09"},{"1":"Bangladesh","2":"2025","3":"1.181396e+09"},{"1":"Belgium","2":"2024","3":"5.161597e+10"},{"1":"Belgium","2":"2025","3":"6.010034e+10"},{"1":"Brazil","2":"2024","3":"5.455247e+10"},{"1":"Brazil","2":"2025","3":"5.716985e+10"},{"1":"Canada","2":"2024","3":"2.847346e+11"},{"1":"Canada","2":"2025","3":"3.764633e+11"},{"1":"Chile","2":"2024","3":"7.909071e+09"},{"1":"Chile","2":"2025","3":"1.148435e+10"},{"1":"China","2":"2024","3":"4.622155e+11"},{"1":"China","2":"2025","3":"5.441163e+11"},{"1":"Colombia","2":"2024","3":"1.689197e+09"},{"1":"Colombia","2":"2025","3":"2.051164e+09"},{"1":"Croatia","2":"2024","3":"2.030633e+08"},{"1":"Croatia","2":"2025","3":"NA"},{"1":"Czech Republic","2":"2024","3":"4.617645e+07"},{"1":"Czech Republic","2":"2025","3":"5.457331e+07"},{"1":"Denmark","2":"2024","3":"1.531341e+11"},{"1":"Denmark","2":"2025","3":"1.093733e+11"},{"1":"Egypt","2":"2024","3":"1.139124e+09"},{"1":"Egypt","2":"2025","3":"1.316847e+09"},{"1":"Estonia","2":"2024","3":"2.267632e+08"},{"1":"Estonia","2":"2025","3":"NA"},{"1":"Finland","2":"2024","3":"4.795752e+10"},{"1":"Finland","2":"2025","3":"6.442476e+10"},{"1":"France","2":"2024","3":"4.366455e+11"},{"1":"France","2":"2025","3":"4.284206e+11"},{"1":"Germany","2":"2024","3":"4.499493e+11"},{"1":"Germany","2":"2025","3":"4.741372e+11"},{"1":"Greece","2":"2024","3":"9.527346e+09"},{"1":"Greece","2":"2025","3":"1.437266e+10"},{"1":"Hong Kong","2":"2024","3":"8.128365e+10"},{"1":"Hong Kong","2":"2025","3":"8.864960e+10"},{"1":"Hungary","2":"2024","3":"3.011921e+09"},{"1":"Hungary","2":"2025","3":"4.488846e+09"},{"1":"India","2":"2024","3":"3.499488e+11"},{"1":"India","2":"2025","3":"3.181693e+11"},{"1":"Indonesia","2":"2024","3":"2.643844e+10"},{"1":"Indonesia","2":"2025","3":"2.035753e+10"},{"1":"Ireland","2":"2024","3":"1.477462e+10"},{"1":"Ireland","2":"2025","3":"2.337184e+10"},{"1":"Israel","2":"2024","3":"2.219832e+10"},{"1":"Israel","2":"2025","3":"2.103292e+10"},{"1":"Italy","2":"2024","3":"1.280751e+11"},{"1":"Italy","2":"2025","3":"1.622150e+11"},{"1":"Japan","2":"2024","3":"9.551953e+11"},{"1":"Japan","2":"2025","3":"9.705254e+11"},{"1":"Jordan","2":"2024","3":"NA"},{"1":"Jordan","2":"2025","3":"2.505483e+07"},{"1":"Kenya","2":"2024","3":"1.971347e+09"},{"1":"Kenya","2":"2025","3":"2.283814e+09"},{"1":"Kuwait","2":"2024","3":"8.290547e+09"},{"1":"Kuwait","2":"2025","3":"8.458605e+09"},{"1":"Kyrgyzstan","2":"2024","3":"3.658710e+05"},{"1":"Kyrgyzstan","2":"2025","3":"3.489810e+05"},{"1":"Latvia","2":"2024","3":"1.788783e+06"},{"1":"Latvia","2":"2025","3":"2.020076e+07"},{"1":"Liechtenstein","2":"2024","3":"8.963468e+06"},{"1":"Liechtenstein","2":"2025","3":"4.628144e+07"},{"1":"Lithuania","2":"2024","3":"1.311298e+08"},{"1":"Lithuania","2":"2025","3":"1.955251e+08"},{"1":"Luxembourg","2":"2024","3":"1.255531e+09"},{"1":"Luxembourg","2":"2025","3":"NA"},{"1":"Malaysia","2":"2024","3":"3.072466e+10"},{"1":"Malaysia","2":"2025","3":"2.825647e+10"},{"1":"Mexico","2":"2024","3":"3.081060e+10"},{"1":"Mexico","2":"2025","3":"3.756626e+10"},{"1":"Moldova","2":"2024","3":"3.305206e+07"},{"1":"Moldova","2":"2025","3":"NA"},{"1":"Morocco","2":"2024","3":"2.438214e+08"},{"1":"Morocco","2":"2025","3":"2.074894e+08"},{"1":"Netherlands","2":"2024","3":"2.575384e+11"},{"1":"Netherlands","2":"2025","3":"2.677235e+11"},{"1":"New Zealand","2":"2024","3":"1.183070e+10"},{"1":"New Zealand","2":"2025","3":"9.464122e+09"},{"1":"Panama","2":"2024","3":"5.419600e+05"},{"1":"Panama","2":"2025","3":"8.516025e+07"},{"1":"Peru","2":"2024","3":"9.030868e+07"},{"1":"Peru","2":"2025","3":"3.729966e+08"},{"1":"Philippines","2":"2024","3":"9.657049e+09"},{"1":"Philippines","2":"2025","3":"7.013953e+09"},{"1":"Poland","2":"2024","3":"1.396199e+10"},{"1":"Poland","2":"2025","3":"2.295480e+10"},{"1":"Portugal","2":"2024","3":"1.345966e+10"},{"1":"Portugal","2":"2025","3":"8.691770e+09"},{"1":"Qatar","2":"2024","3":"1.251470e+10"},{"1":"Qatar","2":"2025","3":"1.153257e+10"},{"1":"Romania","2":"2024","3":"3.507683e+08"},{"1":"Romania","2":"2025","3":"1.542550e+07"},{"1":"Russia","2":"2024","3":"2.361167e+09"},{"1":"Russia","2":"2025","3":"1.371423e+09"},{"1":"Singapore","2":"2024","3":"7.231306e+10"},{"1":"Singapore","2":"2025","3":"6.373859e+10"},{"1":"Slovenia","2":"2024","3":"8.290974e+08"},{"1":"Slovenia","2":"2025","3":"3.551770e+08"},{"1":"South Africa","2":"2024","3":"5.304343e+10"},{"1":"South Africa","2":"2025","3":"8.530207e+10"},{"1":"South Korea","2":"2024","3":"1.643228e+11"},{"1":"South Korea","2":"2025","3":"2.785010e+11"},{"1":"Spain","2":"2024","3":"1.305988e+11"},{"1":"Spain","2":"2025","3":"1.689165e+11"},{"1":"Sri Lanka","2":"2024","3":"1.040059e+09"},{"1":"Sri Lanka","2":"2025","3":"6.298300e+08"},{"1":"Sweden","2":"2024","3":"1.654022e+11"},{"1":"Sweden","2":"2025","3":"1.800494e+11"},{"1":"Switzerland","2":"2024","3":"4.578182e+11"},{"1":"Switzerland","2":"2025","3":"4.580753e+11"},{"1":"Taiwan","2":"2024","3":"3.487516e+11"},{"1":"Taiwan","2":"2025","3":"4.066431e+11"},{"1":"Thailand","2":"2024","3":"2.960946e+10"},{"1":"Thailand","2":"2025","3":"2.375458e+10"},{"1":"Türkiye","2":"2024","3":"1.787259e+10"},{"1":"Türkiye","2":"2025","3":"1.738380e+10"},{"1":"Ukraine","2":"2024","3":"1.212173e+07"},{"1":"Ukraine","2":"2025","3":"1.973770e+07"},{"1":"United Arab Emirates","2":"2024","3":"3.475033e+10"},{"1":"United Arab Emirates","2":"2025","3":"3.470169e+10"},{"1":"United Kingdom","2":"2024","3":"7.641186e+11"},{"1":"United Kingdom","2":"2025","3":"7.488452e+11"},{"1":"United States","2":"2024","3":"8.166284e+12"},{"1":"United States","2":"2025","3":"8.294346e+12"},{"1":"Vietnam","2":"2024","3":"7.942365e+09"},{"1":"Vietnam","2":"2025","3":"4.687653e+09"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p><code>anti_join()</code> answers “which keys on the left have no match on the right?” A missing match is not automatically safe to drop. It may reveal a spelling difference, a changed country name, a different definition, or genuinely missing reference data.</p>
-<p>Use these checks around a consequential join:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>left_only  <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(left_table, right_table, <span class="at">by =</span> <span class="st">"key"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>right_only <span class="ot">&lt;-</span> <span class="fu">anti_join</span>(right_table, left_table, <span class="at">by =</span> <span class="st">"key"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>joined <span class="ot">&lt;-</span> left_table <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(right_table, <span class="at">by =</span> <span class="st">"key"</span>, <span class="at">relationship =</span> <span class="st">"many-to-one"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(joined) <span class="sc">==</span> <span class="fu">nrow</span>(left_table))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>The essential arguments identify the columns to gather, the name of the new category column, and the name of the new value column.</p>
 </section>
-<section id="summarise-before-comparing-years" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="summarise-before-comparing-years"><span class="header-section-number">7.6</span> Summarise before comparing years</h2>
-<p>Company names are not stable identifiers across a decade. For the main trend analysis, aggregate to a defensible grain such as country-year:</p>
+<section id="use-the-combined-data-to-answer-trend-questions" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="use-the-combined-data-to-answer-trend-questions"><span class="header-section-number">7.9</span> Use the combined data to answer trend questions</h2>
+<p>Combining annual observations is not an end in itself. It allows us to ask:</p>
+<blockquote class="blockquote">
+<p>How did reported year-end equity market value change over the ten-year period?</p>
+</blockquote>
+<p>A trend requires several comparable time points. Before calculating it, make sure the row meaning, units, and categories are reasonably consistent across the years.</p>
+<section id="calculate-annual-totals" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-annual-totals">Calculate annual totals</h3>
+<p>Group the combined data by year and add the market values:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>country_year <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>annual <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(year, country)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>country_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>annual</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"2016","2":"Australia","3":"1.009225e+11","4":"288"},{"1":"2016","2":"Austria","3":"1.588864e+10","4":"34"},{"1":"2016","2":"Bahrain","3":"2.566640e+08","4":"1"},{"1":"2016","2":"Bangladesh","3":"9.602422e+08","4":"15"},{"1":"2016","2":"Belgium","3":"4.510874e+10","4":"52"},{"1":"2016","2":"Botswana","3":"5.057764e+07","4":"2"},{"1":"2016","2":"Brazil","3":"3.650548e+10","4":"122"},{"1":"2016","2":"Canada","3":"1.013023e+11","4":"253"},{"1":"2016","2":"Chile","3":"5.972937e+09","4":"32"},{"1":"2016","2":"China","3":"1.267706e+11","4":"515"},{"1":"2016","2":"Colombia","3":"2.616791e+09","4":"14"},{"1":"2016","2":"Croatia","3":"2.930380e+08","4":"10"},{"1":"2016","2":"Czech Republic","3":"5.114329e+08","4":"3"},{"1":"2016","2":"Denmark","3":"4.771729e+10","4":"44"},{"1":"2016","2":"Egypt","3":"1.981059e+09","4":"41"},{"1":"2016","2":"Estonia","3":"9.532192e+07","4":"6"},{"1":"2016","2":"Finland","3":"3.013288e+10","4":"57"},{"1":"2016","2":"France","3":"2.484587e+11","4":"225"},{"1":"2016","2":"Germany","3":"2.671861e+11","4":"198"},{"1":"2016","2":"Ghana","3":"1.720114e+07","4":"2"},{"1":"2016","2":"Greece","3":"3.603534e+09","4":"31"},{"1":"2016","2":"Hong Kong","3":"6.192814e+10","4":"212"},{"1":"2016","2":"Hungary","3":"5.726736e+08","4":"8"},{"1":"2016","2":"India","3":"4.551342e+10","4":"256"},{"1":"2016","2":"Indonesia","3":"1.185190e+10","4":"62"},{"1":"2016","2":"Ireland","3":"5.509198e+09","4":"16"},{"1":"2016","2":"Israel","3":"1.133451e+10","4":"81"},{"1":"2016","2":"Italy","3":"6.992189e+10","4":"117"},{"1":"2016","2":"Japan","3":"4.316595e+11","4":"1443"},{"1":"2016","2":"Jordan","3":"4.695255e+07","4":"1"},{"1":"2016","2":"Kazakhstan","3":"1.050211e+08","4":"2"},{"1":"2016","2":"Kenya","3":"9.732574e+08","4":"15"},{"1":"2016","2":"Kuwait","3":"9.567172e+08","4":"9"},{"1":"2016","2":"Latvia","3":"1.231392e+07","4":"3"},{"1":"2016","2":"Lithuania","3":"5.046178e+07","4":"5"},{"1":"2016","2":"Malaysia","3":"1.215526e+10","4":"196"},{"1":"2016","2":"Mauritius","3":"5.966648e+07","4":"2"},{"1":"2016","2":"Mexico","3":"1.674715e+10","4":"69"},{"1":"2016","2":"Morocco","3":"6.956126e+08","4":"17"},{"1":"2016","2":"Netherlands","3":"7.351131e+10","4":"64"},{"1":"2016","2":"New Zealand","3":"5.252237e+09","4":"40"},{"1":"2016","2":"Nigeria","3":"4.226886e+08","4":"11"},{"1":"2016","2":"Oman","3":"3.068594e+08","4":"4"},{"1":"2016","2":"Peru","3":"9.686456e+08","4":"25"},{"1":"2016","2":"Philippines","3":"6.129995e+09","4":"38"},{"1":"2016","2":"Poland","3":"5.797947e+09","4":"92"},{"1":"2016","2":"Portugal","3":"6.885181e+09","4":"20"},{"1":"2016","2":"Qatar","3":"6.643908e+08","4":"7"},{"1":"2016","2":"Romania","3":"8.288998e+08","4":"10"},{"1":"2016","2":"Russia","3":"2.320585e+10","4":"51"},{"1":"2016","2":"Saudi Arabia","3":"3.933159e+09","4":"34"},{"1":"2016","2":"Singapore","3":"2.337271e+10","4":"112"},{"1":"2016","2":"Slovenia","3":"7.064236e+07","4":"1"},{"1":"2016","2":"South Africa","3":"2.713818e+10","4":"93"},{"1":"2016","2":"South Korea","3":"7.776578e+10","4":"440"},{"1":"2016","2":"Spain","3":"7.707876e+10","4":"75"},{"1":"2016","2":"Sri Lanka","3":"5.656812e+08","4":"13"},{"1":"2016","2":"Sweden","3":"9.128385e+10","4":"155"},{"1":"2016","2":"Switzerland","3":"2.282706e+11","4":"126"},{"1":"2016","2":"Taiwan","3":"7.152579e+10","4":"435"},{"1":"2016","2":"Tanzania","3":"4.463506e+06","4":"1"},{"1":"2016","2":"Thailand","3":"1.594454e+10","4":"123"},{"1":"2016","2":"Tunisia","3":"1.598105e+08","4":"11"},{"1":"2016","2":"Turkey","3":"8.065186e+09","4":"48"},{"1":"2016","2":"Uganda","3":"1.204935e+07","4":"1"},{"1":"2016","2":"Ukraine","3":"2.504526e+08","4":"4"},{"1":"2016","2":"United Arab Emirates","3":"2.248982e+09","4":"15"},{"1":"2016","2":"United Kingdom","3":"4.769530e+11","4":"426"},{"1":"2016","2":"United States","3":"1.769204e+12","4":"2015"},{"1":"2016","2":"Vietnam","3":"2.217501e+09","4":"36"},{"1":"2017","2":"Australia","3":"1.229137e+11","4":"310"},{"1":"2017","2":"Austria","3":"1.808227e+10","4":"33"},{"1":"2017","2":"Bahrain","3":"4.648565e+08","4":"1"},{"1":"2017","2":"Bangladesh","3":"1.999157e+09","4":"20"},{"1":"2017","2":"Belgium","3":"4.892536e+10","4":"51"},{"1":"2017","2":"Brazil","3":"4.926451e+10","4":"133"},{"1":"2017","2":"Canada","3":"1.279340e+11","4":"223"},{"1":"2017","2":"Chile","3":"8.029434e+09","4":"33"},{"1":"2017","2":"China","3":"2.026933e+11","4":"564"},{"1":"2017","2":"Colombia","3":"2.641852e+09","4":"11"},{"1":"2017","2":"Croatia","3":"2.950260e+08","4":"12"},{"1":"2017","2":"Czech Republic","3":"2.646242e+08","4":"2"},{"1":"2017","2":"Denmark","3":"6.268710e+10","4":"46"},{"1":"2017","2":"Egypt","3":"3.062678e+09","4":"46"},{"1":"2017","2":"Estonia","3":"1.162831e+08","4":"6"},{"1":"2017","2":"Finland","3":"3.266087e+10","4":"53"},{"1":"2017","2":"France","3":"2.892697e+11","4":"229"},{"1":"2017","2":"Germany","3":"3.445476e+11","4":"193"},{"1":"2017","2":"Ghana","3":"1.442280e+07","4":"1"},{"1":"2017","2":"Greece","3":"4.580115e+09","4":"30"},{"1":"2017","2":"Hong Kong","3":"7.959382e+10","4":"216"},{"1":"2017","2":"Hungary","3":"4.305331e+08","4":"8"},{"1":"2017","2":"India","3":"6.630141e+10","4":"272"},{"1":"2017","2":"Indonesia","3":"1.600026e+10","4":"64"},{"1":"2017","2":"Ireland","3":"6.533189e+09","4":"16"},{"1":"2017","2":"Israel","3":"9.978449e+09","4":"85"},{"1":"2017","2":"Italy","3":"9.312989e+10","4":"126"},{"1":"2017","2":"Japan","3":"5.170735e+11","4":"1507"},{"1":"2017","2":"Jordan","3":"4.046573e+07","4":"1"},{"1":"2017","2":"Kenya","3":"9.575555e+08","4":"14"},{"1":"2017","2":"Kuwait","3":"1.065477e+09","4":"10"},{"1":"2017","2":"Latvia","3":"2.372751e+07","4":"4"},{"1":"2017","2":"Lithuania","3":"5.914820e+07","4":"7"},{"1":"2017","2":"Malaysia","3":"1.516052e+10","4":"173"},{"1":"2017","2":"Mauritius","3":"6.771558e+07","4":"1"},{"1":"2017","2":"Mexico","3":"1.992951e+10","4":"74"},{"1":"2017","2":"Morocco","3":"8.467394e+08","4":"18"},{"1":"2017","2":"Netherlands","3":"1.008029e+11","4":"62"},{"1":"2017","2":"New Zealand","3":"6.575372e+09","4":"44"},{"1":"2017","2":"Nigeria","3":"7.708169e+08","4":"10"},{"1":"2017","2":"Oman","3":"3.059772e+08","4":"3"},{"1":"2017","2":"Peru","3":"1.137781e+09","4":"29"},{"1":"2017","2":"Philippines","3":"9.189499e+09","4":"40"},{"1":"2017","2":"Poland","3":"7.861575e+09","4":"91"},{"1":"2017","2":"Portugal","3":"9.583579e+09","4":"22"},{"1":"2017","2":"Qatar","3":"2.629481e+08","4":"7"},{"1":"2017","2":"Romania","3":"7.096060e+08","4":"10"},{"1":"2017","2":"Russia","3":"2.270563e+10","4":"51"},{"1":"2017","2":"Saudi Arabia","3":"6.801263e+09","4":"42"},{"1":"2017","2":"Singapore","3":"2.774711e+10","4":"107"},{"1":"2017","2":"Slovenia","3":"3.538454e+08","4":"7"},{"1":"2017","2":"South Africa","3":"4.060899e+10","4":"97"},{"1":"2017","2":"South Korea","3":"1.104426e+11","4":"463"},{"1":"2017","2":"Spain","3":"1.000201e+11","4":"84"},{"1":"2017","2":"Sri Lanka","3":"6.971180e+08","4":"14"},{"1":"2017","2":"Sweden","3":"1.025496e+11","4":"155"},{"1":"2017","2":"Switzerland","3":"2.611674e+11","4":"128"},{"1":"2017","2":"Taiwan","3":"9.080568e+10","4":"436"},{"1":"2017","2":"Tanzania","3":"2.166889e+06","4":"1"},{"1":"2017","2":"Thailand","3":"2.289966e+10","4":"134"},{"1":"2017","2":"Tunisia","3":"1.746103e+08","4":"12"},{"1":"2017","2":"Turkey","3":"1.063125e+10","4":"51"},{"1":"2017","2":"Ukraine","3":"5.187171e+08","4":"2"},{"1":"2017","2":"United Arab Emirates","3":"2.503376e+09","4":"20"},{"1":"2017","2":"United Kingdom","3":"5.485807e+11","4":"403"},{"1":"2017","2":"United States","3":"2.042110e+12","4":"1944"},{"1":"2017","2":"Vietnam","3":"4.369173e+09","4":"44"},{"1":"2018","2":"Australia","3":"1.169376e+11","4":"312"},{"1":"2018","2":"Austria","3":"1.238783e+10","4":"32"},{"1":"2018","2":"Bahrain","3":"4.843142e+08","4":"1"},{"1":"2018","2":"Bangladesh","3":"1.757049e+09","4":"20"},{"1":"2018","2":"Belgium","3":"3.498734e+10","4":"50"},{"1":"2018","2":"Brazil","3":"5.345140e+10","4":"120"},{"1":"2018","2":"Canada","3":"1.185369e+11","4":"211"},{"1":"2018","2":"Chile","3":"7.420141e+09","4":"34"},{"1":"2018","2":"China","3":"1.977423e+11","4":"602"},{"1":"2018","2":"Colombia","3":"3.929061e+09","4":"15"},{"1":"2018","2":"Croatia","3":"2.984139e+08","4":"12"},{"1":"2018","2":"Czech Republic","3":"3.193222e+08","4":"3"},{"1":"2018","2":"Denmark","3":"5.140950e+10","4":"42"},{"1":"2018","2":"Egypt","3":"3.708595e+09","4":"56"},{"1":"2018","2":"Estonia","3":"9.087757e+07","4":"6"},{"1":"2018","2":"Finland","3":"4.145943e+10","4":"53"},{"1":"2018","2":"France","3":"2.783295e+11","4":"220"},{"1":"2018","2":"Germany","3":"2.679861e+11","4":"195"},{"1":"2018","2":"Ghana","3":"8.601907e+06","4":"1"},{"1":"2018","2":"Greece","3":"3.263759e+09","4":"34"},{"1":"2018","2":"Hong Kong","3":"6.923556e+10","4":"193"},{"1":"2018","2":"Hungary","3":"6.413125e+08","4":"9"},{"1":"2018","2":"Iceland","3":"1.264564e+07","4":"1"},{"1":"2018","2":"India","3":"6.404967e+10","4":"253"},{"1":"2018","2":"Indonesia","3":"1.515440e+10","4":"75"},{"1":"2018","2":"Ireland","3":"6.328229e+09","4":"19"},{"1":"2018","2":"Israel","3":"1.053571e+10","4":"80"},{"1":"2018","2":"Italy","3":"7.824695e+10","4":"131"},{"1":"2018","2":"Japan","3":"4.865980e+11","4":"1571"},{"1":"2018","2":"Jordan","3":"5.634832e+06","4":"1"},{"1":"2018","2":"Kenya","3":"9.187177e+08","4":"17"},{"1":"2018","2":"Kuwait","3":"1.324049e+09","4":"10"},{"1":"2018","2":"Latvia","3":"1.849653e+07","4":"4"},{"1":"2018","2":"Lithuania","3":"7.009570e+07","4":"7"},{"1":"2018","2":"Malaysia","3":"1.359146e+10","4":"152"},{"1":"2018","2":"Malta","3":"4.744336e+06","4":"1"},{"1":"2018","2":"Mauritius","3":"7.043740e+07","4":"1"},{"1":"2018","2":"Mexico","3":"1.774024e+10","4":"62"},{"1":"2018","2":"Moldova","3":"6.777447e+06","4":"1"},{"1":"2018","2":"Morocco","3":"8.590962e+08","4":"23"},{"1":"2018","2":"Netherlands","3":"9.403696e+10","4":"64"},{"1":"2018","2":"New Zealand","3":"6.757503e+09","4":"50"},{"1":"2018","2":"Nigeria","3":"7.546375e+08","4":"12"},{"1":"2018","2":"Oman","3":"3.756441e+08","4":"3"},{"1":"2018","2":"Peru","3":"1.890277e+09","4":"27"},{"1":"2018","2":"Philippines","3":"6.598828e+09","4":"36"},{"1":"2018","2":"Poland","3":"1.205729e+10","4":"114"},{"1":"2018","2":"Portugal","3":"8.418147e+09","4":"21"},{"1":"2018","2":"Qatar","3":"3.167478e+08","4":"6"},{"1":"2018","2":"Romania","3":"8.874944e+08","4":"10"},{"1":"2018","2":"Russia","3":"2.337929e+10","4":"48"},{"1":"2018","2":"Saudi Arabia","3":"9.000522e+09","4":"44"},{"1":"2018","2":"Singapore","3":"2.738803e+10","4":"105"},{"1":"2018","2":"Slovenia","3":"6.174747e+08","4":"7"},{"1":"2018","2":"South Africa","3":"3.678115e+10","4":"90"},{"1":"2018","2":"South Korea","3":"9.629843e+10","4":"501"},{"1":"2018","2":"Spain","3":"9.546982e+10","4":"85"},{"1":"2018","2":"Sri Lanka","3":"8.511327e+08","4":"16"},{"1":"2018","2":"Sweden","3":"9.011418e+10","4":"149"},{"1":"2018","2":"Switzerland","3":"2.450586e+11","4":"130"},{"1":"2018","2":"Taiwan","3":"9.034031e+10","4":"447"},{"1":"2018","2":"Tanzania","3":"4.883575e+06","4":"1"},{"1":"2018","2":"Thailand","3":"2.069104e+10","4":"104"},{"1":"2018","2":"Tunisia","3":"1.279295e+08","4":"12"},{"1":"2018","2":"Turkey","3":"6.126143e+09","4":"58"},{"1":"2018","2":"Ukraine","3":"5.473852e+08","4":"3"},{"1":"2018","2":"United Arab Emirates","3":"3.000816e+09","4":"19"},{"1":"2018","2":"United Kingdom","3":"5.123465e+11","4":"394"},{"1":"2018","2":"United States","3":"2.124600e+12","4":"1929"},{"1":"2018","2":"Vietnam","3":"3.991805e+09","4":"42"},{"1":"2019","2":"Australia","3":"1.451506e+11","4":"302"},{"1":"2019","2":"Austria","3":"1.417079e+10","4":"31"},{"1":"2019","2":"Bahrain","3":"3.422627e+08","4":"1"},{"1":"2019","2":"Bangladesh","3":"1.653080e+09","4":"22"},{"1":"2019","2":"Belgium","3":"4.360487e+10","4":"52"},{"1":"2019","2":"Botswana","3":"1.204658e+07","4":"2"},{"1":"2019","2":"Brazil","3":"6.724171e+10","4":"136"},{"1":"2019","2":"Canada","3":"1.564674e+11","4":"195"},{"1":"2019","2":"Chile","3":"6.835306e+09","4":"33"},{"1":"2019","2":"China","3":"3.087379e+11","4":"795"},{"1":"2019","2":"Colombia","3":"4.639286e+09","4":"15"},{"1":"2019","2":"Croatia","3":"3.696658e+08","4":"10"},{"1":"2019","2":"Cyprus","3":"2.454119e+07","4":"1"},{"1":"2019","2":"Czech Republic","3":"5.554111e+08","4":"3"},{"1":"2019","2":"Denmark","3":"7.095389e+10","4":"41"},{"1":"2019","2":"Egypt","3":"4.659491e+09","4":"41"},{"1":"2019","2":"Estonia","3":"8.429315e+07","4":"5"},{"1":"2019","2":"Finland","3":"4.623572e+10","4":"45"},{"1":"2019","2":"France","3":"3.685366e+11","4":"204"},{"1":"2019","2":"Germany","3":"3.433438e+11","4":"188"},{"1":"2019","2":"Ghana","3":"4.618073e+06","4":"1"},{"1":"2019","2":"Greece","3":"3.657323e+09","4":"30"},{"1":"2019","2":"Hong Kong","3":"8.173098e+10","4":"178"},{"1":"2019","2":"Hungary","3":"7.856151e+08","4":"8"},{"1":"2019","2":"Iceland","3":"1.054600e+08","4":"2"},{"1":"2019","2":"India","3":"8.272985e+10","4":"317"},{"1":"2019","2":"Indonesia","3":"1.639273e+10","4":"79"},{"1":"2019","2":"Ireland","3":"7.198055e+09","4":"15"},{"1":"2019","2":"Israel","3":"1.196791e+10","4":"84"},{"1":"2019","2":"Italy","3":"9.724740e+10","4":"146"},{"1":"2019","2":"Japan","3":"6.050955e+11","4":"1542"},{"1":"2019","2":"Kenya","3":"1.059541e+09","4":"12"},{"1":"2019","2":"Kuwait","3":"4.326603e+09","4":"14"},{"1":"2019","2":"Kyrgyzstan","3":"5.496142e+07","4":"1"},{"1":"2019","2":"Latvia","3":"1.740236e+07","4":"4"},{"1":"2019","2":"Lithuania","3":"9.894122e+07","4":"6"},{"1":"2019","2":"Malaysia","3":"1.810248e+10","4":"146"},{"1":"2019","2":"Mauritius","3":"1.215057e+08","4":"2"},{"1":"2019","2":"Mexico","3":"2.089407e+10","4":"60"},{"1":"2019","2":"Moldova","3":"3.484178e+07","4":"1"},{"1":"2019","2":"Morocco","3":"8.339564e+08","4":"22"},{"1":"2019","2":"Netherlands","3":"1.369133e+11","4":"59"},{"1":"2019","2":"New Zealand","3":"9.976201e+09","4":"47"},{"1":"2019","2":"Nigeria","3":"5.745562e+08","4":"13"},{"1":"2019","2":"Oman","3":"4.506974e+08","4":"3"},{"1":"2019","2":"Peru","3":"2.700987e+07","4":"5"},{"1":"2019","2":"Philippines","3":"9.063507e+09","4":"31"},{"1":"2019","2":"Poland","3":"1.430118e+10","4":"122"},{"1":"2019","2":"Portugal","3":"9.342312e+09","4":"20"},{"1":"2019","2":"Qatar","3":"7.355068e+08","4":"6"},{"1":"2019","2":"Romania","3":"8.699757e+08","4":"9"},{"1":"2019","2":"Russia","3":"3.168537e+10","4":"51"},{"1":"2019","2":"Saudi Arabia","3":"3.650691e+09","4":"37"},{"1":"2019","2":"Singapore","3":"3.457358e+10","4":"93"},{"1":"2019","2":"Slovenia","3":"8.401258e+08","4":"7"},{"1":"2019","2":"South Africa","3":"4.300318e+10","4":"101"},{"1":"2019","2":"South Korea","3":"1.128113e+11","4":"473"},{"1":"2019","2":"Spain","3":"1.172198e+11","4":"79"},{"1":"2019","2":"Sri Lanka","3":"1.004900e+09","4":"20"},{"1":"2019","2":"Sweden","3":"1.152769e+11","4":"146"},{"1":"2019","2":"Switzerland","3":"3.329859e+11","4":"130"},{"1":"2019","2":"Taiwan","3":"1.259979e+11","4":"448"},{"1":"2019","2":"Tanzania","3":"7.940186e+06","4":"1"},{"1":"2019","2":"Thailand","3":"2.766737e+10","4":"128"},{"1":"2019","2":"Tunisia","3":"1.472755e+08","4":"12"},{"1":"2019","2":"Turkey","3":"7.056890e+09","4":"53"},{"1":"2019","2":"Ukraine","3":"4.199597e+08","4":"3"},{"1":"2019","2":"United Arab Emirates","3":"7.799109e+09","4":"18"},{"1":"2019","2":"United Kingdom","3":"6.264961e+11","4":"375"},{"1":"2019","2":"United States","3":"2.841769e+12","4":"1877"},{"1":"2019","2":"Vietnam","3":"4.205032e+09","4":"43"},{"1":"2020","2":"Australia","3":"1.583210e+11","4":"308"},{"1":"2020","2":"Austria","3":"1.106622e+10","4":"32"},{"1":"2020","2":"Bahrain","3":"4.093318e+08","4":"1"},{"1":"2020","2":"Bangladesh","3":"2.126383e+09","4":"20"},{"1":"2020","2":"Belgium","3":"4.057583e+10","4":"52"},{"1":"2020","2":"Botswana","3":"7.286528e+06","4":"2"},{"1":"2020","2":"Brazil","3":"4.552401e+10","4":"151"},{"1":"2020","2":"Canada","3":"1.548205e+11","4":"173"},{"1":"2020","2":"Chile","3":"6.764082e+09","4":"36"},{"1":"2020","2":"China","3":"4.191423e+11","4":"736"},{"1":"2020","2":"Colombia","3":"3.036341e+09","4":"10"},{"1":"2020","2":"Croatia","3":"3.096338e+08","4":"8"},{"1":"2020","2":"Cyprus","3":"7.522090e+06","4":"1"},{"1":"2020","2":"Czech Republic","3":"5.864606e+08","4":"2"},{"1":"2020","2":"Denmark","3":"9.522037e+10","4":"42"},{"1":"2020","2":"Egypt","3":"4.826144e+09","4":"33"},{"1":"2020","2":"Estonia","3":"7.564930e+07","4":"5"},{"1":"2020","2":"Finland","3":"5.080823e+10","4":"48"},{"1":"2020","2":"France","3":"3.840968e+11","4":"197"},{"1":"2020","2":"Germany","3":"3.575987e+11","4":"199"},{"1":"2020","2":"Greece","3":"3.186502e+09","4":"32"},{"1":"2020","2":"Hong Kong","3":"8.525559e+10","4":"169"},{"1":"2020","2":"Hungary","3":"7.259560e+08","4":"6"},{"1":"2020","2":"Iceland","3":"1.595093e+07","4":"1"},{"1":"2020","2":"India","3":"1.038461e+11","4":"317"},{"1":"2020","2":"Indonesia","3":"1.569334e+10","4":"79"},{"1":"2020","2":"Ireland","3":"1.052042e+10","4":"14"},{"1":"2020","2":"Israel","3":"1.090351e+10","4":"81"},{"1":"2020","2":"Italy","3":"9.363161e+10","4":"141"},{"1":"2020","2":"Japan","3":"6.522880e+11","4":"1499"},{"1":"2020","2":"Kenya","3":"8.436080e+08","4":"12"},{"1":"2020","2":"Kuwait","3":"2.855157e+09","4":"13"},{"1":"2020","2":"Kyrgyzstan","3":"4.174176e+07","4":"1"},{"1":"2020","2":"Latvia","3":"2.167120e+07","4":"4"},{"1":"2020","2":"Lithuania","3":"2.164023e+08","4":"6"},{"1":"2020","2":"Malaysia","3":"1.942354e+10","4":"145"},{"1":"2020","2":"Mauritius","3":"7.385058e+07","4":"1"},{"1":"2020","2":"Mexico","3":"2.194601e+10","4":"63"},{"1":"2020","2":"Moldova","3":"3.605854e+07","4":"1"},{"1":"2020","2":"Morocco","3":"9.573239e+08","4":"24"},{"1":"2020","2":"Netherlands","3":"1.550901e+11","4":"58"},{"1":"2020","2":"New Zealand","3":"1.253913e+10","4":"50"},{"1":"2020","2":"Nigeria","3":"5.044756e+08","4":"13"},{"1":"2020","2":"Oman","3":"3.094774e+07","4":"2"},{"1":"2020","2":"Peru","3":"2.202158e+08","4":"6"},{"1":"2020","2":"Philippines","3":"8.851063e+09","4":"35"},{"1":"2020","2":"Poland","3":"1.488970e+10","4":"125"},{"1":"2020","2":"Portugal","3":"1.097420e+10","4":"17"},{"1":"2020","2":"Qatar","3":"4.979964e+09","4":"12"},{"1":"2020","2":"Romania","3":"8.494509e+08","4":"9"},{"1":"2020","2":"Russia","3":"2.333587e+10","4":"47"},{"1":"2020","2":"Saudi Arabia","3":"1.664850e+09","4":"24"},{"1":"2020","2":"Singapore","3":"3.353792e+10","4":"87"},{"1":"2020","2":"Slovenia","3":"8.143284e+08","4":"7"},{"1":"2020","2":"South Africa","3":"4.276332e+10","4":"92"},{"1":"2020","2":"South Korea","3":"1.576188e+11","4":"500"},{"1":"2020","2":"Spain","3":"1.133109e+11","4":"77"},{"1":"2020","2":"Sri Lanka","3":"9.039609e+08","4":"13"},{"1":"2020","2":"Sweden","3":"1.527430e+11","4":"149"},{"1":"2020","2":"Switzerland","3":"3.586415e+11","4":"130"},{"1":"2020","2":"Taiwan","3":"1.700972e+11","4":"472"},{"1":"2020","2":"Thailand","3":"2.503608e+10","4":"139"},{"1":"2020","2":"Tunisia","3":"1.102825e+08","4":"10"},{"1":"2020","2":"Turkey","3":"6.231629e+09","4":"34"},{"1":"2020","2":"Ukraine","3":"2.381186e+08","4":"3"},{"1":"2020","2":"United Arab Emirates","3":"6.791175e+09","4":"19"},{"1":"2020","2":"United Kingdom","3":"5.707066e+11","4":"367"},{"1":"2020","2":"United States","3":"3.336087e+12","4":"1928"},{"1":"2020","2":"Vietnam","3":"5.017359e+09","4":"33"},{"1":"2021","2":"Australia","3":"1.691584e+11","4":"341"},{"1":"2021","2":"Austria","3":"1.430744e+10","4":"34"},{"1":"2021","2":"Bahrain","3":"6.574463e+08","4":"1"},{"1":"2021","2":"Bangladesh","3":"1.868577e+09","4":"10"},{"1":"2021","2":"Belgium","3":"4.709241e+10","4":"52"},{"1":"2021","2":"Brazil","3":"3.994213e+10","4":"174"},{"1":"2021","2":"Canada","3":"1.807360e+11","4":"176"},{"1":"2021","2":"Chile","3":"4.977155e+09","4":"34"},{"1":"2021","2":"China","3":"3.350038e+11","4":"676"},{"1":"2021","2":"Colombia","3":"2.711948e+09","4":"11"},{"1":"2021","2":"Croatia","3":"2.738667e+08","4":"8"},{"1":"2021","2":"Cyprus","3":"9.941324e+06","4":"1"},{"1":"2021","2":"Czech Republic","3":"3.690771e+08","4":"2"},{"1":"2021","2":"Denmark","3":"1.048027e+11","4":"45"},{"1":"2021","2":"Egypt","3":"4.907715e+09","4":"33"},{"1":"2021","2":"Estonia","3":"1.106537e+08","4":"6"},{"1":"2021","2":"Finland","3":"6.652335e+10","4":"49"},{"1":"2021","2":"France","3":"4.339669e+11","4":"190"},{"1":"2021","2":"Germany","3":"3.628123e+11","4":"212"},{"1":"2021","2":"Greece","3":"3.308734e+09","4":"32"},{"1":"2021","2":"Hong Kong","3":"7.833681e+10","4":"156"},{"1":"2021","2":"Hungary","3":"1.742914e+09","4":"5"},{"1":"2021","2":"Iceland","3":"1.095274e+07","4":"1"},{"1":"2021","2":"India","3":"1.440901e+11","4":"375"},{"1":"2021","2":"Indonesia","3":"1.530954e+10","4":"83"},{"1":"2021","2":"Ireland","3":"9.265909e+09","4":"14"},{"1":"2021","2":"Israel","3":"1.409338e+10","4":"77"},{"1":"2021","2":"Italy","3":"1.038773e+11","4":"151"},{"1":"2021","2":"Japan","3":"6.299429e+11","4":"1515"},{"1":"2021","2":"Kenya","3":"1.605948e+09","4":"13"},{"1":"2021","2":"Kuwait","3":"4.205271e+09","4":"13"},{"1":"2021","2":"Kyrgyzstan","3":"4.279200e+07","4":"1"},{"1":"2021","2":"Latvia","3":"5.582674e+06","4":"2"},{"1":"2021","2":"Lithuania","3":"9.975192e+07","4":"4"},{"1":"2021","2":"Malaysia","3":"1.693068e+10","4":"147"},{"1":"2021","2":"Mexico","3":"2.329421e+10","4":"56"},{"1":"2021","2":"Moldova","3":"4.598710e+07","4":"1"},{"1":"2021","2":"Morocco","3":"8.947163e+07","4":"6"},{"1":"2021","2":"Netherlands","3":"2.088618e+11","4":"66"},{"1":"2021","2":"New Zealand","3":"1.029862e+10","4":"48"},{"1":"2021","2":"Nigeria","3":"2.644654e+08","4":"8"},{"1":"2021","2":"Peru","3":"2.966774e+08","4":"6"},{"1":"2021","2":"Philippines","3":"8.901816e+09","4":"40"},{"1":"2021","2":"Poland","3":"1.581246e+10","4":"109"},{"1":"2021","2":"Portugal","3":"9.217468e+09","4":"17"},{"1":"2021","2":"Qatar","3":"8.415210e+09","4":"16"},{"1":"2021","2":"Romania","3":"8.960136e+08","4":"10"},{"1":"2021","2":"Russia","3":"2.743163e+10","4":"51"},{"1":"2021","2":"Singapore","3":"3.520161e+10","4":"87"},{"1":"2021","2":"Slovenia","3":"8.680573e+08","4":"7"},{"1":"2021","2":"South Africa","3":"3.300678e+10","4":"83"},{"1":"2021","2":"South Korea","3":"1.519525e+11","4":"525"},{"1":"2021","2":"Spain","3":"1.065759e+11","4":"74"},{"1":"2021","2":"Sri Lanka","3":"7.050668e+08","4":"20"},{"1":"2021","2":"Sweden","3":"1.819348e+11","4":"174"},{"1":"2021","2":"Switzerland","3":"4.097376e+11","4":"134"},{"1":"2021","2":"Taiwan","3":"2.019290e+11","4":"473"},{"1":"2021","2":"Thailand","3":"2.525914e+10","4":"156"},{"1":"2021","2":"Tunisia","3":"1.715212e+07","4":"1"},{"1":"2021","2":"Turkey","3":"4.277675e+09","4":"42"},{"1":"2021","2":"Ukraine","3":"2.200908e+08","4":"3"},{"1":"2021","2":"United Arab Emirates","3":"1.017018e+10","4":"20"},{"1":"2021","2":"United Kingdom","3":"6.502782e+11","4":"370"},{"1":"2021","2":"United States","3":"3.972126e+12","4":"2060"},{"1":"2021","2":"Vietnam","3":"6.664180e+09","4":"31"},{"1":"2022","2":"Australia","3":"1.985025e+11","4":"371"},{"1":"2022","2":"Austria","3":"1.057128e+10","4":"30"},{"1":"2022","2":"Bahrain","3":"9.868250e+08","4":"1"},{"1":"2022","2":"Bangladesh","3":"1.527301e+09","4":"9"},{"1":"2022","2":"Belgium","3":"4.334820e+10","4":"49"},{"1":"2022","2":"Brazil","3":"4.587307e+10","4":"127"},{"1":"2022","2":"Canada","3":"1.831233e+11","4":"173"},{"1":"2022","2":"Chile","3":"7.459951e+09","4":"35"},{"1":"2022","2":"China","3":"3.283251e+11","4":"694"},{"1":"2022","2":"Colombia","3":"2.801309e+09","4":"12"},{"1":"2022","2":"Croatia","3":"1.654378e+08","4":"5"},{"1":"2022","2":"Czech Republic","3":"2.056165e+08","4":"3"},{"1":"2022","2":"Denmark","3":"1.139332e+11","4":"42"},{"1":"2022","2":"Egypt","3":"1.895663e+09","4":"18"},{"1":"2022","2":"Estonia","3":"9.694506e+07","4":"5"},{"1":"2022","2":"Finland","3":"6.575653e+10","4":"45"},{"1":"2022","2":"France","3":"4.192284e+11","4":"165"},{"1":"2022","2":"Germany","3":"3.262036e+11","4":"200"},{"1":"2022","2":"Greece","3":"4.142664e+09","4":"37"},{"1":"2022","2":"Hong Kong","3":"8.410802e+10","4":"133"},{"1":"2022","2":"Hungary","3":"1.610400e+09","4":"5"},{"1":"2022","2":"India","3":"1.740349e+11","4":"416"},{"1":"2022","2":"Indonesia","3":"2.264690e+10","4":"85"},{"1":"2022","2":"Ireland","3":"8.786102e+09","4":"10"},{"1":"2022","2":"Israel","3":"1.314063e+10","4":"70"},{"1":"2022","2":"Italy","3":"9.503138e+10","4":"144"},{"1":"2022","2":"Japan","3":"6.319608e+11","4":"1533"},{"1":"2022","2":"Kenya","3":"1.457826e+09","4":"12"},{"1":"2022","2":"Kuwait","3":"7.973117e+09","4":"13"},{"1":"2022","2":"Kyrgyzstan","3":"2.373102e+07","4":"1"},{"1":"2022","2":"Latvia","3":"2.436021e+06","4":"1"},{"1":"2022","2":"Lithuania","3":"6.881168e+07","4":"3"},{"1":"2022","2":"Malaysia","3":"1.868856e+10","4":"156"},{"1":"2022","2":"Mexico","3":"2.827444e+10","4":"55"},{"1":"2022","2":"Moldova","3":"2.868433e+07","4":"1"},{"1":"2022","2":"Morocco","3":"4.476931e+07","4":"2"},{"1":"2022","2":"Netherlands","3":"1.924990e+11","4":"62"},{"1":"2022","2":"New Zealand","3":"9.993701e+09","4":"48"},{"1":"2022","2":"Nigeria","3":"2.468258e+08","4":"6"},{"1":"2022","2":"Peru","3":"2.080182e+08","4":"6"},{"1":"2022","2":"Philippines","3":"8.066923e+09","4":"41"},{"1":"2022","2":"Poland","3":"1.253808e+10","4":"104"},{"1":"2022","2":"Portugal","3":"1.131658e+10","4":"15"},{"1":"2022","2":"Qatar","3":"1.092566e+10","4":"17"},{"1":"2022","2":"Romania","3":"6.737126e+08","4":"9"},{"1":"2022","2":"Russia","3":"2.872661e+09","4":"51"},{"1":"2022","2":"Singapore","3":"4.210491e+10","4":"87"},{"1":"2022","2":"Slovenia","3":"6.737458e+08","4":"6"},{"1":"2022","2":"South Africa","3":"3.484062e+10","4":"78"},{"1":"2022","2":"South Korea","3":"1.342965e+11","4":"550"},{"1":"2022","2":"Spain","3":"1.110857e+11","4":"72"},{"1":"2022","2":"Sri Lanka","3":"3.495791e+08","4":"22"},{"1":"2022","2":"Sweden","3":"1.430626e+11","4":"159"},{"1":"2022","2":"Switzerland","3":"3.881625e+11","4":"122"},{"1":"2022","2":"Taiwan","3":"1.686563e+11","4":"491"},{"1":"2022","2":"Thailand","3":"2.892030e+10","4":"161"},{"1":"2022","2":"Tunisia","3":"1.520221e+07","4":"1"},{"1":"2022","2":"Turkey","3":"1.198898e+10","4":"38"},{"1":"2022","2":"Ukraine","3":"1.374327e+08","4":"2"},{"1":"2022","2":"United Arab Emirates","3":"1.740199e+10","4":"31"},{"1":"2022","2":"United Kingdom","3":"6.110088e+11","4":"358"},{"1":"2022","2":"United States","3":"3.790665e+12","4":"1990"},{"1":"2022","2":"Vietnam","3":"5.100104e+09","4":"40"},{"1":"2023","2":"Australia","3":"2.254995e+11","4":"343"},{"1":"2023","2":"Austria","3":"1.390854e+10","4":"28"},{"1":"2023","2":"Bahrain","3":"2.908176e+08","4":"1"},{"1":"2023","2":"Bangladesh","3":"1.529051e+09","4":"10"},{"1":"2023","2":"Belgium","3":"5.478250e+10","4":"44"},{"1":"2023","2":"Brazil","3":"6.686221e+10","4":"126"},{"1":"2023","2":"Canada","3":"2.168681e+11","4":"158"},{"1":"2023","2":"Chile","3":"7.685667e+09","4":"32"},{"1":"2023","2":"China","3":"3.396105e+11","4":"710"},{"1":"2023","2":"Colombia","3":"2.488402e+09","4":"9"},{"1":"2023","2":"Croatia","3":"2.095347e+08","4":"4"},{"1":"2023","2":"Czech Republic","3":"1.669000e+08","4":"2"},{"1":"2023","2":"Denmark","3":"1.577311e+11","4":"39"},{"1":"2023","2":"Egypt","3":"1.367588e+09","4":"16"},{"1":"2023","2":"Estonia","3":"1.308279e+08","4":"5"},{"1":"2023","2":"Finland","3":"5.950382e+10","4":"39"},{"1":"2023","2":"France","3":"4.764485e+11","4":"138"},{"1":"2023","2":"Germany","3":"3.995604e+11","4":"185"},{"1":"2023","2":"Greece","3":"6.880656e+09","4":"35"},{"1":"2023","2":"Hong Kong","3":"7.197147e+10","4":"124"},{"1":"2023","2":"Hungary","3":"2.691215e+09","4":"7"},{"1":"2023","2":"India","3":"2.436467e+11","4":"459"},{"1":"2023","2":"Indonesia","3":"2.619682e+10","4":"87"},{"1":"2023","2":"Ireland","3":"1.027329e+10","4":"10"},{"1":"2023","2":"Israel","3":"1.531380e+10","4":"76"},{"1":"2023","2":"Italy","3":"1.134573e+11","4":"133"},{"1":"2023","2":"Japan","3":"7.912716e+11","4":"1481"},{"1":"2023","2":"Kenya","3":"9.362093e+08","4":"12"},{"1":"2023","2":"Kuwait","3":"6.994462e+09","4":"13"},{"1":"2023","2":"Kyrgyzstan","3":"1.337995e+07","4":"1"},{"1":"2023","2":"Latvia","3":"2.392063e+06","4":"1"},{"1":"2023","2":"Liechtenstein","3":"1.733084e+07","4":"1"},{"1":"2023","2":"Lithuania","3":"8.589096e+07","4":"3"},{"1":"2023","2":"Malaysia","3":"2.077018e+10","4":"180"},{"1":"2023","2":"Mexico","3":"3.964898e+10","4":"55"},{"1":"2023","2":"Moldova","3":"3.848189e+07","4":"1"},{"1":"2023","2":"Morocco","3":"1.501700e+08","4":"4"},{"1":"2023","2":"Netherlands","3":"2.473869e+11","4":"59"},{"1":"2023","2":"New Zealand","3":"1.085649e+10","4":"38"},{"1":"2023","2":"Nigeria","3":"1.898531e+08","4":"6"},{"1":"2023","2":"Panama","3":"2.531785e+06","4":"1"},{"1":"2023","2":"Peru","3":"4.426893e+07","4":"4"},{"1":"2023","2":"Philippines","3":"8.938015e+09","4":"38"},{"1":"2023","2":"Poland","3":"1.612962e+10","4":"102"},{"1":"2023","2":"Portugal","3":"1.765611e+10","4":"13"},{"1":"2023","2":"Qatar","3":"1.240289e+10","4":"17"},{"1":"2023","2":"Romania","3":"7.931170e+08","4":"8"},{"1":"2023","2":"Russia","3":"1.423129e+09","4":"52"},{"1":"2023","2":"Singapore","3":"5.011851e+10","4":"81"},{"1":"2023","2":"Slovenia","3":"6.963136e+08","4":"6"},{"1":"2023","2":"South Africa","3":"3.748498e+10","4":"86"},{"1":"2023","2":"South Korea","3":"1.963082e+11","4":"513"},{"1":"2023","2":"Spain","3":"1.365572e+11","4":"61"},{"1":"2023","2":"Sri Lanka","3":"5.709942e+08","4":"21"},{"1":"2023","2":"Sweden","3":"1.684331e+11","4":"145"},{"1":"2023","2":"Switzerland","3":"4.571607e+11","4":"114"},{"1":"2023","2":"Taiwan","3":"2.331807e+11","4":"496"},{"1":"2023","2":"Thailand","3":"2.730554e+10","4":"165"},{"1":"2023","2":"Tunisia","3":"1.481101e+07","4":"1"},{"1":"2023","2":"Türkiye","3":"1.326393e+10","4":"39"},{"1":"2023","2":"Ukraine","3":"3.491067e+07","4":"2"},{"1":"2023","2":"United Arab Emirates","3":"2.199512e+10","4":"36"},{"1":"2023","2":"United Kingdom","3":"7.020007e+11","4":"338"},{"1":"2023","2":"United States","3":"5.434238e+12","4":"1807"},{"1":"2023","2":"Vietnam","3":"6.099771e+09","4":"38"},{"1":"2024","2":"Australia","3":"2.377047e+11","4":"318"},{"1":"2024","2":"Austria","3":"1.203456e+10","4":"24"},{"1":"2024","2":"Bangladesh","3":"1.612038e+09","4":"12"},{"1":"2024","2":"Belgium","3":"5.161597e+10","4":"42"},{"1":"2024","2":"Brazil","3":"5.455247e+10","4":"111"},{"1":"2024","2":"Canada","3":"2.847346e+11","4":"143"},{"1":"2024","2":"Chile","3":"7.909071e+09","4":"34"},{"1":"2024","2":"China","3":"4.622155e+11","4":"651"},{"1":"2024","2":"Colombia","3":"1.689197e+09","4":"7"},{"1":"2024","2":"Croatia","3":"2.030633e+08","4":"3"},{"1":"2024","2":"Czech Republic","3":"4.617645e+07","4":"2"},{"1":"2024","2":"Denmark","3":"1.531341e+11","4":"41"},{"1":"2024","2":"Egypt","3":"1.139124e+09","4":"14"},{"1":"2024","2":"Estonia","3":"2.267632e+08","4":"5"},{"1":"2024","2":"Finland","3":"4.795752e+10","4":"39"},{"1":"2024","2":"France","3":"4.366455e+11","4":"132"},{"1":"2024","2":"Germany","3":"4.499493e+11","4":"177"},{"1":"2024","2":"Greece","3":"9.527346e+09","4":"41"},{"1":"2024","2":"Hong Kong","3":"8.128365e+10","4":"112"},{"1":"2024","2":"Hungary","3":"3.011921e+09","4":"7"},{"1":"2024","2":"India","3":"3.499488e+11","4":"550"},{"1":"2024","2":"Indonesia","3":"2.643844e+10","4":"86"},{"1":"2024","2":"Ireland","3":"1.477462e+10","4":"12"},{"1":"2024","2":"Israel","3":"2.219832e+10","4":"65"},{"1":"2024","2":"Italy","3":"1.280751e+11","4":"112"},{"1":"2024","2":"Japan","3":"9.551953e+11","4":"1436"},{"1":"2024","2":"Kenya","3":"1.971347e+09","4":"11"},{"1":"2024","2":"Kuwait","3":"8.290547e+09","4":"13"},{"1":"2024","2":"Kyrgyzstan","3":"3.658710e+05","4":"1"},{"1":"2024","2":"Latvia","3":"1.788783e+06","4":"1"},{"1":"2024","2":"Liechtenstein","3":"8.963468e+06","4":"1"},{"1":"2024","2":"Lithuania","3":"1.311298e+08","4":"3"},{"1":"2024","2":"Luxembourg","3":"1.255531e+09","4":"1"},{"1":"2024","2":"Malaysia","3":"3.072466e+10","4":"217"},{"1":"2024","2":"Mexico","3":"3.081060e+10","4":"53"},{"1":"2024","2":"Moldova","3":"3.305206e+07","4":"1"},{"1":"2024","2":"Morocco","3":"2.438214e+08","4":"4"},{"1":"2024","2":"Netherlands","3":"2.575384e+11","4":"58"},{"1":"2024","2":"New Zealand","3":"1.183070e+10","4":"34"},{"1":"2024","2":"Panama","3":"5.419600e+05","4":"1"},{"1":"2024","2":"Peru","3":"9.030868e+07","4":"4"},{"1":"2024","2":"Philippines","3":"9.657049e+09","4":"39"},{"1":"2024","2":"Poland","3":"1.396199e+10","4":"88"},{"1":"2024","2":"Portugal","3":"1.345966e+10","4":"10"},{"1":"2024","2":"Qatar","3":"1.251470e+10","4":"16"},{"1":"2024","2":"Romania","3":"3.507683e+08","4":"4"},{"1":"2024","2":"Russia","3":"2.361167e+09","4":"49"},{"1":"2024","2":"Singapore","3":"7.231306e+10","4":"66"},{"1":"2024","2":"Slovenia","3":"8.290974e+08","4":"6"},{"1":"2024","2":"South Africa","3":"5.304343e+10","4":"94"},{"1":"2024","2":"South Korea","3":"1.643228e+11","4":"485"},{"1":"2024","2":"Spain","3":"1.305988e+11","4":"55"},{"1":"2024","2":"Sri Lanka","3":"1.040059e+09","4":"17"},{"1":"2024","2":"Sweden","3":"1.654022e+11","4":"151"},{"1":"2024","2":"Switzerland","3":"4.578182e+11","4":"111"},{"1":"2024","2":"Taiwan","3":"3.487516e+11","4":"508"},{"1":"2024","2":"Thailand","3":"2.960946e+10","4":"166"},{"1":"2024","2":"Türkiye","3":"1.787259e+10","4":"44"},{"1":"2024","2":"Ukraine","3":"1.212173e+07","4":"1"},{"1":"2024","2":"United Arab Emirates","3":"3.475033e+10","4":"42"},{"1":"2024","2":"United Kingdom","3":"7.641186e+11","4":"325"},{"1":"2024","2":"United States","3":"8.166284e+12","4":"1758"},{"1":"2024","2":"Vietnam","3":"7.942365e+09","4":"45"},{"1":"2025","2":"Australia","3":"2.400520e+11","4":"291"},{"1":"2025","2":"Austria","3":"1.725468e+10","4":"21"},{"1":"2025","2":"Bangladesh","3":"1.181396e+09","4":"6"},{"1":"2025","2":"Belgium","3":"6.010034e+10","4":"36"},{"1":"2025","2":"Brazil","3":"5.716985e+10","4":"90"},{"1":"2025","2":"Canada","3":"3.764633e+11","4":"142"},{"1":"2025","2":"Chile","3":"1.148435e+10","4":"34"},{"1":"2025","2":"China","3":"5.441163e+11","4":"638"},{"1":"2025","2":"Colombia","3":"2.051164e+09","4":"8"},{"1":"2025","2":"Czech Republic","3":"5.457331e+07","4":"2"},{"1":"2025","2":"Denmark","3":"1.093733e+11","4":"37"},{"1":"2025","2":"Egypt","3":"1.316847e+09","4":"9"},{"1":"2025","2":"Finland","3":"6.442476e+10","4":"31"},{"1":"2025","2":"France","3":"4.284206e+11","4":"116"},{"1":"2025","2":"Germany","3":"4.741372e+11","4":"136"},{"1":"2025","2":"Greece","3":"1.437266e+10","4":"29"},{"1":"2025","2":"Hong Kong","3":"8.864960e+10","4":"106"},{"1":"2025","2":"Hungary","3":"4.488846e+09","4":"8"},{"1":"2025","2":"India","3":"3.181693e+11","4":"573"},{"1":"2025","2":"Indonesia","3":"2.035753e+10","4":"76"},{"1":"2025","2":"Ireland","3":"2.337184e+10","4":"9"},{"1":"2025","2":"Israel","3":"2.103292e+10","4":"29"},{"1":"2025","2":"Italy","3":"1.622150e+11","4":"96"},{"1":"2025","2":"Japan","3":"9.705254e+11","4":"1096"},{"1":"2025","2":"Jordan","3":"2.505483e+07","4":"1"},{"1":"2025","2":"Kenya","3":"2.283814e+09","4":"11"},{"1":"2025","2":"Kuwait","3":"8.458605e+09","4":"13"},{"1":"2025","2":"Kyrgyzstan","3":"3.489810e+05","4":"1"},{"1":"2025","2":"Latvia","3":"2.020076e+07","4":"1"},{"1":"2025","2":"Liechtenstein","3":"4.628144e+07","4":"1"},{"1":"2025","2":"Lithuania","3":"1.955251e+08","4":"1"},{"1":"2025","2":"Malaysia","3":"2.825647e+10","4":"200"},{"1":"2025","2":"Mexico","3":"3.756626e+10","4":"44"},{"1":"2025","2":"Morocco","3":"2.074894e+08","4":"2"},{"1":"2025","2":"Netherlands","3":"2.677235e+11","4":"48"},{"1":"2025","2":"New Zealand","3":"9.464122e+09","4":"28"},{"1":"2025","2":"Panama","3":"8.516025e+07","4":"1"},{"1":"2025","2":"Peru","3":"3.729966e+08","4":"4"},{"1":"2025","2":"Philippines","3":"7.013953e+09","4":"36"},{"1":"2025","2":"Poland","3":"2.295480e+10","4":"74"},{"1":"2025","2":"Portugal","3":"8.691770e+09","4":"8"},{"1":"2025","2":"Qatar","3":"1.153257e+10","4":"16"},{"1":"2025","2":"Romania","3":"1.542550e+07","4":"1"},{"1":"2025","2":"Russia","3":"1.371423e+09","4":"46"},{"1":"2025","2":"Singapore","3":"6.373859e+10","4":"63"},{"1":"2025","2":"Slovenia","3":"3.551770e+08","4":"1"},{"1":"2025","2":"South Africa","3":"8.530207e+10","4":"75"},{"1":"2025","2":"South Korea","3":"2.785010e+11","4":"410"},{"1":"2025","2":"Spain","3":"1.689165e+11","4":"45"},{"1":"2025","2":"Sri Lanka","3":"6.298300e+08","4":"11"},{"1":"2025","2":"Sweden","3":"1.800494e+11","4":"132"},{"1":"2025","2":"Switzerland","3":"4.580753e+11","4":"94"},{"1":"2025","2":"Taiwan","3":"4.066431e+11","4":"339"},{"1":"2025","2":"Thailand","3":"2.375458e+10","4":"152"},{"1":"2025","2":"Türkiye","3":"1.738380e+10","4":"79"},{"1":"2025","2":"Ukraine","3":"1.973770e+07","4":"1"},{"1":"2025","2":"United Arab Emirates","3":"3.470169e+10","4":"46"},{"1":"2025","2":"United Kingdom","3":"7.488452e+11","4":"248"},{"1":"2025","2":"United States","3":"8.294346e+12","4":"1306"},{"1":"2025","2":"Vietnam","3":"4.687653e+09","4":"43"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[2],"type":["int"],"align":["right"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2016","2":"8985","3":"4.706485e+12"},{"1":"2017","2":"9106","3":"5.680528e+12"},{"1":"2018","2":"9157","3":"5.478749e+12"},{"1":"2019","2":"9202","3":"7.152951e+12"},{"1":"2020","2":"9123","3":"7.972384e+12"},{"1":"2021","2":"9338","3":"8.897850e+12"},{"1":"2022","2":"9228","3":"8.579839e+12"},{"1":"2023","2":"8859","3":"1.117629e+13"},{"1":"2024","2":"8659","3":"1.460377e+13"},{"1":"2025","2":"7201","3":"1.518302e+13"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>One row now represents one country in one year.</p>
+<p>One row now represents one annual snapshot. Ordering by year matters because the next calculation compares each row with the row before it.</p>
 </section>
-<section id="pivot-to-compare-columns" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="pivot-to-compare-columns"><span class="header-section-number">7.7</span> Pivot to compare columns</h2>
-<p>Long data are usually easiest for analysis and plotting. Wide data can make a two-year comparison easier to read:</p>
+<section id="calculate-year-to-year-change" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-year-to-year-change">Calculate year-to-year change</h3>
+<p><code>lag()</code> returns the previous value in a column. Add it first so the comparison is visible:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>country_change <span class="ot">&lt;-</span> country_year <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(start_year, end_year)) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">period =</span> <span class="fu">if_else</span>(year <span class="sc">==</span> start_year, <span class="st">"start"</span>, <span class="st">"end"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(period, country, market_value_nok) <span class="sc">|&gt;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> period,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> market_value_nok,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">"value_"</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">absolute_change_nok =</span> value_end <span class="sc">-</span> value_start,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_change =</span> absolute_change_nok <span class="sc">/</span> value_start</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>country_change <span class="sc">|&gt;</span></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(absolute_change_nok)) <span class="sc">|&gt;</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>annual_change <span class="ot">&lt;-</span> annual <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">previous_year_value =</span> <span class="fu">lag</span>(market_value_nok))</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>annual_change</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["value_start"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["value_end"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["absolute_change_nok"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["percent_change"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"United States","2":"1.769204e+12","3":"8.294346e+12","4":"6.525142e+12","5":"3.6881784"},{"1":"Japan","2":"4.316595e+11","3":"9.705254e+11","4":"5.388658e+11","5":"1.2483585"},{"1":"China","2":"1.267706e+11","3":"5.441163e+11","4":"4.173457e+11","5":"3.2921345"},{"1":"Taiwan","2":"7.152579e+10","3":"4.066431e+11","4":"3.351174e+11","5":"4.6852657"},{"1":"Canada","2":"1.013023e+11","3":"3.764633e+11","4":"2.751611e+11","5":"2.7162379"},{"1":"India","2":"4.551342e+10","3":"3.181693e+11","4":"2.726559e+11","5":"5.9906702"},{"1":"United Kingdom","2":"4.769530e+11","3":"7.488452e+11","4":"2.718922e+11","5":"0.5700608"},{"1":"Switzerland","2":"2.282706e+11","3":"4.580753e+11","4":"2.298047e+11","5":"1.0067204"},{"1":"Germany","2":"2.671861e+11","3":"4.741372e+11","4":"2.069511e+11","5":"0.7745581"},{"1":"South Korea","2":"7.776578e+10","3":"2.785010e+11","4":"2.007352e+11","5":"2.5812795"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[2],"type":["int"],"align":["right"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["previous_year_value"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2016","2":"8985","3":"4.706485e+12","4":"NA"},{"1":"2017","2":"9106","3":"5.680528e+12","4":"4.706485e+12"},{"1":"2018","2":"9157","3":"5.478749e+12","4":"5.680528e+12"},{"1":"2019","2":"9202","3":"7.152951e+12","4":"5.478749e+12"},{"1":"2020","2":"9123","3":"7.972384e+12","4":"7.152951e+12"},{"1":"2021","2":"9338","3":"8.897850e+12","4":"7.972384e+12"},{"1":"2022","2":"9228","3":"8.579839e+12","4":"8.897850e+12"},{"1":"2023","2":"8859","3":"1.117629e+13","4":"8.579839e+12"},{"1":"2024","2":"8659","3":"1.460377e+13","4":"1.117629e+13"},{"1":"2025","2":"7201","3":"1.518302e+13","4":"1.460377e+13"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>Inspect missing values after the pivot. A country present in the latest year but absent in the starting year has no valid percent change because the denominator is missing or zero.</p>
-<p>Return to long form with:</p>
+<p>The first row contains <code>NA</code> because this file has no earlier year with which to compare it. Now calculate absolute and percentage change:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>country_change <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, value_start, value_end) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"value_"</span>),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_prefix =</span> <span class="st">"value_"</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"market_value_nok"</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">if_else</span>(year <span class="sc">==</span> <span class="st">"start"</span>, start_year, end_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>annual_change <span class="ot">&lt;-</span> annual_change <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">change_nok =</span> market_value_nok <span class="sc">-</span> previous_year_value,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">change_percent =</span> change_nok <span class="sc">/</span> previous_year_value <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>annual_change</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Australia","2":"2016","3":"1.009225e+11"},{"1":"Australia","2":"2025","3":"2.400520e+11"},{"1":"Austria","2":"2016","3":"1.588864e+10"},{"1":"Austria","2":"2025","3":"1.725468e+10"},{"1":"Bahrain","2":"2016","3":"2.566640e+08"},{"1":"Bahrain","2":"2025","3":"NA"},{"1":"Bangladesh","2":"2016","3":"9.602422e+08"},{"1":"Bangladesh","2":"2025","3":"1.181396e+09"},{"1":"Belgium","2":"2016","3":"4.510874e+10"},{"1":"Belgium","2":"2025","3":"6.010034e+10"},{"1":"Botswana","2":"2016","3":"5.057764e+07"},{"1":"Botswana","2":"2025","3":"NA"},{"1":"Brazil","2":"2016","3":"3.650548e+10"},{"1":"Brazil","2":"2025","3":"5.716985e+10"},{"1":"Canada","2":"2016","3":"1.013023e+11"},{"1":"Canada","2":"2025","3":"3.764633e+11"},{"1":"Chile","2":"2016","3":"5.972937e+09"},{"1":"Chile","2":"2025","3":"1.148435e+10"},{"1":"China","2":"2016","3":"1.267706e+11"},{"1":"China","2":"2025","3":"5.441163e+11"},{"1":"Colombia","2":"2016","3":"2.616791e+09"},{"1":"Colombia","2":"2025","3":"2.051164e+09"},{"1":"Croatia","2":"2016","3":"2.930380e+08"},{"1":"Croatia","2":"2025","3":"NA"},{"1":"Czech Republic","2":"2016","3":"5.114329e+08"},{"1":"Czech Republic","2":"2025","3":"5.457331e+07"},{"1":"Denmark","2":"2016","3":"4.771729e+10"},{"1":"Denmark","2":"2025","3":"1.093733e+11"},{"1":"Egypt","2":"2016","3":"1.981059e+09"},{"1":"Egypt","2":"2025","3":"1.316847e+09"},{"1":"Estonia","2":"2016","3":"9.532192e+07"},{"1":"Estonia","2":"2025","3":"NA"},{"1":"Finland","2":"2016","3":"3.013288e+10"},{"1":"Finland","2":"2025","3":"6.442476e+10"},{"1":"France","2":"2016","3":"2.484587e+11"},{"1":"France","2":"2025","3":"4.284206e+11"},{"1":"Germany","2":"2016","3":"2.671861e+11"},{"1":"Germany","2":"2025","3":"4.741372e+11"},{"1":"Ghana","2":"2016","3":"1.720114e+07"},{"1":"Ghana","2":"2025","3":"NA"},{"1":"Greece","2":"2016","3":"3.603534e+09"},{"1":"Greece","2":"2025","3":"1.437266e+10"},{"1":"Hong Kong","2":"2016","3":"6.192814e+10"},{"1":"Hong Kong","2":"2025","3":"8.864960e+10"},{"1":"Hungary","2":"2016","3":"5.726736e+08"},{"1":"Hungary","2":"2025","3":"4.488846e+09"},{"1":"India","2":"2016","3":"4.551342e+10"},{"1":"India","2":"2025","3":"3.181693e+11"},{"1":"Indonesia","2":"2016","3":"1.185190e+10"},{"1":"Indonesia","2":"2025","3":"2.035753e+10"},{"1":"Ireland","2":"2016","3":"5.509198e+09"},{"1":"Ireland","2":"2025","3":"2.337184e+10"},{"1":"Israel","2":"2016","3":"1.133451e+10"},{"1":"Israel","2":"2025","3":"2.103292e+10"},{"1":"Italy","2":"2016","3":"6.992189e+10"},{"1":"Italy","2":"2025","3":"1.622150e+11"},{"1":"Japan","2":"2016","3":"4.316595e+11"},{"1":"Japan","2":"2025","3":"9.705254e+11"},{"1":"Jordan","2":"2016","3":"4.695255e+07"},{"1":"Jordan","2":"2025","3":"2.505483e+07"},{"1":"Kazakhstan","2":"2016","3":"1.050211e+08"},{"1":"Kazakhstan","2":"2025","3":"NA"},{"1":"Kenya","2":"2016","3":"9.732574e+08"},{"1":"Kenya","2":"2025","3":"2.283814e+09"},{"1":"Kuwait","2":"2016","3":"9.567172e+08"},{"1":"Kuwait","2":"2025","3":"8.458605e+09"},{"1":"Latvia","2":"2016","3":"1.231392e+07"},{"1":"Latvia","2":"2025","3":"2.020076e+07"},{"1":"Lithuania","2":"2016","3":"5.046178e+07"},{"1":"Lithuania","2":"2025","3":"1.955251e+08"},{"1":"Malaysia","2":"2016","3":"1.215526e+10"},{"1":"Malaysia","2":"2025","3":"2.825647e+10"},{"1":"Mauritius","2":"2016","3":"5.966648e+07"},{"1":"Mauritius","2":"2025","3":"NA"},{"1":"Mexico","2":"2016","3":"1.674715e+10"},{"1":"Mexico","2":"2025","3":"3.756626e+10"},{"1":"Morocco","2":"2016","3":"6.956126e+08"},{"1":"Morocco","2":"2025","3":"2.074894e+08"},{"1":"Netherlands","2":"2016","3":"7.351131e+10"},{"1":"Netherlands","2":"2025","3":"2.677235e+11"},{"1":"New Zealand","2":"2016","3":"5.252237e+09"},{"1":"New Zealand","2":"2025","3":"9.464122e+09"},{"1":"Nigeria","2":"2016","3":"4.226886e+08"},{"1":"Nigeria","2":"2025","3":"NA"},{"1":"Oman","2":"2016","3":"3.068594e+08"},{"1":"Oman","2":"2025","3":"NA"},{"1":"Peru","2":"2016","3":"9.686456e+08"},{"1":"Peru","2":"2025","3":"3.729966e+08"},{"1":"Philippines","2":"2016","3":"6.129995e+09"},{"1":"Philippines","2":"2025","3":"7.013953e+09"},{"1":"Poland","2":"2016","3":"5.797947e+09"},{"1":"Poland","2":"2025","3":"2.295480e+10"},{"1":"Portugal","2":"2016","3":"6.885181e+09"},{"1":"Portugal","2":"2025","3":"8.691770e+09"},{"1":"Qatar","2":"2016","3":"6.643908e+08"},{"1":"Qatar","2":"2025","3":"1.153257e+10"},{"1":"Romania","2":"2016","3":"8.288998e+08"},{"1":"Romania","2":"2025","3":"1.542550e+07"},{"1":"Russia","2":"2016","3":"2.320585e+10"},{"1":"Russia","2":"2025","3":"1.371423e+09"},{"1":"Saudi Arabia","2":"2016","3":"3.933159e+09"},{"1":"Saudi Arabia","2":"2025","3":"NA"},{"1":"Singapore","2":"2016","3":"2.337271e+10"},{"1":"Singapore","2":"2025","3":"6.373859e+10"},{"1":"Slovenia","2":"2016","3":"7.064236e+07"},{"1":"Slovenia","2":"2025","3":"3.551770e+08"},{"1":"South Africa","2":"2016","3":"2.713818e+10"},{"1":"South Africa","2":"2025","3":"8.530207e+10"},{"1":"South Korea","2":"2016","3":"7.776578e+10"},{"1":"South Korea","2":"2025","3":"2.785010e+11"},{"1":"Spain","2":"2016","3":"7.707876e+10"},{"1":"Spain","2":"2025","3":"1.689165e+11"},{"1":"Sri Lanka","2":"2016","3":"5.656812e+08"},{"1":"Sri Lanka","2":"2025","3":"6.298300e+08"},{"1":"Sweden","2":"2016","3":"9.128385e+10"},{"1":"Sweden","2":"2025","3":"1.800494e+11"},{"1":"Switzerland","2":"2016","3":"2.282706e+11"},{"1":"Switzerland","2":"2025","3":"4.580753e+11"},{"1":"Taiwan","2":"2016","3":"7.152579e+10"},{"1":"Taiwan","2":"2025","3":"4.066431e+11"},{"1":"Tanzania","2":"2016","3":"4.463506e+06"},{"1":"Tanzania","2":"2025","3":"NA"},{"1":"Thailand","2":"2016","3":"1.594454e+10"},{"1":"Thailand","2":"2025","3":"2.375458e+10"},{"1":"Tunisia","2":"2016","3":"1.598105e+08"},{"1":"Tunisia","2":"2025","3":"NA"},{"1":"Turkey","2":"2016","3":"8.065186e+09"},{"1":"Turkey","2":"2025","3":"NA"},{"1":"Uganda","2":"2016","3":"1.204935e+07"},{"1":"Uganda","2":"2025","3":"NA"},{"1":"Ukraine","2":"2016","3":"2.504526e+08"},{"1":"Ukraine","2":"2025","3":"1.973770e+07"},{"1":"United Arab Emirates","2":"2016","3":"2.248982e+09"},{"1":"United Arab Emirates","2":"2025","3":"3.470169e+10"},{"1":"United Kingdom","2":"2016","3":"4.769530e+11"},{"1":"United Kingdom","2":"2025","3":"7.488452e+11"},{"1":"United States","2":"2016","3":"1.769204e+12"},{"1":"United States","2":"2025","3":"8.294346e+12"},{"1":"Vietnam","2":"2016","3":"2.217501e+09"},{"1":"Vietnam","2":"2025","3":"4.687653e+09"},{"1":"Kyrgyzstan","2":"2016","3":"NA"},{"1":"Kyrgyzstan","2":"2025","3":"3.489810e+05"},{"1":"Liechtenstein","2":"2016","3":"NA"},{"1":"Liechtenstein","2":"2025","3":"4.628144e+07"},{"1":"Panama","2":"2016","3":"NA"},{"1":"Panama","2":"2025","3":"8.516025e+07"},{"1":"Türkiye","2":"2016","3":"NA"},{"1":"Türkiye","2":"2025","3":"1.738380e+10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[2],"type":["int"],"align":["right"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["previous_year_value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["change_nok"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["change_percent"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"2016","2":"8985","3":"4.706485e+12","4":"NA","5":"NA","6":"NA"},{"1":"2017","2":"9106","3":"5.680528e+12","4":"4.706485e+12","5":"974042921862","6":"20.695760"},{"1":"2018","2":"9157","3":"5.478749e+12","4":"5.680528e+12","5":"-201779227558","6":"-3.552121"},{"1":"2019","2":"9202","3":"7.152951e+12","4":"5.478749e+12","5":"1674202345137","6":"30.558114"},{"1":"2020","2":"9123","3":"7.972384e+12","4":"7.152951e+12","5":"819432984732","6":"11.455872"},{"1":"2021","2":"9338","3":"8.897850e+12","4":"7.972384e+12","5":"925465437459","6":"11.608390"},{"1":"2022","2":"9228","3":"8.579839e+12","4":"8.897850e+12","5":"-318010278905","6":"-3.574013"},{"1":"2023","2":"8859","3":"1.117629e+13","4":"8.579839e+12","5":"2596451665686","6":"30.262241"},{"1":"2024","2":"8659","3":"1.460377e+13","4":"1.117629e+13","5":"3427478307324","6":"30.667404"},{"1":"2025","2":"7201","3":"1.518302e+13","4":"1.460377e+13","5":"579249942888","6":"3.966441"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Sort before using lag()">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sort before using lag()
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>lag()</code> uses the current row order. Arrange a time series by year before calculating change, even when the source appears to be correctly ordered.</p>
+</div>
+</div>
 </section>
-<section id="what-a-join-cannot-solve" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="what-a-join-cannot-solve"><span class="header-section-number">7.8</span> What a join cannot solve</h2>
-<p>A join matches labels; it does not prove that the matched records represent the same real-world entity. Over ten years, company names can change because of mergers, demergers, punctuation, rebranding, or data-entry conventions. Only 3,285 published names appear in all ten teaching snapshots.</p>
-<p>For beginner analysis, use country-, region-, or carefully defined industry-level trends. Treat company-level longitudinal matching as an advanced record-linkage project requiring external identifiers and manual verification.</p>
+<section id="follow-the-same-markets-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="follow-the-same-markets-over-time">Follow the same markets over time</h3>
+<p>Choose a small, fixed set of markets so every year refers to the same groups:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>selected_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"China"</span>, <span class="st">"Japan"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>country_trends <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> selected_countries) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, country) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(country, year)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>country_trends</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2016","2":"China","3":"1.267706e+11"},{"1":"2017","2":"China","3":"2.026933e+11"},{"1":"2018","2":"China","3":"1.977423e+11"},{"1":"2019","2":"China","3":"3.087379e+11"},{"1":"2020","2":"China","3":"4.191423e+11"},{"1":"2021","2":"China","3":"3.350038e+11"},{"1":"2022","2":"China","3":"3.283251e+11"},{"1":"2023","2":"China","3":"3.396105e+11"},{"1":"2024","2":"China","3":"4.622155e+11"},{"1":"2025","2":"China","3":"5.441163e+11"},{"1":"2016","2":"Japan","3":"4.316595e+11"},{"1":"2017","2":"Japan","3":"5.170735e+11"},{"1":"2018","2":"Japan","3":"4.865980e+11"},{"1":"2019","2":"Japan","3":"6.050955e+11"},{"1":"2020","2":"Japan","3":"6.522880e+11"},{"1":"2021","2":"Japan","3":"6.299429e+11"},{"1":"2022","2":"Japan","3":"6.319608e+11"},{"1":"2023","2":"Japan","3":"7.912716e+11"},{"1":"2024","2":"Japan","3":"9.551953e+11"},{"1":"2025","2":"Japan","3":"9.705254e+11"},{"1":"2016","2":"United States","3":"1.769204e+12"},{"1":"2017","2":"United States","3":"2.042110e+12"},{"1":"2018","2":"United States","3":"2.124600e+12"},{"1":"2019","2":"United States","3":"2.841769e+12"},{"1":"2020","2":"United States","3":"3.336087e+12"},{"1":"2021","2":"United States","3":"3.972126e+12"},{"1":"2022","2":"United States","3":"3.790665e+12"},{"1":"2023","2":"United States","3":"5.434238e+12"},{"1":"2024","2":"United States","3":"8.166284e+12"},{"1":"2025","2":"United States","3":"8.294346e+12"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Selecting a different set of leading markets in every year would change the membership of the comparison and make the pattern harder to interpret.</p>
 </section>
-<section id="independent-task" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">7.9</span> Independent task</h2>
-<p>Choose three countries and create a country-year table for the rolling ten-year period. Then:</p>
+<section id="compare-amounts-and-shares" class="level3">
+<h3 class="anchored" data-anchor-id="compare-amounts-and-shares">Compare amounts and shares</h3>
+<p>A market’s value can rise while its share of the full portfolio falls. First create the annual denominator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>annual_totals <span class="ot">&lt;-</span> gpfg_panel <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">annual_market_value_nok =</span> <span class="fu">sum</span>(market_value_nok))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Join the denominator to the selected-market table and calculate the share:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>country_trends <span class="ot">&lt;-</span> country_trends <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(annual_totals, <span class="at">by =</span> <span class="st">"year"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">share_percent =</span> market_value_nok <span class="sc">/</span> annual_market_value_nok <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>country_trends</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["annual_market_value_nok"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["share_percent"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2016","2":"China","3":"1.267706e+11","4":"4.706485e+12","5":"2.693529"},{"1":"2017","2":"China","3":"2.026933e+11","4":"5.680528e+12","5":"3.568212"},{"1":"2018","2":"China","3":"1.977423e+11","4":"5.478749e+12","5":"3.609260"},{"1":"2019","2":"China","3":"3.087379e+11","4":"7.152951e+12","5":"4.316231"},{"1":"2020","2":"China","3":"4.191423e+11","4":"7.972384e+12","5":"5.257427"},{"1":"2021","2":"China","3":"3.350038e+11","4":"8.897850e+12","5":"3.764998"},{"1":"2022","2":"China","3":"3.283251e+11","4":"8.579839e+12","5":"3.826704"},{"1":"2023","2":"China","3":"3.396105e+11","4":"1.117629e+13","5":"3.038669"},{"1":"2024","2":"China","3":"4.622155e+11","4":"1.460377e+13","5":"3.165042"},{"1":"2025","2":"China","3":"5.441163e+11","4":"1.518302e+13","5":"3.583716"},{"1":"2016","2":"Japan","3":"4.316595e+11","4":"4.706485e+12","5":"9.171590"},{"1":"2017","2":"Japan","3":"5.170735e+11","4":"5.680528e+12","5":"9.102560"},{"1":"2018","2":"Japan","3":"4.865980e+11","4":"5.478749e+12","5":"8.881554"},{"1":"2019","2":"Japan","3":"6.050955e+11","4":"7.152951e+12","5":"8.459382"},{"1":"2020","2":"Japan","3":"6.522880e+11","4":"7.972384e+12","5":"8.181844"},{"1":"2021","2":"Japan","3":"6.299429e+11","4":"8.897850e+12","5":"7.079721"},{"1":"2022","2":"Japan","3":"6.319608e+11","4":"8.579839e+12","5":"7.365648"},{"1":"2023","2":"Japan","3":"7.912716e+11","4":"1.117629e+13","5":"7.079912"},{"1":"2024","2":"Japan","3":"9.551953e+11","4":"1.460377e+13","5":"6.540745"},{"1":"2025","2":"Japan","3":"9.705254e+11","4":"1.518302e+13","5":"6.392176"},{"1":"2016","2":"United States","3":"1.769204e+12","4":"4.706485e+12","5":"37.590779"},{"1":"2017","2":"United States","3":"2.042110e+12","4":"5.680528e+12","5":"35.949305"},{"1":"2018","2":"United States","3":"2.124600e+12","4":"5.478749e+12","5":"38.778921"},{"1":"2019","2":"United States","3":"2.841769e+12","4":"7.152951e+12","5":"39.728626"},{"1":"2020","2":"United States","3":"3.336087e+12","4":"7.972384e+12","5":"41.845538"},{"1":"2021","2":"United States","3":"3.972126e+12","4":"8.897850e+12","5":"44.641409"},{"1":"2022","2":"United States","3":"3.790665e+12","4":"8.579839e+12","5":"44.181068"},{"1":"2023","2":"United States","3":"5.434238e+12","4":"1.117629e+13","5":"48.622914"},{"1":"2024","2":"United States","3":"8.166284e+12","4":"1.460377e+13","5":"55.919018"},{"1":"2025","2":"United States","3":"8.294346e+12","4":"1.518302e+13","5":"54.629096"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The value answers “how many Norwegian kroner?” The share answers “what percentage of the reported annual equity total?” A finding should name which measure it uses.</p>
+</section>
+<section id="interpret-changes-carefully" class="level3">
+<h3 class="anchored" data-anchor-id="interpret-changes-carefully">Interpret changes carefully</h3>
+<p>A change in year-end market value can reflect:</p>
+<ul>
+<li>changes in security prices;</li>
+<li>exchange-rate movements;</li>
+<li>purchases and sales;</li>
+<li>companies entering or leaving the portfolio; or</li>
+<li>changes in classifications and reporting.</li>
+</ul>
+<p>The holdings data do not separate these causes. Do not call the percentage change an investment return, and do not assume it equals the amount purchased during the year.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Categories can change over time">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Categories can change over time
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>NBIM’s industry labels change within the historical series. Compare the labels used in each period before drawing an industry trend. Company names can also change after mergers or rebranding, so market- or industry-level trends are usually safer for a beginner project.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="practice" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="practice"><span class="header-section-number">7.10</span> Practice</h2>
+<section id="activity-1-reshape-two-years" class="level3">
+<h3 class="anchored" data-anchor-id="activity-1-reshape-two-years">Activity 1: Reshape two years</h3>
+<p>Use the 2024 and 2025 holdings to:</p>
 <ol type="1">
-<li>confirm there is at most one row per country-year;</li>
-<li>pivot it wide and calculate start-to-end change;</li>
-<li>identify any missing starting or ending values;</li>
-<li>pivot it back to long form; and</li>
-<li>write a methods note explaining why the result is about year-end market value, not net investment flows.</li>
+<li>calculate one row per industry and year;</li>
+<li>pivot the result so the two years appear in separate columns;</li>
+<li>identify industries missing from either year; and</li>
+<li>pivot the table back to long form.</li>
 </ol>
+<p>Explain what one row represents before and after each pivot.</p>
+</section>
+<section id="activity-2-investigate-one-market-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="activity-2-investigate-one-market-over-time">Activity 2: Investigate one market over time</h3>
+<p>Choose one market and create a year-by-year table containing:</p>
+<ol type="1">
+<li>market value in Norwegian kroner;</li>
+<li>previous-year market value;</li>
+<li>absolute annual change;</li>
+<li>percentage annual change; and</li>
+<li>share of the full annual total.</li>
+</ol>
+<p>Identify the largest rise and fall by sorting the table. Write a headline that describes the change without using the words <em>return</em>, <em>profit</em>, or <em>purchased</em>.</p>
+</section>
+</section>
+<section id="takeaways" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">7.11</span> Takeaways</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bind_rows()</code></td>
+<td>Stacks similar observations underneath one another</td>
+</tr>
+<tr class="even">
+<td><code>distinct()</code></td>
+<td>Keeps unique combinations of selected columns</td>
+</tr>
+<tr class="odd">
+<td><code>left_join()</code></td>
+<td>Adds columns by matching a key while keeping the left table</td>
+</tr>
+<tr class="even">
+<td><code>anti_join()</code></td>
+<td>Shows rows on the left that have no match on the right</td>
+</tr>
+<tr class="odd">
+<td><code>pivot_wider()</code></td>
+<td>Spreads one category across several columns</td>
+</tr>
+<tr class="even">
+<td><code>pivot_longer()</code></td>
+<td>Gathers several columns into a names column and a values column</td>
+</tr>
+<tr class="odd">
+<td><code>group_by(year)</code> + <code>summarise()</code></td>
+<td>Creates one summary row per year</td>
+</tr>
+<tr class="even">
+<td><code>arrange(year)</code></td>
+<td>Places observations in chronological order</td>
+</tr>
+<tr class="odd">
+<td><code>lag()</code></td>
+<td>Returns the value from the previous row</td>
+</tr>
+<tr class="even">
+<td><code>mutate()</code></td>
+<td>Calculates changes, percentages, and shares</td>
+</tr>
+<tr class="odd">
+<td>Fixed comparison set</td>
+<td>Keeps the same groups in every period</td>
+</tr>
+<tr class="even">
+<td>Amount and share</td>
+<td>Answer different questions about change</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Want more control?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Want more control?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Begin with the essential arguments above and inspect every result. The official <a href="https://tidyr.tidyverse.org/articles/pivot.html">tidyr pivoting guide</a> and <a href="https://dplyr.tidyverse.org/reference/index.html">dplyr reference</a> cover additional join, reshape, and time-comparison options for unusual cases.</p>
+</div>
+</div>
 
 
 </section>
@@ -1009,13 +1289,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data-wrangling.html" class="pagination-link  aria-label=" &lt;span="" data="" without="" losing="" its="" meaning&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span>
+      <a href="./analysis-gpfg.html" class="pagination-link  aria-label=" &lt;span="" analysis&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./analysis-gpfg.html" class="pagination-link" aria-label="<span class='chapter-number'>8</span>&nbsp; <span class='chapter-title'>Find Patterns in a Single Snapshot</span>">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./visual-01.html" class="pagination-link" aria-label="<span class='chapter-number'>8</span>&nbsp; <span class='chapter-title'>Visualize One Variable</span>">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

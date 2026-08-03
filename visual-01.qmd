@@ -1,181 +1,271 @@
 ---
-title: "Exploratory Visualization"
+title: "Visualize One Variable"
 ---
+
+::: {.callout-note title="Part 4: Data Visualization"}
+A chart should begin with a question. We will first describe one column, then
+combine columns to visualize comparisons, relationships, and change. The final
+chapter in this part introduces geographic questions and maps.
+:::
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- choose a chart based on an analytical question;
-- build and revise a `ggplot2` graphic layer by layer;
-- use transformations when a distribution is highly skewed;
-- identify outliers and groups that need further reporting; and
-- distinguish an exploratory chart from a publication chart.
+- identify whether a variable is categorical or numeric;
+- explain the basic parts of a `ggplot2` chart;
+- count categories with a bar chart;
+- examine a numeric distribution with a histogram and box plot; and
+- recognize unusual values and strongly skewed distributions.
 
-## Explore before explaining
+## Begin with one column
 
-Exploratory charts help the reporter ask better questions. They can be dense,
-plain, and numerous. Publication charts are selective and designed around one
-clear takeaway. Do not decorate the first plot and call it a story.
+Describing one column is the simplest place to begin visual analysis. The
+question depends on the kind of variable:
+
+| Variable | Possible question | Useful chart |
+|---|---|---|
+| Categorical | How many holding records belong to each industry? | Bar chart |
+| Numeric | How are holding values distributed? | Histogram |
+| Numeric | What are the middle, spread, and unusual values? | Box plot |
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `06-one-variable-visualization.Rmd`. Reuse
+`data/gpfg.csv`.
+:::
 
 ```{r}
 library(tidyverse)
-library(scales)
 
-gpfg <- read_csv(
-  "data/processed/gpfg_equities_latest.csv",
-  show_col_types = FALSE
-)
-
-latest_year <- unique(gpfg$year)
+gpfg <- read_csv("data/gpfg.csv") |>
+  mutate(market_value_usd_billions = market_value_usd / 1000000000)
 ```
 
-## The grammar of graphics
+## Build a chart with ggplot2
 
-Every `ggplot2` chart combines:
+`ggplot2` is the tidyverse package for visualization. A basic chart has three
+parts:
 
-1. **data**;
-2. **aesthetic mappings** such as x, y, color, or size;
-3. a **geometry** such as points, bars, or lines;
-4. **scales** that translate values into visual properties; and
-5. labels and a theme.
+1. the data;
+2. an aesthetic mapping created with `aes()`; and
+3. a geometry that determines what is drawn.
+
+`ggplot()` starts the chart. `aes()` identifies the column to display.
+`geom_bar()` counts the rows in each category and draws the bars:
 
 ```{r}
-ggplot(gpfg, aes(x = market_value_usd)) +
-  geom_histogram(bins = 40)
+ggplot(gpfg, aes(y = industry)) +
+  geom_bar()
 ```
 
-The chart is technically valid, but a few very large holdings compress most
-observations near zero.
+This is a complete chart. Beginners need only the data, the mapping, and the
+geometry. The gray background, bar color, spacing, and axes are ggplot2
+defaults; we do not need to control them before seeing whether the chart
+answers the question.
 
-## Inspect a skewed distribution
+The chart answers: “How many holding records belong to each industry?” It does
+not show the number of unique companies or the total market value.
 
-A log scale makes ratios visible across orders of magnitude:
+## Order a categorical bar chart
+
+Alphabetical order is useful for finding a name. Ordering by frequency makes a
+ranking easier to see. `fct_infreq()` orders categories by how often they
+appear:
 
 ```{r}
-ggplot(gpfg, aes(x = market_value_usd)) +
-  geom_histogram(bins = 45, fill = "#2C7FB8", color = "white") +
-  scale_x_log10(labels = label_dollar(scale_cut = cut_short_scale())) +
+ggplot(gpfg, aes(y = fct_infreq(industry))) +
+  geom_bar()
+```
+
+The bars are horizontal because the category is mapped to the y-axis. This
+gives long industry names more room.
+
+## Improve the same chart with layers
+
+Once the basic chart works, add only the layers that help a reader understand
+it. The following version keeps the same data and calculation while adding
+color, labels, and a cleaner theme:
+
+```{r}
+ggplot(gpfg, aes(y = fct_infreq(industry))) +
+  geom_bar(fill = "#0072B2", width = 0.75) +
   labs(
-    title = "Reported holding values span several orders of magnitude",
-    subtitle = paste0("Each bar counts equity-holding records in the ", latest_year, " snapshot"),
-    x = "Market value in US dollars (log scale)",
-    y = "Holding records",
-    caption = "Source: Norges Bank Investment Management"
-  ) +
-  theme_minimal()
-```
-
-The log transformation changes the spacing, not the underlying data. State it
-in the axis label because many readers interpret horizontal distance as an
-ordinary additive difference.
-
-::: {.callout-note title="Zero and negative values"}
-A log scale cannot display zero or negative values. The latest-year teaching file has
-positive market values, but the full historical archive contains negative
-records in 2005–2008. Always check the range before adding a log scale.
-:::
-
-## Compare distributions across groups
-
-Boxplots summarize the median, middle half, and more extreme observations. They
-do not show the total size of an industry.
-
-```{r}
-industry_order <- gpfg |>
-  summarise(
-    median_value = median(market_value_usd),
-    .by = industry
-  ) |>
-  arrange(median_value) |>
-  pull(industry)
-
-gpfg |>
-  mutate(industry = factor(industry, levels = industry_order)) |>
-  ggplot(aes(x = market_value_usd, y = industry)) +
-  geom_boxplot(outlier.alpha = 0.25, fill = "#9ECAE1") +
-  scale_x_log10(labels = label_dollar(scale_cut = cut_short_scale())) +
-  labs(
-    title = "Typical holding values differ across industries",
-    x = "Market value in US dollars (log scale)",
+    title = "Industrials appeared most often in the year-end holdings file",
+    x = "Number of holding records",
     y = NULL,
     caption = "Source: Norges Bank Investment Management"
   ) +
-  theme_minimal()
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold", color = "#1F2933"),
+    plot.caption = element_text(color = "#6B7280"),
+    plot.title.position = "plot",
+    plot.caption.position = "plot"
+  )
 ```
 
-Use the chart to identify industries for closer reporting. Do not infer that a
-higher median means an industry is safer, more profitable, or preferred.
+The `+` operator adds each layer to the chart. Here:
 
-## Explore a relationship
+- `fill` changes the bar color and `width` changes bar thickness;
+- `labs()` adds a title, axis labels, and source;
+- `theme_minimal()` changes the overall appearance; and
+- `theme()` adjusts a few individual display elements.
+
+None of these appearance controls changes the count. Start with the simple
+version, confirm the calculation, and then decide which additions improve the
+communication.
+
+::: {.callout-note title="Counting rows is not adding values"}
+`geom_bar()` counts rows automatically. In the next chapter, we will prepare a
+summary table and use `geom_col()` when the question concerns an amount such as
+total market value.
+:::
+
+## Examine a numeric distribution
+
+A **distribution** describes which values are common, how widely they vary,
+and whether unusual values are present. A histogram divides a numeric column
+into ranges called bins and counts the observations in each range:
 
 ```{r}
-ggplot(
-  gpfg,
-  aes(x = market_value_usd, y = ownership_pct, color = region)
-) +
-  geom_point(alpha = 0.45, size = 1.3) +
-  scale_x_log10(labels = label_dollar(scale_cut = cut_short_scale())) +
+ggplot(gpfg, aes(x = market_value_usd_billions)) +
+  geom_histogram(fill = "#0072B2", color = "white") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank())
+```
+
+Most holdings are relatively small and a few are very large. This is a
+**right-skewed distribution**: the long tail extends toward the larger values.
+
+The default histogram is a starting point. `geom_histogram()` has optional
+arguments for controlling the number and width of bins, but those choices can
+wait until a reporting question requires more detail.
+
+## Make a skewed distribution easier to see
+
+`scale_x_log10()` changes the spacing of the x-axis so values that differ by
+large ratios are easier to compare:
+
+```{r}
+ggplot(gpfg, aes(x = market_value_usd_billions)) +
+  geom_histogram(fill = "#0072B2", color = "white") +
+  scale_x_log10() +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank())
+```
+
+The source values have not changed, but the axis spacing has. Always tell
+readers when an axis uses a log scale.
+
+::: {.callout-warning title="Check before using a log scale"}
+A log scale cannot display zero or negative values. Check whether those values
+exist and decide how they should be handled before using the scale.
+:::
+
+## Summarize a numeric distribution with a box plot
+
+A box plot gives a compact view of the middle and spread of a numeric column.
+It also marks values far from the central part of the distribution:
+
+```{r}
+ggplot(gpfg, aes(x = market_value_usd_billions)) +
+  geom_boxplot(
+    fill = "#56B4E9",
+    color = "#1F4E79",
+    width = 0.35,
+    outlier.color = "#D55E00"
+  ) +
+  scale_x_log10() +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank())
+```
+
+The line inside the box is the median. The box contains the middle half of the
+values. Points beyond the whiskers deserve inspection, but they are not
+automatically errors.
+
+## Add clear labels
+
+`labs()` adds information the reader needs, and `theme_minimal()` applies a
+simple visual style:
+
+```{r}
+ggplot(gpfg, aes(x = market_value_usd_billions)) +
+  geom_histogram(fill = "#0072B2", color = "white") +
+  scale_x_log10() +
   labs(
-    title = "Large holdings do not always represent large ownership stakes",
-    x = "Market value in US dollars (log scale)",
-    y = "Ownership (%)",
-    color = "Region",
+    title = "Most reported equity holdings were small relative to the largest",
+    x = "Market value in USD billions (log scale)",
+    y = "Number of holding records",
     caption = "Source: Norges Bank Investment Management"
   ) +
-  theme_minimal() +
-  theme(legend.position = "bottom")
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold", color = "#1F2933"),
+    plot.caption = element_text(color = "#6B7280"),
+    plot.title.position = "plot",
+    plot.caption.position = "plot"
+  )
 ```
 
-The point cloud helps locate exceptions: high ownership with modest market
-value, or very high market value with a relatively small stake. Those points
-are reporting leads. Look them up before labelling them.
+The labels name the measure, unit, source, and transformed axis.
 
-## Use small multiples for comparison
+::: {.callout-note title="A restrained visual style"}
+The charts use a colorblind-aware blue (`#0072B2`) for the main data and an
+orange (`#D55E00`) only when a value needs emphasis. A minimal theme, lighter
+grid lines, and bold titles create hierarchy without adding decoration. The
+hexadecimal color codes simply identify exact colors; you can reuse them
+without memorizing how the codes work.
+:::
 
-```{r}
-largest_regions <- gpfg |>
-  summarise(total_usd = sum(market_value_usd), .by = region) |>
-  slice_max(total_usd, n = 4, with_ties = FALSE) |>
-  pull(region)
+::: {.callout-tip title="ggplot2 is a larger universe"}
+The examples in this book teach a small, reusable foundation. ggplot2 can also
+control scales, legends, annotations, facets, coordinates, fonts, and many
+other design details. Explore the official
+[Introduction to ggplot2](https://ggplot2.tidyverse.org/articles/ggplot2.html),
+compare the [built-in themes](https://ggplot2.tidyverse.org/reference/ggtheme.html),
+or consult the online [ggplot2 book](https://ggplot2-book.org/) when a project
+needs more control. You do not need to learn all of these options at once.
+:::
 
-gpfg |>
-  filter(region %in% largest_regions) |>
-  ggplot(aes(x = market_value_usd)) +
-  geom_histogram(bins = 30, fill = "#2C7FB8", color = "white") +
-  scale_x_log10(labels = label_dollar(scale_cut = cut_short_scale())) +
-  facet_wrap(~ region, scales = "free_y") +
-  labs(
-    title = "Holding-value distributions vary across the largest regions",
-    x = "Market value in US dollars (log scale)",
-    y = "Holding records"
-  ) +
-  theme_minimal()
-```
+## Questions to ask about a one-variable chart
 
-`scales = "free_y"` makes the shape within each region easier to see, but bar
-heights can no longer be compared directly across panels. If absolute counts
-are the story, use a common y-axis.
+- What does one bar, bin, or point represent?
+- Is the chart counting rows, unique entities, or an amount?
+- Are missing, zero, or negative values absent?
+- Is the axis transformed?
+- Which unusual value needs source checking?
+- What can this one column not explain?
 
-## An exploratory chart audit
+## Practice
 
-After every chart, ask:
+Using `gpfg`:
 
-- Does the chart's grain match the question?
-- Are zeros, missing values, or negative values omitted?
-- Is the axis transformed or truncated?
-- Does color encode a variable or merely decorate?
-- Would a table communicate the exact values more clearly?
-- Which point, bar, or pattern needs reporting outside the dataset?
+1. choose one categorical column and create a bar chart of its row counts;
+2. choose one numeric column and create a histogram;
+3. create a box plot of the same numeric column;
+4. add a title, axis labels, and source; and
+5. write one visible pattern and one question that requires another column.
 
-## Independent task
+## Takeaways
 
-Create three exploratory charts about one region:
+| Function | What it does |
+|---|---|
+| `ggplot()` | Starts a chart with data |
+| `aes()` | Maps a column to an axis or another visual feature |
+| `geom_bar()` | Counts rows in each category and draws bars |
+| `fct_infreq()` | Orders categories by frequency |
+| `geom_histogram()` | Shows the distribution of one numeric variable |
+| `geom_boxplot()` | Summarizes the middle, spread, and unusual values |
+| `scale_x_log10()` | Displays a numeric axis on a logarithmic scale |
+| `labs()` | Adds titles, axis labels, and a source caption |
+| `theme_minimal()` | Applies a simple visual theme |
 
-1. a distribution;
-2. a comparison across industries; and
-3. a relationship between two numeric variables.
-
-For each chart, write one sentence describing what you learned and one sentence
-describing what the chart cannot establish. Select only one chart to develop
-into a publication graphic in the next chapter.
+::: {.callout-tip title="Want more control?"}
+The official [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
+documents individual functions and their optional arguments. Begin with the
+simple layers above and add an option only when it helps answer the question.
+:::

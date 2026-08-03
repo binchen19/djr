@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 12&nbsp; Map Geographic Patterns Carefully</title>
+<title>Data Journalism with R - 10&nbsp; Mapping</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./norway-invest.html" rel="next">
+<link href="./hot100.html" rel="next">
 <link href="./visual-02.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Visual Evidence and Storytelling</a></li><li class="breadcrumb-item"><a href="./map-gpfg.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-gpfg.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,23 +338,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">12.1</span> Learning objectives</a></li>
-  <li><a href="#newsroom-question" id="toc-newsroom-question" class="nav-link" data-scroll-target="#newsroom-question"><span class="header-section-number">12.2</span> Newsroom question</a></li>
-  <li><a href="#get-boundary-data" id="toc-get-boundary-data" class="nav-link" data-scroll-target="#get-boundary-data"><span class="header-section-number">12.3</span> Get boundary data</a></li>
-  <li><a href="#harmonise-names-explicitly" id="toc-harmonise-names-explicitly" class="nav-link" data-scroll-target="#harmonise-names-explicitly"><span class="header-section-number">12.4</span> Harmonise names explicitly</a></li>
-  <li><a href="#preserve-all-polygons" id="toc-preserve-all-polygons" class="nav-link" data-scroll-target="#preserve-all-polygons"><span class="header-section-number">12.5</span> Preserve all polygons</a></li>
-  <li><a href="#draw-the-map" id="toc-draw-the-map" class="nav-link" data-scroll-target="#draw-the-map"><span class="header-section-number">12.6</span> Draw the map</a></li>
-  <li><a href="#interpret-the-geography-cautiously" id="toc-interpret-the-geography-cautiously" class="nav-link" data-scroll-target="#interpret-the-geography-cautiously"><span class="header-section-number">12.7</span> Interpret the geography cautiously</a></li>
-  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">12.8</span> Independent task</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">10.1</span> Learning objectives</a></li>
+  <li><a href="#when-is-a-map-useful" id="toc-when-is-a-map-useful" class="nav-link" data-scroll-target="#when-is-a-map-useful"><span class="header-section-number">10.2</span> When is a map useful?</a></li>
+  <li><a href="#prepare-one-value-per-place" id="toc-prepare-one-value-per-place" class="nav-link" data-scroll-target="#prepare-one-value-per-place"><span class="header-section-number">10.3</span> Prepare one value per place</a></li>
+  <li><a href="#make-place-names-match" id="toc-make-place-names-match" class="nav-link" data-scroll-target="#make-place-names-match"><span class="header-section-number">10.4</span> Make place names match</a></li>
+  <li><a href="#check-unmatched-names" id="toc-check-unmatched-names" class="nav-link" data-scroll-target="#check-unmatched-names"><span class="header-section-number">10.5</span> Check unmatched names</a></li>
+  <li><a href="#join-the-values-to-the-boundaries" id="toc-join-the-values-to-the-boundaries" class="nav-link" data-scroll-target="#join-the-values-to-the-boundaries"><span class="header-section-number">10.6</span> Join the values to the boundaries</a></li>
+  <li><a href="#draw-the-map" id="toc-draw-the-map" class="nav-link" data-scroll-target="#draw-the-map"><span class="header-section-number">10.7</span> Draw the map</a></li>
+  <li><a href="#interpret-the-map-carefully" id="toc-interpret-the-map-carefully" class="nav-link" data-scroll-target="#interpret-the-map-carefully"><span class="header-section-number">10.8</span> Interpret the map carefully</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">10.9</span> Practice</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">10.10</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Visual Evidence and Storytelling</a></li><li class="breadcrumb-item"><a href="./map-gpfg.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./map-gpfg.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></h1>
 </div>
 
 
@@ -372,203 +373,217 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="learning-objectives" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">12.1</span> Learning objectives</h2>
+<section id="learning-objectives" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">10.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>aggregate holding records to a geographic grain;</li>
-<li>preserve map geometry during a join;</li>
-<li>audit unmatched place names;</li>
-<li>choose and disclose a color transformation; and</li>
-<li>explain what an investment map does and does not show.</li>
+<li>prepare one value per place;</li>
+<li>match place names to a boundary table;</li>
+<li>check unmatched names; and</li>
+<li>draw a simple choropleth map with <code>ggplot2</code>.</li>
 </ul>
 </section>
-<section id="newsroom-question" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="newsroom-question"><span class="header-section-number">12.2</span> Newsroom question</h2>
-<blockquote class="blockquote">
-<p>Where was the reported market value of NBIM’s latest year-end equity holdings concentrated?</p>
-</blockquote>
-<p>The source contains holdings, but a country map needs one value per country. Aggregate before joining to boundaries.</p>
+<section id="when-is-a-map-useful" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="when-is-a-map-useful"><span class="header-section-number">10.2</span> When is a map useful?</h2>
+<p>A ranked bar chart is best for exact country comparisons. A map is useful when the geographic pattern itself matters—for example, whether high values cluster in one region.</p>
+<p>To keep the lesson within the tidyverse, the course provides a prepared CSV of world boundary coordinates. The coordinates come from Natural Earth; their reproducible preparation is recorded in <code>scripts/prepare_map_boundaries.R</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Continue in the same project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open <code>djr.Rproj</code> and create <code>08-mapping.Rmd</code>. Reuse <code>data/gpfg.csv</code>, then download <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/world_boundaries.csv"><code>world_boundaries.csv</code></a> and save it in <code>data/</code>.</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_latest.csv"</span>,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>latest_year <span class="ot">&lt;-</span> <span class="fu">unique</span>(gpfg<span class="sc">$</span>year)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_usd =</span> <span class="fu">sum</span>(market_value_usd),</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> country</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/world_boundaries.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>One row in <code>country_summary</code> represents one NBIM investment market.</p>
 </section>
-<section id="get-boundary-data" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="get-boundary-data"><span class="header-section-number">12.3</span> Get boundary data</h2>
+<section id="prepare-one-value-per-place" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="prepare-one-value-per-place"><span class="header-section-number">10.3</span> Prepare one value per place</h2>
+<p>The holdings file has many rows per market, but the map needs one value per market:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">scale =</span> <span class="st">"medium"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">returnclass =</span> <span class="st">"sf"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(world)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "sf"         "data.frame"</code></pre>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_usd =</span> <span class="fu">sum</span>(market_value_usd)) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">market_value_usd_billions =</span> market_value_usd <span class="sc">/</span> <span class="dv">1000000000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>An <code>sf</code> object contains ordinary variables plus a geometry column. Loading <code>sf</code> explicitly ensures that spatial methods are available during a fresh Quarto render.</p>
+<p>One row now represents one investment market.</p>
 </section>
-<section id="harmonise-names-explicitly" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="harmonise-names-explicitly"><span class="header-section-number">12.4</span> Harmonise names explicitly</h2>
-<p>The current source and Natural Earth disagree on three labels. Make the decisions visible instead of hiding them inside a spreadsheet:</p>
+<section id="make-place-names-match" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="make-place-names-match"><span class="header-section-number">10.4</span> Make place names match</h2>
+<p>The holdings data and the boundary data do not always spell names in the same way. Keep the original <code>country</code> column and create a separate name for the join:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> country_summary <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map_name =</span> <span class="fu">recode</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>      country,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Russia"</span> <span class="ot">=</span> <span class="st">"Russian Federation"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"South Korea"</span> <span class="ot">=</span> <span class="st">"Republic of Korea"</span>,</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Türkiye"</span> <span class="ot">=</span> <span class="st">"Turkey"</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> country_summary <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map_name =</span> <span class="fu">recode</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      country,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Russia"</span> <span class="ot">=</span> <span class="st">"Russian Federation"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"South Korea"</span> <span class="ot">=</span> <span class="st">"Republic of Korea"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Türkiye"</span> <span class="ot">=</span> <span class="st">"Turkey"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Audit the proposed join:</p>
+<p><code>recode()</code> replaces only the listed values. A separate <code>map_name</code> column makes the changes visible.</p>
+</section>
+<section id="check-unmatched-names" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="check-unmatched-names"><span class="header-section-number">10.5</span> Check unmatched names</h2>
+<p>Create a short table of boundary names, then use the familiar <code>anti_join()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>unmatched_holdings <span class="ot">&lt;-</span> country_summary <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    world <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">distinct</span>(name_long),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"map_name"</span> <span class="ot">=</span> <span class="st">"name_long"</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>unmatched_holdings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>map_names <span class="ot">&lt;-</span> world <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(name_long)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>country_summary <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(map_names, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"map_name"</span> <span class="ot">=</span> <span class="st">"name_long"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_usd"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[3],"type":["int"],"align":["right"]},{"label":["map_name"],"name":[4],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_usd"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["market_value_usd_billions"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["map_name"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"Hong Kong","2":"8788630500","3":"8.788630500","4":"Hong Kong"},{"1":"Liechtenstein","2":"4588295","3":"0.004588295","4":"Liechtenstein"},{"1":"Singapore","2":"6318978447","3":"6.318978447","4":"Singapore"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>The result should contain no rows. If a later source year produces an unmatched country, stop and investigate it before drawing the map.</p>
-<p>Also check for boundary names that have data only under a different definition:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>world <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(name_long) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(country_summary, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name_long"</span> <span class="ot">=</span> <span class="st">"map_name"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 60</code></pre>
-</div>
-</div>
+<p>An empty result means every source market has a matching boundary name. If a name appears, investigate it before making the map.</p>
 </section>
-<section id="preserve-all-polygons" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="preserve-all-polygons"><span class="header-section-number">12.5</span> Preserve all polygons</h2>
-<p>Use the map as the left table so countries without a reported holding remain visible:</p>
+<section id="join-the-values-to-the-boundaries" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="join-the-values-to-the-boundaries"><span class="header-section-number">10.6</span> Join the values to the boundaries</h2>
+<p>Keep the boundary coordinates on the left so places without a reported value remain in the map:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>world_holdings <span class="ot">&lt;-</span> world <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name_long <span class="sc">!=</span> <span class="st">"Antarctica"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    country_summary,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name_long"</span> <span class="ot">=</span> <span class="st">"map_name"</span>),</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">relationship =</span> <span class="st">"one-to-one"</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">any</span>(<span class="fu">st_is_empty</span>(world_holdings)))</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(world_holdings<span class="sc">$</span>market_value_usd)) <span class="sc">==</span> <span class="fu">nrow</span>(country_summary)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>world_holdings <span class="ot">&lt;-</span> world <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    country_summary,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name_long"</span> <span class="ot">=</span> <span class="st">"map_name"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>An inner join would silently remove all countries without a match and could make the world appear smaller.</p>
+<p>Each country has many coordinate rows describing its outline. The joined market value is repeated across those coordinate rows so <code>ggplot2</code> can fill the whole shape.</p>
 </section>
-<section id="draw-the-map" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="draw-the-map"><span class="header-section-number">12.6</span> Draw the map</h2>
+<section id="draw-the-map" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="draw-the-map"><span class="header-section-number">10.7</span> Draw the map</h2>
+<p><code>geom_polygon()</code> connects the coordinates belonging to the same <code>polygon_group</code>. Map the prepared market value to <code>fill</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(world_holdings) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> market_value_usd),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="fl">0.08</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">option =</span> <span class="st">"C"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans =</span> <span class="st">"sqrt"</span>,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">10e9</span>, <span class="fl">100e9</span>, <span class="fl">500e9</span>),</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">scale =</span> <span class="fl">1e-9</span>, <span class="at">suffix =</span> <span class="st">"B"</span>),</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.value =</span> <span class="st">"#E5E7EB"</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"NBIM's reported equity value was concentrated in a limited set of markets"</span>,</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Year-end market value by investment market, "</span>, latest_year, <span class="st">"; square-root color scale"</span>),</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Market value</span><span class="sc">\n</span><span class="st">(USD)"</span>,</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">str_wrap</span>(</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Gray indicates no matched holding in the source, not necessarily zero economic exposure."</span>,</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Sources: Norges Bank Investment Management and Natural Earth."</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">width =</span> <span class="dv">105</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="fu">guide_colorbar</span>(</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">barwidth =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="dv">11</span>, <span class="st">"cm"</span>),</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">barheight =</span> grid<span class="sc">::</span><span class="fu">unit</span>(<span class="fl">0.45</span>, <span class="st">"cm"</span>)</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="fl">8.5</span>),</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  world_holdings,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> longitude,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> latitude,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> polygon_group,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> market_value_usd_billions</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_quickmap</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">"#DEEBF7"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">high =</span> <span class="st">"#08519C"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans =</span> <span class="st">"sqrt"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.value =</span> <span class="st">"#E5E7EB"</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Reported equity value was concentrated in a limited set of markets"</span>,</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Year-end 2025 market value by NBIM investment market"</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"USD billions"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Sources: Norges Bank Investment Management and Natural Earth</span><span class="sc">\n</span><span class="st">Light gray indicates no matched value"</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"#1F2933"</span>),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#52606D"</span>),</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#6B7280"</span>),</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="map-gpfg_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="map-gpfg_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The square-root transformation prevents the largest market from visually flattening all other differences. Because color distance is transformed, the subtitle discloses it. A ranked bar chart remains better for exact comparison.</p>
+<p><code>coord_quickmap()</code> keeps the world from being stretched incorrectly. <code>scale_fill_gradient()</code> uses a light-to-dark sequential blue scale: darker color means a larger reported value. The square-root transformation prevents the largest market from making most other values visually indistinguishable; the legend still reports the original USD-billions values. White borders keep neighboring polygons distinct without dominating the data.</p>
+<p>Places with no matched value appear light gray. Gray means “no matched value in this table,” not necessarily “no economic connection.”</p>
 </section>
-<section id="interpret-the-geography-cautiously" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="interpret-the-geography-cautiously"><span class="header-section-number">12.7</span> Interpret the geography cautiously</h2>
-<p>This map shows where NBIM classifies the investment market of a holding. It does not necessarily show:</p>
-<ul>
-<li>where a company earns revenue;</li>
-<li>where its workers or customers are located;</li>
-<li>its legal place of incorporation;</li>
-<li>the destination of a purchase during the reporting year; or</li>
-<li>Norway’s political relationship with a country.</li>
-</ul>
-<p>Compare <code>country</code> with <code>incorporation_country</code> to see why a single corporate geography is often inadequate.</p>
-<p>Boundary datasets also embed naming and political choices. Record the boundary source and version, preserve the source’s original country label, and explain any harmonisation that affects sensitive places.</p>
+<section id="interpret-the-map-carefully" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="interpret-the-map-carefully"><span class="header-section-number">10.8</span> Interpret the map carefully</h2>
+<p>The map uses NBIM’s investment-market column. It does not necessarily show a company’s place of incorporation, where its workers are located, or where its revenue is earned. Boundary data also contain naming and political choices, so record the boundary source and explain consequential name changes.</p>
 </section>
-<section id="independent-task" class="level2" data-number="12.8">
-<h2 data-number="12.8" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">12.8</span> Independent task</h2>
-<p>Create a map for another year in the teaching panel. Your submission must include:</p>
+<section id="practice" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="practice"><span class="header-section-number">10.9</span> Practice</h2>
+<p>Create a map for another year from the ten-year file. Submit:</p>
 <ol type="1">
-<li>the country-level aggregation;</li>
-<li>an <code>anti_join()</code> table of unmatched source places;</li>
-<li>a row-count or match-count assertion;</li>
-<li>a ranked table that verifies the five strongest map values; and</li>
-<li>a caption explaining the color scale and the meaning of gray areas.</li>
+<li>the country summary;</li>
+<li>the unmatched-name result;</li>
+<li>the map;</li>
+<li>a ranked table of the five largest values; and</li>
+<li>a caption explaining what the colors and gray areas mean.</li>
 </ol>
+</section>
+<section id="takeaways" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">10.10</span> Takeaways</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>distinct()</code></td>
+<td>Creates a table of unique boundary names</td>
+</tr>
+<tr class="even">
+<td><code>recode()</code></td>
+<td>Replaces selected place names explicitly</td>
+</tr>
+<tr class="odd">
+<td><code>anti_join()</code></td>
+<td>Finds source places without a boundary match</td>
+</tr>
+<tr class="even">
+<td><code>left_join()</code></td>
+<td>Adds the data values to boundary coordinates</td>
+</tr>
+<tr class="odd">
+<td><code>geom_polygon()</code></td>
+<td>Draws filled shapes from coordinate rows</td>
+</tr>
+<tr class="even">
+<td><code>coord_quickmap()</code></td>
+<td>Uses a map-friendly aspect ratio</td>
+</tr>
+<tr class="odd">
+<td><code>scale_fill_gradient()</code></td>
+<td>Adds a continuous light-to-dark color scale</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Want more control?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Want more control?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This first map uses only the arguments needed to connect coordinates and values. The official <a href="https://ggplot2.tidyverse.org/reference/">ggplot2 reference</a> documents more options for borders, coordinates, and color scales.</p>
+</div>
+</div>
 
 
 </section>
@@ -963,13 +978,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./visual-02.html" class="pagination-link  aria-label=" &lt;span="" visualization&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span>
+      <a href="./visual-02.html" class="pagination-link  aria-label=" &lt;span="" multiple="" variables&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./norway-invest.html" class="pagination-link" aria-label="<span class='chapter-number'>13</span>&nbsp; <span class='chapter-title'>From Analysis to a Data Story</span>">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./hot100.html" class="pagination-link" aria-label="<span class='chapter-number'>11</span>&nbsp; <span class='chapter-title'>Billboard Hot 100</span>">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

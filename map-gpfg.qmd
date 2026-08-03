@@ -1,68 +1,59 @@
 ---
-title: "Map Geographic Patterns Carefully"
+title: "Mapping"
 ---
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- aggregate holding records to a geographic grain;
-- preserve map geometry during a join;
-- audit unmatched place names;
-- choose and disclose a color transformation; and
-- explain what an investment map does and does not show.
+- prepare one value per place;
+- match place names to a boundary table;
+- check unmatched names; and
+- draw a simple choropleth map with `ggplot2`.
 
-## Newsroom question
+## When is a map useful?
 
-> Where was the reported market value of NBIM's latest year-end equity holdings
-> concentrated?
+A ranked bar chart is best for exact country comparisons. A map is useful when
+the geographic pattern itself matters—for example, whether high values cluster
+in one region.
 
-The source contains holdings, but a country map needs one value per country.
-Aggregate before joining to boundaries.
+To keep the lesson within the tidyverse, the course provides a prepared CSV of
+world boundary coordinates. The coordinates come from Natural Earth; their
+reproducible preparation is recorded in `scripts/prepare_map_boundaries.R`.
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `08-mapping.Rmd`. Reuse
+`data/gpfg.csv`, then download
+[`world_boundaries.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/world_boundaries.csv)
+and save it in `data/`.
+:::
 
 ```{r}
 library(tidyverse)
-library(sf)
-library(rnaturalearth)
-library(rnaturalearthdata)
-library(scales)
 
-gpfg <- read_csv(
-  "data/processed/gpfg_equities_latest.csv",
-  show_col_types = FALSE
-)
-
-latest_year <- unique(gpfg$year)
-
-country_summary <- gpfg |>
-  summarise(
-    market_value_usd = sum(market_value_usd),
-    holding_records = n(),
-    .by = country
-  )
+gpfg <- read_csv("data/gpfg.csv")
+world <- read_csv("data/world_boundaries.csv")
 ```
 
-One row in `country_summary` represents one NBIM investment market.
+## Prepare one value per place
 
-## Get boundary data
+The holdings file has many rows per market, but the map needs one value per
+market:
 
 ```{r}
-world <- ne_countries(
-  scale = "medium",
-  returnclass = "sf"
-)
-
-class(world)
+country_summary <- gpfg |>
+  group_by(country) |>
+  summarise(market_value_usd = sum(market_value_usd)) |>
+  mutate(market_value_usd_billions = market_value_usd / 1000000000)
 ```
 
-An `sf` object contains ordinary variables plus a geometry column. Loading
-`sf` explicitly ensures that spatial methods are available during a fresh
-Quarto render.
+One row now represents one investment market.
 
-## Harmonise names explicitly
+## Make place names match
 
-The current source and Natural Earth disagree on three labels. Make the decisions
-visible instead of hiding them inside a spreadsheet:
+The holdings data and the boundary data do not always spell names in the same
+way. Keep the original `country` column and create a separate name for the
+join:
 
 ```{r}
 country_summary <- country_summary |>
@@ -76,131 +67,122 @@ country_summary <- country_summary |>
   )
 ```
 
-Audit the proposed join:
+`recode()` replaces only the listed values. A separate `map_name` column makes
+the changes visible.
+
+## Check unmatched names
+
+Create a short table of boundary names, then use the familiar `anti_join()`:
 
 ```{r}
-unmatched_holdings <- country_summary |>
-  anti_join(
-    world |>
-      st_drop_geometry() |>
-      distinct(name_long),
-    by = c("map_name" = "name_long")
-  )
+map_names <- world |>
+  distinct(name_long)
 
-unmatched_holdings
+country_summary |>
+  anti_join(map_names, by = c("map_name" = "name_long"))
 ```
 
-The result should contain no rows. If a later source year produces an unmatched
-country, stop and investigate it before drawing the map.
+An empty result means every source market has a matching boundary name. If a
+name appears, investigate it before making the map.
 
-Also check for boundary names that have data only under a different definition:
+## Join the values to the boundaries
 
-```{r}
-world |>
-  st_drop_geometry() |>
-  distinct(name_long) |>
-  semi_join(country_summary, by = c("name_long" = "map_name")) |>
-  nrow()
-```
-
-## Preserve all polygons
-
-Use the map as the left table so countries without a reported holding remain
-visible:
+Keep the boundary coordinates on the left so places without a reported value
+remain in the map:
 
 ```{r}
 world_holdings <- world |>
-  filter(name_long != "Antarctica") |>
   left_join(
     country_summary,
-    by = c("name_long" = "map_name"),
-    relationship = "one-to-one"
+    by = c("name_long" = "map_name")
   )
-
-stopifnot(!any(st_is_empty(world_holdings)))
-stopifnot(
-  sum(!is.na(world_holdings$market_value_usd)) == nrow(country_summary)
-)
 ```
 
-An inner join would silently remove all countries without a match and could
-make the world appear smaller.
+Each country has many coordinate rows describing its outline. The joined
+market value is repeated across those coordinate rows so `ggplot2` can fill the
+whole shape.
 
 ## Draw the map
 
+`geom_polygon()` connects the coordinates belonging to the same
+`polygon_group`. Map the prepared market value to `fill`:
+
 ```{r}
-ggplot(world_holdings) +
-  geom_sf(
-    aes(fill = market_value_usd),
-    color = "white",
-    linewidth = 0.08
-  ) +
-  scale_fill_viridis_c(
-    option = "C",
+ggplot(
+  world_holdings,
+  aes(
+    x = longitude,
+    y = latitude,
+    group = polygon_group,
+    fill = market_value_usd_billions
+  )
+) +
+  geom_polygon(color = "white", linewidth = 0.1) +
+  coord_quickmap(expand = FALSE) +
+  scale_fill_gradient(
+    low = "#DEEBF7",
+    high = "#08519C",
     trans = "sqrt",
-    breaks = c(10e9, 100e9, 500e9),
-    labels = label_dollar(scale = 1e-9, suffix = "B"),
     na.value = "#E5E7EB"
   ) +
-  coord_sf(expand = FALSE) +
   labs(
-    title = "NBIM's reported equity value was concentrated in a limited set of markets",
-    subtitle = paste0("Year-end market value by investment market, ", latest_year, "; square-root color scale"),
-    fill = "Market value\n(USD)",
-    caption = str_wrap(
-      paste(
-        "Gray indicates no matched holding in the source, not necessarily zero economic exposure.",
-        "Sources: Norges Bank Investment Management and Natural Earth."
-      ),
-      width = 105
-    )
+    title = "Reported equity value was concentrated in a limited set of markets",
+    subtitle = "Year-end 2025 market value by NBIM investment market",
+    fill = "USD billions",
+    caption = "Sources: Norges Bank Investment Management and Natural Earth\nLight gray indicates no matched value"
   ) +
-  guides(
-    fill = guide_colorbar(
-      title.position = "top",
-      barwidth = grid::unit(11, "cm"),
-      barheight = grid::unit(0.45, "cm")
-    )
-  ) +
-  theme_void() +
+  theme_void(base_size = 12) +
   theme(
-    legend.position = "bottom",
-    plot.title = element_text(face = "bold"),
+    legend.position = "right",
+    plot.title = element_text(face = "bold", color = "#1F2933"),
+    plot.subtitle = element_text(color = "#52606D"),
+    plot.caption = element_text(color = "#6B7280"),
     plot.title.position = "plot",
-    plot.caption = element_text(hjust = 0, size = 8.5),
     plot.caption.position = "plot"
   )
 ```
 
-The square-root transformation prevents the largest market from visually
-flattening all other differences. Because color distance is transformed, the
-subtitle discloses it. A ranked bar chart remains better for exact comparison.
+`coord_quickmap()` keeps the world from being stretched incorrectly.
+`scale_fill_gradient()` uses a light-to-dark sequential blue scale: darker
+color means a larger reported value. The square-root transformation prevents
+the largest market from making most other values visually indistinguishable;
+the legend still reports the original USD-billions values. White borders keep
+neighboring polygons distinct without dominating the data.
 
-## Interpret the geography cautiously
+Places with no matched value appear light gray. Gray means “no matched value
+in this table,” not necessarily “no economic connection.”
 
-This map shows where NBIM classifies the investment market of a holding. It does
-not necessarily show:
+## Interpret the map carefully
 
-- where a company earns revenue;
-- where its workers or customers are located;
-- its legal place of incorporation;
-- the destination of a purchase during the reporting year; or
-- Norway's political relationship with a country.
+The map uses NBIM's investment-market column. It does not necessarily show a
+company's place of incorporation, where its workers are located, or where its
+revenue is earned. Boundary data also contain naming and political choices, so
+record the boundary source and explain consequential name changes.
 
-Compare `country` with `incorporation_country` to see why a single corporate
-geography is often inadequate.
+## Practice
 
-Boundary datasets also embed naming and political choices. Record the boundary
-source and version, preserve the source's original country label, and explain
-any harmonisation that affects sensitive places.
+Create a map for another year from the ten-year file. Submit:
 
-## Independent task
+1. the country summary;
+2. the unmatched-name result;
+3. the map;
+4. a ranked table of the five largest values; and
+5. a caption explaining what the colors and gray areas mean.
 
-Create a map for another year in the teaching panel. Your submission must
-include:
+## Takeaways
 
-1. the country-level aggregation;
-2. an `anti_join()` table of unmatched source places;
-3. a row-count or match-count assertion;
-4. a ranked table that verifies the five strongest map values; and
-5. a caption explaining the color scale and the meaning of gray areas.
+| Function | What it does |
+|---|---|
+| `distinct()` | Creates a table of unique boundary names |
+| `recode()` | Replaces selected place names explicitly |
+| `anti_join()` | Finds source places without a boundary match |
+| `left_join()` | Adds the data values to boundary coordinates |
+| `geom_polygon()` | Draws filled shapes from coordinate rows |
+| `coord_quickmap()` | Uses a map-friendly aspect ratio |
+| `scale_fill_gradient()` | Adds a continuous light-to-dark color scale |
+
+::: {.callout-tip title="Want more control?"}
+This first map uses only the arguments needed to connect coordinates and
+values. The official [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
+documents more options for borders, coordinates, and color scales.
+:::

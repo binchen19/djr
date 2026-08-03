@@ -3,8 +3,8 @@
 # Build analysis-ready teaching datasets from NBIM's year-end equity holdings.
 #
 # Raw files are downloaded from the official NBIM holdings API and are kept
-# unchanged in data/raw/gpfg/. This script only reads those files and writes
-# reproducible outputs to data/processed/ and reports/.
+# unchanged in data/raw/gpfg/. This script writes the learner-facing CSV files
+# to data/, and writes advanced audit files to data/processed/ and reports/.
 
 suppressPackageStartupMessages({
   library(dplyr)
@@ -16,10 +16,12 @@ suppressPackageStartupMessages({
 })
 
 raw_dir <- "data/raw/gpfg"
+teaching_dir <- "data"
 processed_dir <- "data/processed"
 report_dir <- "reports"
 
 dir.create(processed_dir, recursive = TRUE, showWarnings = FALSE)
+dir.create(teaching_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(report_dir, recursive = TRUE, showWarnings = FALSE)
 
 first_year <- 1998L
@@ -236,12 +238,12 @@ saveRDS(
 
 write_csv(
   gpfg_teaching,
-  file.path(processed_dir, "gpfg_equities_last_10_years.csv"),
+  file.path(teaching_dir, "gpfg_equities_last_10_years.csv"),
   na = ""
 )
 write_csv(
   gpfg_latest,
-  file.path(processed_dir, "gpfg_equities_latest.csv"),
+  file.path(teaching_dir, "gpfg.csv"),
   na = ""
 )
 write_csv(
@@ -251,7 +253,7 @@ write_csv(
 )
 write_csv(
   data_dictionary,
-  file.path(processed_dir, "gpfg_data_dictionary.csv"),
+  file.path(teaching_dir, "gpfg_data_dictionary.csv"),
   na = ""
 )
 write_csv(
@@ -327,14 +329,14 @@ audit_lines <- c(
   "",
   "## Stable files created",
   "",
-  "- `gpfg_equities_latest.csv`: beginner-friendly latest-year snapshot.",
-  "- `gpfg_equities_last_10_years.csv`: rolling ten-year teaching dataset.",
-  "- `gpfg_equities_last_10_years.rds`: compact R version of the teaching dataset.",
-  "- `gpfg_equities_full_history.rds`: compact complete historical archive.",
-  "- `gpfg_annual_summary.csv`: annual coverage and quality summary.",
-  "- `gpfg_data_dictionary.csv`: definitions, units, and teaching cautions.",
-  "- `gpfg_source_manifest.csv`: source URL, file size, and checksum for each year.",
-  "- `gpfg_validation_checks.csv`: machine-readable checks for every rebuild.",
+  "- `data/gpfg.csv`: beginner-friendly latest-year snapshot.",
+  "- `data/gpfg_equities_last_10_years.csv`: rolling ten-year teaching dataset.",
+  "- `data/gpfg_data_dictionary.csv`: definitions, units, and teaching cautions.",
+  "- `data/processed/gpfg_equities_last_10_years.rds`: compact R version of the teaching dataset.",
+  "- `data/processed/gpfg_equities_full_history.rds`: compact complete historical archive.",
+  "- `data/processed/gpfg_annual_summary.csv`: annual coverage and quality summary.",
+  "- `data/processed/gpfg_source_manifest.csv`: source URL, file size, and checksum for each year.",
+  "- `data/processed/gpfg_validation_checks.csv`: machine-readable checks for every rebuild.",
   "",
   "## Coverage",
   "",

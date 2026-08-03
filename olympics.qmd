@@ -1,211 +1,221 @@
 ---
-title: "Unit of Analysis: Paris 2024 Medallists"
+title: "Olympics Data"
 ---
+
+::: {.callout-important title="The new challenge: medallists are not medals"}
+One row associates one athlete with one medal result. A team medal therefore
+appears once for every team member, and one athlete can appear in several medal
+rows. We must distinguish athlete-medal rows, unique medallists, and official
+event-level medals before making a ranking.
+:::
 
 ## Learning objectives
 
 By the end of this case, you should be able to:
 
-- distinguish athlete-medal records, unique medallists, and official medals;
-- deduplicate with a defensible identifier;
-- avoid a misleading regression on aggregated counts; and
-- audit the difference between IOC and ISO country codes.
+- distinguish athlete-medal rows from unique medallists;
+- use an athlete identifier rather than a displayed name;
+- distinguish team-member rows from event-level medals;
+- create a simple bar chart of the result; and
+- recognize that different sources use different country codes.
 
-## Import and inspect
+## Set up the case
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `10-olympics.Rmd`. Download
+[`medallists.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/medallists.csv)
+and save it in `data/`.
+:::
 
 ```{r}
 library(tidyverse)
-library(sf)
-library(rnaturalearth)
-library(rnaturalearthdata)
 
-medallists <- read_csv(
-  "data/medallists.csv",
-  show_col_types = FALSE
-)
+medallists <- read_csv("data/medallists.csv")
 
-dim(medallists)
-n_distinct(medallists$code_athlete)
+glimpse(medallists)
 ```
 
-The file has 2,315 rows but 2,054 unique athlete codes. One row represents one
-athlete associated with one medal result. An athlete with several medals has
-several rows. In a team event, one official medal produces a row for every team
-member.
+One row represents one athlete associated with one medal result. An athlete
+with several medals appears several times. In a team event, one official medal
+creates a row for every team member.
 
-Therefore, the following are different measures:
+These are therefore different measures:
 
-| Measure | Calculation | Meaning |
-|---|---|---|
-| Athlete-medal records | `n()` | Participation in medal results |
-| Unique medallists | `n_distinct(code_athlete)` | People with at least one medal record |
-| Official medals | Event-level medal awards | Not equal to athlete rows in team events |
+| Measure | Meaning |
+|---|---|
+| Athlete-medal rows | Athlete appearances in medal results |
+| Unique medallists | People with at least one medal row |
+| Official medals | Event-level awards, which are not counted directly by athlete rows |
 
-## Athletes with the most medal records
+## Strategy 1: separate rows from people
+
+Begin by comparing the number of rows with the number of unique athlete
+identifiers:
 
 ```{r}
-athlete_medal_records <- medallists |>
-  count(
-    code_athlete,
-    name,
-    country,
-    gender,
-    name = "medal_records",
-    sort = TRUE
+medallists |>
+  summarise(
+    athlete_medal_rows = n(),
+    unique_medallists = n_distinct(code_athlete)
   )
-
-athlete_medal_records |>
-  slice_head(n = 15)
 ```
 
-The accurate label is “athlete-medal records,” not simply “medals,” because the
-data represent athletes within medal results.
+The two totals answer different questions. `n()` counts records, while
+`n_distinct(code_athlete)` counts people. The identifier is safer than the
+displayed name because names can be repeated or formatted inconsistently.
 
-## Unique medallists by country
+To find athletes associated with the most medal results, keep the identifier
+and readable name together:
+
+```{r}
+athlete_medals <- medallists |>
+  count(code_athlete, name, country) |>
+  arrange(desc(n))
+
+athlete_medals |>
+  slice_head(n = 10)
+```
+
+The careful label is “athlete-medal rows,” not simply “medals.”
+
+## Strategy 2: expose team-event duplication
+
+Count rows within each event, country, and medal type. The largest counts make
+team events visible:
+
+```{r}
+medallists |>
+  count(discipline, event, country, medal_type) |>
+  arrange(desc(n)) |>
+  slice_head(n = 10)
+```
+
+For a football or hockey result, `n` is close to the number of listed team
+members. Those rows describe medallists, but the team received one official
+medal for that event.
+
+## Strategy 3: create an event-level medal table
+
+To approximate official medal awards, keep each event, country, and medal type
+once. `event_type` is retained because similarly named events can have
+different forms:
+
+```{r}
+official_medals <- medallists |>
+  distinct(
+    discipline,
+    event,
+    event_type,
+    country_code,
+    country,
+    medal_type
+  )
+
+official_medals |>
+  summarise(number_of_official_medals = n())
+```
+
+This changes the unit from an athlete associated with an award to one
+country-medal result in one event. For publication, compare the resulting
+total with the official medal source and investigate any ties, mixed teams, or
+missing event identifiers.
+
+## Strategy 4: compare country measures
+
+First count athlete records and unique people within each country:
 
 ```{r}
 country_medallists <- medallists |>
-  filter(!is.na(country), !is.na(code_athlete)) |>
+  group_by(country_code, country) |>
   summarise(
     unique_medallists = n_distinct(code_athlete),
-    athlete_medal_records = n(),
-    .by = country
+    athlete_medal_rows = n()
+  )
+
+country_official_medals <- official_medals |>
+  count(country_code, country, name = "official_medals")
+
+country_measures <- country_medallists |>
+  left_join(
+    country_official_medals,
+    by = c("country_code", "country")
   ) |>
-  arrange(desc(unique_medallists))
+  arrange(desc(official_medals))
 
-country_medallists |>
-  slice_head(n = 15)
+country_measures |>
+  slice_head(n = 10)
 ```
 
-This table is useful, but it is not the official medal table. Countries with
-large team-event rosters can accumulate many athlete-medal records from one
-official medal.
+The three columns should not be used interchangeably. A country with many
+large successful teams can have far more athlete-medal rows than official
+medals.
 
-## Analyze age at the athlete grain
-
-Counting medal rows by age overweights multi-medallists. Deduplicate athletes
-first:
+## Visualize the chosen measure
 
 ```{r}
-athletes <- medallists |>
-  filter(!is.na(code_athlete)) |>
-  distinct(code_athlete, .keep_all = TRUE) |>
-  mutate(
-    age_at_opening = as.numeric(
-      as.Date("2024-07-26") - birth_date
-    ) / 365.25
-  )
-
-athletes |>
-  summarise(
-    athletes = n(),
-    missing_birth_date = sum(is.na(birth_date)),
-    median_age = median(age_at_opening, na.rm = TRUE),
-    youngest = min(age_at_opening, na.rm = TRUE),
-    oldest = max(age_at_opening, na.rm = TRUE)
-  )
-```
-
-```{r}
-athletes |>
-  filter(!is.na(age_at_opening)) |>
-  ggplot(aes(x = age_at_opening)) +
-  geom_histogram(binwidth = 2, fill = "#1769AA", color = "white") +
+country_measures |>
+  slice_head(n = 10) |>
+  ggplot(
+    aes(
+      x = official_medals,
+      y = fct_reorder(country, official_medals)
+    )
+  ) +
+  geom_col() +
   labs(
-    title = "The age distribution of unique Paris 2024 medallists",
-    subtitle = "Each athlete is counted once, regardless of medal records",
-    x = "Age at the opening ceremony",
-    y = "Unique medallists"
+    title = "Countries winning the most official medals at Paris 2024",
+    x = "Official event-level medals",
+    y = NULL,
+    caption = "Source: supplied Paris 2024 medallists data"
   ) +
   theme_minimal()
 ```
 
-A regression of “number of medal rows by age” on age would mostly describe the
-shape of this distribution. It would not estimate whether getting older causes
-an athlete to win more or fewer medals.
+If we charted `unique_medallists` instead, both the title and axis would need to
+say medallists. The wording follows the unit actually counted.
 
 ## Country codes are not universal
 
-The dataset uses International Olympic Committee codes, while Natural Earth
-provides ISO-style geographic identifiers. Many codes differ: `GER` versus
-`DEU`, `SUI` versus `CHE`, and `NED` versus `NLD`. A direct code join would
-drop many countries.
+The Olympics file uses International Olympic Committee codes. Many map sources
+use ISO-style codes instead. For example, Germany can appear as `GER` in one
+system and `DEU` in another.
 
-Use published country names with an explicit concordance for the unmatched
-labels:
+Before joining to a map:
 
-```{r}
-country_medallists <- country_medallists |>
-  mutate(
-    map_name = recode(
-      country,
-      "Great Britain" = "United Kingdom",
-      "Korea" = "Republic of Korea",
-      "Hong Kong, China" = "Hong Kong",
-      "Republic of Moldova" = "Moldova",
-      "Chinese Taipei" = "Taiwan",
-      "Cabo Verde" = "Republic of Cabo Verde",
-      "DPR Korea" = "Dem. Rep. Korea",
-      "IR Iran" = "Iran",
-      "Türkiye" = "Turkey",
-      "Czechia" = "Czech Republic"
-    )
-  ) |>
-  filter(!country %in% c("AIN", "EOR"))
-```
+1. identify the coding system used by each source;
+2. inspect unmatched countries with `anti_join()`;
+3. create a documented lookup table for differences; and
+4. do not force non-country delegations onto a country polygon.
 
-`AIN` represents Individual Neutral Athletes and `EOR` represents the Refugee
-Olympic Team. Assigning either delegation to one country polygon would be a
-substantive error, so they remain in the table but are excluded from the map.
+The Refugee Olympic Team and Individual Neutral Athletes are important
+examples: they should not automatically be assigned to one national map area.
 
-```{r}
-world <- ne_countries(scale = "medium", returnclass = "sf")
+## Practice
 
-unmatched <- country_medallists |>
-  anti_join(
-    world |>
-      st_drop_geometry() |>
-      distinct(name_long),
-    by = c("map_name" = "name_long")
-  )
+Choose one discipline and calculate:
 
-unmatched
-```
-
-The result should have no rows before the spatial join.
-
-```{r}
-world_medallists <- world |>
-  filter(name_long != "Antarctica") |>
-  left_join(
-    country_medallists,
-    by = c("name_long" = "map_name"),
-    relationship = "one-to-one"
-  )
-
-ggplot(world_medallists) +
-  geom_sf(aes(fill = unique_medallists), color = "white", linewidth = 0.08) +
-  scale_fill_viridis_c(na.value = "#E5E7EB") +
-  labs(
-    title = "Unique Paris 2024 medallists by represented country",
-    fill = "Unique\nmedallists",
-    caption = paste(
-      "AIN and EOR are not assigned to country polygons.",
-      "This is not an official medal-count map."
-    )
-  ) +
-  theme_void() +
-  theme(legend.position = "bottom")
-```
-
-## Independent task
-
-Choose one discipline and report three different counts:
-
-1. athlete-medal records;
+1. athlete-medal rows;
 2. unique medallists; and
-3. distinct event–medal combinations.
+3. official event-level medals.
 
-Explain why none should automatically be labelled “the number of official
-medals.” Add one chart at the unique-athlete grain and one validation check
-using `code_athlete`.
+Find one team event and show how many athlete rows represent one medal result.
+Then create a top-five table and chart for one measure, using the exact unit in
+the title.
+
+## Takeaways
+
+| Function or idea | What it does in this case |
+|---|---|
+| `count()` | Counts athlete-medal rows at the selected grouping |
+| `n_distinct()` | Counts different athlete identifiers |
+| `distinct()` | Keeps one event-country-medal combination |
+| `left_join()` | Places country measures in one comparison table |
+| `fct_reorder()` | Orders the countries by the chosen measure |
+| Join-key check | Prevents different country-code systems from silently dropping places |
+
+::: {.callout-tip title="Want more control?"}
+See the official [dplyr reference](https://dplyr.tidyverse.org/reference/index.html)
+for other ways to count and rank, and the
+[ggplot2 reference](https://ggplot2.tidyverse.org/reference/) for additional
+chart controls.
+:::

@@ -1,163 +1,209 @@
 ---
-title: "Metric Design: Billboard Hot 100"
+title: "Billboard Hot 100"
 ---
+
+::: {.callout-note title="Part 5: Case Studies"}
+The case studies reuse the tidyverse workflow with new topics and data
+structures. Instead of repeating every step from the main dataset, each case
+concentrates on a challenge that commonly appears in journalistic data.
+:::
+
+::: {.callout-important title="The new challenge: identify the song and define success"}
+One row is one song on one weekly chart, not one unique song. Different artists
+can also release songs with the same title. Before ranking artists, we must
+decide how to identify a song and what “success” means: chart appearances,
+distinct Hot 100 songs, distinct number-one songs, or weeks at number one.
+:::
 
 ## Learning objectives
 
 By the end of this case, you should be able to:
 
-- state the difference between a row count and a distinct-song count;
-- design a metric before ranking artists;
-- label charts with the measure actually calculated;
-- define a time period with exact dates; and
-- identify credit and identity problems in cultural data.
+- explain why one song can appear in many rows;
+- identify a song with its artist and title together;
+- compare different measures of chart success;
+- distinguish weekly appearances from distinct-song counts; and
+- label a ranking with the measure actually calculated.
 
-## Import and clean
+## Set up the case
+
+The column names in the source contain capital letters and spaces. `rename()`
+gives them shorter working names. `parse_number()` turns values such as text
+containing a number into numeric values.
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `09-hot100.Rmd`. Download
+[`hot100.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/hot100.csv)
+and save it in `data/`. This case changes the topic, but it uses the same
+project and tidyverse workflow.
+:::
 
 ```{r}
 library(tidyverse)
 
-hot100 <- read_csv(
-  "data/hot100.csv",
-  show_col_types = FALSE
-) |>
+hot100 <- read_csv("data/hot100.csv") |>
   rename(
     date = Date,
     song = Song,
     artist = Artist,
     rank = Rank,
-    last_week = `Last Week`,
     peak_position = `Peak Position`,
-    weeks_in_chart = `Weeks in Charts`,
-    image_url = `Image URL`
+    weeks_in_chart = `Weeks in Charts`
   ) |>
-  mutate(
-    weeks_in_chart = parse_number(weeks_in_chart)
-  )
+  mutate(weeks_in_chart = parse_number(weeks_in_chart))
 
 glimpse(hot100)
 ```
 
 One row represents one song's position on one weekly chart date. A song that
-appears for 20 weeks contributes 20 rows. This grain makes several plausible
-“most successful” metrics possible—and they are not interchangeable.
+appears for 20 weeks contributes 20 rows.
 
-## Define the period exactly
+## Strategy 1: identify a song with two columns
 
-```{r}
-period_start <- as.Date("2000-01-01")
-
-number_ones <- hot100 |>
-  filter(rank == 1, date >= period_start)
-
-range(number_ones$date)
-```
-
-“Since 2000” is clearer than “in the 21st century” when the code uses a date
-boundary. If the source ends in 2024, say so in the subtitle or methods.
-
-## Metric 1: weeks appearing at No. 1
+A title alone does not always identify a song. Several artists may have songs
+with the same title. The following check keeps every artist-title combination
+once, then finds titles associated with more than one artist:
 
 ```{r}
-artist_weeks_at_number_one <- number_ones |>
-  count(artist, name = "weeks_at_number_one", sort = TRUE)
-
-artist_weeks_at_number_one |>
-  slice_head(n = 10)
-```
-
-This metric counts weekly No. 1 chart appearances. If one song remains No. 1
-for ten weeks, it contributes ten to the artist's total.
-
-## Metric 2: distinct No. 1 songs
-
-```{r}
-artist_number_one_songs <- number_ones |>
+hot100 |>
   distinct(artist, song) |>
-  count(artist, name = "number_one_songs", sort = TRUE)
-
-artist_number_one_songs |>
+  count(song, name = "number_of_artists") |>
+  filter(number_of_artists > 1) |>
+  arrange(desc(number_of_artists)) |>
   slice_head(n = 10)
 ```
 
-This metric counts unique artist–song pairs that reached No. 1 at least once.
-The leading artist can differ from the weekly-appearance ranking because one
-long-running song and several shorter songs represent different kinds of chart
-success.
+For this case, we define a unique song as one published `artist`–`song`
+combination. This is an analytical rule, not a universal identifier. Remixes,
+featured artists, and changing chart credits may require additional reporting
+decisions.
 
-## Metric 3: longest-running No. 1 song
+## Strategy 2: define the period and threshold
+
+We will study chart records from 2000 onward. First create the period, then
+make the number-one subset used by several measures:
 
 ```{r}
-song_weeks_at_number_one <- number_ones |>
-  count(
-    artist,
-    song,
-    name = "weeks_at_number_one",
-    sort = TRUE
-  )
+chart_period <- hot100 |>
+  filter(date >= "2000-01-01")
 
-song_weeks_at_number_one |>
-  slice_head(n = 15)
+number_ones <- chart_period |>
+  filter(rank == 1)
 ```
 
-The song and artist must remain together. Grouping by song title alone could
-combine unrelated recordings with the same name.
+The date boundary makes “from 2000 onward” precise. The end of the period is
+the latest date contained in the supplied file.
 
-## Put the metric in the chart title and axis
+The next decision is the chart threshold. “Appeared in the Hot 100,” “reached
+the top 10,” and “reached number one” are different achievements. A defensible
+analysis names the threshold before counting.
+
+## Compare measures of success
+
+Consider the reporting question:
+
+> Which artists were most successful on the Billboard Hot 100 from 2000
+> onward?
+
+The dataset does not contain one correct `success` column. We could measure:
+
+| Measure | What it counts |
+|---|---|
+| Distinct Hot 100 songs | Different artist-title combinations appearing anywhere on the chart |
+| Distinct number-one songs | Different artist-title combinations that reached number one |
+| Weekly number-one appearances | Number-one rows across weekly charts |
+| Longest-running number-one song | Number-one rows for one artist-title combination |
+
+First count distinct Hot 100 songs by artist:
 
 ```{r}
-top_artists <- artist_number_one_songs |>
+artist_hot100_songs <- chart_period |>
+  distinct(artist, song) |>
+  count(artist, name = "hot100_songs") |>
+  arrange(desc(hot100_songs))
+
+artist_hot100_songs |>
+  slice_head(n = 10)
+```
+
+## Strategy 3: count weekly number-one appearances
+
+`count()` counts weekly rows for each artist:
+
+```{r}
+artist_weeks <- number_ones |>
+  count(artist) |>
+  arrange(desc(n))
+
+artist_weeks |>
+  slice_head(n = 10)
+```
+
+If one song stays at number one for ten weeks, it contributes ten rows to this
+measure. A clear name would be **weekly number-one appearances**.
+
+## Strategy 4: count distinct number-one songs
+
+To count songs rather than weeks, keep each artist-song pair once before
+counting:
+
+```{r}
+artist_songs <- number_ones |>
+  distinct(artist, song) |>
+  count(artist) |>
+  arrange(desc(n))
+
+artist_songs |>
+  slice_head(n = 10)
+```
+
+This ranking may differ from the weekly ranking. One long-running hit and
+several shorter hits represent different forms of chart success.
+
+## Strategy 5: keep the artist and title together
+
+Keep the song and artist together, then count their weekly rows:
+
+```{r}
+song_weeks <- number_ones |>
+  count(artist, song) |>
+  arrange(desc(n))
+
+song_weeks |>
+  slice_head(n = 10)
+```
+
+Grouping by title alone could combine different songs that happen to share a
+name.
+
+## Make the label match the metric
+
+Create a bar chart of distinct number-one songs:
+
+```{r}
+top_artists <- artist_songs |>
   slice_head(n = 10)
 
 top_artists |>
-  ggplot(
-    aes(
-      x = number_one_songs,
-      y = fct_reorder(artist, number_one_songs)
-    )
-  ) +
-  geom_col(fill = "#1769AA") +
-  geom_text(
-    aes(label = number_one_songs),
-    hjust = -0.2,
-    size = 3.2
-  ) +
-  scale_x_continuous(
-    breaks = scales::breaks_width(1),
-    expand = expansion(mult = c(0, 0.12))
-  ) +
+  ggplot(aes(x = n, y = fct_reorder(artist, n))) +
+  geom_col() +
   labs(
-    title = "Artists with the most distinct No. 1 songs since 2000",
-    subtitle = paste0(
-      "Each artist–song pair is counted once; source through ",
-      max(year(hot100$date))
-    ),
-    x = "Distinct songs that reached No. 1",
+    title = "Artists with the most distinct number-one songs from 2000 onward",
+    x = "Distinct songs that reached number one",
     y = NULL,
-    caption = "Source: Billboard Hot 100 dataset supplied with the course"
+    caption = "Source: Billboard Hot 100 data supplied with the course"
   ) +
-  theme_minimal() +
-  theme(panel.grid.major.y = element_blank())
+  theme_minimal()
 ```
 
-Do not label the y-axis “number of songs” if the code counts weekly rows. That
-small mismatch changes the finding.
+If the code counts weekly rows, the title must say weeks or weekly appearances.
+Calling both measures “number of songs” would change the finding.
 
-## Credit and identity problems
+## Check artist credits
 
-The `artist` field uses the credit published for each song. Collaborations can
-appear as one combined string, while an artist may also appear alone. Names,
-punctuation, featured-artist conventions, and group membership can change over
-time.
-
-Therefore:
-
-- this analysis ranks published artist-credit strings;
-- splitting collaborations requires an explicit, documented rule;
-- a person's total cannot be inferred safely from text matching alone; and
-- title capitalization and remixes should be checked before deduplication.
-
-Inspect possible variants before merging them:
+The `artist` column contains the credit printed on the chart. A performer may
+appear alone, with a featured artist, or as part of a group. Before combining
+names, inspect possible variants:
 
 ```{r}
 hot100 |>
@@ -165,31 +211,36 @@ hot100 |>
   filter(str_detect(str_to_lower(artist), "taylor swift"))
 ```
 
-## Validate the measures
+This analysis ranks published credit strings. Splitting collaborations or
+merging name variants requires a rule that should be documented.
 
-```{r}
-stopifnot(
-  sum(artist_weeks_at_number_one$weeks_at_number_one) == nrow(number_ones)
-)
+## Practice
 
-stopifnot(
-  sum(artist_number_one_songs$number_one_songs) ==
-    nrow(distinct(number_ones, artist, song))
-)
-```
+Choose a decade and calculate:
 
-The first check reconciles weekly rows. The second reconciles distinct songs.
-Neither proves the source is complete, but each proves the aggregation matches
-its stated metric.
+1. distinct Hot 100 songs by artist;
+2. weekly number-one appearances by artist;
+3. distinct number-one songs by artist; and
+4. weeks at number one by artist-song pair.
 
-## Independent task
+Compare the leading five results. Make one chart whose title and axis describe
+the chosen metric exactly, and write one note about collaborations or artist
+name variants.
 
-Design three different measures of chart success for a decade of your choice.
-At least one must use weekly appearances and one must use a distinct count.
-Submit:
+## Takeaways
 
-1. a one-sentence definition of each metric;
-2. the code and top-five table for each;
-3. one example showing how the rankings differ;
-4. a chart whose title and axis match one metric exactly; and
-5. a note about collaborations, name variants, or duplicate song titles.
+| Function | What it does in this case |
+|---|---|
+| `rename()` | Gives difficult source columns shorter working names |
+| `parse_number()` | Converts a column containing numeric text |
+| `filter()` | Defines the dates and chart position included |
+| `count()` | Counts weekly chart rows at the current grouping |
+| `distinct()` | Keeps one artist-song combination before counting |
+| `str_detect()` | Searches artist credits for possible name variants |
+| Metric definition | Turns the broad idea of “success” into a reproducible measure |
+
+::: {.callout-tip title="Want more control?"}
+The official [stringr reference](https://stringr.tidyverse.org/reference/index.html)
+lists other tidyverse tools for finding and cleaning text. Use them only when
+the published artist credits require another rule.
+:::

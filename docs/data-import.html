@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 5&nbsp; Find, Audit, and Import Data</title>
+<title>Data Journalism with R - 4&nbsp; Data Import</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./data-wrangling.html" rel="next">
-<link href="./debug.html" rel="prev">
+<link href="./r-basics.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,9 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
@@ -120,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./data-import.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Cleaning</a></li><li class="breadcrumb-item"><a href="./data-import.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -154,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -163,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -183,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -192,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -232,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -259,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -267,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -308,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -342,25 +338,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">5.1</span> Learning objectives</a></li>
-  <li><a href="#newsroom-question" id="toc-newsroom-question" class="nav-link" data-scroll-target="#newsroom-question"><span class="header-section-number">5.2</span> Newsroom question</a></li>
-  <li><a href="#raw-processed-and-analysis-ready" id="toc-raw-processed-and-analysis-ready" class="nav-link" data-scroll-target="#raw-processed-and-analysis-ready"><span class="header-section-number">5.3</span> Raw, processed, and analysis-ready</a></li>
-  <li><a href="#import-a-csv" id="toc-import-a-csv" class="nav-link" data-scroll-target="#import-a-csv"><span class="header-section-number">5.4</span> Import a CSV</a></li>
-  <li><a href="#state-the-grain" id="toc-state-the-grain" class="nav-link" data-scroll-target="#state-the-grain"><span class="header-section-number">5.5</span> State the grain</a></li>
-  <li><a href="#read-the-variables-as-evidence" id="toc-read-the-variables-as-evidence" class="nav-link" data-scroll-target="#read-the-variables-as-evidence"><span class="header-section-number">5.6</span> Read the variables as evidence</a></li>
-  <li><a href="#import-the-official-excel-file" id="toc-import-the-official-excel-file" class="nav-link" data-scroll-target="#import-the-official-excel-file"><span class="header-section-number">5.7</span> Import the official Excel file</a></li>
-  <li><a href="#a-compact-source-audit" id="toc-a-compact-source-audit" class="nav-link" data-scroll-target="#a-compact-source-audit"><span class="header-section-number">5.8</span> A compact source audit</a></li>
-  <li><a href="#validation-checkpoint" id="toc-validation-checkpoint" class="nav-link" data-scroll-target="#validation-checkpoint"><span class="header-section-number">5.9</span> Validation checkpoint</a></li>
-  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">5.10</span> Independent task</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">4.1</span> Learning objectives</a></li>
+  <li><a href="#why-import-data" id="toc-why-import-data" class="nav-link" data-scroll-target="#why-import-data"><span class="header-section-number">4.2</span> Why import data?</a></li>
+  <li><a href="#tidyverse-readr-and-read_csv" id="toc-tidyverse-readr-and-read_csv" class="nav-link" data-scroll-target="#tidyverse-readr-and-read_csv"><span class="header-section-number">4.3</span> Tidyverse, readr, and <code>read_csv()</code></a></li>
+  <li><a href="#package-data-urls-and-local-files" id="toc-package-data-urls-and-local-files" class="nav-link" data-scroll-target="#package-data-urls-and-local-files"><span class="header-section-number">4.4</span> Package data, URLs, and local files</a>
+  <ul class="collapse">
+  <li><a href="#data-supplied-by-a-package" id="toc-data-supplied-by-a-package" class="nav-link" data-scroll-target="#data-supplied-by-a-package">Data supplied by a package</a></li>
+  <li><a href="#data-imported-from-a-url" id="toc-data-imported-from-a-url" class="nav-link" data-scroll-target="#data-imported-from-a-url">Data imported from a URL</a></li>
+  <li><a href="#data-imported-from-a-local-file" id="toc-data-imported-from-a-local-file" class="nav-link" data-scroll-target="#data-imported-from-a-local-file">Data imported from a local file</a></li>
+  </ul></li>
+  <li><a href="#relative-paths-and-rstudio-projects" id="toc-relative-paths-and-rstudio-projects" class="nav-link" data-scroll-target="#relative-paths-and-rstudio-projects"><span class="header-section-number">4.5</span> Relative paths and RStudio Projects</a></li>
+  <li><a href="#import-the-csv" id="toc-import-the-csv" class="nav-link" data-scroll-target="#import-the-csv"><span class="header-section-number">4.6</span> Import the CSV</a></li>
+  <li><a href="#inspect-the-imported-data" id="toc-inspect-the-imported-data" class="nav-link" data-scroll-target="#inspect-the-imported-data"><span class="header-section-number">4.7</span> Inspect the imported data</a>
+  <ul class="collapse">
+  <li><a href="#look-at-the-structure" id="toc-look-at-the-structure" class="nav-link" data-scroll-target="#look-at-the-structure">Look at the structure</a></li>
+  <li><a href="#preview-a-few-rows" id="toc-preview-a-few-rows" class="nav-link" data-scroll-target="#preview-a-few-rows">Preview a few rows</a></li>
+  <li><a href="#what-is-a-parsing-problem" id="toc-what-is-a-parsing-problem" class="nav-link" data-scroll-target="#what-is-a-parsing-problem">What is a parsing problem?</a></li>
+  </ul></li>
+  <li><a href="#what-should-you-inspect" id="toc-what-should-you-inspect" class="nav-link" data-scroll-target="#what-should-you-inspect"><span class="header-section-number">4.8</span> What should you inspect?</a></li>
+  <li><a href="#refer-to-the-data-dictionary" id="toc-refer-to-the-data-dictionary" class="nav-link" data-scroll-target="#refer-to-the-data-dictionary"><span class="header-section-number">4.9</span> Refer to the data dictionary</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">4.10</span> Practice</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">4.11</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./data-import.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Cleaning</a></li><li class="breadcrumb-item"><a href="./data-import.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></h1>
 </div>
 
 
@@ -377,89 +384,190 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="learning-objectives" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">5.1</span> Learning objectives</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Part 2: Data Import &amp; Cleaning">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Part 2: Data Import &amp; Cleaning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this part, you will bring data into R and prepare it for analysis. We begin with one CSV file and add new tidyverse tools gradually.</p>
+</div>
+</div>
+<section id="learning-objectives" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">4.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>evaluate a source before opening the data;</li>
-<li>distinguish raw, processed, and analysis-ready files;</li>
-<li>import CSV and Excel files with explicit paths;</li>
-<li>inspect dimensions, names, types, and parsing problems; and</li>
-<li>write a one-sentence statement of the unit of analysis.</li>
+<li>explain what a CSV file is;</li>
+<li>explain the relationship between the tidyverse, readr, and <code>read_csv()</code>;</li>
+<li>compare package data, URL imports, and local-file imports;</li>
+<li>import a CSV file with a relative path;</li>
+<li>explain the main parts of <code>glimpse()</code> output; and</li>
+<li>identify common issues to investigate after an import.</li>
 </ul>
 </section>
-<section id="newsroom-question" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="newsroom-question"><span class="header-section-number">5.2</span> Newsroom question</h2>
-<blockquote class="blockquote">
-<p>What did Norway’s sovereign wealth fund report holding at the latest year-end, and what can this file legitimately tell us?</p>
-</blockquote>
-<p>The analysis begins before R. Open the <a href="https://www.nbim.no/en/investments/all-investments/">NBIM all-investments page</a> and record:</p>
-<ul>
-<li>publisher and institutional responsibility;</li>
-<li>reporting date;</li>
-<li>asset type;</li>
-<li>available file formats;</li>
-<li>definitions or terms of use;</li>
-<li>update frequency; and</li>
-<li>the URL and date you accessed it.</li>
-</ul>
-<p>Authority does not remove the need for scrutiny. Official data can contain classification changes, revisions, omissions, and definitions that differ from ordinary language.</p>
+<section id="why-import-data" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="why-import-data"><span class="header-section-number">4.2</span> Why import data?</h2>
+<p>So far, we have typed small examples directly into R. In reporting, the data usually come from somewhere else: a government website, an institution, a researcher, or a file supplied by a source. <strong>Importing</strong> brings that file into R so we can work with it.</p>
+<p>We will use a <strong>CSV</strong>, or comma-separated values file. A CSV stores a table as plain text. It is widely used, easy to share, and a good format for learning data analysis.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Continue in the same project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open <code>djr.Rproj</code> and create <code>02-data-import.Rmd</code>. Download <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg.csv"><code>gpfg.csv</code></a> and save it inside your project’s <code>data</code> folder. Do not open and resave the file in spreadsheet software.</p>
+</div>
+</div>
 </section>
-<section id="raw-processed-and-analysis-ready" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="raw-processed-and-analysis-ready"><span class="header-section-number">5.3</span> Raw, processed, and analysis-ready</h2>
-<p>This project uses three layers:</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  A["Official annual Excel files"] --&gt; B["Reproducible preparation script"]
-  B --&gt; C["Clean UTF-8 CSV and RDS files"]
-  C --&gt; D["Chapter-specific analysis"]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<ul>
-<li><strong>Raw files</strong> are unchanged evidence from the publisher.</li>
-<li><strong>Processed files</strong> standardize names, types, dates, and provenance.</li>
-<li><strong>Analysis objects</strong> are filtered or aggregated for a specific question.</li>
-</ul>
-<p>Never overwrite the raw evidence with a cleaned file.</p>
-<p>For this chapter, download or use <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/processed/gpfg_equities_latest.csv">the cleaned latest-year snapshot</a>. The canonical teaching files are kept once in the repository rather than duplicated inside the rendered website. The cleaning process is documented in <code>scripts/prepare_gpfg.R</code> and the <a href="reports/gpfg-data-audit.md">data audit</a>.</p>
-</section>
-<section id="import-a-csv" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="import-a-csv"><span class="header-section-number">5.4</span> Import a CSV</h2>
+<section id="tidyverse-readr-and-read_csv" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="tidyverse-readr-and-read_csv"><span class="header-section-number">4.3</span> Tidyverse, readr, and <code>read_csv()</code></h2>
+<p>The <strong>tidyverse</strong> is a collection of packages that work together. One of those packages is <strong>readr</strong>, which imports rectangular data files. The readr function for a CSV file is <code>read_csv()</code>.</p>
+<p>Loading the tidyverse also loads readr:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg_latest <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_latest.csv"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>latest_year <span class="ot">&lt;-</span> <span class="fu">unique</span>(gpfg_latest<span class="sc">$</span>year)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(latest_year) <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Use a project-relative path. The code should work on another student’s computer after they open the same project.</p>
-<p>Immediately inspect the result:</p>
+<p>Because readr is one of the core tidyverse packages, you do <strong>not</strong> also need to run <code>library(readr)</code>. The single <code>library(tidyverse)</code> line makes <code>read_csv()</code> and the other core tidyverse tools available. If a project used readr without the rest of the tidyverse, it could load only readr with <code>library(readr)</code>, but that is not the workflow used in this book.</p>
+<p>The simplest form of the import function is:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"file_path.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The function needs the path to the file. Because a path is text, it goes inside quotation marks.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Use `read_csv()`, not `read.csv()`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Use <code>read_csv()</code>, not <code>read.csv()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both functions can import a CSV, but they come from different parts of R:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Where it comes from</th>
+<th>What it returns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_csv()</code></td>
+<td>readr and the tidyverse</td>
+<td>A tibble</td>
+</tr>
+<tr class="even">
+<td><code>read.csv()</code></td>
+<td>Base R</td>
+<td>A traditional data frame</td>
+</tr>
+</tbody>
+</table>
+<p>This book uses <code>read_csv()</code> for four reasons:</p>
+<ol type="1">
+<li>It returns a tibble, the table format used throughout the tidyverse.</li>
+<li>It reports the column types it detected, giving us immediate information about the import.</li>
+<li>It records values that it could not convert correctly, which we can inspect with <code>problems()</code>.</li>
+<li>Its name and behavior fit consistently with other tidyverse functions used in the book.</li>
+</ol>
+<p><code>read.csv()</code> is valid R code, but it belongs to a different workflow and its name uses a period instead of an underscore. Using one approach consistently makes the course easier to follow. Check the function name carefully: <code>read_csv()</code> is the one used here.</p>
+</div>
+</div>
+</section>
+<section id="package-data-urls-and-local-files" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="package-data-urls-and-local-files"><span class="header-section-number">4.4</span> Package data, URLs, and local files</h2>
+<p>Data can enter R in several ways. Three common possibilities are package data, a direct URL, and a file stored on your computer.</p>
+<section id="data-supplied-by-a-package" class="level3">
+<h3 class="anchored" data-anchor-id="data-supplied-by-a-package">Data supplied by a package</h3>
+<p>Some R packages include small datasets for examples and practice. For example, the ggplot2 package includes a table called <code>mpg</code>. It becomes available when the tidyverse is loaded:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Package datasets are useful for learning because everyone with the same package receives the same data. In journalism, however, the main source is more often a file published by an organization or obtained through reporting.</p>
+</section>
+<section id="data-imported-from-a-url" class="level3">
+<h3 class="anchored" data-anchor-id="data-imported-from-a-url">Data imported from a URL</h3>
+<p><code>read_csv()</code> can read a public CSV directly from its web address:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gpfg_online <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg.csv"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This can be convenient for a quick exploration or an automated update. It also means that R must download the file again whenever the code runs.</p>
+</section>
+<section id="data-imported-from-a-local-file" class="level3">
+<h3 class="anchored" data-anchor-id="data-imported-from-a-local-file">Data imported from a local file</h3>
+<p>For the main course workflow, download the source file once, keep it unchanged inside the Project, and import the local copy. This is safer for a reproducible analysis because:</p>
+<ul>
+<li>a website or URL may move, disappear, or become temporarily unavailable;</li>
+<li>the contents at the same URL may be replaced without warning;</li>
+<li>an internet connection may fail when the document is knitted;</li>
+<li>a website may limit or block repeated downloads; and</li>
+<li>the local file preserves the exact version used for the story.</li>
+</ul>
+<p>Record the original URL and the date of download in your notes. A local copy is not a replacement for documenting the source; it is an archived snapshot of what the source provided at that time.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="The workflow used in this book">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The workflow used in this book
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The book mentions package data and URL imports so you can recognize them. The guided lessons use local CSV files stored in <code>data/</code>, which makes the code more reliable and allows the same analysis to run again later.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="relative-paths-and-rstudio-projects" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="relative-paths-and-rstudio-projects"><span class="header-section-number">4.5</span> Relative paths and RStudio Projects</h2>
+<p>Our file is stored here inside the learner project:</p>
+<pre class="text"><code>djr/
+├── data/
+│   └── gpfg.csv
+├── 02-data-import.Rmd
+└── djr.Rproj</code></pre>
+<p>Starting from the project folder, the relative path is:</p>
+<pre class="text"><code>data/gpfg.csv</code></pre>
+<p>This is why we open the <code>.Rproj</code> file before working. Everyone who opens the same project starts in the same place, so the same relative path works on different computers.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Avoid personal paths">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avoid personal paths
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do not use a path such as <code>/Users/name/Desktop/...</code> or <code>C:/Users/name/Desktop/...</code> in shared code. It points to one person’s computer. Keep the data inside the project and use a relative path.</p>
+</div>
+</div>
+</section>
+<section id="import-the-csv" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="import-the-csv"><span class="header-section-number">4.6</span> Import the CSV</h2>
+<p>The teaching file comes from the equity-holdings data published by <a href="https://www.nbim.no/en/investments/all-investments/">Norges Bank Investment Management</a>. It is a prepared CSV containing one year of reported holdings.</p>
+<p>Import it and save the result as <code>gpfg</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gpfg_latest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 7201   13</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gpfg_latest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "year"                  "report_date"           "region"               
- [4] "country"               "company"               "industry"             
- [7] "market_value_nok"      "market_value_usd"      "voting_pct"           
-[10] "ownership_pct"         "incorporation_country" "source_file"          
-[13] "source_url"           </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg_latest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Read the line from right to left: <code>read_csv()</code> reads the file, and <code>&lt;-</code> saves the imported table with the name <code>gpfg</code>.</p>
+<p>readr may display a message describing the rows, columns, and column types it found. This is information about the import, not an error.</p>
+</section>
+<section id="inspect-the-imported-data" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="inspect-the-imported-data"><span class="header-section-number">4.7</span> Inspect the imported data</h2>
+<p>Never begin an analysis without looking at what was imported.</p>
+<section id="look-at-the-structure" class="level3">
+<h3 class="anchored" data-anchor-id="look-at-the-structure">Look at the structure</h3>
+<p><code>glimpse()</code> shows the number of rows and columns, the column names, their data types, and a few example values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,201
 Columns: 13
@@ -477,7 +585,60 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 $ source_file           &lt;chr&gt; "gpfg-equities-2025-12-31.xlsx", "gpfg-equities-…
 $ source_url            &lt;chr&gt; "https://www.nbim.no/api/investments/v2/report/?…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(gpfg_latest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Read the output from top to bottom:</p>
+<ul>
+<li><strong><code>Rows: 7,201</code></strong> tells us how many observations were imported.</li>
+<li><strong><code>Columns: 13</code></strong> tells us how many variables were imported.</li>
+<li>Each line beginning with <strong><code>$</code></strong> describes one column.</li>
+<li>The column name appears after <code>$</code>, such as <code>company</code> or <code>market_value_usd</code>.</li>
+<li>The short label in angle brackets is the data type. For example, <code>&lt;chr&gt;</code> means text, <code>&lt;dbl&gt;</code> means a number, and <code>&lt;date&gt;</code> means a date.</li>
+<li>The values at the end of the line are examples from that column.</li>
+</ul>
+<p>For example, a line beginning <code>$ company &lt;chr&gt;</code> tells us that <code>company</code> is a text column. A line beginning <code>$ market_value_usd &lt;dbl&gt;</code> tells us that <code>market_value_usd</code> is numeric.</p>
+<p><code>glimpse()</code> is a quick overview. It shows only a few example values, so it cannot prove that every value is valid or tell us how many values are missing.</p>
+</section>
+<section id="preview-a-few-rows" class="level3">
+<h3 class="anchored" data-anchor-id="preview-a-few-rows">Preview a few rows</h3>
+<p><code>slice_head()</code> shows rows from the beginning of a table. The <code>n</code> argument says how many rows to show:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["report_date"],"name":[2],"type":["date"],"align":["right"]},{"label":["region"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["company"],"name":[5],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[6],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["market_value_usd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["voting_pct"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ownership_pct"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["incorporation_country"],"name":[11],"type":["chr"],"align":["left"]},{"label":["source_file"],"name":[12],"type":["chr"],"align":["left"]},{"label":["source_url"],"name":[13],"type":["chr"],"align":["left"]}],"data":[{"1":"2025","2":"2025-12-31","3":"Oceania","4":"Australia","5":"3P Learning Ltd","6":"Consumer Discretionary","7":"34140465","8":"3384651","9":"3.00","10":"3.00","11":"Australia","12":"gpfg-equities-2025-12-31.xlsx","13":"https://www.nbim.no/api/investments/v2/report/?assetType=eq&date=2025-12-31&fileType=xlsx"},{"1":"2025","2":"2025-12-31","3":"Oceania","4":"Australia","5":"ALS Ltd","6":"Industrials","7":"1044536415","8":"103554273","9":"1.39","10":"1.39","11":"Australia","12":"gpfg-equities-2025-12-31.xlsx","13":"https://www.nbim.no/api/investments/v2/report/?assetType=eq&date=2025-12-31&fileType=xlsx"},{"1":"2025","2":"2025-12-31","3":"Oceania","4":"Australia","5":"AMP Ltd","6":"Financials","7":"393367522","8":"38998054","9":"1.27","10":"1.27","11":"Australia","12":"gpfg-equities-2025-12-31.xlsx","13":"https://www.nbim.no/api/investments/v2/report/?assetType=eq&date=2025-12-31&fileType=xlsx"},{"1":"2025","2":"2025-12-31","3":"Oceania","4":"Australia","5":"ANZ Group Holdings Ltd","6":"Financials","7":"16360856591","8":"1621998602","9":"2.22","10":"2.22","11":"Australia","12":"gpfg-equities-2025-12-31.xlsx","13":"https://www.nbim.no/api/investments/v2/report/?assetType=eq&date=2025-12-31&fileType=xlsx"},{"1":"2025","2":"2025-12-31","3":"Oceania","4":"Australia","5":"APA Group","6":"Energy","7":"1329942465","8":"131849137","9":"1.68","10":"1.68","11":"Australia","12":"gpfg-equities-2025-12-31.xlsx","13":"https://www.nbim.no/api/investments/v2/report/?assetType=eq&date=2025-12-31&fileType=xlsx"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The result contains the same columns as <code>gpfg</code>, but only its first five rows. The original <code>gpfg</code> object is not changed.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Why use `slice_head()` instead of `head()`?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why use <code>slice_head()</code> instead of <code>head()</code>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both functions can show the first rows of a table, and <code>head(gpfg)</code> is valid R code. This book uses <code>slice_head()</code> because it belongs to dplyr, works naturally in a tidyverse pipeline, and makes the action explicit. In <code>slice_head(n = 5)</code>, the named argument <code>n</code> clearly says how many rows to show.</p>
+</div>
+</div>
+</section>
+<section id="what-is-a-parsing-problem" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-parsing-problem">What is a parsing problem?</h3>
+<p>A CSV stores values as text. During import, <code>read_csv()</code> tries to convert that text into suitable R values, such as numbers or dates. This conversion is called <strong>parsing</strong>.</p>
+<p>Imagine that a column should contain numbers:</p>
+<pre class="text"><code>amount
+120
+unknown
+95</code></pre>
+<p>The value <code>unknown</code> cannot be converted into a number. This is a <strong>parsing problem</strong>. Depending on the column type, the value may become <code>NA</code>, and readr records where the problem occurred.</p>
+<p>After importing a file, use <code>problems()</code> to check whether readr recorded any such values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">problems</span>(gpfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -486,95 +647,12 @@ $ source_url            &lt;chr&gt; "https://www.nbim.no/api/investments/v2/repo
 </div>
 </div>
 </div>
-<p><code>dim()</code> reports the number of rows and columns. <code>problems()</code> should return an empty table. An empty parsing-problem table does not prove the values are correct; it only means <code>read_csv()</code> did not detect a conversion failure.</p>
+<p>If problems are found, the result identifies the row and column, what readr expected, and the value it actually found. An empty result means readr did not detect a parsing problem. It does not prove that every value in the source is correct—for example, an incorrect but valid number would not be reported.</p>
 </section>
-<section id="state-the-grain" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="state-the-grain"><span class="header-section-number">5.5</span> State the grain</h2>
-<p>Before calculating anything, finish this sentence:</p>
-<blockquote class="blockquote">
-<p>One row represents one equity holding reported by NBIM at the latest year-end.</p>
-</blockquote>
-<p>Most rows name companies, but some names may be funds or other listed issuers. The source has no transaction identifier. A row does <strong>not</strong> represent a purchase, a sale, a return, or an amount paid to the named company.</p>
-<p>Check whether the apparent identifier is unique:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gpfg_latest <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(company) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["company"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>The result should have no rows, showing that published company names are unique within this snapshot. That does not make a company name a stable identifier across years.</p>
 </section>
-<section id="read-the-variables-as-evidence" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="read-the-variables-as-evidence"><span class="header-section-number">5.6</span> Read the variables as evidence</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gpfg_dictionary <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_data_dictionary.csv"</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>gpfg_dictionary <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(variable, description, unit_or_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["variable"],"name":[1],"type":["chr"],"align":["left"]},{"label":["description"],"name":[2],"type":["chr"],"align":["left"]},{"label":["unit_or_example"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"year","2":"Calendar year of the year-end holdings snapshot.","3":"2025"},{"1":"report_date","2":"Official reporting date for the holdings snapshot.","3":"2025-12-31"},{"1":"region","2":"NBIM geographic region assigned to the investment market.","3":"North America"},{"1":"country","2":"NBIM country or market assigned to the holding.","3":"United States"},{"1":"company","2":"Company or issuer name as published by NBIM.","3":"Apple Inc"},{"1":"industry","2":"NBIM industry classification for the holding.","3":"Technology"},{"1":"market_value_nok","2":"Year-end market value of the holding in Norwegian kroner.","3":"NOK"},{"1":"market_value_usd","2":"Year-end market value of the holding converted to US dollars.","3":"USD"},{"1":"voting_pct","2":"Voting rights held, stored in percentage points.","3":"0.65 means 0.65%"},{"1":"ownership_pct","2":"Equity ownership held, stored in percentage points.","3":"1.20 means 1.20%"},{"1":"incorporation_country","2":"Legal country of incorporation supplied by NBIM.","3":"Ireland"},{"1":"source_file","2":"Name of the archived official annual Excel file.","3":"gpfg-equities-2025-12-31.xlsx"},{"1":"source_url","2":"Official NBIM API URL for the annual source file.","3":"https://www.nbim.no/api/investments/v2/report/…"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Pay particular attention to units:</p>
-<ul>
-<li><code>market_value_nok</code> is the year-end holding value in Norwegian kroner;</li>
-<li><code>market_value_usd</code> is the same snapshot converted to US dollars;</li>
-<li><code>ownership_pct</code> and <code>voting_pct</code> are stored in <strong>percentage points</strong>, so <code>0.65</code> means <code>0.65%</code>; and</li>
-<li><code>country</code> is the investment market, while <code>incorporation_country</code> is the issuer’s legal incorporation country.</li>
-</ul>
-</section>
-<section id="import-the-official-excel-file" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="import-the-official-excel-file"><span class="header-section-number">5.7</span> Import the official Excel file</h2>
-<p>The raw official download is an Excel workbook. The following reads the latest archived source directly:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>latest_raw_file <span class="ot">&lt;-</span> <span class="fu">unique</span>(gpfg_latest<span class="sc">$</span>source_file)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">length</span>(latest_raw_file) <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>gpfg_raw_latest <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">file.path</span>(<span class="st">"data/raw/gpfg"</span>, latest_raw_file),</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">sheet =</span> <span class="st">"Holdings Report"</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(gpfg_raw_latest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Region"                "Country"               "Name"                 
-[4] "Industry"              "Market Value(NOK)"     "Market Value(USD)"    
-[7] "Voting"                "Ownership"             "Incorporation Country"</code></pre>
-</div>
-</div>
-<p>The cleaned CSV uses easier <code>snake_case</code> names and adds the year, report date, source file, and source URL. Those additions are provenance, not new reporting from NBIM.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Why the preparation script uses Excel">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Why the preparation script uses Excel
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>NBIM’s CSV and Excel exports have the same visible source columns, but the CSV export leaves incorporation country blank. The Excel files retain it and also store money and percentage fields as numeric values. The original CSV exports are still archived for comparison.</p>
-</div>
-</div>
-</section>
-<section id="a-compact-source-audit" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="a-compact-source-audit"><span class="header-section-number">5.8</span> A compact source audit</h2>
-<p>Create a data diary entry before analysis:</p>
+<section id="what-should-you-inspect" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="what-should-you-inspect"><span class="header-section-number">4.8</span> What should you inspect?</h2>
+<p>Importing a file successfully does not guarantee that the data are ready for analysis. Ask these questions before calculating anything:</p>
 <table class="table">
 <colgroup>
 <col style="width: 50%">
@@ -582,67 +660,125 @@ Why the preparation script uses Excel
 </colgroup>
 <thead>
 <tr class="header">
-<th>Question</th>
-<th>Answer for this file</th>
+<th>Check</th>
+<th>Why it matters</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Publisher</td>
-<td>Norges Bank Investment Management</td>
+<td>Number of rows and columns</td>
+<td>An incomplete download or wrong file may have an unexpected size</td>
 </tr>
 <tr class="even">
-<td>Asset type</td>
-<td>Listed equities</td>
+<td>Column names</td>
+<td>Names should identify the variables clearly</td>
 </tr>
 <tr class="odd">
-<td>Reporting date</td>
-<td>Latest available year-end</td>
+<td>Data types</td>
+<td>A numeric column imported as <code>&lt;chr&gt;</code> may contain symbols or unexpected text</td>
 </tr>
 <tr class="even">
-<td>Grain</td>
-<td>One reported equity holding at year-end</td>
+<td>Missing values</td>
+<td><code>NA</code> means a value is unavailable; it is not the same as zero</td>
 </tr>
 <tr class="odd">
-<td>Main measures</td>
-<td>Market value, ownership, voting rights</td>
+<td>Unexpected values</td>
+<td>Negative amounts, impossible percentages, or unusual spellings may need investigation</td>
 </tr>
 <tr class="even">
-<td>Key limitation</td>
-<td>Snapshot values do not reveal transactions or returns</td>
+<td>Repeated rows</td>
+<td>A duplicate may be an error, or it may represent a legitimate repeated observation</td>
 </tr>
 <tr class="odd">
-<td>Local raw file</td>
-<td>The <code>source_file</code> recorded in the processed snapshot</td>
+<td>Units and definitions</td>
+<td>A number cannot be interpreted correctly without knowing what it measures</td>
 </tr>
 <tr class="even">
-<td>Cleaning record</td>
-<td><code>scripts/prepare_gpfg.R</code></td>
+<td>Parsing problems</td>
+<td>A parsing problem means readr could not interpret a value as expected</td>
 </tr>
 </tbody>
 </table>
+<p>At this stage, use <code>glimpse()</code>, <code>slice_head()</code>, <code>problems()</code>, and the data dictionary to form questions about the table. In the next chapter, we will use tidyverse functions to investigate missing, unexpected, and repeated values more systematically.</p>
 </section>
-<section id="validation-checkpoint" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="validation-checkpoint"><span class="header-section-number">5.9</span> Validation checkpoint</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(gpfg_latest) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(gpfg_latest<span class="sc">$</span>company))</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(gpfg_latest<span class="sc">$</span>market_value_nok))</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(gpfg_latest<span class="sc">$</span>market_value_nok <span class="sc">&gt;=</span> <span class="dv">0</span>))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">all</span>(gpfg_latest<span class="sc">$</span>year <span class="sc">==</span> latest_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>These checks encode justified expectations for the latest-year teaching file. They should not be copied blindly to the full archive, which contains legitimate historical negative records.</p>
+<section id="refer-to-the-data-dictionary" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="refer-to-the-data-dictionary"><span class="header-section-number">4.9</span> Refer to the data dictionary</h2>
+<p>Before using a column, check what it means and what unit it uses. Open the <a href="https://github.com/binchen19/djr/blob/main/data/gpfg_data_dictionary.csv">GPFG data dictionary</a> and keep it as a reference. You do <strong>not</strong> need to import the dictionary into R for this lesson.</p>
+<p>For example, the dictionary explains the difference between market value in Norwegian kroner and US dollars, and it explains that ownership values are percentage points.</p>
+<p>One row in the imported file represents one reported equity holding at the end of the year. It does not represent a purchase or sale.</p>
 </section>
-<section id="independent-task" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">5.10</span> Independent task</h2>
-<p>Choose one row and trace it from the processed CSV back to the official Excel file. Submit:</p>
+<section id="practice" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="practice"><span class="header-section-number">4.10</span> Practice</h2>
+<p>In an R Markdown document:</p>
 <ol type="1">
-<li>the company, country, and NOK market value;</li>
-<li>the row’s meaning in plain language;</li>
-<li>one claim the row supports;</li>
-<li>one tempting claim it does not support; and</li>
-<li>a screenshot or code output showing the values agree across the two files.</li>
+<li>load the tidyverse;</li>
+<li>import <code>data/gpfg.csv</code> as <code>gpfg</code>;</li>
+<li>inspect it with <code>glimpse()</code>;</li>
+<li>show its first five rows; and</li>
+<li>check for parsing problems.</li>
 </ol>
+<p>Then write five short answers:</p>
+<ol type="1">
+<li>How many rows and columns were imported?</li>
+<li>What data types do <code>company</code> and <code>market_value_usd</code> have?</li>
+<li>What does one row represent?</li>
+<li>Name one important issue that <code>glimpse()</code> alone cannot fully check.</li>
+<li>Give one reason for importing the saved local file instead of downloading it from the URL every time the document runs.</li>
+</ol>
+</section>
+<section id="takeaways" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.11</span> Takeaways</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Function or idea</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>library(tidyverse)</code></td>
+<td>Loads the core tidyverse packages</td>
+</tr>
+<tr class="even">
+<td><code>read_csv("path")</code></td>
+<td>Imports a CSV file as a tibble</td>
+</tr>
+<tr class="odd">
+<td>Relative path</td>
+<td>Locates a file from the RStudio Project folder</td>
+</tr>
+<tr class="even">
+<td>Local source copy</td>
+<td>Preserves the version used in the analysis</td>
+</tr>
+<tr class="odd">
+<td><code>glimpse()</code></td>
+<td>Shows columns, types, and example values</td>
+</tr>
+<tr class="even">
+<td><code>slice_head(n = 5)</code></td>
+<td>Shows the first five rows</td>
+</tr>
+<tr class="odd">
+<td><code>problems()</code></td>
+<td>Reports values readr could not parse as expected</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Want more control?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Want more control?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The file path is the only argument needed in this lesson. The official <a href="https://readr.tidyverse.org/reference/read_delim.html"><code>read_csv()</code> reference</a> explains optional controls for missing values, column types, delimiters, and unusual files when you need them later.</p>
+</div>
+</div>
 
 
 </section>
@@ -1037,13 +1173,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./debug.html" class="pagination-link  aria-label=" &lt;span="" without="" guessing&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span>
+      <a href="./r-basics.html" class="pagination-link  aria-label=" &lt;span="" basics&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-wrangling.html" class="pagination-link" aria-label="<span class='chapter-number'>6</span>&nbsp; <span class='chapter-title'>Wrangle Data Without Losing Its Meaning</span>">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data-wrangling.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Data Cleaning</span>">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

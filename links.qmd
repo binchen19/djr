@@ -4,7 +4,8 @@
 - [Download R](https://www.r-project.org/)
 - [Download RStudio](https://posit.co/download/rstudio-desktop/)
 - [Download Quarto](https://quarto.org/docs/get-started/)
-- [Sign up for Quarto Pub account](https://quartopub.com/)
+- [GitHub Pages documentation](https://docs.github.com/en/pages)
+- [Posit Connect Cloud](https://connect.posit.cloud/)
 
 ## Where to find data news?
 
@@ -54,6 +55,5 @@ methodology before using either microdata or published estimates.
 - [4 Common Angles Data Journalists Use to Tell Stories](https://gijn.org/stories/4-common-angles-data-journalists-use-to-tell-stories/)
 - [From Data to Storytelling: Concept and Design Tips from the Financial Times’ John Burn-Murdoch](https://gijn.org/stories/data-visualization-storytelling-tips-john-burn-murdoch/)
 - 
-
 
 

@@ -1,12 +1,33 @@
 ---
-title: "Publish a Quarto Website"
+title: "Quarto Websites"
 ---
+
+## Where this appendix fits
+
+The main pathway begins with R Markdown so students can see code and output one
+step at a time. Use this optional appendix after students can knit a complete
+analysis and are ready to organize several pages as a website.
 
 ## What Quarto does
 
 Quarto combines Markdown, executable code, citations, and outputs into a
 website or report. A publishable data project should render from a fresh R
 session without relying on objects left in the Console.
+
+## From R Markdown to Quarto
+
+R Markdown and Quarto both combine prose, code, and output. The R Markdown
+chapters have already introduced the essential ideas: a short header, Markdown
+text, R code chunks, and a complete render. Quarto applies the same model to a
+more flexible website and book system.
+
+Quarto is used here because this textbook is a Quarto book and because Quarto
+is Posit's next-generation system for this kind of document. Students do not
+need Quarto for the early analysis exercises; they can move from `.Rmd` to
+`.qmd` when a multi-page publication is useful. See the official
+[Quarto introduction](https://quarto.org/docs/get-started/hello/rstudio.html)
+and [R Markdown user FAQ](https://quarto.org/docs/faq/rmarkdown.html) for the
+relationship between the two systems.
 
 Current RStudio releases include Quarto. To verify the command-line tool, run
 this in the **Terminal**, not the R Console:
@@ -38,9 +59,6 @@ project/
 ├── methods.qmd
 ├── analysis.qmd
 ├── data/
-│   ├── raw/
-│   └── processed/
-├── scripts/
 ├── images/
 └── outputs/
 ```
@@ -82,7 +100,7 @@ runs first.
 #| eval: false
 library(tidyverse)
 
-analysis_data <- readRDS("data/processed/analysis_data.rds")
+analysis_data <- read_csv("data/analysis_data.csv")
 ```
 
 Test with:
@@ -92,7 +110,7 @@ Test with:
 3. run `quarto render` from the project root; and
 4. inspect the rendered site and Terminal output.
 
-## Preview and publish
+## Preview locally
 
 Preview locally with the RStudio Render button or:
 
@@ -100,15 +118,31 @@ Preview locally with the RStudio Render button or:
 quarto preview
 ```
 
-To publish to Quarto Pub, create an account at
-[quartopub.com](https://quartopub.com/) and run:
+## Publish with GitHub Pages
 
-```bash
-quarto publish
-```
+This textbook uses GitHub Pages. Quarto renders the finished website into the
+`docs/` folder. Commit both the revised `.qmd` sources and the regenerated
+`docs/` files, push them to GitHub, and configure GitHub Pages to publish from
+the `docs/` folder on the main branch.
 
-Follow the prompts to choose Quarto Pub and authorize the account. Republishing
-updates the existing site when you select the same destination.
+This approach keeps the source, revision history, and website in one
+repository. It also means the textbook is not affected by the closure of a
+separate publishing service.
+
+## Other publishing services
+
+Posit now recommends
+[Posit Connect Cloud](https://connect.posit.cloud/) for new Quarto publishing.
+Quarto 1.9 and current RStudio releases can publish Quarto documents and
+websites to Connect Cloud, including through its free tier for static content.
+
+::: {.callout-warning title="Quarto Pub is being retired"}
+Posit has stopped new Quarto Pub account creation. Publishing new material or
+revisions to Quarto Pub will end on **December 31, 2026**. Existing content is
+expected to remain available during the announced migration period. Do not
+build a new course workflow around Quarto Pub. See Posit's
+[migration announcement](https://posit.co/blog/migrating-connect-cloud-posits-unified-publishing-solution).
+:::
 
 Publishing is not a substitute for archiving. Preserve the source data, code,
 and a dated methods note in a repository or institutional storage location.
@@ -122,7 +156,7 @@ data or standalone assets may need to be declared:
 project:
   type: website
   resources:
-    - data/processed/*.csv
+    - data/*.csv
     - downloads/*
 ```
 
@@ -146,3 +180,13 @@ Before publishing:
 Deleting the local folder does not remove a published copy. Use the provider's
 site dashboard to delete it. Confirm the exact target before deletion; a
 published URL may already be cited or shared.
+
+## Takeaways
+
+| Command or file | How it is used | Why it is useful |
+|---|---|---|
+| `.qmd` | Combines explanation, R code, and output | Produces a reproducible document after the analysis skills are established |
+| `_quarto.yml` | Defines site structure, navigation, and format | Keeps settings consistent across pages |
+| `quarto preview` | Builds and opens a temporary local preview | Supports checking changes before publication |
+| `quarto render` | Rebuilds the complete output site | Confirms that every page works from the project files |
+| `docs/` | Stores the rendered GitHub Pages website | Separates publishable output from chapter source files |

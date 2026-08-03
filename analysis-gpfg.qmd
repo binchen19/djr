@@ -1,199 +1,286 @@
 ---
-title: "Find Patterns in a Single Snapshot"
+title: "Data Analysis"
 ---
+
+::: {.callout-note title="Part 3: Data Analysis"}
+Wrangling prepares the table. Analysis uses that table to answer a question.
+In this part, we begin with one year and then extend the same workflow across
+time.
+:::
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- move from a broad question to testable measures;
-- describe a skewed financial distribution with appropriate statistics;
-- distinguish rankings, shares, and concentration;
-- inspect outliers in context; and
-- write a claim that matches the evidence.
+- recognize descriptive, ranking, comparison, relationship, and trend
+  questions;
+- calculate totals, means, medians, minimums, and maximums;
+- create a ranking;
+- compare grouped totals and shares; and
+- turn a calculation into a carefully worded finding.
 
-## Newsroom questions
+## Types of questions in data journalism
 
-We will investigate four related questions about the latest-year snapshot:
+A large dataset does not automatically produce a story. Data journalists begin
+with questions that the available evidence can answer. Many questions fall
+into five broad types:
 
-1. How unequal is the distribution of holding values?
-2. Which countries and industries account for the largest shares?
-3. Which individual holdings are largest?
-4. Does a large market value necessarily mean a large ownership stake?
+| Question type | What it asks | Example using the GPFG data |
+|---|---|---|
+| Description | What is present, how much is there, or what is typical? | What is the total reported market value? What is the median holding value? |
+| Ranking | Which observations are largest, smallest, highest, or lowest? | Which individual company holdings have the largest market values? |
+| Comparison | How do categories or groups differ? | Which countries or industries account for the largest total values? |
+| Relationship | Do two variables appear to vary together? | Do holdings with higher ownership percentages also tend to have larger market values? |
+| Trend | How does a measure change over time? | How has the reported market value associated with China changed over ten years? |
+
+A question can belong to more than one type. Ranking countries by total market
+value, for example, first requires a comparison among countries and then an
+ordering of the results.
+
+This chapter focuses on description, ranking, and comparison using one annual
+snapshot. Later chapters introduce relationships through visualization and
+trends through the multi-year data.
+
+## A question-to-answer workflow
+
+Before writing code, use this workflow:
+
+1. State what one row represents.
+2. Write a precise question that names the measure, group, and time period.
+3. Identify the columns needed to answer it.
+4. Check their types, missing values, and definitions.
+5. Choose functions that match the type of question.
+6. Inspect and verify the result, especially surprising values.
+7. Write a finding that says exactly what the data support.
+
+The previous chapter covered step 4. We will now move from a checked table to
+questions and findings.
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `04-data-analysis.Rmd`. Reuse
+`data/gpfg.csv` from the earlier chapters.
+:::
 
 ```{r}
 library(tidyverse)
-library(scales)
 
-gpfg <- read_csv(
-  "data/processed/gpfg_equities_latest.csv",
-  show_col_types = FALSE
-)
+gpfg <- read_csv("data/gpfg.csv")
 ```
 
-The grain remains one reported equity holding at the latest year-end.
+One row represents one reported equity holding at the end of the year.
 
-## Describe the distribution
+## Ask a descriptive question
 
-Start with totals and robust summaries:
+We will begin with:
+
+> What are the total and typical market values of individual holdings at the
+> end of 2025?
+
+`summarise()` can calculate several statistics in one row. In the code below,
+`sum()` adds all values, `mean()` calculates the arithmetic average,
+`median()` finds the middle value after sorting, and `min()` and `max()` find
+the smallest and largest values:
 
 ```{r}
 holding_summary <- gpfg |>
   summarise(
-    holding_records = n(),
-    total_value_nok = sum(market_value_nok),
-    mean_value_nok = mean(market_value_nok),
-    median_value_nok = median(market_value_nok),
-    p90_value_nok = quantile(market_value_nok, 0.90),
-    maximum_value_nok = max(market_value_nok)
+    total_market_value_nok = sum(market_value_nok),
+    average_market_value_nok = mean(market_value_nok),
+    median_market_value_nok = median(market_value_nok),
+    smallest_market_value_nok = min(market_value_nok),
+    largest_market_value_nok = max(market_value_nok)
   )
 
 holding_summary
 ```
 
-In a highly skewed distribution, the mean is pulled upward by a small number of
-very large holdings. Report the median and at least one upper percentile rather
-than presenting the mean as “typical.”
+::: {.callout-tip title="Mean or median?"}
+Financial values are often uneven: a few very large observations can pull the
+mean upward. Compare the mean and median before calling either one “typical.”
+The median is often easier to interpret when the distribution is strongly
+skewed.
+:::
 
-```{r}
-gpfg |>
-  summarise(
-    p25 = quantile(market_value_nok, 0.25),
-    p50 = quantile(market_value_nok, 0.50),
-    p75 = quantile(market_value_nok, 0.75),
-    p90 = quantile(market_value_nok, 0.90),
-    p99 = quantile(market_value_nok, 0.99)
-  )
-```
+## Ask a ranking question
 
-Quantiles answer a precise question: the 90th percentile is the value at or
-below which 90% of holding records fall. It is not the value of the “average
-company.”
+Next, ask:
 
-## Rank individual holdings
+> Which ten individual holdings had the largest reported market values at the
+> end of 2025?
+
+We already know how to order rows and keep the first few:
 
 ```{r}
 largest_holdings <- gpfg |>
-  select(company, country, industry, market_value_nok, ownership_pct) |>
+  select(company, country, industry, market_value_nok) |>
   arrange(desc(market_value_nok)) |>
-  slice_head(n = 15)
+  slice_head(n = 10)
 
 largest_holdings
 ```
 
-Before publishing a ranking, search the source for several top rows and check
-company names, units, and whether a name describes a fund or another listed
-vehicle.
+A ranking answers “which rows have the largest values?” It does not explain
+why they are large. Verify important rows against the source before using them
+in a story.
 
-Now calculate concentration with an explicit ranking and denominator:
+## Ask a comparison question
 
-```{r}
-ranked_holdings <- gpfg |>
-  arrange(desc(market_value_nok)) |>
-  mutate(rank = row_number())
+A comparison question repeats the same calculation for different groups. For
+example:
 
-total_nok <- sum(ranked_holdings$market_value_nok)
+> Which investment markets accounted for the largest total market values at
+> the end of 2025?
 
-ranked_holdings |>
-  summarise(
-    top_10_share = sum(market_value_nok[rank <= 10]) / total_nok,
-    top_100_share = sum(market_value_nok[rank <= 100]) / total_nok
-  )
-```
+`group_by()` tells R which rows belong together. `summarise()` then reduces
+each group to one summary row. Used together, they change the meaning of one
+row in the result.
 
-Prefer transparent intermediate objects when the result will support a major
-claim.
-
-## Compare countries with a denominator
+Group the holdings by market, add their values, and order the totals:
 
 ```{r}
 country_summary <- gpfg |>
-  summarise(
-    market_value_nok = sum(market_value_nok),
-    companies = n_distinct(company),
-    median_holding_nok = median(market_value_nok),
-    .by = country
-  ) |>
-  mutate(share_of_total = market_value_nok / sum(market_value_nok)) |>
-  arrange(desc(market_value_nok)) |>
-  mutate(cumulative_share = cumsum(share_of_total))
+  group_by(country) |>
+  summarise(market_value_nok = sum(market_value_nok)) |>
+  mutate(share_percent = market_value_nok / sum(market_value_nok) * 100) |>
+  arrange(desc(market_value_nok))
 
-stopifnot(isTRUE(all.equal(sum(country_summary$share_of_total), 1)))
+country_summary |>
+  slice_head(n = 10)
 ```
 
-`cumsum()` uses the current row order, so it must come after sorting. Code can
-run without an error and still answer the wrong question; order is part of the
-method.
+One row now represents one investment market. `share_percent` uses the full
+market value as the denominator, so the column answers: “What percentage of
+the reported total is associated with this market?”
 
-This deliberate correction illustrates an important point: code can run and
-still answer the wrong question.
+The sequence is:
+
+1. `group_by(country)` forms one group for each investment market;
+2. `summarise()` adds the market values within each group;
+3. `mutate()` calculates each market's share of the full total; and
+4. `arrange()` places the largest total first.
+
+::: {.callout-important title="Count and amount are different"}
+The market with the most holding records is not necessarily the market with the
+largest market value. Decide whether the question is about the number of rows
+or the amount represented by those rows.
+:::
+
+Compare the two measures:
+
+```{r}
+gpfg |>
+  count(country) |>
+  arrange(desc(n)) |>
+  slice_head(n = 10)
+```
 
 ## Compare industries
 
+The same group-and-summarise pattern can answer another comparison question:
+
+> Which industries accounted for the largest total market values at the end
+> of 2025?
+
 ```{r}
 industry_summary <- gpfg |>
+  group_by(industry) |>
   summarise(
-    market_value_nok = sum(market_value_nok),
     holding_records = n(),
-    median_ownership_pct = median(ownership_pct),
-    .by = industry
+    market_value_nok = sum(market_value_nok),
+    median_holding_nok = median(market_value_nok)
   ) |>
-  mutate(share_of_total = market_value_nok / sum(market_value_nok)) |>
   arrange(desc(market_value_nok))
 
 industry_summary
 ```
 
-Industry share and number of holdings answer different questions. A sector can
-have many relatively small holdings or fewer very large ones.
+This table contains three different measures. Use a column name and chart title
+that make clear which one supports the finding.
 
-## Market value and ownership are different measures
-
-```{r}
-gpfg |>
-  summarise(
-    pearson = cor(market_value_nok, ownership_pct),
-    spearman = cor(market_value_nok, ownership_pct, method = "spearman")
-  )
-```
-
-Pearson correlation is sensitive to extreme values. Spearman correlation asks
-whether higher ranks on one measure tend to accompany higher ranks on the
-other. Neither correlation proves that ownership causes market value or that
-the fund “prefers” one company.
-
-Inspect exceptions directly:
+We can also narrow a question with `filter()`. For example, the following
+pipeline asks which industries had the largest total market values among
+holdings that NBIM classifies under China:
 
 ```{r}
-gpfg |>
-  filter(ownership_pct >= quantile(ownership_pct, 0.99)) |>
-  arrange(desc(ownership_pct)) |>
-  select(company, country, industry, market_value_nok, ownership_pct) |>
-  slice_head(n = 15)
+china_industries <- gpfg |>
+  filter(country == "China") |>
+  group_by(industry) |>
+  summarise(market_value_usd = sum(market_value_usd)) |>
+  arrange(desc(market_value_usd)) |>
+  slice_head(n = 5)
+
+china_industries
 ```
 
-## From observation to claim
+Read the pipeline from top to bottom: narrow the rows, form the groups,
+calculate one value for each group, order the results, and keep the first five.
 
-Use a claim ladder:
+## Questions for later chapters
 
-| Level | Example | Evidence needed |
-|---|---|---|
-| Description | “Country A had the largest reported market value.” | Correct aggregation and source check |
-| Comparison | “Country A's share was twice Country B's.” | Shared denominator and comparable categories |
-| Trend | “The value rose over time.” | Multiple comparable snapshots |
-| Explanation | “The value rose because the fund bought more.” | Transaction or attribution evidence not present here |
+The annual file cannot answer every kind of question by itself.
 
-The single-year file supports the first two levels. It cannot explain changes over
-time, because it contains only one snapshot.
+A **relationship question** might ask whether ownership percentage and market
+value tend to vary together. A scatterplot can reveal a possible pattern, but
+it cannot by itself show that one variable caused the other.
 
-## Independent task
+A **trend question** requires comparable observations from several dates. The
+multi-year chapter will ask how totals and shares changed over time and will
+explain why a change in year-end holdings is not necessarily an investment
+return or purchase.
 
-Choose either country or industry as the analytical grain. Produce a short
-newsroom memo with:
+## From a result to a finding
 
-1. a ranked table;
-2. a share-of-total calculation;
-3. a median and a 90th percentile;
-4. two checks that protect against double-counting; and
-5. a three-sentence finding: one descriptive claim, one comparison, and one
-   explicitly rejected causal claim.
+A useful finding says what was measured, for whom or where, and at what time.
+Compare these statements:
+
+- Too broad: “The United States received the most Norwegian investment.”
+- Better: “The United States had the largest reported market value in NBIM's
+  year-end equity-holdings file.”
+
+The second sentence matches the data. The file contains year-end holdings, not
+transactions, so it cannot show how much money was sent or received during the
+year.
+
+Use this simple reporting ladder:
+
+| Type of statement | What the data need |
+|---|---|
+| Description | A correctly calculated value |
+| Comparison | Comparable groups and a clear measure |
+| Trend | Several comparable time points |
+| Explanation | Additional evidence about why the pattern occurred |
+
+## Practice
+
+Choose either `country`, `region`, or `industry` and write one precise
+comparison question. Then create a summary containing:
+
+1. the number of holding records;
+2. total market value in Norwegian kroner;
+3. median holding value; and
+4. percentage share of the full market value.
+
+Order the table by total market value. Write three sentences:
+
+1. Identify whether your question is descriptive, ranking, or comparison.
+2. State one finding that the table supports.
+3. State one explanation that would require more reporting and evidence.
+
+## Takeaways
+
+| Function | What it does |
+|---|---|
+| `sum()` | Calculates a total |
+| `mean()` | Calculates an arithmetic average |
+| `median()` | Finds the middle value |
+| `min()` and `max()` | Find the smallest and largest values |
+| `arrange(desc(...))` | Creates a ranking from largest to smallest |
+| `group_by()` + `summarise()` | Calculate statistics separately for each group |
+| `filter()` | Narrows an analysis to rows that meet a condition |
+| `mutate()` | Adds a share or another derived measure |
+
+::: {.callout-tip title="Want more control?"}
+The official [dplyr function reference](https://dplyr.tidyverse.org/reference/index.html)
+contains more summary and ranking tools. Add them only when a reporting
+question requires them.
+:::

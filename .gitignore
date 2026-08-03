@@ -58,6 +58,9 @@ rsconnect/
 # Generated spreadsheet and inspection artifacts
 /outputs/
 
-# Website builds should link to the canonical datasets in data/processed
+# Website builds should link to the canonical teaching datasets in data/
 # instead of committing a second copy.
 /docs/data/
+
+# Obsolete figures from the retired Norway chapter
+/norway-invest_files/

@@ -24,35 +24,35 @@ book:
   search: true
   chapters:
     - index.qmd
-    - part: "Foundations"
+    - part: "Getting Started"
       chapters:
         - install.qmd
         - r-basics.qmd
-        - debug.qmd
-    - part: "A Reproducible Data Workflow"
+    - part: "Data Import & Cleaning"
       chapters:
         - data-import.qmd
         - data-wrangling.qmd
-        - transform-merge.qmd
+    - part: "Data Analysis"
+      chapters:
         - analysis-gpfg.qmd
-        - analysis-gpfg-trends.qmd
-    - part: "Visual Evidence and Storytelling"
+        - transform-merge.qmd
+    - part: "Data Visualization"
       chapters:
         - visual-01.qmd
         - visual-02.qmd
         - map-gpfg.qmd
-        - norway-invest.qmd
-    - part: "Transfer Case Studies"
+    - part: "Case Studies"
       chapters:
-        - employment.qmd
-        - olympics.qmd
-        - debate.qmd
         - hot100.qmd
-        - additional-practice.qmd
+        - olympics.qmd
+        - employment.qmd
+        - debate.qmd
   appendices:
-    - quarto.qmd
-    - final_project_notes.qmd
     - links.qmd
+    - quarto.qmd
+    - debug.qmd
+    - final_project_notes.qmd
+    - additional-practice.qmd
     - references.qmd
 
 bibliography: references.bib

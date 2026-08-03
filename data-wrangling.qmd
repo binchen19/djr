@@ -1,261 +1,397 @@
 ---
-title: "Wrangle Data Without Losing Its Meaning"
+title: "Data Cleaning"
 ---
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- use `select()`, `filter()`, `arrange()`, and `mutate()`;
-- count rows and distinct entities correctly;
-- group and summarise with an explicit new grain;
-- inspect missing and implausible values; and
-- validate that a transformation preserved the expected total.
+- explain why data should be checked before analysis;
+- decide whether columns have suitable data types;
+- distinguish parsing text from converting an existing R value;
+- convert text to integers, numbers, and dates;
+- convert several common date formats into R dates;
+- inspect missing, unexpected, and repeated values;
+- make targeted corrections with `filter()`, `rename()`, and `mutate()`; and
+- keep the downloaded source separate from a prepared table.
 
-## Newsroom question
+## From importing to cleaning
 
-> Which markets accounted for the largest share of NBIM's latest reported
-> year-end equity holdings?
+The previous chapter brought a CSV file into R. Before using it to answer a
+reporting question, we should check whether its structure and values make
+sense. This process is often called **data cleaning**.
 
-This sounds like a ranking question, but the denominator matters. We need both
-country totals and the grand total before calculating a share.
+Cleaning does not mean changing every dataset. It means looking for possible
+problems, deciding whether they really are problems, making necessary changes,
+and checking the result.
 
-## Set up and preserve a baseline
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `03-data-cleaning.Rmd`. Reuse `data/gpfg.csv`;
+there is no need to download or copy it again.
+:::
+
+Start by loading the tidyverse and importing the same file:
 
 ```{r}
 library(tidyverse)
 
-gpfg <- read_csv(
-  "data/processed/gpfg_equities_latest.csv",
-  show_col_types = FALSE
+gpfg <- read_csv("data/gpfg.csv")
+```
+
+One row represents one reported equity holding at the end of 2025. Keep that
+row meaning in mind throughout the cleaning process.
+
+## A simple cleaning workflow
+
+Use the same basic approach whenever you receive a new table:
+
+1. Understand what one row and each column represent.
+2. Inspect the column names, data types, and example values.
+3. Identify a specific possible problem.
+4. Correct it in a new R object if necessary.
+5. Inspect the result and record what you changed.
+
+Do not remove or change a value merely because it looks unusual. It may be a
+real and newsworthy observation. Check the source and column definition first.
+
+## Check the column types
+
+Begin with `glimpse()`:
+
+```{r}
+glimpse(gpfg)
+```
+
+The abbreviations beside the column names show how R has stored each column:
+
+| Type | Meaning | Example in `gpfg` |
+|---|---|---|
+| `<chr>` | Character, or text | `company`, `country` |
+| `<dbl>` | A number that can contain decimals | `market_value_usd`, `ownership_pct` |
+| `<date>` | A calendar date | `report_date` |
+
+A type is suitable when it matches how we need to use the variable. Company
+names should be character values, market values should be numeric, and report
+dates should be dates. The `year` column appears as `<dbl>`, which is still a
+valid numeric type for a year. It is not automatically a problem.
+
+## Correct a column type
+
+Sometimes numbers and dates are imported as character values. The following
+small table illustrates the problem. Every column starts as text because its
+values are inside quotation marks:
+
+```{r}
+type_example <- tibble(
+  year = c("2024", "2025"),
+  report_date = c("2024-12-31", "2025-12-31"),
+  value_usd = c("1200000", "1350000")
 )
 
-baseline_rows <- nrow(gpfg)
-baseline_total_nok <- sum(gpfg$market_value_nok)
-latest_year <- unique(gpfg$year)
+glimpse(type_example)
 ```
 
-Saving simple baseline values makes later checks easy.
-
-## Select variables
-
-`select()` changes columns, not rows:
+`mutate()` creates or changes columns. Inside `mutate()`, readr's parsing
+functions convert the text to the types we want:
 
 ```{r}
-gpfg_core <- gpfg |>
-  select(
-    company,
-    country,
-    region,
-    industry,
-    market_value_nok,
-    ownership_pct
-  )
-
-glimpse(gpfg_core)
-```
-
-Keep provenance columns in the master object even if a smaller analysis object
-does not display them.
-
-## Filter observations
-
-`filter()` keeps rows that satisfy a logical condition:
-
-```{r}
-east_asia <- gpfg |>
-  filter(country %in% c("China", "Hong Kong", "Japan", "South Korea"))
-
-nrow(east_asia)
-```
-
-Use `%in%` when one variable can match several allowed values. Do not use
-`country == "China" | "Japan"`; the second part is text, not a complete logical
-test.
-
-Multiple conditions can be written with commas, which means “and”:
-
-```{r}
-large_technology_holdings <- gpfg |>
-  filter(
-    industry == "Technology",
-    market_value_usd >= 1e9
-  )
-```
-
-## Arrange and inspect extremes
-
-```{r}
-gpfg |>
-  arrange(desc(market_value_usd)) |>
-  select(company, country, industry, market_value_usd) |>
-  slice_head(n = 10)
-```
-
-A ranking is a lead, not a conclusion. Check whether the largest rows are
-companies, funds, duplicate names, or units expressed differently from the
-rest.
-
-## Create useful variables
-
-`mutate()` adds or changes columns:
-
-```{r}
-gpfg_scaled <- gpfg |>
+type_example_clean <- type_example |>
   mutate(
-    market_value_usd_billions = market_value_usd / 1e9,
-    ownership_group = case_when(
-      ownership_pct < 1 ~ "Below 1%",
-      ownership_pct < 3 ~ "1% to below 3%",
-      TRUE ~ "3% or more"
-    )
-  )
+    year = parse_integer(year),
+    report_date = parse_date(report_date),
+    value_usd = parse_double(value_usd)
+  ) |>
+  rename(market_value_usd = value_usd)
 
-gpfg_scaled |>
-  count(ownership_group)
+glimpse(type_example_clean)
 ```
 
-The category boundaries are analytical choices. Record them in the methods
-note and check whether a different threshold would change the story.
+The tidyverse loads readr, so we do not need a separate `library(readr)` line.
 
-## Audit missingness before removing it
-
-```{r}
-gpfg |>
-  summarise(
-    across(
-      everything(),
-      ~ sum(is.na(.x)),
-      .names = "missing_{.col}"
-    )
-  )
-```
-
-The processed latest-year file is complete. In other datasets, inspect missingness by
-year, institution, or category before calling `drop_na()`. Systematic missing
-data can be the most important finding.
-
-## Count rows and entities separately
-
-In this latest-year snapshot, company names are unique, but write the question
-explicitly:
-
-```{r}
-gpfg |>
-  summarise(
-    holding_records = n(),
-    distinct_company_names = n_distinct(company)
-  )
-```
-
-`n()` counts records. `n_distinct(company)` counts distinct published names.
-They happen to agree here; that agreement should be checked, not assumed.
-
-## Group and summarise
-
-The input grain is one holding. After summarising by country, the output grain
-is one country.
-
-```{r}
-country_totals <- gpfg |>
-  summarise(
-    market_value_usd = sum(market_value_usd),
-    holding_records = n(),
-    companies = n_distinct(company),
-    .by = country
-  )
-
-country_totals |>
-  arrange(desc(market_value_usd)) |>
-  slice_head(n = 10)
-```
-
-Write the grain change in your notebook:
-
-| Object | One row represents |
+| Function | Use it when text should become... |
 |---|---|
-| `gpfg` | one latest-year equity holding |
-| `country_totals` | one investment market |
+| `parse_integer()` | A whole number |
+| `parse_double()` | A number that may contain decimals |
+| `parse_date()` | A date written as `YYYY-MM-DD` |
 
-## Calculate a denominator explicitly
+`rename()` changes a column name using `new_name = old_name`. Here the more
+specific name `market_value_usd` makes the unit clear.
+
+::: {.callout-important title="Do not convert identifiers into numbers"}
+A variable containing digits is not always a number. Telephone numbers, ID
+numbers, and postal codes are labels, so they are usually better stored as
+character values. Converting them to numbers can remove meaningful leading
+zeros.
+:::
+
+## Parsing and converting are different
+
+The function names can be confusing because readr and base R provide two
+related families:
+
+| Task | Tidyverse/readr | Base R |
+|---|---|---|
+| Turn text into whole numbers | `parse_integer()` | `as.integer()` |
+| Turn text or values into decimal numbers | `parse_double()` | `as.double()` |
+| Turn text into a date | `parse_date()` | `as.Date()` |
+
+The `parse_*()` functions are designed for character values read from files.
+They expect a particular kind of text and report values they cannot interpret.
+For example, `parse_integer("2.5")` fails because `2.5` is not a whole number.
+
+The `as.*()` functions **coerce**, or convert, an existing R value into another
+type. They are useful when the value is already clean and its meaning is known.
+For example, `as.integer(2.5)` returns `2`, which removes the decimal part. That
+may be intended, but it could also silently change the meaning of the value.
+
+::: {.callout-note title="Exact spelling matters"}
+The base R names are `as.integer()`, `as.double()`, and `as.Date()`—with periods
+and a capital `D` in `Date`. There is no regular `as_integer()` or `as_double()`
+function loaded by the tidyverse.
+
+Lubridate does provide `as_date()`. It is most useful for converting an
+existing date-time value into a date; it is not our first choice for reading a
+column containing several messy character formats.
+:::
+
+For imported character columns, this book begins with the tidyverse parsing
+functions because their warnings help us find values that need investigation.
+
+::: {.callout-tip title="Which family does this book use?"}
+Both families are valid. For imported character data, the main lessons use
+readr's `parse_*()` functions because they fit the tidyverse workflow and make
+failed conversions easier to inspect. Base R functions such as `as.integer()`,
+`as.double()`, and `as.Date()` are useful and may appear in code elsewhere, but
+you do not need to learn both versions at the same time. Begin with the
+tidyverse examples in this book and consult the alternatives when a project
+requires them.
+:::
+
+## Work with real-world dates
+
+A date column should be stored as an R `<date>`, not merely as character text.
+R can then sort dates chronologically, calculate intervals, group observations
+by time, and draw a correctly ordered time series. R normally displays a Date
+in the standard `YYYY-MM-DD` form.
+
+### Identify the order first
+
+Before converting dates, determine the order of the components:
+
+| Function | Expected order | Example |
+|---|---|---|
+| `ymd()` | year, month, day | `2025-03-31` |
+| `dmy()` | day, month, year | `31/03/2025` |
+| `mdy()` | month, day, year | `03/31/2025` |
+
+These functions come from lubridate, which is loaded by
+`library(tidyverse)`. The letters in the function name describe the order.
+
+Dates can use different separators while keeping the same order. `ymd()` can
+handle all three of these values:
 
 ```{r}
-grand_total_usd <- sum(country_totals$market_value_usd)
+year_first_dates <- tibble(
+  date_text = c("2025-01-31", "2025/02/01", "2025.03.02")
+) |>
+  mutate(report_date = ymd(date_text))
 
-country_shares <- country_totals |>
-  mutate(share_of_total = market_value_usd / grand_total_usd) |>
-  arrange(desc(share_of_total))
-
-country_shares |>
-  select(country, market_value_usd, share_of_total) |>
-  slice_head(n = 10)
+year_first_dates
 ```
 
-The result supports a sentence such as: “The United States accounted for X%
-of the reported market value in the latest equity-holdings file.” It does not
-show the share of purchases made during that year.
-
-## Validate the transformation
+Use `dmy()` when the day comes first:
 
 ```{r}
-stopifnot(nrow(gpfg) == baseline_rows)
-stopifnot(sum(country_totals$holding_records) == baseline_rows)
-stopifnot(
-  isTRUE(all.equal(
-    sum(country_totals$market_value_usd),
-    sum(gpfg$market_value_usd)
-  ))
-)
-stopifnot(isTRUE(all.equal(sum(country_shares$share_of_total), 1)))
+dmy(c("31/01/2025", "1-2-2025", "3 March 2025"))
 ```
 
-These checks protect against accidental filtering, double-counting, and a
-wrong denominator.
+Use `mdy()` only when the source follows month-day-year order.
 
-## Checkpoint exercise
+### Handle several orders in one column
 
-Create an industry summary containing:
-
-- total NOK market value;
-- number of holding records;
-- number of distinct company names;
-- median holding value; and
-- share of the overall NOK total.
-
-Then answer:
-
-1. What does one row in your result represent?
-2. Why might the mean holding value be less useful than the median?
-3. Which check proves the industry totals reconcile with the source?
-
-<details>
-<summary>Show one possible pipeline</summary>
+Some real-world files mix date orders. In that case,
+`parse_date_time()` can try a short list of known orders. It first returns a
+date-time, and `as_date()` then keeps its calendar date:
 
 ```{r}
-industry_summary <- gpfg |>
-  summarise(
-    market_value_nok = sum(market_value_nok),
-    holding_records = n(),
-    companies = n_distinct(company),
-    median_holding_nok = median(market_value_nok),
-    .by = industry
-  ) |>
+mixed_dates <- tibble(
+  date_text = c("2025-01-31", "13/02/2025", "March 3, 2025")
+) |>
   mutate(
-    share_of_total = market_value_nok / sum(market_value_nok)
-  ) |>
-  arrange(desc(market_value_nok))
+    report_date = date_text |>
+      parse_date_time(orders = c("ymd", "dmy", "mdy")) |>
+      as_date()
+  )
 
-stopifnot(isTRUE(all.equal(sum(industry_summary$share_of_total), 1)))
+mixed_dates
 ```
 
-</details>
+Only list orders that the source could genuinely use. Trying many possible
+orders can hide errors rather than clean them.
 
-## Independent task
+::: {.callout-important title="R cannot resolve an ambiguous date for you"}
+The value `03/04/2025` could mean 3 April or March 4. Examine the source's
+documentation, location, and nearby unambiguous dates before choosing `dmy()`
+or `mdy()`. Never guess when the distinction matters to the story.
+:::
 
-Investigate one region. Produce:
+### Check the result
 
-1. a clearly named filtered object;
-2. a ranked table of its five largest holdings;
-3. a country-level summary with shares within the region;
-4. at least two validation checks; and
-5. a 100-word methods note stating the grain, denominator, and one claim limit.
+Always keep the original text beside the converted date while checking. Use
+`glimpse()` to confirm that the new column is `<date>`, then find values that
+failed to convert:
+
+```{r}
+glimpse(mixed_dates)
+
+mixed_dates |>
+  filter(is.na(report_date))
+```
+
+An empty result means every value in this example became a date. In a real
+file, investigate every returned row. A failed conversion may reveal a typo,
+an incomplete date, a different language, or another format that needs an
+explicit rule.
+
+::: {.callout-note title="Not every time-related value is a date"}
+A year such as `2025` can remain an integer. A label such as academic year
+`2024/25` represents a period rather than one calendar day, so it should not
+automatically be converted to a Date.
+:::
+
+## Check missing values
+
+R represents a missing value as `NA`. A missing value is different from zero:
+zero is a known amount, while `NA` means the value is unavailable.
+
+`is.na()` asks whether a value is missing. We can use it inside `filter()` to
+keep rows where a particular column contains `NA`:
+
+```{r}
+gpfg |>
+  filter(is.na(company))
+```
+
+```{r}
+gpfg |>
+  filter(is.na(market_value_usd))
+```
+
+Both checks return no rows, so these two columns do not contain missing values
+in this file. If rows appeared, we would investigate why the values were
+missing before deciding whether to keep, correct, or remove them.
+
+## Check unexpected values
+
+For a category such as region or industry, `distinct()` shows each different
+value once:
+
+```{r}
+gpfg |>
+  distinct(region)
+```
+
+```{r}
+gpfg |>
+  distinct(industry)
+```
+
+Look for spelling differences, unexpected spaces, or categories that do not
+match the data dictionary. Two labels that differ by only one character will
+be treated as different groups later.
+
+We can also use `filter()` to inspect numeric values that may be impossible or
+need explanation. For example:
+
+```{r}
+gpfg |>
+  filter(market_value_usd < 0)
+```
+
+This check returns no rows. In another dataset, a negative value might be an
+error, a special accounting value, or a legitimate observation. The code finds
+the rows; reporting and source checking determine what they mean.
+
+## Check repeated rows
+
+A repeated row is not automatically a duplicate. First decide which columns
+should identify one observation. In this file, we can begin by checking the
+combination of company, country, and industry:
+
+```{r}
+gpfg |>
+  count(company, country, industry) |>
+  filter(n > 1)
+```
+
+`count()` creates a column called `n` containing the number of matching rows.
+`filter(n > 1)` keeps combinations that appear more than once. This check
+returns no rows in the current file.
+
+If it found repeated combinations, we would compare them with the original
+source before deleting anything. A company can sometimes legitimately have
+more than one reported security or observation.
+
+## Keep the source intact
+
+The checks show that `gpfg.csv` already has sensible types and no missing or
+repeated values in the columns examined. That is a valid cleaning conclusion:
+not every imported file needs correction.
+
+The downloaded CSV should remain unchanged. When corrections are necessary,
+make them in a new R object and keep the code that produced it. Keeping the
+source and cleaned data separate makes the work easier to audit and reproduce.
+
+## Practice
+
+Copy this deliberately messy table into your R Markdown document:
+
+```{r}
+practice_holdings <- tibble(
+  company = c("Company A", "Company B", "Company B"),
+  year = c("2024", "2025", "2025"),
+  report_date = c("2024-12-31", "31/12/2025", "December 31, 2025"),
+  value_usd = c("1200000", "not available", "not available")
+)
+```
+
+Then:
+
+1. Use `glimpse()` to identify the current column types.
+2. Rename `value_usd` as `market_value_usd`.
+3. Convert `year` and `market_value_usd` with suitable readr functions.
+4. Convert the mixed values in `report_date` into one Date column.
+5. Use `filter()` and `is.na()` to find the value that could not become a
+   number.
+6. Use `count()` and `filter(n > 1)` to identify the repeated observation.
+7. Write two sentences explaining which values need investigation and why you
+   should not automatically delete them.
+
+## Takeaways
+
+| Function or idea | What it does |
+|---|---|
+| `glimpse()` | Shows column names, types, and example values |
+| `mutate()` | Creates or changes columns |
+| `parse_integer()` | Converts suitable text to whole numbers |
+| `parse_double()` | Converts suitable text to numeric values |
+| `parse_date()` | Converts suitable text to dates |
+| `as.integer()`, `as.double()`, `as.Date()` | Convert existing R values using base R |
+| `ymd()`, `dmy()`, `mdy()` | Parse dates when the component order is known |
+| `parse_date_time()` | Tries specified orders in a mixed date or date-time column |
+| `as_date()` | Converts a date-time into a calendar date |
+| `rename(new = old)` | Changes a column name |
+| `filter()` | Keeps rows that meet a condition |
+| `is.na()` | Tests whether a value is missing |
+| `distinct()` | Shows unique rows or combinations |
+| `count()` | Counts matching rows |
+
+::: {.callout-tip title="Want more control?"}
+The official [readr column-type guide](https://readr.tidyverse.org/articles/column-types.html)
+explains additional parsing functions. The official
+[lubridate date-parsing reference](https://lubridate.tidyverse.org/reference/ymd.html)
+and [mixed-format reference](https://lubridate.tidyverse.org/reference/parse_date_time.html)
+cover more date formats. The [dplyr reference](https://dplyr.tidyverse.org/reference/index.html)
+covers more tools for selecting, filtering, and transforming data. Add them
+only when a dataset presents a problem that requires them.
+:::

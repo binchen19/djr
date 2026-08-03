@@ -2,85 +2,136 @@
 title: "Data Journalism with R"
 ---
 
+::: {.callout-note}
+This book grew from my data journalism teaching at the University of Hong
+Kong. It is built with [Quarto](https://quarto.org/), and its source files are
+available on [GitHub](https://github.com/binchen19/djr).
+:::
+
 ## About this book
 
-This book is a practical introduction to using R for data journalism. It is
-designed for undergraduate journalism students, including students who have
-never programmed before. The aim is not only to write correct code, but to use
-data as evidence: to understand where it came from, test what it can support,
-find a defensible story, and communicate uncertainty honestly.
+This is a practical introduction to data journalism using R. It is designed
+for students at any level, practitioners, and professional journalists who
+want to use data in their reporting. No previous programming experience is
+required.
 
-The chapters follow one newsroom workflow:
+Data journalism is a skill, and the best way to learn it is by doing. The book
+starts with small R tasks, then gradually moves toward cleaning data, finding
+patterns, making charts, and developing evidence for a story.
 
-1. set up a reproducible R and Quarto project;
-2. inspect the source and state the unit of analysis;
-3. clean and validate the data;
-4. calculate meaningful measures with explicit denominators;
-5. explore patterns before choosing a story;
-6. design visual evidence for an audience; and
-7. report what the analysis can and cannot show.
+Learning these foundations also helps you evaluate work produced with AI. A
+tool may generate code quickly, but a journalist still needs to understand the
+data, check the calculation, and decide whether the evidence supports the
+claim.
+
+::: {.callout-note title="More than one way to write R code"}
+R often provides more than one valid function for the same general task. Some
+functions are included with R itself; these are commonly called **base R**.
+Others come from packages, including the **tidyverse** collection.
+
+This book uses a tidyverse-first workflow so beginners can learn one consistent
+style. When both approaches are available, the main examples usually use the
+tidyverse function—for example, `read_csv()` instead of `read.csv()` and
+`parse_double()` instead of `as.double()` for imported text. The base R
+alternative may be mentioned so that you can recognize it in other code.
+
+This does not mean base R is incorrect or forbidden. We still use simple base
+R functions such as `c()`, `sum()`, `mean()`, and `is.na()` when they are the
+clearest tools for the task. Different valid code can produce the same result;
+the important questions are whether the code is understandable, reproducible,
+and appropriate for the data.
+:::
+
+## What you will learn
+
+- **R fundamentals:** objects, functions, tables, and code that can be rerun;
+- **Data import and cleaning:** bring CSV files into R and prepare them with
+  the tidyverse;
+- **Data analysis:** calculate summaries, comparisons, rankings, and trends;
+- **Data visualization:** create clear charts and maps with `ggplot2`; and
+- **Data storytelling:** connect a reporting question to evidence, context,
+  and limitations.
+
+## Structure of the book
+
+The book follows five progressive parts:
+
+1. **Getting Started** — set up R, RStudio, an RStudio Project, and R Markdown.
+2. **Data Import & Cleaning** — import, inspect, and clean data.
+3. **Data Analysis** — calculate summaries, rankings, and comparisons; combine
+   tables; and investigate changes over time.
+4. **Data Visualization** — explore the data and communicate a finding.
+5. **Case Studies** — apply the workflow to several real reporting topics.
+
+The appendices contain useful links, optional publishing guidance, debugging
+help, and a final-project guide with examples from previous students.
+
+::: {.callout-tip title="Follow the book with one project"}
+In Chapter 1, create one RStudio Project named `djr` with a simple
+`data` folder and an `outputs` folder. Keep using that project as you progress
+through the book. Each chapter tells you which R Markdown notebook to create,
+which file to download, and which earlier files to reuse.
+:::
 
 ## The main dataset
 
-The core chapters use the year-end equity holdings of Norway's Government
+Most core chapters use the year-end equity holdings of Norway's Government
 Pension Fund Global, published by Norges Bank Investment Management (NBIM).
-The dataset is well suited to learning because each row represents a named
-equity holding at a particular year-end and includes geography, industry,
-market value, voting rights, and ownership.
+The data include companies, markets, industries, market values, and ownership
+information. We begin with one year and introduce multiple years only after
+the basic workflow is familiar.
 
-We deliberately work in stages:
-
-- The **latest-year snapshot** is used first for importing, filtering, grouping, and
-  basic charts.
-- The **rolling ten-year panel** is introduced after students understand grain,
-  validation, and joins.
-- The complete **archive from 1998 onward** is reserved for advanced work because the
-  long series contains changes in coverage, classifications, and company names.
-
-::: {.callout-important title="Language matters"}
-The data record year-end holdings. They do not record purchases, sales,
-investment performance, or money “received” by a company. Throughout the book,
-we use phrases such as *the fund held* or *the reported market value was*.
-:::
-
-The source files and the preparation process are documented in the
-[data audit](reports/gpfg-data-audit.md). The public source is the
+The original source is the
 [NBIM all-investments database](https://www.nbim.no/en/investments/all-investments/).
-Students can download the stable teaching files from the repository's
-[`data/processed` directory](https://github.com/binchen19/djr/tree/main/data/processed).
+The teaching files and their data dictionary are in the repository's
+[`data` folder](https://github.com/binchen19/djr/tree/main/data).
 
-## Why keep the Hong Kong employment data?
+## Who should read this book?
 
-The graduate employment dataset remains an important later case study. Unlike
-the company-level holdings data, it contains aggregated cells whose
-denominators are distributed across rows. That makes it ideal for learning how
-official statistics can be double-counted or misinterpreted. Students first
-gain confidence with the cleaner holdings data, then confront the harder
-employment structure with more analytical tools.
+This book is for:
 
-## How to use each chapter
+- students learning data journalism;
+- journalists who want to add R to their reporting toolkit;
+- practitioners who work with public or institutional data; and
+- anyone who has a journalism question and wants to investigate it with data.
 
-Every core chapter contains:
+This is not a computer science textbook. It concentrates on the R and
+tidyverse skills that are useful for reporting.
 
-- learning objectives;
-- a newsroom question;
-- a source and grain check;
-- a guided analysis;
-- validation checks;
-- an independent task; and
-- a reporting note about claim limits.
+## Prerequisites
 
-Type the code yourself instead of copying everything at once. Before running a
-pipeline, say in plain language what you expect it to do. After running it,
-check whether the row count, categories, and totals make sense.
+You need a computer, R, and RStudio. Chapter 1 covers the setup. Curiosity and
+patience are more important than previous coding experience.
 
-## Course standard
+## How to use this book
 
-By the end of the course, a successful project should be reproducible by
-another person and should answer five questions clearly:
+- **Work in order if you are new to R.** Later chapters reuse functions taught
+  earlier.
+- **Type the examples yourself.** Small typing mistakes are part of learning
+  how R works.
+- **Run one code chunk at a time.** Look at the result before moving forward.
+- **Change one thing and run it again.** This is often the fastest way to
+  understand a function.
+- **Use the Takeaways tables.** They provide a quick reference after each
+  chapter.
 
-1. Where did the data come from?
-2. What does one row represent?
-3. What cleaning and exclusions were made?
-4. What evidence supports the main claim?
-5. What important limitation remains?
+## About the author
+
+### [Bin Chen](https://binchen19.github.io/)
+
+I am an Assistant Professor at the School of Future Media, University of Hong
+Kong. I teach data journalism at undergraduate and postgraduate levels. My
+research interests include computational social science, social media and
+politics, and comparative media studies.
+
+## Acknowledgements
+
+This book is inspired by
+[Reporting with Data in R](https://utdata.github.io/rwdir/) by Christian
+McDonald and Josephine Lukito. I thank them for making their teaching
+materials publicly available.
+
+::: {.callout-note title="License"}
+This book is licensed under a
+[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+:::

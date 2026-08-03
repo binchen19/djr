@@ -1,42 +1,46 @@
 ---
-title: "Aggregated Official Data: Hong Kong Graduate Employment"
+title: "HK Graduates Employment"
 ---
 
-## Why this case comes later
-
-The NBIM chapters use a relatively simple holding-level grain. This official
-Hong Kong dataset is harder: full-time employment is split into many occupation
-rows, while every other employment status is stored in one row labelled “Not
-in Full-time Employment.” The row structure is nested and uneven.
-
-That complexity is pedagogically valuable once students can already filter,
-group, join, and validate. It teaches a central data-journalism lesson: a tidy-
-looking table can still contain incompatible levels of aggregation.
-
-The source is the
-[Hong Kong Government open-data portal](https://data.gov.hk/en-data/dataset/hk-ugc-ugc-student-ges-statistics),
-which describes graduate outcomes for full-time UGC-funded programmes.
+::: {.callout-important title="The new challenge: split, reshape, and recombine mixed data"}
+The table mixes two levels of detail. Full-time employment is divided into
+occupation rows, while every other employment status is already a single
+total. We must separate these structures, aggregate them to the same level,
+recombine them, and only then construct a denominator.
+:::
 
 ## Learning objectives
 
-By the end of this chapter, you should be able to:
+By the end of this case, you should be able to:
 
-- diagnose a nested unit of analysis;
-- collapse detailed rows to comparable status cells;
-- calculate a weighted rate with the correct denominator;
-- distinguish row frequency from graduate headcount; and
-- explain why a university ranking may reflect programme composition.
+- recognize a table that mixes different levels of detail;
+- split rows with different structures;
+- recombine detailed occupation rows into comparable status totals;
+- reshape the status totals into columns;
+- build a denominator from mutually exclusive categories; and
+- calculate a weighted rate.
 
-## Import and rename
+## Why the familiar workflow is not enough
+
+The Norway holdings have a relatively simple row structure. The
+[Hong Kong graduate employment data](https://data.gov.hk/en-data/dataset/hk-ugc-ugc-student-ges-statistics)
+are more complicated. A single `group_by()` can produce a result, but first
+separating the two row structures makes the aggregation rule visible and
+easier to check.
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `11-employment.Rmd`. Download
+[`employment.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/employment.csv)
+and save it in `data/`. The familiar folder structure lets you concentrate on
+the more complicated row structure.
+:::
+
+## Set up the case
 
 ```{r}
 library(tidyverse)
-library(scales)
 
-employment <- read_csv(
-  "data/employment.csv",
-  show_col_types = FALSE
-) |>
+employment <- read_csv("data/employment.csv") |>
   rename(
     academic_year = `Academic Year`,
     university = University,
@@ -44,15 +48,14 @@ employment <- read_csv(
     status = `Employment Situation`,
     occupation = Occupation,
     headcount = `Number of Graduates (Headcount)`
-  ) |>
-  mutate(
-    year_start = as.integer(str_sub(academic_year, 1, 4))
   )
 
 glimpse(employment)
 ```
 
-## Audit the grain before calculating a rate
+## Understand the row structure
+
+Count the combinations of status and occupation:
 
 ```{r}
 employment |>
@@ -60,212 +63,224 @@ employment |>
   arrange(status, desc(n))
 ```
 
-For full-time employment, `occupation` contains many detailed categories. For
-Further studies, Others, Underemployed, and Unemployed, the occupation is always
-“Not in Full-time Employment.”
+For full-time employment, the occupation column contains many detailed
+categories. For other statuses, it contains “Not in Full-time Employment.”
 
-Therefore, one raw row is best described as:
-
-> one headcount cell for an academic year, university, study level, employment
-> status, and—only for full-time employment—occupation.
-
-The data mix two grains:
+One raw row therefore represents one headcount cell for an academic year,
+university, study level, employment status, and—only for full-time
+employment—occupation.
 
 ```{mermaid}
 flowchart TD
   A["Year × university × level"] --> B["Full-time employment"]
-  A --> C["Other status"]
-  B --> D["Many occupation rows"]
-  C --> E["One 'Not in Full-time Employment' row"]
+  A --> C["Other employment status"]
+  B --> D["Several occupation rows"]
+  C --> E["One row"]
 ```
 
-Counting rows would count occupation categories, not graduates.
+Counting raw rows would count categories, not graduates.
 
-## Collapse to comparable status cells
+## The strategy
 
-First sum the detailed full-time occupation rows so every status has the same
-grain:
+We will solve the mixed structure in six steps:
+
+1. split full-time and other-status rows;
+2. aggregate the detailed occupation rows;
+3. recombine comparable status totals;
+4. reshape statuses into columns;
+5. construct a denominator; and
+6. add headcounts before calculating a combined rate.
+
+Each step changes what one row represents. State that unit after every major
+transformation.
+
+## Strategy 1: split the two row structures
+
+Use `filter()` to create one table for detailed full-time records and another
+for the already aggregated statuses:
 
 ```{r}
-status_cells <- employment |>
-  summarise(
-    headcount = sum(headcount),
-    .by = c(
-      academic_year,
-      year_start,
-      university,
-      level,
-      status
-    )
-  )
+full_time <- employment |>
+  filter(status == "FT employment")
 
-status_cells |>
+other_statuses <- employment |>
+  filter(status != "FT employment")
+```
+
+The split is based on data structure, not on which outcome is more important.
+It prevents the occupation rows from being treated as if they were already
+comparable with unemployment or further-study totals.
+
+## Strategy 2: aggregate the detailed rows
+
+Within the full-time table, add occupation headcounts for each cohort:
+
+```{r}
+full_time_totals <- full_time |>
+  group_by(academic_year, university, level, status) |>
+  summarise(headcount = sum(headcount))
+
+full_time_totals
+```
+
+One row now represents the full-time total for one
+year-university-level cohort.
+
+The other-status table already has one row for each status in each cohort. Keep
+only the columns needed for the next step:
+
+```{r}
+other_status_totals <- other_statuses |>
+  select(academic_year, university, level, status, headcount)
+```
+
+## Strategy 3: recombine comparable totals
+
+The two tables now have the same columns and the same level of detail.
+`bind_rows()` stacks them:
+
+```{r}
+status_totals <- bind_rows(
+  full_time_totals,
+  other_status_totals
+)
+
+status_totals |>
   count(status)
 ```
 
-One row now represents one employment status within a year–university–level
-cohort.
+One row now represents one employment status within one cohort. Recombining
+before the full-time rows were aggregated would recreate the original problem.
 
-Validate that collapsing did not change the number of graduates represented:
+## Strategy 4: reshape statuses into columns
 
-```{r}
-stopifnot(
-  sum(status_cells$headcount) == sum(employment$headcount)
-)
-```
-
-## Pivot statuses and construct denominators
+`pivot_wider()` gives each status its own column:
 
 ```{r}
-cohorts <- status_cells |>
+cohorts <- status_totals |>
   pivot_wider(
     names_from = status,
-    values_from = headcount,
-    values_fill = 0
+    values_from = headcount
   ) |>
   rename(
-    ft = `FT employment`,
+    full_time = `FT employment`,
     further_studies = `Further studies`,
     others = Others,
     underemployed = Underemployed,
     unemployed = Unemployed
-  ) |>
+  )
+
+cohorts
+```
+
+One row now represents one year-university-level group.
+
+## Strategy 5: build the denominator
+
+The employment statuses are mutually exclusive. Add them to obtain the total
+reported graduate outcomes, then calculate rates:
+
+```{r}
+cohorts <- cohorts |>
   mutate(
-    total = ft + further_studies + others + underemployed + unemployed,
-    ft_rate = ft / total,
+    total = full_time + further_studies + others + underemployed + unemployed,
+    full_time_rate = full_time / total,
     unemployment_rate = unemployed / total
   )
 
 cohorts
 ```
 
-One row now represents one year–university–level cohort. The denominator is the
-sum of mutually exclusive employment statuses, after full-time occupations
-have been collapsed.
+The numerator and denominator now refer to the same cohort. If any status is
+missing, investigate it before treating the value as zero.
+
+## Strategy 6: calculate a weighted university rate
+
+To combine study levels, add the headcounts first and calculate the rate from
+those totals:
 
 ```{r}
-stopifnot(sum(cohorts$total) == sum(employment$headcount))
-stopifnot(all(cohorts$ft_rate >= 0 & cohorts$ft_rate <= 1))
-stopifnot(all(cohorts$unemployment_rate >= 0 & cohorts$unemployment_rate <= 1))
-```
-
-## Calculate a weighted university rate
-
-```{r}
-latest_year <- max(cohorts$year_start)
-
-latest_university <- cohorts |>
-  filter(year_start == latest_year) |>
+university_rates <- cohorts |>
+  group_by(academic_year, university) |>
   summarise(
-    ft = sum(ft),
+    full_time = sum(full_time),
     unemployed = sum(unemployed),
-    total = sum(total),
-    ft_rate = ft / total,
-    unemployment_rate = unemployed / total,
-    .by = university
+    total = sum(total)
   ) |>
-  arrange(desc(ft_rate))
-
-latest_university
-```
-
-This calculation weights each study-level cohort by its graduate headcount.
-The following tempting alternative is not equivalent:
-
-```{r}
-cohorts |>
-  filter(year_start == latest_year) |>
-  summarise(
-    unweighted_mean_ft_rate = mean(ft_rate),
-    .by = university
+  mutate(
+    full_time_rate = full_time / total,
+    unemployment_rate = unemployed / total
   )
+
+university_rates
 ```
 
-An unweighted mean gives a small cohort the same influence as a large cohort.
-Use the rate-of-sums for an overall graduate rate unless the research question
-explicitly concerns the typical programme-level rate.
+Do not simply average the study-level rates. That would give a small cohort the
+same influence as a large cohort. Adding the headcounts first weights the
+result by the number of graduates.
 
-## Visualize without overclaiming
+::: {.callout-important title="A descriptive comparison is not a league table"}
+Universities differ in subjects, study levels, student populations, and career
+paths. The rates describe reported outcomes. They do not prove that attending
+one university caused a better or worse outcome.
+:::
 
-```{r}
-latest_university |>
-  ggplot(aes(x = ft_rate, y = fct_reorder(university, ft_rate))) +
-  geom_col(fill = "#1769AA") +
-  geom_text(
-    aes(label = percent(ft_rate, accuracy = 0.1)),
-    hjust = -0.1,
-    size = 3.2
-  ) +
-  scale_x_continuous(
-    labels = label_percent(),
-    limits = c(0, max(latest_university$ft_rate) * 1.12)
-  ) +
-  labs(
-    title = "Full-time employment rates varied across Hong Kong universities",
-    subtitle = str_wrap(
-      paste0(
-        "Full-time employment as a share of reported graduate outcomes, ",
-        latest_year,
-        "/",
-        str_sub(as.character(latest_year + 1), 3, 4)
-      ),
-      width = 85
-    ),
-    x = "Full-time employment rate",
-    y = NULL,
-    caption = paste(
-      "Rates combine study levels and are weighted by graduate headcount.",
-      "Source: University Grants Committee via DATA.GOV.HK."
-    )
-  ) +
-  theme_minimal() +
-  theme(
-    panel.grid.major.y = element_blank(),
-    plot.title.position = "plot",
-    plot.caption.position = "plot",
-    plot.caption = element_text(hjust = 0, size = 8.5)
-  )
-```
+## Optional extension: examine one occupation
 
-The chart is descriptive. Universities differ in study levels, disciplines,
-student populations, response or reporting conditions, and labour-market
-pathways. The data do not establish institutional quality or a causal effect of
-attending one university.
-
-## A denominator within full-time employment
-
-Suppose the story concerns graduates recorded as authors, journalists, and
-related writers. The relevant denominator is full-time employed graduates, not
-all graduates:
+Suppose the question concerns authors, journalists, and related writers. First
+stay within full-time employment, then create an indicator column before
+grouping. `if_else()` assigns one value when a condition is true and another
+when it is false:
 
 ```{r}
 journalism_share <- employment |>
-  summarise(
-    journalists = sum(
-      headcount[
-        status == "FT employment" &
-          occupation == "Authors, Journalists and Related Writers"
-      ]
-    ),
-    all_ft = sum(headcount[status == "FT employment"]),
-    .by = c(academic_year, university, level)
+  filter(status == "FT employment") |>
+  mutate(
+    journalism_headcount = if_else(
+      occupation == "Authors, Journalists and Related Writers",
+      headcount,
+      0
+    )
   ) |>
-  mutate(share_of_ft = journalists / all_ft)
+  group_by(academic_year, university, level) |>
+  summarise(
+    journalists = sum(journalism_headcount),
+    all_full_time = sum(headcount)
+  ) |>
+  mutate(share_of_full_time = journalists / all_full_time)
 
 journalism_share
 ```
 
-The numerator and denominator now refer to the same status and cohort. A
-different denominator would answer a different question.
+The denominator is all full-time employed graduates in the same cohort,
+because that is the comparison being made.
 
-## Independent task
+## Practice
 
-Choose either unemployment, underemployment, or further study. Produce:
+Choose unemployment, underemployment, or further study. Create a university-
+year rate by:
 
-1. a diagram or sentence defining the raw grain;
-2. a correctly collapsed cohort table;
-3. a weighted university-year rate;
-4. a comparison with the unweighted mean of cohort rates;
-5. three validation checks; and
-6. a 150-word editor's note explaining why the result should not be presented
-   as a causal university league table.
+1. describing the raw row structure;
+2. splitting the detailed and already aggregated rows;
+3. aggregating full-time occupation rows and recombining the tables;
+4. reshaping the statuses;
+5. adding headcounts before calculating the rate; and
+6. writing one sentence explaining why the result is not a causal university
+   ranking.
+
+## Takeaways
+
+| Function or idea | What it does in this case |
+|---|---|
+| `filter()` | Splits rows with different structures |
+| `group_by()` + `summarise()` | Combine detailed occupation rows into status totals |
+| `bind_rows()` | Recombines tables after their row structures match |
+| `pivot_wider()` | Put mutually exclusive statuses into columns |
+| `mutate()` | Build totals and rates with explicit denominators |
+| Weighted rate | Adds headcounts before calculating the combined rate |
+
+::: {.callout-tip title="Want more control?"}
+The official [dplyr reference](https://dplyr.tidyverse.org/reference/index.html)
+and [tidyr reference](https://tidyr.tidyverse.org/reference/) cover further
+grouping and reshaping options for more complicated official statistics.
+:::

@@ -1,193 +1,203 @@
 ---
-title: "Text as Data: The 2024 US Presidential Debate"
+title: "Text Analysis"
 ---
+
+::: {.callout-important title="The new challenge: count language without losing context"}
+Words begin inside complete speaking turns, not in a ready-made numeric table.
+To compare speakers, we must turn text into analysable rows and standardize the
+counts. We must then return to the transcript because frequency alone cannot
+explain what a speaker meant.
+:::
 
 ## Learning objectives
 
 By the end of this case, you should be able to:
 
-- parse a transcript into speaker turns;
-- tokenize text while preserving the speaker;
-- compare word use with a rate rather than raw counts alone;
-- inspect words in their original context; and
-- identify interpretive limits of frequency analysis.
+- import a prepared transcript table;
+- turn speaking turns into word rows;
+- remove common stop words with a join;
+- compare word use with a rate; and
+- return to the transcript before interpreting a word count.
 
-## Import and parse the transcript
+## Set up the case
+
+The original transcript is a text file rather than a rectangular table. A
+preparation script separates it into speaker turns and saves a teaching CSV.
+This lets the lesson focus on tidy text analysis instead of loops and custom
+parsing functions.
+
+The reproducible preparation is available in `scripts/prepare_debate.R` for
+readers who want to study it later.
+
+If needed, install `tidytext` once in the Console with
+`install.packages("tidytext")`. `tidytext` is a companion to the tidyverse: it
+turns language into tidy rows that can be handled with familiar verbs such as
+`filter()`, `count()`, and joins. Then load the packages:
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `12-text-analysis.Rmd`. Download
+[`debate_turns.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/debate_turns.csv)
+and save it in `data/`. The preparation script is optional; the lesson starts
+from this ready-to-import CSV.
+:::
 
 ```{r}
 library(tidyverse)
 library(tidytext)
 
-transcript_lines <- read_lines("data/debate.txt") |>
-  discard(~ str_trim(.x) == "")
+turns <- read_csv("data/debate_turns.csv")
+
+glimpse(turns)
 ```
 
-The transcript marks a new speaker with capital letters followed by a colon.
-The parser below combines wrapped lines into one record per speaker turn.
+One row represents one speaking turn.
 
-```{r}
-parse_transcript <- function(lines) {
-  speaker_pattern <- "^[A-Z][A-Z ]+:"
-  turns <- list()
-  current_speaker <- NA_character_
-  current_text <- character()
+## The strategy
 
-  save_turn <- function(speaker, text_parts) {
-    tibble(
-      speaker = speaker,
-      text = str_squish(str_c(text_parts, collapse = " "))
-    )
-  }
+We will solve the text challenge in six steps:
 
-  for (line in lines) {
-    if (str_detect(line, speaker_pattern)) {
-      if (!is.na(current_speaker)) {
-        turns[[length(turns) + 1]] <- save_turn(
-          current_speaker,
-          current_text
-        )
-      }
+1. choose the speakers being compared;
+2. turn speaking turns into word rows;
+3. make a documented decision about common words;
+4. keep the total number of words as a denominator;
+5. compare word-use rates; and
+6. return counted words to their original context.
 
-      pieces <- str_split_fixed(line, ":", 2)
-      current_speaker <- str_trim(pieces[, 1])
-      current_text <- str_trim(pieces[, 2])
-    } else {
-      current_text <- c(current_text, str_trim(line))
-    }
-  }
+## Strategy 1: choose the comparison
 
-  if (!is.na(current_speaker)) {
-    turns[[length(turns) + 1]] <- save_turn(
-      current_speaker,
-      current_text
-    )
-  }
-
-  bind_rows(turns)
-}
-
-turns <- parse_transcript(transcript_lines)
-
-turns |>
-  count(speaker, sort = TRUE)
-```
-
-Inspect this table before filtering. Unexpected speaker labels can reveal a
-formatting problem or a false match in the regular expression.
+`filter()` keeps the candidate speakers, and `recode()` replaces their
+all-capital labels with names that are easier to display:
 
 ```{r}
 candidate_turns <- turns |>
   filter(speaker %in% c("HARRIS", "TRUMP")) |>
-  mutate(speaker = recode(speaker, HARRIS = "Harris", TRUMP = "Trump"))
+  mutate(
+    speaker = recode(
+      speaker,
+      "HARRIS" = "Harris",
+      "TRUMP" = "Trump"
+    )
+  )
 
-stopifnot(setequal(unique(candidate_turns$speaker), c("Harris", "Trump")))
+candidate_turns |>
+  count(speaker)
 ```
 
-One row now represents one candidate speaking turn.
+The row counts describe speaking turns, not speaking time or number of words.
 
-## Tokenize and keep denominators
+## Strategy 2: turn text into word rows
+
+`unnest_tokens()` from tidytext turns each speaking turn into separate word
+rows. It needs a name for the new word column and the name of the original text
+column:
 
 ```{r}
-all_tokens <- candidate_turns |>
-  unnest_tokens(word, text) |>
-  filter(!str_detect(word, "^[0-9]+$"))
+tokens <- candidate_turns |>
+  unnest_tokens(word, text)
 
-token_totals <- all_tokens |>
-  count(speaker, name = "all_tokens")
-
-token_totals
+tokens |>
+  slice_head(n = 10)
 ```
 
-The candidates produced different numbers of tokens. A raw frequency can be
-higher simply because one person spoke more. Keep the denominator before
-removing stop words.
+One row now represents one word token associated with a candidate.
+
+## Strategy 3: decide how to handle common words
+
+The tidytext package provides a table called `stop_words`, containing common
+English words such as “the” and “of.” `anti_join()` keeps tokens that do not
+match that reference table:
 
 ```{r}
-data("stop_words")
-
-content_tokens <- all_tokens |>
+content_words <- tokens |>
   anti_join(stop_words, by = "word")
+```
 
-word_rates <- content_tokens |>
-  count(speaker, word, name = "uses") |>
-  left_join(
-    token_totals,
-    by = "speaker",
-    relationship = "many-to-one"
-  ) |>
+Stop-word removal is an analytical choice. Words such as “not” may be important
+in political speech, so inspect the list and describe the rule in the methods.
+
+## Strategy 4: count words and keep a denominator
+
+First count all tokens spoken by each candidate:
+
+```{r}
+token_totals <- tokens |>
+  count(speaker) |>
+  rename(all_tokens = n)
+```
+
+Then count each content word and join the denominator:
+
+```{r}
+word_rates <- content_words |>
+  count(speaker, word) |>
+  rename(uses = n) |>
+  left_join(token_totals, by = "speaker") |>
   mutate(uses_per_1000_tokens = uses / all_tokens * 1000)
 ```
 
-Stop-word removal is an editorial and linguistic choice. Negations such as
-“not” can matter greatly in political speech, and a generic English stop-word
-list may remove them. Inspect the list and document any changes.
+A rate is more comparable than a raw count when the candidates spoke different
+numbers of words.
 
-## Compare the most frequent content words
+## Strategy 5: compare word-use rates
+
+`slice_max()` keeps rows with the largest value. Group first so it selects the
+largest rates separately for each candidate:
 
 ```{r}
 top_words <- word_rates |>
   group_by(speaker) |>
-  slice_max(
-    uses_per_1000_tokens,
-    n = 12,
-    with_ties = FALSE
-  ) |>
-  ungroup()
+  slice_max(uses_per_1000_tokens, n = 10)
 
 top_words
 ```
 
+Create a simple comparison chart:
+
 ```{r}
 top_words |>
-  mutate(word = reorder_within(word, uses_per_1000_tokens, speaker)) |>
-  ggplot(aes(x = uses_per_1000_tokens, y = word, fill = speaker)) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ speaker, scales = "free_y") +
-  scale_y_reordered() +
+  ggplot(
+    aes(
+      x = uses_per_1000_tokens,
+      y = fct_reorder(word, uses_per_1000_tokens),
+      fill = speaker
+    )
+  ) +
+  geom_col() +
+  facet_wrap(~ speaker) +
   labs(
     title = "Frequently used content words differed between the candidates",
-    subtitle = "Uses per 1,000 candidate tokens after standard stop-word removal",
-    x = "Uses per 1,000 tokens",
+    x = "Uses per 1,000 candidate tokens",
     y = NULL,
-    caption = "Source: supplied debate transcript; analysis choices affect results"
+    caption = "Source: supplied debate transcript"
   ) +
   theme_minimal()
 ```
 
-Rate normalization improves comparability but does not measure importance,
-sincerity, policy attention, or audience effect.
+Frequency does not measure importance, sincerity, truthfulness, or audience
+effect.
 
-## Bigrams preserve a little context
+## Optional extension: look at two-word phrases
+
+Single words lose context. `unnest_tokens()` can also create adjacent two-word
+phrases, called bigrams. Here `token = "ngrams"` selects word groups and `n = 2`
+sets their length:
 
 ```{r}
 bigrams <- candidate_turns |>
   unnest_tokens(bigram, text, token = "ngrams", n = 2) |>
-  separate_wider_delim(
-    bigram,
-    delim = " ",
-    names = c("word_1", "word_2"),
-    too_few = "align_start"
-  ) |>
-  filter(
-    !word_1 %in% stop_words$word,
-    !word_2 %in% stop_words$word,
-    !is.na(word_2)
-  ) |>
-  unite(bigram, word_1, word_2, sep = " ") |>
-  count(speaker, bigram, sort = TRUE)
+  count(speaker, bigram) |>
+  arrange(desc(n))
 
 bigrams |>
-  group_by(speaker) |>
-  slice_max(n, n = 10, with_ties = FALSE) |>
-  ungroup()
+  slice_head(n = 20)
 ```
 
-Bigrams retain adjacent words but still lose sentence meaning, sarcasm,
-questions, quotation, and who or what a pronoun refers to.
+Bigrams preserve a little more context but still do not capture full sentence
+meaning, sarcasm, quotation, or who a pronoun refers to.
 
-## Return to the transcript
+## Strategy 6: return to the transcript
 
-Any word that becomes part of a story must be checked in context:
+Before using a word in a story, find it in the original speaking turns:
 
 ```{r}
 candidate_turns |>
@@ -195,32 +205,53 @@ candidate_turns |>
   select(speaker, text)
 ```
 
-Read several examples, not just the most convenient one. Check whether the
-candidate is stating a position, responding to a moderator, quoting an
-opponent, or denying a claim.
+Read several examples. Check whether the candidate is making a claim,
+answering a moderator, quoting an opponent, or denying something.
 
-## Claim limits
+## Practice
 
-Word frequency can support a sentence such as “the word appeared at a higher
-rate in Candidate A's transcript.” It does not by itself support:
+Choose one topic and make a short list of related words. Then:
 
-- “Candidate A cared more about the issue”;
-- “the issue dominated the debate” without a coding rule;
-- “Candidate A was more truthful”;
-- sentiment or intent inferred from an isolated token; or
-- audience impact.
+1. count their uses by candidate;
+2. calculate uses per 1,000 tokens;
+3. read at least five matching speaking turns for each candidate;
+4. identify one false match or missing expression; and
+5. write a short note distinguishing the automated count from your
+   interpretation.
 
-Transcript accuracy, moderation, speaking time, interruptions, tokenization,
-and stop-word choices all affect the result.
+## Takeaways
 
-## Independent task
+| Function | What it does in this case |
+|---|---|
+| `unnest_tokens()` | Turns speaking turns into word or phrase rows |
+| `anti_join()` | Removes words found in the stop-word table |
+| `count()` | Counts tokens by candidate and word |
+| `left_join()` | Adds the token denominator to each word count |
+| `slice_max()` | Keeps the most frequent words within each candidate |
+| `str_detect()` | Returns counted words to their original context |
 
-Choose one topic and create a small, transparent dictionary of related terms.
-Then:
+::: {.callout-tip title="Want more control?"}
+This case uses only words and bigrams. The official
+[`unnest_tokens()` reference](https://juliasilge.github.io/tidytext/reference/unnest_tokens.html)
+explains other token types and controls for later text projects.
+:::
 
-1. calculate topic-term uses per 1,000 tokens by candidate;
-2. inspect at least five turns in context for each candidate;
-3. record one false positive and one missed expression;
-4. revise the dictionary once; and
-5. write a 200-word methods note that distinguishes automated counts from your
-   qualitative interpretation.
+## What the case studies taught us
+
+The four cases began with the familiar tidyverse workflow but concentrated on
+different problems that journalists encounter in real datasets:
+
+| Dataset | Unique challenge | Main strategy |
+|---|---|---|
+| Billboard Hot 100 | Titles alone do not identify songs, and “success” has several meanings | Use artist-title combinations and define the metric before ranking |
+| Olympics | Athlete-medal rows and unique medallists are not official medals | Identify the unit, use stable athlete identifiers, and create event-level records |
+| Graduate employment | The table mixes detailed and aggregated rows | Split, aggregate, recombine, reshape, and construct the denominator |
+| Debate transcript | Word counts remove language from its context | Tokenize, standardize rates, and return to the original transcript |
+
+Across all four cases, the most important question comes before the code:
+
+> What does one row represent, and does that unit match the claim we want to
+> make?
+
+Functions make the calculation reproducible. Defining the observation, metric,
+and denominator makes the result meaningful.

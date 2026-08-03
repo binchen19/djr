@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 10&nbsp; Exploratory Visualization</title>
+<title>Data Journalism with R - 8&nbsp; Visualize One Variable</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./visual-02.html" rel="next">
-<link href="./analysis-gpfg-trends.html" rel="prev">
+<link href="./transform-merge.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Visual Evidence and Storytelling</a></li><li class="breadcrumb-item"><a href="./visual-01.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./visual-01.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,24 +338,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">10.1</span> Learning objectives</a></li>
-  <li><a href="#explore-before-explaining" id="toc-explore-before-explaining" class="nav-link" data-scroll-target="#explore-before-explaining"><span class="header-section-number">10.2</span> Explore before explaining</a></li>
-  <li><a href="#the-grammar-of-graphics" id="toc-the-grammar-of-graphics" class="nav-link" data-scroll-target="#the-grammar-of-graphics"><span class="header-section-number">10.3</span> The grammar of graphics</a></li>
-  <li><a href="#inspect-a-skewed-distribution" id="toc-inspect-a-skewed-distribution" class="nav-link" data-scroll-target="#inspect-a-skewed-distribution"><span class="header-section-number">10.4</span> Inspect a skewed distribution</a></li>
-  <li><a href="#compare-distributions-across-groups" id="toc-compare-distributions-across-groups" class="nav-link" data-scroll-target="#compare-distributions-across-groups"><span class="header-section-number">10.5</span> Compare distributions across groups</a></li>
-  <li><a href="#explore-a-relationship" id="toc-explore-a-relationship" class="nav-link" data-scroll-target="#explore-a-relationship"><span class="header-section-number">10.6</span> Explore a relationship</a></li>
-  <li><a href="#use-small-multiples-for-comparison" id="toc-use-small-multiples-for-comparison" class="nav-link" data-scroll-target="#use-small-multiples-for-comparison"><span class="header-section-number">10.7</span> Use small multiples for comparison</a></li>
-  <li><a href="#an-exploratory-chart-audit" id="toc-an-exploratory-chart-audit" class="nav-link" data-scroll-target="#an-exploratory-chart-audit"><span class="header-section-number">10.8</span> An exploratory chart audit</a></li>
-  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">10.9</span> Independent task</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">8.1</span> Learning objectives</a></li>
+  <li><a href="#begin-with-one-column" id="toc-begin-with-one-column" class="nav-link" data-scroll-target="#begin-with-one-column"><span class="header-section-number">8.2</span> Begin with one column</a></li>
+  <li><a href="#build-a-chart-with-ggplot2" id="toc-build-a-chart-with-ggplot2" class="nav-link" data-scroll-target="#build-a-chart-with-ggplot2"><span class="header-section-number">8.3</span> Build a chart with ggplot2</a></li>
+  <li><a href="#order-a-categorical-bar-chart" id="toc-order-a-categorical-bar-chart" class="nav-link" data-scroll-target="#order-a-categorical-bar-chart"><span class="header-section-number">8.4</span> Order a categorical bar chart</a></li>
+  <li><a href="#improve-the-same-chart-with-layers" id="toc-improve-the-same-chart-with-layers" class="nav-link" data-scroll-target="#improve-the-same-chart-with-layers"><span class="header-section-number">8.5</span> Improve the same chart with layers</a></li>
+  <li><a href="#examine-a-numeric-distribution" id="toc-examine-a-numeric-distribution" class="nav-link" data-scroll-target="#examine-a-numeric-distribution"><span class="header-section-number">8.6</span> Examine a numeric distribution</a></li>
+  <li><a href="#make-a-skewed-distribution-easier-to-see" id="toc-make-a-skewed-distribution-easier-to-see" class="nav-link" data-scroll-target="#make-a-skewed-distribution-easier-to-see"><span class="header-section-number">8.7</span> Make a skewed distribution easier to see</a></li>
+  <li><a href="#summarize-a-numeric-distribution-with-a-box-plot" id="toc-summarize-a-numeric-distribution-with-a-box-plot" class="nav-link" data-scroll-target="#summarize-a-numeric-distribution-with-a-box-plot"><span class="header-section-number">8.8</span> Summarize a numeric distribution with a box plot</a></li>
+  <li><a href="#add-clear-labels" id="toc-add-clear-labels" class="nav-link" data-scroll-target="#add-clear-labels"><span class="header-section-number">8.9</span> Add clear labels</a></li>
+  <li><a href="#questions-to-ask-about-a-one-variable-chart" id="toc-questions-to-ask-about-a-one-variable-chart" class="nav-link" data-scroll-target="#questions-to-ask-about-a-one-variable-chart"><span class="header-section-number">8.10</span> Questions to ask about a one-variable chart</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">8.11</span> Practice</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">8.12</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Visual Evidence and Storytelling</a></li><li class="breadcrumb-item"><a href="./visual-01.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./visual-01.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="./visual-01.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></h1>
 </div>
 
 
@@ -373,45 +375,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="learning-objectives" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">10.1</span> Learning objectives</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Part 4: Data Visualization">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Part 4: Data Visualization
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A chart should begin with a question. We will first describe one column, then combine columns to visualize comparisons, relationships, and change. The final chapter in this part introduces geographic questions and maps.</p>
+</div>
+</div>
+<section id="learning-objectives" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">8.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>choose a chart based on an analytical question;</li>
-<li>build and revise a <code>ggplot2</code> graphic layer by layer;</li>
-<li>use transformations when a distribution is highly skewed;</li>
-<li>identify outliers and groups that need further reporting; and</li>
-<li>distinguish an exploratory chart from a publication chart.</li>
+<li>identify whether a variable is categorical or numeric;</li>
+<li>explain the basic parts of a <code>ggplot2</code> chart;</li>
+<li>count categories with a bar chart;</li>
+<li>examine a numeric distribution with a histogram and box plot; and</li>
+<li>recognize unusual values and strongly skewed distributions.</li>
 </ul>
 </section>
-<section id="explore-before-explaining" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="explore-before-explaining"><span class="header-section-number">10.2</span> Explore before explaining</h2>
-<p>Exploratory charts help the reporter ask better questions. They can be dense, plain, and numerous. Publication charts are selective and designed around one clear takeaway. Do not decorate the first plot and call it a story.</p>
+<section id="begin-with-one-column" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="begin-with-one-column"><span class="header-section-number">8.2</span> Begin with one column</h2>
+<p>Describing one column is the simplest place to begin visual analysis. The question depends on the kind of variable:</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Possible question</th>
+<th>Useful chart</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Categorical</td>
+<td>How many holding records belong to each industry?</td>
+<td>Bar chart</td>
+</tr>
+<tr class="even">
+<td>Numeric</td>
+<td>How are holding values distributed?</td>
+<td>Histogram</td>
+</tr>
+<tr class="odd">
+<td>Numeric</td>
+<td>What are the middle, spread, and unusual values?</td>
+<td>Box plot</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Continue in the same project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open <code>djr.Rproj</code> and create <code>06-one-variable-visualization.Rmd</code>. Reuse <code>data/gpfg.csv</code>.</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_latest.csv"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>latest_year <span class="ot">&lt;-</span> <span class="fu">unique</span>(gpfg<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">market_value_usd_billions =</span> market_value_usd <span class="sc">/</span> <span class="dv">1000000000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="the-grammar-of-graphics" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="the-grammar-of-graphics"><span class="header-section-number">10.3</span> The grammar of graphics</h2>
-<p>Every <code>ggplot2</code> chart combines:</p>
+<section id="build-a-chart-with-ggplot2" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="build-a-chart-with-ggplot2"><span class="header-section-number">8.3</span> Build a chart with ggplot2</h2>
+<p><code>ggplot2</code> is the tidyverse package for visualization. A basic chart has three parts:</p>
 <ol type="1">
-<li><strong>data</strong>;</li>
-<li><strong>aesthetic mappings</strong> such as x, y, color, or size;</li>
-<li>a <strong>geometry</strong> such as points, bars, or lines;</li>
-<li><strong>scales</strong> that translate values into visual properties; and</li>
-<li>labels and a theme.</li>
+<li>the data;</li>
+<li>an aesthetic mapping created with <code>aes()</code>; and</li>
+<li>a geometry that determines what is drawn.</li>
 </ol>
+<p><code>ggplot()</code> starts the chart. <code>aes()</code> identifies the column to display. <code>geom_bar()</code> counts the rows in each category and draws the bars:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">x =</span> market_value_usd)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">y =</span> industry)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -420,23 +473,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The chart is technically valid, but a few very large holdings compress most observations near zero.</p>
+<p>This is a complete chart. Beginners need only the data, the mapping, and the geometry. The gray background, bar color, spacing, and axes are ggplot2 defaults; we do not need to control them before seeing whether the chart answers the question.</p>
+<p>The chart answers: “How many holding records belong to each industry?” It does not show the number of unique companies or the total market value.</p>
 </section>
-<section id="inspect-a-skewed-distribution" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="inspect-a-skewed-distribution"><span class="header-section-number">10.4</span> Inspect a skewed distribution</h2>
-<p>A log scale makes ratios visible across orders of magnitude:</p>
+<section id="order-a-categorical-bar-chart" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="order-a-categorical-bar-chart"><span class="header-section-number">8.4</span> Order a categorical bar chart</h2>
+<p>Alphabetical order is useful for finding a name. Ordering by frequency makes a ranking easier to see. <code>fct_infreq()</code> orders categories by how often they appear:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">x =</span> market_value_usd)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">45</span>, <span class="at">fill =</span> <span class="st">"#2C7FB8"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">scale_cut =</span> <span class="fu">cut_short_scale</span>())) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Reported holding values span several orders of magnitude"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste0</span>(<span class="st">"Each bar counts equity-holding records in the "</span>, latest_year, <span class="st">" snapshot"</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Market value in US dollars (log scale)"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Holding records"</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Norges Bank Investment Management"</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_infreq</span>(industry))) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -445,45 +490,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>The log transformation changes the spacing, not the underlying data. State it in the axis label because many readers interpret horizontal distance as an ordinary additive difference.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Zero and negative values">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Zero and negative values
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A log scale cannot display zero or negative values. The latest-year teaching file has positive market values, but the full historical archive contains negative records in 2005–2008. Always check the range before adding a log scale.</p>
-</div>
-</div>
+<p>The bars are horizontal because the category is mapped to the y-axis. This gives long industry names more room.</p>
 </section>
-<section id="compare-distributions-across-groups" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="compare-distributions-across-groups"><span class="header-section-number">10.5</span> Compare distributions across groups</h2>
-<p>Boxplots summarize the median, middle half, and more extreme observations. They do not show the total size of an industry.</p>
+<section id="improve-the-same-chart-with-layers" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="improve-the-same-chart-with-layers"><span class="header-section-number">8.5</span> Improve the same chart with layers</h2>
+<p>Once the basic chart works, add only the layers that help a reader understand it. The following version keeps the same data and calculation while adding color, labels, and a cleaner theme:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>industry_order <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_value =</span> <span class="fu">median</span>(market_value_usd),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> industry</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(median_value) <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(industry)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">industry =</span> <span class="fu">factor</span>(industry, <span class="at">levels =</span> industry_order)) <span class="sc">|&gt;</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> market_value_usd, <span class="at">y =</span> industry)) <span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.alpha =</span> <span class="fl">0.25</span>, <span class="at">fill =</span> <span class="st">"#9ECAE1"</span>) <span class="sc">+</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">scale_cut =</span> <span class="fu">cut_short_scale</span>())) <span class="sc">+</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Typical holding values differ across industries"</span>,</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Market value in US dollars (log scale)"</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Norges Bank Investment Management"</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">fct_infreq</span>(industry))) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"#0072B2"</span>, <span class="at">width =</span> <span class="fl">0.75</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Industrials appeared most often in the year-end holdings file"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of holding records"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Norges Bank Investment Management"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"#1F2933"</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#6B7280"</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -492,26 +521,36 @@ Zero and negative values
 </div>
 </div>
 </div>
-<p>Use the chart to identify industries for closer reporting. Do not infer that a higher median means an industry is safer, more profitable, or preferred.</p>
+<p>The <code>+</code> operator adds each layer to the chart. Here:</p>
+<ul>
+<li><code>fill</code> changes the bar color and <code>width</code> changes bar thickness;</li>
+<li><code>labs()</code> adds a title, axis labels, and source;</li>
+<li><code>theme_minimal()</code> changes the overall appearance; and</li>
+<li><code>theme()</code> adjusts a few individual display elements.</li>
+</ul>
+<p>None of these appearance controls changes the count. Start with the simple version, confirm the calculation, and then decide which additions improve the communication.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Counting rows is not adding values">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Counting rows is not adding values
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>geom_bar()</code> counts rows automatically. In the next chapter, we will prepare a summary table and use <code>geom_col()</code> when the question concerns an amount such as total market value.</p>
+</div>
+</div>
 </section>
-<section id="explore-a-relationship" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="explore-a-relationship"><span class="header-section-number">10.6</span> Explore a relationship</h2>
+<section id="examine-a-numeric-distribution" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="examine-a-numeric-distribution"><span class="header-section-number">8.6</span> Examine a numeric distribution</h2>
+<p>A <strong>distribution</strong> describes which values are common, how widely they vary, and whether unusual values are present. A histogram divides a numeric column into ranges called bins and counts the observations in each range:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  gpfg,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> market_value_usd, <span class="at">y =</span> ownership_pct, <span class="at">color =</span> region)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.45</span>, <span class="at">size =</span> <span class="fl">1.3</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">scale_cut =</span> <span class="fu">cut_short_scale</span>())) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Large holdings do not always represent large ownership stakes"</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Market value in US dollars (log scale)"</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Ownership (%)"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Region"</span>,</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Norges Bank Investment Management"</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">x =</span> market_value_usd_billions)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#0072B2"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -520,28 +559,18 @@ Zero and negative values
 </div>
 </div>
 </div>
-<p>The point cloud helps locate exceptions: high ownership with modest market value, or very high market value with a relatively small stake. Those points are reporting leads. Look them up before labelling them.</p>
+<p>Most holdings are relatively small and a few are very large. This is a <strong>right-skewed distribution</strong>: the long tail extends toward the larger values.</p>
+<p>The default histogram is a starting point. <code>geom_histogram()</code> has optional arguments for controlling the number and width of bins, but those choices can wait until a reporting question requires more detail.</p>
 </section>
-<section id="use-small-multiples-for-comparison" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="use-small-multiples-for-comparison"><span class="header-section-number">10.7</span> Use small multiples for comparison</h2>
+<section id="make-a-skewed-distribution-easier-to-see" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="make-a-skewed-distribution-easier-to-see"><span class="header-section-number">8.7</span> Make a skewed distribution easier to see</h2>
+<p><code>scale_x_log10()</code> changes the spacing of the x-axis so values that differ by large ratios are easier to compare:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>largest_regions <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_usd =</span> <span class="fu">sum</span>(market_value_usd), <span class="at">.by =</span> region) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(total_usd, <span class="at">n =</span> <span class="dv">4</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(region)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">%in%</span> largest_regions) <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> market_value_usd)) <span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">"#2C7FB8"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> <span class="fu">label_dollar</span>(<span class="at">scale_cut =</span> <span class="fu">cut_short_scale</span>())) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Holding-value distributions vary across the largest regions"</span>,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Market value in US dollars (log scale)"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Holding records"</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">x =</span> market_value_usd_billions)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#0072B2"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -550,29 +579,185 @@ Zero and negative values
 </div>
 </div>
 </div>
-<p><code>scales = "free_y"</code> makes the shape within each region easier to see, but bar heights can no longer be compared directly across panels. If absolute counts are the story, use a common y-axis.</p>
+<p>The source values have not changed, but the axis spacing has. Always tell readers when an axis uses a log scale.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Check before using a log scale">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Check before using a log scale
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A log scale cannot display zero or negative values. Check whether those values exist and decide how they should be handled before using the scale.</p>
+</div>
+</div>
 </section>
-<section id="an-exploratory-chart-audit" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="an-exploratory-chart-audit"><span class="header-section-number">10.8</span> An exploratory chart audit</h2>
-<p>After every chart, ask:</p>
+<section id="summarize-a-numeric-distribution-with-a-box-plot" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="summarize-a-numeric-distribution-with-a-box-plot"><span class="header-section-number">8.8</span> Summarize a numeric distribution with a box plot</h2>
+<p>A box plot gives a compact view of the middle and spread of a numeric column. It also marks values far from the central part of the distribution:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">x =</span> market_value_usd_billions)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"#56B4E9"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#1F4E79"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.35</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">outlier.color =</span> <span class="st">"#D55E00"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-01_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The line inside the box is the median. The box contains the middle half of the values. Points beyond the whiskers deserve inspection, but they are not automatically errors.</p>
+</section>
+<section id="add-clear-labels" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="add-clear-labels"><span class="header-section-number">8.9</span> Add clear labels</h2>
+<p><code>labs()</code> adds information the reader needs, and <code>theme_minimal()</code> applies a simple visual style:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg, <span class="fu">aes</span>(<span class="at">x =</span> market_value_usd_billions)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#0072B2"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Most reported equity holdings were small relative to the largest"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Market value in USD billions (log scale)"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of holding records"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Norges Bank Investment Management"</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"#1F2933"</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"#6B7280"</span>),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="visual-01_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The labels name the measure, unit, source, and transformed axis.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="A restrained visual style">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A restrained visual style
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The charts use a colorblind-aware blue (<code>#0072B2</code>) for the main data and an orange (<code>#D55E00</code>) only when a value needs emphasis. A minimal theme, lighter grid lines, and bold titles create hierarchy without adding decoration. The hexadecimal color codes simply identify exact colors; you can reuse them without memorizing how the codes work.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="ggplot2 is a larger universe">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+ggplot2 is a larger universe
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The examples in this book teach a small, reusable foundation. ggplot2 can also control scales, legends, annotations, facets, coordinates, fonts, and many other design details. Explore the official <a href="https://ggplot2.tidyverse.org/articles/ggplot2.html">Introduction to ggplot2</a>, compare the <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">built-in themes</a>, or consult the online <a href="https://ggplot2-book.org/">ggplot2 book</a> when a project needs more control. You do not need to learn all of these options at once.</p>
+</div>
+</div>
+</section>
+<section id="questions-to-ask-about-a-one-variable-chart" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="questions-to-ask-about-a-one-variable-chart"><span class="header-section-number">8.10</span> Questions to ask about a one-variable chart</h2>
 <ul>
-<li>Does the chart’s grain match the question?</li>
-<li>Are zeros, missing values, or negative values omitted?</li>
-<li>Is the axis transformed or truncated?</li>
-<li>Does color encode a variable or merely decorate?</li>
-<li>Would a table communicate the exact values more clearly?</li>
-<li>Which point, bar, or pattern needs reporting outside the dataset?</li>
+<li>What does one bar, bin, or point represent?</li>
+<li>Is the chart counting rows, unique entities, or an amount?</li>
+<li>Are missing, zero, or negative values absent?</li>
+<li>Is the axis transformed?</li>
+<li>Which unusual value needs source checking?</li>
+<li>What can this one column not explain?</li>
 </ul>
 </section>
-<section id="independent-task" class="level2" data-number="10.9">
-<h2 data-number="10.9" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">10.9</span> Independent task</h2>
-<p>Create three exploratory charts about one region:</p>
+<section id="practice" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="practice"><span class="header-section-number">8.11</span> Practice</h2>
+<p>Using <code>gpfg</code>:</p>
 <ol type="1">
-<li>a distribution;</li>
-<li>a comparison across industries; and</li>
-<li>a relationship between two numeric variables.</li>
+<li>choose one categorical column and create a bar chart of its row counts;</li>
+<li>choose one numeric column and create a histogram;</li>
+<li>create a box plot of the same numeric column;</li>
+<li>add a title, axis labels, and source; and</li>
+<li>write one visible pattern and one question that requires another column.</li>
 </ol>
-<p>For each chart, write one sentence describing what you learned and one sentence describing what the chart cannot establish. Select only one chart to develop into a publication graphic in the next chapter.</p>
+</section>
+<section id="takeaways" class="level2" data-number="8.12">
+<h2 data-number="8.12" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">8.12</span> Takeaways</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ggplot()</code></td>
+<td>Starts a chart with data</td>
+</tr>
+<tr class="even">
+<td><code>aes()</code></td>
+<td>Maps a column to an axis or another visual feature</td>
+</tr>
+<tr class="odd">
+<td><code>geom_bar()</code></td>
+<td>Counts rows in each category and draws bars</td>
+</tr>
+<tr class="even">
+<td><code>fct_infreq()</code></td>
+<td>Orders categories by frequency</td>
+</tr>
+<tr class="odd">
+<td><code>geom_histogram()</code></td>
+<td>Shows the distribution of one numeric variable</td>
+</tr>
+<tr class="even">
+<td><code>geom_boxplot()</code></td>
+<td>Summarizes the middle, spread, and unusual values</td>
+</tr>
+<tr class="odd">
+<td><code>scale_x_log10()</code></td>
+<td>Displays a numeric axis on a logarithmic scale</td>
+</tr>
+<tr class="even">
+<td><code>labs()</code></td>
+<td>Adds titles, axis labels, and a source caption</td>
+</tr>
+<tr class="odd">
+<td><code>theme_minimal()</code></td>
+<td>Applies a simple visual theme</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Want more control?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Want more control?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The official <a href="https://ggplot2.tidyverse.org/reference/">ggplot2 reference</a> documents individual functions and their optional arguments. Begin with the simple layers above and add an option only when it helps answer the question.</p>
+</div>
+</div>
 
 
 </section>
@@ -967,13 +1152,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./analysis-gpfg-trends.html" class="pagination-link  aria-label=" &lt;span="" change="" across="" ten="" years&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span>
+      <a href="./transform-merge.html" class="pagination-link  aria-label=" &lt;span="" and="" reshape&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./visual-02.html" class="pagination-link" aria-label="<span class='chapter-number'>11</span>&nbsp; <span class='chapter-title'>Explanatory Visualization</span>">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./visual-02.html" class="pagination-link" aria-label="<span class='chapter-number'>9</span>&nbsp; <span class='chapter-title'>Visualize Multiple Variables</span>">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

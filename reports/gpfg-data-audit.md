@@ -8,14 +8,14 @@ The dataset's unit of analysis is **one equity holding reported by NBIM at one y
 
 ## Stable files created
 
-- `gpfg_equities_latest.csv`: beginner-friendly latest-year snapshot.
-- `gpfg_equities_last_10_years.csv`: rolling ten-year teaching dataset.
-- `gpfg_equities_last_10_years.rds`: compact R version of the teaching dataset.
-- `gpfg_equities_full_history.rds`: compact complete historical archive.
-- `gpfg_annual_summary.csv`: annual coverage and quality summary.
-- `gpfg_data_dictionary.csv`: definitions, units, and teaching cautions.
-- `gpfg_source_manifest.csv`: source URL, file size, and checksum for each year.
-- `gpfg_validation_checks.csv`: machine-readable checks for every rebuild.
+- `data/gpfg.csv`: beginner-friendly latest-year snapshot.
+- `data/gpfg_equities_last_10_years.csv`: rolling ten-year teaching dataset.
+- `data/gpfg_data_dictionary.csv`: definitions, units, and teaching cautions.
+- `data/processed/gpfg_equities_last_10_years.rds`: compact R version of the teaching dataset.
+- `data/processed/gpfg_equities_full_history.rds`: compact complete historical archive.
+- `data/processed/gpfg_annual_summary.csv`: annual coverage and quality summary.
+- `data/processed/gpfg_source_manifest.csv`: source URL, file size, and checksum for each year.
+- `data/processed/gpfg_validation_checks.csv`: machine-readable checks for every rebuild.
 
 ## Coverage
 

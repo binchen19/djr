@@ -1,107 +1,101 @@
 ---
-title: "Additional Practice Labs"
+title: "Practice Labs"
 ---
 
-These labs transfer the core workflow to datasets with different structures.
-They are designed for class, homework, or revision rather than as worked
-solutions. Begin each lab by writing the source, grain, denominator, and claim
-limit before analyzing.
+## How to use these labs
+
+This optional appendix applies the core tidyverse workflow to new datasets. It
+provides starting points and reporting questions rather than complete
+solutions. Choose one lab for class, homework, or revision after completing the
+main chapters.
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `13-practice-labs.Rmd`. Download
+[`hksalary.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/hksalary.csv)
+and [`life_expectancy.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/life_expectancy.csv),
+then save both files in `data/`. You may complete either lab or both.
+:::
 
 ## Lab A: Hong Kong graduate salary averages
+
+The source columns are long, so rename them after importing:
 
 ```{r}
 library(tidyverse)
 
-salary <- read_csv(
-  "data/hksalary.csv",
-  show_col_types = FALSE
-) |>
+salary <- read_csv("data/hksalary.csv") |>
   rename(
     academic_year = `Academic Year`,
     level = `Level of Study`,
     programme = `Broad Academic Programme Category`,
-    average_salary_hkd_thousands = `Average Annual Salary (HK$'000)`
-  ) |>
-  mutate(
-    year_start = as.integer(str_sub(academic_year, 1, 4))
+    average_salary = `Average Annual Salary (HK$'000)`
   )
 
 glimpse(salary)
 ```
 
-### Grain and limitation
+### Understand the rows
 
-One row represents an **already aggregated average salary** for one academic
-year, level of study, and broad programme category. The file does not contain
-individual graduates or the number of graduates behind each average.
+One row represents a published **average salary** for one academic year, study
+level, and broad programme category. The file does not contain individual
+graduates or the number of graduates behind each average.
 
-Therefore, this is not a defensible overall annual mean:
-
-```{r}
-#| eval: false
-salary |>
-  summarise(mean_of_means = mean(average_salary_hkd_thousands), .by = year_start)
-```
-
-The code gives every programme-level cell equal weight, even if the underlying
-numbers of graduates differ greatly. Without counts, a weighted overall average
-cannot be reconstructed.
+This means that averaging all rows would create an unweighted mean of published
+programme averages. It would not be the average salary of all graduates.
 
 ### Tasks
 
-1. Check whether `year_start + level + programme` is unique.
-2. Choose one level and compare the same programme categories over time.
-3. Identify programme categories that enter or leave the data.
-4. Plot like-for-like changes for no more than five programmes.
-5. Write a headline that refers to programme-level published averages, not the
-   “average Hong Kong graduate.”
+1. Count the rows for each academic year.
+2. Choose one study level.
+3. Compare the same programme categories over time.
+4. Find the five largest published programme averages in the latest year.
+5. Create one line or bar chart with an exact measure in the title.
 6. List the additional data needed to calculate an overall graduate-weighted
    average.
 
-### Required checks
+### Reporting check
 
-- no duplicated analytical keys;
-- same units in every year;
-- same programme labels at both comparison endpoints; and
-- explicit treatment of missing programme-years.
+Write a headline that refers to published programme-level averages, not “the
+average Hong Kong graduate.”
 
 ## Lab B: World Bank life expectancy
 
-The file is in wide form: one row per country or aggregate area, with one column
-for each year.
+This file begins in wide form: one row per country or aggregate area, with a
+separate column for every year.
 
 ```{r}
-life_wide <- read_csv(
-  "data/life_expectancy.csv",
-  show_col_types = FALSE
-)
+life_wide <- read_csv("data/life_expectancy.csv")
 
+glimpse(life_wide)
+```
+
+Use `pivot_longer()` to put the years into one column. `parse_integer()` turns
+the year labels into numbers:
+
+```{r}
 life_long <- life_wide |>
-  select(-matches("^\\.\\.\\.")) |>
   pivot_longer(
-    cols = matches("^[0-9]{4}$"),
+    cols = `1960`:`2023`,
     names_to = "year",
     values_to = "life_expectancy"
   ) |>
-  transmute(
+  rename(
     country = `Country Name`,
     country_code = `Country Code`,
-    indicator = `Indicator Name`,
-    year = as.integer(year),
-    life_expectancy
-  )
+    indicator = `Indicator Name`
+  ) |>
+  mutate(year = parse_integer(year))
 
 glimpse(life_long)
 ```
 
-### Grain and limitation
+### Understand the rows
 
 After reshaping, one row represents one published country-or-aggregate estimate
-for one year. The file includes regional and income-group aggregates alongside
-countries. Pooling every row as if it were a country would mix incompatible
-geographies and double-count populations.
+in one year. The file contains regional and income-group aggregates as well as
+countries, so treating every row as a country would mix different geographies.
 
-For a beginner comparison, define a small list of actual places explicitly:
+For a first comparison, choose a short list of actual places:
 
 ```{r}
 selected_places <- c(
@@ -117,31 +111,41 @@ life_selected <- life_long |>
 
 ### Tasks
 
-1. Confirm that each selected country-year is unique.
-2. Count missing years by country before filtering them out.
-3. Compare 2000 and 2022 using absolute change in years.
-4. Create a line chart with a common y-axis.
-5. Find the largest one-year rise or fall and verify it against the World Bank
-   source before describing it as a real event.
-6. Explain why pooling all country-years into one correlation or regression
-   would confuse differences between countries with changes within countries.
+1. Count the available years for each selected country.
+2. Check missing values before removing any rows.
+3. Compare life expectancy in 2000 and 2022.
+4. Calculate the absolute change in years.
+5. Create a line chart using the same y-axis for every country.
+6. Check the most surprising value against the World Bank source.
 
-### Required checks
+### Reporting check
 
-- no aggregate areas in the selected comparison;
-- no duplicate country-years;
-- the same indicator code across all rows;
-- missingness reported by country and year; and
-- endpoint values checked against the publisher.
+Explain why a change over time is descriptive. The file alone cannot establish
+which policy or event caused it.
 
 ## Submission template
 
 For either lab, submit:
 
 1. **Question** — one sentence;
-2. **Source** — publisher, URL, reporting period, and access date;
-3. **Grain** — one sentence before and after aggregation;
-4. **Method** — the transformations and denominator;
-5. **Checks** — at least three machine-readable tests;
-6. **Evidence** — one table and one chart; and
-7. **Claim limit** — one paragraph on what the file cannot establish.
+2. **Source** — publisher, URL, period, and access date;
+3. **Rows** — what one row represents;
+4. **Method** — the main filters, groups, and calculation;
+5. **Evidence** — one table and one chart; and
+6. **Limit** — one thing the data cannot establish.
+
+## Takeaways
+
+| Function or practice | Why it matters |
+|---|---|
+| `rename()` | Makes long source column names easier to use |
+| `pivot_longer()` | Turns many year columns into a tidy year variable |
+| `parse_integer()` | Converts year text into whole numbers |
+| Fixed comparison set | Keeps the same places or programmes in each period |
+| Source check | Confirms that a surprising result is not an import or coding error |
+
+::: {.callout-tip title="Want more control?"}
+The official [tidyr reference](https://tidyr.tidyverse.org/reference/) explains
+additional reshaping controls. The essential `pivot_longer()` arguments shown
+in this lab are enough for the supplied file.
+:::

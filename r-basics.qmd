@@ -1,235 +1,276 @@
 ---
-title: "R Basics for Journalists"
+title: "R Basics"
 ---
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- create and inspect R objects;
-- distinguish numbers, text, logical values, dates, and missing values;
-- use comparison and logical operators;
-- call functions and read an error message;
-- work with vectors and data frames; and
-- translate a short pipeline into plain language.
+- use R for simple calculations;
+- create and name objects with `<-` and recognize other assignment symbols;
+- combine values with `c()`;
+- use a small set of mathematical functions;
+- recognize the main types of data used in this book;
+- create a small tibble; and
+- explain what a pipe does.
 
-## Start with a question
+## From setup to coding
 
-Code is easier to understand when it answers a concrete question. Imagine a
-reporter has the number of records in four annual data releases:
+The previous chapter introduced RStudio, Projects, and R Markdown. We will now
+learn the small pieces of R code that appear in every later chapter. Try each
+example in a code chunk and look at the result before moving on. The examples
+in this chapter are deliberately small and familiar. We will introduce the
+course's main dataset in the Data Import chapter.
 
-```{r}
-records <- c(8985, 9106, 9157, 9202)
-years <- c(2016, 2017, 2018, 2019)
-```
-
-`<-` assigns a value to a name. `c()` combines values into a vector. The
-objects remain available until the R session ends or they are removed.
-
-```{r}
-length(records)
-mean(records)
-records[1]
-```
-
-Read each expression aloud: “the length of `records`,” “the mean of
-`records`,” and “the first value in `records`.”
-
-## Names and assignment
-
-Use short, descriptive names written in `snake_case`:
-
-```{r}
-latest_year <- 2025
-source_name <- "Norges Bank Investment Management"
-data_checked <- TRUE
-```
-
-R is case-sensitive. `latest_year` and `Latest_year` would be different
-objects. Avoid names such as `data`, `mean`, or `filter` when a more specific
-name is available, because those names already describe common objects or
-functions.
-
-## Data types
-
-The type of a value determines which operations make sense.
-
-```{r}
-typeof(1500)                 # double: a number
-typeof("1500")               # character: text
-typeof(TRUE)                 # logical
-typeof(as.Date("2025-12-31")) # double internally, with a Date class
-```
-
-Quotation marks turn a value into text. R cannot safely add `10` to `"1500"`
-until the text is converted and checked.
-
-```{r}
-as.numeric("1500") + 10
-```
-
-Do not convert blindly. Values such as `"not reported"` carry information
-about the source and should usually become an explicit missing value only after
-you document the rule.
-
-## Comparisons and logical conditions
-
-Comparisons return `TRUE` or `FALSE`.
-
-```{r}
-latest_year == 2025
-latest_year != 2024
-records > 9100
-```
-
-Use `==` to compare values. A single `=` is normally used to name a function
-argument.
-
-Logical operators combine conditions:
-
-| Operator | Meaning | Example |
-|---|---|---|
-| `&` | and | `year >= 2016 & year <= 2025` |
-| `|` | or | `country == "China" | country == "Japan"` |
-| `!` | not | `!is.na(value)` |
-| `%in%` | belongs to a set | `country %in% c("China", "Japan")` |
-
-```{r}
-years[years >= 2017 & years <= 2019]
-```
-
-## Missing values are not zero
-
-R represents a missing value as `NA`. Missing is not the same as zero, an empty
-string, or “no.”
-
-```{r}
-ownership <- c(0.8, 1.2, NA, 0.5)
-
-mean(ownership)
-mean(ownership, na.rm = TRUE)
-sum(is.na(ownership))
-```
-
-The first mean is `NA` because R refuses to pretend the missing observation is
-known. `na.rm = TRUE` tells R to calculate from available values. That may be
-appropriate, but the reporter still needs to ask why the value is missing and
-whether the remaining cases are representative.
-
-::: {.callout-warning title="A newsroom rule"}
-Never replace `NA` with zero just to make code run. First determine whether the
-source means “none,” “not applicable,” “not collected,” or “not reported.”
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create a new R Markdown document named
+`01-r-basics.Rmd`. Save it beside `00-setup.Rmd`. Keep using the same `data`
+and `outputs` folders for the rest of the book.
 :::
 
-## Functions and arguments
+## Use R as a calculator
 
-A function takes inputs and returns a result.
-
-```{r}
-round(mean(records), digits = 1)
-```
-
-Here `records` is the main input and `digits = 1` is a named argument. Use
-`?round` in the Console to open the help page.
-
-When a function does not behave as expected, inspect the input before changing
-the code:
+R understands ordinary arithmetic:
 
 ```{r}
-class(records)
-length(records)
-summary(records)
+25 + 10
+50 / 4
+(25 + 35) / 2
 ```
 
-## Data frames
+Parentheses work as they do in a calculator: R evaluates what is inside them
+first.
 
-A data frame is a rectangular collection of variables. A tibble is the modern
-tidyverse version.
+## Create an object
+
+An **object** is a name that stores a value. Use `<-` to assign a value:
+
+```{r}
+x <- 10
+x
+```
+
+Read the first line as “`x` gets 10.” R stores the value but does not print it
+until you type the object's name.
+
+Begin with short names that describe the value:
+
+```{r}
+score <- 85
+test_score <- 90
+```
+
+When a name needs more than one word, use `snake_case`, with lowercase words
+separated by underscores. For example, `test_score` is easier to read than
+`testscore`. R is case-sensitive, so `score` and `Score` would be different
+objects.
+
+You may see three assignment styles in R code:
+
+| Code | Meaning | Use in this book |
+|---|---|---|
+| `x <- 10` | Assign 10 to `x` from the left | Preferred |
+| `10 -> x` | Assign 10 to `x` from the right | Valid, but uncommon |
+| `x = 10` | Assign 10 to `x` using an equals sign | Valid in many situations, but not used for object assignment here |
+
+We use `<-` because the object name appears first and because it clearly marks
+an assignment. The equals sign has another job you will see later: it names an
+option inside a function, written as `option = value`. Keeping `<-` for objects
+and `=` for named options makes code easier to read. Later, we will use `==` to
+ask whether two values are equal; `=` and `==` do not mean the same thing.
+
+::: {.callout-tip title="Assignment shortcut"}
+Use **Alt + -** on Windows or **Option + -** on Mac to insert `<-`.
+:::
+
+## Add comments
+
+R ignores text after `#`. Comments are notes for yourself or another reader.
+They can explain what a value means or why a step is needed.
+
+```{r}
+# Age at the beginning of the course
+age <- 20
+```
+
+Good comments explain a decision. There is little value in writing
+`# calculate the mean` immediately above `mean(numbers)` because the code
+already says that.
+
+## Combine values into a vector
+
+`c()` combines several values of the same kind into a **vector**:
+
+```{r}
+numbers <- c(2, 4, 6, 8)
+
+numbers
+```
+
+R can perform the same calculation on every value in a numeric vector:
+
+```{r}
+numbers / 2
+```
+
+## Use mathematical functions
+
+A **function** is a named instruction that performs a task. Its name is followed
+by parentheses containing the information it needs. R provides simple
+functions for common calculations:
+
+```{r}
+sum(numbers)
+mean(numbers)
+min(numbers)
+max(numbers)
+```
+
+| Function | Calculation |
+|---|---|
+| `sum()` | Adds the values |
+| `mean()` | Calculates the average |
+| `min()` | Finds the smallest value |
+| `max()` | Finds the largest value |
+
+The object `numbers` is the input, or **argument**, given to each function.
+
+In this book, we begin with the arguments needed for the task. Many functions
+have additional optional arguments. You can open a function's help page later
+by typing its name after `?`, such as `?mean`.
+
+## Recognize common data types
+
+Four types appear frequently in journalism data:
+
+| Type shown by R | Meaning | Example |
+|---|---|---|
+| `<dbl>` or `<int>` | Numbers | `10`, `3.5` |
+| `<chr>` | Character, or text | `"Alex"` |
+| `<lgl>` | Logical values | `TRUE`, `FALSE` |
+| `<date>` | Calendar dates | `2025-01-01` |
+
+Text needs quotation marks. Logical values `TRUE` and `FALSE` do not.
+Missing information is normally represented by `NA`, not by zero.
+
+## Create a tibble
+
+A data table has variables in columns and observations in rows. The tidyverse
+uses a modern data frame called a **tibble**.
+
+First load the tidyverse, then create a small table:
 
 ```{r}
 library(tidyverse)
 
-annual <- tibble(
-  year = years,
-  holding_records = records,
-  audited = c(TRUE, TRUE, TRUE, TRUE)
+students <- tibble(
+  name = c("Ana", "Ben", "Chen"),
+  age = c(20, 21, 22),
+  present = c(TRUE, FALSE, TRUE)
 )
 
-annual
+students
 ```
 
-Each column should contain one variable, each row should contain one
-observation, and each cell should contain one value. This “tidy” structure is a
-goal, not an assumption: real journalism datasets often need to be reshaped.
+One row represents one student. The three columns contain each student's name,
+age, and attendance.
 
-Useful inspection functions include:
+### What does “tidy” mean?
+
+**Tidy data** are organized in a consistent way:
+
+- each variable has its own column;
+- each observation has its own row; and
+- each value has its own cell.
+
+In `students`, `name`, `age`, and `present` are variables, so each has a
+column. Each student is one observation, so each student has one row.
+
+“Tidy” describes the arrangement of a table; it is not another file type. A
+tibble can contain tidy or untidy data. We will learn how to make untidy tables
+tidy in the Combine and Reshape chapter.
+
+::: {.callout-tip title="Learn more about tidy data"}
+The official [tidyr introduction to tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html)
+provides more examples. The three rules above are enough for now.
+:::
+
+## Use pipes
+
+A **pipe** passes the result on its left to the function on its right. Modern R
+has a built-in pipe written as `|>`:
 
 ```{r}
-dim(annual)
-names(annual)
-glimpse(annual)
-summary(annual)
+numbers |>
+  sum()
 ```
 
-## Pipes make a sequence readable
+Read this as “start with `numbers`, then calculate the sum.” This produces the
+same result as `sum(numbers)`.
 
-The base R pipe `|>` passes the result on the left into the function on the
-right.
+You may also see an older pipe written as `%>%` in R tutorials and existing
+projects:
 
 ```{r}
-annual |>
-  filter(year >= 2017) |>
-  arrange(desc(holding_records))
+numbers %>%
+  sum()
 ```
 
-Translate the pipeline before running it:
+For a simple example like this, both pipes do the same job. The main difference
+for beginners is where they come from:
 
-> Start with `annual`, keep years from 2017 onward, then order the remaining
-> rows from the largest record count to the smallest.
+| Pipe | Where it comes from | Use in this book |
+|---|---|---|
+| `|>` | Built into R | Used throughout the book |
+| `%>%` | Available after loading the tidyverse | Shown here so you can recognize older code |
 
-One line should usually perform one meaningful step. This makes the analysis
-easier to check and explain to an editor.
+Pipes become especially useful when several steps are connected. We will use
+`|>` consistently in the later chapters.
 
-## Checkpoint exercise
+## Useful habits when learning R
 
-Create this vector:
+- **Copy, paste, and tweak:** start from a working example, change one part,
+  and run it again.
+- **Save frequently:** keep the code that produced an important number or
+  chart.
+- **Read errors from the bottom:** the final line often names the immediate
+  problem.
+- **Check spelling and capitalization:** small differences create different
+  object and column names.
+- **Ask for help with evidence:** include the code, the error, and what you
+  expected to happen.
 
-```{r}
-values <- c(120, 150, NA, 90, 200)
-```
+More detailed debugging guidance is available in the Debugging appendix.
 
-Answer the following with R:
+## Practice
 
-1. How many values are recorded?
-2. How many are missing?
-3. What is the median of the available values?
-4. Which available values are at least 150?
-5. Why would replacing the missing value with zero change the story?
+Create a tibble called `books` with three rows and these columns:
 
-<details>
-<summary>Show one possible solution</summary>
+- `title`, containing three book titles;
+- `pages`, containing the number of pages in each book; and
+- `finished`, containing `TRUE` or `FALSE`.
 
-```{r}
-length(values)
-sum(is.na(values))
-median(values, na.rm = TRUE)
-values[!is.na(values) & values >= 150]
-```
+Print the tibble. Then write one sentence describing what one row represents.
 
-Replacing `NA` with zero would assert that the true value is zero. It would
-lower the median and turn an unknown observation into a factual claim.
+## Takeaways
 
-</details>
+| Function or symbol | What it does |
+|---|---|
+| `<-` | Assigns a value to an object name |
+| `->` | Assigns in the opposite direction; valid but uncommon |
+| `=` | Can assign a value, but is reserved here for named function arguments |
+| `#` | Adds a comment that R does not run |
+| `c()` | Combines values into a vector |
+| `sum()` | Calculates a total |
+| `mean()` | Calculates an average |
+| `min()` | Finds the smallest value |
+| `max()` | Finds the largest value |
+| `tibble()` | Creates a tidyverse data table |
+| `|>` | Passes an object to the next function |
+| `%>%` | An older tidyverse pipe that appears in existing R code |
 
-## Independent task
-
-Build a tibble with five possible data sources for a local story. Include:
-
-- `source` as text;
-- `year` as a number;
-- `downloaded` as a logical value; and
-- `notes` with at least one `NA`.
-
-Then write a pipeline that keeps downloaded sources from 2024 onward. Under the
-code, explain the pipeline in one sentence and state what `NA` means in your
-`notes` column.
+::: {.callout-tip title="Want more control?"}
+The official [`tibble()` reference](https://tibble.tidyverse.org/reference/tibble.html)
+and [tidyverse pipe guide](https://style.tidyverse.org/pipes.html) provide more
+examples. The simple forms in this chapter are enough for the next lessons.
+:::

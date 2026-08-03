@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - Appendix A — Publish a Quarto Website</title>
+<title>Data Journalism with R - Appendix B — Quarto Websites</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./final_project_notes.html" rel="next">
-<link href="./additional-practice.html" rel="prev">
+<link href="./debug.html" rel="next">
+<link href="./links.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">Appendices</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,23 +338,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-quarto-does" id="toc-what-quarto-does" class="nav-link active" data-scroll-target="#what-quarto-does"><span class="header-section-number">A.1</span> What Quarto does</a></li>
-  <li><a href="#create-a-website-project" id="toc-create-a-website-project" class="nav-link" data-scroll-target="#create-a-website-project"><span class="header-section-number">A.2</span> Create a website project</a></li>
-  <li><a href="#configure-navigation-correctly" id="toc-configure-navigation-correctly" class="nav-link" data-scroll-target="#configure-navigation-correctly"><span class="header-section-number">A.3</span> Configure navigation correctly</a></li>
-  <li><a href="#make-every-page-reproducible" id="toc-make-every-page-reproducible" class="nav-link" data-scroll-target="#make-every-page-reproducible"><span class="header-section-number">A.4</span> Make every page reproducible</a></li>
-  <li><a href="#preview-and-publish" id="toc-preview-and-publish" class="nav-link" data-scroll-target="#preview-and-publish"><span class="header-section-number">A.5</span> Preview and publish</a></li>
-  <li><a href="#include-files-readers-need" id="toc-include-files-readers-need" class="nav-link" data-scroll-target="#include-files-readers-need"><span class="header-section-number">A.6</span> Include files readers need</a></li>
-  <li><a href="#accessibility-and-verification" id="toc-accessibility-and-verification" class="nav-link" data-scroll-target="#accessibility-and-verification"><span class="header-section-number">A.7</span> Accessibility and verification</a></li>
-  <li><a href="#removing-a-published-site" id="toc-removing-a-published-site" class="nav-link" data-scroll-target="#removing-a-published-site"><span class="header-section-number">A.8</span> Removing a published site</a></li>
+  <li><a href="#where-this-appendix-fits" id="toc-where-this-appendix-fits" class="nav-link active" data-scroll-target="#where-this-appendix-fits"><span class="header-section-number">B.1</span> Where this appendix fits</a></li>
+  <li><a href="#what-quarto-does" id="toc-what-quarto-does" class="nav-link" data-scroll-target="#what-quarto-does"><span class="header-section-number">B.2</span> What Quarto does</a></li>
+  <li><a href="#from-r-markdown-to-quarto" id="toc-from-r-markdown-to-quarto" class="nav-link" data-scroll-target="#from-r-markdown-to-quarto"><span class="header-section-number">B.3</span> From R Markdown to Quarto</a></li>
+  <li><a href="#create-a-website-project" id="toc-create-a-website-project" class="nav-link" data-scroll-target="#create-a-website-project"><span class="header-section-number">B.4</span> Create a website project</a></li>
+  <li><a href="#configure-navigation-correctly" id="toc-configure-navigation-correctly" class="nav-link" data-scroll-target="#configure-navigation-correctly"><span class="header-section-number">B.5</span> Configure navigation correctly</a></li>
+  <li><a href="#make-every-page-reproducible" id="toc-make-every-page-reproducible" class="nav-link" data-scroll-target="#make-every-page-reproducible"><span class="header-section-number">B.6</span> Make every page reproducible</a></li>
+  <li><a href="#preview-locally" id="toc-preview-locally" class="nav-link" data-scroll-target="#preview-locally"><span class="header-section-number">B.7</span> Preview locally</a></li>
+  <li><a href="#publish-with-github-pages" id="toc-publish-with-github-pages" class="nav-link" data-scroll-target="#publish-with-github-pages"><span class="header-section-number">B.8</span> Publish with GitHub Pages</a></li>
+  <li><a href="#other-publishing-services" id="toc-other-publishing-services" class="nav-link" data-scroll-target="#other-publishing-services"><span class="header-section-number">B.9</span> Other publishing services</a></li>
+  <li><a href="#include-files-readers-need" id="toc-include-files-readers-need" class="nav-link" data-scroll-target="#include-files-readers-need"><span class="header-section-number">B.10</span> Include files readers need</a></li>
+  <li><a href="#accessibility-and-verification" id="toc-accessibility-and-verification" class="nav-link" data-scroll-target="#accessibility-and-verification"><span class="header-section-number">B.11</span> Accessibility and verification</a></li>
+  <li><a href="#removing-a-published-site" id="toc-removing-a-published-site" class="nav-link" data-scroll-target="#removing-a-published-site"><span class="header-section-number">B.12</span> Removing a published site</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">B.13</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">Appendices</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./quarto.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix A — Publish a Quarto Website</h1>
+<h1 class="title">Appendix B — Quarto Websites</h1>
 </div>
 
 
@@ -372,15 +376,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-quarto-does" class="level2" data-number="A.1">
-<h2 data-number="A.1" class="anchored" data-anchor-id="what-quarto-does"><span class="header-section-number">A.1</span> What Quarto does</h2>
+<section id="where-this-appendix-fits" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="where-this-appendix-fits"><span class="header-section-number">B.1</span> Where this appendix fits</h2>
+<p>The main pathway begins with R Markdown so students can see code and output one step at a time. Use this optional appendix after students can knit a complete analysis and are ready to organize several pages as a website.</p>
+</section>
+<section id="what-quarto-does" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="what-quarto-does"><span class="header-section-number">B.2</span> What Quarto does</h2>
 <p>Quarto combines Markdown, executable code, citations, and outputs into a website or report. A publishable data project should render from a fresh R session without relying on objects left in the Console.</p>
+</section>
+<section id="from-r-markdown-to-quarto" class="level2" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="from-r-markdown-to-quarto"><span class="header-section-number">B.3</span> From R Markdown to Quarto</h2>
+<p>R Markdown and Quarto both combine prose, code, and output. The R Markdown chapters have already introduced the essential ideas: a short header, Markdown text, R code chunks, and a complete render. Quarto applies the same model to a more flexible website and book system.</p>
+<p>Quarto is used here because this textbook is a Quarto book and because Quarto is Posit’s next-generation system for this kind of document. Students do not need Quarto for the early analysis exercises; they can move from <code>.Rmd</code> to <code>.qmd</code> when a multi-page publication is useful. See the official <a href="https://quarto.org/docs/get-started/hello/rstudio.html">Quarto introduction</a> and <a href="https://quarto.org/docs/faq/rmarkdown.html">R Markdown user FAQ</a> for the relationship between the two systems.</p>
 <p>Current RStudio releases include Quarto. To verify the command-line tool, run this in the <strong>Terminal</strong>, not the R Console:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The R package named <code>quarto</code> is optional; it is not required to render a Quarto project from RStudio or the Terminal.</p>
 </section>
-<section id="create-a-website-project" class="level2" data-number="A.2">
-<h2 data-number="A.2" class="anchored" data-anchor-id="create-a-website-project"><span class="header-section-number">A.2</span> Create a website project</h2>
+<section id="create-a-website-project" class="level2" data-number="B.4">
+<h2 data-number="B.4" class="anchored" data-anchor-id="create-a-website-project"><span class="header-section-number">B.4</span> Create a website project</h2>
 <p>In RStudio, choose <strong>File → New Project → New Directory → Quarto Website</strong>. A basic project contains:</p>
 <ul>
 <li><code>_quarto.yml</code> — site-wide configuration;</li>
@@ -396,14 +409,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── methods.qmd
 ├── analysis.qmd
 ├── data/
-│   ├── raw/
-│   └── processed/
-├── scripts/
 ├── images/
 └── outputs/</code></pre>
 </section>
-<section id="configure-navigation-correctly" class="level2" data-number="A.3">
-<h2 data-number="A.3" class="anchored" data-anchor-id="configure-navigation-correctly"><span class="header-section-number">A.3</span> Configure navigation correctly</h2>
+<section id="configure-navigation-correctly" class="level2" data-number="B.5">
+<h2 data-number="B.5" class="anchored" data-anchor-id="configure-navigation-correctly"><span class="header-section-number">B.5</span> Configure navigation correctly</h2>
 <p>For a Quarto website, navigation belongs under <code>website: navbar:</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
@@ -425,13 +435,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Use <code>.qmd</code> targets in the configuration. Quarto creates the corresponding HTML files during rendering.</p>
 </section>
-<section id="make-every-page-reproducible" class="level2" data-number="A.4">
-<h2 data-number="A.4" class="anchored" data-anchor-id="make-every-page-reproducible"><span class="header-section-number">A.4</span> Make every page reproducible</h2>
+<section id="make-every-page-reproducible" class="level2" data-number="B.6">
+<h2 data-number="B.6" class="anchored" data-anchor-id="make-every-page-reproducible"><span class="header-section-number">B.6</span> Make every page reproducible</h2>
 <p>Each page should load the packages and data it needs. Do not assume another page runs first.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>analysis_data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/processed/analysis_data.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>analysis_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/analysis_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Test with:</p>
 <ol type="1">
@@ -441,27 +451,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>inspect the rendered site and Terminal output.</li>
 </ol>
 </section>
-<section id="preview-and-publish" class="level2" data-number="A.5">
-<h2 data-number="A.5" class="anchored" data-anchor-id="preview-and-publish"><span class="header-section-number">A.5</span> Preview and publish</h2>
+<section id="preview-locally" class="level2" data-number="B.7">
+<h2 data-number="B.7" class="anchored" data-anchor-id="preview-locally"><span class="header-section-number">B.7</span> Preview locally</h2>
 <p>Preview locally with the RStudio Render button or:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To publish to Quarto Pub, create an account at <a href="https://quartopub.com/">quartopub.com</a> and run:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Follow the prompts to choose Quarto Pub and authorize the account. Republishing updates the existing site when you select the same destination.</p>
+</section>
+<section id="publish-with-github-pages" class="level2" data-number="B.8">
+<h2 data-number="B.8" class="anchored" data-anchor-id="publish-with-github-pages"><span class="header-section-number">B.8</span> Publish with GitHub Pages</h2>
+<p>This textbook uses GitHub Pages. Quarto renders the finished website into the <code>docs/</code> folder. Commit both the revised <code>.qmd</code> sources and the regenerated <code>docs/</code> files, push them to GitHub, and configure GitHub Pages to publish from the <code>docs/</code> folder on the main branch.</p>
+<p>This approach keeps the source, revision history, and website in one repository. It also means the textbook is not affected by the closure of a separate publishing service.</p>
+</section>
+<section id="other-publishing-services" class="level2" data-number="B.9">
+<h2 data-number="B.9" class="anchored" data-anchor-id="other-publishing-services"><span class="header-section-number">B.9</span> Other publishing services</h2>
+<p>Posit now recommends <a href="https://connect.posit.cloud/">Posit Connect Cloud</a> for new Quarto publishing. Quarto 1.9 and current RStudio releases can publish Quarto documents and websites to Connect Cloud, including through its free tier for static content.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Quarto Pub is being retired">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quarto Pub is being retired
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Posit has stopped new Quarto Pub account creation. Publishing new material or revisions to Quarto Pub will end on <strong>December 31, 2026</strong>. Existing content is expected to remain available during the announced migration period. Do not build a new course workflow around Quarto Pub. See Posit’s <a href="https://posit.co/blog/migrating-connect-cloud-posits-unified-publishing-solution">migration announcement</a>.</p>
+</div>
+</div>
 <p>Publishing is not a substitute for archiving. Preserve the source data, code, and a dated methods note in a repository or institutional storage location.</p>
 </section>
-<section id="include-files-readers-need" class="level2" data-number="A.6">
-<h2 data-number="A.6" class="anchored" data-anchor-id="include-files-readers-need"><span class="header-section-number">A.6</span> Include files readers need</h2>
+<section id="include-files-readers-need" class="level2" data-number="B.10">
+<h2 data-number="B.10" class="anchored" data-anchor-id="include-files-readers-need"><span class="header-section-number">B.10</span> Include files readers need</h2>
 <p>Quarto automatically includes figures generated by a page, but downloadable data or standalone assets may need to be declared:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">resources</span><span class="kw">:</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> data/processed/*.csv</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> downloads/*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">resources</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> data/*.csv</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> downloads/*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Do not publish sensitive data, credentials, embargoed material, or files you do not have permission to redistribute.</p>
 </section>
-<section id="accessibility-and-verification" class="level2" data-number="A.7">
-<h2 data-number="A.7" class="anchored" data-anchor-id="accessibility-and-verification"><span class="header-section-number">A.7</span> Accessibility and verification</h2>
+<section id="accessibility-and-verification" class="level2" data-number="B.11">
+<h2 data-number="B.11" class="anchored" data-anchor-id="accessibility-and-verification"><span class="header-section-number">B.11</span> Accessibility and verification</h2>
 <p>Before publishing:</p>
 <ul>
 <li>add informative alt text to images;</li>
@@ -473,9 +502,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>render once from a clean session.</li>
 </ul>
 </section>
-<section id="removing-a-published-site" class="level2" data-number="A.8">
-<h2 data-number="A.8" class="anchored" data-anchor-id="removing-a-published-site"><span class="header-section-number">A.8</span> Removing a published site</h2>
+<section id="removing-a-published-site" class="level2" data-number="B.12">
+<h2 data-number="B.12" class="anchored" data-anchor-id="removing-a-published-site"><span class="header-section-number">B.12</span> Removing a published site</h2>
 <p>Deleting the local folder does not remove a published copy. Use the provider’s site dashboard to delete it. Confirm the exact target before deletion; a published URL may already be cited or shared.</p>
+</section>
+<section id="takeaways" class="level2" data-number="B.13">
+<h2 data-number="B.13" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">B.13</span> Takeaways</h2>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Command or file</th>
+<th>How it is used</th>
+<th>Why it is useful</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.qmd</code></td>
+<td>Combines explanation, R code, and output</td>
+<td>Produces a reproducible document after the analysis skills are established</td>
+</tr>
+<tr class="even">
+<td><code>_quarto.yml</code></td>
+<td>Defines site structure, navigation, and format</td>
+<td>Keeps settings consistent across pages</td>
+</tr>
+<tr class="odd">
+<td><code>quarto preview</code></td>
+<td>Builds and opens a temporary local preview</td>
+<td>Supports checking changes before publication</td>
+</tr>
+<tr class="even">
+<td><code>quarto render</code></td>
+<td>Rebuilds the complete output site</td>
+<td>Confirms that every page works from the project files</td>
+</tr>
+<tr class="odd">
+<td><code>docs/</code></td>
+<td>Stores the rendered GitHub Pages website</td>
+<td>Separates publishable output from chapter source files</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -870,13 +943,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./additional-practice.html" class="pagination-link  aria-label=" &lt;span="" practice="" labs&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span>
+      <a href="./links.html" class="pagination-link  aria-label=" &lt;span="" links&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./final_project_notes.html" class="pagination-link" aria-label="<span class='chapter-number'>B</span>&nbsp; <span class='chapter-title'>Final Project Workflow</span>">
-        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./debug.html" class="pagination-link" aria-label="<span class='chapter-number'>C</span>&nbsp; <span class='chapter-title'>Debugging</span>">
+        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 15&nbsp; Unit of Analysis: Paris 2024 Medallists</title>
+<title>Data Journalism with R - 12&nbsp; Olympics Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./debate.html" rel="next">
-<link href="./employment.html" rel="prev">
+<link href="./employment.html" rel="next">
+<link href="./hot100.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./employment.html">Transfer Case Studies</a></li><li class="breadcrumb-item"><a href="./olympics.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./olympics.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,22 +338,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">15.1</span> Learning objectives</a></li>
-  <li><a href="#import-and-inspect" id="toc-import-and-inspect" class="nav-link" data-scroll-target="#import-and-inspect"><span class="header-section-number">15.2</span> Import and inspect</a></li>
-  <li><a href="#athletes-with-the-most-medal-records" id="toc-athletes-with-the-most-medal-records" class="nav-link" data-scroll-target="#athletes-with-the-most-medal-records"><span class="header-section-number">15.3</span> Athletes with the most medal records</a></li>
-  <li><a href="#unique-medallists-by-country" id="toc-unique-medallists-by-country" class="nav-link" data-scroll-target="#unique-medallists-by-country"><span class="header-section-number">15.4</span> Unique medallists by country</a></li>
-  <li><a href="#analyze-age-at-the-athlete-grain" id="toc-analyze-age-at-the-athlete-grain" class="nav-link" data-scroll-target="#analyze-age-at-the-athlete-grain"><span class="header-section-number">15.5</span> Analyze age at the athlete grain</a></li>
-  <li><a href="#country-codes-are-not-universal" id="toc-country-codes-are-not-universal" class="nav-link" data-scroll-target="#country-codes-are-not-universal"><span class="header-section-number">15.6</span> Country codes are not universal</a></li>
-  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">15.7</span> Independent task</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">12.1</span> Learning objectives</a></li>
+  <li><a href="#set-up-the-case" id="toc-set-up-the-case" class="nav-link" data-scroll-target="#set-up-the-case"><span class="header-section-number">12.2</span> Set up the case</a></li>
+  <li><a href="#strategy-1-separate-rows-from-people" id="toc-strategy-1-separate-rows-from-people" class="nav-link" data-scroll-target="#strategy-1-separate-rows-from-people"><span class="header-section-number">12.3</span> Strategy 1: separate rows from people</a></li>
+  <li><a href="#strategy-2-expose-team-event-duplication" id="toc-strategy-2-expose-team-event-duplication" class="nav-link" data-scroll-target="#strategy-2-expose-team-event-duplication"><span class="header-section-number">12.4</span> Strategy 2: expose team-event duplication</a></li>
+  <li><a href="#strategy-3-create-an-event-level-medal-table" id="toc-strategy-3-create-an-event-level-medal-table" class="nav-link" data-scroll-target="#strategy-3-create-an-event-level-medal-table"><span class="header-section-number">12.5</span> Strategy 3: create an event-level medal table</a></li>
+  <li><a href="#strategy-4-compare-country-measures" id="toc-strategy-4-compare-country-measures" class="nav-link" data-scroll-target="#strategy-4-compare-country-measures"><span class="header-section-number">12.6</span> Strategy 4: compare country measures</a></li>
+  <li><a href="#visualize-the-chosen-measure" id="toc-visualize-the-chosen-measure" class="nav-link" data-scroll-target="#visualize-the-chosen-measure"><span class="header-section-number">12.7</span> Visualize the chosen measure</a></li>
+  <li><a href="#country-codes-are-not-universal" id="toc-country-codes-are-not-universal" class="nav-link" data-scroll-target="#country-codes-are-not-universal"><span class="header-section-number">12.8</span> Country codes are not universal</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">12.9</span> Practice</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">12.10</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./employment.html">Transfer Case Studies</a></li><li class="breadcrumb-item"><a href="./olympics.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hot100.html">Case Studies</a></li><li class="breadcrumb-item"><a href="./olympics.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></h1>
 </div>
 
 
@@ -371,257 +373,320 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="learning-objectives" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">15.1</span> Learning objectives</h2>
+<div class="callout callout-style-default callout-important callout-titled" title="The new challenge: medallists are not medals">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The new challenge: medallists are not medals
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>One row associates one athlete with one medal result. A team medal therefore appears once for every team member, and one athlete can appear in several medal rows. We must distinguish athlete-medal rows, unique medallists, and official event-level medals before making a ranking.</p>
+</div>
+</div>
+<section id="learning-objectives" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">12.1</span> Learning objectives</h2>
 <p>By the end of this case, you should be able to:</p>
 <ul>
-<li>distinguish athlete-medal records, unique medallists, and official medals;</li>
-<li>deduplicate with a defensible identifier;</li>
-<li>avoid a misleading regression on aggregated counts; and</li>
-<li>audit the difference between IOC and ISO country codes.</li>
+<li>distinguish athlete-medal rows from unique medallists;</li>
+<li>use an athlete identifier rather than a displayed name;</li>
+<li>distinguish team-member rows from event-level medals;</li>
+<li>create a simple bar chart of the result; and</li>
+<li>recognize that different sources use different country codes.</li>
 </ul>
 </section>
-<section id="import-and-inspect" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="import-and-inspect"><span class="header-section-number">15.2</span> Import and inspect</h2>
+<section id="set-up-the-case" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="set-up-the-case"><span class="header-section-number">12.2</span> Set up the case</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Continue in the same project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open <code>djr.Rproj</code> and create <code>10-olympics.Rmd</code>. Download <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/medallists.csv"><code>medallists.csv</code></a> and save it in <code>data/</code>.</p>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearthdata)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>medallists <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/medallists.csv"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(medallists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>medallists <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/medallists.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(medallists)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2315   18</code></pre>
+<pre><code>Rows: 2,315
+Columns: 18
+$ medal_date   &lt;date&gt; 2024-07-27, 2024-07-27, 2024-07-27, 2024-07-27, 2024-07-…
+$ medal_type   &lt;chr&gt; "Gold Medal", "Silver Medal", "Bronze Medal", "Gold Medal…
+$ medal_code   &lt;dbl&gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 3, 1, 2, 3, …
+$ name         &lt;chr&gt; "EVENEPOEL Remco", "GANNA Filippo", "van AERT Wout", "BRO…
+$ gender       &lt;chr&gt; "Male", "Male", "Male", "Female", "Female", "Female", "Ma…
+$ country_code &lt;chr&gt; "BEL", "ITA", "BEL", "AUS", "GBR", "USA", "KOR", "TUN", "…
+$ country      &lt;chr&gt; "Belgium", "Italy", "Belgium", "Australia", "Great Britai…
+$ country_long &lt;chr&gt; "Belgium", "Italy", "Belgium", "Australia", "Great Britai…
+$ nationality  &lt;chr&gt; "Belgium", "Italy", "Belgium", "Australia", "Great Britai…
+$ team         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ team_gender  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ discipline   &lt;chr&gt; "Cycling Road", "Cycling Road", "Cycling Road", "Cycling …
+$ event        &lt;chr&gt; "Men's Individual Time Trial", "Men's Individual Time Tri…
+$ event_type   &lt;chr&gt; "ATH", "ATH", "ATH", "ATH", "ATH", "ATH", "HATH", "HATH",…
+$ url_event    &lt;chr&gt; "/en/paris-2024/results/cycling-road/men-s-individual-tim…
+$ birth_date   &lt;date&gt; 2000-01-25, 1996-07-25, 1994-09-15, 1992-07-07, 1998-11-…
+$ code_athlete &lt;dbl&gt; 1903136, 1923520, 1903147, 1940173, 1912525, 1955079, 192…
+$ code_team    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(medallists<span class="sc">$</span>code_athlete)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2054</code></pre>
 </div>
-</div>
-<p>The file has 2,315 rows but 2,054 unique athlete codes. One row represents one athlete associated with one medal result. An athlete with several medals has several rows. In a team event, one official medal produces a row for every team member.</p>
-<p>Therefore, the following are different measures:</p>
+<p>One row represents one athlete associated with one medal result. An athlete with several medals appears several times. In a team event, one official medal creates a row for every team member.</p>
+<p>These are therefore different measures:</p>
 <table class="table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Measure</th>
-<th>Calculation</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Athlete-medal records</td>
-<td><code>n()</code></td>
-<td>Participation in medal results</td>
+<td>Athlete-medal rows</td>
+<td>Athlete appearances in medal results</td>
 </tr>
 <tr class="even">
 <td>Unique medallists</td>
-<td><code>n_distinct(code_athlete)</code></td>
-<td>People with at least one medal record</td>
+<td>People with at least one medal row</td>
 </tr>
 <tr class="odd">
 <td>Official medals</td>
-<td>Event-level medal awards</td>
-<td>Not equal to athlete rows in team events</td>
+<td>Event-level awards, which are not counted directly by athlete rows</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="athletes-with-the-most-medal-records" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="athletes-with-the-most-medal-records"><span class="header-section-number">15.3</span> Athletes with the most medal records</h2>
+<section id="strategy-1-separate-rows-from-people" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="strategy-1-separate-rows-from-people"><span class="header-section-number">12.3</span> Strategy 1: separate rows from people</h2>
+<p>Begin by comparing the number of rows with the number of unique athlete identifiers:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>athlete_medal_records <span class="ot">&lt;-</span> medallists <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    code_athlete,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    name,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    country,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    gender,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"medal_records"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sort =</span> <span class="cn">TRUE</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>athlete_medal_records <span class="sc">|&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>medallists <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">athlete_medal_rows =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">unique_medallists =</span> <span class="fu">n_distinct</span>(code_athlete)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["code_athlete"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["country"],"name":[3],"type":["chr"],"align":["left"]},{"label":["gender"],"name":[4],"type":["chr"],"align":["left"]},{"label":["medal_records"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1945125","2":"ZHANG Yufei","3":"China","4":"Female","5":"6"},{"1":"1909294","2":"MARCHAND Leon","3":"France","4":"Male","5":"5"},{"1":"1935923","2":"HUSKE Torri","3":"United States","4":"Female","5":"5"},{"1":"1935984","2":"SMITH Regan","3":"United States","4":"Female","5":"5"},{"1":"1946198","2":"McKEOWN Kaylee","3":"Australia","4":"Female","5":"5"},{"1":"1946218","2":"O'CALLAGHAN Mollie","3":"Australia","4":"Female","5":"5"},{"1":"1919480","2":"OKA Shinnosuke","3":"Japan","4":"Male","5":"4"},{"1":"1935895","2":"DOUGLASS Kate","3":"United States","4":"Female","5":"4"},{"1":"1935938","2":"LEDECKY Katie","3":"United States","4":"Female","5":"4"},{"1":"1935998","2":"WALSH Gretchen","3":"United States","4":"Female","5":"4"},{"1":"1945159","2":"YANG Junxuan","3":"China","4":"Female","5":"4"},{"1":"1946150","2":"TITMUS Ariarne","3":"Australia","4":"Female","5":"4"},{"1":"1953634","2":"ANDRADE Rebeca","3":"Brazil","4":"Female","5":"4"},{"1":"1959861","2":"BILES Simone","3":"United States","4":"Female","5":"4"},{"1":"1967140","2":"McINTOSH Summer","3":"Canada","4":"Female","5":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["athlete_medal_rows"],"name":[1],"type":["int"],"align":["right"]},{"label":["unique_medallists"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"2315","2":"2054"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>The accurate label is “athlete-medal records,” not simply “medals,” because the data represent athletes within medal results.</p>
+<p>The two totals answer different questions. <code>n()</code> counts records, while <code>n_distinct(code_athlete)</code> counts people. The identifier is safer than the displayed name because names can be repeated or formatted inconsistently.</p>
+<p>To find athletes associated with the most medal results, keep the identifier and readable name together:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>athlete_medals <span class="ot">&lt;-</span> medallists <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(code_athlete, name, country) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>athlete_medals <span class="sc">|&gt;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["code_athlete"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["country"],"name":[3],"type":["chr"],"align":["left"]},{"label":["n"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"1945125","2":"ZHANG Yufei","3":"China","4":"6"},{"1":"1909294","2":"MARCHAND Leon","3":"France","4":"5"},{"1":"1935923","2":"HUSKE Torri","3":"United States","4":"5"},{"1":"1935984","2":"SMITH Regan","3":"United States","4":"5"},{"1":"1946198","2":"McKEOWN Kaylee","3":"Australia","4":"5"},{"1":"1946218","2":"O'CALLAGHAN Mollie","3":"Australia","4":"5"},{"1":"1919480","2":"OKA Shinnosuke","3":"Japan","4":"4"},{"1":"1935895","2":"DOUGLASS Kate","3":"United States","4":"4"},{"1":"1935938","2":"LEDECKY Katie","3":"United States","4":"4"},{"1":"1935998","2":"WALSH Gretchen","3":"United States","4":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The careful label is “athlete-medal rows,” not simply “medals.”</p>
 </section>
-<section id="unique-medallists-by-country" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="unique-medallists-by-country"><span class="header-section-number">15.4</span> Unique medallists by country</h2>
+<section id="strategy-2-expose-team-event-duplication" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="strategy-2-expose-team-event-duplication"><span class="header-section-number">12.4</span> Strategy 2: expose team-event duplication</h2>
+<p>Count rows within each event, country, and medal type. The largest counts make team events visible:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>country_medallists <span class="ot">&lt;-</span> medallists <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(country), <span class="sc">!</span><span class="fu">is.na</span>(code_athlete)) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">unique_medallists =</span> <span class="fu">n_distinct</span>(code_athlete),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">athlete_medal_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> country</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(unique_medallists))</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>country_medallists <span class="sc">|&gt;</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>medallists <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(discipline, event, country, medal_type) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["unique_medallists"],"name":[2],"type":["int"],"align":["right"]},{"label":["athlete_medal_records"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"United States","2":"265","3":"330"},{"1":"France","2":"170","3":"186"},{"1":"Great Britain","2":"139","3":"161"},{"1":"China","2":"131","3":"168"},{"1":"Netherlands","2":"109","3":"117"},{"1":"Germany","2":"106","3":"113"},{"1":"Australia","2":"95","3":"123"},{"1":"Italy","2":"81","3":"88"},{"1":"Spain","2":"81","3":"83"},{"1":"Japan","2":"70","3":"82"},{"1":"Brazil","2":"61","3":"67"},{"1":"Canada","2":"52","3":"57"},{"1":"Korea","2":"46","3":"58"},{"1":"New Zealand","2":"45","3":"51"},{"1":"Denmark","2":"42","3":"42"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["discipline"],"name":[1],"type":["chr"],"align":["left"]},{"label":["event"],"name":[2],"type":["chr"],"align":["left"]},{"label":["country"],"name":[3],"type":["chr"],"align":["left"]},{"label":["medal_type"],"name":[4],"type":["chr"],"align":["left"]},{"label":["n"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"Football","2":"Men","3":"Spain","4":"Gold Medal","5":"22"},{"1":"Football","2":"Women","3":"Brazil","4":"Silver Medal","5":"22"},{"1":"Football","2":"Men","3":"France","4":"Silver Medal","5":"21"},{"1":"Football","2":"Women","3":"Germany","4":"Bronze Medal","5":"20"},{"1":"Football","2":"Women","3":"United States","4":"Gold Medal","5":"20"},{"1":"Football","2":"Men","3":"Morocco","4":"Bronze Medal","5":"19"},{"1":"Hockey","2":"Men","3":"Germany","4":"Silver Medal","5":"18"},{"1":"Hockey","2":"Men","3":"Netherlands","4":"Gold Medal","5":"18"},{"1":"Handball","2":"Women","3":"France","4":"Silver Medal","5":"17"},{"1":"Hockey","2":"Women","3":"China","4":"Silver Medal","5":"17"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>This table is useful, but it is not the official medal table. Countries with large team-event rosters can accumulate many athlete-medal records from one official medal.</p>
+<p>For a football or hockey result, <code>n</code> is close to the number of listed team members. Those rows describe medallists, but the team received one official medal for that event.</p>
 </section>
-<section id="analyze-age-at-the-athlete-grain" class="level2" data-number="15.5">
-<h2 data-number="15.5" class="anchored" data-anchor-id="analyze-age-at-the-athlete-grain"><span class="header-section-number">15.5</span> Analyze age at the athlete grain</h2>
-<p>Counting medal rows by age overweights multi-medallists. Deduplicate athletes first:</p>
+<section id="strategy-3-create-an-event-level-medal-table" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="strategy-3-create-an-event-level-medal-table"><span class="header-section-number">12.5</span> Strategy 3: create an event-level medal table</h2>
+<p>To approximate official medal awards, keep each event, country, and medal type once. <code>event_type</code> is retained because similarly named events can have different forms:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="ot">&lt;-</span> medallists <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(code_athlete)) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(code_athlete, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">age_at_opening =</span> <span class="fu">as.numeric</span>(</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.Date</span>(<span class="st">"2024-07-26"</span>) <span class="sc">-</span> birth_date</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">/</span> <span class="fl">365.25</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">|&gt;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">athletes =</span> <span class="fu">n</span>(),</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_birth_date =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(birth_date)),</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_age =</span> <span class="fu">median</span>(age_at_opening, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">youngest =</span> <span class="fu">min</span>(age_at_opening, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">oldest =</span> <span class="fu">max</span>(age_at_opening, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>official_medals <span class="ot">&lt;-</span> medallists <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    discipline,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    event,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    event_type,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    country_code,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    country,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    medal_type</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>official_medals <span class="sc">|&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_official_medals =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["athletes"],"name":[1],"type":["int"],"align":["right"]},{"label":["missing_birth_date"],"name":[2],"type":["int"],"align":["right"]},{"label":["median_age"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["youngest"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["oldest"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2054","2":"3","3":"26.85558","4":"14.20671","5":"58.69678"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["number_of_official_medals"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"1047"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
+<p>This changes the unit from an athlete associated with an award to one country-medal result in one event. For publication, compare the resulting total with the official medal source and investigate any ties, mixed teams, or missing event identifiers.</p>
+</section>
+<section id="strategy-4-compare-country-measures" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="strategy-4-compare-country-measures"><span class="header-section-number">12.6</span> Strategy 4: compare country measures</h2>
+<p>First count athlete records and unique people within each country:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>athletes <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(age_at_opening)) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age_at_opening)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">2</span>, <span class="at">fill =</span> <span class="st">"#1769AA"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"The age distribution of unique Paris 2024 medallists"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Each athlete is counted once, regardless of medal records"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Age at the opening ceremony"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Unique medallists"</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>country_medallists <span class="ot">&lt;-</span> medallists <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country_code, country) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">unique_medallists =</span> <span class="fu">n_distinct</span>(code_athlete),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">athlete_medal_rows =</span> <span class="fu">n</span>()</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>country_official_medals <span class="ot">&lt;-</span> official_medals <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(country_code, country, <span class="at">name =</span> <span class="st">"official_medals"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>country_measures <span class="ot">&lt;-</span> country_medallists <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    country_official_medals,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"country_code"</span>, <span class="st">"country"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(official_medals))</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>country_measures <span class="sc">|&gt;</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["unique_medallists"],"name":[3],"type":["int"],"align":["right"]},{"label":["athlete_medal_rows"],"name":[4],"type":["int"],"align":["right"]},{"label":["official_medals"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"AIN","2":"AIN","3":"6","4":"6","5":"5"},{"1":"ALB","2":"Albania","3":"2","4":"2","5":"2"},{"1":"ALG","2":"Algeria","3":"3","4":"3","5":"3"},{"1":"ARG","2":"Argentina","3":"19","4":"19","5":"3"},{"1":"ARM","2":"Armenia","3":"4","4":"4","5":"4"},{"1":"AUS","2":"Australia","3":"95","4":"123","5":"53"},{"1":"AUT","2":"Austria","3":"6","4":"6","5":"5"},{"1":"AZE","2":"Azerbaijan","3":"7","4":"7","5":"7"},{"1":"BEL","2":"Belgium","3":"9","4":"10","5":"10"},{"1":"BOT","2":"Botswana","3":"6","4":"7","5":"2"},{"1":"BRA","2":"Brazil","3":"61","4":"67","5":"20"},{"1":"BRN","2":"Bahrain","3":"4","4":"4","5":"4"},{"1":"BUL","2":"Bulgaria","3":"7","4":"7","5":"7"},{"1":"CAN","2":"Canada","3":"52","4":"57","5":"27"},{"1":"CHI","2":"Chile","3":"2","4":"2","5":"2"},{"1":"CHN","2":"China","3":"131","4":"168","5":"91"},{"1":"CIV","2":"Côte d'Ivoire","3":"1","4":"1","5":"1"},{"1":"COL","2":"Colombia","3":"4","4":"4","5":"4"},{"1":"CPV","2":"Cabo Verde","3":"1","4":"1","5":"1"},{"1":"CRO","2":"Croatia","3":"20","4":"20","5":"7"},{"1":"CUB","2":"Cuba","3":"9","4":"9","5":"9"},{"1":"CYP","2":"Cyprus","3":"1","4":"1","5":"1"},{"1":"CZE","2":"Czechia","3":"9","4":"9","5":"5"},{"1":"DEN","2":"Denmark","3":"42","4":"42","5":"9"},{"1":"DMA","2":"Dominica","3":"1","4":"1","5":"1"},{"1":"DOM","2":"Dominican Republic","3":"3","4":"3","5":"3"},{"1":"ECU","2":"Ecuador","3":"5","4":"6","5":"5"},{"1":"EGY","2":"Egypt","3":"3","4":"3","5":"3"},{"1":"EOR","2":"EOR","3":"1","4":"1","5":"1"},{"1":"ESP","2":"Spain","3":"81","4":"83","5":"18"},{"1":"ETH","2":"Ethiopia","3":"4","4":"4","5":"4"},{"1":"FIJ","2":"Fiji","3":"14","4":"14","5":"1"},{"1":"FRA","2":"France","3":"170","4":"186","5":"64"},{"1":"GBR","2":"Great Britain","3":"139","4":"161","5":"65"},{"1":"GEO","2":"Georgia","3":"7","4":"7","5":"7"},{"1":"GER","2":"Germany","3":"106","4":"113","5":"33"},{"1":"GRE","2":"Greece","3":"10","4":"10","5":"8"},{"1":"GRN","2":"Grenada","3":"2","4":"2","5":"2"},{"1":"GUA","2":"Guatemala","3":"2","4":"2","5":"2"},{"1":"HKG","2":"Hong Kong, China","3":"3","4":"4","5":"4"},{"1":"HUN","2":"Hungary","3":"25","4":"31","5":"19"},{"1":"INA","2":"Indonesia","3":"3","4":"3","5":"3"},{"1":"IND","2":"India","3":"21","4":"22","5":"6"},{"1":"IRI","2":"IR Iran","3":"12","4":"12","5":"12"},{"1":"IRL","2":"Ireland","3":"8","4":"9","5":"7"},{"1":"ISR","2":"Israel","3":"11","4":"11","5":"7"},{"1":"ITA","2":"Italy","3":"81","4":"88","5":"40"},{"1":"JAM","2":"Jamaica","3":"6","4":"6","5":"6"},{"1":"JOR","2":"Jordan","3":"1","4":"1","5":"1"},{"1":"JPN","2":"Japan","3":"70","4":"82","5":"45"},{"1":"KAZ","2":"Kazakhstan","3":"8","4":"8","5":"7"},{"1":"KEN","2":"Kenya","3":"9","4":"11","5":"11"},{"1":"KGZ","2":"Kyrgyzstan","3":"6","4":"6","5":"6"},{"1":"KOR","2":"Korea","3":"46","4":"58","5":"32"},{"1":"KOS","2":"Kosovo","3":"2","4":"2","5":"2"},{"1":"LCA","2":"Saint Lucia","3":"1","4":"2","5":"2"},{"1":"LTU","2":"Lithuania","3":"7","4":"7","5":"4"},{"1":"MAR","2":"Morocco","3":"20","4":"20","5":"2"},{"1":"MAS","2":"Malaysia","3":"3","4":"3","5":"2"},{"1":"MDA","2":"Republic of Moldova","3":"4","4":"4","5":"4"},{"1":"MEX","2":"Mexico","3":"7","4":"8","5":"5"},{"1":"MGL","2":"Mongolia","3":"1","4":"1","5":"1"},{"1":"NED","2":"Netherlands","3":"109","4":"117","5":"34"},{"1":"NOR","2":"Norway","3":"23","4":"23","5":"8"},{"1":"NZL","2":"New Zealand","3":"45","4":"51","5":"20"},{"1":"PAK","2":"Pakistan","3":"1","4":"1","5":"1"},{"1":"PAN","2":"Panama","3":"1","4":"1","5":"1"},{"1":"PER","2":"Peru","3":"1","4":"1","5":"1"},{"1":"PHI","2":"Philippines","3":"3","4":"4","5":"4"},{"1":"POL","2":"Poland","3":"28","4":"28","5":"10"},{"1":"POR","2":"Portugal","3":"4","4":"5","5":"4"},{"1":"PRK","2":"DPR Korea","3":"7","4":"8","5":"6"},{"1":"PUR","2":"Puerto Rico","3":"2","4":"2","5":"2"},{"1":"QAT","2":"Qatar","3":"1","4":"1","5":"1"},{"1":"ROU","2":"Romania","3":"16","4":"21","5":"9"},{"1":"RSA","2":"South Africa","3":"21","4":"22","5":"6"},{"1":"SGP","2":"Singapore","3":"1","4":"1","5":"1"},{"1":"SLO","2":"Slovenia","3":"3","4":"3","5":"3"},{"1":"SRB","2":"Serbia","3":"29","4":"29","5":"5"},{"1":"SUI","2":"Switzerland","3":"10","4":"10","5":"8"},{"1":"SVK","2":"Slovakia","3":"1","4":"1","5":"1"},{"1":"SWE","2":"Sweden","3":"14","4":"16","5":"11"},{"1":"THA","2":"Thailand","3":"6","4":"6","5":"6"},{"1":"TJK","2":"Tajikistan","3":"3","4":"3","5":"3"},{"1":"TPE","2":"Chinese Taipei","3":"8","4":"8","5":"7"},{"1":"TUN","2":"Tunisia","3":"3","4":"3","5":"3"},{"1":"TUR","2":"Türkiye","3":"11","4":"11","5":"8"},{"1":"UGA","2":"Uganda","3":"2","4":"2","5":"2"},{"1":"UKR","2":"Ukraine","3":"15","4":"16","5":"12"},{"1":"USA","2":"United States","3":"265","4":"330","5":"126"},{"1":"UZB","2":"Uzbekistan","3":"13","4":"13","5":"13"},{"1":"ZAM","2":"Zambia","3":"1","4":"1","5":"1"},{"1":"NA","2":"NA","3":"3","4":"3","5":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The three columns should not be used interchangeably. A country with many large successful teams can have far more athlete-medal rows than official medals.</p>
+</section>
+<section id="visualize-the-chosen-measure" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="visualize-the-chosen-measure"><span class="header-section-number">12.7</span> Visualize the chosen measure</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>country_measures <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> official_medals,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="fu">fct_reorder</span>(country, official_medals)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Countries winning the most official medals at Paris 2024"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Official event-level medals"</span>,</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: supplied Paris 2024 medallists data"</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="olympics_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="olympics_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>A regression of “number of medal rows by age” on age would mostly describe the shape of this distribution. It would not estimate whether getting older causes an athlete to win more or fewer medals.</p>
+<p>If we charted <code>unique_medallists</code> instead, both the title and axis would need to say medallists. The wording follows the unit actually counted.</p>
 </section>
-<section id="country-codes-are-not-universal" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="country-codes-are-not-universal"><span class="header-section-number">15.6</span> Country codes are not universal</h2>
-<p>The dataset uses International Olympic Committee codes, while Natural Earth provides ISO-style geographic identifiers. Many codes differ: <code>GER</code> versus <code>DEU</code>, <code>SUI</code> versus <code>CHE</code>, and <code>NED</code> versus <code>NLD</code>. A direct code join would drop many countries.</p>
-<p>Use published country names with an explicit concordance for the unmatched labels:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>country_medallists <span class="ot">&lt;-</span> country_medallists <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map_name =</span> <span class="fu">recode</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      country,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Great Britain"</span> <span class="ot">=</span> <span class="st">"United Kingdom"</span>,</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Korea"</span> <span class="ot">=</span> <span class="st">"Republic of Korea"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Hong Kong, China"</span> <span class="ot">=</span> <span class="st">"Hong Kong"</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Republic of Moldova"</span> <span class="ot">=</span> <span class="st">"Moldova"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Chinese Taipei"</span> <span class="ot">=</span> <span class="st">"Taiwan"</span>,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Cabo Verde"</span> <span class="ot">=</span> <span class="st">"Republic of Cabo Verde"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"DPR Korea"</span> <span class="ot">=</span> <span class="st">"Dem. Rep. Korea"</span>,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      <span class="st">"IR Iran"</span> <span class="ot">=</span> <span class="st">"Iran"</span>,</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Türkiye"</span> <span class="ot">=</span> <span class="st">"Turkey"</span>,</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Czechia"</span> <span class="ot">=</span> <span class="st">"Czech Republic"</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AIN"</span>, <span class="st">"EOR"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>AIN</code> represents Individual Neutral Athletes and <code>EOR</code> represents the Refugee Olympic Team. Assigning either delegation to one country polygon would be a substantive error, so they remain in the table but are excluded from the map.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>unmatched <span class="ot">&lt;-</span> country_medallists <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    world <span class="sc">|&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">distinct</span>(name_long),</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"map_name"</span> <span class="ot">=</span> <span class="st">"name_long"</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>unmatched</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["unique_medallists"],"name":[2],"type":["int"],"align":["right"]},{"label":["athlete_medal_records"],"name":[3],"type":["int"],"align":["right"]},{"label":["map_name"],"name":[4],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>The result should have no rows before the spatial join.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>world_medallists <span class="ot">&lt;-</span> world <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name_long <span class="sc">!=</span> <span class="st">"Antarctica"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    country_medallists,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name_long"</span> <span class="ot">=</span> <span class="st">"map_name"</span>),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">relationship =</span> <span class="st">"one-to-one"</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(world_medallists) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> unique_medallists), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.08</span>) <span class="sc">+</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">na.value =</span> <span class="st">"#E5E7EB"</span>) <span class="sc">+</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Unique Paris 2024 medallists by represented country"</span>,</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Unique</span><span class="sc">\n</span><span class="st">medallists"</span>,</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="fu">paste</span>(</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"AIN and EOR are not assigned to country polygons."</span>,</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"This is not an official medal-count map."</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="olympics_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="independent-task" class="level2" data-number="15.7">
-<h2 data-number="15.7" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">15.7</span> Independent task</h2>
-<p>Choose one discipline and report three different counts:</p>
+<section id="country-codes-are-not-universal" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="country-codes-are-not-universal"><span class="header-section-number">12.8</span> Country codes are not universal</h2>
+<p>The Olympics file uses International Olympic Committee codes. Many map sources use ISO-style codes instead. For example, Germany can appear as <code>GER</code> in one system and <code>DEU</code> in another.</p>
+<p>Before joining to a map:</p>
 <ol type="1">
-<li>athlete-medal records;</li>
-<li>unique medallists; and</li>
-<li>distinct event–medal combinations.</li>
+<li>identify the coding system used by each source;</li>
+<li>inspect unmatched countries with <code>anti_join()</code>;</li>
+<li>create a documented lookup table for differences; and</li>
+<li>do not force non-country delegations onto a country polygon.</li>
 </ol>
-<p>Explain why none should automatically be labelled “the number of official medals.” Add one chart at the unique-athlete grain and one validation check using <code>code_athlete</code>.</p>
+<p>The Refugee Olympic Team and Individual Neutral Athletes are important examples: they should not automatically be assigned to one national map area.</p>
+</section>
+<section id="practice" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="practice"><span class="header-section-number">12.9</span> Practice</h2>
+<p>Choose one discipline and calculate:</p>
+<ol type="1">
+<li>athlete-medal rows;</li>
+<li>unique medallists; and</li>
+<li>official event-level medals.</li>
+</ol>
+<p>Find one team event and show how many athlete rows represent one medal result. Then create a top-five table and chart for one measure, using the exact unit in the title.</p>
+</section>
+<section id="takeaways" class="level2" data-number="12.10">
+<h2 data-number="12.10" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">12.10</span> Takeaways</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function or idea</th>
+<th>What it does in this case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>count()</code></td>
+<td>Counts athlete-medal rows at the selected grouping</td>
+</tr>
+<tr class="even">
+<td><code>n_distinct()</code></td>
+<td>Counts different athlete identifiers</td>
+</tr>
+<tr class="odd">
+<td><code>distinct()</code></td>
+<td>Keeps one event-country-medal combination</td>
+</tr>
+<tr class="even">
+<td><code>left_join()</code></td>
+<td>Places country measures in one comparison table</td>
+</tr>
+<tr class="odd">
+<td><code>fct_reorder()</code></td>
+<td>Orders the countries by the chosen measure</td>
+</tr>
+<tr class="even">
+<td>Join-key check</td>
+<td>Prevents different country-code systems from silently dropping places</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Want more control?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Want more control?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>See the official <a href="https://dplyr.tidyverse.org/reference/index.html">dplyr reference</a> for other ways to count and rank, and the <a href="https://ggplot2.tidyverse.org/reference/">ggplot2 reference</a> for additional chart controls.</p>
+</div>
+</div>
 
 
 </section>
@@ -1016,13 +1081,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./employment.html" class="pagination-link  aria-label=" &lt;span="" official="" data:="" hong="" kong="" graduate="" employment&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span>
+      <a href="./hot100.html" class="pagination-link  aria-label=" &lt;span="" hot="" 100&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./debate.html" class="pagination-link" aria-label="<span class='chapter-number'>16</span>&nbsp; <span class='chapter-title'>Text as Data: The 2024 US Presidential Debate</span>">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./employment.html" class="pagination-link" aria-label="<span class='chapter-number'>13</span>&nbsp; <span class='chapter-title'>HK Graduates Employment</span>">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

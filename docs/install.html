@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 2&nbsp; Set Up R, RStudio, and Quarto</title>
+<title>Data Journalism with R - 2&nbsp; R and RStudio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -102,9 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
-<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
-<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
@@ -120,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Foundations</a></li><li class="breadcrumb-item"><a href="./install.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./install.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -154,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -163,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -183,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -192,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -224,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -232,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -259,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -267,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -308,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -343,22 +339,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">2.1</span> Learning objectives</a></li>
-  <li><a href="#three-tools-three-jobs" id="toc-three-tools-three-jobs" class="nav-link" data-scroll-target="#three-tools-three-jobs"><span class="header-section-number">2.2</span> Three tools, three jobs</a></li>
-  <li><a href="#work-inside-a-project" id="toc-work-inside-a-project" class="nav-link" data-scroll-target="#work-inside-a-project"><span class="header-section-number">2.3</span> Work inside a project</a></li>
-  <li><a href="#console-script-and-quarto-document" id="toc-console-script-and-quarto-document" class="nav-link" data-scroll-target="#console-script-and-quarto-document"><span class="header-section-number">2.4</span> Console, script, and Quarto document</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">2.5</span> Packages</a></li>
-  <li><a href="#a-five-minute-system-check" id="toc-a-five-minute-system-check" class="nav-link" data-scroll-target="#a-five-minute-system-check"><span class="header-section-number">2.6</span> A five-minute system check</a></li>
-  <li><a href="#common-setup-problems" id="toc-common-setup-problems" class="nav-link" data-scroll-target="#common-setup-problems"><span class="header-section-number">2.7</span> Common setup problems</a></li>
-  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">2.8</span> Independent task</a></li>
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r"><span class="header-section-number">2.2</span> R</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">2.3</span> RStudio</a>
+  <ul class="collapse">
+  <li><a href="#the-rstudio-screen" id="toc-the-rstudio-screen" class="nav-link" data-scroll-target="#the-rstudio-screen">The RStudio screen</a></li>
+  </ul></li>
+  <li><a href="#r-project" id="toc-r-project" class="nav-link" data-scroll-target="#r-project"><span class="header-section-number">2.4</span> R Project</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">2.5</span> Packages</a>
+  <ul class="collapse">
+  <li><a href="#the-tidyverse" id="toc-the-tidyverse" class="nav-link" data-scroll-target="#the-tidyverse">The tidyverse</a></li>
+  </ul></li>
+  <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown"><span class="header-section-number">2.6</span> R Markdown</a>
+  <ul class="collapse">
+  <li><a href="#create-the-document" id="toc-create-the-document" class="nav-link" data-scroll-target="#create-the-document">Create the document</a></li>
+  <li><a href="#add-text-and-a-code-chunk" id="toc-add-text-and-a-code-chunk" class="nav-link" data-scroll-target="#add-text-and-a-code-chunk">Add text and a code chunk</a></li>
+  <li><a href="#knit-the-document" id="toc-knit-the-document" class="nav-link" data-scroll-target="#knit-the-document">Knit the document</a></li>
+  </ul></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">2.7</span> Practice</a></li>
+  <li><a href="#common-setup-problems" id="toc-common-setup-problems" class="nav-link" data-scroll-target="#common-setup-problems"><span class="header-section-number">2.8</span> Common setup problems</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">2.9</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Foundations</a></li><li class="breadcrumb-item"><a href="./install.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./install.html">Getting Started</a></li><li class="breadcrumb-item"><a href="./install.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></h1>
 </div>
 
 
@@ -375,132 +383,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled" title="Part 1: Getting Started">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Part 1: Getting Started
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter introduces the tools we will use throughout the book. You will install R and RStudio, create one R Project for the lessons, install the tidyverse, and make your first R Markdown document.</p>
+</div>
+</div>
 <section id="learning-objectives" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>explain the different jobs of R, RStudio, and Quarto;</li>
-<li>create and open an RStudio Project;</li>
-<li>run code in the Console and in a Quarto document;</li>
-<li>install a package once and load it in a working session; and</li>
-<li>render a reproducible HTML page.</li>
+<li>explain the difference between R and RStudio;</li>
+<li>explain why an R Project keeps an analysis organized and reproducible;</li>
+<li>distinguish installing a package from loading it;</li>
+<li>explain the relationship between Markdown and R Markdown; and</li>
+<li>create and knit a simple R Markdown document.</li>
 </ul>
 </section>
-<section id="three-tools-three-jobs" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="three-tools-three-jobs"><span class="header-section-number">2.2</span> Three tools, three jobs</h2>
-<p><strong>R</strong> is the language and calculation engine. <strong>RStudio</strong> is the working environment where you write code, inspect data, and manage files. <strong>Quarto</strong> combines prose, code, results, and citations in one reproducible document.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  A["R code"] --&gt; B["R computes"]
-  C["Prose and citations"] --&gt; D["Quarto document"]
-  B --&gt; D
-  D --&gt; E["HTML story, report, or website"]
-</pre>
+<section id="r" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="r"><span class="header-section-number">2.2</span> R</h2>
+<p><strong>R is a programming language for working with data.</strong> We can use it to read data, clean tables, calculate statistics, and create charts. The instructions we write in R are called <strong>code</strong>.</p>
+<p>R is also the engine that runs that code. When we ask R to calculate <code>2 + 2</code>, R does the calculation and returns the result. Later, the same engine will run longer sequences of instructions that produce a table or chart.</p>
+<p>R is useful for data journalism because the code keeps a record of the steps between a source file and a finding. Those steps can be rerun when the data are updated, checked by an editor, or shared with another reporter. R is free and open source, and it runs on Windows, macOS, and Linux.</p>
+<p>Download R from the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN)</a>. CRAN is the official network that distributes R and thousands of contributed packages. Select your operating system, download the current release, and use the standard installation options.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Learn more about R">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p></p></figure><p></p>
+<div class="callout-title-container flex-fill">
+Learn more about R
 </div>
 </div>
+<div class="callout-body-container callout-body">
+<p>The R Project’s official <a href="https://www.r-project.org/about.html">What is R?</a> page gives a broader introduction. The <a href="https://cran.r-project.org/">CRAN website</a> contains downloads, manuals, and other R resources.</p>
 </div>
-<p>Install R from <a href="https://cran.r-project.org/">CRAN</a>, then install <a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop</a>. Current RStudio releases include Quarto. If the <strong>Render</strong> button is visible when you open a <code>.qmd</code> file, Quarto is available.</p>
+</div>
 </section>
-<section id="work-inside-a-project" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="work-inside-a-project"><span class="header-section-number">2.3</span> Work inside a project</h2>
-<p>An RStudio Project gives your analysis a stable home. It prevents the most common beginner problem: code that works only because R is looking in an unknown folder.</p>
-<ol type="1">
-<li>Choose <strong>File → New Project → Existing Directory</strong>.</li>
-<li>Select the folder containing this textbook.</li>
-<li>Confirm that the Files pane shows <code>_quarto.yml</code>, <code>index.qmd</code>, and <code>data/</code>.</li>
-</ol>
-<p>The project folder is now the starting point for relative paths. For example:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.exists</span>(<span class="st">"data/processed/gpfg_equities_latest.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<section id="rstudio" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">2.3</span> RStudio</h2>
+<p><strong>RStudio is a program that makes it easier to work with R.</strong> More precisely, it is an <strong>integrated development environment</strong>, often shortened to <strong>IDE</strong>. An IDE brings the tools for writing code, running it, viewing results, and organizing files into one screen.</p>
+<p>R and RStudio are related, but they are not the same thing:</p>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tool</th>
+<th>Main job</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R</td>
+<td>Understands and runs R code</td>
+</tr>
+<tr class="even">
+<td>RStudio</td>
+<td>Provides a convenient place to write the code and work with the results</td>
+</tr>
+</tbody>
+</table>
+<p>One way to remember the relationship is that <strong>R is the engine and RStudio is the workspace around the engine</strong>. RStudio needs R to be installed, which is why R must be installed first.</p>
+<p>After installing R, download <a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop</a> and use the standard installation options.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/install-r-rstudio.png" class="img-fluid figure-img"></p>
+<figcaption>Install R before RStudio.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Installation order matters">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Installation order matters
 </div>
 </div>
-<p>The result should be <code>TRUE</code>. Do not solve path problems with a long personal path such as <code>/Users/name/Desktop/course/...</code>; that path will fail on another computer.</p>
-</section>
-<section id="console-script-and-quarto-document" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="console-script-and-quarto-document"><span class="header-section-number">2.4</span> Console, script, and Quarto document</h2>
-<p>Use the <strong>Console</strong> for quick experiments. Use an <code>.R</code> script for reusable data preparation. Use a <code>.qmd</code> document when the explanation, code, output, and sources belong together.</p>
-<p>Try this in the Console:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then create a Quarto document with <strong>File → New File → Quarto Document</strong> and place this code in a code chunk:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r .cell-code}</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">headline &lt;- "A reproducible result"</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">headline</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>::: {.cell-output .cell-output-stdout}</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="in">[1] "A reproducible result"</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Click <strong>Render</strong>. Quarto runs the document from the beginning in a fresh session. A document that renders is stronger evidence of reproducibility than code that only works interactively.</p>
-</section>
-<section id="packages" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="packages"><span class="header-section-number">2.5</span> Packages</h2>
-<p>Packages extend R. Installation and loading are different actions.</p>
-<p>Run installation once in the Console:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Load the package in every new R session or at the top of a chapter:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-body-container callout-body">
+<p>Install R first and RStudio second. Opening RStudio does not replace R; RStudio uses the installed R engine to run your code.</p>
 </div>
-<p>Do not put <code>install.packages()</code> in a rendered chapter. Rendering should not change a reader’s computer or pause to ask which download server to use.</p>
-<p>For this book, install the main packages with:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>, <span class="st">"readxl"</span>, <span class="st">"scales"</span>, <span class="st">"ggrepel"</span>, <span class="st">"sf"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rnaturalearth"</span>, <span class="st">"rnaturalearthdata"</span>, <span class="st">"tidytext"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="a-five-minute-system-check" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="a-five-minute-system-check"><span class="header-section-number">2.6</span> A five-minute system check</h2>
-<p>Create <code>setup-check.qmd</code> and render the following:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Setup check"</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r .cell-code}</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="in">check &lt;- tibble(</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="in">  tool = c("R", "tidyverse", "course data"),</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="in">  ready = c(</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="in">    TRUE,</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="in">    packageVersion("dplyr") &gt; "1.0.0",</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="in">    file.exists("data/processed/gpfg_equities_latest.csv")</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="in">check</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>::: {.cell-output-display}</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="in">`````{=html}</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div data-pagedtable="false"&gt;</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;script data-pagedtable-source type="application/json"&gt;</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="in">{"columns":[{"label":["tool"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ready"],"name":[2],"type":["lgl"],"align":["right"]}],"data":[{"1":"R","2":"TRUE"},{"1":"tidyverse","2":"TRUE"},{"1":"course data","2":"TRUE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/script&gt;</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: ::: ````</p>
-<p>All three values in <code>ready</code> should be <code>TRUE</code>.</p>
-</section>
-<section id="common-setup-problems" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="common-setup-problems"><span class="header-section-number">2.7</span> Common setup problems</h2>
+</div>
+<section id="the-rstudio-screen" class="level3">
+<h3 class="anchored" data-anchor-id="the-rstudio-screen">The RStudio screen</h3>
+<p>RStudio normally displays four areas called <strong>panes</strong>:</p>
 <table class="table">
 <colgroup>
 <col style="width: 33%">
@@ -509,9 +485,313 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <thead>
 <tr class="header">
-<th>Symptom</th>
-<th>Likely cause</th>
-<th>First check</th>
+<th>Position</th>
+<th>Pane</th>
+<th>What happens there</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Top left</td>
+<td>Source</td>
+<td>Write and save R Markdown documents and other code files</td>
+</tr>
+<tr class="even">
+<td>Bottom left</td>
+<td>Console</td>
+<td>Run short R commands and see immediate results</td>
+</tr>
+<tr class="odd">
+<td>Top right</td>
+<td>Environment</td>
+<td>See the data and other objects created during the current session</td>
+</tr>
+<tr class="even">
+<td>Bottom right</td>
+<td>Files, Plots, Packages, Help</td>
+<td>Find files, view charts, manage packages, and open help pages</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>Source pane</strong> holds work that you save. The <strong>Console</strong> is useful for a quick experiment, but commands typed only there are easy to lose. For the lessons in this book, write important code in an R Markdown document.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rstudio-ide.png" class="img-fluid figure-img"></p>
+<figcaption>The main RStudio panes.</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Learn more about RStudio">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learn more about RStudio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Posit provides an official <a href="https://docs.posit.co/ide/user/ide/get-started/">RStudio getting-started guide</a> and a more detailed <a href="https://docs.posit.co/ide/user/">RStudio IDE user guide</a>. You can also download the course’s <a href="cheatsheets/rstudio-ide.pdf">RStudio IDE cheatsheet</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="r-project" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="r-project"><span class="header-section-number">2.4</span> R Project</h2>
+<p>An <strong>R Project</strong> is a folder that keeps the files for one piece of work together. RStudio calls it an <strong>RStudio Project</strong> and adds a small file ending in <code>.Rproj</code> to the folder.</p>
+<p>Opening the <code>.Rproj</code> file tells RStudio which project you are working on. It also makes the project folder the <strong>working directory</strong>: the starting place R uses when it looks for a file. This allows us to use a short path such as <code>data/news.csv</code> instead of a path tied to one person’s Desktop.</p>
+<p>Projects are helpful because they keep these materials together:</p>
+<ul>
+<li>the original data;</li>
+<li>R Markdown documents containing the analysis;</li>
+<li>tables and charts created by the analysis; and</li>
+<li>notes about the source and reporting decisions.</li>
+</ul>
+<p>We will create one project and continue using it throughout the book:</p>
+<ol type="1">
+<li>Choose <strong>File → New Project → New Directory → New Project</strong>.</li>
+<li>Enter <code>djr</code> as the directory name.</li>
+<li>Choose where to save it and click <strong>Create Project</strong>.</li>
+<li>In the Files pane, click <strong>New Folder</strong> and create <code>data</code>.</li>
+<li>Create another folder named <code>outputs</code>.</li>
+</ol>
+<p>The project should begin like this:</p>
+<pre class="text"><code>djr/
+├── data/
+├── outputs/
+└── djr.Rproj</code></pre>
+<p>Open <code>djr.Rproj</code> whenever you return to the lessons. Do not create a new project for every chapter; create a new R Markdown document inside this same project.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Learn more about R Projects">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learn more about R Projects
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The official <a href="https://docs.posit.co/ide/user/ide/guide/code/projects.html">RStudio Projects guide</a> explains how projects manage files, working directories, and separate R sessions. The simple project above is all you need to begin this book.</p>
+</div>
+</div>
+</section>
+<section id="packages" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="packages"><span class="header-section-number">2.5</span> Packages</h2>
+<p>R includes many useful tools, but it does not include every task someone might need. An <strong>R package</strong> is a collection of reusable functions, documentation, and sometimes example data. A <strong>function</strong> is a named instruction that performs a task. For example, a function might import a CSV file or draw a chart.</p>
+<p>There are two separate actions to remember:</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Action</th>
+<th>When it is needed</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Install a package</td>
+<td>Usually once on a computer</td>
+<td><code>install.packages("tidyverse")</code></td>
+</tr>
+<tr class="even">
+<td>Load a package</td>
+<td>At the start of a new R session or document</td>
+<td><code>library(tidyverse)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Think of installation as putting a book on your shelf. Loading is taking that book from the shelf so you can use it during the current session.</p>
+<section id="the-tidyverse" class="level3">
+<h3 class="anchored" data-anchor-id="the-tidyverse">The tidyverse</h3>
+<p>The <strong>tidyverse</strong> is a collection of R packages designed to work together. The packages use consistent ideas and data structures, so learning one makes the others easier to use. Important packages in this book include:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>What we use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>readr</td>
+<td>Import CSV files</td>
+</tr>
+<tr class="even">
+<td>dplyr</td>
+<td>Select, filter, sort, and summarise data</td>
+</tr>
+<tr class="odd">
+<td>tidyr</td>
+<td>Reshape data</td>
+</tr>
+<tr class="even">
+<td>ggplot2</td>
+<td>Create charts</td>
+</tr>
+<tr class="odd">
+<td>tibble</td>
+<td>Work with tidyverse data tables</td>
+</tr>
+<tr class="even">
+<td>stringr</td>
+<td>Work with text</td>
+</tr>
+<tr class="odd">
+<td>forcats</td>
+<td>Work with categories</td>
+</tr>
+<tr class="even">
+<td>lubridate</td>
+<td>Parse and work with dates and times</td>
+</tr>
+</tbody>
+</table>
+<p>Install the tidyverse and R Markdown package in the <strong>Console</strong>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rmarkdown"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The tidyverse provides the tools for working with data. The <strong>rmarkdown</strong> package allows RStudio to run an <code>.Rmd</code> file and turn its writing, code, and results into a finished document such as an HTML page. We install it now because every lesson in the main pathway uses R Markdown.</p>
+<p>Quotation marks are needed because the package name is text. Installation can take several minutes and may display many messages. You normally do not need to install these packages again for every chapter.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Do not install packages inside the document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Do not install packages inside the document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>install.packages()</code> in the Console. Put <code>library(tidyverse)</code> inside the R Markdown document so the document records which tools it needs.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Learn more about packages and the tidyverse">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learn more about packages and the tidyverse
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Start with the official <a href="https://tidyverse.tidyverse.org/">tidyverse overview</a> and the free book <a href="https://r4ds.hadley.nz/">R for Data Science</a>. Individual package websites provide examples and full function references for <a href="https://readr.tidyverse.org/">readr</a>, <a href="https://dplyr.tidyverse.org/">dplyr</a>, <a href="https://tidyr.tidyverse.org/">tidyr</a>, <a href="https://ggplot2.tidyverse.org/">ggplot2</a>, and <a href="https://lubridate.tidyverse.org/">lubridate</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="r-markdown" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="r-markdown"><span class="header-section-number">2.6</span> R Markdown</h2>
+<p><strong>Markdown</strong> is a simple way to add formatting to plain text. Instead of using toolbar buttons, you type small marks that describe the structure. For example:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>What you want</th>
+<th>What you type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A heading</td>
+<td><code># My heading</code></td>
+</tr>
+<tr class="even">
+<td>Bold text</td>
+<td><code>**important finding**</code></td>
+</tr>
+<tr class="odd">
+<td>A bullet point</td>
+<td><code>- first item</code></td>
+</tr>
+<tr class="even">
+<td>A link</td>
+<td><code>[R Project](https://www.r-project.org/)</code></td>
+</tr>
+<tr class="odd">
+<td>Inline code</td>
+<td><code>`read_csv()`</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>R Markdown</strong> combines Markdown writing with executable R code in one file. An R Markdown filename ends in <code>.Rmd</code>. It can contain three kinds of material:</p>
+<ol type="1">
+<li><strong>Metadata</strong> describing the document, such as its title and author.</li>
+<li><strong>Narrative text</strong> written with Markdown.</li>
+<li><strong>Code chunks</strong> containing R code and the results produced by that code.</li>
+</ol>
+<p>This combination is useful in journalism because an explanation, the code behind it, and the resulting table or chart stay together.</p>
+<section id="create-the-document" class="level3">
+<h3 class="anchored" data-anchor-id="create-the-document">Create the document</h3>
+<p>Inside <code>djr</code>, choose <strong>File → New File → R Markdown</strong>. Enter a title and your name, select HTML output, and save the file as <code>00-setup.Rmd</code> beside <code>djr.Rproj</code>.</p>
+<p>The top of the new document contains <strong>YAML metadata</strong> between two lines of three dashes. YAML is a simple <code>name: value</code> format for document settings:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Data Journalism W1"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Your name"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> html_document</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For now, edit the title and author but leave <code>output: html_document</code> unchanged.</p>
+</section>
+<section id="add-text-and-a-code-chunk" class="level3">
+<h3 class="anchored" data-anchor-id="add-text-and-a-code-chunk">Add text and a code chunk</h3>
+<p>Below the YAML, write a short introduction using ordinary text and Markdown. Then add a code chunk with <strong>Ctrl + Alt + I</strong> on Windows or <strong>Cmd + Option + I</strong> on Mac. RStudio creates the chunk markers for you. Put these two lines inside the chunk:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<p><code>library(tidyverse)</code> loads the tidyverse packages for the current session. The second line asks R to perform a calculation.</p>
+<p>Click the green arrow on the chunk to run it. The result appears beneath the code. Running one chunk is useful while learning or checking a step.</p>
+</section>
+<section id="knit-the-document" class="level3">
+<h3 class="anchored" data-anchor-id="knit-the-document">Knit the document</h3>
+<p>Click <strong>Knit</strong> to run the entire R Markdown document from top to bottom and create an HTML file. The HTML file is the finished output; the <code>.Rmd</code> file is the editable source containing your writing and code.</p>
+<p>Restart R with <strong>Session → Restart R</strong>, then click <strong>Knit</strong> again. If the HTML file is created, the document contains the instructions it needs and your setup is working.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Learn more about Markdown and R Markdown">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learn more about Markdown and R Markdown
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the official <a href="https://rmarkdown.rstudio.com/articles_intro.html">R Markdown introduction</a>, <a href="https://rmarkdown.rstudio.com/lesson-8.html">Markdown basics lesson</a>, and <a href="https://rmarkdown.rstudio.com/docs/">R Markdown documentation</a> when you want more detail. The course also includes an <a href="cheatsheets/rmarkdown.pdf">R Markdown cheatsheet</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="practice" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="practice"><span class="header-section-number">2.7</span> Practice</h2>
+<p>Complete these steps in <code>00-setup.Rmd</code>:</p>
+<ol type="1">
+<li>Add your name and a title to the YAML metadata.</li>
+<li>Write a heading called “About me.”</li>
+<li>Write a short biography of about 50 words.</li>
+<li>Make one important phrase bold.</li>
+<li>Add a link to a news organization or publication you read.</li>
+<li>Add a code chunk containing <code>library(tidyverse)</code> and <code>2 + 2</code>.</li>
+<li>Run the chunk, restart R, and knit the complete document to HTML.</li>
+</ol>
+</section>
+<section id="common-setup-problems" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="common-setup-problems"><span class="header-section-number">2.8</span> Common setup problems</h2>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>What you see</th>
+<th>What it usually means</th>
+<th>What to check</th>
 </tr>
 </thead>
 <tbody>
@@ -522,37 +802,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><code>could not find function ...</code></td>
-<td>The package is installed but not loaded</td>
-<td>Run <code>library(...)</code> near the top</td>
+<td>The package is not loaded</td>
+<td>Put <code>library(tidyverse)</code> near the top of the document</td>
 </tr>
 <tr class="odd">
-<td><code>cannot open file ...</code></td>
-<td>The project or relative path is wrong</td>
-<td>Run <code>getwd()</code> and <code>file.exists()</code></td>
+<td>Knit fails but a chunk worked</td>
+<td>The Console contains something the document did not create</td>
+<td>Restart R and knit from the top</td>
 </tr>
 <tr class="even">
-<td>Code works line by line but Render fails</td>
-<td>An object was created only in the Console</td>
-<td>Restart R and render from the beginning</td>
-</tr>
-<tr class="odd">
-<td>A package cannot be installed</td>
-<td>R or system software is too old</td>
-<td>Record the exact error before changing anything</td>
+<td>R cannot find a file</td>
+<td>The wrong project is open or the path is incorrect</td>
+<td>Open <code>djr.Rproj</code> and check the Files pane</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="independent-task" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">2.8</span> Independent task</h2>
-<p>Create a small Quarto page that:</p>
-<ol type="1">
-<li>loads <code>tidyverse</code>;</li>
-<li>creates a three-row tibble about three possible story ideas;</li>
-<li>filters the table to one idea; and</li>
-<li>renders successfully after <strong>Session → Restart R</strong>.</li>
-</ol>
-<p>At the bottom, add a short note explaining why a successful fresh render is a useful newsroom check.</p>
+<section id="takeaways" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">2.9</span> Takeaways</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term or command</th>
+<th>What it means or does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R</td>
+<td>The language and engine that runs the data analysis</td>
+</tr>
+<tr class="even">
+<td>RStudio</td>
+<td>The IDE where we write code, manage files, and view results</td>
+</tr>
+<tr class="odd">
+<td>R Project</td>
+<td>Keeps the files for one piece of work together and gives R a reliable starting folder</td>
+</tr>
+<tr class="even">
+<td>Package</td>
+<td>A collection of functions, documentation, and sometimes data</td>
+</tr>
+<tr class="odd">
+<td><code>install.packages()</code></td>
+<td>Installs a package on the computer, usually once</td>
+</tr>
+<tr class="even">
+<td><code>library(tidyverse)</code></td>
+<td>Loads the core tidyverse packages for the current session</td>
+</tr>
+<tr class="odd">
+<td>Markdown</td>
+<td>Plain text with simple marks for headings, links, lists, and other formatting</td>
+</tr>
+<tr class="even">
+<td>R Markdown</td>
+<td>A <code>.Rmd</code> document combining Markdown, R code, and results</td>
+</tr>
+<tr class="odd">
+<td>Code chunk</td>
+<td>A section of an R Markdown document that contains executable code</td>
+</tr>
+<tr class="even">
+<td><strong>Knit</strong></td>
+<td>Runs the document and creates an output such as HTML</td>
+</tr>
+</tbody>
+</table>
+<p>In the next chapter, we will learn how to read and write the small pieces of R code used throughout the book.</p>
 
 
 </section>
@@ -952,8 +1274,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./r-basics.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>R Basics for Journalists</span>">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./r-basics.html" class="pagination-link" aria-label="<span class='chapter-number'>3</span>&nbsp; <span class='chapter-title'>R Basics</span>">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

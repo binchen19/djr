@@ -1,201 +1,343 @@
 ---
-title: "Find, Audit, and Import Data"
+title: "Data Import"
 ---
+
+::: {.callout-note title="Part 2: Data Import & Cleaning"}
+In this part, you will bring data into R and prepare it for analysis. We begin
+with one CSV file and add new tidyverse tools gradually.
+:::
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- evaluate a source before opening the data;
-- distinguish raw, processed, and analysis-ready files;
-- import CSV and Excel files with explicit paths;
-- inspect dimensions, names, types, and parsing problems; and
-- write a one-sentence statement of the unit of analysis.
+- explain what a CSV file is;
+- explain the relationship between the tidyverse, readr, and `read_csv()`;
+- compare package data, URL imports, and local-file imports;
+- import a CSV file with a relative path;
+- explain the main parts of `glimpse()` output; and
+- identify common issues to investigate after an import.
 
-## Newsroom question
+## Why import data?
 
-> What did Norway's sovereign wealth fund report holding at the latest year-end,
-> and what can this file legitimately tell us?
+So far, we have typed small examples directly into R. In reporting, the data
+usually come from somewhere else: a government website, an institution, a
+researcher, or a file supplied by a source. **Importing** brings that file into
+R so we can work with it.
 
-The analysis begins before R. Open the
-[NBIM all-investments page](https://www.nbim.no/en/investments/all-investments/)
-and record:
+We will use a **CSV**, or comma-separated values file. A CSV stores a table as
+plain text. It is widely used, easy to share, and a good format for learning
+data analysis.
 
-- publisher and institutional responsibility;
-- reporting date;
-- asset type;
-- available file formats;
-- definitions or terms of use;
-- update frequency; and
-- the URL and date you accessed it.
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `02-data-import.Rmd`. Download
+[`gpfg.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg.csv)
+and save it inside your project's `data` folder. Do not open and resave the
+file in spreadsheet software.
+:::
 
-Authority does not remove the need for scrutiny. Official data can contain
-classification changes, revisions, omissions, and definitions that differ from
-ordinary language.
+## Tidyverse, readr, and `read_csv()`
 
-## Raw, processed, and analysis-ready
+The **tidyverse** is a collection of packages that work together. One of those
+packages is **readr**, which imports rectangular data files. The readr function
+for a CSV file is `read_csv()`.
 
-This project uses three layers:
-
-```{mermaid}
-flowchart LR
-  A["Official annual Excel files"] --> B["Reproducible preparation script"]
-  B --> C["Clean UTF-8 CSV and RDS files"]
-  C --> D["Chapter-specific analysis"]
-```
-
-- **Raw files** are unchanged evidence from the publisher.
-- **Processed files** standardize names, types, dates, and provenance.
-- **Analysis objects** are filtered or aggregated for a specific question.
-
-Never overwrite the raw evidence with a cleaned file.
-
-For this chapter, download or use
-[the cleaned latest-year snapshot](https://raw.githubusercontent.com/binchen19/djr/main/data/processed/gpfg_equities_latest.csv).
-The canonical teaching files are kept once in the repository rather than
-duplicated inside the rendered website. The cleaning process is documented in
-`scripts/prepare_gpfg.R` and the
-[data audit](reports/gpfg-data-audit.md).
-
-## Import a CSV
+Loading the tidyverse also loads readr:
 
 ```{r}
 library(tidyverse)
-
-gpfg_latest <- read_csv(
-  "data/processed/gpfg_equities_latest.csv",
-  show_col_types = FALSE
-)
-
-latest_year <- unique(gpfg_latest$year)
-stopifnot(length(latest_year) == 1)
 ```
 
-Use a project-relative path. The code should work on another student's
-computer after they open the same project.
+Because readr is one of the core tidyverse packages, you do **not** also need
+to run `library(readr)`. The single `library(tidyverse)` line makes
+`read_csv()` and the other core tidyverse tools available. If a project used
+readr without the rest of the tidyverse, it could load only readr with
+`library(readr)`, but that is not the workflow used in this book.
 
-Immediately inspect the result:
+The simplest form of the import function is:
 
-```{r}
-dim(gpfg_latest)
-names(gpfg_latest)
-glimpse(gpfg_latest)
-problems(gpfg_latest)
+```r
+read_csv("file_path.csv")
 ```
 
-`dim()` reports the number of rows and columns. `problems()` should return an empty
-table. An empty parsing-problem table does not prove the values are correct; it
-only means `read_csv()` did not detect a conversion failure.
+The function needs the path to the file. Because a path is text, it goes inside
+quotation marks.
 
-## State the grain
+::: {.callout-important title="Use `read_csv()`, not `read.csv()`"}
+Both functions can import a CSV, but they come from different parts of R:
 
-Before calculating anything, finish this sentence:
+| Function | Where it comes from | What it returns |
+|---|---|---|
+| `read_csv()` | readr and the tidyverse | A tibble |
+| `read.csv()` | Base R | A traditional data frame |
 
-> One row represents one equity holding reported by NBIM at the latest year-end.
+This book uses `read_csv()` for four reasons:
 
-Most rows name companies, but some names may be funds or other listed issuers.
-The source has no transaction identifier. A row does **not** represent a
-purchase, a sale, a return, or an amount paid to the named company.
+1. It returns a tibble, the table format used throughout the tidyverse.
+2. It reports the column types it detected, giving us immediate information
+   about the import.
+3. It records values that it could not convert correctly, which we can inspect
+   with `problems()`.
+4. Its name and behavior fit consistently with other tidyverse functions used
+   in the book.
 
-Check whether the apparent identifier is unique:
-
-```{r}
-gpfg_latest |>
-  count(company) |>
-  filter(n > 1)
-```
-
-The result should have no rows, showing that published company names are unique within
-this snapshot. That does not make a company name a stable identifier across
-years.
-
-## Read the variables as evidence
-
-```{r}
-gpfg_dictionary <- read_csv(
-  "data/processed/gpfg_data_dictionary.csv",
-  show_col_types = FALSE
-)
-
-gpfg_dictionary |>
-  select(variable, description, unit_or_example)
-```
-
-Pay particular attention to units:
-
-- `market_value_nok` is the year-end holding value in Norwegian kroner;
-- `market_value_usd` is the same snapshot converted to US dollars;
-- `ownership_pct` and `voting_pct` are stored in **percentage points**, so
-  `0.65` means `0.65%`; and
-- `country` is the investment market, while `incorporation_country` is the
-  issuer's legal incorporation country.
-
-## Import the official Excel file
-
-The raw official download is an Excel workbook. The following reads the latest
-archived source directly:
-
-```{r}
-library(readxl)
-
-latest_raw_file <- unique(gpfg_latest$source_file)
-stopifnot(length(latest_raw_file) == 1)
-
-gpfg_raw_latest <- read_excel(
-  file.path("data/raw/gpfg", latest_raw_file),
-  sheet = "Holdings Report"
-)
-
-names(gpfg_raw_latest)
-```
-
-The cleaned CSV uses easier `snake_case` names and adds the year, report date,
-source file, and source URL. Those additions are provenance, not new reporting
-from NBIM.
-
-::: {.callout-note title="Why the preparation script uses Excel"}
-NBIM's CSV and Excel exports have the same visible source columns, but the CSV
-export leaves incorporation country blank. The Excel files retain it and also
-store money and percentage fields as numeric values. The original CSV exports
-are still archived for comparison.
+`read.csv()` is valid R code, but it belongs to a different workflow and its
+name uses a period instead of an underscore. Using one approach consistently
+makes the course easier to follow. Check the function name carefully:
+`read_csv()` is the one used here.
 :::
 
-## A compact source audit
+## Package data, URLs, and local files
 
-Create a data diary entry before analysis:
+Data can enter R in several ways. Three common possibilities are package data,
+a direct URL, and a file stored on your computer.
 
-| Question | Answer for this file |
-|---|---|
-| Publisher | Norges Bank Investment Management |
-| Asset type | Listed equities |
-| Reporting date | Latest available year-end |
-| Grain | One reported equity holding at year-end |
-| Main measures | Market value, ownership, voting rights |
-| Key limitation | Snapshot values do not reveal transactions or returns |
-| Local raw file | The `source_file` recorded in the processed snapshot |
-| Cleaning record | `scripts/prepare_gpfg.R` |
+### Data supplied by a package
 
-## Validation checkpoint
+Some R packages include small datasets for examples and practice. For example,
+the ggplot2 package includes a table called `mpg`. It becomes available when
+the tidyverse is loaded:
 
-```{r}
-stopifnot(nrow(gpfg_latest) > 0)
-stopifnot(!anyNA(gpfg_latest$company))
-stopifnot(!anyNA(gpfg_latest$market_value_nok))
-stopifnot(all(gpfg_latest$market_value_nok >= 0))
-stopifnot(all(gpfg_latest$year == latest_year))
+```r
+library(tidyverse)
+mpg
 ```
 
-These checks encode justified expectations for the latest-year teaching file. They
-should not be copied blindly to the full archive, which contains legitimate
-historical negative records.
+Package datasets are useful for learning because everyone with the same
+package receives the same data. In journalism, however, the main source is
+more often a file published by an organization or obtained through reporting.
 
-## Independent task
+### Data imported from a URL
 
-Choose one row and trace it from the processed CSV back to the official Excel
-file. Submit:
+`read_csv()` can read a public CSV directly from its web address:
 
-1. the company, country, and NOK market value;
-2. the row's meaning in plain language;
-3. one claim the row supports;
-4. one tempting claim it does not support; and
-5. a screenshot or code output showing the values agree across the two files.
+```r
+gpfg_online <- read_csv(
+  "https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg.csv"
+)
+```
+
+This can be convenient for a quick exploration or an automated update. It also
+means that R must download the file again whenever the code runs.
+
+### Data imported from a local file
+
+For the main course workflow, download the source file once, keep it unchanged
+inside the Project, and import the local copy. This is safer for a reproducible
+analysis because:
+
+- a website or URL may move, disappear, or become temporarily unavailable;
+- the contents at the same URL may be replaced without warning;
+- an internet connection may fail when the document is knitted;
+- a website may limit or block repeated downloads; and
+- the local file preserves the exact version used for the story.
+
+Record the original URL and the date of download in your notes. A local copy is
+not a replacement for documenting the source; it is an archived snapshot of
+what the source provided at that time.
+
+::: {.callout-important title="The workflow used in this book"}
+The book mentions package data and URL imports so you can recognize them. The
+guided lessons use local CSV files stored in `data/`, which makes the code more
+reliable and allows the same analysis to run again later.
+:::
+
+## Relative paths and RStudio Projects
+
+Our file is stored here inside the learner project:
+
+```text
+djr/
+├── data/
+│   └── gpfg.csv
+├── 02-data-import.Rmd
+└── djr.Rproj
+```
+
+Starting from the project folder, the relative path is:
+
+```text
+data/gpfg.csv
+```
+
+This is why we open the `.Rproj` file before working. Everyone who opens the
+same project starts in the same place, so the same relative path works on
+different computers.
+
+::: {.callout-tip title="Avoid personal paths"}
+Do not use a path such as `/Users/name/Desktop/...` or
+`C:/Users/name/Desktop/...` in shared code. It points to one person's
+computer. Keep the data inside the project and use a relative path.
+:::
+
+## Import the CSV
+
+The teaching file comes from the equity-holdings data published by
+[Norges Bank Investment Management](https://www.nbim.no/en/investments/all-investments/).
+It is a prepared CSV containing one year of reported holdings.
+
+Import it and save the result as `gpfg`:
+
+```{r}
+gpfg <- read_csv("data/gpfg.csv")
+```
+
+Read the line from right to left: `read_csv()` reads the file, and `<-` saves
+the imported table with the name `gpfg`.
+
+readr may display a message describing the rows, columns, and column types it
+found. This is information about the import, not an error.
+
+## Inspect the imported data
+
+Never begin an analysis without looking at what was imported.
+
+### Look at the structure
+
+`glimpse()` shows the number of rows and columns, the column names, their data
+types, and a few example values:
+
+```{r}
+glimpse(gpfg)
+```
+
+Read the output from top to bottom:
+
+- **`Rows: 7,201`** tells us how many observations were imported.
+- **`Columns: 13`** tells us how many variables were imported.
+- Each line beginning with **`$`** describes one column.
+- The column name appears after `$`, such as `company` or `market_value_usd`.
+- The short label in angle brackets is the data type. For example, `<chr>`
+  means text, `<dbl>` means a number, and `<date>` means a date.
+- The values at the end of the line are examples from that column.
+
+For example, a line beginning `$ company <chr>` tells us that `company` is a
+text column. A line beginning `$ market_value_usd <dbl>` tells us that
+`market_value_usd` is numeric.
+
+`glimpse()` is a quick overview. It shows only a few example values, so it
+cannot prove that every value is valid or tell us how many values are missing.
+
+### Preview a few rows
+
+`slice_head()` shows rows from the beginning of a table. The `n` argument says
+how many rows to show:
+
+```{r}
+gpfg |>
+  slice_head(n = 5)
+```
+
+The result contains the same columns as `gpfg`, but only its first five rows.
+The original `gpfg` object is not changed.
+
+::: {.callout-note title="Why use `slice_head()` instead of `head()`?"}
+Both functions can show the first rows of a table, and `head(gpfg)` is valid R
+code. This book uses `slice_head()` because it belongs to dplyr, works naturally
+in a tidyverse pipeline, and makes the action explicit. In
+`slice_head(n = 5)`, the named argument `n` clearly says how many rows to show.
+:::
+
+### What is a parsing problem?
+
+A CSV stores values as text. During import, `read_csv()` tries to convert that
+text into suitable R values, such as numbers or dates. This conversion is
+called **parsing**.
+
+Imagine that a column should contain numbers:
+
+```text
+amount
+120
+unknown
+95
+```
+
+The value `unknown` cannot be converted into a number. This is a **parsing
+problem**. Depending on the column type, the value may become `NA`, and readr
+records where the problem occurred.
+
+After importing a file, use `problems()` to check whether readr recorded any
+such values:
+
+```{r}
+problems(gpfg)
+```
+
+If problems are found, the result identifies the row and column, what readr
+expected, and the value it actually found. An empty result means readr did not
+detect a parsing problem. It does not prove that every value in the source is
+correct—for example, an incorrect but valid number would not be reported.
+
+## What should you inspect?
+
+Importing a file successfully does not guarantee that the data are ready for
+analysis. Ask these questions before calculating anything:
+
+| Check | Why it matters |
+|---|---|
+| Number of rows and columns | An incomplete download or wrong file may have an unexpected size |
+| Column names | Names should identify the variables clearly |
+| Data types | A numeric column imported as `<chr>` may contain symbols or unexpected text |
+| Missing values | `NA` means a value is unavailable; it is not the same as zero |
+| Unexpected values | Negative amounts, impossible percentages, or unusual spellings may need investigation |
+| Repeated rows | A duplicate may be an error, or it may represent a legitimate repeated observation |
+| Units and definitions | A number cannot be interpreted correctly without knowing what it measures |
+| Parsing problems | A parsing problem means readr could not interpret a value as expected |
+
+At this stage, use `glimpse()`, `slice_head()`, `problems()`, and the data
+dictionary to form questions about the table. In the next chapter, we will use
+tidyverse functions to investigate missing, unexpected, and repeated values
+more systematically.
+
+## Refer to the data dictionary
+
+Before using a column, check what it means and what unit it uses. Open the
+[GPFG data dictionary](https://github.com/binchen19/djr/blob/main/data/gpfg_data_dictionary.csv)
+and keep it as a reference. You do **not** need to import the dictionary into
+R for this lesson.
+
+For example, the dictionary explains the difference between market value in
+Norwegian kroner and US dollars, and it explains that ownership values are
+percentage points.
+
+One row in the imported file represents one reported equity holding at the end
+of the year. It does not represent a purchase or sale.
+
+## Practice
+
+In an R Markdown document:
+
+1. load the tidyverse;
+2. import `data/gpfg.csv` as `gpfg`;
+3. inspect it with `glimpse()`;
+4. show its first five rows; and
+5. check for parsing problems.
+
+Then write five short answers:
+
+1. How many rows and columns were imported?
+2. What data types do `company` and `market_value_usd` have?
+3. What does one row represent?
+4. Name one important issue that `glimpse()` alone cannot fully check.
+5. Give one reason for importing the saved local file instead of downloading
+   it from the URL every time the document runs.
+
+## Takeaways
+
+| Function or idea | What it does |
+|---|---|
+| `library(tidyverse)` | Loads the core tidyverse packages |
+| `read_csv("path")` | Imports a CSV file as a tibble |
+| Relative path | Locates a file from the RStudio Project folder |
+| Local source copy | Preserves the version used in the analysis |
+| `glimpse()` | Shows columns, types, and example values |
+| `slice_head(n = 5)` | Shows the first five rows |
+| `problems()` | Reports values readr could not parse as expected |
+
+::: {.callout-tip title="Want more control?"}
+The file path is the only argument needed in this lesson. The official
+[`read_csv()` reference](https://readr.tidyverse.org/reference/read_delim.html)
+explains optional controls for missing values, column types, delimiters, and
+unusual files when you need them later.
+:::

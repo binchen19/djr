@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 8&nbsp; Find Patterns in a Single Snapshot</title>
+<title>Data Journalism with R - 6&nbsp; Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./analysis-gpfg-trends.html" rel="next">
-<link href="./transform-merge.html" rel="prev">
+<link href="./transform-merge.html" rel="next">
+<link href="./data-wrangling.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./analysis-gpfg.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-gpfg.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./analysis-gpfg.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,24 +338,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">8.1</span> Learning objectives</a></li>
-  <li><a href="#newsroom-questions" id="toc-newsroom-questions" class="nav-link" data-scroll-target="#newsroom-questions"><span class="header-section-number">8.2</span> Newsroom questions</a></li>
-  <li><a href="#describe-the-distribution" id="toc-describe-the-distribution" class="nav-link" data-scroll-target="#describe-the-distribution"><span class="header-section-number">8.3</span> Describe the distribution</a></li>
-  <li><a href="#rank-individual-holdings" id="toc-rank-individual-holdings" class="nav-link" data-scroll-target="#rank-individual-holdings"><span class="header-section-number">8.4</span> Rank individual holdings</a></li>
-  <li><a href="#compare-countries-with-a-denominator" id="toc-compare-countries-with-a-denominator" class="nav-link" data-scroll-target="#compare-countries-with-a-denominator"><span class="header-section-number">8.5</span> Compare countries with a denominator</a></li>
-  <li><a href="#compare-industries" id="toc-compare-industries" class="nav-link" data-scroll-target="#compare-industries"><span class="header-section-number">8.6</span> Compare industries</a></li>
-  <li><a href="#market-value-and-ownership-are-different-measures" id="toc-market-value-and-ownership-are-different-measures" class="nav-link" data-scroll-target="#market-value-and-ownership-are-different-measures"><span class="header-section-number">8.7</span> Market value and ownership are different measures</a></li>
-  <li><a href="#from-observation-to-claim" id="toc-from-observation-to-claim" class="nav-link" data-scroll-target="#from-observation-to-claim"><span class="header-section-number">8.8</span> From observation to claim</a></li>
-  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">8.9</span> Independent task</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">6.1</span> Learning objectives</a></li>
+  <li><a href="#types-of-questions-in-data-journalism" id="toc-types-of-questions-in-data-journalism" class="nav-link" data-scroll-target="#types-of-questions-in-data-journalism"><span class="header-section-number">6.2</span> Types of questions in data journalism</a></li>
+  <li><a href="#a-question-to-answer-workflow" id="toc-a-question-to-answer-workflow" class="nav-link" data-scroll-target="#a-question-to-answer-workflow"><span class="header-section-number">6.3</span> A question-to-answer workflow</a></li>
+  <li><a href="#ask-a-descriptive-question" id="toc-ask-a-descriptive-question" class="nav-link" data-scroll-target="#ask-a-descriptive-question"><span class="header-section-number">6.4</span> Ask a descriptive question</a></li>
+  <li><a href="#ask-a-ranking-question" id="toc-ask-a-ranking-question" class="nav-link" data-scroll-target="#ask-a-ranking-question"><span class="header-section-number">6.5</span> Ask a ranking question</a></li>
+  <li><a href="#ask-a-comparison-question" id="toc-ask-a-comparison-question" class="nav-link" data-scroll-target="#ask-a-comparison-question"><span class="header-section-number">6.6</span> Ask a comparison question</a></li>
+  <li><a href="#compare-industries" id="toc-compare-industries" class="nav-link" data-scroll-target="#compare-industries"><span class="header-section-number">6.7</span> Compare industries</a></li>
+  <li><a href="#questions-for-later-chapters" id="toc-questions-for-later-chapters" class="nav-link" data-scroll-target="#questions-for-later-chapters"><span class="header-section-number">6.8</span> Questions for later chapters</a></li>
+  <li><a href="#from-a-result-to-a-finding" id="toc-from-a-result-to-a-finding" class="nav-link" data-scroll-target="#from-a-result-to-a-finding"><span class="header-section-number">6.9</span> From a result to a finding</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">6.10</span> Practice</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">6.11</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./analysis-gpfg.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-gpfg.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./analysis-gpfg.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></h1>
 </div>
 
 
@@ -373,200 +374,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="learning-objectives" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">8.1</span> Learning objectives</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Part 3: Data Analysis">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Part 3: Data Analysis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wrangling prepares the table. Analysis uses that table to answer a question. In this part, we begin with one year and then extend the same workflow across time.</p>
+</div>
+</div>
+<section id="learning-objectives" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">6.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>move from a broad question to testable measures;</li>
-<li>describe a skewed financial distribution with appropriate statistics;</li>
-<li>distinguish rankings, shares, and concentration;</li>
-<li>inspect outliers in context; and</li>
-<li>write a claim that matches the evidence.</li>
+<li>recognize descriptive, ranking, comparison, relationship, and trend questions;</li>
+<li>calculate totals, means, medians, minimums, and maximums;</li>
+<li>create a ranking;</li>
+<li>compare grouped totals and shares; and</li>
+<li>turn a calculation into a carefully worded finding.</li>
 </ul>
 </section>
-<section id="newsroom-questions" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="newsroom-questions"><span class="header-section-number">8.2</span> Newsroom questions</h2>
-<p>We will investigate four related questions about the latest-year snapshot:</p>
-<ol type="1">
-<li>How unequal is the distribution of holding values?</li>
-<li>Which countries and industries account for the largest shares?</li>
-<li>Which individual holdings are largest?</li>
-<li>Does a large market value necessarily mean a large ownership stake?</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_latest.csv"</span>,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The grain remains one reported equity holding at the latest year-end.</p>
-</section>
-<section id="describe-the-distribution" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="describe-the-distribution"><span class="header-section-number">8.3</span> Describe the distribution</h2>
-<p>Start with totals and robust summaries:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>holding_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_value_nok =</span> <span class="fu">mean</span>(market_value_nok),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_value_nok =</span> <span class="fu">median</span>(market_value_nok),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">p90_value_nok =</span> <span class="fu">quantile</span>(market_value_nok, <span class="fl">0.90</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">maximum_value_nok =</span> <span class="fu">max</span>(market_value_nok)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>holding_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["holding_records"],"name":[1],"type":["int"],"align":["right"]},{"label":["total_value_nok"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["mean_value_nok"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["median_value_nok"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p90_value_nok"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["maximum_value_nok"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"7201","2":"1.518302e+13","3":"2108459852","4":"238458526","5":"3445378279","6":"573855187060"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>In a highly skewed distribution, the mean is pulled upward by a small number of very large holdings. Report the median and at least one upper percentile rather than presenting the mean as “typical.”</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">p25 =</span> <span class="fu">quantile</span>(market_value_nok, <span class="fl">0.25</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">p50 =</span> <span class="fu">quantile</span>(market_value_nok, <span class="fl">0.50</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p75 =</span> <span class="fu">quantile</span>(market_value_nok, <span class="fl">0.75</span>),</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">p90 =</span> <span class="fu">quantile</span>(market_value_nok, <span class="fl">0.90</span>),</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">p99 =</span> <span class="fu">quantile</span>(market_value_nok, <span class="fl">0.99</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["p25"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["p50"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p75"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["p90"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p99"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"48470570","2":"238458526","3":"955269497","4":"3445378279","5":"27822918693"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Quantiles answer a precise question: the 90th percentile is the value at or below which 90% of holding records fall. It is not the value of the “average company.”</p>
-</section>
-<section id="rank-individual-holdings" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="rank-individual-holdings"><span class="header-section-number">8.4</span> Rank individual holdings</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>largest_holdings <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(company, country, industry, market_value_nok, ownership_pct) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>largest_holdings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["company"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[3],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ownership_pct"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"NVIDIA Corp","2":"United States","3":"Technology","4":"573855187060","5":"1.26"},{"1":"Apple Inc","2":"United States","3":"Technology","4":"496547216159","5":"1.23"},{"1":"Microsoft Corp","2":"United States","3":"Technology","4":"458594880358","5":"1.26"},{"1":"Alphabet Inc","2":"United States","3":"Technology","4":"439314373055","5":"1.15"},{"1":"Amazon.com Inc","2":"United States","3":"Consumer Discretionary","4":"307903841484","5":"1.24"},{"1":"Taiwan Semiconductor Manufacturing Co Ltd","2":"Taiwan","3":"Technology","4":"228827940718","5":"1.77"},{"1":"Broadcom Inc","2":"United States","3":"Technology","4":"215637038652","5":"1.30"},{"1":"Meta Platforms Inc","2":"United States","3":"Technology","4":"195643398075","5":"1.17"},{"1":"Tesla Inc","2":"United States","3":"Consumer Discretionary","4":"161449456895","5":"1.07"},{"1":"Eli Lilly & Co","2":"United States","3":"Health Care","4":"120959852210","5":"1.18"},{"1":"Berkshire Hathaway Inc","2":"United States","3":"Financials","4":"115976325394","5":"0.56"},{"1":"JPMorgan Chase & Co","2":"United States","3":"Financials","4":"113137574554","5":"1.29"},{"1":"ASML Holding NV","2":"Netherlands","3":"Technology","4":"96093802833","5":"2.27"},{"1":"Tencent Holdings Ltd","2":"China","3":"Technology","4":"95224474523","5":"1.35"},{"1":"Samsung Electronics Co Ltd","2":"South Korea","3":"Telecommunications","4":"93608838806","5":"1.94"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Before publishing a ranking, search the source for several top rows and check company names, units, and whether a name describes a fund or another listed vehicle.</p>
-<p>Now calculate concentration with an explicit ranking and denominator:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ranked_holdings <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>())</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>total_nok <span class="ot">&lt;-</span> <span class="fu">sum</span>(ranked_holdings<span class="sc">$</span>market_value_nok)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ranked_holdings <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_10_share =</span> <span class="fu">sum</span>(market_value_nok[rank <span class="sc">&lt;=</span> <span class="dv">10</span>]) <span class="sc">/</span> total_nok,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">top_100_share =</span> <span class="fu">sum</span>(market_value_nok[rank <span class="sc">&lt;=</span> <span class="dv">100</span>]) <span class="sc">/</span> total_nok</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["top_10_share"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["top_100_share"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.2106783","2":"0.4578786"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Prefer transparent intermediate objects when the result will support a major claim.</p>
-</section>
-<section id="compare-countries-with-a-denominator" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="compare-countries-with-a-denominator"><span class="header-section-number">8.5</span> Compare countries with a denominator</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">companies =</span> <span class="fu">n_distinct</span>(company),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_holding_nok =</span> <span class="fu">median</span>(market_value_nok),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> country</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_of_total =</span> market_value_nok <span class="sc">/</span> <span class="fu">sum</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumulative_share =</span> <span class="fu">cumsum</span>(share_of_total))</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">isTRUE</span>(<span class="fu">all.equal</span>(<span class="fu">sum</span>(country_summary<span class="sc">$</span>share_of_total), <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>cumsum()</code> uses the current row order, so it must come after sorting. Code can run without an error and still answer the wrong question; order is part of the method.</p>
-<p>This deliberate correction illustrates an important point: code can run and still answer the wrong question.</p>
-</section>
-<section id="compare-industries" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="compare-industries"><span class="header-section-number">8.6</span> Compare industries</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>industry_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_ownership_pct =</span> <span class="fu">median</span>(ownership_pct),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> industry</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_of_total =</span> market_value_nok <span class="sc">/</span> <span class="fu">sum</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok))</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>industry_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["industry"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[3],"type":["int"],"align":["right"]},{"label":["median_ownership_pct"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["share_of_total"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Technology","2":"4.317001e+12","3":"850","4":"1.000","5":"0.28433088"},{"1":"Financials","2":"2.557947e+12","3":"958","4":"0.875","5":"0.16847417"},{"1":"Consumer Discretionary","2":"2.006496e+12","3":"1208","4":"0.860","5":"0.13215397"},{"1":"Industrials","2":"1.923212e+12","3":"1397","4":"1.030","5":"0.12666862"},{"1":"Health Care","2":"1.407280e+12","3":"669","4":"0.890","5":"0.09268776"},{"1":"Real Estate","2":"6.403525e+11","3":"508","4":"1.150","5":"0.04217557"},{"1":"Consumer Staples","2":"5.824509e+11","3":"470","4":"0.765","5":"0.03836199"},{"1":"Basic Materials","2":"5.146553e+11","3":"557","4":"0.780","5":"0.03389677"},{"1":"Telecommunications","2":"4.439463e+11","3":"180","4":"0.765","5":"0.02923966"},{"1":"Energy","2":"4.277503e+11","3":"172","4":"0.780","5":"0.02817294"},{"1":"Utilities","2":"3.619279e+11","3":"232","4":"0.810","5":"0.02383767"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Industry share and number of holdings answer different questions. A sector can have many relatively small holdings or fewer very large ones.</p>
-</section>
-<section id="market-value-and-ownership-are-different-measures" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="market-value-and-ownership-are-different-measures"><span class="header-section-number">8.7</span> Market value and ownership are different measures</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pearson =</span> <span class="fu">cor</span>(market_value_nok, ownership_pct),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">spearman =</span> <span class="fu">cor</span>(market_value_nok, ownership_pct, <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["pearson"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["spearman"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.07409339","2":"0.5715289"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Pearson correlation is sensitive to extreme values. Spearman correlation asks whether higher ranks on one measure tend to accompany higher ranks on the other. Neither correlation proves that ownership causes market value or that the fund “prefers” one company.</p>
-<p>Inspect exceptions directly:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ownership_pct <span class="sc">&gt;=</span> <span class="fu">quantile</span>(ownership_pct, <span class="fl">0.99</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ownership_pct)) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(company, country, industry, market_value_nok, ownership_pct) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["company"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[3],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ownership_pct"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Shaftesbury Capital PLC","2":"United Kingdom","3":"Real Estate","4":"9042511590","5":"25.19"},{"1":"Vonovia SE","2":"Germany","3":"Real Estate","4":"34555910299","5":"14.01"},{"1":"Alexandria Real Estate Equities Inc","2":"United States","3":"Real Estate","4":"8106575465","5":"9.50"},{"1":"Rayonier Inc","2":"United States","3":"Real Estate","4":"3165318754","5":"9.42"},{"1":"Great Portland Estates PLC","2":"United Kingdom","3":"Real Estate","4":"1633727804","5":"9.31"},{"1":"Gecina SA","2":"France","3":"Real Estate","4":"6808641366","5":"9.25"},{"1":"Croda International PLC","2":"United Kingdom","3":"Basic Materials","4":"4696968738","5":"9.20"},{"1":"Equity Residential","2":"United States","3":"Real Estate","4":"22157680738","5":"9.16"},{"1":"Regency Centers Corp","2":"United States","3":"Real Estate","4":"11913721836","5":"9.08"},{"1":"Vornado Realty Trust","2":"United States","3":"Real Estate","4":"5847433489","5":"9.07"},{"1":"Grainger PLC","2":"United Kingdom","3":"Real Estate","4":"1655634506","5":"9.03"},{"1":"UDR Inc","2":"United States","3":"Real Estate","4":"10886446531","5":"8.90"},{"1":"UNITE Group PLC/The","2":"United Kingdom","3":"Real Estate","4":"3293376724","5":"8.85"},{"1":"Rosebank Industries PLC","2":"United Kingdom","3":"Industrials","4":"1699984894","5":"8.80"},{"1":"Unum Group","2":"United States","3":"Financials","4":"11185496286","5":"8.55"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-</section>
-<section id="from-observation-to-claim" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="from-observation-to-claim"><span class="header-section-number">8.8</span> From observation to claim</h2>
-<p>Use a claim ladder:</p>
+<section id="types-of-questions-in-data-journalism" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="types-of-questions-in-data-journalism"><span class="header-section-number">6.2</span> Types of questions in data journalism</h2>
+<p>A large dataset does not automatically produce a story. Data journalists begin with questions that the available evidence can answer. Many questions fall into five broad types:</p>
 <table class="table">
 <colgroup>
 <col style="width: 33%">
@@ -575,46 +409,365 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </colgroup>
 <thead>
 <tr class="header">
-<th>Level</th>
-<th>Example</th>
-<th>Evidence needed</th>
+<th>Question type</th>
+<th>What it asks</th>
+<th>Example using the GPFG data</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Description</td>
-<td>“Country A had the largest reported market value.”</td>
-<td>Correct aggregation and source check</td>
+<td>What is present, how much is there, or what is typical?</td>
+<td>What is the total reported market value? What is the median holding value?</td>
 </tr>
 <tr class="even">
+<td>Ranking</td>
+<td>Which observations are largest, smallest, highest, or lowest?</td>
+<td>Which individual company holdings have the largest market values?</td>
+</tr>
+<tr class="odd">
 <td>Comparison</td>
-<td>“Country A’s share was twice Country B’s.”</td>
-<td>Shared denominator and comparable categories</td>
+<td>How do categories or groups differ?</td>
+<td>Which countries or industries account for the largest total values?</td>
+</tr>
+<tr class="even">
+<td>Relationship</td>
+<td>Do two variables appear to vary together?</td>
+<td>Do holdings with higher ownership percentages also tend to have larger market values?</td>
 </tr>
 <tr class="odd">
 <td>Trend</td>
-<td>“The value rose over time.”</td>
-<td>Multiple comparable snapshots</td>
-</tr>
-<tr class="even">
-<td>Explanation</td>
-<td>“The value rose because the fund bought more.”</td>
-<td>Transaction or attribution evidence not present here</td>
+<td>How does a measure change over time?</td>
+<td>How has the reported market value associated with China changed over ten years?</td>
 </tr>
 </tbody>
 </table>
-<p>The single-year file supports the first two levels. It cannot explain changes over time, because it contains only one snapshot.</p>
+<p>A question can belong to more than one type. Ranking countries by total market value, for example, first requires a comparison among countries and then an ordering of the results.</p>
+<p>This chapter focuses on description, ranking, and comparison using one annual snapshot. Later chapters introduce relationships through visualization and trends through the multi-year data.</p>
 </section>
-<section id="independent-task" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">8.9</span> Independent task</h2>
-<p>Choose either country or industry as the analytical grain. Produce a short newsroom memo with:</p>
+<section id="a-question-to-answer-workflow" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="a-question-to-answer-workflow"><span class="header-section-number">6.3</span> A question-to-answer workflow</h2>
+<p>Before writing code, use this workflow:</p>
 <ol type="1">
-<li>a ranked table;</li>
-<li>a share-of-total calculation;</li>
-<li>a median and a 90th percentile;</li>
-<li>two checks that protect against double-counting; and</li>
-<li>a three-sentence finding: one descriptive claim, one comparison, and one explicitly rejected causal claim.</li>
+<li>State what one row represents.</li>
+<li>Write a precise question that names the measure, group, and time period.</li>
+<li>Identify the columns needed to answer it.</li>
+<li>Check their types, missing values, and definitions.</li>
+<li>Choose functions that match the type of question.</li>
+<li>Inspect and verify the result, especially surprising values.</li>
+<li>Write a finding that says exactly what the data support.</li>
 </ol>
+<p>The previous chapter covered step 4. We will now move from a checked table to questions and findings.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Continue in the same project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open <code>djr.Rproj</code> and create <code>04-data-analysis.Rmd</code>. Reuse <code>data/gpfg.csv</code> from the earlier chapters.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One row represents one reported equity holding at the end of the year.</p>
+</section>
+<section id="ask-a-descriptive-question" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="ask-a-descriptive-question"><span class="header-section-number">6.4</span> Ask a descriptive question</h2>
+<p>We will begin with:</p>
+<blockquote class="blockquote">
+<p>What are the total and typical market values of individual holdings at the end of 2025?</p>
+</blockquote>
+<p><code>summarise()</code> can calculate several statistics in one row. In the code below, <code>sum()</code> adds all values, <code>mean()</code> calculates the arithmetic average, <code>median()</code> finds the middle value after sorting, and <code>min()</code> and <code>max()</code> find the smallest and largest values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>holding_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">average_market_value_nok =</span> <span class="fu">mean</span>(market_value_nok),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_market_value_nok =</span> <span class="fu">median</span>(market_value_nok),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">smallest_market_value_nok =</span> <span class="fu">min</span>(market_value_nok),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">largest_market_value_nok =</span> <span class="fu">max</span>(market_value_nok)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>holding_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["total_market_value_nok"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["average_market_value_nok"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["median_market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["smallest_market_value_nok"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["largest_market_value_nok"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.518302e+13","2":"2108459852","3":"238458526","4":"0","5":"573855187060"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Mean or median?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mean or median?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Financial values are often uneven: a few very large observations can pull the mean upward. Compare the mean and median before calling either one “typical.” The median is often easier to interpret when the distribution is strongly skewed.</p>
+</div>
+</div>
+</section>
+<section id="ask-a-ranking-question" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="ask-a-ranking-question"><span class="header-section-number">6.5</span> Ask a ranking question</h2>
+<p>Next, ask:</p>
+<blockquote class="blockquote">
+<p>Which ten individual holdings had the largest reported market values at the end of 2025?</p>
+</blockquote>
+<p>We already know how to order rows and keep the first few:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>largest_holdings <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(company, country, industry, market_value_nok) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>largest_holdings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["company"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[3],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"NVIDIA Corp","2":"United States","3":"Technology","4":"573855187060"},{"1":"Apple Inc","2":"United States","3":"Technology","4":"496547216159"},{"1":"Microsoft Corp","2":"United States","3":"Technology","4":"458594880358"},{"1":"Alphabet Inc","2":"United States","3":"Technology","4":"439314373055"},{"1":"Amazon.com Inc","2":"United States","3":"Consumer Discretionary","4":"307903841484"},{"1":"Taiwan Semiconductor Manufacturing Co Ltd","2":"Taiwan","3":"Technology","4":"228827940718"},{"1":"Broadcom Inc","2":"United States","3":"Technology","4":"215637038652"},{"1":"Meta Platforms Inc","2":"United States","3":"Technology","4":"195643398075"},{"1":"Tesla Inc","2":"United States","3":"Consumer Discretionary","4":"161449456895"},{"1":"Eli Lilly & Co","2":"United States","3":"Health Care","4":"120959852210"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>A ranking answers “which rows have the largest values?” It does not explain why they are large. Verify important rows against the source before using them in a story.</p>
+</section>
+<section id="ask-a-comparison-question" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="ask-a-comparison-question"><span class="header-section-number">6.6</span> Ask a comparison question</h2>
+<p>A comparison question repeats the same calculation for different groups. For example:</p>
+<blockquote class="blockquote">
+<p>Which investment markets accounted for the largest total market values at the end of 2025?</p>
+</blockquote>
+<p><code>group_by()</code> tells R which rows belong together. <code>summarise()</code> then reduces each group to one summary row. Used together, they change the meaning of one row in the result.</p>
+<p>Group the holdings by market, add their values, and order the totals:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_percent =</span> market_value_nok <span class="sc">/</span> <span class="fu">sum</span>(market_value_nok) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>country_summary <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["share_percent"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"United States","2":"8.294346e+12","3":"54.629096"},{"1":"Japan","2":"9.705254e+11","3":"6.392176"},{"1":"United Kingdom","2":"7.488452e+11","3":"4.932123"},{"1":"China","2":"5.441163e+11","3":"3.583716"},{"1":"Germany","2":"4.741372e+11","3":"3.122812"},{"1":"Switzerland","2":"4.580753e+11","3":"3.017024"},{"1":"France","2":"4.284206e+11","3":"2.821709"},{"1":"Taiwan","2":"4.066431e+11","3":"2.678276"},{"1":"Canada","2":"3.764633e+11","3":"2.479502"},{"1":"India","2":"3.181693e+11","3":"2.095560"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>One row now represents one investment market. <code>share_percent</code> uses the full market value as the denominator, so the column answers: “What percentage of the reported total is associated with this market?”</p>
+<p>The sequence is:</p>
+<ol type="1">
+<li><code>group_by(country)</code> forms one group for each investment market;</li>
+<li><code>summarise()</code> adds the market values within each group;</li>
+<li><code>mutate()</code> calculates each market’s share of the full total; and</li>
+<li><code>arrange()</code> places the largest total first.</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled" title="Count and amount are different">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Count and amount are different
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The market with the most holding records is not necessarily the market with the largest market value. Decide whether the question is about the number of rows or the amount represented by those rows.</p>
+</div>
+</div>
+<p>Compare the two measures:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(country) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"United States","2":"1306"},{"1":"Japan","2":"1096"},{"1":"China","2":"638"},{"1":"India","2":"573"},{"1":"South Korea","2":"410"},{"1":"Taiwan","2":"339"},{"1":"Australia","2":"291"},{"1":"United Kingdom","2":"248"},{"1":"Malaysia","2":"200"},{"1":"Thailand","2":"152"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-industries" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="compare-industries"><span class="header-section-number">6.7</span> Compare industries</h2>
+<p>The same group-and-summarise pattern can answer another comparison question:</p>
+<blockquote class="blockquote">
+<p>Which industries accounted for the largest total market values at the end of 2025?</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>industry_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(industry) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_holding_nok =</span> <span class="fu">median</span>(market_value_nok)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>industry_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["industry"],"name":[1],"type":["chr"],"align":["left"]},{"label":["holding_records"],"name":[2],"type":["int"],"align":["right"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["median_holding_nok"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Technology","2":"850","3":"4.317001e+12","4":"4.317001e+12"},{"1":"Financials","2":"958","3":"2.557947e+12","4":"2.557947e+12"},{"1":"Consumer Discretionary","2":"1208","3":"2.006496e+12","4":"2.006496e+12"},{"1":"Industrials","2":"1397","3":"1.923212e+12","4":"1.923212e+12"},{"1":"Health Care","2":"669","3":"1.407280e+12","4":"1.407280e+12"},{"1":"Real Estate","2":"508","3":"6.403525e+11","4":"6.403525e+11"},{"1":"Consumer Staples","2":"470","3":"5.824509e+11","4":"5.824509e+11"},{"1":"Basic Materials","2":"557","3":"5.146553e+11","4":"5.146553e+11"},{"1":"Telecommunications","2":"180","3":"4.439463e+11","4":"4.439463e+11"},{"1":"Energy","2":"172","3":"4.277503e+11","4":"4.277503e+11"},{"1":"Utilities","2":"232","3":"3.619279e+11","4":"3.619279e+11"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This table contains three different measures. Use a column name and chart title that make clear which one supports the finding.</p>
+<p>We can also narrow a question with <code>filter()</code>. For example, the following pipeline asks which industries had the largest total market values among holdings that NBIM classifies under China:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>china_industries <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"China"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(industry) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_usd =</span> <span class="fu">sum</span>(market_value_usd)) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_usd)) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>china_industries</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["industry"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_usd"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Technology","2":"17727458985"},{"1":"Consumer Discretionary","2":"15866216168"},{"1":"Financials","2":"6451543843"},{"1":"Industrials","2":"4015760444"},{"1":"Health Care","2":"3146314239"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Read the pipeline from top to bottom: narrow the rows, form the groups, calculate one value for each group, order the results, and keep the first five.</p>
+</section>
+<section id="questions-for-later-chapters" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="questions-for-later-chapters"><span class="header-section-number">6.8</span> Questions for later chapters</h2>
+<p>The annual file cannot answer every kind of question by itself.</p>
+<p>A <strong>relationship question</strong> might ask whether ownership percentage and market value tend to vary together. A scatterplot can reveal a possible pattern, but it cannot by itself show that one variable caused the other.</p>
+<p>A <strong>trend question</strong> requires comparable observations from several dates. The multi-year chapter will ask how totals and shares changed over time and will explain why a change in year-end holdings is not necessarily an investment return or purchase.</p>
+</section>
+<section id="from-a-result-to-a-finding" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="from-a-result-to-a-finding"><span class="header-section-number">6.9</span> From a result to a finding</h2>
+<p>A useful finding says what was measured, for whom or where, and at what time. Compare these statements:</p>
+<ul>
+<li>Too broad: “The United States received the most Norwegian investment.”</li>
+<li>Better: “The United States had the largest reported market value in NBIM’s year-end equity-holdings file.”</li>
+</ul>
+<p>The second sentence matches the data. The file contains year-end holdings, not transactions, so it cannot show how much money was sent or received during the year.</p>
+<p>Use this simple reporting ladder:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Type of statement</th>
+<th>What the data need</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Description</td>
+<td>A correctly calculated value</td>
+</tr>
+<tr class="even">
+<td>Comparison</td>
+<td>Comparable groups and a clear measure</td>
+</tr>
+<tr class="odd">
+<td>Trend</td>
+<td>Several comparable time points</td>
+</tr>
+<tr class="even">
+<td>Explanation</td>
+<td>Additional evidence about why the pattern occurred</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="practice" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="practice"><span class="header-section-number">6.10</span> Practice</h2>
+<p>Choose either <code>country</code>, <code>region</code>, or <code>industry</code> and write one precise comparison question. Then create a summary containing:</p>
+<ol type="1">
+<li>the number of holding records;</li>
+<li>total market value in Norwegian kroner;</li>
+<li>median holding value; and</li>
+<li>percentage share of the full market value.</li>
+</ol>
+<p>Order the table by total market value. Write three sentences:</p>
+<ol type="1">
+<li>Identify whether your question is descriptive, ranking, or comparison.</li>
+<li>State one finding that the table supports.</li>
+<li>State one explanation that would require more reporting and evidence.</li>
+</ol>
+</section>
+<section id="takeaways" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">6.11</span> Takeaways</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sum()</code></td>
+<td>Calculates a total</td>
+</tr>
+<tr class="even">
+<td><code>mean()</code></td>
+<td>Calculates an arithmetic average</td>
+</tr>
+<tr class="odd">
+<td><code>median()</code></td>
+<td>Finds the middle value</td>
+</tr>
+<tr class="even">
+<td><code>min()</code> and <code>max()</code></td>
+<td>Find the smallest and largest values</td>
+</tr>
+<tr class="odd">
+<td><code>arrange(desc(...))</code></td>
+<td>Creates a ranking from largest to smallest</td>
+</tr>
+<tr class="even">
+<td><code>group_by()</code> + <code>summarise()</code></td>
+<td>Calculate statistics separately for each group</td>
+</tr>
+<tr class="odd">
+<td><code>filter()</code></td>
+<td>Narrows an analysis to rows that meet a condition</td>
+</tr>
+<tr class="even">
+<td><code>mutate()</code></td>
+<td>Adds a share or another derived measure</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Want more control?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Want more control?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The official <a href="https://dplyr.tidyverse.org/reference/index.html">dplyr function reference</a> contains more summary and ranking tools. Add them only when a reporting question requires them.</p>
+</div>
+</div>
 
 
 </section>
@@ -1009,13 +1162,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./transform-merge.html" class="pagination-link  aria-label=" &lt;span="" years,="" join="" tables,="" and="" reshape="" data&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span>
+      <a href="./data-wrangling.html" class="pagination-link  aria-label=" &lt;span="" cleaning&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./analysis-gpfg-trends.html" class="pagination-link" aria-label="<span class='chapter-number'>9</span>&nbsp; <span class='chapter-title'>Analyze Change Across Ten Years</span>">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./transform-merge.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Combine and Reshape</span>">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

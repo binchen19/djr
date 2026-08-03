@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 6&nbsp; Wrangle Data Without Losing Its Meaning</title>
+<title>Data Journalism with R - 5&nbsp; Data Cleaning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./transform-merge.html" rel="next">
+<link href="./analysis-gpfg.html" rel="next">
 <link href="./data-import.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./data-wrangling.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Cleaning</a></li><li class="breadcrumb-item"><a href="./data-wrangling.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,29 +338,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">6.1</span> Learning objectives</a></li>
-  <li><a href="#newsroom-question" id="toc-newsroom-question" class="nav-link" data-scroll-target="#newsroom-question"><span class="header-section-number">6.2</span> Newsroom question</a></li>
-  <li><a href="#set-up-and-preserve-a-baseline" id="toc-set-up-and-preserve-a-baseline" class="nav-link" data-scroll-target="#set-up-and-preserve-a-baseline"><span class="header-section-number">6.3</span> Set up and preserve a baseline</a></li>
-  <li><a href="#select-variables" id="toc-select-variables" class="nav-link" data-scroll-target="#select-variables"><span class="header-section-number">6.4</span> Select variables</a></li>
-  <li><a href="#filter-observations" id="toc-filter-observations" class="nav-link" data-scroll-target="#filter-observations"><span class="header-section-number">6.5</span> Filter observations</a></li>
-  <li><a href="#arrange-and-inspect-extremes" id="toc-arrange-and-inspect-extremes" class="nav-link" data-scroll-target="#arrange-and-inspect-extremes"><span class="header-section-number">6.6</span> Arrange and inspect extremes</a></li>
-  <li><a href="#create-useful-variables" id="toc-create-useful-variables" class="nav-link" data-scroll-target="#create-useful-variables"><span class="header-section-number">6.7</span> Create useful variables</a></li>
-  <li><a href="#audit-missingness-before-removing-it" id="toc-audit-missingness-before-removing-it" class="nav-link" data-scroll-target="#audit-missingness-before-removing-it"><span class="header-section-number">6.8</span> Audit missingness before removing it</a></li>
-  <li><a href="#count-rows-and-entities-separately" id="toc-count-rows-and-entities-separately" class="nav-link" data-scroll-target="#count-rows-and-entities-separately"><span class="header-section-number">6.9</span> Count rows and entities separately</a></li>
-  <li><a href="#group-and-summarise" id="toc-group-and-summarise" class="nav-link" data-scroll-target="#group-and-summarise"><span class="header-section-number">6.10</span> Group and summarise</a></li>
-  <li><a href="#calculate-a-denominator-explicitly" id="toc-calculate-a-denominator-explicitly" class="nav-link" data-scroll-target="#calculate-a-denominator-explicitly"><span class="header-section-number">6.11</span> Calculate a denominator explicitly</a></li>
-  <li><a href="#validate-the-transformation" id="toc-validate-the-transformation" class="nav-link" data-scroll-target="#validate-the-transformation"><span class="header-section-number">6.12</span> Validate the transformation</a></li>
-  <li><a href="#checkpoint-exercise" id="toc-checkpoint-exercise" class="nav-link" data-scroll-target="#checkpoint-exercise"><span class="header-section-number">6.13</span> Checkpoint exercise</a></li>
-  <li><a href="#independent-task" id="toc-independent-task" class="nav-link" data-scroll-target="#independent-task"><span class="header-section-number">6.14</span> Independent task</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">5.1</span> Learning objectives</a></li>
+  <li><a href="#from-importing-to-cleaning" id="toc-from-importing-to-cleaning" class="nav-link" data-scroll-target="#from-importing-to-cleaning"><span class="header-section-number">5.2</span> From importing to cleaning</a></li>
+  <li><a href="#a-simple-cleaning-workflow" id="toc-a-simple-cleaning-workflow" class="nav-link" data-scroll-target="#a-simple-cleaning-workflow"><span class="header-section-number">5.3</span> A simple cleaning workflow</a></li>
+  <li><a href="#check-the-column-types" id="toc-check-the-column-types" class="nav-link" data-scroll-target="#check-the-column-types"><span class="header-section-number">5.4</span> Check the column types</a></li>
+  <li><a href="#correct-a-column-type" id="toc-correct-a-column-type" class="nav-link" data-scroll-target="#correct-a-column-type"><span class="header-section-number">5.5</span> Correct a column type</a></li>
+  <li><a href="#parsing-and-converting-are-different" id="toc-parsing-and-converting-are-different" class="nav-link" data-scroll-target="#parsing-and-converting-are-different"><span class="header-section-number">5.6</span> Parsing and converting are different</a></li>
+  <li><a href="#work-with-real-world-dates" id="toc-work-with-real-world-dates" class="nav-link" data-scroll-target="#work-with-real-world-dates"><span class="header-section-number">5.7</span> Work with real-world dates</a>
+  <ul class="collapse">
+  <li><a href="#identify-the-order-first" id="toc-identify-the-order-first" class="nav-link" data-scroll-target="#identify-the-order-first">Identify the order first</a></li>
+  <li><a href="#handle-several-orders-in-one-column" id="toc-handle-several-orders-in-one-column" class="nav-link" data-scroll-target="#handle-several-orders-in-one-column">Handle several orders in one column</a></li>
+  <li><a href="#check-the-result" id="toc-check-the-result" class="nav-link" data-scroll-target="#check-the-result">Check the result</a></li>
+  </ul></li>
+  <li><a href="#check-missing-values" id="toc-check-missing-values" class="nav-link" data-scroll-target="#check-missing-values"><span class="header-section-number">5.8</span> Check missing values</a></li>
+  <li><a href="#check-unexpected-values" id="toc-check-unexpected-values" class="nav-link" data-scroll-target="#check-unexpected-values"><span class="header-section-number">5.9</span> Check unexpected values</a></li>
+  <li><a href="#check-repeated-rows" id="toc-check-repeated-rows" class="nav-link" data-scroll-target="#check-repeated-rows"><span class="header-section-number">5.10</span> Check repeated rows</a></li>
+  <li><a href="#keep-the-source-intact" id="toc-keep-the-source-intact" class="nav-link" data-scroll-target="#keep-the-source-intact"><span class="header-section-number">5.11</span> Keep the source intact</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">5.12</span> Practice</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">5.13</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">A Reproducible Data Workflow</a></li><li class="breadcrumb-item"><a href="./data-wrangling.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Cleaning</a></li><li class="breadcrumb-item"><a href="./data-wrangling.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></h1>
 </div>
 
 
@@ -378,301 +381,585 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="learning-objectives" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">6.1</span> Learning objectives</h2>
+<section id="learning-objectives" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">5.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>use <code>select()</code>, <code>filter()</code>, <code>arrange()</code>, and <code>mutate()</code>;</li>
-<li>count rows and distinct entities correctly;</li>
-<li>group and summarise with an explicit new grain;</li>
-<li>inspect missing and implausible values; and</li>
-<li>validate that a transformation preserved the expected total.</li>
+<li>explain why data should be checked before analysis;</li>
+<li>decide whether columns have suitable data types;</li>
+<li>distinguish parsing text from converting an existing R value;</li>
+<li>convert text to integers, numbers, and dates;</li>
+<li>convert several common date formats into R dates;</li>
+<li>inspect missing, unexpected, and repeated values;</li>
+<li>make targeted corrections with <code>filter()</code>, <code>rename()</code>, and <code>mutate()</code>; and</li>
+<li>keep the downloaded source separate from a prepared table.</li>
 </ul>
 </section>
-<section id="newsroom-question" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="newsroom-question"><span class="header-section-number">6.2</span> Newsroom question</h2>
-<blockquote class="blockquote">
-<p>Which markets accounted for the largest share of NBIM’s latest reported year-end equity holdings?</p>
-</blockquote>
-<p>This sounds like a ranking question, but the denominator matters. We need both country totals and the grand total before calculating a share.</p>
-</section>
-<section id="set-up-and-preserve-a-baseline" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="set-up-and-preserve-a-baseline"><span class="header-section-number">6.3</span> Set up and preserve a baseline</h2>
+<section id="from-importing-to-cleaning" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="from-importing-to-cleaning"><span class="header-section-number">5.2</span> From importing to cleaning</h2>
+<p>The previous chapter brought a CSV file into R. Before using it to answer a reporting question, we should check whether its structure and values make sense. This process is often called <strong>data cleaning</strong>.</p>
+<p>Cleaning does not mean changing every dataset. It means looking for possible problems, deciding whether they really are problems, making necessary changes, and checking the result.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Continue in the same project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open <code>djr.Rproj</code> and create <code>03-data-cleaning.Rmd</code>. Reuse <code>data/gpfg.csv</code>; there is no need to download or copy it again.</p>
+</div>
+</div>
+<p>Start by loading the tidyverse and importing the same file:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/gpfg_equities_latest.csv"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>baseline_rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(gpfg)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>baseline_total_nok <span class="ot">&lt;-</span> <span class="fu">sum</span>(gpfg<span class="sc">$</span>market_value_nok)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>latest_year <span class="ot">&lt;-</span> <span class="fu">unique</span>(gpfg<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Saving simple baseline values makes later checks easy.</p>
+<p>One row represents one reported equity holding at the end of 2025. Keep that row meaning in mind throughout the cleaning process.</p>
 </section>
-<section id="select-variables" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="select-variables"><span class="header-section-number">6.4</span> Select variables</h2>
-<p><code>select()</code> changes columns, not rows:</p>
+<section id="a-simple-cleaning-workflow" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="a-simple-cleaning-workflow"><span class="header-section-number">5.3</span> A simple cleaning workflow</h2>
+<p>Use the same basic approach whenever you receive a new table:</p>
+<ol type="1">
+<li>Understand what one row and each column represent.</li>
+<li>Inspect the column names, data types, and example values.</li>
+<li>Identify a specific possible problem.</li>
+<li>Correct it in a new R object if necessary.</li>
+<li>Inspect the result and record what you changed.</li>
+</ol>
+<p>Do not remove or change a value merely because it looks unusual. It may be a real and newsworthy observation. Check the source and column definition first.</p>
+</section>
+<section id="check-the-column-types" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="check-the-column-types"><span class="header-section-number">5.4</span> Check the column types</h2>
+<p>Begin with <code>glimpse()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gpfg_core <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    company,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    country,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    region,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    industry,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    market_value_nok,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    ownership_pct</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg_core)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,201
-Columns: 6
-$ company          &lt;chr&gt; "3P Learning Ltd", "ALS Ltd", "AMP Ltd", "ANZ Group H…
-$ country          &lt;chr&gt; "Australia", "Australia", "Australia", "Australia", "…
-$ region           &lt;chr&gt; "Oceania", "Oceania", "Oceania", "Oceania", "Oceania"…
-$ industry         &lt;chr&gt; "Consumer Discretionary", "Industrials", "Financials"…
-$ market_value_nok &lt;dbl&gt; 34140465, 1044536415, 393367522, 16360856591, 1329942…
-$ ownership_pct    &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.23, 0.75,…</code></pre>
+Columns: 13
+$ year                  &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, …
+$ report_date           &lt;date&gt; 2025-12-31, 2025-12-31, 2025-12-31, 2025-12-31,…
+$ region                &lt;chr&gt; "Oceania", "Oceania", "Oceania", "Oceania", "Oce…
+$ country               &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…
+$ company               &lt;chr&gt; "3P Learning Ltd", "ALS Ltd", "AMP Ltd", "ANZ Gr…
+$ industry              &lt;chr&gt; "Consumer Discretionary", "Industrials", "Financ…
+$ market_value_nok      &lt;dbl&gt; 34140465, 1044536415, 393367522, 16360856591, 13…
+$ market_value_usd      &lt;dbl&gt; 3384651, 103554273, 38998054, 1621998602, 131849…
+$ voting_pct            &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.23, …
+$ ownership_pct         &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.23, …
+$ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…
+$ source_file           &lt;chr&gt; "gpfg-equities-2025-12-31.xlsx", "gpfg-equities-…
+$ source_url            &lt;chr&gt; "https://www.nbim.no/api/investments/v2/report/?…</code></pre>
 </div>
 </div>
-<p>Keep provenance columns in the master object even if a smaller analysis object does not display them.</p>
-</section>
-<section id="filter-observations" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="filter-observations"><span class="header-section-number">6.5</span> Filter observations</h2>
-<p><code>filter()</code> keeps rows that satisfy a logical condition:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>east_asia <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"China"</span>, <span class="st">"Hong Kong"</span>, <span class="st">"Japan"</span>, <span class="st">"South Korea"</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(east_asia)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2250</code></pre>
-</div>
-</div>
-<p>Use <code>%in%</code> when one variable can match several allowed values. Do not use <code>country == "China" | "Japan"</code>; the second part is text, not a complete logical test.</p>
-<p>Multiple conditions can be written with commas, which means “and”:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>large_technology_holdings <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    industry <span class="sc">==</span> <span class="st">"Technology"</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    market_value_usd <span class="sc">&gt;=</span> <span class="fl">1e9</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="arrange-and-inspect-extremes" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="arrange-and-inspect-extremes"><span class="header-section-number">6.6</span> Arrange and inspect extremes</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_usd)) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(company, country, industry, market_value_usd) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["company"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[3],"type":["chr"],"align":["left"]},{"label":["market_value_usd"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"NVIDIA Corp","2":"United States","3":"Technology","4":"56891416752"},{"1":"Apple Inc","2":"United States","3":"Technology","4":"49227183527"},{"1":"Microsoft Corp","2":"United States","3":"Technology","4":"45464627744"},{"1":"Alphabet Inc","2":"United States","3":"Technology","4":"43553177955"},{"1":"Amazon.com Inc","2":"United States","3":"Consumer Discretionary","4":"30525272160"},{"1":"Taiwan Semiconductor Manufacturing Co Ltd","2":"Taiwan","3":"Technology","4":"22685768386"},{"1":"Broadcom Inc","2":"United States","3":"Technology","4":"21378035626"},{"1":"Meta Platforms Inc","2":"United States","3":"Technology","4":"19395886533"},{"1":"Tesla Inc","2":"United States","3":"Consumer Discretionary","4":"16005934151"},{"1":"Eli Lilly & Co","2":"United States","3":"Health Care","4":"11991836124"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>A ranking is a lead, not a conclusion. Check whether the largest rows are companies, funds, duplicate names, or units expressed differently from the rest.</p>
-</section>
-<section id="create-useful-variables" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="create-useful-variables"><span class="header-section-number">6.7</span> Create useful variables</h2>
-<p><code>mutate()</code> adds or changes columns:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gpfg_scaled <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_usd_billions =</span> market_value_usd <span class="sc">/</span> <span class="fl">1e9</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ownership_group =</span> <span class="fu">case_when</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      ownership_pct <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Below 1%"</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      ownership_pct <span class="sc">&lt;</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"1% to below 3%"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"3% or more"</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>gpfg_scaled <span class="sc">|&gt;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(ownership_group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["ownership_group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"1% to below 3%","2":"3057"},{"1":"3% or more","2":"320"},{"1":"Below 1%","2":"3824"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>The category boundaries are analytical choices. Record them in the methods note and check whether a different threshold would change the story.</p>
-</section>
-<section id="audit-missingness-before-removing-it" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="audit-missingness-before-removing-it"><span class="header-section-number">6.8</span> Audit missingness before removing it</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">everything</span>(),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x)),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"missing_{.col}"</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["missing_year"],"name":[1],"type":["int"],"align":["right"]},{"label":["missing_report_date"],"name":[2],"type":["int"],"align":["right"]},{"label":["missing_region"],"name":[3],"type":["int"],"align":["right"]},{"label":["missing_country"],"name":[4],"type":["int"],"align":["right"]},{"label":["missing_company"],"name":[5],"type":["int"],"align":["right"]},{"label":["missing_industry"],"name":[6],"type":["int"],"align":["right"]},{"label":["missing_market_value_nok"],"name":[7],"type":["int"],"align":["right"]},{"label":["missing_market_value_usd"],"name":[8],"type":["int"],"align":["right"]},{"label":["missing_voting_pct"],"name":[9],"type":["int"],"align":["right"]},{"label":["missing_ownership_pct"],"name":[10],"type":["int"],"align":["right"]},{"label":["missing_incorporation_country"],"name":[11],"type":["int"],"align":["right"]},{"label":["missing_source_file"],"name":[12],"type":["int"],"align":["right"]},{"label":["missing_source_url"],"name":[13],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>The processed latest-year file is complete. In other datasets, inspect missingness by year, institution, or category before calling <code>drop_na()</code>. Systematic missing data can be the most important finding.</p>
-</section>
-<section id="count-rows-and-entities-separately" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="count-rows-and-entities-separately"><span class="header-section-number">6.9</span> Count rows and entities separately</h2>
-<p>In this latest-year snapshot, company names are unique, but write the question explicitly:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">distinct_company_names =</span> <span class="fu">n_distinct</span>(company)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["holding_records"],"name":[1],"type":["int"],"align":["right"]},{"label":["distinct_company_names"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"7201","2":"7201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p><code>n()</code> counts records. <code>n_distinct(company)</code> counts distinct published names. They happen to agree here; that agreement should be checked, not assumed.</p>
-</section>
-<section id="group-and-summarise" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="group-and-summarise"><span class="header-section-number">6.10</span> Group and summarise</h2>
-<p>The input grain is one holding. After summarising by country, the output grain is one country.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>country_totals <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_usd =</span> <span class="fu">sum</span>(market_value_usd),</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">companies =</span> <span class="fu">n_distinct</span>(company),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> country</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>country_totals <span class="sc">|&gt;</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_usd)) <span class="sc">|&gt;</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_usd"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[3],"type":["int"],"align":["right"]},{"label":["companies"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"United States","2":"822293014542","3":"1306","4":"1306"},{"1":"Japan","2":"96216898246","3":"1096","4":"1096"},{"1":"United Kingdom","2":"74239744757","3":"248","4":"248"},{"1":"China","2":"53943130296","3":"638","4":"638"},{"1":"Germany","2":"47005478122","3":"136","4":"136"},{"1":"Switzerland","2":"45413121706","3":"94","4":"94"},{"1":"France","2":"42473179462","3":"116","4":"116"},{"1":"Taiwan","2":"40314186277","3":"339","4":"339"},{"1":"Canada","2":"37322189716","3":"142","4":"142"},{"1":"India","2":"31542982878","3":"573","4":"573"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p>Write the grain change in your notebook:</p>
+<p>The abbreviations beside the column names show how R has stored each column:</p>
 <table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
-<th>Object</th>
-<th>One row represents</th>
+<th>Type</th>
+<th>Meaning</th>
+<th>Example in <code>gpfg</code></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>gpfg</code></td>
-<td>one latest-year equity holding</td>
+<td><code>&lt;chr&gt;</code></td>
+<td>Character, or text</td>
+<td><code>company</code>, <code>country</code></td>
 </tr>
 <tr class="even">
-<td><code>country_totals</code></td>
-<td>one investment market</td>
+<td><code>&lt;dbl&gt;</code></td>
+<td>A number that can contain decimals</td>
+<td><code>market_value_usd</code>, <code>ownership_pct</code></td>
+</tr>
+<tr class="odd">
+<td><code>&lt;date&gt;</code></td>
+<td>A calendar date</td>
+<td><code>report_date</code></td>
 </tr>
 </tbody>
 </table>
+<p>A type is suitable when it matches how we need to use the variable. Company names should be character values, market values should be numeric, and report dates should be dates. The <code>year</code> column appears as <code>&lt;dbl&gt;</code>, which is still a valid numeric type for a year. It is not automatically a problem.</p>
 </section>
-<section id="calculate-a-denominator-explicitly" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="calculate-a-denominator-explicitly"><span class="header-section-number">6.11</span> Calculate a denominator explicitly</h2>
+<section id="correct-a-column-type" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="correct-a-column-type"><span class="header-section-number">5.5</span> Correct a column type</h2>
+<p>Sometimes numbers and dates are imported as character values. The following small table illustrates the problem. Every column starts as text because its values are inside quotation marks:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>grand_total_usd <span class="ot">&lt;-</span> <span class="fu">sum</span>(country_totals<span class="sc">$</span>market_value_usd)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>country_shares <span class="ot">&lt;-</span> country_totals <span class="sc">|&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">share_of_total =</span> market_value_usd <span class="sc">/</span> grand_total_usd) <span class="sc">|&gt;</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(share_of_total))</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>country_shares <span class="sc">|&gt;</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, market_value_usd, share_of_total) <span class="sc">|&gt;</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>type_example <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="st">"2024"</span>, <span class="st">"2025"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">report_date =</span> <span class="fu">c</span>(<span class="st">"2024-12-31"</span>, <span class="st">"2025-12-31"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_usd =</span> <span class="fu">c</span>(<span class="st">"1200000"</span>, <span class="st">"1350000"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(type_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2
+Columns: 3
+$ year        &lt;chr&gt; "2024", "2025"
+$ report_date &lt;chr&gt; "2024-12-31", "2025-12-31"
+$ value_usd   &lt;chr&gt; "1200000", "1350000"</code></pre>
+</div>
+</div>
+<p><code>mutate()</code> creates or changes columns. Inside <code>mutate()</code>, readr’s parsing functions convert the text to the types we want:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>type_example_clean <span class="ot">&lt;-</span> type_example <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">parse_integer</span>(year),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">report_date =</span> <span class="fu">parse_date</span>(report_date),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">value_usd =</span> <span class="fu">parse_double</span>(value_usd)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">market_value_usd =</span> value_usd)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(type_example_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2
+Columns: 3
+$ year             &lt;int&gt; 2024, 2025
+$ report_date      &lt;date&gt; 2024-12-31, 2025-12-31
+$ market_value_usd &lt;dbl&gt; 1200000, 1350000</code></pre>
+</div>
+</div>
+<p>The tidyverse loads readr, so we do not need a separate <code>library(readr)</code> line.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Use it when text should become…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>parse_integer()</code></td>
+<td>A whole number</td>
+</tr>
+<tr class="even">
+<td><code>parse_double()</code></td>
+<td>A number that may contain decimals</td>
+</tr>
+<tr class="odd">
+<td><code>parse_date()</code></td>
+<td>A date written as <code>YYYY-MM-DD</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>rename()</code> changes a column name using <code>new_name = old_name</code>. Here the more specific name <code>market_value_usd</code> makes the unit clear.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Do not convert identifiers into numbers">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Do not convert identifiers into numbers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A variable containing digits is not always a number. Telephone numbers, ID numbers, and postal codes are labels, so they are usually better stored as character values. Converting them to numbers can remove meaningful leading zeros.</p>
+</div>
+</div>
+</section>
+<section id="parsing-and-converting-are-different" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="parsing-and-converting-are-different"><span class="header-section-number">5.6</span> Parsing and converting are different</h2>
+<p>The function names can be confusing because readr and base R provide two related families:</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Tidyverse/readr</th>
+<th>Base R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Turn text into whole numbers</td>
+<td><code>parse_integer()</code></td>
+<td><code>as.integer()</code></td>
+</tr>
+<tr class="even">
+<td>Turn text or values into decimal numbers</td>
+<td><code>parse_double()</code></td>
+<td><code>as.double()</code></td>
+</tr>
+<tr class="odd">
+<td>Turn text into a date</td>
+<td><code>parse_date()</code></td>
+<td><code>as.Date()</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>parse_*()</code> functions are designed for character values read from files. They expect a particular kind of text and report values they cannot interpret. For example, <code>parse_integer("2.5")</code> fails because <code>2.5</code> is not a whole number.</p>
+<p>The <code>as.*()</code> functions <strong>coerce</strong>, or convert, an existing R value into another type. They are useful when the value is already clean and its meaning is known. For example, <code>as.integer(2.5)</code> returns <code>2</code>, which removes the decimal part. That may be intended, but it could also silently change the meaning of the value.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Exact spelling matters">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exact spelling matters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The base R names are <code>as.integer()</code>, <code>as.double()</code>, and <code>as.Date()</code>—with periods and a capital <code>D</code> in <code>Date</code>. There is no regular <code>as_integer()</code> or <code>as_double()</code> function loaded by the tidyverse.</p>
+<p>Lubridate does provide <code>as_date()</code>. It is most useful for converting an existing date-time value into a date; it is not our first choice for reading a column containing several messy character formats.</p>
+</div>
+</div>
+<p>For imported character columns, this book begins with the tidyverse parsing functions because their warnings help us find values that need investigation.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Which family does this book use?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Which family does this book use?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both families are valid. For imported character data, the main lessons use readr’s <code>parse_*()</code> functions because they fit the tidyverse workflow and make failed conversions easier to inspect. Base R functions such as <code>as.integer()</code>, <code>as.double()</code>, and <code>as.Date()</code> are useful and may appear in code elsewhere, but you do not need to learn both versions at the same time. Begin with the tidyverse examples in this book and consult the alternatives when a project requires them.</p>
+</div>
+</div>
+</section>
+<section id="work-with-real-world-dates" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="work-with-real-world-dates"><span class="header-section-number">5.7</span> Work with real-world dates</h2>
+<p>A date column should be stored as an R <code>&lt;date&gt;</code>, not merely as character text. R can then sort dates chronologically, calculate intervals, group observations by time, and draw a correctly ordered time series. R normally displays a Date in the standard <code>YYYY-MM-DD</code> form.</p>
+<section id="identify-the-order-first" class="level3">
+<h3 class="anchored" data-anchor-id="identify-the-order-first">Identify the order first</h3>
+<p>Before converting dates, determine the order of the components:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Expected order</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ymd()</code></td>
+<td>year, month, day</td>
+<td><code>2025-03-31</code></td>
+</tr>
+<tr class="even">
+<td><code>dmy()</code></td>
+<td>day, month, year</td>
+<td><code>31/03/2025</code></td>
+</tr>
+<tr class="odd">
+<td><code>mdy()</code></td>
+<td>month, day, year</td>
+<td><code>03/31/2025</code></td>
+</tr>
+</tbody>
+</table>
+<p>These functions come from lubridate, which is loaded by <code>library(tidyverse)</code>. The letters in the function name describe the order.</p>
+<p>Dates can use different separators while keeping the same order. <code>ymd()</code> can handle all three of these values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>year_first_dates <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_text =</span> <span class="fu">c</span>(<span class="st">"2025-01-31"</span>, <span class="st">"2025/02/01"</span>, <span class="st">"2025.03.02"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">report_date =</span> <span class="fu">ymd</span>(date_text))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>year_first_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["market_value_usd"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["share_of_total"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"United States","2":"822293014542","3":"0.54629096"},{"1":"Japan","2":"96216898246","3":"0.06392177"},{"1":"United Kingdom","2":"74239744757","3":"0.04932123"},{"1":"China","2":"53943130296","3":"0.03583716"},{"1":"Germany","2":"47005478122","3":"0.03122812"},{"1":"Switzerland","2":"45413121706","3":"0.03017024"},{"1":"France","2":"42473179462","3":"0.02821709"},{"1":"Taiwan","2":"40314186277","3":"0.02678276"},{"1":"Canada","2":"37322189716","3":"0.02479502"},{"1":"India","2":"31542982878","3":"0.02095560"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["date_text"],"name":[1],"type":["chr"],"align":["left"]},{"label":["report_date"],"name":[2],"type":["date"],"align":["right"]}],"data":[{"1":"2025-01-31","2":"2025-01-31"},{"1":"2025/02/01","2":"2025-02-01"},{"1":"2025.03.02","2":"2025-03-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
-<p>The result supports a sentence such as: “The United States accounted for X% of the reported market value in the latest equity-holdings file.” It does not show the share of purchases made during that year.</p>
-</section>
-<section id="validate-the-transformation" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="validate-the-transformation"><span class="header-section-number">6.12</span> Validate the transformation</h2>
+<p>Use <code>dmy()</code> when the day comes first:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(gpfg) <span class="sc">==</span> baseline_rows)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">sum</span>(country_totals<span class="sc">$</span>holding_records) <span class="sc">==</span> baseline_rows)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">isTRUE</span>(<span class="fu">all.equal</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(country_totals<span class="sc">$</span>market_value_usd),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(gpfg<span class="sc">$</span>market_value_usd)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">isTRUE</span>(<span class="fu">all.equal</span>(<span class="fu">sum</span>(country_shares<span class="sc">$</span>share_of_total), <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="fu">c</span>(<span class="st">"31/01/2025"</span>, <span class="st">"1-2-2025"</span>, <span class="st">"3 March 2025"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-01-31" "2025-02-01" "2025-03-03"</code></pre>
 </div>
-<p>These checks protect against accidental filtering, double-counting, and a wrong denominator.</p>
+</div>
+<p>Use <code>mdy()</code> only when the source follows month-day-year order.</p>
 </section>
-<section id="checkpoint-exercise" class="level2" data-number="6.13">
-<h2 data-number="6.13" class="anchored" data-anchor-id="checkpoint-exercise"><span class="header-section-number">6.13</span> Checkpoint exercise</h2>
-<p>Create an industry summary containing:</p>
-<ul>
-<li>total NOK market value;</li>
-<li>number of holding records;</li>
-<li>number of distinct company names;</li>
-<li>median holding value; and</li>
-<li>share of the overall NOK total.</li>
-</ul>
-<p>Then answer:</p>
-<ol type="1">
-<li>What does one row in your result represent?</li>
-<li>Why might the mean holding value be less useful than the median?</li>
-<li>Which check proves the industry totals reconcile with the source?</li>
-</ol>
-<details>
-<summary>
-Show one possible pipeline
-</summary>
+<section id="handle-several-orders-in-one-column" class="level3">
+<h3 class="anchored" data-anchor-id="handle-several-orders-in-one-column">Handle several orders in one column</h3>
+<p>Some real-world files mix date orders. In that case, <code>parse_date_time()</code> can try a short list of known orders. It first returns a date-time, and <code>as_date()</code> then keeps its calendar date:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>industry_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">companies =</span> <span class="fu">n_distinct</span>(company),</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_holding_nok =</span> <span class="fu">median</span>(market_value_nok),</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> industry</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">share_of_total =</span> market_value_nok <span class="sc">/</span> <span class="fu">sum</span>(market_value_nok)</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(market_value_nok))</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">isTRUE</span>(<span class="fu">all.equal</span>(<span class="fu">sum</span>(industry_summary<span class="sc">$</span>share_of_total), <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mixed_dates <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_text =</span> <span class="fu">c</span>(<span class="st">"2025-01-31"</span>, <span class="st">"13/02/2025"</span>, <span class="st">"March 3, 2025"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">report_date =</span> date_text <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">parse_date_time</span>(<span class="at">orders =</span> <span class="fu">c</span>(<span class="st">"ymd"</span>, <span class="st">"dmy"</span>, <span class="st">"mdy"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as_date</span>()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>mixed_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["date_text"],"name":[1],"type":["chr"],"align":["left"]},{"label":["report_date"],"name":[2],"type":["date"],"align":["right"]}],"data":[{"1":"2025-01-31","2":"2025-01-31"},{"1":"13/02/2025","2":"2025-02-13"},{"1":"March 3, 2025","2":"2025-03-03"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-</details>
+</div>
+</div>
+<p>Only list orders that the source could genuinely use. Trying many possible orders can hide errors rather than clean them.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="R cannot resolve an ambiguous date for you">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+R cannot resolve an ambiguous date for you
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The value <code>03/04/2025</code> could mean 3 April or March 4. Examine the source’s documentation, location, and nearby unambiguous dates before choosing <code>dmy()</code> or <code>mdy()</code>. Never guess when the distinction matters to the story.</p>
+</div>
+</div>
 </section>
-<section id="independent-task" class="level2" data-number="6.14">
-<h2 data-number="6.14" class="anchored" data-anchor-id="independent-task"><span class="header-section-number">6.14</span> Independent task</h2>
-<p>Investigate one region. Produce:</p>
+<section id="check-the-result" class="level3">
+<h3 class="anchored" data-anchor-id="check-the-result">Check the result</h3>
+<p>Always keep the original text beside the converted date while checking. Use <code>glimpse()</code> to confirm that the new column is <code>&lt;date&gt;</code>, then find values that failed to convert:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mixed_dates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3
+Columns: 2
+$ date_text   &lt;chr&gt; "2025-01-31", "13/02/2025", "March 3, 2025"
+$ report_date &lt;date&gt; 2025-01-31, 2025-02-13, 2025-03-03</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mixed_dates <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(report_date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["date_text"],"name":[1],"type":["chr"],"align":["left"]},{"label":["report_date"],"name":[2],"type":["date"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>An empty result means every value in this example became a date. In a real file, investigate every returned row. A failed conversion may reveal a typo, an incomplete date, a different language, or another format that needs an explicit rule.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Not every time-related value is a date">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Not every time-related value is a date
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A year such as <code>2025</code> can remain an integer. A label such as academic year <code>2024/25</code> represents a period rather than one calendar day, so it should not automatically be converted to a Date.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="check-missing-values" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="check-missing-values"><span class="header-section-number">5.8</span> Check missing values</h2>
+<p>R represents a missing value as <code>NA</code>. A missing value is different from zero: zero is a known amount, while <code>NA</code> means the value is unavailable.</p>
+<p><code>is.na()</code> asks whether a value is missing. We can use it inside <code>filter()</code> to keep rows where a particular column contains <code>NA</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["report_date"],"name":[2],"type":["date"],"align":["right"]},{"label":["region"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["company"],"name":[5],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[6],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["market_value_usd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["voting_pct"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ownership_pct"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["incorporation_country"],"name":[11],"type":["chr"],"align":["left"]},{"label":["source_file"],"name":[12],"type":["chr"],"align":["left"]},{"label":["source_url"],"name":[13],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(market_value_usd))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["report_date"],"name":[2],"type":["date"],"align":["right"]},{"label":["region"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["company"],"name":[5],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[6],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["market_value_usd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["voting_pct"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ownership_pct"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["incorporation_country"],"name":[11],"type":["chr"],"align":["left"]},{"label":["source_file"],"name":[12],"type":["chr"],"align":["left"]},{"label":["source_url"],"name":[13],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Both checks return no rows, so these two columns do not contain missing values in this file. If rows appeared, we would investigate why the values were missing before deciding whether to keep, correct, or remove them.</p>
+</section>
+<section id="check-unexpected-values" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="check-unexpected-values"><span class="header-section-number">5.9</span> Check unexpected values</h2>
+<p>For a category such as region or industry, <code>distinct()</code> shows each different value once:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Oceania"},{"1":"Europe"},{"1":"Asia"},{"1":"Latin America"},{"1":"North America"},{"1":"Africa"},{"1":"Middle East"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(industry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["industry"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Consumer Discretionary"},{"1":"Industrials"},{"1":"Financials"},{"1":"Energy"},{"1":"Basic Materials"},{"1":"Real Estate"},{"1":"Health Care"},{"1":"Technology"},{"1":"Telecommunications"},{"1":"Consumer Staples"},{"1":"Utilities"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Look for spelling differences, unexpected spaces, or categories that do not match the data dictionary. Two labels that differ by only one character will be treated as different groups later.</p>
+<p>We can also use <code>filter()</code> to inspect numeric values that may be impossible or need explanation. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(market_value_usd <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["report_date"],"name":[2],"type":["date"],"align":["right"]},{"label":["region"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["company"],"name":[5],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[6],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["market_value_usd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["voting_pct"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ownership_pct"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["incorporation_country"],"name":[11],"type":["chr"],"align":["left"]},{"label":["source_file"],"name":[12],"type":["chr"],"align":["left"]},{"label":["source_url"],"name":[13],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>This check returns no rows. In another dataset, a negative value might be an error, a special accounting value, or a legitimate observation. The code finds the rows; reporting and source checking determine what they mean.</p>
+</section>
+<section id="check-repeated-rows" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="check-repeated-rows"><span class="header-section-number">5.10</span> Check repeated rows</h2>
+<p>A repeated row is not automatically a duplicate. First decide which columns should identify one observation. In this file, we can begin by checking the combination of company, country, and industry:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(company, country, industry) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["company"],"name":[1],"type":["chr"],"align":["left"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[3],"type":["chr"],"align":["left"]},{"label":["n"],"name":[4],"type":["int"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p><code>count()</code> creates a column called <code>n</code> containing the number of matching rows. <code>filter(n &gt; 1)</code> keeps combinations that appear more than once. This check returns no rows in the current file.</p>
+<p>If it found repeated combinations, we would compare them with the original source before deleting anything. A company can sometimes legitimately have more than one reported security or observation.</p>
+</section>
+<section id="keep-the-source-intact" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="keep-the-source-intact"><span class="header-section-number">5.11</span> Keep the source intact</h2>
+<p>The checks show that <code>gpfg.csv</code> already has sensible types and no missing or repeated values in the columns examined. That is a valid cleaning conclusion: not every imported file needs correction.</p>
+<p>The downloaded CSV should remain unchanged. When corrections are necessary, make them in a new R object and keep the code that produced it. Keeping the source and cleaned data separate makes the work easier to audit and reproduce.</p>
+</section>
+<section id="practice" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="practice"><span class="header-section-number">5.12</span> Practice</h2>
+<p>Copy this deliberately messy table into your R Markdown document:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>practice_holdings <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">company =</span> <span class="fu">c</span>(<span class="st">"Company A"</span>, <span class="st">"Company B"</span>, <span class="st">"Company B"</span>),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="fu">c</span>(<span class="st">"2024"</span>, <span class="st">"2025"</span>, <span class="st">"2025"</span>),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">report_date =</span> <span class="fu">c</span>(<span class="st">"2024-12-31"</span>, <span class="st">"31/12/2025"</span>, <span class="st">"December 31, 2025"</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_usd =</span> <span class="fu">c</span>(<span class="st">"1200000"</span>, <span class="st">"not available"</span>, <span class="st">"not available"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then:</p>
 <ol type="1">
-<li>a clearly named filtered object;</li>
-<li>a ranked table of its five largest holdings;</li>
-<li>a country-level summary with shares within the region;</li>
-<li>at least two validation checks; and</li>
-<li>a 100-word methods note stating the grain, denominator, and one claim limit.</li>
+<li>Use <code>glimpse()</code> to identify the current column types.</li>
+<li>Rename <code>value_usd</code> as <code>market_value_usd</code>.</li>
+<li>Convert <code>year</code> and <code>market_value_usd</code> with suitable readr functions.</li>
+<li>Convert the mixed values in <code>report_date</code> into one Date column.</li>
+<li>Use <code>filter()</code> and <code>is.na()</code> to find the value that could not become a number.</li>
+<li>Use <code>count()</code> and <code>filter(n &gt; 1)</code> to identify the repeated observation.</li>
+<li>Write two sentences explaining which values need investigation and why you should not automatically delete them.</li>
 </ol>
+</section>
+<section id="takeaways" class="level2" data-number="5.13">
+<h2 data-number="5.13" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">5.13</span> Takeaways</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function or idea</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>glimpse()</code></td>
+<td>Shows column names, types, and example values</td>
+</tr>
+<tr class="even">
+<td><code>mutate()</code></td>
+<td>Creates or changes columns</td>
+</tr>
+<tr class="odd">
+<td><code>parse_integer()</code></td>
+<td>Converts suitable text to whole numbers</td>
+</tr>
+<tr class="even">
+<td><code>parse_double()</code></td>
+<td>Converts suitable text to numeric values</td>
+</tr>
+<tr class="odd">
+<td><code>parse_date()</code></td>
+<td>Converts suitable text to dates</td>
+</tr>
+<tr class="even">
+<td><code>as.integer()</code>, <code>as.double()</code>, <code>as.Date()</code></td>
+<td>Convert existing R values using base R</td>
+</tr>
+<tr class="odd">
+<td><code>ymd()</code>, <code>dmy()</code>, <code>mdy()</code></td>
+<td>Parse dates when the component order is known</td>
+</tr>
+<tr class="even">
+<td><code>parse_date_time()</code></td>
+<td>Tries specified orders in a mixed date or date-time column</td>
+</tr>
+<tr class="odd">
+<td><code>as_date()</code></td>
+<td>Converts a date-time into a calendar date</td>
+</tr>
+<tr class="even">
+<td><code>rename(new = old)</code></td>
+<td>Changes a column name</td>
+</tr>
+<tr class="odd">
+<td><code>filter()</code></td>
+<td>Keeps rows that meet a condition</td>
+</tr>
+<tr class="even">
+<td><code>is.na()</code></td>
+<td>Tests whether a value is missing</td>
+</tr>
+<tr class="odd">
+<td><code>distinct()</code></td>
+<td>Shows unique rows or combinations</td>
+</tr>
+<tr class="even">
+<td><code>count()</code></td>
+<td>Counts matching rows</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled" title="Want more control?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Want more control?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The official <a href="https://readr.tidyverse.org/articles/column-types.html">readr column-type guide</a> explains additional parsing functions. The official <a href="https://lubridate.tidyverse.org/reference/ymd.html">lubridate date-parsing reference</a> and <a href="https://lubridate.tidyverse.org/reference/parse_date_time.html">mixed-format reference</a> cover more date formats. The <a href="https://dplyr.tidyverse.org/reference/index.html">dplyr reference</a> covers more tools for selecting, filtering, and transforming data. Add them only when a dataset presents a problem that requires them.</p>
+</div>
+</div>
 
 
 </section>
@@ -1067,13 +1354,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data-import.html" class="pagination-link  aria-label=" &lt;span="" audit,="" and="" import="" data&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span>
+      <a href="./data-import.html" class="pagination-link  aria-label=" &lt;span="" import&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./transform-merge.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Combine Years, Join Tables, and Reshape Data</span>">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./analysis-gpfg.html" class="pagination-link" aria-label="<span class='chapter-number'>6</span>&nbsp; <span class='chapter-title'>Data Analysis</span>">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

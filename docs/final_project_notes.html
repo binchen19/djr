@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - Appendix B — Final Project Workflow</title>
+<title>Data Journalism with R - Appendix D — Final Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./links.html" rel="next">
-<link href="./quarto.html" rel="prev">
+<link href="./additional-practice.html" rel="next">
+<link href="./debug.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">Appendices</a></li><li class="breadcrumb-item"><a href="./final_project_notes.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./final_project_notes.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Foundations</span></a>
+ <span class="menu-text">Getting Started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,19 +160,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set Up R, RStudio, and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R and RStudio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics for Journalists</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Debugging Without Guessing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R Basics</span></span></a>
   </div>
 </li>
       </ul>
@@ -180,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">A Reproducible Data Workflow</span></a>
+ <span class="menu-text">Data Import &amp; Cleaning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -189,31 +183,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Find, Audit, and Import Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data-wrangling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangle Data Without Losing Its Meaning</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine Years, Join Tables, and Reshape Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Find Patterns in a Single Snapshot</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./analysis-gpfg-trends.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Analyze Change Across Ten Years</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Visual Evidence and Storytelling</span></a>
+ <span class="menu-text">Data Analysis</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -229,26 +205,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Exploratory Visualization</span></span></a>
+  <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Explanatory Visualization</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Map Geographic Patterns Carefully</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./norway-invest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">From Analysis to a Data Story</span></span></a>
+  <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Combine and Reshape</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Transfer Case Studies</span></a>
+ <span class="menu-text">Data Visualization</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -264,32 +228,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Aggregated Official Data: Hong Kong Graduate Employment</span></span></a>
+  <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualize One Variable</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unit of Analysis: Paris 2024 Medallists</span></span></a>
+  <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Visualize Multiple Variables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Text as Data: The 2024 US Presidential Debate</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Metric Design: Billboard Hot 100</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Additional Practice Labs</span></span></a>
+  <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -297,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Case Studies</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -305,26 +257,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hot100.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./olympics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./employment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./links.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Quarto Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./final_project_notes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./links.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span></a>
+  <a href="./additional-practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,19 +338,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#separate-preparation-from-presentation" id="toc-separate-preparation-from-presentation" class="nav-link active" data-scroll-target="#separate-preparation-from-presentation"><span class="header-section-number">B.1</span> Separate preparation from presentation</a></li>
-  <li><a href="#save-a-static-chart" id="toc-save-a-static-chart" class="nav-link" data-scroll-target="#save-a-static-chart"><span class="header-section-number">B.2</span> Save a static chart</a></li>
-  <li><a href="#choose-geometry-from-the-data-structure" id="toc-choose-geometry-from-the-data-structure" class="nav-link" data-scroll-target="#choose-geometry-from-the-data-structure"><span class="header-section-number">B.3</span> Choose geometry from the data structure</a></li>
-  <li><a href="#final-project-checklist" id="toc-final-project-checklist" class="nav-link" data-scroll-target="#final-project-checklist"><span class="header-section-number">B.4</span> Final project checklist</a></li>
+  <li><a href="#plan-the-project" id="toc-plan-the-project" class="nav-link active" data-scroll-target="#plan-the-project"><span class="header-section-number">D.1</span> Plan the project</a></li>
+  <li><a href="#begin-with-a-focused-question-and-story-hypothesis" id="toc-begin-with-a-focused-question-and-story-hypothesis" class="nav-link" data-scroll-target="#begin-with-a-focused-question-and-story-hypothesis"><span class="header-section-number">D.2</span> Begin with a focused question and story hypothesis</a></li>
+  <li><a href="#keep-the-downloaded-file-unchanged" id="toc-keep-the-downloaded-file-unchanged" class="nav-link" data-scroll-target="#keep-the-downloaded-file-unchanged"><span class="header-section-number">D.3</span> Keep the downloaded file unchanged</a></li>
+  <li><a href="#choose-a-chart-that-matches-the-question" id="toc-choose-a-chart-that-matches-the-question" class="nav-link" data-scroll-target="#choose-a-chart-that-matches-the-question"><span class="header-section-number">D.4</span> Choose a chart that matches the question</a></li>
+  <li><a href="#save-a-chart" id="toc-save-a-chart" class="nav-link" data-scroll-target="#save-a-chart"><span class="header-section-number">D.5</span> Save a chart</a></li>
+  <li><a href="#make-an-evidence-table-before-drafting" id="toc-make-an-evidence-table-before-drafting" class="nav-link" data-scroll-target="#make-an-evidence-table-before-drafting"><span class="header-section-number">D.6</span> Make an evidence table before drafting</a></li>
+  <li><a href="#separate-description-from-explanation" id="toc-separate-description-from-explanation" class="nav-link" data-scroll-target="#separate-description-from-explanation"><span class="header-section-number">D.7</span> Separate description from explanation</a></li>
+  <li><a href="#verify-the-important-numbers" id="toc-verify-the-important-numbers" class="nav-link" data-scroll-target="#verify-the-important-numbers"><span class="header-section-number">D.8</span> Verify the important numbers</a></li>
+  <li><a href="#write-a-short-methods-note" id="toc-write-a-short-methods-note" class="nav-link" data-scroll-target="#write-a-short-methods-note"><span class="header-section-number">D.9</span> Write a short methods note</a></li>
+  <li><a href="#organize-the-story" id="toc-organize-the-story" class="nav-link" data-scroll-target="#organize-the-story"><span class="header-section-number">D.10</span> Organize the story</a></li>
+  <li><a href="#prepare-the-final-project-proposal" id="toc-prepare-the-final-project-proposal" class="nav-link" data-scroll-target="#prepare-the-final-project-proposal"><span class="header-section-number">D.11</span> Prepare the final project proposal</a></li>
+  <li><a href="#final-project-checklist" id="toc-final-project-checklist" class="nav-link" data-scroll-target="#final-project-checklist"><span class="header-section-number">D.12</span> Final project checklist</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">D.13</span> Takeaways</a></li>
+  <li><a href="#previous-student-projects" id="toc-previous-student-projects" class="nav-link" data-scroll-target="#previous-student-projects"><span class="header-section-number">D.14</span> Previous student projects</a>
+  <ul class="collapse">
+  <li><a href="#fall-2024" id="toc-fall-2024" class="nav-link" data-scroll-target="#fall-2024">Fall 2024</a></li>
+  <li><a href="#spring-2025" id="toc-spring-2025" class="nav-link" data-scroll-target="#spring-2025">Spring 2025</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./quarto.html">Appendices</a></li><li class="breadcrumb-item"><a href="./final_project_notes.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Final Project Workflow</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./links.html">Appendices</a></li><li class="breadcrumb-item"><a href="./final_project_notes.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Final Project</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix B — Final Project Workflow</h1>
+<h1 class="title">Appendix D — Final Project</h1>
 </div>
 
 
@@ -368,78 +381,319 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="separate-preparation-from-presentation" class="level2" data-number="B.1">
-<h2 data-number="B.1" class="anchored" data-anchor-id="separate-preparation-from-presentation"><span class="header-section-number">B.1</span> Separate preparation from presentation</h2>
-<p>Use one reproducible script to clean and validate the data, then save a single named object as RDS:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>analysis_data <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># cleaning steps</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">identity</span>()</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">anyNA</span>(analysis_data<span class="sc">$</span>key))</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(analysis_data, <span class="st">"data/processed/analysis_data.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Load it explicitly in each page that needs it:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>analysis_data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/processed/analysis_data.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>RDS is preferable here to <code>.RData</code> because <code>readRDS()</code> returns one object whose name you choose. <code>load()</code> can silently add several pre-named objects to the environment.</p>
+<section id="plan-the-project" class="level2" data-number="D.1">
+<h2 data-number="D.1" class="anchored" data-anchor-id="plan-the-project"><span class="header-section-number">D.1</span> Plan the project</h2>
+<p>A final project should use the same workflow as the main chapters:</p>
+<ol type="1">
+<li>choose a focused reporting question;</li>
+<li>record the source and access date;</li>
+<li>state what one row represents;</li>
+<li>clean and analyse with a reproducible R Markdown document;</li>
+<li>check the main calculations;</li>
+<li>create one or more clear charts;</li>
+<li>report beyond the dataset when an explanation is needed; and</li>
+<li>explain what the evidence cannot show.</li>
+</ol>
+<p>For the final story, create a <strong>new RStudio Project</strong> so it can be shared as one complete piece of work. Use the same simple structure practised throughout the book: a <code>data</code> folder, an <code>outputs</code> folder, and one main R Markdown document.</p>
 </section>
-<section id="save-a-static-chart" class="level2" data-number="B.2">
-<h2 data-number="B.2" class="anchored" data-anchor-id="save-a-static-chart"><span class="header-section-number">B.2</span> Save a static chart</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"outputs/main-chart.png"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> main_chart,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">8</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">5</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">dpi =</span> <span class="dv">300</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Insert it with alt text:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="al">![A concise description of the chart's main pattern.](outputs/main-chart.png)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="begin-with-a-focused-question-and-story-hypothesis" class="level2" data-number="D.2">
+<h2 data-number="D.2" class="anchored" data-anchor-id="begin-with-a-focused-question-and-story-hypothesis"><span class="header-section-number">D.2</span> Begin with a focused question and story hypothesis</h2>
+<p>A <strong>story hypothesis</strong> is a statement to test, not a conclusion already assumed to be true. It gives the analysis direction while allowing the evidence to confirm, revise, or reject the initial idea.</p>
+<p>For example, a project might begin with:</p>
+<blockquote class="blockquote">
+<p>A small number of categories account for a large share of the reported total.</p>
+</blockquote>
+<p>Turn the broad idea into a question that names the population, measure, place, and period. Avoid wording that assumes a cause or outcome the dataset does not record.</p>
 </section>
-<section id="choose-geometry-from-the-data-structure" class="level2" data-number="B.3">
-<h2 data-number="B.3" class="anchored" data-anchor-id="choose-geometry-from-the-data-structure"><span class="header-section-number">B.3</span> Choose geometry from the data structure</h2>
-<p>Use a line only when the x variable has a meaningful order, usually time. For a relationship between two unordered numeric variables, use points:</p>
+<section id="keep-the-downloaded-file-unchanged" class="level2" data-number="D.3">
+<h2 data-number="D.3" class="anchored" data-anchor-id="keep-the-downloaded-file-unchanged"><span class="header-section-number">D.3</span> Keep the downloaded file unchanged</h2>
+<p>Preserve the downloaded source file. If you need to save a cleaned table, give it a new name using the tidyverse <code>write_csv()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> qsec)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#1769AA"</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Quarter-mile time and horsepower"</span>,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Horsepower"</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Quarter-mile time (seconds)"</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="final_project_notes_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(analysis_data, <span class="st">"data/analysis_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Load that prepared table in the document that uses it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>analysis_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/analysis_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>Connecting cars with a line would imply a sequence that does not exist.</p>
+<p>This keeps the project inside the same CSV and tidyverse workflow used throughout the book.</p>
 </section>
-<section id="final-project-checklist" class="level2" data-number="B.4">
-<h2 data-number="B.4" class="anchored" data-anchor-id="final-project-checklist"><span class="header-section-number">B.4</span> Final project checklist</h2>
+<section id="choose-a-chart-that-matches-the-question" class="level2" data-number="D.4">
+<h2 data-number="D.4" class="anchored" data-anchor-id="choose-a-chart-that-matches-the-question"><span class="header-section-number">D.4</span> Choose a chart that matches the question</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Common starting chart</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>How often does each category appear?</td>
+<td>Bar chart</td>
+</tr>
+<tr class="even">
+<td>How is one numeric variable distributed?</td>
+<td>Histogram or box plot</td>
+</tr>
+<tr class="odd">
+<td>Which categories have larger values?</td>
+<td>Ordered bar chart or dot plot</td>
+</tr>
+<tr class="even">
+<td>How do distributions differ across groups?</td>
+<td>Box plot</td>
+</tr>
+<tr class="odd">
+<td>Are two numeric variables related?</td>
+<td>Scatterplot</td>
+</tr>
+<tr class="even">
+<td>How did a value change over time?</td>
+<td>Line chart</td>
+</tr>
+<tr class="odd">
+<td>Does geographic pattern matter?</td>
+<td>Map supported by a table</td>
+</tr>
+</tbody>
+</table>
+<p>The chart title should name the measure actually calculated. Avoid a line between observations that do not have a meaningful order.</p>
+</section>
+<section id="save-a-chart" class="level2" data-number="D.5">
+<h2 data-number="D.5" class="anchored" data-anchor-id="save-a-chart"><span class="header-section-number">D.5</span> Save a chart</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"outputs/main-chart.png"</span>, main_chart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>ggsave()</code> has optional arguments for width, height, and resolution when a publishing platform has specific requirements. Begin with the filename and chart object, then add those options only if they are needed.</p>
+</section>
+<section id="make-an-evidence-table-before-drafting" class="level2" data-number="D.6">
+<h2 data-number="D.6" class="anchored" data-anchor-id="make-an-evidence-table-before-drafting"><span class="header-section-number">D.6</span> Make an evidence table before drafting</h2>
+<p>An evidence table connects possible claims to calculations and reporting still needed. Fill it with actual values and source checks rather than drafting from memory or from the appearance of a chart:</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Possible claim</th>
+<th>Evidence in the data</th>
+<th>What still needs checking?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>One category has the largest total</td>
+<td>Group summary and source row</td>
+<td>Confirm the value and unit</td>
+</tr>
+<tr class="even">
+<td>One group has the largest share</td>
+<td>Numerator and full denominator</td>
+<td>Check excluded or missing categories</td>
+</tr>
+<tr class="odd">
+<td>A measure increased over time</td>
+<td>Comparable annual observations</td>
+<td>Investigate changes in definitions</td>
+</tr>
+<tr class="even">
+<td>Two variables appear related</td>
+<td>Table and scatterplot</td>
+<td>Find evidence that could explain the pattern</td>
+</tr>
+</tbody>
+</table>
+<p>The table can confirm, narrow, or reject the original story hypothesis.</p>
+</section>
+<section id="separate-description-from-explanation" class="level2" data-number="D.7">
+<h2 data-number="D.7" class="anchored" data-anchor-id="separate-description-from-explanation"><span class="header-section-number">D.7</span> Separate description from explanation</h2>
+<p>A dataset can identify and measure a pattern without explaining why it occurred. Explanations may require documents, interviews, subject expertise, or another dataset.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="A pattern is not an explanation">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A pattern is not an explanation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the data to describe what changed, differed, or appeared related. Treat a possible explanation as a reporting lead until additional evidence supports it. A plausible explanation does not become a fact because it fits the chart.</p>
+</div>
+</div>
+</section>
+<section id="verify-the-important-numbers" class="level2" data-number="D.8">
+<h2 data-number="D.8" class="anchored" data-anchor-id="verify-the-important-numbers"><span class="header-section-number">D.8</span> Verify the important numbers</h2>
+<p>Before drafting:</p>
+<ol type="1">
+<li>check important rows against the original source;</li>
+<li>make sure every percentage has a clearly named denominator;</li>
+<li>compare chart values with the table used to create the chart;</li>
+<li>inspect unmatched categories from joins or maps;</li>
+<li>record the reporting period and download date; and</li>
+<li>write down at least one important limitation.</li>
+</ol>
+</section>
+<section id="write-a-short-methods-note" class="level2" data-number="D.9">
+<h2 data-number="D.9" class="anchored" data-anchor-id="write-a-short-methods-note"><span class="header-section-number">D.9</span> Write a short methods note</h2>
+<p>A reader-friendly methods note should state:</p>
 <ul>
-<li>raw data preserved unchanged;</li>
-<li>source, access date, and terms recorded;</li>
-<li>grain stated before and after aggregation;</li>
-<li>cleaned data regenerated by a script;</li>
-<li>denominators explicit;</li>
-<li>joins audited for unmatched and duplicated keys;</li>
-<li>at least three machine-readable checks;</li>
-<li>chart values reconciled with a table;</li>
-<li>causal language supported by appropriate evidence;</li>
-<li>methods and limitations written for readers; and</li>
-<li>the full site renders after restarting R.</li>
+<li>who published the data;</li>
+<li>what period the analysis covers;</li>
+<li>what one row represents;</li>
+<li>the important filters, groups, and calculations;</li>
+<li>how missing or unmatched values were handled; and</li>
+<li>what the data cannot establish.</li>
+</ul>
+<p>Write the note for a reader, not as a list of R commands. Name the analytical decisions and their consequences.</p>
+</section>
+<section id="organize-the-story" class="level2" data-number="D.10">
+<h2 data-number="D.10" class="anchored" data-anchor-id="organize-the-story"><span class="header-section-number">D.10</span> Organize the story</h2>
+<p>A concise data story can follow this order:</p>
+<ol type="1">
+<li><strong>Lead:</strong> the strongest verified finding.</li>
+<li><strong>Context:</strong> what the data cover and why the finding matters.</li>
+<li><strong>Evidence:</strong> a clear table or chart with exact values.</li>
+<li><strong>Reporting:</strong> documents or interviews that test explanations.</li>
+<li><strong>Limitations:</strong> what the evidence cannot show.</li>
+<li><strong>Methods:</strong> source, period, unit of analysis, and main calculation.</li>
+</ol>
+<p>The goal is not to include every calculation. Select the evidence that answers the reporting question and helps the reader understand why it matters.</p>
+</section>
+<section id="prepare-the-final-project-proposal" class="level2" data-number="D.11">
+<h2 data-number="D.11" class="anchored" data-anchor-id="prepare-the-final-project-proposal"><span class="header-section-number">D.11</span> Prepare the final project proposal</h2>
+<p>Before completing the full story, submit:</p>
+<ul>
+<li>one focused reporting question;</li>
+<li>one testable story hypothesis;</li>
+<li>a four-row evidence table;</li>
+<li>one draft chart;</li>
+<li>two outside sources to consult;</li>
+<li>a draft methods paragraph; and</li>
+<li>one claim rejected because the available evidence cannot support it.</li>
+</ul>
+</section>
+<section id="final-project-checklist" class="level2" data-number="D.12">
+<h2 data-number="D.12" class="anchored" data-anchor-id="final-project-checklist"><span class="header-section-number">D.12</span> Final project checklist</h2>
+<ul>
+<li>The question is focused enough to answer with the available data.</li>
+<li>The original data are preserved unchanged.</li>
+<li>The source, access date, and reporting period are recorded.</li>
+<li>The meaning of one row is stated.</li>
+<li>Important filters and exclusions are explained.</li>
+<li>Every percentage has a clear denominator.</li>
+<li>Join keys and unmatched rows are checked.</li>
+<li>The main numbers agree with the source or a second calculation.</li>
+<li>Every major possible claim appears in the evidence table.</li>
+<li>Chart titles, labels, units, and sources are complete.</li>
+<li>Explanations and causal language have evidence beyond a visible pattern.</li>
+<li>Relevant documents, experts, or interviews have been used to test explanations.</li>
+<li>The limitations are written for the reader.</li>
+<li>The R Markdown document knits after restarting R.</li>
+</ul>
+</section>
+<section id="takeaways" class="level2" data-number="D.13">
+<h2 data-number="D.13" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">D.13</span> Takeaways</h2>
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function or practice</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>write_csv()</code></td>
+<td>Saves a prepared table without overwriting the source</td>
+</tr>
+<tr class="even">
+<td><code>read_csv()</code></td>
+<td>Reloads the prepared table with the familiar import workflow</td>
+</tr>
+<tr class="odd">
+<td><code>ggsave()</code></td>
+<td>Saves a chart for publication</td>
+</tr>
+<tr class="even">
+<td>Story hypothesis</td>
+<td>Gives the analysis an idea that can be tested and revised</td>
+</tr>
+<tr class="odd">
+<td>Evidence table</td>
+<td>Connects possible claims to calculations and checks</td>
+</tr>
+<tr class="even">
+<td>Outside reporting</td>
+<td>Tests explanations the dataset cannot provide</td>
+</tr>
+<tr class="odd">
+<td>Source and methods note</td>
+<td>Makes the reporting process transparent</td>
+</tr>
+<tr class="even">
+<td>Rejected claim</td>
+<td>Shows that the evidence was evaluated rather than merely collected</td>
+</tr>
+<tr class="odd">
+<td>Fresh knit</td>
+<td>Checks that the document contains every step needed to reproduce it</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="previous-student-projects" class="level2" data-number="D.14">
+<h2 data-number="D.14" class="anchored" data-anchor-id="previous-student-projects"><span class="header-section-number">D.14</span> Previous student projects</h2>
+<p>The projects below were created by previous students in <strong>JMSC1003: Fundamentals of Data Journalism</strong>. New students can browse them to understand the expected scope of the final project and see the different forms a data-driven story can take.</p>
+<p>As you look through them, notice how each student:</p>
+<ul>
+<li>chooses a focused reporting question;</li>
+<li>uses data as evidence;</li>
+<li>selects and explains the most important findings; and</li>
+<li>combines writing and visualization to guide the reader.</li>
+</ul>
+<p>The topics and approaches vary. They are examples of what is possible, not templates that every project must follow.</p>
+<section id="fall-2024" class="level3">
+<h3 class="anchored" data-anchor-id="fall-2024">Fall 2024</h3>
+<ul>
+<li><a href="https://yongershen.quarto.pub/yonger-final-project-dj/">HK Elderly Abuse</a> — <em>Shen, Yonger</em></li>
+<li><a href="https://cindy-ningxy.quarto.pub/xiuyuan-final-project/">US Mass Shootings in 2024</a> — <em>Ning, Xiuyuan Cindy</em></li>
+<li><a href="https://angelicawan927.quarto.pub/angelicazhixin_final/">China’s Movie Revenue</a> — <em>Wan, Zhixin Angelica</em></li>
+<li><a href="https://tesstang.quarto.pub/xinyue_final_project/">Child Abuse Cases in Hong Kong</a> — <em>Tang, Xinyue Tess</em></li>
+<li><a href="https://eveqiao.quarto.pub/yushan_finalproject/">Esports Revenue Trends</a> — <em>Qiao, Yushan Eve</em></li>
+<li><a href="https://lanqingm.quarto.pub/carbon-emissions/">Tracking Carbon Emissions</a> — <em>Mao, Lanqing</em></li>
+</ul>
+</section>
+<section id="spring-2025" class="level3">
+<h3 class="anchored" data-anchor-id="spring-2025">Spring 2025</h3>
+<section id="undergraduate-students" class="level4">
+<h4 class="anchored" data-anchor-id="undergraduate-students">Undergraduate students</h4>
+<ul>
+<li><a href="https://sarahjody.quarto.pub/sarahjody-finalproject-website/">War on Drugs in the Philippines (2016–2022)</a> — <em>Siquig Castañeto, Sarah Jody</em></li>
+<li><a href="https://snow-brandon.quarto.pub/brandon-finalproject/">The Journey of Women in the Olympics (1896–2024)</a> — <em>Feng, Brandon</em></li>
+<li><a href="https://ethanlim.quarto.pub/ethan-website/">Global Migration Deaths</a> — <em>Lim, Haan Hoong Ethan</em></li>
+<li><a href="https://chloechan.quarto.pub/demo-website/">Trends in SEN Student Numbers (2019–2024)</a> — <em>Chan, Lok Yiu Chloe</em></li>
+<li><a href="https://huangshixian.quarto.pub/olympic-performance/">Olympic Performance Over Time</a> — <em>Huang, Shixian</em></li>
+<li><a href="https://chonwun-shen.quarto.pub/shen-chon-wuns-final-project/">Global Video Game Preference 2024</a> — <em>Shen, Chon Wun</em></li>
+<li><a href="https://joshuakwok.quarto.pub/joshuakwok-quarto/analysis.html">Government Funding Allocation to National Sports Associations</a> — <em>Kwok, Joshua</em></li>
+</ul>
+</section>
+<section id="masters-students" class="level4">
+<h4 class="anchored" data-anchor-id="masters-students">Master’s students</h4>
+<ul>
+<li><a href="https://lexitian.quarto.pub/website/">Global EV Revolution</a> — <em>Tian, Xinlu Lexi</em></li>
+<li><a href="https://cindyxie.quarto.pub/cindy-website/">Global HIV/AIDS Condition</a> — <em>Xie, Xindi Cindy</em></li>
+<li><a href="https://rubypeng.quarto.pub/httpquartopubcomrubypengglobal-animal-health-outbreak-report/">Global Animal Health Outbreak Report</a> — <em>Peng, Ruixin Ruby</em></li>
 </ul>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -832,13 +1086,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./quarto.html" class="pagination-link  aria-label=" &lt;span="" a="" quarto="" website&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Publish a Quarto Website</span></span>
+      <a href="./debug.html" class="pagination-link  aria-label=" &lt;span="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Debugging</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./links.html" class="pagination-link" aria-label="<span class='chapter-number'>C</span>&nbsp; <span class='chapter-title'>Useful Links</span>">
-        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Useful Links</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./additional-practice.html" class="pagination-link" aria-label="<span class='chapter-number'>E</span>&nbsp; <span class='chapter-title'>Practice Labs</span>">
+        <span class="nav-page-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Practice Labs</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

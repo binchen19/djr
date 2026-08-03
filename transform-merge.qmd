@@ -1,245 +1,359 @@
 ---
-title: "Combine Years, Join Tables, and Reshape Data"
+title: "Combine and Reshape"
 ---
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- distinguish stacking rows from joining columns;
-- combine annual files while preserving the report year and source;
-- use join keys and relationship checks deliberately;
-- audit matched and unmatched records; and
-- pivot between long and wide forms without losing the unit of analysis.
+- combine similar tables with `bind_rows()`;
+- add columns from another table with `left_join()`;
+- choose a suitable join key;
+- reshape data with `pivot_wider()` and `pivot_longer()`;
+- calculate annual totals and year-to-year change; and
+- describe a trend without confusing it with investment flows or returns.
 
-## Newsroom question
+## Where this chapter fits
 
-> How did the geographic distribution of reported equity holdings change from
-> the first to the latest year in the rolling teaching panel?
+The previous chapter worked with one table. Reporting projects often contain
+several annual files or related tables. The tidyverse gives us tools for
+preparing those tables and answering questions across time:
 
-This question requires more than one snapshot. The prepared panel contains ten
-year-end files:
+| Task | Function |
+|---|---|
+| Put similar observations underneath one another | `bind_rows()` |
+| Add variables by matching a key | `left_join()` |
+| Change the arrangement of rows and columns | `pivot_wider()` or `pivot_longer()` |
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `05-combine-reshape.Rmd`. Download
+[`gpfg_equities_last_10_years.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_equities_last_10_years.csv)
+and save it in the same `data` folder. Keep the latest-year file there too.
+:::
+
+## Load the multi-year data
 
 ```{r}
 library(tidyverse)
 
-gpfg_panel <- readRDS(
-  "data/processed/gpfg_equities_last_10_years.rds"
-)
-
-panel_years <- sort(unique(gpfg_panel$year))
-start_year <- min(panel_years)
-end_year <- max(panel_years)
-
-stopifnot(length(panel_years) == 10)
-stopifnot(all(diff(panel_years) == 1))
+gpfg_panel <- read_csv("data/gpfg_equities_last_10_years.csv")
 
 gpfg_panel |>
   count(year)
 ```
 
-The input grain is one equity holding at one year-end. The same published name
-may appear in several years, so the pair `year + company`—not `company`
-alone—is the apparent key for this teaching period.
+One row represents one reported holding in one year. The `year` column keeps
+observations from different files distinguishable.
+
+The result should show ten consecutive years. Check this before calculating a
+trend. If a year is missing, determine whether the source file is absent or
+whether the publisher changed the data.
+
+## Stack rows with `bind_rows()`
+
+Suppose two annual tables have the same columns. `bind_rows()` places the rows
+of the second table below the first:
 
 ```{r}
-duplicate_keys <- gpfg_panel |>
-  count(year, company) |>
-  filter(n > 1)
+holdings_2024 <- gpfg_panel |>
+  filter(year == 2024)
 
-duplicate_keys
-```
+holdings_2025 <- gpfg_panel |>
+  filter(year == 2025)
 
-## Stack observations with `bind_rows()`
-
-When tables have the same variables and represent different observations,
-stack their rows:
-
-```{r}
-gpfg_start <- gpfg_panel |>
-  filter(year == start_year)
-
-gpfg_latest <- gpfg_panel |>
-  filter(year == end_year)
-
-two_years <- bind_rows(gpfg_start, gpfg_latest)
+two_years <- bind_rows(holdings_2024, holdings_2025)
 
 two_years |>
   count(year)
 ```
 
-The report year must exist before stacking. Otherwise, identical-looking rows
-from different snapshots cannot be distinguished.
+Use `bind_rows()` when the tables describe the same variables but different
+observations. Make sure a year or date column exists before combining annual
+files.
 
-The complete preparation script reads all available official annual Excel files,
-extracts the year from each filename, standardizes names and types, and then
-uses `map_dfr()` to combine them. The key pattern is:
+::: {.callout-tip title="Check names before stacking"}
+Columns with the same meaning should have the same name. If one file uses
+`company` and another uses `company_name`, rename them consistently before
+using `bind_rows()`.
+:::
+
+## Add columns with `left_join()`
+
+A join connects two tables by a shared column called a **key**. First create a
+country summary and a country-to-region reference table. `distinct()` keeps
+each country-region combination once:
 
 ```{r}
-#| eval: false
-raw_files <- list.files(
-  "data/raw/gpfg",
-  pattern = "xlsx$",
-  full.names = TRUE
-)
+country_totals <- holdings_2025 |>
+  group_by(country) |>
+  summarise(market_value_nok = sum(market_value_nok))
 
-combined <- raw_files |>
-  map_dfr(read_one_annual_file)
+country_regions <- holdings_2025 |>
+  distinct(country, region)
 ```
 
-`read_one_annual_file()` is defined and validated in
-`scripts/prepare_gpfg.R`. Keeping that logic in a script prevents every chapter
-from cleaning the same files differently.
-
-## Join variables with `left_join()`
-
-A join adds columns by matching keys. First create a one-row-per-year table:
+`left_join()` keeps every row from the table on the left and adds matching
+columns from the table on the right:
 
 ```{r}
-annual_totals <- gpfg_panel |>
-  summarise(
-    annual_market_value_nok = sum(market_value_nok),
-    annual_records = n(),
-    .by = year
-  )
+country_totals <- country_totals |>
+  left_join(country_regions, by = "country")
+
+country_totals |>
+  slice_head(n = 5)
 ```
 
-Join each year's total back to every holding in that year:
+The essential join argument is `by`, which names the matching key. Here the
+value in `country` must match in both tables.
+
+Check keys that did not match with `anti_join()`:
 
 ```{r}
-rows_before <- nrow(gpfg_panel)
-
-gpfg_with_share <- gpfg_panel |>
-  left_join(
-    annual_totals,
-    by = "year",
-    relationship = "many-to-one"
-  ) |>
-  mutate(
-    share_of_annual_value = market_value_nok / annual_market_value_nok
-  )
-
-stopifnot(nrow(gpfg_with_share) == rows_before)
+country_totals |>
+  anti_join(country_regions, by = "country")
 ```
 
-`relationship = "many-to-one"` documents the expectation that many holdings
-match exactly one annual total. If the right-hand table accidentally contains
-two rows for a year, the join fails instead of silently duplicating holdings.
+An empty result means every country in the left table found a match. It does
+not prove that the labels themselves are correct, so important matches still
+need source checking.
 
-## Audit unmatched keys
+## Long and wide data
 
-Never assume that two tables use the same labels. Before mapping, for example,
-country names may differ:
+**Long data** usually place the year in one column and the value in another:
 
-```{r}
-country_lookup_example <- tibble(
-  country = c("United States", "China", "Japan"),
-  short_label = c("US", "China", "Japan")
-)
+| country | year | market_value_nok |
+|---|---:|---:|
+| China | 2024 | ... |
+| China | 2025 | ... |
 
-gpfg_latest |>
-  distinct(country) |>
-  anti_join(country_lookup_example, by = "country") |>
-  slice_head(n = 10)
-```
+**Wide data** place different years in different columns:
 
-`anti_join()` answers “which keys on the left have no match on the right?” A
-missing match is not automatically safe to drop. It may reveal a spelling
-difference, a changed country name, a different definition, or genuinely
-missing reference data.
+| country | 2024 | 2025 |
+|---|---:|---:|
+| China | ... | ... |
 
-Use these checks around a consequential join:
+Long data are convenient for grouping and charts. Wide data can make a direct
+two-year comparison easier.
+
+Create a long country-year table:
 
 ```{r}
-#| eval: false
-left_only  <- anti_join(left_table, right_table, by = "key")
-right_only <- anti_join(right_table, left_table, by = "key")
-
-joined <- left_table |>
-  left_join(right_table, by = "key", relationship = "many-to-one")
-
-stopifnot(nrow(joined) == nrow(left_table))
-```
-
-## Summarise before comparing years
-
-Company names are not stable identifiers across a decade. For the main trend
-analysis, aggregate to a defensible grain such as country-year:
-
-```{r}
-country_year <- gpfg_panel |>
-  summarise(
-    market_value_nok = sum(market_value_nok),
-    holding_records = n(),
-    .by = c(year, country)
-  )
+country_year <- two_years |>
+  group_by(country, year) |>
+  summarise(market_value_nok = sum(market_value_nok))
 
 country_year
 ```
 
-One row now represents one country in one year.
+## Make data wider
 
-## Pivot to compare columns
-
-Long data are usually easiest for analysis and plotting. Wide data can make a
-two-year comparison easier to read:
+`pivot_wider()` needs to know which column supplies the new column names and
+which column supplies their values:
 
 ```{r}
-country_change <- country_year |>
-  filter(year %in% c(start_year, end_year)) |>
-  mutate(period = if_else(year == start_year, "start", "end")) |>
-  select(period, country, market_value_nok) |>
+country_wide <- country_year |>
   pivot_wider(
-    names_from = period,
-    values_from = market_value_nok,
-    names_prefix = "value_"
-  ) |>
-  mutate(
-    absolute_change_nok = value_end - value_start,
-    percent_change = absolute_change_nok / value_start
+    names_from = year,
+    values_from = market_value_nok
   )
 
-country_change |>
-  arrange(desc(absolute_change_nok)) |>
-  slice_head(n = 10)
+country_wide
 ```
 
-Inspect missing values after the pivot. A country present in the latest year but absent in
-the starting year has no valid percent change because the denominator is missing or
-zero.
+Each country now has separate columns for 2024 and 2025.
 
-Return to long form with:
+## Make data longer
+
+`pivot_longer()` gathers those year columns back into two columns:
 
 ```{r}
-country_change |>
-  select(country, value_start, value_end) |>
+country_long <- country_wide |>
   pivot_longer(
-    cols = starts_with("value_"),
+    cols = c(`2024`, `2025`),
     names_to = "year",
-    names_prefix = "value_",
     values_to = "market_value_nok"
-  ) |>
-  mutate(year = if_else(year == "start", start_year, end_year))
+  )
+
+country_long
 ```
 
-## What a join cannot solve
+The essential arguments identify the columns to gather, the name of the new
+category column, and the name of the new value column.
 
-A join matches labels; it does not prove that the matched records represent the
-same real-world entity. Over ten years, company names can change because of
-mergers, demergers, punctuation, rebranding, or data-entry conventions. Only
-3,285 published names appear in all ten teaching snapshots.
+## Use the combined data to answer trend questions
 
-For beginner analysis, use country-, region-, or carefully defined
-industry-level trends. Treat company-level longitudinal matching as an advanced
-record-linkage project requiring external identifiers and manual verification.
+Combining annual observations is not an end in itself. It allows us to ask:
 
-## Independent task
+> How did reported year-end equity market value change over the ten-year
+> period?
 
-Choose three countries and create a country-year table for the rolling ten-year period. Then:
+A trend requires several comparable time points. Before calculating it, make
+sure the row meaning, units, and categories are reasonably consistent across
+the years.
 
-1. confirm there is at most one row per country-year;
-2. pivot it wide and calculate start-to-end change;
-3. identify any missing starting or ending values;
-4. pivot it back to long form; and
-5. write a methods note explaining why the result is about year-end market
-   value, not net investment flows.
+### Calculate annual totals
+
+Group the combined data by year and add the market values:
+
+```{r}
+annual <- gpfg_panel |>
+  group_by(year) |>
+  summarise(
+    holding_records = n(),
+    market_value_nok = sum(market_value_nok)
+  ) |>
+  arrange(year)
+
+annual
+```
+
+One row now represents one annual snapshot. Ordering by year matters because
+the next calculation compares each row with the row before it.
+
+### Calculate year-to-year change
+
+`lag()` returns the previous value in a column. Add it first so the comparison
+is visible:
+
+```{r}
+annual_change <- annual |>
+  mutate(previous_year_value = lag(market_value_nok))
+
+annual_change
+```
+
+The first row contains `NA` because this file has no earlier year with which to
+compare it. Now calculate absolute and percentage change:
+
+```{r}
+annual_change <- annual_change |>
+  mutate(
+    change_nok = market_value_nok - previous_year_value,
+    change_percent = change_nok / previous_year_value * 100
+  )
+
+annual_change
+```
+
+::: {.callout-tip title="Sort before using lag()"}
+`lag()` uses the current row order. Arrange a time series by year before
+calculating change, even when the source appears to be correctly ordered.
+:::
+
+### Follow the same markets over time
+
+Choose a small, fixed set of markets so every year refers to the same groups:
+
+```{r}
+selected_countries <- c("United States", "China", "Japan")
+
+country_trends <- gpfg_panel |>
+  filter(country %in% selected_countries) |>
+  group_by(year, country) |>
+  summarise(market_value_nok = sum(market_value_nok)) |>
+  arrange(country, year)
+
+country_trends
+```
+
+Selecting a different set of leading markets in every year would change the
+membership of the comparison and make the pattern harder to interpret.
+
+### Compare amounts and shares
+
+A market's value can rise while its share of the full portfolio falls. First
+create the annual denominator:
+
+```{r}
+annual_totals <- gpfg_panel |>
+  group_by(year) |>
+  summarise(annual_market_value_nok = sum(market_value_nok))
+```
+
+Join the denominator to the selected-market table and calculate the share:
+
+```{r}
+country_trends <- country_trends |>
+  left_join(annual_totals, by = "year") |>
+  mutate(
+    share_percent = market_value_nok / annual_market_value_nok * 100
+  )
+
+country_trends
+```
+
+The value answers “how many Norwegian kroner?” The share answers “what
+percentage of the reported annual equity total?” A finding should name which
+measure it uses.
+
+### Interpret changes carefully
+
+A change in year-end market value can reflect:
+
+- changes in security prices;
+- exchange-rate movements;
+- purchases and sales;
+- companies entering or leaving the portfolio; or
+- changes in classifications and reporting.
+
+The holdings data do not separate these causes. Do not call the percentage
+change an investment return, and do not assume it equals the amount purchased
+during the year.
+
+::: {.callout-note title="Categories can change over time"}
+NBIM's industry labels change within the historical series. Compare the labels
+used in each period before drawing an industry trend. Company names can also
+change after mergers or rebranding, so market- or industry-level trends are
+usually safer for a beginner project.
+:::
+
+## Practice
+
+### Activity 1: Reshape two years
+
+Use the 2024 and 2025 holdings to:
+
+1. calculate one row per industry and year;
+2. pivot the result so the two years appear in separate columns;
+3. identify industries missing from either year; and
+4. pivot the table back to long form.
+
+Explain what one row represents before and after each pivot.
+
+### Activity 2: Investigate one market over time
+
+Choose one market and create a year-by-year table containing:
+
+1. market value in Norwegian kroner;
+2. previous-year market value;
+3. absolute annual change;
+4. percentage annual change; and
+5. share of the full annual total.
+
+Identify the largest rise and fall by sorting the table. Write a headline that
+describes the change without using the words *return*, *profit*, or
+*purchased*.
+
+## Takeaways
+
+| Function | What it does |
+|---|---|
+| `bind_rows()` | Stacks similar observations underneath one another |
+| `distinct()` | Keeps unique combinations of selected columns |
+| `left_join()` | Adds columns by matching a key while keeping the left table |
+| `anti_join()` | Shows rows on the left that have no match on the right |
+| `pivot_wider()` | Spreads one category across several columns |
+| `pivot_longer()` | Gathers several columns into a names column and a values column |
+| `group_by(year)` + `summarise()` | Creates one summary row per year |
+| `arrange(year)` | Places observations in chronological order |
+| `lag()` | Returns the value from the previous row |
+| `mutate()` | Calculates changes, percentages, and shares |
+| Fixed comparison set | Keeps the same groups in every period |
+| Amount and share | Answer different questions about change |
+
+::: {.callout-tip title="Want more control?"}
+Begin with the essential arguments above and inspect every result. The official
+[tidyr pivoting guide](https://tidyr.tidyverse.org/articles/pivot.html) and
+[dplyr reference](https://dplyr.tidyverse.org/reference/index.html) cover
+additional join, reshape, and time-comparison options for unusual cases.
+:::

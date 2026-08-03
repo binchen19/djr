@@ -1,82 +1,234 @@
 ---
-title: "Final Project Workflow"
+title: "Final Project"
 ---
 
-## Separate preparation from presentation
+## Plan the project
 
-Use one reproducible script to clean and validate the data, then save a single
-named object as RDS:
+A final project should use the same workflow as the main chapters:
+
+1. choose a focused reporting question;
+2. record the source and access date;
+3. state what one row represents;
+4. clean and analyse with a reproducible R Markdown document;
+5. check the main calculations;
+6. create one or more clear charts;
+7. report beyond the dataset when an explanation is needed; and
+8. explain what the evidence cannot show.
+
+For the final story, create a **new RStudio Project** so it can be shared as one
+complete piece of work. Use the same simple structure practised throughout the
+book: a `data` folder, an `outputs` folder, and one main R Markdown document.
+
+## Begin with a focused question and story hypothesis
+
+A **story hypothesis** is a statement to test, not a conclusion already
+assumed to be true. It gives the analysis direction while allowing the
+evidence to confirm, revise, or reject the initial idea.
+
+For example, a project might begin with:
+
+> A small number of categories account for a large share of the reported
+> total.
+
+Turn the broad idea into a question that names the population, measure, place,
+and period. Avoid wording that assumes a cause or outcome the dataset does not
+record.
+
+## Keep the downloaded file unchanged
+
+Preserve the downloaded source file. If you need to save a cleaned table, give
+it a new name using the tidyverse `write_csv()` function:
 
 ```{r}
 #| eval: false
-analysis_data <- raw_data |>
-  # cleaning steps
-  identity()
-
-stopifnot(!anyNA(analysis_data$key))
-saveRDS(analysis_data, "data/processed/analysis_data.rds")
+write_csv(analysis_data, "data/analysis_data.csv")
 ```
 
-Load it explicitly in each page that needs it:
+Load that prepared table in the document that uses it:
 
 ```{r}
 #| eval: false
-analysis_data <- readRDS("data/processed/analysis_data.rds")
+analysis_data <- read_csv("data/analysis_data.csv")
 ```
 
-RDS is preferable here to `.RData` because `readRDS()` returns one object whose
-name you choose. `load()` can silently add several pre-named objects to the
-environment.
+This keeps the project inside the same CSV and tidyverse workflow used
+throughout the book.
 
-## Save a static chart
+## Choose a chart that matches the question
+
+| Question | Common starting chart |
+|---|---|
+| How often does each category appear? | Bar chart |
+| How is one numeric variable distributed? | Histogram or box plot |
+| Which categories have larger values? | Ordered bar chart or dot plot |
+| How do distributions differ across groups? | Box plot |
+| Are two numeric variables related? | Scatterplot |
+| How did a value change over time? | Line chart |
+| Does geographic pattern matter? | Map supported by a table |
+
+The chart title should name the measure actually calculated. Avoid a line
+between observations that do not have a meaningful order.
+
+## Save a chart
 
 ```{r}
 #| eval: false
-ggsave(
-  "outputs/main-chart.png",
-  plot = main_chart,
-  width = 8,
-  height = 5,
-  dpi = 300
-)
+ggsave("outputs/main-chart.png", main_chart)
 ```
 
-Insert it with alt text:
+`ggsave()` has optional arguments for width, height, and resolution when a
+publishing platform has specific requirements. Begin with the filename and
+chart object, then add those options only if they are needed.
 
-```markdown
-![A concise description of the chart's main pattern.](outputs/main-chart.png)
-```
+## Make an evidence table before drafting
 
-## Choose geometry from the data structure
+An evidence table connects possible claims to calculations and reporting still
+needed. Fill it with actual values and source checks rather than drafting from
+memory or from the appearance of a chart:
 
-Use a line only when the x variable has a meaningful order, usually time. For a
-relationship between two unordered numeric variables, use points:
+| Possible claim | Evidence in the data | What still needs checking? |
+|---|---|---|
+| One category has the largest total | Group summary and source row | Confirm the value and unit |
+| One group has the largest share | Numerator and full denominator | Check excluded or missing categories |
+| A measure increased over time | Comparable annual observations | Investigate changes in definitions |
+| Two variables appear related | Table and scatterplot | Find evidence that could explain the pattern |
 
-```{r}
-library(ggplot2)
+The table can confirm, narrow, or reject the original story hypothesis.
 
-ggplot(mtcars, aes(x = hp, y = qsec)) +
-  geom_point(color = "#1769AA") +
-  labs(
-    title = "Quarter-mile time and horsepower",
-    x = "Horsepower",
-    y = "Quarter-mile time (seconds)"
-  ) +
-  theme_minimal()
-```
+## Separate description from explanation
 
-Connecting cars with a line would imply a sequence that does not exist.
+A dataset can identify and measure a pattern without explaining why it
+occurred. Explanations may require documents, interviews, subject expertise,
+or another dataset.
+
+::: {.callout-important title="A pattern is not an explanation"}
+Use the data to describe what changed, differed, or appeared related. Treat a
+possible explanation as a reporting lead until additional evidence supports
+it. A plausible explanation does not become a fact because it fits the chart.
+:::
+
+## Verify the important numbers
+
+Before drafting:
+
+1. check important rows against the original source;
+2. make sure every percentage has a clearly named denominator;
+3. compare chart values with the table used to create the chart;
+4. inspect unmatched categories from joins or maps;
+5. record the reporting period and download date; and
+6. write down at least one important limitation.
+
+## Write a short methods note
+
+A reader-friendly methods note should state:
+
+- who published the data;
+- what period the analysis covers;
+- what one row represents;
+- the important filters, groups, and calculations;
+- how missing or unmatched values were handled; and
+- what the data cannot establish.
+
+Write the note for a reader, not as a list of R commands. Name the analytical
+decisions and their consequences.
+
+## Organize the story
+
+A concise data story can follow this order:
+
+1. **Lead:** the strongest verified finding.
+2. **Context:** what the data cover and why the finding matters.
+3. **Evidence:** a clear table or chart with exact values.
+4. **Reporting:** documents or interviews that test explanations.
+5. **Limitations:** what the evidence cannot show.
+6. **Methods:** source, period, unit of analysis, and main calculation.
+
+The goal is not to include every calculation. Select the evidence that answers
+the reporting question and helps the reader understand why it matters.
+
+## Prepare the final project proposal
+
+Before completing the full story, submit:
+
+- one focused reporting question;
+- one testable story hypothesis;
+- a four-row evidence table;
+- one draft chart;
+- two outside sources to consult;
+- a draft methods paragraph; and
+- one claim rejected because the available evidence cannot support it.
 
 ## Final project checklist
 
-- raw data preserved unchanged;
-- source, access date, and terms recorded;
-- grain stated before and after aggregation;
-- cleaned data regenerated by a script;
-- denominators explicit;
-- joins audited for unmatched and duplicated keys;
-- at least three machine-readable checks;
-- chart values reconciled with a table;
-- causal language supported by appropriate evidence;
-- methods and limitations written for readers; and
-- the full site renders after restarting R.
+- The question is focused enough to answer with the available data.
+- The original data are preserved unchanged.
+- The source, access date, and reporting period are recorded.
+- The meaning of one row is stated.
+- Important filters and exclusions are explained.
+- Every percentage has a clear denominator.
+- Join keys and unmatched rows are checked.
+- The main numbers agree with the source or a second calculation.
+- Every major possible claim appears in the evidence table.
+- Chart titles, labels, units, and sources are complete.
+- Explanations and causal language have evidence beyond a visible pattern.
+- Relevant documents, experts, or interviews have been used to test explanations.
+- The limitations are written for the reader.
+- The R Markdown document knits after restarting R.
+
+## Takeaways
+
+| Function or practice | Why it matters |
+|---|---|
+| `write_csv()` | Saves a prepared table without overwriting the source |
+| `read_csv()` | Reloads the prepared table with the familiar import workflow |
+| `ggsave()` | Saves a chart for publication |
+| Story hypothesis | Gives the analysis an idea that can be tested and revised |
+| Evidence table | Connects possible claims to calculations and checks |
+| Outside reporting | Tests explanations the dataset cannot provide |
+| Source and methods note | Makes the reporting process transparent |
+| Rejected claim | Shows that the evidence was evaluated rather than merely collected |
+| Fresh knit | Checks that the document contains every step needed to reproduce it |
+
+## Previous student projects
+
+The projects below were created by previous students in **JMSC1003:
+Fundamentals of Data Journalism**. New students can browse them to understand
+the expected scope of the final project and see the different forms a
+data-driven story can take.
+
+As you look through them, notice how each student:
+
+- chooses a focused reporting question;
+- uses data as evidence;
+- selects and explains the most important findings; and
+- combines writing and visualization to guide the reader.
+
+The topics and approaches vary. They are examples of what is possible, not
+templates that every project must follow.
+
+### Fall 2024
+
+- [HK Elderly Abuse](https://yongershen.quarto.pub/yonger-final-project-dj/) — *Shen, Yonger*
+- [US Mass Shootings in 2024](https://cindy-ningxy.quarto.pub/xiuyuan-final-project/) — *Ning, Xiuyuan Cindy*
+- [China's Movie Revenue](https://angelicawan927.quarto.pub/angelicazhixin_final/) — *Wan, Zhixin Angelica*
+- [Child Abuse Cases in Hong Kong](https://tesstang.quarto.pub/xinyue_final_project/) — *Tang, Xinyue Tess*
+- [Esports Revenue Trends](https://eveqiao.quarto.pub/yushan_finalproject/) — *Qiao, Yushan Eve*
+- [Tracking Carbon Emissions](https://lanqingm.quarto.pub/carbon-emissions/) — *Mao, Lanqing*
+
+### Spring 2025
+
+#### Undergraduate students
+
+- [War on Drugs in the Philippines (2016–2022)](https://sarahjody.quarto.pub/sarahjody-finalproject-website/) — *Siquig Castañeto, Sarah Jody*
+- [The Journey of Women in the Olympics (1896–2024)](https://snow-brandon.quarto.pub/brandon-finalproject/) — *Feng, Brandon*
+- [Global Migration Deaths](https://ethanlim.quarto.pub/ethan-website/) — *Lim, Haan Hoong Ethan*
+- [Trends in SEN Student Numbers (2019–2024)](https://chloechan.quarto.pub/demo-website/) — *Chan, Lok Yiu Chloe*
+- [Olympic Performance Over Time](https://huangshixian.quarto.pub/olympic-performance/) — *Huang, Shixian*
+- [Global Video Game Preference 2024](https://chonwun-shen.quarto.pub/shen-chon-wuns-final-project/) — *Shen, Chon Wun*
+- [Government Funding Allocation to National Sports Associations](https://joshuakwok.quarto.pub/joshuakwok-quarto/analysis.html) — *Kwok, Joshua*
+
+#### Master's students
+
+- [Global EV Revolution](https://lexitian.quarto.pub/website/) — *Tian, Xinlu Lexi*
+- [Global HIV/AIDS Condition](https://cindyxie.quarto.pub/cindy-website/) — *Xie, Xindi Cindy*
+- [Global Animal Health Outbreak Report](https://rubypeng.quarto.pub/httpquartopubcomrubypengglobal-animal-health-outbreak-report/) — *Peng, Ruixin Ruby*
