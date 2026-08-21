@@ -232,3 +232,31 @@ templates that every project must follow.
 - [Global EV Revolution](https://lexitian.quarto.pub/website/) — *Tian, Xinlu Lexi*
 - [Global HIV/AIDS Condition](https://cindyxie.quarto.pub/cindy-website/) — *Xie, Xindi Cindy*
 - [Global Animal Health Outbreak Report](https://rubypeng.quarto.pub/httpquartopubcomrubypengglobal-animal-health-outbreak-report/) — *Peng, Ruixin Ruby*
+
+
+### Fall 2025
+
+#### Undergraduate students
+
+- [Global Energy Statistics](https://harrisonnazer.quarto.pub/harrison-website/) - *Jonah, Nazer Harrison*
+- [The Fight Against Infant Mortality](https://haisonpham.quarto.pub/sons-final-project/) - *Pham, Son Haisong*
+- [HK Rental Pressure](https://gao-xiangze-zoe.quarto.pub/zoes-final/) - *Gao, Xiangze Ze*
+- [Global Health about Respiratory Disease](https://claire77.quarto.pub/claires-final-project/) - *Gu, Raomeng Claire*
+- [Plastic Pollution and GDP Patterns Across East & Southeast Asia](https://yunseonkim.quarto.pub/yunseon-finalproject-website/) - *Kim, Yunseon*
+
+#### Master's students
+
+- [CO2 Emissions](https://vickyzhang0328.quarto.pub/vickyzhang/) - *Zhang, Linzhuo*
+- [AI Investment: Future or Bubble](https://caoruopeng.quarto.pub/ai-investment-future-or-bubble/) - *Cao, Ruopeng*
+- [Femicide — A Persistent Crisis Marked by Regional Disparities and Gendered Violence](https://chenyinuo.quarto.pub/global-femicides/) - *Chen, Yinuo*
+- [Afghan Refugee Movements in a Changing World (2019–2024)](https://raewang852.quarto.pub/afghan-asylum-trends/) - *Wang, Yixin*
+- [World Military Spending](https://eunicexu.quarto.pub/world-military-spending/) - *Xu, Ran*
+- [Hong Kong’s Refugee Asylum Pattern in a Global Context](https://li-jiachen02.quarto.pub/li-jiachen-data-journalism-final-project/) - *Li, Jiachen*
+
+
+
+
+
+
+
+
