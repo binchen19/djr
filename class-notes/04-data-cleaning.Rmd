@@ -1,0 +1,121 @@
+---
+title: "Class 4: Data Cleaning"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Continue with the object imported in Class 3. We will solve four clear
+problems: awkward names, a text date, an incomplete row, and a duplicate.
+
+```{r}
+library(tidyverse)
+
+gpfg_raw <- read_csv("data/gpfg_messy.csv")
+glimpse(gpfg_raw)
+```
+
+## 1. Rename selected columns
+
+```{r}
+gpfg <- gpfg_raw |>
+  rename(
+    year = Year,
+    report_date = `Report Date`,
+    company = `Company Name`,
+    market_value_nok = `Market Value NOK`
+  )
+```
+
+Read each line as `new_name = old_name`. Columns whose names were already
+clear are left alone. `year` may display as `<dbl>`; it is already numeric and
+does not need conversion for this work.
+
+## 2. Convert the date
+
+The source uses day-month-year order, such as `31/12/2025`:
+
+```{r}
+gpfg <- gpfg |>
+  mutate(report_date = dmy(report_date))
+
+glimpse(gpfg)
+```
+
+`mutate()` changes the column. `dmy()` converts day-month-year text to a real
+date. Confirm the order from the source; never guess an ambiguous date.
+
+## 3. Inspect the missing row
+
+```{r}
+gpfg |>
+  filter(is.na(company))
+```
+
+This deliberately incomplete row has no company, country, industry, or value,
+so it cannot represent a holding. After checking the whole row, remove it:
+
+```{r}
+gpfg <- gpfg |>
+  filter(!is.na(company))
+```
+
+`!` means “not.” Do not automatically remove missing values in other data;
+first determine what they mean.
+
+## 4. Check a possible duplicate
+
+```{r}
+gpfg |>
+  count(company, country, industry) |>
+  filter(n > 1)
+```
+
+```{r}
+gpfg |>
+  filter(company == "3P Learning Ltd")
+```
+
+The two rows are completely identical, so keep one copy:
+
+```{r}
+gpfg <- gpfg |>
+  distinct()
+```
+
+## 5. Verify and save
+
+```{r}
+glimpse(gpfg)
+
+gpfg |>
+  slice_head(n = 5)
+
+write_csv(gpfg, "data/gpfg_2025.csv")
+```
+
+The result should have 7,201 rows and 11 columns. Keep the original messy CSV;
+later classes use the new clean file.
+
+## Exit ticket
+
+- What evidence justified each cleaning step?
+- What is the difference between renaming and changing a type?
+- Why can we remove this missing row and this duplicate?
+- Why should the raw CSV remain unchanged?
+
+## Key code
+
+| Code | Use |
+|---|---|
+| `rename(new = old)` | Rename selected columns |
+| `mutate()` + `dmy()` | Convert a day-month-year column |
+| `filter(is.na(...))` | Inspect missing values |
+| `filter(!is.na(...))` | Keep non-missing rows |
+| `count()` | Find repeated identifiers |
+| `distinct()` | Remove a confirmed exact duplicate |
+| `write_csv()` | Save the clean table |

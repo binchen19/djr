@@ -1,0 +1,157 @@
+---
+title: "Class 5: Data Analysis"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Import five annual files, combine them, learn what the combined table contains,
+and answer trend, description, ranking, and comparison questions.
+
+## 1. Review import
+
+```{r}
+library(tidyverse)
+
+gpfg_2021 <- read_csv("data/gpfg_2021.csv")
+gpfg_2022 <- read_csv("data/gpfg_2022.csv")
+gpfg_2023 <- read_csv("data/gpfg_2023.csv")
+gpfg_2024 <- read_csv("data/gpfg_2024.csv")
+gpfg_2025 <- read_csv("data/gpfg_2025.csv")
+```
+
+Before combining: compare `glimpse(gpfg_2021)` and `glimpse(gpfg_2025)`.
+The names and types should match, and both files should contain `year`.
+
+## 2. Stack the annual rows
+
+```{r}
+gpfg <- bind_rows(
+  gpfg_2021,
+  gpfg_2022,
+  gpfg_2023,
+  gpfg_2024,
+  gpfg_2025
+)
+
+gpfg |>
+  count(year)
+```
+
+`bind_rows()` is for the same columns and different observations. One row still
+represents one reported holding at one year-end.
+
+```{r}
+write_csv(gpfg, "data/gpfg_5_years.csv")
+```
+
+## 3. Know the data before asking questions
+
+```{r}
+gpfg |>
+  summarise(
+    first_year = min(year),
+    last_year = max(year),
+    number_of_years = n_distinct(year)
+  )
+```
+
+```{r}
+gpfg |>
+  distinct(region) |>
+  arrange(region)
+```
+
+```{r}
+gpfg |>
+  count(country, sort = TRUE)
+```
+
+```{r}
+gpfg |>
+  summarise(
+    missing_company = sum(is.na(company)),
+    missing_value = sum(is.na(market_value_nok))
+  )
+```
+
+Checkpoint: category values and record counts describe the file. They do not
+yet answer which market has the greatest value.
+
+## 4. Trend question
+
+Question: How did total reported market value change from 2021 to 2025?
+
+```{r}
+annual_summary <- gpfg |>
+  group_by(year) |>
+  summarise(
+    holding_records = n(),
+    market_value_nok = sum(market_value_nok)
+  ) |>
+  arrange(year)
+
+annual_summary
+```
+
+After `summarise()`, one row represents one annual snapshot.
+
+## 5. Describe the latest year
+
+```{r}
+gpfg_latest <- gpfg |>
+  filter(year == max(year))
+
+gpfg_latest |>
+  summarise(
+    total_nok = sum(market_value_nok),
+    median_nok = median(market_value_nok),
+    maximum_nok = max(market_value_nok)
+  )
+```
+
+## 6. Rank individual holdings
+
+```{r}
+largest_holdings <- gpfg_latest |>
+  select(company, country, industry, market_value_nok) |>
+  arrange(desc(market_value_nok)) |>
+  slice_head(n = 10)
+
+largest_holdings
+```
+
+## 7. Compare markets
+
+```{r}
+country_summary <- gpfg_latest |>
+  group_by(country) |>
+  summarise(
+    holding_records = n(),
+    market_value_nok = sum(market_value_nok)
+  ) |>
+  arrange(desc(market_value_nok))
+
+country_summary |>
+  slice_head(n = 10)
+```
+
+## Reporting language
+
+Better: “The United States had the largest reported market value in NBIM's
+2025 year-end equity-holdings file.”
+
+Avoid language about purchases, flows, returns, or causes unless additional
+evidence supports it.
+
+## Exit ticket
+
+- What does one row represent before and after the annual summary?
+- Why did the five annual files need a `year` column before `bind_rows()`?
+- Which result is a description, ranking, comparison, or trend?
+- Write one supported finding and one follow-up reporting question.
+

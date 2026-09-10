@@ -1,0 +1,158 @@
+---
+title: "Class 7: Advanced Visualization"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Start from familiar charts and add complexity only when the question requires
+another group, composition, distribution, or panel.
+
+```{r}
+library(tidyverse)
+
+gpfg <- read_csv("data/gpfg_5_years.csv")
+
+gpfg_latest <- gpfg |>
+  filter(year == 2025)
+```
+
+## Mapping versus setting color
+
+```r
+geom_point(color = "#0072B2")
+```
+
+One fixed appearance: outside `aes()`.
+
+```r
+geom_point(aes(color = region))
+```
+
+Color represents a column: inside `aes()` and a legend is created.
+
+## 1. Compare several trends
+
+Question: How did value change for the United States, China, and Japan?
+
+```{r}
+selected_countries <- c("United States", "China", "Japan")
+
+country_trends <- gpfg |>
+  filter(country %in% selected_countries) |>
+  group_by(year, country) |>
+  summarise(market_value_nok = sum(market_value_nok))
+
+country_trends
+```
+
+Plan: x = `year`, y = `market_value_nok`, color = `country`.
+
+```{r}
+ggplot(
+  country_trends,
+  aes(x = year, y = market_value_nok, color = country)
+) +
+  geom_line()
+```
+
+```{r}
+ggplot(
+  country_trends,
+  aes(x = year, y = market_value_nok, color = country)
+) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 2) +
+  scale_color_manual(values = c(
+    "United States" = "#0072B2",
+    "China" = "#D55E00",
+    "Japan" = "#009E73"
+  )) +
+  labs(
+    title = "Three investment markets followed different paths",
+    x = NULL,
+    y = "Market value (NOK)",
+    color = "Market",
+    caption = "Source: Norges Bank Investment Management"
+  ) +
+  theme_minimal()
+```
+
+## 2. Grouped versus stacked bars
+
+Question: Within the largest industries, how do reported values compare across
+regions?
+
+```{r}
+selected_industries <- c("Technology", "Financials", "Industrials")
+
+region_industry <- gpfg_latest |>
+  filter(industry %in% selected_industries) |>
+  group_by(industry, region) |>
+  summarise(market_value_usd = sum(market_value_usd))
+
+region_industry
+```
+
+Default bars stack the regional contributions:
+
+```{r}
+ggplot(
+  region_industry,
+  aes(x = industry, y = market_value_usd, fill = region)
+) +
+  geom_col()
+```
+
+Change only the position to compare regional bars directly:
+
+```{r}
+ggplot(
+  region_industry,
+  aes(x = industry, y = market_value_usd, fill = region)
+) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Regional values within four large industries",
+    x = NULL,
+    y = "Market value (USD)",
+    fill = "Region",
+    caption = "Source: Norges Bank Investment Management"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 25, hjust = 1))
+```
+
+- Stacked: how groups contribute to a total.
+- Grouped: direct comparison within each category.
+- `position = "fill"`: compare proportions rather than total amounts.
+
+## Optional if time: separate crowded groups
+
+```{r}
+ggplot(
+  gpfg_latest,
+  aes(x = market_value_usd, y = ownership_pct)
+) +
+  geom_point(alpha = 0.25) +
+  facet_wrap(vars(region)) +
+  scale_y_log10() +
+  labs(
+    title = "Ownership and value by region",
+    x = "Market value (USD, log scale)",
+    y = "Ownership (%)",
+    caption = "Source: Norges Bank Investment Management"
+  ) +
+  theme_minimal()
+```
+
+## Exit ticket
+
+- When does color belong inside `aes()`?
+- Which question favors stacked bars? Which favors grouped bars?
+- What new information did each advanced layer represent?
+- Which chart would you keep for a news story, and why?

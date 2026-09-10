@@ -1,0 +1,141 @@
+---
+title: "Class 8: Join and Reshape"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Answer a question that cannot be answered from either source table alone:
+
+> How did reported equity value change by region from 2021 to 2025?
+
+```{r}
+library(tidyverse)
+
+country_wide <- read_csv("data/gpfg_country_wide.csv")
+country_lookup <- read_csv("data/gpfg_country_lookup.csv")
+```
+
+Inspect both tables. Ask what one row represents and which needed variable is
+missing from each.
+
+```{r}
+glimpse(country_wide)
+```
+
+```{r}
+glimpse(country_lookup)
+```
+
+## 1. Draw the two shapes
+
+Wide source:
+
+| country | 2021 | 2022 | 2023 | 2024 | 2025 |
+|---|---:|---:|---:|---:|---:|
+
+Long target:
+
+| country | year | market_value_nok |
+|---|---:|---:|
+
+Long data make `year` available for grouping, filtering, and charting.
+
+## 2. Pivot the year columns into rows
+
+```{r}
+country_year <- country_wide |>
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "market_value_nok"
+  )
+
+country_year
+```
+
+The old column names became text values. Correct the type:
+
+```{r}
+country_year <- country_year |>
+  mutate(year = parse_integer(year))
+
+glimpse(country_year)
+```
+
+One row now represents one country in one year.
+
+```{r}
+country_year |>
+  group_by(year) |>
+  summarise(missing_values = sum(is.na(market_value_nok)))
+```
+
+An empty cell in the wide source becomes `NA`, not a known zero.
+
+## 3. Check the join key
+
+`country` should be unique in the lookup table:
+
+```{r}
+country_lookup |>
+  count(country) |>
+  filter(n > 1)
+```
+
+Check countries without a region match:
+
+```{r}
+country_year |>
+  distinct(country) |>
+  anti_join(country_lookup, by = "country")
+```
+
+Do not skip these empty-looking results; they document that the proposed key
+works.
+
+## 4. Add region with a left join
+
+```{r}
+country_year <- country_year |>
+  left_join(country_lookup, by = "country")
+
+glimpse(country_year)
+```
+
+Checkpoint: one row should still represent one country-year. The join adds a
+column, not more observations.
+
+## 5. Answer the question
+
+```{r}
+region_year <- country_year |>
+  group_by(year, region) |>
+  summarise(market_value_nok = sum(market_value_nok, na.rm = TRUE)) |>
+  arrange(year, desc(market_value_nok))
+
+region_year
+```
+
+## Optional: wide output for a two-year table
+
+```{r}
+country_year |>
+  filter(year %in% c(2024, 2025)) |>
+  select(country, year, market_value_nok) |>
+  pivot_wider(
+    names_from = year,
+    values_from = market_value_nok
+  )
+```
+
+## Exit ticket
+
+- Why did the data need to become long?
+- What is the join key?
+- Why check duplicate keys and unmatched keys before joining?
+- What does one row represent before and after the regional summary?

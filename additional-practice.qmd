@@ -10,7 +10,7 @@ solutions. Choose one lab for class, homework, or revision after completing the
 main chapters.
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `13-practice-labs.Rmd`. Download
+Open `djr.Rproj` and create `practice-labs.Rmd`. Download
 [`hksalary.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/hksalary.csv)
 and [`life_expectancy.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/life_expectancy.csv),
 then save both files in `data/`. You may complete either lab or both.

@@ -3,86 +3,245 @@ title: "Data Analysis"
 ---
 
 ::: {.callout-note title="Part 3: Data Analysis"}
-Wrangling prepares the table. Analysis uses that table to answer a question.
-In this part, we begin with one year and then extend the same workflow across
-time.
+The previous chapters cleaned one annual file. We will now import several
+files with the same structure, combine them, learn what the resulting dataset
+contains, and then use it to answer reporting questions.
 :::
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- recognize descriptive, ranking, comparison, relationship, and trend
+- import several annual CSV files;
+- combine tables with the same columns using `bind_rows()`;
+- inspect the time period, categories, frequencies, and missing values;
+- distinguish description, ranking, comparison, relationship, and trend
   questions;
-- calculate totals, means, medians, minimums, and maximums;
-- create a ranking;
-- compare grouped totals and shares; and
-- turn a calculation into a carefully worded finding.
+- create summary tables with `group_by()` and `summarise()`; and
+- turn a calculated result into a carefully worded finding.
 
-## Types of questions in data journalism
+## From one annual file to five
 
-A large dataset does not automatically produce a story. Data journalists begin
-with questions that the available evidence can answer. Many questions fall
-into five broad types:
+Chapter 4 produced `gpfg_2025.csv`. It describes holdings at one point in
+time. That is enough for a 2025 ranking, but it cannot tell us whether a value
+rose or fell. A trend question requires observations from several dates.
 
-| Question type | What it asks | Example using the GPFG data |
-|---|---|---|
-| Description | What is present, how much is there, or what is typical? | What is the total reported market value? What is the median holding value? |
-| Ranking | Which observations are largest, smallest, highest, or lowest? | Which individual company holdings have the largest market values? |
-| Comparison | How do categories or groups differ? | Which countries or industries account for the largest total values? |
-| Relationship | Do two variables appear to vary together? | Do holdings with higher ownership percentages also tend to have larger market values? |
-| Trend | How does a measure change over time? | How has the reported market value associated with China changed over ten years? |
-
-A question can belong to more than one type. Ranking countries by total market
-value, for example, first requires a comparison among countries and then an
-ordering of the results.
-
-This chapter focuses on description, ranking, and comparison using one annual
-snapshot. Later chapters introduce relationships through visualization and
-trends through the multi-year data.
-
-## A question-to-answer workflow
-
-Before writing code, use this workflow:
-
-1. State what one row represents.
-2. Write a precise question that names the measure, group, and time period.
-3. Identify the columns needed to answer it.
-4. Check their types, missing values, and definitions.
-5. Choose functions that match the type of question.
-6. Inspect and verify the result, especially surprising values.
-7. Write a finding that says exactly what the data support.
-
-The previous chapter covered step 4. We will now move from a checked table to
-questions and findings.
+For the main analysis, we will use five consecutive annual snapshots from
+2021 through 2025. Five files are enough to practise importing and combining
+without turning the lesson into ten repeated lines of code.
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `04-data-analysis.Rmd`. Reuse
-`data/gpfg.csv` from the earlier chapters.
+Open `djr.Rproj` and create `05-data-analysis.Rmd`. Keep the `gpfg_2025.csv`
+created in Chapter 4. Download
+[`gpfg_2021.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2021.csv),
+[`gpfg_2022.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2022.csv),
+[`gpfg_2023.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2023.csv),
+and [`gpfg_2024.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2024.csv)
+into the same `data` folder. A ready-made
+[`gpfg_2025.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2025.csv)
+is also available for anyone beginning with this chapter.
 :::
+
+## Import the annual files
+
+Start by loading the tidyverse and importing each CSV. The code repeats the
+`read_csv()` pattern from Chapter 3:
 
 ```{r}
 library(tidyverse)
 
-gpfg <- read_csv("data/gpfg.csv")
+gpfg_2021 <- read_csv("data/gpfg_2021.csv")
+gpfg_2022 <- read_csv("data/gpfg_2022.csv")
+gpfg_2023 <- read_csv("data/gpfg_2023.csv")
+gpfg_2024 <- read_csv("data/gpfg_2024.csv")
+gpfg_2025 <- read_csv("data/gpfg_2025.csv")
 ```
 
-One row represents one reported equity holding at the end of the year.
+The object names record which annual snapshot each table contains.
+
+Before combining files, compare their structures:
+
+```{r}
+glimpse(gpfg_2021)
+```
+
+```{r}
+glimpse(gpfg_2025)
+```
+
+The column names and types should match. Each file already contains a `year`
+column, so the observations will remain distinguishable after combination.
+
+## Combine the annual rows
+
+The five tables describe the same variables but different annual
+observations. `bind_rows()` places their rows underneath one another:
+
+```{r}
+gpfg <- bind_rows(
+  gpfg_2021,
+  gpfg_2022,
+  gpfg_2023,
+  gpfg_2024,
+  gpfg_2025
+)
+```
+
+This is different from a join. `bind_rows()` makes the table longer by adding
+observations. Chapter 8 will use a join to add variables from another source
+by matching a shared key.
+
+Check that every expected year appears:
+
+```{r}
+gpfg |>
+  count(year)
+```
+
+The result should contain one row for each year from 2021 through 2025. The
+record count differs by year, which is itself something to investigate before
+interpreting a trend.
+
+Save the combined table so later notebooks can begin from this completed
+step:
+
+```{r}
+write_csv(gpfg, "data/gpfg_5_years.csv")
+```
+
+The repository also provides a ready-made
+[`gpfg_5_years.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_5_years.csv)
+for learners who begin at a visualization chapter.
+
+## Know the dataset before asking questions
+
+Before calculating a finding, learn what the table contains. This prevents us
+from asking a question that the data cannot answer.
+
+### What does one row represent?
+
+```{r}
+glimpse(gpfg)
+```
+
+One row represents one equity holding reported by NBIM in one year-end
+snapshot. The same company can appear in several years, so a row is not a
+unique company across the whole period. It is also not a purchase, sale,
+profit, or payment received by the company.
+
+### Which years are present?
+
+The earlier `count(year)` result establishes both the available years and the
+number of records in each year. For trend work, check that the dates are
+consecutive and that no year is unexpectedly absent.
+
+### Which category values exist?
+
+`distinct()` keeps each observed country value once. `arrange()` places the
+values in alphabetical order so they are easier to inspect:
+
+```{r}
+gpfg |>
+  distinct(country) |>
+  arrange(country)
+```
+
+The result shows the labels used by NBIM. It does not count how often they
+appear.
+
+We can inspect the shorter region list in the same way:
+
+```{r}
+gpfg |>
+  distinct(region) |>
+  arrange(region)
+```
+
+### How frequently does each value appear?
+
+`count(country)` returns the number of holding records associated with each
+investment market across the five snapshots:
+
+```{r}
+gpfg |>
+  count(country) |>
+  arrange(desc(n)) |>
+  slice_head(n = 10)
+```
+
+`desc(n)` requests descending order. A high frequency means many rows, not
+necessarily a high total market value. Count and amount answer different
+questions.
+
+### Are important values missing?
+
+Reuse the missing-value check from Chapter 4:
+
+```{r}
+gpfg |>
+  filter(is.na(company) | is.na(market_value_nok))
+```
+
+The `|` symbol means “or,” so the code keeps a row if either field is missing.
+No rows should appear. This does not prove the entire dataset is correct, but
+it confirms that these two fields are complete in the supplied annual files.
+
+## Types of questions in data journalism
+
+Once we understand the dataset, we can ask questions it is capable of
+answering:
+
+| Question type | What it asks | GPFG example |
+|---|---|---|
+| Trend | How did a measure change over time? | How did total reported market value change from 2021 to 2025? |
+| Description | How much is there, or what is typical? | What was the median holding value in 2025? |
+| Ranking | Which observations are largest or smallest? | Which individual holdings were largest in 2025? |
+| Comparison | How do categories differ? | Which investment markets had the largest 2025 totals? |
+| Relationship | Do two measures vary together? | Are larger holdings associated with higher ownership percentages? |
+
+A good question names the measure, group, and period. We begin with a trend
+because combining the annual files has made this question possible.
+
+## Ask a trend question
+
+> How did the total reported market value of the equity holdings change from
+> 2021 through 2025?
+
+`group_by(year)` forms one group for each annual snapshot. `summarise()` then
+reduces each group to one result row:
+
+```{r}
+annual_summary <- gpfg |>
+  group_by(year) |>
+  summarise(
+    holding_records = n(),
+    market_value_nok = sum(market_value_nok)
+  ) |>
+  arrange(year)
+
+annual_summary
+```
+
+Track the changing row meaning:
+
+- before `summarise()`, one row represents one holding in one year;
+- after `summarise()`, one row represents one annual snapshot.
+
+Inside `summarise()`, `n()` counts the rows in each year group, while `sum()`
+adds the market values in that group.
+
+The table describes changes in nominal year-end value. Those changes can
+reflect security prices, exchange rates, purchases, sales, and changes in
+coverage. They are not automatically investment returns.
 
 ## Ask a descriptive question
 
-We will begin with:
+For questions about one year, use the 2025 object imported earlier:
 
-> What are the total and typical market values of individual holdings at the
-> end of 2025?
-
-`summarise()` can calculate several statistics in one row. In the code below,
-`sum()` adds all values, `mean()` calculates the arithmetic average,
-`median()` finds the middle value after sorting, and `min()` and `max()` find
-the smallest and largest values:
+> What were the total and typical values of individual holdings in 2025?
 
 ```{r}
-holding_summary <- gpfg |>
+holding_summary <- gpfg_2025 |>
   summarise(
     total_market_value_nok = sum(market_value_nok),
     average_market_value_nok = mean(market_value_nok),
@@ -94,24 +253,20 @@ holding_summary <- gpfg |>
 holding_summary
 ```
 
-::: {.callout-tip title="Mean or median?"}
-Financial values are often uneven: a few very large observations can pull the
-mean upward. Compare the mean and median before calling either one “typical.”
-The median is often easier to interpret when the distribution is strongly
-skewed.
-:::
+Financial values are often uneven. Compare the mean and median before calling
+either one “typical”; a small number of very large holdings can pull the mean
+upward.
 
 ## Ask a ranking question
 
-Next, ask:
+> Which ten individual holdings had the largest reported market values in
+> 2025?
 
-> Which ten individual holdings had the largest reported market values at the
-> end of 2025?
-
-We already know how to order rows and keep the first few:
+`select()` keeps the columns needed for the question. `arrange()` sorts the
+rows, and `slice_head()` keeps the first ten:
 
 ```{r}
-largest_holdings <- gpfg |>
+largest_holdings <- gpfg_2025 |>
   select(company, country, industry, market_value_nok) |>
   arrange(desc(market_value_nok)) |>
   slice_head(n = 10)
@@ -119,26 +274,16 @@ largest_holdings <- gpfg |>
 largest_holdings
 ```
 
-A ranking answers “which rows have the largest values?” It does not explain
-why they are large. Verify important rows against the source before using them
-in a story.
+A ranking identifies large observations; it does not explain why they are
+large. Verify important rows against the source before publication.
 
 ## Ask a comparison question
 
-A comparison question repeats the same calculation for different groups. For
-example:
-
-> Which investment markets accounted for the largest total market values at
-> the end of 2025?
-
-`group_by()` tells R which rows belong together. `summarise()` then reduces
-each group to one summary row. Used together, they change the meaning of one
-row in the result.
-
-Group the holdings by market, add their values, and order the totals:
+> Which investment markets accounted for the largest total reported market
+> values in 2025?
 
 ```{r}
-country_summary <- gpfg |>
+country_summary <- gpfg_2025 |>
   group_by(country) |>
   summarise(market_value_nok = sum(market_value_nok)) |>
   mutate(share_percent = market_value_nok / sum(market_value_nok) * 100) |>
@@ -148,139 +293,59 @@ country_summary |>
   slice_head(n = 10)
 ```
 
-One row now represents one investment market. `share_percent` uses the full
-market value as the denominator, so the column answers: “What percentage of
-the reported total is associated with this market?”
+One row now represents one investment market. The market with the most
+records is not necessarily the market with the largest total value.
 
-The sequence is:
+## Questions for visualization
 
-1. `group_by(country)` forms one group for each investment market;
-2. `summarise()` adds the market values within each group;
-3. `mutate()` calculates each market's share of the full total; and
-4. `arrange()` places the largest total first.
+Some questions are easier to examine visually:
 
-::: {.callout-important title="Count and amount are different"}
-The market with the most holding records is not necessarily the market with the
-largest market value. Decide whether the question is about the number of rows
-or the amount represented by those rows.
-:::
+- the annual table can become a line chart;
+- the country ranking can become an ordered bar chart;
+- holding values can be examined as a distribution; and
+- market value and ownership percentage can be compared in a scatterplot.
 
-Compare the two measures:
-
-```{r}
-gpfg |>
-  count(country) |>
-  arrange(desc(n)) |>
-  slice_head(n = 10)
-```
-
-## Compare industries
-
-The same group-and-summarise pattern can answer another comparison question:
-
-> Which industries accounted for the largest total market values at the end
-> of 2025?
-
-```{r}
-industry_summary <- gpfg |>
-  group_by(industry) |>
-  summarise(
-    holding_records = n(),
-    market_value_nok = sum(market_value_nok),
-    median_holding_nok = median(market_value_nok)
-  ) |>
-  arrange(desc(market_value_nok))
-
-industry_summary
-```
-
-This table contains three different measures. Use a column name and chart title
-that make clear which one supports the finding.
-
-We can also narrow a question with `filter()`. For example, the following
-pipeline asks which industries had the largest total market values among
-holdings that NBIM classifies under China:
-
-```{r}
-china_industries <- gpfg |>
-  filter(country == "China") |>
-  group_by(industry) |>
-  summarise(market_value_usd = sum(market_value_usd)) |>
-  arrange(desc(market_value_usd)) |>
-  slice_head(n = 5)
-
-china_industries
-```
-
-Read the pipeline from top to bottom: narrow the rows, form the groups,
-calculate one value for each group, order the results, and keep the first five.
-
-## Questions for later chapters
-
-The annual file cannot answer every kind of question by itself.
-
-A **relationship question** might ask whether ownership percentage and market
-value tend to vary together. A scatterplot can reveal a possible pattern, but
-it cannot by itself show that one variable caused the other.
-
-A **trend question** requires comparable observations from several dates. The
-multi-year chapter will ask how totals and shares changed over time and will
-explain why a change in year-end holdings is not necessarily an investment
-return or purchase.
+Chapters 6 and 7 will reuse these questions and calculations. The chart will
+come after the analysis table, not replace it.
 
 ## From a result to a finding
 
-A useful finding says what was measured, for whom or where, and at what time.
 Compare these statements:
 
 - Too broad: “The United States received the most Norwegian investment.”
 - Better: “The United States had the largest reported market value in NBIM's
-  year-end equity-holdings file.”
+  2025 year-end equity-holdings file.”
 
-The second sentence matches the data. The file contains year-end holdings, not
-transactions, so it cannot show how much money was sent or received during the
-year.
-
-Use this simple reporting ladder:
-
-| Type of statement | What the data need |
-|---|---|
-| Description | A correctly calculated value |
-| Comparison | Comparable groups and a clear measure |
-| Trend | Several comparable time points |
-| Explanation | Additional evidence about why the pattern occurred |
+The second statement matches the evidence. Explanation requires additional
+reporting beyond the calculated table.
 
 ## Practice
 
-Choose either `country`, `region`, or `industry` and write one precise
-comparison question. Then create a summary containing:
-
-1. the number of holding records;
-2. total market value in Norwegian kroner;
-3. median holding value; and
-4. percentage share of the full market value.
-
-Order the table by total market value. Write three sentences:
-
-1. Identify whether your question is descriptive, ranking, or comparison.
-2. State one finding that the table supports.
-3. State one explanation that would require more reporting and evidence.
+1. Use `distinct()` to inspect the industry labels.
+2. Use `count()` to find the most frequently occurring industries across the
+   five annual snapshots.
+3. Calculate one row per year containing total USD market value.
+4. Filter the combined data to 2024 and create an industry comparison.
+5. Write one supported finding and one explanatory question requiring more
+   evidence.
 
 ## Takeaways
 
-| Function | What it does |
+| Function or idea | What it does |
 |---|---|
-| `sum()` | Calculates a total |
-| `mean()` | Calculates an arithmetic average |
-| `median()` | Finds the middle value |
-| `min()` and `max()` | Find the smallest and largest values |
-| `arrange(desc(...))` | Creates a ranking from largest to smallest |
-| `group_by()` + `summarise()` | Calculate statistics separately for each group |
-| `filter()` | Narrows an analysis to rows that meet a condition |
-| `mutate()` | Adds a share or another derived measure |
+| `read_csv()` | Imports each annual CSV |
+| `bind_rows()` | Places observations from similar tables underneath one another |
+| `count()` | Shows category frequencies or records per year |
+| `distinct()` | Shows the unique values present in a column |
+| `arrange()` | Orders rows |
+| `filter()` | Keeps rows for a selected condition or period |
+| `group_by()` + `summarise()` | Produces one summary row per group |
+| `select()` | Keeps the columns required for a question |
+| `mutate()` | Adds a derived measure such as percentage share |
+| `write_csv()` | Saves the combined table for later chapters |
 
 ::: {.callout-tip title="Want more control?"}
-The official [dplyr function reference](https://dplyr.tidyverse.org/reference/index.html)
-contains more summary and ranking tools. Add them only when a reporting
-question requires them.
+The official [dplyr reference](https://dplyr.tidyverse.org/reference/index.html)
+contains additional summary and ranking tools. Add one only when a reporting
+question requires it.
 :::

@@ -2,7 +2,7 @@
 title: "Billboard Hot 100"
 ---
 
-::: {.callout-note title="Part 5: Case Studies"}
+::: {.callout-note title="Part 6: Case Studies"}
 The case studies reuse the tidyverse workflow with new topics and data
 structures. Instead of repeating every step from the main dataset, each case
 concentrates on a challenge that commonly appears in journalistic data.
@@ -28,11 +28,13 @@ By the end of this case, you should be able to:
 ## Set up the case
 
 The column names in the source contain capital letters and spaces. `rename()`
-gives them shorter working names. `parse_number()` turns values such as text
-containing a number into numeric values.
+gives them shorter working names. The source also uses `-` when the number of
+weeks is unavailable, so the `na` argument tells `read_csv()` to treat that
+symbol as a missing value. Here this is essential information about the file,
+not an optional display setting.
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `09-hot100.Rmd`. Download
+Open `djr.Rproj` and create `10-hot100.Rmd`. Download
 [`hot100.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/hot100.csv)
 and save it in `data/`. This case changes the topic, but it uses the same
 project and tidyverse workflow.
@@ -41,7 +43,7 @@ project and tidyverse workflow.
 ```{r}
 library(tidyverse)
 
-hot100 <- read_csv("data/hot100.csv") |>
+hot100 <- read_csv("data/hot100.csv", na = "-") |>
   rename(
     date = Date,
     song = Song,
@@ -49,8 +51,7 @@ hot100 <- read_csv("data/hot100.csv") |>
     rank = Rank,
     peak_position = `Peak Position`,
     weeks_in_chart = `Weeks in Charts`
-  ) |>
-  mutate(weeks_in_chart = parse_number(weeks_in_chart))
+  )
 
 glimpse(hot100)
 ```
@@ -72,6 +73,9 @@ hot100 |>
   arrange(desc(number_of_artists)) |>
   slice_head(n = 10)
 ```
+
+The `name = "number_of_artists"` argument gives the new count column a
+descriptive name instead of the default `n`.
 
 For this case, we define a unique song as one published `artist`–`song`
 combination. This is an analytical rule, not a universal identifier. Remixes,
@@ -211,6 +215,9 @@ hot100 |>
   filter(str_detect(str_to_lower(artist), "taylor swift"))
 ```
 
+`str_to_lower()` makes capitalization consistent for the search, and
+`str_detect()` checks whether each credit contains the selected text.
+
 This analysis ranks published credit strings. Splitting collaborations or
 merging name variants requires a rule that should be documented.
 
@@ -232,10 +239,11 @@ name variants.
 | Function | What it does in this case |
 |---|---|
 | `rename()` | Gives difficult source columns shorter working names |
-| `parse_number()` | Converts a column containing numeric text |
+| `read_csv(..., na = "-")` | Treats the source's missing-value marker as `NA` during import |
 | `filter()` | Defines the dates and chart position included |
 | `count()` | Counts weekly chart rows at the current grouping |
 | `distinct()` | Keeps one artist-song combination before counting |
+| `str_to_lower()` | Makes capitalization consistent for a text search |
 | `str_detect()` | Searches artist credits for possible name variants |
 | Metric definition | Turns the broad idea of “success” into a reproducible measure |
 

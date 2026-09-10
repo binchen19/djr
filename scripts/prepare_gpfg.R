@@ -8,6 +8,7 @@
 
 suppressPackageStartupMessages({
   library(dplyr)
+  library(lubridate)
   library(purrr)
   library(readr)
   library(readxl)
@@ -48,6 +49,7 @@ found_years <- as.integer(format(found_report_dates, "%Y"))
 latest_year <- max(found_years)
 expected_years <- seq.int(first_year, latest_year)
 teaching_years <- seq.int(max(first_year, latest_year - 9L), latest_year)
+analysis_years <- seq.int(max(first_year, latest_year - 4L), latest_year)
 
 if (!identical(found_years, expected_years)) {
   missing_years <- setdiff(expected_years, found_years)
@@ -126,6 +128,81 @@ gpfg_teaching <- gpfg_full |>
 gpfg_latest <- gpfg_full |>
   filter(year == latest_year)
 
+learner_columns <- c(
+  "year",
+  "report_date",
+  "region",
+  "country",
+  "company",
+  "industry",
+  "market_value_nok",
+  "market_value_usd",
+  "voting_pct",
+  "ownership_pct",
+  "incorporation_country"
+)
+
+gpfg_latest_learner <- gpfg_latest |>
+  select(all_of(learner_columns))
+
+gpfg_history_learner <- gpfg_full |>
+  select(all_of(learner_columns))
+
+gpfg_five_years_learner <- gpfg_full |>
+  filter(year %in% analysis_years) |>
+  select(all_of(learner_columns))
+
+gpfg_country_wide <- gpfg_five_years_learner |>
+  summarise(
+    market_value_nok = sum(market_value_nok),
+    .by = c(country, year)
+  ) |>
+  pivot_wider(
+    names_from = year,
+    values_from = market_value_nok
+  ) |>
+  arrange(country)
+
+gpfg_country_lookup <- gpfg_five_years_learner |>
+  distinct(country, region) |>
+  arrange(country)
+
+# This version keeps the published values simple while introducing a few
+# beginner-friendly problems for Chapters 3 and 4: awkward names, a date stored
+# as text, one incomplete row, and one exact duplicate.
+gpfg_messy <- gpfg_latest_learner |>
+  transmute(
+    Year = year,
+    `Report Date` = format(report_date, "%d/%m/%Y"),
+    region = region,
+    country = country,
+    `Company Name` = company,
+    industry = industry,
+    `Market Value NOK` = market_value_nok,
+    market_value_usd = market_value_usd,
+    voting_pct = voting_pct,
+    ownership_pct = ownership_pct,
+    incorporation_country = incorporation_country
+  )
+
+gpfg_messy <- bind_rows(
+  gpfg_messy,
+  gpfg_messy |> slice_head(n = 1),
+  tibble(
+    Year = latest_year,
+    `Report Date` = format(max(gpfg_latest_learner$report_date), "%d/%m/%Y"),
+    region = NA_character_,
+    country = NA_character_,
+    `Company Name` = NA_character_,
+    industry = NA_character_,
+    `Market Value NOK` = NA_real_,
+    market_value_usd = NA_real_,
+    voting_pct = NA_real_,
+    ownership_pct = NA_real_,
+    incorporation_country = NA_character_
+  )
+)
+
 duplicate_name_audit <- gpfg_full |>
   count(year, company, name = "records_for_company_name") |>
   summarise(
@@ -188,10 +265,21 @@ data_dictionary <- tribble(
   "market_value_usd", "double", "Year-end market value of the holding converted to US dollars.", "USD", "Useful for a single snapshot; exchange-rate changes affect comparisons across years.",
   "voting_pct", "double", "Voting rights held, stored in percentage points.", "0.65 means 0.65%", "Do not divide by 100 unless a calculation needs a 0–1 proportion.",
   "ownership_pct", "double", "Equity ownership held, stored in percentage points.", "1.20 means 1.20%", "This is a stake, not a financial return.",
-  "incorporation_country", "character", "Legal country of incorporation supplied by NBIM.", "Ireland", "Compare with country to distinguish incorporation from the investment market.",
-  "source_file", "character", "Name of the archived official annual Excel file.", "gpfg-equities-2025-12-31.xlsx", "Use for provenance and debugging.",
-  "source_url", "character", "Official NBIM API URL for the annual source file.", "https://www.nbim.no/api/investments/v2/report/…", "The URL includes the asset type and report date."
+  "incorporation_country", "character", "Legal country of incorporation supplied by NBIM.", "Ireland", "Compare with country to distinguish incorporation from the investment market."
 )
+
+gpfg_messy_clean_check <- gpfg_messy |>
+  rename(
+    year = Year,
+    report_date = `Report Date`,
+    company = `Company Name`,
+    market_value_nok = `Market Value NOK`
+  ) |>
+  mutate(
+    report_date = dmy(report_date)
+  ) |>
+  filter(!is.na(company)) |>
+  distinct()
 
 validation_checks <- tibble(
   check = c(
@@ -203,7 +291,11 @@ validation_checks <- tibble(
     "NOK market values are finite when present",
     "Teaching-period NOK market values are non-negative",
     "Teaching-period ownership percentages are between 0 and 100",
-    "Teaching-period voting percentages are between 0 and 100"
+    "Teaching-period voting percentages are between 0 and 100",
+    "Five-year learner file contains every expected analysis year",
+    "Country lookup contains one row per country",
+    "Every five-year country has a lookup match",
+    "Messy teaching file cleans back to the latest-year data"
   ),
   passed = c(
     identical(sort(unique(gpfg_full$year)), expected_years),
@@ -214,7 +306,15 @@ validation_checks <- tibble(
     all(is.finite(gpfg_full$market_value_nok) | is.na(gpfg_full$market_value_nok)),
     all(gpfg_teaching$market_value_nok >= 0, na.rm = TRUE),
     all(between(gpfg_teaching$ownership_pct, 0, 100), na.rm = TRUE),
-    all(between(gpfg_teaching$voting_pct, 0, 100), na.rm = TRUE)
+    all(between(gpfg_teaching$voting_pct, 0, 100), na.rm = TRUE),
+    identical(sort(unique(gpfg_five_years_learner$year)), analysis_years),
+    !anyDuplicated(gpfg_country_lookup$country),
+    nrow(
+      gpfg_five_years_learner |>
+        distinct(country) |>
+        anti_join(gpfg_country_lookup, by = "country")
+    ) == 0,
+    isTRUE(all.equal(gpfg_messy_clean_check, gpfg_latest_learner))
   )
 )
 
@@ -237,13 +337,36 @@ saveRDS(
 )
 
 write_csv(
-  gpfg_teaching,
-  file.path(teaching_dir, "gpfg_equities_last_10_years.csv"),
+  gpfg_history_learner,
+  file.path(teaching_dir, "gpfg_history.csv.gz"),
   na = ""
 )
 write_csv(
-  gpfg_latest,
-  file.path(teaching_dir, "gpfg.csv"),
+  gpfg_five_years_learner,
+  file.path(teaching_dir, "gpfg_5_years.csv"),
+  na = ""
+)
+walk(
+  analysis_years,
+  ~ write_csv(
+    gpfg_five_years_learner |> filter(year == .x),
+    file.path(teaching_dir, paste0("gpfg_", .x, ".csv")),
+    na = ""
+  )
+)
+write_csv(
+  gpfg_messy,
+  file.path(teaching_dir, "gpfg_messy.csv"),
+  na = ""
+)
+write_csv(
+  gpfg_country_wide,
+  file.path(teaching_dir, "gpfg_country_wide.csv"),
+  na = ""
+)
+write_csv(
+  gpfg_country_lookup,
+  file.path(teaching_dir, "gpfg_country_lookup.csv"),
   na = ""
 )
 write_csv(
@@ -318,19 +441,24 @@ audit_lines <- c(
   "## Recommendation",
   "",
   paste0(
-    "Use the ", teaching_start, "–", teaching_end,
-    " equity holdings as the main longitudinal teaching dataset, and use the ",
-    "single ", latest_year, " snapshot for introductory importing, filtering, ",
-    "sorting, grouping, and charting. Keep the complete ", first_year, "–",
-    latest_year, " archive for optional historical investigations."
+    "Use the deliberately messy ", latest_year,
+    " snapshot for importing and cleaning, then combine the five annual learner ",
+    "files for introductory analysis and charting. The compressed ",
+    first_year, "–", latest_year,
+    " history supports longitudinal lessons; use shorter, comparable periods ",
+    "when coverage or classifications change."
   ),
   "",
   "The dataset's unit of analysis is **one equity holding reported by NBIM at one year-end**. A row is not a transaction, cash flow, investment return, or money received by a company.",
   "",
   "## Stable files created",
   "",
-  "- `data/gpfg.csv`: beginner-friendly latest-year snapshot.",
-  "- `data/gpfg_equities_last_10_years.csv`: rolling ten-year teaching dataset.",
+  "- `data/gpfg_messy.csv`: deliberately messy latest-year file for import and cleaning lessons.",
+  paste0("- `data/gpfg_", analysis_years[1], ".csv` through `data/gpfg_", analysis_years[length(analysis_years)], ".csv`: clean annual files for import and `bind_rows()` practice."),
+  "- `data/gpfg_5_years.csv`: the combined five-year result used in later chapters.",
+  "- `data/gpfg_country_wide.csv`: country totals with one column per year for reshaping practice.",
+  "- `data/gpfg_country_lookup.csv`: country-to-region lookup for joining practice.",
+  "- `data/gpfg_history.csv.gz`: compressed CSV containing every annual snapshot.",
   "- `data/gpfg_data_dictionary.csv`: definitions, units, and teaching cautions.",
   "- `data/processed/gpfg_equities_last_10_years.rds`: compact R version of the teaching dataset.",
   "- `data/processed/gpfg_equities_full_history.rds`: compact complete historical archive.",

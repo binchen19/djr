@@ -1,0 +1,127 @@
+---
+title: "Class 10: Billboard Hot 100"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today's new challenge
+
+One row is one song on one weekly chart—not one unique song. A title alone is
+also not a reliable song identifier. We must define both the unit and the
+meaning of “success” before ranking artists.
+
+```{r}
+library(tidyverse)
+
+hot100 <- read_csv("data/hot100.csv", na = "-") |>
+  rename(
+    date = Date,
+    song = Song,
+    artist = Artist,
+    rank = Rank,
+    peak_position = `Peak Position`,
+    weeks_in_chart = `Weeks in Charts`
+  )
+
+glimpse(hot100)
+```
+
+The source uses `-` when weeks are unavailable. `na = "-"` tells `read_csv()`
+to store those entries as proper missing values instead of text.
+
+## 1. Test whether title alone is unique
+
+```{r}
+hot100 |>
+  distinct(artist, song) |>
+  count(song, name = "number_of_artists") |>
+  filter(number_of_artists > 1) |>
+  arrange(desc(number_of_artists)) |>
+  slice_head(n = 10)
+```
+
+For this analysis, define one song as an `artist`–`song` combination. State
+that rule; remixes and changing credits can make it imperfect.
+
+## 2. Define period and threshold
+
+```{r}
+chart_period <- hot100 |>
+  filter(date >= "2000-01-01")
+
+number_ones <- chart_period |>
+  filter(rank == 1)
+```
+
+“Appeared in the Hot 100,” “reached the top 10,” and “reached number one” are
+different thresholds.
+
+## 3. Compare definitions of success
+
+Distinct Hot 100 songs:
+
+```{r}
+artist_hot100_songs <- chart_period |>
+  distinct(artist, song) |>
+  count(artist, name = "hot100_songs") |>
+  arrange(desc(hot100_songs))
+
+artist_hot100_songs |>
+  slice_head(n = 10)
+```
+
+Weekly number-one appearances:
+
+```{r}
+artist_weeks <- number_ones |>
+  count(artist, name = "number_one_weeks") |>
+  arrange(desc(number_one_weeks))
+
+artist_weeks |>
+  slice_head(n = 10)
+```
+
+Distinct number-one songs:
+
+```{r}
+artist_songs <- number_ones |>
+  distinct(artist, song) |>
+  count(artist, name = "number_one_songs") |>
+  arrange(desc(number_one_songs))
+
+artist_songs |>
+  slice_head(n = 10)
+```
+
+The rankings answer different questions. The column name, chart title, and
+finding must say whether the code counted weekly rows or distinct songs.
+
+## 4. Keep artist and song together
+
+```{r}
+song_weeks <- number_ones |>
+  count(artist, song, name = "number_one_weeks") |>
+  arrange(desc(number_one_weeks))
+
+song_weeks |>
+  slice_head(n = 10)
+```
+
+Grouping only by title could combine unrelated songs with the same name.
+
+## Try it
+
+Choose a decade. Calculate distinct Hot 100 songs, weekly number-one
+appearances, and distinct number-one songs by artist. Compare the top ten and
+write one sentence explaining why the rankings differ.
+
+## Reporting checklist
+
+- What does one source row represent?
+- What columns define a distinct entity?
+- What period and threshold did you choose?
+- What exactly does the metric count?
+- Do artist-credit variations affect the result?

@@ -1,0 +1,131 @@
+---
+title: "Class 9: Mapping"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Question: Where was the reported market value of the fund's equity holdings
+concentrated in 2025?
+
+Use the Chapter 8 join workflow to connect one value per investment market to
+world boundary coordinates, then build the map one layer at a time.
+
+```{r}
+library(tidyverse)
+
+gpfg <- read_csv("data/gpfg_5_years.csv")
+world <- read_csv("data/world_boundaries.csv")
+
+gpfg_latest <- gpfg |>
+  filter(year == 2025)
+```
+
+## 1. Prepare one value per place
+
+```{r}
+country_summary <- gpfg_latest |>
+  group_by(country) |>
+  summarise(market_value_usd = sum(market_value_usd)) |>
+  mutate(market_value_usd_billions = market_value_usd / 1000000000)
+
+country_summary |>
+  arrange(desc(market_value_usd_billions)) |>
+  slice_head(n = 5)
+```
+
+## 2. Make names match and check them
+
+```{r}
+country_summary <- country_summary |>
+  mutate(
+    map_name = recode(
+      country,
+      "Russia" = "Russian Federation",
+      "South Korea" = "Republic of Korea",
+      "Türkiye" = "Turkey"
+    )
+  )
+
+map_names <- world |>
+  distinct(name_long)
+
+country_summary |>
+  anti_join(map_names, by = c("map_name" = "name_long"))
+```
+
+## 3. Join values to boundaries
+
+```{r}
+world_holdings <- world |>
+  left_join(
+    country_summary,
+    by = c("name_long" = "map_name")
+  )
+```
+
+The market value repeats across coordinate rows. This is necessary to fill the
+shape; do not sum the value after this join.
+
+## 4. Basic map
+
+```{r}
+ggplot(
+  world_holdings,
+  aes(
+    x = longitude,
+    y = latitude,
+    group = polygon_group,
+    fill = market_value_usd_billions
+  )
+) +
+  geom_polygon()
+```
+
+## 5. Add one improvement at a time
+
+```{r}
+ggplot(
+  world_holdings,
+  aes(
+    x = longitude,
+    y = latitude,
+    group = polygon_group,
+    fill = market_value_usd_billions
+  )
+) +
+  geom_polygon(color = "white", linewidth = 0.1) +
+  coord_quickmap(expand = FALSE) +
+  scale_fill_gradient(
+    low = "#DCEAF4",
+    high = "#006D77",
+    trans = "sqrt",
+    na.value = "#E6E8EB"
+  ) +
+  labs(
+    title = "Reported equity value was concentrated in a limited set of markets",
+    subtitle = "Year-end 2025 market value by NBIM investment market",
+    fill = "USD billions",
+    caption = "Sources: Norges Bank Investment Management and Natural Earth\nGray indicates no matched value"
+  ) +
+  theme_void() +
+  theme(
+    plot.caption = element_text(hjust = 0),
+    plot.margin = margin(12, 18, 12, 18)
+  )
+```
+
+Gray means no matched value in the joined table, not necessarily zero. The
+source field is an investment market, not necessarily company incorporation,
+workers, or revenue.
+
+## Exit ticket
+
+- Why summarize before joining to a map?
+- Why preserve the original country name?
+- Why can a bar chart be better than a map for close comparisons?
+- What does every color—including gray—mean?

@@ -10,5 +10,3 @@ market_value_usd,double,Year-end market value of the holding converted to US dol
 voting_pct,double,"Voting rights held, stored in percentage points.",0.65 means 0.65%,Do not divide by 100 unless a calculation needs a 0–1 proportion.
 ownership_pct,double,"Equity ownership held, stored in percentage points.",1.20 means 1.20%,"This is a stake, not a financial return."
 incorporation_country,character,Legal country of incorporation supplied by NBIM.,Ireland,Compare with country to distinguish incorporation from the investment market.
-source_file,character,Name of the archived official annual Excel file.,gpfg-equities-2025-12-31.xlsx,Use for provenance and debugging.
-source_url,character,Official NBIM API URL for the annual source file.,https://www.nbim.no/api/investments/v2/report/…,The URL includes the asset type and report date.

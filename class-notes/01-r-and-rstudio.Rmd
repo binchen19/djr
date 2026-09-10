@@ -1,0 +1,89 @@
+---
+title: "Class 1: R and RStudio"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+By the end of class, you should be able to explain the roles of R, RStudio,
+Projects, packages, and R Markdown—and knit this note to HTML.
+
+## The five pieces
+
+| Piece | Job |
+|---|---|
+| R | Runs code |
+| RStudio | Provides a workspace for writing and running code |
+| R Project | Keeps one analysis and its paths together |
+| Package | Adds reusable functions |
+| R Markdown | Combines notes, code, and results |
+
+The relationship to remember: **R is the engine; RStudio is the workspace
+around it.** Install R first, then RStudio.
+
+## Live setup
+
+1. In RStudio, choose **File → New Project → New Directory → New Project**.
+2. Name the project `djr`.
+3. Create two folders: `data` and `outputs`.
+4. Save this file as `01-setup.Rmd` in the project folder.
+
+Your project should look like this:
+
+```text
+djr/
+├── data/
+├── outputs/
+├── 01-setup.Rmd
+└── djr.Rproj
+```
+
+## Packages: install once, load each session
+
+Run these installation commands in the **Console**, usually only once per
+computer:
+
+```r
+install.packages("tidyverse")
+install.packages("rmarkdown")
+```
+
+Put this loading command in a document whenever it uses tidyverse functions:
+
+```{r}
+library(tidyverse)
+```
+
+The tidyverse supplies tools for importing, cleaning, analysing, and
+visualizing data. The rmarkdown package turns an `.Rmd` file into a finished
+document.
+
+## R Markdown anatomy
+
+- YAML between `---` lines stores document information.
+- Markdown is ordinary writing and simple formatting.
+- R code goes inside code chunks.
+- Knitting runs the chunks in order and creates a new output file.
+
+Try a chunk:
+
+```{r}
+2 + 2
+```
+
+## Checkpoint
+
+- Which program runs the code?
+- Why open `djr.Rproj` before working?
+- What is the difference between installing and loading a package?
+- What three things can one R Markdown document contain?
+
+## Before next class
+
+Knit this document to HTML. Close RStudio, reopen `djr.Rproj`, and confirm that
+the `data` and `outputs` folders appear in the Files pane.
+

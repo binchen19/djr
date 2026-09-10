@@ -1,0 +1,101 @@
+---
+title: "Class 2: R Basics"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Build a small table step by step: values → vectors → tibble → column types →
+functions and pipes.
+
+```{r}
+library(tidyverse)
+```
+
+## 1. Objects and comments
+
+```{r}
+# Store a value, then print it
+score <- 85
+score
+```
+
+Read `<-` as “gets.” Use `<-` for assignment in this course; `=` will usually
+name an option inside a function.
+
+## 2. Create related vectors
+
+```{r}
+student_names <- c("Ana", "Ben", "Chen")
+student_ages <- c(20, 21, 22)
+student_present <- c(TRUE, FALSE, TRUE)
+
+student_ages + 1
+```
+
+The first item in each vector describes the same student, and all three
+vectors have the same length.
+
+## 3. Turn those vectors into a tibble
+
+```{r}
+students <- tibble(
+  name = student_names,
+  age = student_ages,
+  present = student_present
+)
+
+students
+```
+
+One row is one student. One column is one variable. One cell is one value.
+
+Read the labels below the column names:
+
+- `<chr>`: text;
+- `<dbl>`: numbers; and
+- `<lgl>`: `TRUE` or `FALSE`.
+
+## 4. Reuse a vector with functions
+
+```{r}
+sum(student_ages)
+mean(student_ages)
+median(student_ages)
+min(student_ages)
+max(student_ages)
+```
+
+A function is a named instruction. The value inside the parentheses is its
+input, or argument.
+
+## 5. Pipe an object into a function
+
+```{r}
+student_ages |>
+  mean()
+```
+
+Read this top to bottom: start with `student_ages`, then calculate its mean.
+The older `%>%` pipe is common in existing code, but this course uses `|>`.
+
+## Try it
+
+Create vectors named `book_titles`, `book_pages`, and `book_finished`. Use
+them to make a three-row tibble named `books`. State what one row represents.
+
+## Key code
+
+| Code | Use |
+|---|---|
+| `<-` | Save a value as an object |
+| `#` | Add a comment |
+| `c()` | Combine values into a vector |
+| `tibble()` | Create a table |
+| `sum()`, `mean()`, `median()` | Summarize numbers |
+| `|>` | Pass a result to the next step |
+

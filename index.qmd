@@ -1,6 +1,4 @@
----
-title: "Data Journalism with R"
----
+# Data Journalism with R {.unnumbered}
 
 ::: {.callout-note}
 This book grew from my data journalism teaching at the University of Hong
@@ -54,14 +52,16 @@ and appropriate for the data.
 
 ## Structure of the book
 
-The book follows five progressive parts:
+The book follows six progressive parts:
 
 1. **Getting Started** — set up R, RStudio, an RStudio Project, and R Markdown.
 2. **Data Import & Cleaning** — import, inspect, and clean data.
-3. **Data Analysis** — calculate summaries, rankings, and comparisons; combine
-   tables; and investigate changes over time.
-4. **Data Visualization** — explore the data and communicate a finding.
-5. **Case Studies** — apply the workflow to several real reporting topics.
+3. **Data Analysis** — combine annual observations and investigate summaries,
+   rankings, comparisons, and trends.
+4. **Data Visualization** — move from a reporting question to a basic chart,
+   then add complexity only when the question requires it.
+5. **Advanced Workflows** — reshape, join, and map related data.
+6. **Case Studies** — apply the workflow to several real reporting topics.
 
 The appendices contain useful links, optional publishing guidance, debugging
 help, and a final-project guide with examples from previous students.
@@ -78,8 +78,11 @@ which file to download, and which earlier files to reuse.
 Most core chapters use the year-end equity holdings of Norway's Government
 Pension Fund Global, published by Norges Bank Investment Management (NBIM).
 The data include companies, markets, industries, market values, and ownership
-information. We begin with one year and introduce multiple years only after
-the basic workflow is familiar.
+information. We begin with a deliberately messy version of 2025 and clean it.
+We then import five annual files from 2021 through 2025, combine them, and use
+the result for analysis and visualization. The complete 1998--2025 history is
+available as an optional resource for longer-term reporting, with important
+comparability cautions.
 
 The original source is the
 [NBIM all-investments database](https://www.nbim.no/en/investments/all-investments/).

@@ -234,7 +234,7 @@ behind it, and the resulting table or chart stay together.
 ### Create the document
 
 Inside `djr`, choose **File → New File → R Markdown**. Enter a
-title and your name, select HTML output, and save the file as `00-setup.Rmd`
+title and your name, select HTML output, and save the file as `01-setup.Rmd`
 beside `djr.Rproj`.
 
 The top of the new document contains **YAML metadata** between two lines of
@@ -288,7 +288,7 @@ more detail. The course also includes an
 
 ## Practice
 
-Complete these steps in `00-setup.Rmd`:
+Complete these steps in `01-setup.Rmd`:
 
 1. Add your name and a title to the YAML metadata.
 2. Write a heading called “About me.”

@@ -1,0 +1,147 @@
+---
+title: "Class 6: Basic Visualization"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Move from a reporting question to a checked table and then to a basic chart.
+Add one layer at a time so every change has a reason.
+
+```{r}
+library(tidyverse)
+
+gpfg <- read_csv("data/gpfg_5_years.csv")
+
+gpfg_latest <- gpfg |>
+  filter(year == 2025)
+```
+
+## The routine
+
+1. State the question.
+2. Choose the needed columns.
+3. Calculate and inspect the plotting table.
+4. Assign x, y, and any other data mappings.
+5. Make the simplest plot.
+6. Add labels and style one layer at a time.
+
+## 1. A trend question
+
+Question: How did total reported market value change from 2021 to 2025?
+
+Needed columns: `year` and `market_value_nok`.
+
+```{r}
+annual_summary <- gpfg |>
+  group_by(year) |>
+  summarise(market_value_nok = sum(market_value_nok)) |>
+  arrange(year)
+
+annual_summary
+```
+
+Plan: x = time, y = annual value. No color or size variable is needed.
+
+```{r}
+ggplot(annual_summary, aes(x = year, y = market_value_nok)) +
+  geom_line()
+```
+
+Add points so the five observations are visible:
+
+```{r}
+ggplot(annual_summary, aes(x = year, y = market_value_nok)) +
+  geom_line() +
+  geom_point()
+```
+
+Add meaning:
+
+```{r}
+ggplot(annual_summary, aes(x = year, y = market_value_nok)) +
+  geom_line() +
+  geom_point() +
+  labs(
+    title = "Reported equity value increased over the five-year period",
+    x = NULL,
+    y = "Market value (NOK)",
+    caption = "Source: Norges Bank Investment Management"
+  )
+```
+
+Add restrained appearance last:
+
+```{r}
+ggplot(annual_summary, aes(x = year, y = market_value_nok)) +
+  geom_line(color = "#007C83", linewidth = 1) +
+  geom_point(color = "#007C83", size = 2.5) +
+  labs(
+    title = "Reported equity value increased over the five-year period",
+    x = NULL,
+    y = "Market value (NOK)",
+    caption = "Source: Norges Bank Investment Management"
+  ) +
+  theme_minimal()
+```
+
+The fixed color is outside `aes()` because it does not represent another
+column.
+
+## 2. A ranking question
+
+Question: Which ten markets had the largest values in 2025?
+
+```{r}
+top_countries <- gpfg_latest |>
+  group_by(country) |>
+  summarise(market_value_usd = sum(market_value_usd)) |>
+  slice_max(market_value_usd, n = 10) |>
+  arrange(market_value_usd)
+
+top_countries
+```
+
+```{r}
+ggplot(top_countries, aes(x = market_value_usd, y = fct_reorder(country, market_value_usd))) +
+  geom_col()
+```
+
+```{r}
+ggplot(top_countries, aes(x = market_value_usd, y = fct_reorder(country, market_value_usd))) +
+  geom_col(fill = "#D95F59") +
+  labs(
+    title = "The United States led reported equity value by a wide margin in 2025",
+    x = "Market value (USD)",
+    y = NULL,
+    caption = "Source: Norges Bank Investment Management"
+  ) +
+  theme_minimal()
+```
+
+## Optional if time: relationship question
+
+```{r}
+ggplot(
+  gpfg_latest,
+  aes(x = market_value_usd, y = ownership_pct)
+) +
+  geom_point(alpha = 0.35) +
+  labs(
+    title = "Ownership and market value vary widely across holdings",
+    x = "Market value (USD)",
+    y = "Ownership (%)"
+  ) +
+  theme_minimal()
+```
+
+## Exit ticket
+
+- Which table was checked before each plot?
+- Why is `year` on x for the line chart?
+- What did each added layer change?
+- Why is the fixed bar color outside `aes()`?

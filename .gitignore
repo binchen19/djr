@@ -58,6 +58,9 @@ rsconnect/
 # Generated spreadsheet and inspection artifacts
 /outputs/
 
+# Locally knitted instructor notes (Rmd sources remain tracked)
+/class-notes/rendered/
+
 # Website builds should link to the canonical teaching datasets in data/
 # instead of committing a second copy.
 /docs/data/

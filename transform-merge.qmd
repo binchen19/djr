@@ -1,359 +1,281 @@
 ---
-title: "Combine and Reshape"
+title: "Join and Reshape"
 ---
+
+::: {.callout-note title="Part 5: Advanced Workflows"}
+The earlier chapters used one long table: each row was a holding in one year.
+Real reporting projects often arrive as several tables, or in a layout made
+for reading rather than analysis. This chapter introduces two ways to prepare
+those data: reshape columns into rows and join related tables.
+:::
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- combine similar tables with `bind_rows()`;
-- add columns from another table with `left_join()`;
-- choose a suitable join key;
-- reshape data with `pivot_wider()` and `pivot_longer()`;
-- calculate annual totals and year-to-year change; and
-- describe a trend without confusing it with investment flows or returns.
+- distinguish long data from wide data;
+- use `pivot_longer()` to turn year columns into observations;
+- identify a suitable key shared by two tables;
+- use `anti_join()` to find unmatched keys;
+- use `left_join()` to add variables from a lookup table; and
+- use `pivot_wider()` when a reporting output needs separate columns.
 
-## Where this chapter fits
+## Begin with a reporting need
 
-The previous chapter worked with one table. Reporting projects often contain
-several annual files or related tables. The tidyverse gives us tools for
-preparing those tables and answering questions across time:
+Suppose a colleague sends two files:
 
-| Task | Function |
-|---|---|
-| Put similar observations underneath one another | `bind_rows()` |
-| Add variables by matching a key | `left_join()` |
-| Change the arrangement of rows and columns | `pivot_wider()` or `pivot_longer()` |
+- `gpfg_country_wide.csv` contains one row per country and a separate column
+  for each year;
+- `gpfg_country_lookup.csv` connects each country to a region.
+
+We want to answer:
+
+> How did reported equity value change by region from 2021 through 2025?
+
+Neither file can answer the question alone. The values must first be reshaped
+so that `year` is a variable, and then the region labels must be added from the
+second table.
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `05-combine-reshape.Rmd`. Download
-[`gpfg_equities_last_10_years.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_equities_last_10_years.csv)
-and save it in the same `data` folder. Keep the latest-year file there too.
+Open `djr.Rproj` and create `08-join-reshape.Rmd`. Download
+[`gpfg_country_wide.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_country_wide.csv)
+and
+[`gpfg_country_lookup.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_country_lookup.csv),
+then save both in `data/`.
 :::
-
-## Load the multi-year data
 
 ```{r}
 library(tidyverse)
 
-gpfg_panel <- read_csv("data/gpfg_equities_last_10_years.csv")
-
-gpfg_panel |>
-  count(year)
+country_wide <- read_csv("data/gpfg_country_wide.csv")
+country_lookup <- read_csv("data/gpfg_country_lookup.csv")
 ```
 
-One row represents one reported holding in one year. The `year` column keeps
-observations from different files distinguishable.
-
-The result should show ten consecutive years. Check this before calculating a
-trend. If a year is missing, determine whether the source file is absent or
-whether the publisher changed the data.
-
-## Stack rows with `bind_rows()`
-
-Suppose two annual tables have the same columns. `bind_rows()` places the rows
-of the second table below the first:
+Inspect the two files before changing them:
 
 ```{r}
-holdings_2024 <- gpfg_panel |>
-  filter(year == 2024)
-
-holdings_2025 <- gpfg_panel |>
-  filter(year == 2025)
-
-two_years <- bind_rows(holdings_2024, holdings_2025)
-
-two_years |>
-  count(year)
+glimpse(country_wide)
 ```
-
-Use `bind_rows()` when the tables describe the same variables but different
-observations. Make sure a year or date column exists before combining annual
-files.
-
-::: {.callout-tip title="Check names before stacking"}
-Columns with the same meaning should have the same name. If one file uses
-`company` and another uses `company_name`, rename them consistently before
-using `bind_rows()`.
-:::
-
-## Add columns with `left_join()`
-
-A join connects two tables by a shared column called a **key**. First create a
-country summary and a country-to-region reference table. `distinct()` keeps
-each country-region combination once:
 
 ```{r}
-country_totals <- holdings_2025 |>
-  group_by(country) |>
-  summarise(market_value_nok = sum(market_value_nok))
-
-country_regions <- holdings_2025 |>
-  distinct(country, region)
+glimpse(country_lookup)
 ```
 
-`left_join()` keeps every row from the table on the left and adds matching
-columns from the table on the right:
+The first table contains the values, but its years are column names. The
+second contains `region`, but no annual values. Both contain `country`, which
+can connect them.
 
-```{r}
-country_totals <- country_totals |>
-  left_join(country_regions, by = "country")
+## Wide and long data
 
-country_totals |>
-  slice_head(n = 5)
-```
+In the wide table, one row represents one country and each year has its own
+column:
 
-The essential join argument is `by`, which names the matching key. Here the
-value in `country` must match in both tables.
+| country | 2021 | 2022 | 2023 | 2024 | 2025 |
+|---|---:|---:|---:|---:|---:|
+| Australia | ... | ... | ... | ... | ... |
 
-Check keys that did not match with `anti_join()`:
-
-```{r}
-country_totals |>
-  anti_join(country_regions, by = "country")
-```
-
-An empty result means every country in the left table found a match. It does
-not prove that the labels themselves are correct, so important matches still
-need source checking.
-
-## Long and wide data
-
-**Long data** usually place the year in one column and the value in another:
+For analysis and visualization, we usually want one observation per row. A
+long table stores the year in one column and its value in another:
 
 | country | year | market_value_nok |
 |---|---:|---:|
-| China | 2024 | ... |
-| China | 2025 | ... |
+| Australia | 2021 | ... |
+| Australia | 2022 | ... |
 
-**Wide data** place different years in different columns:
+The long layout makes `year` available for `filter()`, `group_by()`, and the
+x-axis of a chart. It also avoids writing separate code for every annual
+column.
 
-| country | 2024 | 2025 |
-|---|---:|---:|
-| China | ... | ... |
+## Convert wide data to long data
 
-Long data are convenient for grouping and charts. Wide data can make a direct
-two-year comparison easier.
+`pivot_longer()` needs three pieces of information:
 
-Create a long country-year table:
+- `cols`: the columns to move into rows;
+- `names_to`: the name of the new column that will store the old column
+  names; and
+- `values_to`: the name of the new column that will store their values.
+
+Here, every column except `country` is a year column:
 
 ```{r}
-country_year <- two_years |>
-  group_by(country, year) |>
-  summarise(market_value_nok = sum(market_value_nok))
+country_year <- country_wide |>
+  pivot_longer(
+    cols = -country,
+    names_to = "year",
+    values_to = "market_value_nok"
+  )
 
 country_year
 ```
 
-## Make data wider
+`cols = -country` means “reshape every column except `country`.” The old
+column names become values of `year`.
 
-`pivot_wider()` needs to know which column supplies the new column names and
-which column supplies their values:
+### Correct the new year type
+
+Column names are text, so `year` is now a character column even though its
+values look like numbers. Convert it after reshaping:
 
 ```{r}
-country_wide <- country_year |>
+country_year <- country_year |>
+  mutate(year = parse_integer(year))
+
+glimpse(country_year)
+```
+
+`parse_integer()` reads text such as `"2021"` as an integer. We use it here
+because the year values came from column names. This is a useful example of a
+cleaning step being prompted by a real change in the data.
+
+Check the new structure:
+
+```{r}
+country_year |>
+  count(year)
+```
+
+One row now represents one country in one year. Count empty values as well:
+
+```{r}
+country_year |>
+  group_by(year) |>
+  summarise(missing_values = sum(is.na(market_value_nok)))
+```
+
+A missing value means the wide source had an empty cell for that country-year
+combination. It does not mean the fund reported a value of zero.
+
+## Join variables from another table
+
+The long table still has no region. A **join** matches rows across tables by a
+shared column called a **key**. Here, `country` is the proposed key.
+
+Before joining, check that every country appears only once in the lookup
+table:
+
+```{r}
+country_lookup |>
+  count(country) |>
+  filter(n > 1)
+```
+
+An empty result means there are no duplicate country keys. If a country
+appeared twice, joining it could unexpectedly create extra rows.
+
+Next, find source countries that have no match in the lookup table:
+
+```{r}
+country_year |>
+  distinct(country) |>
+  anti_join(country_lookup, by = "country")
+```
+
+`anti_join()` keeps keys from the left table that are absent from the right.
+An empty result means every country found a match. This is a useful check, not
+the final combined table.
+
+Now add `region`:
+
+```{r}
+country_year <- country_year |>
+  left_join(country_lookup, by = "country")
+
+glimpse(country_year)
+```
+
+`left_join()` keeps every row from `country_year`, the table on the left, and
+adds the matching `region` from `country_lookup`. The essential `by` argument
+states which column should match.
+
+::: {.callout-important title="Always check the row meaning after a join"}
+Before the join, one row represented one country-year. That should still be
+true afterward. Duplicate keys in the lookup table can multiply rows and
+inflate later totals.
+:::
+
+## Answer the question
+
+Now the combined table contains all three columns needed for the question:
+`year`, `region`, and `market_value_nok`.
+
+```{r}
+region_year <- country_year |>
+  group_by(year, region) |>
+  summarise(market_value_nok = sum(market_value_nok, na.rm = TRUE)) |>
+  arrange(year, desc(market_value_nok))
+
+region_year
+```
+
+The result has one row per region and year. It can now be used for a comparison
+table or a multi-line chart. Notice the workflow: the reporting question told
+us which variables were missing and therefore which reshape and join were
+necessary. Here `na.rm = TRUE` tells `sum()` to ignore unavailable
+country-year cells; it does not replace those cells with known zeros.
+
+## When would we make data wider?
+
+Long data are usually easier to analyse in R. Wide data can still be helpful
+for a compact reporting table—for example, one row per country with 2024 and
+2025 values side by side.
+
+```{r}
+country_change <- country_year |>
+  filter(year %in% c(2024, 2025)) |>
+  select(country, year, market_value_nok) |>
   pivot_wider(
     names_from = year,
     values_from = market_value_nok
   )
 
-country_wide
+country_change
 ```
 
-Each country now has separate columns for 2024 and 2025.
+`pivot_wider()` uses values from `year` as new column names and values from
+`market_value_nok` to fill those columns. Use this layout when the output calls
+for it; keep the long version for most analysis and charts.
 
-## Make data longer
+## Choose the operation by the problem
 
-`pivot_longer()` gathers those year columns back into two columns:
+| Situation | Function |
+|---|---|
+| Same columns, different observations | `bind_rows()` |
+| Variables spread across repeated columns | `pivot_longer()` |
+| Add variables by matching a key | `left_join()` |
+| Find keys that did not match | `anti_join()` |
+| Put category values into separate columns | `pivot_wider()` |
 
-```{r}
-country_long <- country_wide |>
-  pivot_longer(
-    cols = c(`2024`, `2025`),
-    names_to = "year",
-    values_to = "market_value_nok"
-  )
-
-country_long
-```
-
-The essential arguments identify the columns to gather, the name of the new
-category column, and the name of the new value column.
-
-## Use the combined data to answer trend questions
-
-Combining annual observations is not an end in itself. It allows us to ask:
-
-> How did reported year-end equity market value change over the ten-year
-> period?
-
-A trend requires several comparable time points. Before calculating it, make
-sure the row meaning, units, and categories are reasonably consistent across
-the years.
-
-### Calculate annual totals
-
-Group the combined data by year and add the market values:
-
-```{r}
-annual <- gpfg_panel |>
-  group_by(year) |>
-  summarise(
-    holding_records = n(),
-    market_value_nok = sum(market_value_nok)
-  ) |>
-  arrange(year)
-
-annual
-```
-
-One row now represents one annual snapshot. Ordering by year matters because
-the next calculation compares each row with the row before it.
-
-### Calculate year-to-year change
-
-`lag()` returns the previous value in a column. Add it first so the comparison
-is visible:
-
-```{r}
-annual_change <- annual |>
-  mutate(previous_year_value = lag(market_value_nok))
-
-annual_change
-```
-
-The first row contains `NA` because this file has no earlier year with which to
-compare it. Now calculate absolute and percentage change:
-
-```{r}
-annual_change <- annual_change |>
-  mutate(
-    change_nok = market_value_nok - previous_year_value,
-    change_percent = change_nok / previous_year_value * 100
-  )
-
-annual_change
-```
-
-::: {.callout-tip title="Sort before using lag()"}
-`lag()` uses the current row order. Arrange a time series by year before
-calculating change, even when the source appears to be correctly ordered.
-:::
-
-### Follow the same markets over time
-
-Choose a small, fixed set of markets so every year refers to the same groups:
-
-```{r}
-selected_countries <- c("United States", "China", "Japan")
-
-country_trends <- gpfg_panel |>
-  filter(country %in% selected_countries) |>
-  group_by(year, country) |>
-  summarise(market_value_nok = sum(market_value_nok)) |>
-  arrange(country, year)
-
-country_trends
-```
-
-Selecting a different set of leading markets in every year would change the
-membership of the comparison and make the pattern harder to interpret.
-
-### Compare amounts and shares
-
-A market's value can rise while its share of the full portfolio falls. First
-create the annual denominator:
-
-```{r}
-annual_totals <- gpfg_panel |>
-  group_by(year) |>
-  summarise(annual_market_value_nok = sum(market_value_nok))
-```
-
-Join the denominator to the selected-market table and calculate the share:
-
-```{r}
-country_trends <- country_trends |>
-  left_join(annual_totals, by = "year") |>
-  mutate(
-    share_percent = market_value_nok / annual_market_value_nok * 100
-  )
-
-country_trends
-```
-
-The value answers “how many Norwegian kroner?” The share answers “what
-percentage of the reported annual equity total?” A finding should name which
-measure it uses.
-
-### Interpret changes carefully
-
-A change in year-end market value can reflect:
-
-- changes in security prices;
-- exchange-rate movements;
-- purchases and sales;
-- companies entering or leaving the portfolio; or
-- changes in classifications and reporting.
-
-The holdings data do not separate these causes. Do not call the percentage
-change an investment return, and do not assume it equals the amount purchased
-during the year.
-
-::: {.callout-note title="Categories can change over time"}
-NBIM's industry labels change within the historical series. Compare the labels
-used in each period before drawing an industry trend. Company names can also
-change after mergers or rebranding, so market- or industry-level trends are
-usually safer for a beginner project.
-:::
+Chapter 5 used `bind_rows()` because the annual files had the same columns and
+needed to be stacked. This chapter uses `left_join()` because two tables hold
+different variables about the same countries.
 
 ## Practice
 
-### Activity 1: Reshape two years
-
-Use the 2024 and 2025 holdings to:
-
-1. calculate one row per industry and year;
-2. pivot the result so the two years appear in separate columns;
-3. identify industries missing from either year; and
-4. pivot the table back to long form.
-
-Explain what one row represents before and after each pivot.
-
-### Activity 2: Investigate one market over time
-
-Choose one market and create a year-by-year table containing:
-
-1. market value in Norwegian kroner;
-2. previous-year market value;
-3. absolute annual change;
-4. percentage annual change; and
-5. share of the full annual total.
-
-Identify the largest rise and fall by sorting the table. Write a headline that
-describes the change without using the words *return*, *profit*, or
-*purchased*.
+1. Import the wide and lookup files and explain what one row represents in
+   each.
+2. Reshape the annual columns into `year` and `market_value_nok`.
+3. Confirm that `year` has the correct type.
+4. Check duplicate and unmatched country keys before joining.
+5. Join the region labels and calculate one annual total per region.
+6. Write one sentence explaining why the reshape and join were necessary.
 
 ## Takeaways
 
 | Function | What it does |
 |---|---|
-| `bind_rows()` | Stacks similar observations underneath one another |
-| `distinct()` | Keeps unique combinations of selected columns |
-| `left_join()` | Adds columns by matching a key while keeping the left table |
-| `anti_join()` | Shows rows on the left that have no match on the right |
-| `pivot_wider()` | Spreads one category across several columns |
-| `pivot_longer()` | Gathers several columns into a names column and a values column |
-| `group_by(year)` + `summarise()` | Creates one summary row per year |
-| `arrange(year)` | Places observations in chronological order |
-| `lag()` | Returns the value from the previous row |
-| `mutate()` | Calculates changes, percentages, and shares |
-| Fixed comparison set | Keeps the same groups in every period |
-| Amount and share | Answer different questions about change |
+| `pivot_longer()` | Moves repeated columns into name and value columns |
+| `parse_integer()` | Reads whole numbers stored as text |
+| `count()` | Checks how often each key or category appears |
+| `anti_join()` | Finds keys from the left table without a match |
+| `left_join()` | Keeps the left table and adds matching columns |
+| `pivot_wider()` | Moves category values into separate columns |
+
+In Chapter 9, we will use the same join logic to connect investment-market
+summaries to geographic boundary coordinates.
 
 ::: {.callout-tip title="Want more control?"}
-Begin with the essential arguments above and inspect every result. The official
-[tidyr pivoting guide](https://tidyr.tidyverse.org/articles/pivot.html) and
-[dplyr reference](https://dplyr.tidyverse.org/reference/index.html) cover
-additional join, reshape, and time-comparison options for unusual cases.
+The [tidyr pivoting guide](https://tidyr.tidyverse.org/articles/pivot.html)
+shows more reshaping patterns. The [dplyr joins guide](https://dplyr.tidyverse.org/articles/two-table.html)
+explains additional joins. Begin with `pivot_longer()`, `left_join()`, and
+`anti_join()`; use another operation only when the reporting task requires it.
 :::

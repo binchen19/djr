@@ -1,0 +1,91 @@
+---
+title: "Class 3: Data Import"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Import one CSV from the project, confirm what arrived, and write a cleaning
+plan. Do not clean the table yet.
+
+## Before class
+
+Save `gpfg_messy.csv` inside `djr/data/`. Open `djr.Rproj`, then open this
+note from the project folder.
+
+```{r}
+library(tidyverse)
+```
+
+## Relative path
+
+From the project folder, the file is located at:
+
+```text
+data/gpfg_messy.csv
+```
+
+This relative path can work on another computer if the project structure is
+the same. Avoid paths tied to your personal Desktop or username.
+
+## Import
+
+```{r}
+gpfg_raw <- read_csv("data/gpfg_messy.csv")
+```
+
+`read_csv()` is a readr function, available after loading the tidyverse. It
+needs the file path; `<-` saves the imported tibble as `gpfg_raw`.
+
+## Inspect
+
+```{r}
+glimpse(gpfg_raw)
+```
+
+Read the output in this order:
+
+1. number of rows and columns;
+2. column names;
+3. column types such as `<chr>` and `<dbl>`; and
+4. example values.
+
+```{r}
+gpfg_raw |>
+  slice_head(n = 5)
+```
+
+The file imported successfully. The amounts and percentages are numeric, but
+the reporting date arrived as text. A successful import only means R read the
+file; it does not prove that every row and type is ready for analysis.
+
+## Turn observations into questions
+
+Complete this table during class:
+
+| Check | What did we observe? | What might need cleaning? |
+|---|---|---|
+| Names |  |  |
+| Types |  |  |
+| Missing values |  |  |
+| Repeated rows |  |  |
+| Units and definitions |  |  |
+
+## Exit ticket
+
+- What should one row represent?
+- Which columns already arrived as numbers?
+- Which column should be a date?
+- Why keep the downloaded file locally?
+
+## Key code
+
+| Code | Use |
+|---|---|
+| `read_csv("data/file.csv")` | Import a local CSV |
+| `glimpse()` | Inspect names, types, size, and examples |
+| `slice_head(n = 5)` | Preview five rows |

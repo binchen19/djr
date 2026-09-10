@@ -1,168 +1,237 @@
 ---
-title: "Visualize Multiple Variables"
+title: "Visualization II"
 ---
 
 ## Learning objectives
 
 By the end of this chapter, you should be able to:
 
-- choose a chart that matches a comparison, relationship, or change question;
-- make ordered, grouped, stacked, and percentage-stacked bar charts;
-- use a dot plot as an alternative to bars;
+- add color or fill only when it represents useful information;
+- distinguish a fixed appearance from a data mapping;
+- compare several time series;
+- choose between grouped, stacked, and percentage-stacked bars;
 - compare distributions with box plots;
-- examine relationships with scatterplots;
-- show change over time with line charts; and
-- save a finished chart with `ggsave()`.
+- separate crowded groups with facets; and
+- save a finished chart.
 
-## Move beyond description
+## When does a chart need more complexity?
 
-The previous chapter described one column. Questions involving two or more
-columns allow us to compare categories, examine relationships, and follow
-change over time:
+Chapter 6 used a line, bars, a histogram, and a scatterplot to answer four
+basic questions. An advanced chart should begin from one of those forms and
+add something only because the reporting question requires it.
 
-| Question | Useful starting chart |
+| New reporting need | Possible addition |
 |---|---|
-| Which categories have the largest values? | Ordered bar chart or dot plot |
-| How do categories compare across a few groups? | Grouped bar chart |
-| How is a total divided into parts? | Stacked bar chart |
-| How do proportions differ? | Percentage-stacked bar chart |
-| How do numeric distributions differ across groups? | Box plot |
-| Are two numeric variables related? | Scatterplot |
-| How does a measure change over time? | Line chart |
+| Compare several groups over time | Map a group to color |
+| Compare groups directly within categories | Grouped bars |
+| Show how groups contribute to a total | Stacked bars |
+| Compare composition rather than totals | Percentage-stacked bars |
+| Compare several distributions | Box plots |
+| Reduce overlap among many groups | Facets or small multiples |
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `07-multiple-variable-visualization.Rmd`. Reuse the
-latest-year and multi-year GPFG files in `data/`. Save finished charts in
-`outputs/`.
+Open `djr.Rproj` and create `07-advanced-visualization.Rmd`. Reuse
+`data/gpfg_5_years.csv` and save finished charts in `outputs/`.
 :::
 
 ```{r}
 library(tidyverse)
 
-gpfg <- read_csv("data/gpfg.csv")
-gpfg_panel <- read_csv("data/gpfg_equities_last_10_years.csv")
+gpfg <- read_csv("data/gpfg_5_years.csv")
+
+gpfg_latest <- gpfg |>
+  filter(year == 2025)
 ```
 
-## Compare categories with an ordered bar chart
+## Map a column or set an appearance
 
-Ask:
+This distinction matters throughout the chapter:
 
-> Which investment markets had the largest total reported market values at
-> the end of 2025?
-
-First prepare the table the chart will display:
-
-```{r}
-top_countries <- gpfg |>
-  group_by(country) |>
-  summarise(market_value_usd = sum(market_value_usd)) |>
-  arrange(desc(market_value_usd)) |>
-  slice_head(n = 10) |>
-  mutate(market_value_usd_billions = market_value_usd / 1000000000)
-
-top_countries
+```r
+geom_point(color = "#0072B2")
 ```
 
-`geom_col()` draws bars from values that have already been calculated:
+`color` is outside `aes()`, so every point receives the same fixed color. It
+does not create a legend.
+
+```r
+geom_point(aes(color = region))
+```
+
+`color` is inside `aes()`, so values of `region` are mapped to different
+colors. Because color now represents data, ggplot2 creates a legend.
+
+The same rule applies to `fill`, `size`, and other visual properties.
+
+## Compare several trends with color
+
+### Step 1: state the question
+
+> How did reported market value change for the United States, China, and Japan
+> from 2021 through 2025?
+
+### Step 2: identify and prepare the columns
+
+We need `year`, `country`, and `market_value_nok`. First choose a fixed set of
+markets, then calculate one value per country and year:
 
 ```{r}
-country_bar <- top_countries |>
+selected_countries <- c("United States", "China", "Japan")
+
+country_trends <- gpfg |>
+  filter(country %in% selected_countries) |>
+  group_by(year, country) |>
+  summarise(market_value_nok = sum(market_value_nok)) |>
+  mutate(market_value_nok_billions = market_value_nok / 1000000000) |>
+  arrange(country, year)
+
+country_trends
+```
+
+One row represents one selected market in one year.
+The `%in%` operator asks whether each `country` belongs to the
+`selected_countries` vector created above.
+
+### Step 3: plan the visual roles
+
+| Visual role | Column | Reason |
+|---|---|---|
+| X-axis | `year` | Ordered time |
+| Y-axis | `market_value_nok_billions` | Value being compared |
+| Color | `country` | Separates the three time series |
+| Size | None | Line position already represents value |
+
+### Step 4: begin with the essential mappings
+
+```{r}
+country_trend_plot <- country_trends |>
   ggplot(
     aes(
-      x = market_value_usd_billions,
-      y = fct_reorder(country, market_value_usd_billions)
+      x = year,
+      y = market_value_nok_billions,
+      color = country
     )
   ) +
-  geom_col(fill = "#0072B2", width = 0.72) +
-  labs(
-    title = "The largest reported equity values were concentrated in a few markets",
-    x = "Market value in USD billions",
-    y = NULL,
-    caption = "Source: Norges Bank Investment Management"
-  ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.major.y = element_blank(),
-    panel.grid.minor = element_blank(),
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.caption = element_text(color = "#6B7280"),
-    plot.title.position = "plot",
-    plot.caption.position = "plot"
-  )
+  geom_line()
 
-country_bar
+country_trend_plot
 ```
 
-The deep blue gives the book a consistent primary data color. The minimal theme
-keeps the numeric grid lines needed for comparison while removing unnecessary
-lines behind the country labels. Bold title text creates a clear reading order.
+Because `country` is inside `aes()`, the chart has a color legend. Color is
+doing analytical work: it identifies which line belongs to which market.
 
-::: {.callout-note title="geom_bar() or geom_col()?"}
-`geom_bar()` counts rows from one categorical column. `geom_col()` uses a
-numeric value that has already been calculated. Use the function that matches
-the question and the table supplied to `ggplot()`.
-:::
-
-## Use a dot plot for the same comparison
-
-A dot plot can show the same ranking with less visual weight:
+### Step 5: add points and labels
 
 ```{r}
-top_countries |>
-  ggplot(
-    aes(
-      x = market_value_usd_billions,
-      y = fct_reorder(country, market_value_usd_billions)
+country_trend_plot <- country_trend_plot +
+  geom_point() +
+  labs(
+    title = "Selected investment markets followed different paths",
+    subtitle = "Reported year-end equity holdings, 2021–2025",
+    x = "Year",
+    y = "Market value in NOK billions",
+    color = "Investment market",
+    caption = "Source: Norges Bank Investment Management"
+  )
+
+country_trend_plot
+```
+
+The `color` entry in `labs()` gives the automatically created legend a clearer
+title.
+
+### Step 6: add a restrained theme and palette
+
+```{r}
+country_trend_plot <- country_trend_plot +
+  scale_color_manual(
+    values = c(
+      "United States" = "#0072B2",
+      "China" = "#D55E00",
+      "Japan" = "#009E73"
     )
   ) +
-  geom_point(color = "#0072B2", size = 3) +
-  labs(
-    title = "Ten investment markets with the largest reported equity values",
-    x = "Market value in USD billions",
-    y = NULL,
-    caption = "Source: Norges Bank Investment Management"
-  ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.major.y = element_blank(),
-    panel.grid.minor = element_blank(),
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.caption = element_text(color = "#6B7280"),
-    plot.title.position = "plot",
-    plot.caption.position = "plot"
-  )
+  theme_minimal() +
+  theme(legend.position = "top")
+
+country_trend_plot
 ```
 
-Bars emphasize magnitude from a zero baseline. Dots are compact and make the
-positions easy to compare, especially when many category labels are present.
+The manual scale gives every named market a consistent color. Add it only
+after confirming that the basic multi-line chart works.
 
-## Compare categories across groups
+## Compare groups with grouped bars
 
-To demonstrate grouped and stacked bars without overcrowding the chart, select
-three regions and three industries:
+### Question and analysis table
+
+> How did total values differ across three industries and three regions in
+> 2025?
 
 ```{r}
-region_industry_counts <- gpfg |>
+region_industry <- gpfg_latest |>
   filter(
     region %in% c("Asia", "Europe", "North America"),
     industry %in% c("Technology", "Financials", "Industrials")
   ) |>
-  count(industry, region)
+  group_by(industry, region) |>
+  summarise(market_value_nok = sum(market_value_nok)) |>
+  mutate(market_value_nok_billions = market_value_nok / 1000000000)
 
-region_industry_counts
+region_industry
 ```
 
-### Grouped bars
+The two conditions inside `filter()` are separated by a comma, so both must be
+true: a row must belong to one of the selected regions and one of the selected
+industries.
 
-Grouped bars place the regions beside one another within each industry. They
-are useful for direct comparisons across a small number of groups:
+The visual roles are industry on x, value on y, and region mapped to fill.
+Start with the default bars:
 
 ```{r}
-ggplot(
-  region_industry_counts,
-  aes(x = industry, y = n, fill = region)
-) +
-  geom_col(position = "dodge", width = 0.72) +
+region_industry |>
+  ggplot(
+    aes(
+      x = industry,
+      y = market_value_nok_billions,
+      fill = region
+    )
+  ) +
+  geom_col()
+```
+
+The default is stacked. This shows the combined height and each region's
+contribution, but only the bottom segment begins at the same point, so the
+other segments are harder to compare precisely.
+
+For direct comparison, change one argument:
+
+```{r}
+region_industry |>
+  ggplot(
+    aes(
+      x = industry,
+      y = market_value_nok_billions,
+      fill = region
+    )
+  ) +
+  geom_col(position = "dodge")
+```
+
+`position = "dodge"` places the regions beside one another. The data and
+aesthetic mappings have not changed; only the bar arrangement has changed.
+
+Add labels and styling after choosing the arrangement that fits the question:
+
+```{r}
+region_industry |>
+  ggplot(
+    aes(
+      x = industry,
+      y = market_value_nok_billions,
+      fill = region
+    )
+  ) +
+  geom_col(position = "dodge") +
   scale_fill_manual(
     values = c(
       "Asia" = "#009E73",
@@ -171,38 +240,35 @@ ggplot(
     )
   ) +
   labs(
-    title = "Holding-record counts differed across selected industries and regions",
+    title = "Regional values differed across selected industries",
     x = NULL,
-    y = "Number of holding records",
+    y = "Market value in NOK billions",
     fill = "Region",
-    caption = "Only three selected industries and regions are shown"
+    caption = "Three selected industries and regions; year-end 2025\nSource: Norges Bank Investment Management"
   ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor = element_blank(),
-    legend.position = "top",
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.title.position = "plot"
-  )
+  theme_minimal() +
+  theme(legend.position = "top")
 ```
 
-`scale_fill_manual()` assigns the same color to each region in every grouped
-and stacked example. Blue, orange, and green remain distinguishable for many
-readers with common forms of color-vision deficiency. Color identifies groups;
-it is not added merely as decoration.
+## Compare composition with percentage bars
 
-### Stacked bars
+A different question requires a different bar arrangement:
 
-Stacked bars emphasize the combined total and how each region contributes to
-it:
+> Within each selected industry, what share of the three-region total came
+> from each region?
+
+Starting from the same table and mappings, change the position to `"fill"`:
 
 ```{r}
-ggplot(
-  region_industry_counts,
-  aes(x = industry, y = n, fill = region)
-) +
-  geom_col(width = 0.72) +
+region_industry |>
+  ggplot(
+    aes(
+      x = industry,
+      y = market_value_nok_billions,
+      fill = region
+    )
+  ) +
+  geom_col(position = "fill") +
   scale_fill_manual(
     values = c(
       "Asia" = "#009E73",
@@ -211,255 +277,164 @@ ggplot(
     )
   ) +
   labs(
-    title = "Selected regions contributed differently to each industry count",
+    title = "Regional composition differed across selected industries",
     x = NULL,
-    y = "Number of holding records",
+    y = "Share of selected-region market value",
     fill = "Region",
-    caption = "Only three selected industries and regions are shown"
+    caption = "Source: Norges Bank Investment Management"
   ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor = element_blank(),
-    legend.position = "top",
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.title.position = "plot"
-  )
+  theme_minimal() +
+  theme(legend.position = "top")
 ```
 
-Only the bottom segment shares a common baseline, so exact comparisons among
-the other segments can be difficult. Use grouped bars when direct comparison
-is more important than the combined total.
+Every bar now has the same height. This makes composition easier to compare
+but hides differences in total amounts. A percentage chart must not be used to
+support a claim about which industry has the largest total.
 
-### Percentage-stacked bars
+## Compare distributions with box plots
 
-`position = "fill"` makes every bar the same height and displays composition:
+Chapter 6's histogram described all 2025 holding values together. Now ask:
+
+> How did holding-level value distributions differ across industries?
+
+The source table already contains the two required columns:
+
+| Visual role | Column |
+|---|---|
+| X-axis | `market_value_usd` |
+| Y-axis | `industry` |
+
+Begin without additional scales:
 
 ```{r}
-ggplot(
-  region_industry_counts,
-  aes(x = industry, y = n, fill = region)
-) +
-  geom_col(position = "fill", width = 0.72) +
-  scale_fill_manual(
-    values = c(
-      "Asia" = "#009E73",
-      "Europe" = "#E69F00",
-      "North America" = "#0072B2"
+industry_box <- gpfg_latest |>
+  ggplot(
+    aes(
+      x = market_value_usd,
+      y = industry
     )
   ) +
-  labs(
-    title = "Regional composition varied across the selected industries",
-    x = NULL,
-    y = "Share of selected holding records",
-    fill = "Region",
-    caption = "Only three selected industries and regions are shown"
-  ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor = element_blank(),
-    legend.position = "top",
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.title.position = "plot"
-  )
+  geom_boxplot()
+
+industry_box
 ```
 
-This version makes proportions easier to compare but hides differences in the
-total number of records. Choose between totals and percentages according to the
-reporting question.
-
-## Compare numeric distributions across groups
-
-Adding `industry` to the one-variable box plot allows us to compare holding-
-level distributions:
+The large values compress most boxes near zero. Because all displayed values
+are positive, add a logarithmic x-axis:
 
 ```{r}
-ggplot(
-  gpfg,
-  aes(x = market_value_usd, y = industry)
-) +
-  geom_boxplot(
-    fill = "#56B4E9",
-    color = "#1F4E79",
-    outlier.color = "#D55E00"
-  ) +
+industry_box +
   scale_x_log10() +
   labs(
-    title = "Holding-level market values varied within every industry",
+    title = "Holding values varied widely within every industry",
     x = "Market value in USD (log scale)",
     y = NULL,
     caption = "Source: Norges Bank Investment Management"
   ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.major.y = element_blank(),
-    panel.grid.minor = element_blank(),
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.title.position = "plot"
-  )
+  theme_minimal()
 ```
 
-This chart compares individual holding distributions. It does not compare the
-total market value of the industries.
+The line inside each box is the median. Points beyond the whiskers deserve
+inspection, but they are not automatically errors. Always disclose a log
+scale in the axis label.
 
-## Examine a relationship with a scatterplot
+## Add a third variable with facets
 
-Use a scatterplot when both variables are numeric:
+Return to the basic relationship question from Chapter 6:
+
+> Did market value and ownership percentage vary together, and did the pattern
+> differ across regions?
+
+First select three regions so the comparison remains readable:
 
 ```{r}
-ggplot(
-  gpfg,
-  aes(x = market_value_usd, y = ownership_pct)
-) +
-  geom_point(color = "#0072B2", alpha = 0.25, size = 1.2) +
-  scale_x_log10() +
-  labs(
-    title = "Market value and ownership percentage varied across holdings",
-    x = "Market value in USD (log scale)",
-    y = "Ownership (%)",
-    caption = "Source: Norges Bank Investment Management"
+selected_holdings <- gpfg_latest |>
+  filter(region %in% c("Asia", "Europe", "North America"))
+```
+
+Begin with the familiar scatterplot, adding transparency because many points
+overlap:
+
+```{r}
+relationship_plot <- selected_holdings |>
+  ggplot(
+    aes(
+      x = market_value_usd,
+      y = ownership_pct
+    )
   ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.minor = element_blank(),
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.title.position = "plot"
-  )
+  geom_point(alpha = 0.25)
+
+relationship_plot
 ```
 
-Each point represents one holding. Look for direction, clusters, and unusual
-observations. `alpha = 0.25` makes each point partly transparent, so dense
-overlapping areas become visible instead of turning into one solid block. A
-visible relationship does not show that one variable caused the other.
-
-## Add a third variable with small multiples
-
-`facet_wrap()` repeats the scatterplot for each region:
+Now add one new layer, `facet_wrap()`, to create a panel for each region:
 
 ```{r}
-ggplot(
-  gpfg,
-  aes(x = market_value_usd, y = ownership_pct)
-) +
-  geom_point(color = "#0072B2", alpha = 0.25, size = 0.9) +
+relationship_plot +
   scale_x_log10() +
   facet_wrap(~ region) +
   labs(
     title = "The relationship can be inspected separately by region",
     x = "Market value in USD (log scale)",
-    y = "Ownership (%)"
-  ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.minor = element_blank(),
-    strip.text = element_text(face = "bold"),
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.title.position = "plot"
-  )
-```
-
-Because the panels use the same axes, their patterns can be compared. Faceting
-is often clearer than placing many categories in one plotting area.
-
-## Show change over time with a line chart
-
-A line chart is suitable when the horizontal variable has a meaningful order,
-usually time. Prepare one value per year:
-
-```{r}
-annual <- gpfg_panel |>
-  group_by(year) |>
-  summarise(market_value_nok = sum(market_value_nok)) |>
-  arrange(year) |>
-  mutate(market_value_nok_trillions = market_value_nok / 1000000000000)
-```
-
-`geom_line()` connects the annual values, while `geom_point()` keeps the
-observed years visible:
-
-```{r}
-annual |>
-  ggplot(aes(x = year, y = market_value_nok_trillions)) +
-  geom_line(color = "#0072B2", linewidth = 1.1) +
-  geom_point(color = "#D55E00", size = 2.6) +
-  scale_x_continuous(
-    breaks = c(2016, 2018, 2020, 2022, 2025)
-  ) +
-  labs(
-    title = "Reported equity market value increased over the ten-year period",
-    subtitle = "Year-end holdings in nominal Norwegian kroner",
-    x = "Year",
-    y = "NOK trillions",
+    y = "Ownership (%)",
     caption = "Source: Norges Bank Investment Management"
   ) +
-  theme_minimal(base_size = 12) +
-  theme(
-    panel.grid.minor = element_blank(),
-    plot.title = element_text(face = "bold", color = "#1F2933"),
-    plot.subtitle = element_text(color = "#52606D"),
-    plot.caption = element_text(color = "#6B7280"),
-    plot.title.position = "plot",
-    plot.caption.position = "plot"
-  )
+  theme_minimal()
 ```
 
-The line shows change in nominal year-end value. It does not show investment
-returns or how much the fund purchased each year. Do not connect categories
-with a line when they have no meaningful order.
+The panels use the same axes, making their patterns easier to compare than
+many overlapping colors in one panel.
 
-## Finish and save a chart
+## Save a finished chart
 
-Before publication, check:
-
-- Does the chart answer one clear question?
-- Does the title match the calculation?
-- Are the population, period, measure, and unit clear?
-- Are categories ordered meaningfully?
-- Is any transformation disclosed?
-- Does color distinguish meaningful groups?
-- Is the source named?
-- Do the plotted values agree with the analysis table?
-- Is an important limitation stated in the chart or story?
-
-`ggsave()` saves a chart object to a file:
+Before saving, verify that the chart matches the analysis table and that its
+title, period, measure, unit, and source are clear.
 
 ```{r}
 #| eval: false
-ggsave("outputs/country-holdings.png", country_bar)
+ggsave("outputs/country-trends.png", country_trend_plot)
 ```
 
-The filename and chart object are enough for this lesson. Width, height, and
-resolution are optional controls for later publication requirements.
+The filename and chart object are enough here. Width, height, and resolution
+are optional controls for a later publication requirement.
+
+::: {.callout-note title="Interactive charts are optional"}
+Interaction can add tooltips, filters, and zooming, but it also introduces new
+packages and HTML-specific behavior. First make a correct, readable static
+chart. Interactive graphics can be considered later when interaction helps a
+specific reporting task.
+:::
 
 ## Practice
 
-Choose one question involving at least two columns. Create:
+Choose one of the following:
 
-1. a precise reporting question;
-2. the table needed for the chart;
-3. one chart that matches the question;
-4. a title, labels, and source; and
-5. one sentence describing a limitation.
+1. Compare three industries across five years with colored lines.
+2. Compare selected regions with grouped and stacked bars, then explain which
+   arrangement better answers your question.
+3. Add facets to a relationship plot and explain what became easier to see.
 
-Then explain why another chart type in this chapter would be less suitable.
+For every version, state the question, list the columns, identify the visual
+roles, show the basic plot first, and explain every added layer.
 
 ## Takeaways
 
-| Function or chart | What it does |
+| Function or option | What it adds |
 |---|---|
-| `geom_col()` | Draws bars from values already calculated |
-| `position = "dodge"` | Places grouped bars beside one another |
-| `position = "fill"` | Makes equal-height bars for comparing composition |
-| `geom_point()` | Creates dot comparisons or scatterplots |
+| `color = column` inside `aes()` | Maps a column to line or point color |
+| `fill = column` inside `aes()` | Maps a column to bar fill |
+| Fixed color outside `aes()` | Changes appearance without representing data |
+| `position = "dodge"` | Places groups beside one another |
+| `position = "fill"` | Converts stacked bars to equal-height composition bars |
 | `geom_boxplot()` | Compares numeric distributions across groups |
-| `facet_wrap()` | Creates one panel for each category |
-| `geom_line()` | Connects observations across an ordered axis |
-| `fct_reorder()` | Orders categories by a numeric value |
-| `ggsave()` | Saves a chart to a file |
+| `scale_x_log10()` | Spreads positive values across a logarithmic axis |
+| `facet_wrap()` | Creates a separate panel for each group |
+| `scale_color_manual()` | Assigns deliberate colors to named groups |
+| `ggsave()` | Saves a completed chart |
 
 ::: {.callout-tip title="Want more control?"}
-Use the official [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
-when a question or publication format requires more control over scales,
-labels, themes, or saved-image dimensions.
+The official [ggplot2 reference](https://ggplot2.tidyverse.org/reference/)
+documents additional scales, legends, themes, annotations, and saving options.
+Add them one at a time and only when they serve the reporting question.
 :::

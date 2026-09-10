@@ -35,11 +35,13 @@ book:
     - part: "Data Analysis"
       chapters:
         - analysis-gpfg.qmd
-        - transform-merge.qmd
     - part: "Data Visualization"
       chapters:
         - visual-01.qmd
         - visual-02.qmd
+    - part: "Advanced Workflows"
+      chapters:
+        - transform-merge.qmd
         - map-gpfg.qmd
     - part: "Case Studies"
       chapters:

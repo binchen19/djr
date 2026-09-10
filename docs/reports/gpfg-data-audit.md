@@ -2,14 +2,18 @@
 
 ## Recommendation
 
-Use the 2016–2025 equity holdings as the main longitudinal teaching dataset, and use the single 2025 snapshot for introductory importing, filtering, sorting, grouping, and charting. Keep the complete 1998–2025 archive for optional historical investigations.
+Use the deliberately messy 2025 snapshot for importing and cleaning, then combine the five annual learner files for introductory analysis and charting. The compressed 1998–2025 history supports longitudinal lessons; use shorter, comparable periods when coverage or classifications change.
 
 The dataset's unit of analysis is **one equity holding reported by NBIM at one year-end**. A row is not a transaction, cash flow, investment return, or money received by a company.
 
 ## Stable files created
 
-- `data/gpfg.csv`: beginner-friendly latest-year snapshot.
-- `data/gpfg_equities_last_10_years.csv`: rolling ten-year teaching dataset.
+- `data/gpfg_messy.csv`: deliberately messy latest-year file for import and cleaning lessons.
+- `data/gpfg_2021.csv` through `data/gpfg_2025.csv`: clean annual files for import and `bind_rows()` practice.
+- `data/gpfg_5_years.csv`: the combined five-year result used in later chapters.
+- `data/gpfg_country_wide.csv`: country totals with one column per year for reshaping practice.
+- `data/gpfg_country_lookup.csv`: country-to-region lookup for joining practice.
+- `data/gpfg_history.csv.gz`: compressed CSV containing every annual snapshot.
 - `data/gpfg_data_dictionary.csv`: definitions, units, and teaching cautions.
 - `data/processed/gpfg_equities_last_10_years.rds`: compact R version of the teaching dataset.
 - `data/processed/gpfg_equities_full_history.rds`: compact complete historical archive.
@@ -23,7 +27,7 @@ The dataset's unit of analysis is **one equity holding reported by NBIM at one y
 - Full archive: 185,892 holding records.
 - Teaching period: 88,858 records from 2016–2025.
 - Latest snapshot: 7,201 records in 2025.
-- Validation checks passed: 9 of 9.
+- Validation checks passed: 13 of 13.
 
 ## Important historical cautions
 

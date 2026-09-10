@@ -8,3 +8,7 @@ NOK market values are finite when present,TRUE
 Teaching-period NOK market values are non-negative,TRUE
 Teaching-period ownership percentages are between 0 and 100,TRUE
 Teaching-period voting percentages are between 0 and 100,TRUE
+Five-year learner file contains every expected analysis year,TRUE
+Country lookup contains one row per country,TRUE
+Every five-year country has a lookup match,TRUE
+Messy teaching file cleans back to the latest-year data,TRUE
