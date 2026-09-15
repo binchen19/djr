@@ -784,243 +784,243 @@
   {
     "objectID": "visual-01.html",
     "href": "visual-01.html",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "",
     "text": "6.1 Learning objectives\nBy the end of this chapter, you should be able to:",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#learning-objectives",
     "href": "visual-01.html#learning-objectives",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "",
     "text": "choose a chart based on a reporting question;\nidentify which columns belong on the x- and y-axes;\ndecide whether color or size needs to represent another variable;\nbuild a chart from a basic version to a labelled, styled version;\nexplain what one visual mark represents; and\ndistinguish a chart’s data mappings from its appearance settings.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#a-question-to-chart-workflow",
     "href": "visual-01.html#a-question-to-chart-workflow",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "6.2 A question-to-chart workflow",
     "text": "6.2 A question-to-chart workflow\nUse the same sequence every time:\n\nState the reporting question.\nIdentify the columns needed to answer it.\nCalculate and inspect the table that will be plotted.\nDecide which column belongs on x, y, color, or size.\nMake the simplest working plot.\nCheck what each bar, point, or line represents.\nAdd labels and a source.\nAdd color and a theme only when they improve communication.\n\nThe chart does not replace the analysis. It displays a result that should already be visible in a checked table.\n\n\n\n\n\n\nContinue in the same project\n\n\n\nOpen djr.Rproj and create 06-basic-visualization.Rmd. Reuse the combined file created in Chapter 5. A ready-made gpfg_5_years.csv is available if needed.\n\n\n\nlibrary(tidyverse)\n\ngpfg &lt;- read_csv(\"data/gpfg_5_years.csv\")\n\ngpfg_latest &lt;- gpfg |&gt;\n  filter(year == 2025)",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#show-a-trend-with-a-line-chart",
     "href": "visual-01.html#show-a-trend-with-a-line-chart",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "6.3 Show a trend with a line chart",
     "text": "6.3 Show a trend with a line chart\nWe will develop the first chart slowly so that every addition is visible.\n\nStep 1: state the question\n\nHow did the total reported market value of the equity holdings change from 2021 through 2025?\n\n\n\nStep 2: identify the columns\nThe source table contains many holdings per year. The question needs:\n\n\n\nColumn\nRole in the question\n\n\n\n\nyear\nTime\n\n\nmarket_value_nok\nMeasure to add within each year\n\n\n\n\n\nStep 3: prepare and inspect the table\nReuse the group-and-summarise pattern from Chapter 5:\n\nannual_summary &lt;- gpfg |&gt;\n  group_by(year) |&gt;\n  summarise(market_value_nok = sum(market_value_nok)) |&gt;\n  arrange(year) |&gt;\n  mutate(market_value_nok_trillions = market_value_nok / 1000000000000)\n\nannual_summary\n\n\n  \n\n\n\nOne row now represents one year. The value in trillions is the same measure expressed in a unit that will be easier to label.\n\n\nStep 4: plan the visual roles\n\n\n\nVisual role\nColumn\nWhy?\n\n\n\n\nX-axis\nyear\nTime has a meaningful order\n\n\nY-axis\nmarket_value_nok_trillions\nThe value changes vertically\n\n\nColor\nNone\nWe are showing only one series\n\n\nSize\nNone\nThe line position already represents the value\n\n\n\nDo not add a variable to color or size simply because ggplot2 allows it.\n\n\nStep 5: make the basic plot\nggplot() receives the table. aes() maps columns to visual roles, and geom_line() draws the selected geometry:\n\ntrend_plot &lt;- annual_summary |&gt;\n  ggplot(\n    aes(\n      x = year,\n      y = market_value_nok_trillions\n    )\n  ) +\n  geom_line()\n\ntrend_plot\n\n\n\n\n\n\n\n\nThis is already a complete plot. One position on the line represents the total reported value for one annual snapshot.\n\n\nStep 6: show the observed years\nAdd points as another layer. The earlier line remains unchanged:\n\ntrend_plot &lt;- trend_plot +\n  geom_point()\n\ntrend_plot\n\n\n\n\n\n\n\n\nThe points remind readers that the data contain five observed annual values; the line connects them.\n\n\nStep 7: add labels\n\ntrend_plot &lt;- trend_plot +\n  labs(\n    title = \"Reported equity value increased from 2021 to 2025\",\n    subtitle = \"Year-end holdings in nominal Norwegian kroner\",\n    x = \"Year\",\n    y = \"NOK trillions\",\n    caption = \"Source: Norges Bank Investment Management\"\n  )\n\ntrend_plot\n\n\n\n\n\n\n\n\nThe labels state the period, measure, unit, and source. The title describes a visible pattern without calling the change a return.\n\n\nStep 8: add a theme\n\ntrend_plot &lt;- trend_plot +\n  theme_minimal()\n\ntrend_plot\n\n\n\n\n\n\n\n\ntheme_minimal() changes presentation, not the underlying values.\n\n\nStep 9: make deliberate color choices\nFor the finished version, use blue for the line and orange for the observed points:\n\ntrend_final &lt;- annual_summary |&gt;\n  ggplot(\n    aes(\n      x = year,\n      y = market_value_nok_trillions\n    )\n  ) +\n  geom_line(color = \"#0072B2\", linewidth = 1) +\n  geom_point(color = \"#D55E00\", size = 2.5) +\n  labs(\n    title = \"Reported equity value increased from 2021 to 2025\",\n    subtitle = \"Year-end holdings in nominal Norwegian kroner\",\n    x = \"Year\",\n    y = \"NOK trillions\",\n    caption = \"Source: Norges Bank Investment Management\"\n  ) +\n  theme_minimal()\n\ntrend_final\n\n\n\n\n\n\n\n\nHere color and size are outside aes(). They set a fixed appearance and do not represent additional columns, so the chart does not need a legend.\n\n\n\n\n\n\nA line does not explain the change\n\n\n\nThe values can change because of prices, exchange rates, purchases, sales, or changes in the reported portfolio. The chart shows the pattern, not its cause.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#show-a-ranking-with-a-bar-chart",
     "href": "visual-01.html#show-a-ranking-with-a-bar-chart",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "6.4 Show a ranking with a bar chart",
     "text": "6.4 Show a ranking with a bar chart\nNow repeat the workflow more quickly.\n\nQuestion and columns\n\nWhich investment markets had the largest total reported values in 2025?\n\n\n\n\nColumn\nRole\n\n\n\n\ncountry\nCategory being compared\n\n\nmarket_value_nok\nMeasure added within each country\n\n\n\n\n\nPrepare the table\n\ntop_countries &lt;- gpfg_latest |&gt;\n  group_by(country) |&gt;\n  summarise(market_value_nok = sum(market_value_nok)) |&gt;\n  arrange(desc(market_value_nok)) |&gt;\n  slice_head(n = 10) |&gt;\n  mutate(market_value_nok_billions = market_value_nok / 1000000000)\n\ntop_countries\n\n\n  \n\n\n\nOne row represents one investment market.\n\n\nPlan the visual roles\n\n\n\n\n\n\n\n\nVisual role\nColumn\nWhy?\n\n\n\n\nX-axis\nmarket_value_nok_billions\nBar length represents the amount\n\n\nY-axis\ncountry\nHorizontal bars leave room for labels\n\n\nColor\nNone\nThe ranking does not require another group\n\n\nSize\nNone\nBar length already represents magnitude\n\n\n\n\n\nBegin with the basic plot\n\ncountry_plot &lt;- top_countries |&gt;\n  ggplot(\n    aes(\n      x = market_value_nok_billions,\n      y = country\n    )\n  ) +\n  geom_col()\n\ncountry_plot\n\n\n\n\n\n\n\n\ngeom_col() uses values that we already calculated. One bar represents one market, and its length represents total market value.\n\n\nOrder the categories\nThe table is sorted, but categorical axes have their own order. fct_reorder() orders the country labels by the plotted value:\n\ncountry_plot &lt;- top_countries |&gt;\n  ggplot(\n    aes(\n      x = market_value_nok_billions,\n      y = fct_reorder(country, market_value_nok_billions)\n    )\n  ) +\n  geom_col()\n\ncountry_plot\n\n\n\n\n\n\n\n\n\n\nAdd communication layers\n\ncountry_plot &lt;- country_plot +\n  labs(\n    title = \"The United States led reported equity value by a wide margin in 2025\",\n    x = \"Market value in NOK billions\",\n    y = NULL,\n    caption = \"Source: Norges Bank Investment Management\"\n  ) +\n  theme_minimal()\n\ncountry_plot\n\n\n\n\n\n\n\n\nThe first chart taught every stage separately. Here we can add familiar label and theme layers together. For the finished version, repeat the checked chart with one deliberate fixed fill color:\n\ncountry_final &lt;- top_countries |&gt;\n  ggplot(\n    aes(\n      x = market_value_nok_billions,\n      y = fct_reorder(country, market_value_nok_billions)\n    )\n  ) +\n  geom_col(fill = \"#007C83\") +\n  labs(\n    title = \"The United States led reported equity value by a wide margin in 2025\",\n    x = \"Market value in NOK billions\",\n    y = NULL,\n    caption = \"Source: Norges Bank Investment Management\"\n  ) +\n  theme_minimal()\n\ncountry_final\n\n\n\n\n\n\n\n\nThe fill is outside aes() because all bars belong to one ranking rather than representing separate groups.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#describe-a-distribution-with-a-histogram",
     "href": "visual-01.html#describe-a-distribution-with-a-histogram",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "6.5 Describe a distribution with a histogram",
     "text": "6.5 Describe a distribution with a histogram\n\nQuestion and visual plan\n\nHow were individual holding values distributed in 2025?\n\nThis question uses the numeric market_value_usd column. A histogram maps it to x, divides its values into ranges called bins, and counts the observations in each range. It does not require a y column from the source table.\n\nggplot(gpfg_latest, aes(x = market_value_usd)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\nMost holdings are small relative to a few very large holdings. This is a right-skewed distribution. The basic chart reveals the problem clearly even though the smaller observations are crowded together. Chapter 7 will add a log scale and compare distributions across groups.\nAdd labels and a simple fixed color only after reading the basic result:\n\nggplot(gpfg_latest, aes(x = market_value_usd)) +\n  geom_histogram(fill = \"#0072B2\", color = \"white\") +\n  labs(\n    title = \"Most individual holdings were small relative to the largest\",\n    x = \"Market value in USD\",\n    y = \"Number of holding records\",\n    caption = \"Source: Norges Bank Investment Management\"\n  ) +\n  theme_minimal()",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#examine-a-relationship-with-a-scatterplot",
     "href": "visual-01.html#examine-a-relationship-with-a-scatterplot",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "6.6 Examine a relationship with a scatterplot",
     "text": "6.6 Examine a relationship with a scatterplot\n\nQuestion and visual plan\n\nDid market value and ownership percentage tend to vary together in 2025?\n\n\n\n\nVisual role\nColumn\n\n\n\n\nX-axis\nmarket_value_usd\n\n\nY-axis\nownership_pct\n\n\nColor\nNone initially\n\n\nSize\nNone initially\n\n\n\nBoth variables are numeric, so begin with a scatterplot:\n\nggplot(\n  gpfg_latest,\n  aes(\n    x = market_value_usd,\n    y = ownership_pct\n  )\n) +\n  geom_point()\n\n\n\n\n\n\n\n\nOne point represents one holding. A visible relationship does not show that one variable caused the other. Chapter 7 will address overlapping points, skewed values, and comparisons among regions.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#choose-a-basic-chart-from-the-question",
     "href": "visual-01.html#choose-a-basic-chart-from-the-question",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "6.7 Choose a basic chart from the question",
     "text": "6.7 Choose a basic chart from the question\n\n\n\n\n\n\n\nQuestion\nUseful starting chart\n\n\n\n\nHow did a measure change over ordered time?\nLine chart\n\n\nWhich categories have the largest calculated values?\nBar chart with geom_col()\n\n\nHow is one numeric column distributed?\nHistogram\n\n\nDo two numeric columns vary together?\nScatterplot\n\n\n\nThe starting chart should be simple enough that students can explain every mapping and every mark.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#practice",
     "href": "visual-01.html#practice",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "6.8 Practice",
     "text": "6.8 Practice\nChoose either an industry comparison or a 2024 country ranking. Complete the full workflow:\n\nwrite the reporting question;\nlist the columns needed;\nprepare and inspect the table;\ndecide what belongs on x and y;\nmake the basic plot;\nexplain what one mark represents;\nadd labels and a source; and\nadd one theme or fixed-color choice.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-01.html#takeaways",
     "href": "visual-01.html#takeaways",
-    "title": "6  Basic Visualization",
+    "title": "6  Visualization I",
     "section": "6.9 Takeaways",
     "text": "6.9 Takeaways\n\n\n\nFunction or idea\nWhat it does\n\n\n\n\nggplot(data)\nStarts a chart with a table\n\n\naes()\nMaps data columns to visual roles\n\n\ngeom_line()\nConnects values across an ordered axis\n\n\ngeom_point()\nDraws observations as points\n\n\ngeom_col()\nDraws bars from values already calculated\n\n\ngeom_histogram()\nDisplays the distribution of a numeric column\n\n\nfct_reorder()\nOrders category labels by a numeric value\n\n\nlabs()\nAdds titles, axis labels, and a source\n\n\ntheme_minimal()\nApplies a simple visual theme\n\n\nSetting outside aes()\nGives every mark a fixed appearance\n\n\n\n\n\n\n\n\n\nggplot2 is a larger universe\n\n\n\nThe examples teach a small, reusable foundation. The official Introduction to ggplot2, theme reference, and ggplot2 book provide more options when a project needs them.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Basic Visualization</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Visualization I</span>"
     ]
   },
   {
     "objectID": "visual-02.html",
     "href": "visual-02.html",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "",
     "text": "7.1 Learning objectives\nBy the end of this chapter, you should be able to:",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#learning-objectives",
     "href": "visual-02.html#learning-objectives",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "",
     "text": "add color or fill only when it represents useful information;\ndistinguish a fixed appearance from a data mapping;\ncompare several time series;\nchoose between grouped, stacked, and percentage-stacked bars;\ncompare distributions with box plots;\nseparate crowded groups with facets; and\nsave a finished chart.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#when-does-a-chart-need-more-complexity",
     "href": "visual-02.html#when-does-a-chart-need-more-complexity",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.2 When does a chart need more complexity?",
     "text": "7.2 When does a chart need more complexity?\nChapter 6 used a line, bars, a histogram, and a scatterplot to answer four basic questions. An advanced chart should begin from one of those forms and add something only because the reporting question requires it.\n\n\n\nNew reporting need\nPossible addition\n\n\n\n\nCompare several groups over time\nMap a group to color\n\n\nCompare groups directly within categories\nGrouped bars\n\n\nShow how groups contribute to a total\nStacked bars\n\n\nCompare composition rather than totals\nPercentage-stacked bars\n\n\nCompare several distributions\nBox plots\n\n\nReduce overlap among many groups\nFacets or small multiples\n\n\n\n\n\n\n\n\n\nContinue in the same project\n\n\n\nOpen djr.Rproj and create 07-advanced-visualization.Rmd. Reuse data/gpfg_5_years.csv and save finished charts in outputs/.\n\n\n\nlibrary(tidyverse)\n\ngpfg &lt;- read_csv(\"data/gpfg_5_years.csv\")\n\ngpfg_latest &lt;- gpfg |&gt;\n  filter(year == 2025)",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#map-a-column-or-set-an-appearance",
     "href": "visual-02.html#map-a-column-or-set-an-appearance",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.3 Map a column or set an appearance",
     "text": "7.3 Map a column or set an appearance\nThis distinction matters throughout the chapter:\ngeom_point(color = \"#0072B2\")\ncolor is outside aes(), so every point receives the same fixed color. It does not create a legend.\ngeom_point(aes(color = region))\ncolor is inside aes(), so values of region are mapped to different colors. Because color now represents data, ggplot2 creates a legend.\nThe same rule applies to fill, size, and other visual properties.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#compare-several-trends-with-color",
     "href": "visual-02.html#compare-several-trends-with-color",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.4 Compare several trends with color",
     "text": "7.4 Compare several trends with color\n\nStep 1: state the question\n\nHow did reported market value change for the United States, China, and Japan from 2021 through 2025?\n\n\n\nStep 2: identify and prepare the columns\nWe need year, country, and market_value_nok. First choose a fixed set of markets, then calculate one value per country and year:\n\nselected_countries &lt;- c(\"United States\", \"China\", \"Japan\")\n\ncountry_trends &lt;- gpfg |&gt;\n  filter(country %in% selected_countries) |&gt;\n  group_by(year, country) |&gt;\n  summarise(market_value_nok = sum(market_value_nok)) |&gt;\n  mutate(market_value_nok_billions = market_value_nok / 1000000000) |&gt;\n  arrange(country, year)\n\ncountry_trends\n\n\n  \n\n\n\nOne row represents one selected market in one year. The %in% operator asks whether each country belongs to the selected_countries vector created above.\n\n\nStep 3: plan the visual roles\n\n\n\nVisual role\nColumn\nReason\n\n\n\n\nX-axis\nyear\nOrdered time\n\n\nY-axis\nmarket_value_nok_billions\nValue being compared\n\n\nColor\ncountry\nSeparates the three time series\n\n\nSize\nNone\nLine position already represents value\n\n\n\n\n\nStep 4: begin with the essential mappings\n\ncountry_trend_plot &lt;- country_trends |&gt;\n  ggplot(\n    aes(\n      x = year,\n      y = market_value_nok_billions,\n      color = country\n    )\n  ) +\n  geom_line()\n\ncountry_trend_plot\n\n\n\n\n\n\n\n\nBecause country is inside aes(), the chart has a color legend. Color is doing analytical work: it identifies which line belongs to which market.\n\n\nStep 5: add points and labels\n\ncountry_trend_plot &lt;- country_trend_plot +\n  geom_point() +\n  labs(\n    title = \"Selected investment markets followed different paths\",\n    subtitle = \"Reported year-end equity holdings, 2021–2025\",\n    x = \"Year\",\n    y = \"Market value in NOK billions\",\n    color = \"Investment market\",\n    caption = \"Source: Norges Bank Investment Management\"\n  )\n\ncountry_trend_plot\n\n\n\n\n\n\n\n\nThe color entry in labs() gives the automatically created legend a clearer title.\n\n\nStep 6: add a restrained theme and palette\n\ncountry_trend_plot &lt;- country_trend_plot +\n  scale_color_manual(\n    values = c(\n      \"United States\" = \"#0072B2\",\n      \"China\" = \"#D55E00\",\n      \"Japan\" = \"#009E73\"\n    )\n  ) +\n  theme_minimal() +\n  theme(legend.position = \"top\")\n\ncountry_trend_plot\n\n\n\n\n\n\n\n\nThe manual scale gives every named market a consistent color. Add it only after confirming that the basic multi-line chart works.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#compare-groups-with-grouped-bars",
     "href": "visual-02.html#compare-groups-with-grouped-bars",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.5 Compare groups with grouped bars",
     "text": "7.5 Compare groups with grouped bars\n\nQuestion and analysis table\n\nHow did total values differ across three industries and three regions in 2025?\n\n\nregion_industry &lt;- gpfg_latest |&gt;\n  filter(\n    region %in% c(\"Asia\", \"Europe\", \"North America\"),\n    industry %in% c(\"Technology\", \"Financials\", \"Industrials\")\n  ) |&gt;\n  group_by(industry, region) |&gt;\n  summarise(market_value_nok = sum(market_value_nok)) |&gt;\n  mutate(market_value_nok_billions = market_value_nok / 1000000000)\n\nregion_industry\n\n\n  \n\n\n\nThe two conditions inside filter() are separated by a comma, so both must be true: a row must belong to one of the selected regions and one of the selected industries.\nThe visual roles are industry on x, value on y, and region mapped to fill. Start with the default bars:\n\nregion_industry |&gt;\n  ggplot(\n    aes(\n      x = industry,\n      y = market_value_nok_billions,\n      fill = region\n    )\n  ) +\n  geom_col()\n\n\n\n\n\n\n\n\nThe default is stacked. This shows the combined height and each region’s contribution, but only the bottom segment begins at the same point, so the other segments are harder to compare precisely.\nFor direct comparison, change one argument:\n\nregion_industry |&gt;\n  ggplot(\n    aes(\n      x = industry,\n      y = market_value_nok_billions,\n      fill = region\n    )\n  ) +\n  geom_col(position = \"dodge\")\n\n\n\n\n\n\n\n\nposition = \"dodge\" places the regions beside one another. The data and aesthetic mappings have not changed; only the bar arrangement has changed.\nAdd labels and styling after choosing the arrangement that fits the question:\n\nregion_industry |&gt;\n  ggplot(\n    aes(\n      x = industry,\n      y = market_value_nok_billions,\n      fill = region\n    )\n  ) +\n  geom_col(position = \"dodge\") +\n  scale_fill_manual(\n    values = c(\n      \"Asia\" = \"#009E73\",\n      \"Europe\" = \"#E69F00\",\n      \"North America\" = \"#0072B2\"\n    )\n  ) +\n  labs(\n    title = \"Regional values differed across selected industries\",\n    x = NULL,\n    y = \"Market value in NOK billions\",\n    fill = \"Region\",\n    caption = \"Three selected industries and regions; year-end 2025\\nSource: Norges Bank Investment Management\"\n  ) +\n  theme_minimal() +\n  theme(legend.position = \"top\")",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#compare-composition-with-percentage-bars",
     "href": "visual-02.html#compare-composition-with-percentage-bars",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.6 Compare composition with percentage bars",
     "text": "7.6 Compare composition with percentage bars\nA different question requires a different bar arrangement:\n\nWithin each selected industry, what share of the three-region total came from each region?\n\nStarting from the same table and mappings, change the position to \"fill\":\n\nregion_industry |&gt;\n  ggplot(\n    aes(\n      x = industry,\n      y = market_value_nok_billions,\n      fill = region\n    )\n  ) +\n  geom_col(position = \"fill\") +\n  scale_fill_manual(\n    values = c(\n      \"Asia\" = \"#009E73\",\n      \"Europe\" = \"#E69F00\",\n      \"North America\" = \"#0072B2\"\n    )\n  ) +\n  labs(\n    title = \"Regional composition differed across selected industries\",\n    x = NULL,\n    y = \"Share of selected-region market value\",\n    fill = \"Region\",\n    caption = \"Source: Norges Bank Investment Management\"\n  ) +\n  theme_minimal() +\n  theme(legend.position = \"top\")\n\n\n\n\n\n\n\n\nEvery bar now has the same height. This makes composition easier to compare but hides differences in total amounts. A percentage chart must not be used to support a claim about which industry has the largest total.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#compare-distributions-with-box-plots",
     "href": "visual-02.html#compare-distributions-with-box-plots",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.7 Compare distributions with box plots",
     "text": "7.7 Compare distributions with box plots\nChapter 6’s histogram described all 2025 holding values together. Now ask:\n\nHow did holding-level value distributions differ across industries?\n\nThe source table already contains the two required columns:\n\n\n\nVisual role\nColumn\n\n\n\n\nX-axis\nmarket_value_usd\n\n\nY-axis\nindustry\n\n\n\nBegin without additional scales:\n\nindustry_box &lt;- gpfg_latest |&gt;\n  ggplot(\n    aes(\n      x = market_value_usd,\n      y = industry\n    )\n  ) +\n  geom_boxplot()\n\nindustry_box\n\n\n\n\n\n\n\n\nThe large values compress most boxes near zero. Because all displayed values are positive, add a logarithmic x-axis:\n\nindustry_box +\n  scale_x_log10() +\n  labs(\n    title = \"Holding values varied widely within every industry\",\n    x = \"Market value in USD (log scale)\",\n    y = NULL,\n    caption = \"Source: Norges Bank Investment Management\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nThe line inside each box is the median. Points beyond the whiskers deserve inspection, but they are not automatically errors. Always disclose a log scale in the axis label.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#add-a-third-variable-with-facets",
     "href": "visual-02.html#add-a-third-variable-with-facets",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.8 Add a third variable with facets",
     "text": "7.8 Add a third variable with facets\nReturn to the basic relationship question from Chapter 6:\n\nDid market value and ownership percentage vary together, and did the pattern differ across regions?\n\nFirst select three regions so the comparison remains readable:\n\nselected_holdings &lt;- gpfg_latest |&gt;\n  filter(region %in% c(\"Asia\", \"Europe\", \"North America\"))\n\nBegin with the familiar scatterplot, adding transparency because many points overlap:\n\nrelationship_plot &lt;- selected_holdings |&gt;\n  ggplot(\n    aes(\n      x = market_value_usd,\n      y = ownership_pct\n    )\n  ) +\n  geom_point(alpha = 0.25)\n\nrelationship_plot\n\n\n\n\n\n\n\n\nNow add one new layer, facet_wrap(), to create a panel for each region:\n\nrelationship_plot +\n  scale_x_log10() +\n  facet_wrap(~ region) +\n  labs(\n    title = \"The relationship can be inspected separately by region\",\n    x = \"Market value in USD (log scale)\",\n    y = \"Ownership (%)\",\n    caption = \"Source: Norges Bank Investment Management\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nThe panels use the same axes, making their patterns easier to compare than many overlapping colors in one panel.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#save-a-finished-chart",
     "href": "visual-02.html#save-a-finished-chart",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.9 Save a finished chart",
     "text": "7.9 Save a finished chart\nBefore saving, verify that the chart matches the analysis table and that its title, period, measure, unit, and source are clear.\n\nggsave(\"outputs/country-trends.png\", country_trend_plot)\n\nThe filename and chart object are enough here. Width, height, and resolution are optional controls for a later publication requirement.\n\n\n\n\n\n\nInteractive charts are optional\n\n\n\nInteraction can add tooltips, filters, and zooming, but it also introduces new packages and HTML-specific behavior. First make a correct, readable static chart. Interactive graphics can be considered later when interaction helps a specific reporting task.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#practice",
     "href": "visual-02.html#practice",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.10 Practice",
     "text": "7.10 Practice\nChoose one of the following:\n\nCompare three industries across five years with colored lines.\nCompare selected regions with grouped and stacked bars, then explain which arrangement better answers your question.\nAdd facets to a relationship plot and explain what became easier to see.\n\nFor every version, state the question, list the columns, identify the visual roles, show the basic plot first, and explain every added layer.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
     "objectID": "visual-02.html#takeaways",
     "href": "visual-02.html#takeaways",
-    "title": "7  Advanced Visualization",
+    "title": "7  Visualization II",
     "section": "7.11 Takeaways",
     "text": "7.11 Takeaways\n\n\n\n\n\n\n\nFunction or option\nWhat it adds\n\n\n\n\ncolor = column inside aes()\nMaps a column to line or point color\n\n\nfill = column inside aes()\nMaps a column to bar fill\n\n\nFixed color outside aes()\nChanges appearance without representing data\n\n\nposition = \"dodge\"\nPlaces groups beside one another\n\n\nposition = \"fill\"\nConverts stacked bars to equal-height composition bars\n\n\ngeom_boxplot()\nCompares numeric distributions across groups\n\n\nscale_x_log10()\nSpreads positive values across a logarithmic axis\n\n\nfacet_wrap()\nCreates a separate panel for each group\n\n\nscale_color_manual()\nAssigns deliberate colors to named groups\n\n\nggsave()\nSaves a completed chart\n\n\n\n\n\n\n\n\n\nWant more control?\n\n\n\nThe official ggplot2 reference documents additional scales, legends, themes, annotations, and saving options. Add them one at a time and only when they serve the reporting question.",
     "crumbs": [
       "Data Visualization",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Advanced Visualization</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Visualization II</span>"
     ]
   },
   {
