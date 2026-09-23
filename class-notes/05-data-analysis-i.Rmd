@@ -1,0 +1,148 @@
+---
+title: "Class 5: Analysis I"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Use the clean 2025 table to answer description, ranking, comparison, and
+relationship questions. End by identifying the one major question this file
+cannot answer: change over time.
+
+```{r}
+library(tidyverse)
+
+gpfg <- read_csv("data/gpfg_2025.csv")
+```
+
+One row represents one reported equity holding at the end of 2025.
+
+## Question workflow
+
+1. State what one row represents.
+2. Write a question with a measure, group, and period.
+3. Identify the required columns.
+4. Check their types, units, and missing values.
+5. Calculate and inspect the result.
+6. Write only what the evidence supports.
+
+## 1. Know the table
+
+```{r}
+glimpse(gpfg)
+```
+
+```{r}
+gpfg |>
+  distinct(region) |>
+  arrange(region)
+```
+
+```{r}
+gpfg |>
+  count(region) |>
+  arrange(desc(n))
+```
+
+Record count describes rows; it does not measure their total value.
+
+## 2. Description
+
+Question: What were the total and typical values of individual holdings?
+
+```{r}
+holding_summary <- gpfg |>
+  summarise(
+    total_nok = sum(market_value_nok),
+    mean_nok = mean(market_value_nok),
+    median_nok = median(market_value_nok),
+    minimum_nok = min(market_value_nok),
+    maximum_nok = max(market_value_nok)
+  )
+
+holding_summary
+```
+
+Compare mean and median. A few large holdings can pull the mean upward.
+
+## 3. Ranking
+
+Question: Which ten individual holdings had the largest values?
+
+```{r}
+largest_holdings <- gpfg |>
+  select(company, country, industry, market_value_nok) |>
+  arrange(desc(market_value_nok)) |>
+  slice_head(n = 10)
+
+largest_holdings
+```
+
+## 4. Comparison
+
+Question: Which investment markets had the largest total reported values?
+
+```{r}
+country_summary <- gpfg |>
+  group_by(country) |>
+  summarise(
+    holding_records = n(),
+    market_value_nok = sum(market_value_nok)
+  ) |>
+  arrange(desc(market_value_nok))
+
+country_summary |>
+  slice_head(n = 10)
+```
+
+Before `summarise()`, one row is one holding. After it, one row is one
+investment market.
+
+```{r}
+country_summary <- country_summary |>
+  mutate(
+    share_percent = market_value_nok / sum(market_value_nok) * 100
+  )
+
+country_summary |>
+  slice_head(n = 10)
+```
+
+## 5. Prepare a relationship question
+
+Question: Did market value and ownership percentage vary together?
+
+```{r}
+relationship_data <- gpfg |>
+  select(company, market_value_usd, ownership_pct)
+
+relationship_data |>
+  slice_head(n = 5)
+```
+
+The columns exist, but thousands of printed rows are difficult to compare.
+Visualization I will turn them into a scatterplot.
+
+## Reporting language
+
+Better: “The United States had the largest reported market value in NBIM's
+2025 year-end equity-holdings file.”
+
+Avoid language about purchases, flows, returns, or causes unless additional
+evidence supports it.
+
+## The limitation
+
+The 2025 file cannot tell us whether a value rose or fell. A trend requires at
+least two time points. Analysis II will add four earlier annual files.
+
+## Exit ticket
+
+- What does one row represent before and after the country summary?
+- Which result is a description, ranking, or comparison?
+- Why can count and amount produce different rankings?
+- Write one supported finding and one trend question this file cannot answer.

@@ -1,5 +1,5 @@
 ---
-title: "Class 7: Advanced Visualization"
+title: "Class 8: Visualization II"
 author: "Bin Chen"
 output:
   html_document:

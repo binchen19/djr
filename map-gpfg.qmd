@@ -33,7 +33,7 @@ their reproducible preparation is recorded in
 `scripts/prepare_map_boundaries.R`.
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `09-mapping.Rmd`. Reuse
+Open `djr.Rproj` and create `10-mapping.Rmd`. Reuse
 `data/gpfg_5_years.csv`, then download
 [`world_boundaries.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/world_boundaries.csv)
 and save it in `data/`.
@@ -90,7 +90,7 @@ the changes visible and preserves the publisher's original labels.
 
 ## Step 3: check matches before joining
 
-Chapter 8 introduced `anti_join()` as a diagnostic. Use it again to find
+Chapter 9 introduced `anti_join()` as a diagnostic. Use it again to find
 investment markets without a matching boundary name:
 
 ```{r}

@@ -1,0 +1,273 @@
+---
+title: "Analysis II"
+---
+
+## Learning objectives
+
+By the end of this chapter, you should be able to:
+
+- explain why trend questions require multiple time points;
+- import several annual CSV files;
+- compare their names and types before combining them;
+- combine tables with the same columns using `bind_rows()`;
+- inspect time coverage, record counts, categories, and missing values;
+- calculate annual and country-year summaries; and
+- interpret changes without confusing holdings with flows or returns.
+
+## Add the missing time dimension
+
+Chapter 5 used the clean 2025 snapshot to answer description, ranking,
+comparison, and relationship questions. It could not answer:
+
+> How did the total reported market value of NBIM's equity holdings change
+> from 2021 to 2025?
+
+A trend needs the same measure at several dates. We will add four earlier
+year-end snapshots and analyse the five-year period from 2021 through 2025.
+Five files provide enough time points for a trend while keeping the import
+exercise manageable.
+
+::: {.callout-tip title="Continue in the same project"}
+Open `djr.Rproj` and create `06-data-analysis-ii.Rmd`. Keep the
+`gpfg_2025.csv` created in Chapter 4. Download
+[`gpfg_2021.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2021.csv),
+[`gpfg_2022.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2022.csv),
+[`gpfg_2023.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2023.csv),
+and [`gpfg_2024.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2024.csv)
+into the same `data` folder. A ready-made
+[`gpfg_2025.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2025.csv)
+is also available if needed.
+:::
+
+## Import the annual files
+
+Repeat the local `read_csv()` pattern from Chapter 3:
+
+```{r}
+library(tidyverse)
+
+gpfg_2021 <- read_csv("data/gpfg_2021.csv")
+gpfg_2022 <- read_csv("data/gpfg_2022.csv")
+gpfg_2023 <- read_csv("data/gpfg_2023.csv")
+gpfg_2024 <- read_csv("data/gpfg_2024.csv")
+gpfg_2025 <- read_csv("data/gpfg_2025.csv")
+```
+
+The object names record which annual snapshot each table contains.
+
+## Check the structures before combining
+
+Tables should describe the same variables before we place their rows together.
+Compare an early and late file:
+
+```{r}
+glimpse(gpfg_2021)
+```
+
+```{r}
+glimpse(gpfg_2025)
+```
+
+The column names and types should match. Each file already contains a `year`
+column, so observations will remain distinguishable after combination.
+
+::: {.callout-important title="Do not combine first and inspect later"}
+If annual files use different names, types, units, or definitions, stacking
+them can create a misleading table. Resolve meaningful differences before
+analysing a trend.
+:::
+
+## Combine annual rows with `bind_rows()`
+
+The five tables contain the same columns but different annual observations.
+`bind_rows()` places their rows underneath one another:
+
+```{r}
+gpfg <- bind_rows(
+  gpfg_2021,
+  gpfg_2022,
+  gpfg_2023,
+  gpfg_2024,
+  gpfg_2025
+)
+```
+
+One row still represents one reported holding in one year-end snapshot. The
+operation adds observations; it does not add new variables.
+
+This is different from a join. Chapter 9 will use a shared key to add
+variables from another table.
+
+## Check the combined result
+
+### Are all expected years present?
+
+```{r}
+gpfg |>
+  count(year)
+```
+
+The result should contain five consecutive years. The number of reported
+holding records differs by year, so changes in totals should not be interpreted
+without considering changes in coverage.
+
+### What does one row represent now?
+
+```{r}
+glimpse(gpfg)
+```
+
+The same company can appear in several years. A row is therefore not a unique
+company across the full period, and the table does not contain transactions.
+
+### Are important values missing?
+
+```{r}
+gpfg |>
+  filter(is.na(company) | is.na(market_value_nok))
+```
+
+The `|` symbol means “or.” An empty result confirms that both fields are
+complete in the supplied annual files, although it does not prove that every
+published value is correct.
+
+### Do category labels look consistent?
+
+```{r}
+gpfg |>
+  distinct(region) |>
+  arrange(region)
+```
+
+For longer historical periods, country and industry definitions may change.
+Never assume that identically named columns are perfectly comparable across
+time without checking the source documentation.
+
+## Save the five-year table
+
+Later chapters can begin from the completed combination step:
+
+```{r}
+write_csv(gpfg, "data/gpfg_5_years.csv")
+```
+
+The repository also provides a ready-made
+[`gpfg_5_years.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_5_years.csv)
+for learners beginning with a visualization chapter.
+
+## Ask an overall trend question
+
+> How did the total reported market value of NBIM's equity holdings change
+> from 2021 through 2025?
+
+The question needs `year` and `market_value_nok`. Group the observations by
+year and return one summary row for each annual snapshot:
+
+```{r}
+annual_summary <- gpfg |>
+  group_by(year) |>
+  summarise(
+    holding_records = n(),
+    market_value_nok = sum(market_value_nok)
+  ) |>
+  arrange(year)
+
+annual_summary
+```
+
+Track the changing row meaning:
+
+- before `summarise()`, one row represents one holding in one year;
+- after `summarise()`, one row represents one annual snapshot.
+
+Keeping both record count and market value visible helps us notice that a
+change in the total occurs alongside a changing number of reported holdings.
+
+## Combine trend and comparison
+
+We can also ask:
+
+> How did the total reported market value of NBIM's equity holdings in the
+> United States, China, and Japan change from 2021 through 2025?
+
+Create a vector containing the three selected markets, then use `%in%` to keep
+rows whose country appears in that vector:
+
+```{r}
+selected_countries <- c("United States", "China", "Japan")
+
+country_trends <- gpfg |>
+  filter(country %in% selected_countries) |>
+  group_by(year, country) |>
+  summarise(market_value_nok = sum(market_value_nok)) |>
+  arrange(country, year)
+
+country_trends
+```
+
+One row now represents one selected investment market in one year. `%in%`
+asks whether each country belongs to `selected_countries`.
+
+This table combines a comparison question—differences among markets—with a
+trend question—change across years. Chapter 8 will display the three series
+with separate colored lines.
+
+## Interpret trends carefully
+
+The annual values are year-end market values of reported holdings. A change
+can reflect:
+
+- security prices;
+- exchange rates;
+- purchases or sales;
+- companies entering or leaving the portfolio; or
+- changes in reporting coverage or classification.
+
+The table does not isolate those causes. Describe the observed pattern first,
+then seek additional evidence before explaining it. Use “year-end market
+value,” not “money invested that year” or “investment return.”
+
+::: {.callout-note title="The complete history is optional"}
+`data/gpfg_history.csv.gz` contains the full 1998--2025 archive. It is useful
+for advanced reporting, but the longer period includes major coverage and
+classification changes. The five-year table is the main beginner dataset.
+:::
+
+## Questions now available
+
+| Question | Single year needed? | Multiple years needed? |
+|---|:---:|:---:|
+| What was the median value of an NBIM company holding in 2025? | Yes | No |
+| Which investment markets accounted for the largest 2025 totals? | Yes | No |
+| Were ownership percentage and holding value associated in 2025? | Yes | No |
+| Did the total value of NBIM's reported equity holdings rise or fall? | No | Yes |
+| Did the selected investment markets follow similar paths? | No | Yes |
+
+More data do not replace a precise question. Use multiple years only when time
+is part of the question.
+
+## Practice
+
+1. Import the five annual files and compare the structures of 2021 and 2025.
+2. Combine them and confirm the available years with `count()`.
+3. Calculate one row per year containing record count and total USD value.
+4. Choose one country and calculate its annual NOK totals.
+5. Compare two industries across the five years.
+6. Write one supported trend finding and two possible explanations requiring
+   additional reporting.
+
+## Takeaways
+
+| Function or idea | What it does |
+|---|---|
+| `read_csv()` | Imports each annual CSV |
+| `glimpse()` | Confirms that annual names and types match |
+| `bind_rows()` | Places observations from similar tables underneath one another |
+| `count(year)` | Checks year coverage and annual record counts |
+| `write_csv()` | Saves the combined result for later chapters |
+| `group_by(year)` + `summarise()` | Produces one summary row per year |
+| `%in%` | Tests whether a value belongs to a selected vector |
+| `group_by(year, country)` | Defines country-year groups for a comparative trend |
+
+Chapter 7 will turn the checked annual summary into a line chart and the 2025
+country comparison into a bar chart.

@@ -35,6 +35,7 @@ book:
     - part: "Data Analysis"
       chapters:
         - analysis-gpfg.qmd
+        - analysis-multiyear.qmd
     - part: "Data Visualization"
       chapters:
         - visual-01.qmd

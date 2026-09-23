@@ -1,5 +1,5 @@
 ---
-title: "Class 9: Mapping"
+title: "Class 10: Mapping"
 author: "Bin Chen"
 output:
   html_document:
@@ -12,7 +12,7 @@ output:
 Question: Where was the reported market value of the fund's equity holdings
 concentrated in 2025?
 
-Use the Chapter 8 join workflow to connect one value per investment market to
+Use the Chapter 9 join workflow to connect one value per investment market to
 world boundary coordinates, then build the map one layer at a time.
 
 ```{r}

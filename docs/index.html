@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Bin Chen">
-<meta name="dcterms.date" content="2026-09-15">
+<meta name="dcterms.date" content="2026-09-23">
 
 <title>Data Journalism with R</title>
 <style>
@@ -171,7 +171,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-multiyear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis II</span></span></a>
   </div>
 </li>
       </ul>
@@ -188,13 +194,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Visualization I</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualization I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualization II</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualization II</span></span></a>
   </div>
 </li>
       </ul>
@@ -211,13 +217,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Join and Reshape</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Join and Reshape</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -234,25 +240,25 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -354,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 15, 2026</p>
+      <p class="date">September 23, 2026</p>
     </div>
   </div>
   
@@ -418,7 +424,7 @@ More than one way to write R code
 <ol type="1">
 <li><strong>Getting Started</strong> — set up R, RStudio, an RStudio Project, and R Markdown.</li>
 <li><strong>Data Import &amp; Cleaning</strong> — import, inspect, and clean data.</li>
-<li><strong>Data Analysis</strong> — combine annual observations and investigate summaries, rankings, comparisons, and trends.</li>
+<li><strong>Data Analysis</strong> — begin with one clean annual snapshot, then combine annual observations to investigate summaries, rankings, comparisons, and trends.</li>
 <li><strong>Data Visualization</strong> — move from a reporting question to a basic chart, then add complexity only when the question requires it.</li>
 <li><strong>Advanced Workflows</strong> — reshape, join, and map related data.</li>
 <li><strong>Case Studies</strong> — apply the workflow to several real reporting topics.</li>
@@ -440,7 +446,7 @@ Follow the book with one project
 </section>
 <section id="the-main-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="the-main-dataset">The main dataset</h2>
-<p>Most core chapters use the year-end equity holdings of Norway’s Government Pension Fund Global, published by Norges Bank Investment Management (NBIM). The data include companies, markets, industries, market values, and ownership information. We begin with a deliberately messy version of 2025 and clean it. We then import five annual files from 2021 through 2025, combine them, and use the result for analysis and visualization. The complete 1998–2025 history is available as an optional resource for longer-term reporting, with important comparability cautions.</p>
+<p>Most core chapters use the year-end equity holdings of Norway’s Government Pension Fund Global, published by Norges Bank Investment Management (NBIM). The data include companies, markets, industries, market values, and ownership information. We begin with a deliberately messy version of 2025, clean it, and use the clean annual snapshot for our first analysis. We then import five annual files from 2021 through 2025, combine them, and use the result to study trends and make visualizations. The complete 1998–2025 history is available as an optional resource for longer-term reporting, with important comparability cautions.</p>
 <p>The original source is the <a href="https://www.nbim.no/en/investments/all-investments/">NBIM all-investments database</a>. The teaching files and their data dictionary are in the repository’s <a href="https://github.com/binchen19/djr/tree/main/data"><code>data</code> folder</a>.</p>
 </section>
 <section id="who-should-read-this-book" class="level2">

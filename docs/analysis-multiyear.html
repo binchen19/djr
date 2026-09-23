@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Journalism with R - 3&nbsp; Data Import</title>
+<title>Data Journalism with R - 6&nbsp; Analysis II</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./data-wrangling.html" rel="next">
-<link href="./r-basics.html" rel="prev">
+<link href="./visual-01.html" rel="next">
+<link href="./analysis-gpfg.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Cleaning</a></li><li class="breadcrumb-item"><a href="./data-import.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-gpfg.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./analysis-multiyear.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis II</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -182,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data-import.html" class="sidebar-item-text sidebar-link active">
+  <a href="./data-import.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></span></a>
   </div>
 </li>
@@ -211,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analysis-multiyear.html" class="sidebar-item-text sidebar-link">
+  <a href="./analysis-multiyear.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis II</span></span></a>
   </div>
 </li>
@@ -355,30 +355,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">3.1</span> Learning objectives</a></li>
-  <li><a href="#from-a-tibble-to-an-external-file" id="toc-from-a-tibble-to-an-external-file" class="nav-link" data-scroll-target="#from-a-tibble-to-an-external-file"><span class="header-section-number">3.2</span> From a tibble to an external file</a></li>
-  <li><a href="#tidyverse-readr-and-read_csv" id="toc-tidyverse-readr-and-read_csv" class="nav-link" data-scroll-target="#tidyverse-readr-and-read_csv"><span class="header-section-number">3.3</span> Tidyverse, readr, and <code>read_csv()</code></a></li>
-  <li><a href="#use-a-relative-path" id="toc-use-a-relative-path" class="nav-link" data-scroll-target="#use-a-relative-path"><span class="header-section-number">3.4</span> Use a relative path</a></li>
-  <li><a href="#import-the-csv" id="toc-import-the-csv" class="nav-link" data-scroll-target="#import-the-csv"><span class="header-section-number">3.5</span> Import the CSV</a></li>
-  <li><a href="#inspect-what-arrived" id="toc-inspect-what-arrived" class="nav-link" data-scroll-target="#inspect-what-arrived"><span class="header-section-number">3.6</span> Inspect what arrived</a>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">6.1</span> Learning objectives</a></li>
+  <li><a href="#add-the-missing-time-dimension" id="toc-add-the-missing-time-dimension" class="nav-link" data-scroll-target="#add-the-missing-time-dimension"><span class="header-section-number">6.2</span> Add the missing time dimension</a></li>
+  <li><a href="#import-the-annual-files" id="toc-import-the-annual-files" class="nav-link" data-scroll-target="#import-the-annual-files"><span class="header-section-number">6.3</span> Import the annual files</a></li>
+  <li><a href="#check-the-structures-before-combining" id="toc-check-the-structures-before-combining" class="nav-link" data-scroll-target="#check-the-structures-before-combining"><span class="header-section-number">6.4</span> Check the structures before combining</a></li>
+  <li><a href="#combine-annual-rows-with-bind_rows" id="toc-combine-annual-rows-with-bind_rows" class="nav-link" data-scroll-target="#combine-annual-rows-with-bind_rows"><span class="header-section-number">6.5</span> Combine annual rows with <code>bind_rows()</code></a></li>
+  <li><a href="#check-the-combined-result" id="toc-check-the-combined-result" class="nav-link" data-scroll-target="#check-the-combined-result"><span class="header-section-number">6.6</span> Check the combined result</a>
   <ul class="collapse">
-  <li><a href="#look-at-the-structure" id="toc-look-at-the-structure" class="nav-link" data-scroll-target="#look-at-the-structure">Look at the structure</a></li>
-  <li><a href="#preview-a-few-rows" id="toc-preview-a-few-rows" class="nav-link" data-scroll-target="#preview-a-few-rows">Preview a few rows</a></li>
+  <li><a href="#are-all-expected-years-present" id="toc-are-all-expected-years-present" class="nav-link" data-scroll-target="#are-all-expected-years-present">Are all expected years present?</a></li>
+  <li><a href="#what-does-one-row-represent-now" id="toc-what-does-one-row-represent-now" class="nav-link" data-scroll-target="#what-does-one-row-represent-now">What does one row represent now?</a></li>
+  <li><a href="#are-important-values-missing" id="toc-are-important-values-missing" class="nav-link" data-scroll-target="#are-important-values-missing">Are important values missing?</a></li>
+  <li><a href="#do-category-labels-look-consistent" id="toc-do-category-labels-look-consistent" class="nav-link" data-scroll-target="#do-category-labels-look-consistent">Do category labels look consistent?</a></li>
   </ul></li>
-  <li><a href="#make-an-inspection-checklist" id="toc-make-an-inspection-checklist" class="nav-link" data-scroll-target="#make-an-inspection-checklist"><span class="header-section-number">3.7</span> Make an inspection checklist</a></li>
-  <li><a href="#keep-the-local-source-copy" id="toc-keep-the-local-source-copy" class="nav-link" data-scroll-target="#keep-the-local-source-copy"><span class="header-section-number">3.8</span> Keep the local source copy</a></li>
-  <li><a href="#refer-to-the-data-dictionary" id="toc-refer-to-the-data-dictionary" class="nav-link" data-scroll-target="#refer-to-the-data-dictionary"><span class="header-section-number">3.9</span> Refer to the data dictionary</a></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">3.10</span> Practice</a></li>
-  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">3.11</span> Takeaways</a></li>
+  <li><a href="#save-the-five-year-table" id="toc-save-the-five-year-table" class="nav-link" data-scroll-target="#save-the-five-year-table"><span class="header-section-number">6.7</span> Save the five-year table</a></li>
+  <li><a href="#ask-an-overall-trend-question" id="toc-ask-an-overall-trend-question" class="nav-link" data-scroll-target="#ask-an-overall-trend-question"><span class="header-section-number">6.8</span> Ask an overall trend question</a></li>
+  <li><a href="#combine-trend-and-comparison" id="toc-combine-trend-and-comparison" class="nav-link" data-scroll-target="#combine-trend-and-comparison"><span class="header-section-number">6.9</span> Combine trend and comparison</a></li>
+  <li><a href="#interpret-trends-carefully" id="toc-interpret-trends-carefully" class="nav-link" data-scroll-target="#interpret-trends-carefully"><span class="header-section-number">6.10</span> Interpret trends carefully</a></li>
+  <li><a href="#questions-now-available" id="toc-questions-now-available" class="nav-link" data-scroll-target="#questions-now-available"><span class="header-section-number">6.11</span> Questions now available</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">6.12</span> Practice</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">6.13</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data-import.html">Data Import &amp; Cleaning</a></li><li class="breadcrumb-item"><a href="./data-import.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analysis-gpfg.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="./analysis-multiyear.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis II</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Import</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis II</span></h1>
 </div>
 
 
@@ -395,34 +399,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="Part 2: Data Import &amp; Cleaning">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Part 2: Data Import &amp; Cleaning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The previous chapters used values that we typed ourselves. We will now bring a real table into R, inspect what arrived, and prepare it for analysis. Chapters 3 and 4 follow the same file from import to a clean dataset.</p>
-</div>
-</div>
-<section id="learning-objectives" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1</span> Learning objectives</h2>
+<section id="learning-objectives" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">6.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
-<li>explain what a CSV file is;</li>
-<li>explain the relationship between the tidyverse, readr, and <code>read_csv()</code>;</li>
-<li>import a local CSV with a relative path;</li>
-<li>read the main parts of <code>glimpse()</code> output; and</li>
-<li>identify clues that a newly imported table needs cleaning.</li>
+<li>explain why trend questions require multiple time points;</li>
+<li>import several annual CSV files;</li>
+<li>compare their names and types before combining them;</li>
+<li>combine tables with the same columns using <code>bind_rows()</code>;</li>
+<li>inspect time coverage, record counts, categories, and missing values;</li>
+<li>calculate annual and country-year summaries; and</li>
+<li>interpret changes without confusing holdings with flows or returns.</li>
 </ul>
 </section>
-<section id="from-a-tibble-to-an-external-file" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="from-a-tibble-to-an-external-file"><span class="header-section-number">3.2</span> From a tibble to an external file</h2>
-<p>In Chapter 2, we used vectors and <code>tibble()</code> to create a small table ourselves. Journalists usually receive a much larger table from a government agency, company, researcher, or other source. <strong>Importing</strong> brings that external file into R as an object so we can inspect and analyse it.</p>
-<p>We will use a <strong>CSV</strong>, or comma-separated values file. A CSV stores a table as plain text. It is widely used, easy to share, and can be opened by many programs without depending on one spreadsheet application.</p>
+<section id="add-the-missing-time-dimension" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="add-the-missing-time-dimension"><span class="header-section-number">6.2</span> Add the missing time dimension</h2>
+<p>Chapter 5 used the clean 2025 snapshot to answer description, ranking, comparison, and relationship questions. It could not answer:</p>
+<blockquote class="blockquote">
+<p>How did reported equity value change over time?</p>
+</blockquote>
+<p>A trend needs the same measure at several dates. We will add four earlier year-end snapshots and analyse the five-year period from 2021 through 2025. Five files provide enough time points for a trend while keeping the import exercise manageable.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -433,227 +429,314 @@ Continue in the same project
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Open <code>djr.Rproj</code> and create <code>03-data-import.Rmd</code>. Download <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_messy.csv"><code>gpfg_messy.csv</code></a> and save it inside the project’s <code>data</code> folder. Do not open and resave it in spreadsheet software before importing it.</p>
+<p>Open <code>djr.Rproj</code> and create <code>06-data-analysis-ii.Rmd</code>. Keep the <code>gpfg_2025.csv</code> created in Chapter 4. Download <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2021.csv"><code>gpfg_2021.csv</code></a>, <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2022.csv"><code>gpfg_2022.csv</code></a>, <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2023.csv"><code>gpfg_2023.csv</code></a>, and <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2024.csv"><code>gpfg_2024.csv</code></a> into the same <code>data</code> folder. A ready-made <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2025.csv"><code>gpfg_2025.csv</code></a> is also available if needed.</p>
 </div>
 </div>
-<p>The file is adapted from the 2025 equity-holdings data published by <a href="https://www.nbim.no/en/investments/all-investments/">Norges Bank Investment Management</a>. It contains the published values, with a few deliberately introduced problems for teaching: awkward names, a date stored as text, one incomplete row, and one duplicate. The amounts and percentages remain ordinary numeric values.</p>
 </section>
-<section id="tidyverse-readr-and-read_csv" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="tidyverse-readr-and-read_csv"><span class="header-section-number">3.3</span> Tidyverse, readr, and <code>read_csv()</code></h2>
-<p>The <strong>tidyverse</strong> is a collection of packages designed to work together. One of those packages is <strong>readr</strong>, which imports rectangular data files. The readr function for CSV files is <code>read_csv()</code>.</p>
-<p>Load the tidyverse at the beginning of the R Markdown document:</p>
+<section id="import-the-annual-files" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="import-the-annual-files"><span class="header-section-number">6.3</span> Import the annual files</h2>
+<p>Repeat the local <code>read_csv()</code> pattern from Chapter 3:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg_2021 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg_2021.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>gpfg_2022 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg_2022.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gpfg_2023 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg_2023.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>gpfg_2024 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg_2024.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gpfg_2025 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg_2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Loading the tidyverse also loads readr, so we do not need a second <code>library(readr)</code> line. The simplest use of the function is:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">"file_path.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The function needs the path to the file. A path is text, so it appears inside quotation marks.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Why this book uses `read_csv()`">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Why this book uses <code>read_csv()</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Base R also has a valid function named <code>read.csv()</code>. This book uses readr’s <code>read_csv()</code> because it returns the tibble used throughout the tidyverse and reports the column types it detected. Learning one consistent import workflow is enough for now.</p>
-</div>
-</div>
+<p>The object names record which annual snapshot each table contains.</p>
 </section>
-<section id="use-a-relative-path" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="use-a-relative-path"><span class="header-section-number">3.4</span> Use a relative path</h2>
-<p>The learner project should now look like this:</p>
-<pre class="text"><code>djr/
-├── data/
-│   └── gpfg_messy.csv
-├── 01-setup.Rmd
-├── 02-r-basics.Rmd
-├── 03-data-import.Rmd
-└── djr.Rproj</code></pre>
-<p>Starting from the project folder, the path to the file is:</p>
-<pre class="text"><code>data/gpfg_messy.csv</code></pre>
-<p>This is a <strong>relative path</strong>: it describes where the file is located inside the project. Everyone who opens <code>djr.Rproj</code> starts from the same project folder, so the same path can work on different computers.</p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Avoid personal paths">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Avoid personal paths
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A path such as <code>/Users/name/Desktop/...</code> or <code>C:/Users/name/Desktop/...</code> points to one person’s computer. Keep course files inside the project and use short relative paths.</p>
-</div>
-</div>
-</section>
-<section id="import-the-csv" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="import-the-csv"><span class="header-section-number">3.5</span> Import the CSV</h2>
-<p>Import the table and assign it to an object named <code>gpfg_raw</code>:</p>
+<section id="check-the-structures-before-combining" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="check-the-structures-before-combining"><span class="header-section-number">6.4</span> Check the structures before combining</h2>
+<p>Tables should describe the same variables before we place their rows together. Compare an early and late file:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gpfg_raw <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg_messy.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Read the line from right to left: <code>read_csv()</code> reads the file, and <code>&lt;-</code> saves the resulting tibble as <code>gpfg_raw</code>. The suffix <code>_raw</code> reminds us that this object still reflects the imported file; we have not cleaned it.</p>
-<p>readr may print a message describing the rows, columns, and column types. That message is information about the import, not an error.</p>
-</section>
-<section id="inspect-what-arrived" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="inspect-what-arrived"><span class="header-section-number">3.6</span> Inspect what arrived</h2>
-<p>Importing without an error does not mean the table is ready for analysis. Begin by looking at its structure and a few rows.</p>
-<section id="look-at-the-structure" class="level3">
-<h3 class="anchored" data-anchor-id="look-at-the-structure">Look at the structure</h3>
-<p><code>glimpse()</code> shows the number of rows and columns, each column name and type, and a few example values:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg_2021)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 7,203
+<pre><code>Rows: 9,338
 Columns: 11
-$ Year                  &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, …
-$ `Report Date`         &lt;chr&gt; "31/12/2025", "31/12/2025", "31/12/2025", "31/12…
+$ year                  &lt;dbl&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, …
+$ report_date           &lt;date&gt; 2021-12-31, 2021-12-31, 2021-12-31, 2021-12-31,…
 $ region                &lt;chr&gt; "Oceania", "Oceania", "Oceania", "Oceania", "Oce…
 $ country               &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…
-$ `Company Name`        &lt;chr&gt; "3P Learning Ltd", "ALS Ltd", "AMP Ltd", "ANZ Gr…
+$ company               &lt;chr&gt; "29Metals Ltd", "A2B Australia Ltd", "ALS Ltd", …
+$ industry              &lt;chr&gt; "Basic Materials", "Financials", "Industrials", …
+$ market_value_nok      &lt;dbl&gt; 161952543, 6362419, 482302084, 13286938, 1039279…
+$ market_value_usd      &lt;dbl&gt; 18365506, 721502, 54693318, 1506746, 11785490, 1…
+$ voting_pct            &lt;dbl&gt; 1.71, 0.62, 1.19, 0.48, 0.49, 1.60, 0.43, 1.16, …
+$ ownership_pct         &lt;dbl&gt; 1.71, 0.62, 1.19, 0.48, 0.49, 1.60, 0.43, 1.16, …
+$ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg_2025)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 7,201
+Columns: 11
+$ year                  &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 2025, 2025, …
+$ report_date           &lt;date&gt; 2025-12-31, 2025-12-31, 2025-12-31, 2025-12-31,…
+$ region                &lt;chr&gt; "Oceania", "Oceania", "Oceania", "Oceania", "Oce…
+$ country               &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…
+$ company               &lt;chr&gt; "3P Learning Ltd", "ALS Ltd", "AMP Ltd", "ANZ Gr…
 $ industry              &lt;chr&gt; "Consumer Discretionary", "Industrials", "Financ…
-$ `Market Value NOK`    &lt;dbl&gt; 34140465, 1044536415, 393367522, 16360856591, 13…
+$ market_value_nok      &lt;dbl&gt; 34140465, 1044536415, 393367522, 16360856591, 13…
 $ market_value_usd      &lt;dbl&gt; 3384651, 103554273, 38998054, 1621998602, 131849…
 $ voting_pct            &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.23, …
 $ ownership_pct         &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.23, …
 $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…</code></pre>
 </div>
 </div>
-<p>Read the output from top to bottom:</p>
-<ul>
-<li><strong><code>Rows: 7,203</code></strong> is the number of imported rows;</li>
-<li><strong><code>Columns: 11</code></strong> is the number of variables;</li>
-<li>each line beginning with <strong><code>$</code></strong> describes one column;</li>
-<li><code>&lt;chr&gt;</code> means character text and <code>&lt;dbl&gt;</code> means a number; and</li>
-<li>the values at the end of each line are examples, not the entire column.</li>
-</ul>
-<p>Some observations should make us pause:</p>
-<ul>
-<li>names such as <code>Company Name</code> and <code>Market Value NOK</code> contain spaces and punctuation, making them awkward to type in code;</li>
-<li><code>Report Date</code> is character text rather than an R date;</li>
-<li>the market-value and percentage columns correctly appear as numbers; and</li>
-<li>missing and duplicate rows will require checks that a quick preview cannot settle by itself.</li>
-</ul>
-<p>These are not import failures. They are clues about work needed in Chapter 4.</p>
-</section>
-<section id="preview-a-few-rows" class="level3">
-<h3 class="anchored" data-anchor-id="preview-a-few-rows">Preview a few rows</h3>
-<p>Use the pipe from Chapter 2 to pass the imported table to <code>slice_head()</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gpfg_raw <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Report Date"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Company Name"],"name":[5],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Market Value NOK"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["market_value_usd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["voting_pct"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ownership_pct"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["incorporation_country"],"name":[11],"type":["chr"],"align":["left"]}],"data":[{"1":"2025","2":"31/12/2025","3":"Oceania","4":"Australia","5":"3P Learning Ltd","6":"Consumer Discretionary","7":"34140465","8":"3384651","9":"3.00","10":"3.00","11":"Australia"},{"1":"2025","2":"31/12/2025","3":"Oceania","4":"Australia","5":"ALS Ltd","6":"Industrials","7":"1044536415","8":"103554273","9":"1.39","10":"1.39","11":"Australia"},{"1":"2025","2":"31/12/2025","3":"Oceania","4":"Australia","5":"AMP Ltd","6":"Financials","7":"393367522","8":"38998054","9":"1.27","10":"1.27","11":"Australia"},{"1":"2025","2":"31/12/2025","3":"Oceania","4":"Australia","5":"ANZ Group Holdings Ltd","6":"Financials","7":"16360856591","8":"1621998602","9":"2.22","10":"2.22","11":"Australia"},{"1":"2025","2":"31/12/2025","3":"Oceania","4":"Australia","5":"APA Group","6":"Energy","7":"1329942465","8":"131849137","9":"1.68","10":"1.68","11":"Australia"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-</div>
-<p><code>slice_head(n = 5)</code> returns the first five rows without changing <code>gpfg_raw</code>. The named argument <code>n = 5</code> tells the function how many rows to show.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Why not use `head()`?">
+<p>The column names and types should match. Each file already contains a <code>year</code> column, so observations will remain distinguishable after combination.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Do not combine first and inspect later">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Why not use <code>head()</code>?
+Do not combine first and inspect later
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>head(gpfg_raw)</code> is valid base R. This book uses <code>slice_head()</code> because it is a dplyr function and fits the tidyverse pipelines used in later chapters.</p>
+<p>If annual files use different names, types, units, or definitions, stacking them can create a misleading table. Resolve meaningful differences before analysing a trend.</p>
 </div>
 </div>
 </section>
+<section id="combine-annual-rows-with-bind_rows" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="combine-annual-rows-with-bind_rows"><span class="header-section-number">6.5</span> Combine annual rows with <code>bind_rows()</code></h2>
+<p>The five tables contain the same columns but different annual observations. <code>bind_rows()</code> places their rows underneath one another:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  gpfg_2021,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  gpfg_2022,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  gpfg_2023,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  gpfg_2024,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  gpfg_2025</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One row still represents one reported holding in one year-end snapshot. The operation adds observations; it does not add new variables.</p>
+<p>This is different from a join. Chapter 9 will use a shared key to add variables from another table.</p>
 </section>
-<section id="make-an-inspection-checklist" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="make-an-inspection-checklist"><span class="header-section-number">3.7</span> Make an inspection checklist</h2>
-<p>After importing any dataset, ask:</p>
+<section id="check-the-combined-result" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="check-the-combined-result"><span class="header-section-number">6.6</span> Check the combined result</h2>
+<section id="are-all-expected-years-present" class="level3">
+<h3 class="anchored" data-anchor-id="are-all-expected-years-present">Are all expected years present?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"2021","2":"9338"},{"1":"2022","2":"9228"},{"1":"2023","2":"8859"},{"1":"2024","2":"8659"},{"1":"2025","2":"7201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The result should contain five consecutive years. The number of reported holding records differs by year, so changes in totals should not be interpreted without considering changes in coverage.</p>
+</section>
+<section id="what-does-one-row-represent-now" class="level3">
+<h3 class="anchored" data-anchor-id="what-does-one-row-represent-now">What does one row represent now?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 43,285
+Columns: 11
+$ year                  &lt;dbl&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, …
+$ report_date           &lt;date&gt; 2021-12-31, 2021-12-31, 2021-12-31, 2021-12-31,…
+$ region                &lt;chr&gt; "Oceania", "Oceania", "Oceania", "Oceania", "Oce…
+$ country               &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…
+$ company               &lt;chr&gt; "29Metals Ltd", "A2B Australia Ltd", "ALS Ltd", …
+$ industry              &lt;chr&gt; "Basic Materials", "Financials", "Industrials", …
+$ market_value_nok      &lt;dbl&gt; 161952543, 6362419, 482302084, 13286938, 1039279…
+$ market_value_usd      &lt;dbl&gt; 18365506, 721502, 54693318, 1506746, 11785490, 1…
+$ voting_pct            &lt;dbl&gt; 1.71, 0.62, 1.19, 0.48, 0.49, 1.60, 0.43, 1.16, …
+$ ownership_pct         &lt;dbl&gt; 1.71, 0.62, 1.19, 0.48, 0.49, 1.60, 0.43, 1.16, …
+$ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…</code></pre>
+</div>
+</div>
+<p>The same company can appear in several years. A row is therefore not a unique company across the full period, and the table does not contain transactions.</p>
+</section>
+<section id="are-important-values-missing" class="level3">
+<h3 class="anchored" data-anchor-id="are-important-values-missing">Are important values missing?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(company) <span class="sc">|</span> <span class="fu">is.na</span>(market_value_nok))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["report_date"],"name":[2],"type":["date"],"align":["right"]},{"label":["region"],"name":[3],"type":["chr"],"align":["left"]},{"label":["country"],"name":[4],"type":["chr"],"align":["left"]},{"label":["company"],"name":[5],"type":["chr"],"align":["left"]},{"label":["industry"],"name":[6],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["market_value_usd"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["voting_pct"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["ownership_pct"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["incorporation_country"],"name":[11],"type":["chr"],"align":["left"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The <code>|</code> symbol means “or.” An empty result confirms that both fields are complete in the supplied annual files, although it does not prove that every published value is correct.</p>
+</section>
+<section id="do-category-labels-look-consistent" class="level3">
+<h3 class="anchored" data-anchor-id="do-category-labels-look-consistent">Do category labels look consistent?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(region) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Africa"},{"1":"Asia"},{"1":"Europe"},{"1":"Latin America"},{"1":"Middle East"},{"1":"North America"},{"1":"Oceania"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>For longer historical periods, country and industry definitions may change. Never assume that identically named columns are perfectly comparable across time without checking the source documentation.</p>
+</section>
+</section>
+<section id="save-the-five-year-table" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="save-the-five-year-table"><span class="header-section-number">6.7</span> Save the five-year table</h2>
+<p>Later chapters can begin from the completed combination step:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(gpfg, <span class="st">"data/gpfg_5_years.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The repository also provides a ready-made <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_5_years.csv"><code>gpfg_5_years.csv</code></a> for learners beginning with a visualization chapter.</p>
+</section>
+<section id="ask-an-overall-trend-question" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="ask-an-overall-trend-question"><span class="header-section-number">6.8</span> Ask an overall trend question</h2>
+<blockquote class="blockquote">
+<p>How did the total reported market value of the equity holdings change from 2021 through 2025?</p>
+</blockquote>
+<p>The question needs <code>year</code> and <code>market_value_nok</code>. Group the observations by year and return one summary row for each annual snapshot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>annual_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">holding_records =</span> <span class="fu">n</span>(),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>annual_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["holding_records"],"name":[2],"type":["int"],"align":["right"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2021","2":"9338","3":"8.897850e+12"},{"1":"2022","2":"9228","3":"8.579839e+12"},{"1":"2023","2":"8859","3":"1.117629e+13"},{"1":"2024","2":"8659","3":"1.460377e+13"},{"1":"2025","2":"7201","3":"1.518302e+13"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Track the changing row meaning:</p>
+<ul>
+<li>before <code>summarise()</code>, one row represents one holding in one year;</li>
+<li>after <code>summarise()</code>, one row represents one annual snapshot.</li>
+</ul>
+<p>Keeping both record count and market value visible helps us notice that a change in the total occurs alongside a changing number of reported holdings.</p>
+</section>
+<section id="combine-trend-and-comparison" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="combine-trend-and-comparison"><span class="header-section-number">6.9</span> Combine trend and comparison</h2>
+<p>We can also ask:</p>
+<blockquote class="blockquote">
+<p>How did reported market value change for the United States, China, and Japan from 2021 through 2025?</p>
+</blockquote>
+<p>Create a vector containing the three selected markets, then use <code>%in%</code> to keep rows whose country appears in that vector:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>selected_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"China"</span>, <span class="st">"Japan"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>country_trends <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> selected_countries) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, country) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">market_value_nok =</span> <span class="fu">sum</span>(market_value_nok)) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(country, year)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>country_trends</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["market_value_nok"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2021","2":"China","3":"3.350038e+11"},{"1":"2022","2":"China","3":"3.283251e+11"},{"1":"2023","2":"China","3":"3.396105e+11"},{"1":"2024","2":"China","3":"4.622155e+11"},{"1":"2025","2":"China","3":"5.441163e+11"},{"1":"2021","2":"Japan","3":"6.299429e+11"},{"1":"2022","2":"Japan","3":"6.319608e+11"},{"1":"2023","2":"Japan","3":"7.912716e+11"},{"1":"2024","2":"Japan","3":"9.551953e+11"},{"1":"2025","2":"Japan","3":"9.705254e+11"},{"1":"2021","2":"United States","3":"3.972126e+12"},{"1":"2022","2":"United States","3":"3.790665e+12"},{"1":"2023","2":"United States","3":"5.434238e+12"},{"1":"2024","2":"United States","3":"8.166284e+12"},{"1":"2025","2":"United States","3":"8.294346e+12"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>One row now represents one selected investment market in one year. <code>%in%</code> asks whether each country belongs to <code>selected_countries</code>.</p>
+<p>This table combines a comparison question—differences among markets—with a trend question—change across years. Chapter 8 will display the three series with separate colored lines.</p>
+</section>
+<section id="interpret-trends-carefully" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="interpret-trends-carefully"><span class="header-section-number">6.10</span> Interpret trends carefully</h2>
+<p>The annual values are year-end market values of reported holdings. A change can reflect:</p>
+<ul>
+<li>security prices;</li>
+<li>exchange rates;</li>
+<li>purchases or sales;</li>
+<li>companies entering or leaving the portfolio; or</li>
+<li>changes in reporting coverage or classification.</li>
+</ul>
+<p>The table does not isolate those causes. Describe the observed pattern first, then seek additional evidence before explaining it. Use “year-end market value,” not “money invested that year” or “investment return.”</p>
+<div class="callout callout-style-default callout-note callout-titled" title="The complete history is optional">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The complete history is optional
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>data/gpfg_history.csv.gz</code> contains the full 1998–2025 archive. It is useful for advanced reporting, but the longer period includes major coverage and classification changes. The five-year table is the main beginner dataset.</p>
+</div>
+</div>
+</section>
+<section id="questions-now-available" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="questions-now-available"><span class="header-section-number">6.11</span> Questions now available</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Question</th>
+<th style="text-align: center;">Single year needed?</th>
+<th style="text-align: center;">Multiple years needed?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>What was the 2025 median holding value?</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td>Which markets had the largest 2025 totals?</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td>Were value and ownership associated in 2025?</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td>Did total reported value rise or fall?</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr class="odd">
+<td>Did selected markets follow similar paths?</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>More data do not replace a precise question. Use multiple years only when time is part of the question.</p>
+</section>
+<section id="practice" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="practice"><span class="header-section-number">6.12</span> Practice</h2>
+<ol type="1">
+<li>Import the five annual files and compare the structures of 2021 and 2025.</li>
+<li>Combine them and confirm the available years with <code>count()</code>.</li>
+<li>Calculate one row per year containing record count and total USD value.</li>
+<li>Choose one country and calculate its annual NOK totals.</li>
+<li>Compare two industries across the five years.</li>
+<li>Write one supported trend finding and two possible explanations requiring additional reporting.</li>
+</ol>
+</section>
+<section id="takeaways" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">6.13</span> Takeaways</h2>
 <table class="table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
-<thead>
-<tr class="header">
-<th>Check</th>
-<th>Question to ask</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Rows and columns</td>
-<td>Does the size match what the source describes?</td>
-</tr>
-<tr class="even">
-<td>Column names</td>
-<td>Are the names clear and convenient to use?</td>
-</tr>
-<tr class="odd">
-<td>Column types</td>
-<td>Are amounts numeric and dates stored as dates?</td>
-</tr>
-<tr class="even">
-<td>Missing values</td>
-<td>Does <code>NA</code> mean unavailable, and how many are present?</td>
-</tr>
-<tr class="odd">
-<td>Category values</td>
-<td>Are spelling, capitalization, and spaces consistent?</td>
-</tr>
-<tr class="even">
-<td>Repeated records</td>
-<td>Is each apparent duplicate an error or a valid observation?</td>
-</tr>
-<tr class="odd">
-<td>Units and definitions</td>
-<td>What exactly does every number measure?</td>
-</tr>
-</tbody>
-</table>
-<p>Chapter 4 will turn a small part of this checklist into code. We will rename a few columns, convert the date, inspect a missing row, identify a repeated row, and save the clean result for later chapters.</p>
-</section>
-<section id="keep-the-local-source-copy" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="keep-the-local-source-copy"><span class="header-section-number">3.8</span> Keep the local source copy</h2>
-<p><code>read_csv()</code> can also read a public URL, and some packages provide example datasets. Those approaches are useful to recognize, but the guided lessons use a saved local file. A local copy:</p>
-<ul>
-<li>preserves the exact version used in the reporting;</li>
-<li>continues to work if a URL changes or the internet is unavailable; and</li>
-<li>avoids downloading the same file every time the document knits.</li>
-</ul>
-<p>Record the publisher, original URL, and access date in your notes. Keeping a local file does not replace source documentation.</p>
-</section>
-<section id="refer-to-the-data-dictionary" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="refer-to-the-data-dictionary"><span class="header-section-number">3.9</span> Refer to the data dictionary</h2>
-<p>Open the <a href="https://github.com/binchen19/djr/blob/main/data/gpfg_data_dictionary.csv">GPFG data dictionary</a> and keep it beside the lesson. It explains what each column means and which unit it uses. You do not need to import the dictionary.</p>
-<p>One row should represent one reported equity holding at the end of the year. It is not a purchase, sale, investment return, or payment received by a company. We will check that intended row meaning during cleaning.</p>
-</section>
-<section id="practice" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="practice"><span class="header-section-number">3.10</span> Practice</h2>
-<p>In <code>03-data-import.Rmd</code>:</p>
-<ol type="1">
-<li>load the tidyverse;</li>
-<li>import <code>data/gpfg_messy.csv</code> as <code>gpfg_raw</code>;</li>
-<li>inspect the table with <code>glimpse()</code>;</li>
-<li>show its first five rows; and</li>
-<li>compare the imported types with the types you think the columns need.</li>
-</ol>
-<p>Then answer:</p>
-<ol type="1">
-<li>How many rows and columns were imported?</li>
-<li>Which columns did R correctly import as numbers?</li>
-<li>Which column still needs to become a date?</li>
-<li>Name one awkward column name.</li>
-<li>Why does a successful import not prove that the table is clean?</li>
-<li>What should one row represent?</li>
-</ol>
-</section>
-<section id="takeaways" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">3.11</span> Takeaways</h2>
-<table class="table">
 <thead>
 <tr class="header">
 <th>Function or idea</th>
@@ -662,48 +745,40 @@ Why not use <code>head()</code>?
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>library(tidyverse)</code></td>
-<td>Loads the core tidyverse packages</td>
+<td><code>read_csv()</code></td>
+<td>Imports each annual CSV</td>
 </tr>
 <tr class="even">
-<td><code>read_csv("path")</code></td>
-<td>Imports a CSV as a tibble</td>
-</tr>
-<tr class="odd">
-<td>Relative path</td>
-<td>Locates a file from the RStudio Project folder</td>
-</tr>
-<tr class="even">
-<td><code>&lt;-</code></td>
-<td>Saves the imported tibble as an object</td>
-</tr>
-<tr class="odd">
 <td><code>glimpse()</code></td>
-<td>Shows column names, types, and example values</td>
-</tr>
-<tr class="even">
-<td><code>slice_head(n = 5)</code></td>
-<td>Shows the first five rows</td>
+<td>Confirms that annual names and types match</td>
 </tr>
 <tr class="odd">
-<td>Local source copy</td>
-<td>Preserves the exact file used in the reporting</td>
+<td><code>bind_rows()</code></td>
+<td>Places observations from similar tables underneath one another</td>
+</tr>
+<tr class="even">
+<td><code>count(year)</code></td>
+<td>Checks year coverage and annual record counts</td>
+</tr>
+<tr class="odd">
+<td><code>write_csv()</code></td>
+<td>Saves the combined result for later chapters</td>
+</tr>
+<tr class="even">
+<td><code>group_by(year)</code> + <code>summarise()</code></td>
+<td>Produces one summary row per year</td>
+</tr>
+<tr class="odd">
+<td><code>%in%</code></td>
+<td>Tests whether a value belongs to a selected vector</td>
+</tr>
+<tr class="even">
+<td><code>group_by(year, country)</code></td>
+<td>Defines country-year groups for a comparative trend</td>
 </tr>
 </tbody>
 </table>
-<div class="callout callout-style-default callout-tip callout-titled" title="Want more control?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Want more control?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The file path is the only <code>read_csv()</code> argument needed in this lesson. The official <a href="https://readr.tidyverse.org/reference/read_delim.html"><code>read_csv()</code> reference</a> explains optional controls for missing values, column types, delimiters, and unusual files when a project requires them.</p>
-</div>
-</div>
+<p>Chapter 7 will turn the checked annual summary into a line chart and the 2025 country comparison into a bar chart.</p>
 
 
 </section>
@@ -1098,13 +1173,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./r-basics.html" class="pagination-link  aria-label=" &lt;span="" basics&lt;="" span&gt;"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R Basics</span></span>
+      <a href="./analysis-gpfg.html" class="pagination-link  aria-label=" &lt;span="" i&lt;="" span&gt;"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis I</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data-wrangling.html" class="pagination-link" aria-label="<span class='chapter-number'>4</span>&nbsp; <span class='chapter-title'>Data Cleaning</span>">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Data Cleaning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./visual-01.html" class="pagination-link" aria-label="<span class='chapter-number'>7</span>&nbsp; <span class='chapter-title'>Visualization I</span>">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualization I</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

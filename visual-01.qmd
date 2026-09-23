@@ -3,9 +3,9 @@ title: "Visualization I"
 ---
 
 ::: {.callout-note title="Part 4: Data Visualization"}
-Chapter 5 calculated and checked several findings. We will now turn those
-tables into charts. Every chart begins with a reporting question and a plan;
-appearance comes later.
+Chapters 5 and 6 calculated and checked single-year and multi-year findings.
+We will now turn those tables into charts. Every chart begins with a reporting
+question and a plan; appearance comes later.
 :::
 
 ## Learning objectives
@@ -36,8 +36,8 @@ The chart does not replace the analysis. It displays a result that should
 already be visible in a checked table.
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `06-basic-visualization.Rmd`. Reuse the combined
-file created in Chapter 5. A ready-made
+Open `djr.Rproj` and create `07-data-visualization-i.Rmd`. Reuse the combined
+file created in Chapter 6. A ready-made
 [`gpfg_5_years.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_5_years.csv)
 is available if needed.
 :::
@@ -57,8 +57,8 @@ We will develop the first chart slowly so that every addition is visible.
 
 ### Step 1: state the question
 
-> How did the total reported market value of the equity holdings change from
-> 2021 through 2025?
+> How did the total reported market value of NBIM's equity holdings change
+> from 2021 through 2025?
 
 ### Step 2: identify the columns
 
@@ -71,7 +71,7 @@ The source table contains many holdings per year. The question needs:
 
 ### Step 3: prepare and inspect the table
 
-Reuse the group-and-summarise pattern from Chapter 5:
+Reuse the group-and-summarise pattern from Chapter 6:
 
 ```{r}
 annual_summary <- gpfg |>
@@ -202,7 +202,8 @@ Now repeat the workflow more quickly.
 
 ### Question and columns
 
-> Which investment markets had the largest total reported values in 2025?
+> Which investment markets accounted for the largest total market value of
+> NBIM's reported equity holdings at the end of 2025?
 
 | Column | Role |
 |---|---|
@@ -315,7 +316,8 @@ representing separate groups.
 
 ### Question and visual plan
 
-> How were individual holding values distributed in 2025?
+> How were the reported USD values of NBIM's company holdings distributed in
+> 2025?
 
 This question uses the numeric `market_value_usd` column. A histogram maps it
 to x, divides its values into ranges called bins, and counts the observations
@@ -328,7 +330,7 @@ ggplot(gpfg_latest, aes(x = market_value_usd)) +
 
 Most holdings are small relative to a few very large holdings. This is a
 right-skewed distribution. The basic chart reveals the problem clearly even
-though the smaller observations are crowded together. Chapter 7 will add a
+though the smaller observations are crowded together. Chapter 8 will add a
 log scale and compare distributions across groups.
 
 Add labels and a simple fixed color only after reading the basic result:
@@ -349,7 +351,8 @@ ggplot(gpfg_latest, aes(x = market_value_usd)) +
 
 ### Question and visual plan
 
-> Did market value and ownership percentage tend to vary together in 2025?
+> Among companies in NBIM's 2025 equity-holdings data, were higher ownership
+> percentages associated with larger reported holding values?
 
 | Visual role | Column |
 |---|---|
@@ -372,7 +375,7 @@ ggplot(
 ```
 
 One point represents one holding. A visible relationship does not show that
-one variable caused the other. Chapter 7 will address overlapping points,
+one variable caused the other. Chapter 8 will address overlapping points,
 skewed values, and comparisons among regions.
 
 ## Choose a basic chart from the question

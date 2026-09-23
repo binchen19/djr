@@ -1,0 +1,128 @@
+---
+title: "Class 6: Analysis II"
+author: "Bin Chen"
+output:
+  html_document:
+    toc: true
+    theme: cosmo
+---
+
+## Today
+
+Add the missing time dimension: import five annual snapshots, compare their
+structures, combine their rows, check the result, and answer trend questions.
+
+## 1. Import the annual files
+
+```{r}
+library(tidyverse)
+
+gpfg_2021 <- read_csv("data/gpfg_2021.csv")
+gpfg_2022 <- read_csv("data/gpfg_2022.csv")
+gpfg_2023 <- read_csv("data/gpfg_2023.csv")
+gpfg_2024 <- read_csv("data/gpfg_2024.csv")
+gpfg_2025 <- read_csv("data/gpfg_2025.csv")
+```
+
+Before combining, compare the names and types:
+
+```{r}
+glimpse(gpfg_2021)
+```
+
+```{r}
+glimpse(gpfg_2025)
+```
+
+Both files should describe the same variables and already contain `year`.
+
+## 2. Stack the annual rows
+
+```{r}
+gpfg <- bind_rows(
+  gpfg_2021,
+  gpfg_2022,
+  gpfg_2023,
+  gpfg_2024,
+  gpfg_2025
+)
+```
+
+`bind_rows()` is for tables with the same columns and different observations.
+One row still represents one holding at one year-end.
+
+## 3. Check the combination
+
+```{r}
+gpfg |>
+  count(year)
+```
+
+```{r}
+gpfg |>
+  filter(is.na(company) | is.na(market_value_nok))
+```
+
+```{r}
+gpfg |>
+  distinct(region) |>
+  arrange(region)
+```
+
+Checkpoint: five years are present; record counts differ; important fields are
+complete; and region labels remain understandable.
+
+```{r}
+write_csv(gpfg, "data/gpfg_5_years.csv")
+```
+
+## 4. Overall trend
+
+Question: How did total reported market value change from 2021 to 2025?
+
+```{r}
+annual_summary <- gpfg |>
+  group_by(year) |>
+  summarise(
+    holding_records = n(),
+    market_value_nok = sum(market_value_nok)
+  ) |>
+  arrange(year)
+
+annual_summary
+```
+
+After `summarise()`, one row represents one annual snapshot.
+
+## 5. Comparative trend
+
+Question: How did value change for the United States, China, and Japan?
+
+```{r}
+selected_countries <- c("United States", "China", "Japan")
+
+country_trends <- gpfg |>
+  filter(country %in% selected_countries) |>
+  group_by(year, country) |>
+  summarise(market_value_nok = sum(market_value_nok)) |>
+  arrange(country, year)
+
+country_trends
+```
+
+One row represents one selected market in one year. `%in%` checks whether each
+country belongs to the selected vector.
+
+## Reporting caution
+
+The annual values are year-end holdings, not yearly purchases or returns.
+Changes may reflect prices, exchange rates, purchases, sales, portfolio
+coverage, or classifications. The table shows the pattern, not its cause.
+
+## Exit ticket
+
+- Why check annual structures before `bind_rows()`?
+- What does one row represent before and after the annual summary?
+- Why keep record count beside total value?
+- Write one supported trend finding and one explanation requiring more
+  reporting.

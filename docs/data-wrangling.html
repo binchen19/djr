@@ -206,7 +206,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./analysis-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis I</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analysis-multiyear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Analysis II</span></span></a>
   </div>
 </li>
       </ul>
@@ -223,13 +229,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./visual-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Basic Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualization I</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./visual-02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Advanced Visualization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Visualization II</span></span></a>
   </div>
 </li>
       </ul>
@@ -246,13 +252,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./transform-merge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Join and Reshape</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Join and Reshape</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./map-gpfg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Mapping</span></span></a>
   </div>
 </li>
       </ul>
@@ -269,25 +275,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./hot100.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Billboard Hot 100</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./olympics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Olympics Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./employment.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">HK Graduates Employment</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./debate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Text Analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -350,15 +356,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">4.1</span> Learning objectives</a></li>
-  <li><a href="#continue-with-the-imported-table" id="toc-continue-with-the-imported-table" class="nav-link" data-scroll-target="#continue-with-the-imported-table"><span class="header-section-number">4.2</span> Continue with the imported table</a></li>
-  <li><a href="#turn-observations-into-a-cleaning-plan" id="toc-turn-observations-into-a-cleaning-plan" class="nav-link" data-scroll-target="#turn-observations-into-a-cleaning-plan"><span class="header-section-number">4.3</span> Turn observations into a cleaning plan</a></li>
-  <li><a href="#rename-the-awkward-columns" id="toc-rename-the-awkward-columns" class="nav-link" data-scroll-target="#rename-the-awkward-columns"><span class="header-section-number">4.4</span> Rename the awkward columns</a></li>
-  <li><a href="#convert-the-date-type" id="toc-convert-the-date-type" class="nav-link" data-scroll-target="#convert-the-date-type"><span class="header-section-number">4.5</span> Convert the date type</a></li>
-  <li><a href="#check-missing-values" id="toc-check-missing-values" class="nav-link" data-scroll-target="#check-missing-values"><span class="header-section-number">4.6</span> Check missing values</a></li>
-  <li><a href="#check-duplicate-rows" id="toc-check-duplicate-rows" class="nav-link" data-scroll-target="#check-duplicate-rows"><span class="header-section-number">4.7</span> Check duplicate rows</a></li>
-  <li><a href="#verify-and-save-the-clean-table" id="toc-verify-and-save-the-clean-table" class="nav-link" data-scroll-target="#verify-and-save-the-clean-table"><span class="header-section-number">4.8</span> Verify and save the clean table</a></li>
-  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">4.9</span> Practice</a></li>
-  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">4.10</span> Takeaways</a></li>
+  <li><a href="#what-is-data-cleaning" id="toc-what-is-data-cleaning" class="nav-link" data-scroll-target="#what-is-data-cleaning"><span class="header-section-number">4.2</span> What is data cleaning?</a></li>
+  <li><a href="#continue-with-the-imported-table" id="toc-continue-with-the-imported-table" class="nav-link" data-scroll-target="#continue-with-the-imported-table"><span class="header-section-number">4.3</span> Continue with the imported table</a></li>
+  <li><a href="#turn-observations-into-a-cleaning-plan" id="toc-turn-observations-into-a-cleaning-plan" class="nav-link" data-scroll-target="#turn-observations-into-a-cleaning-plan"><span class="header-section-number">4.4</span> Turn observations into a cleaning plan</a></li>
+  <li><a href="#rename-the-awkward-columns" id="toc-rename-the-awkward-columns" class="nav-link" data-scroll-target="#rename-the-awkward-columns"><span class="header-section-number">4.5</span> Rename the awkward columns</a></li>
+  <li><a href="#convert-the-date-type" id="toc-convert-the-date-type" class="nav-link" data-scroll-target="#convert-the-date-type"><span class="header-section-number">4.6</span> Convert the date type</a></li>
+  <li><a href="#check-missing-values" id="toc-check-missing-values" class="nav-link" data-scroll-target="#check-missing-values"><span class="header-section-number">4.7</span> Check missing values</a>
+  <ul class="collapse">
+  <li><a href="#how-filter-works" id="toc-how-filter-works" class="nav-link" data-scroll-target="#how-filter-works">How <code>filter()</code> works</a></li>
+  </ul></li>
+  <li><a href="#check-duplicate-rows" id="toc-check-duplicate-rows" class="nav-link" data-scroll-target="#check-duplicate-rows"><span class="header-section-number">4.8</span> Check duplicate rows</a></li>
+  <li><a href="#verify-and-save-the-clean-table" id="toc-verify-and-save-the-clean-table" class="nav-link" data-scroll-target="#verify-and-save-the-clean-table"><span class="header-section-number">4.9</span> Verify and save the clean table</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">4.10</span> Practice</a></li>
+  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways"><span class="header-section-number">4.11</span> Takeaways</a></li>
   </ul>
 </nav>
     </div>
@@ -388,6 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="4.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">4.1</span> Learning objectives</h2>
 <p>By the end of this chapter, you should be able to:</p>
 <ul>
+<li>explain what data cleaning is and what it is intended to achieve;</li>
 <li>turn observations from the import chapter into a short cleaning plan;</li>
 <li>rename awkward columns with <code>rename()</code>;</li>
 <li>change a date column to the correct type with <code>mutate()</code> and <code>dmy()</code>;</li>
@@ -396,8 +407,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>save a clean CSV without overwriting the imported source.</li>
 </ul>
 </section>
-<section id="continue-with-the-imported-table" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="continue-with-the-imported-table"><span class="header-section-number">4.2</span> Continue with the imported table</h2>
+<section id="what-is-data-cleaning" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="what-is-data-cleaning"><span class="header-section-number">4.2</span> What is data cleaning?</h2>
+<p><strong>Data cleaning</strong> is the process of identifying, investigating, and correcting problems that could make an analysis inaccurate, confusing, or difficult to reproduce. Common problems include unclear column names, incorrect types, missing information, inconsistent categories, and duplicated records.</p>
+<p>The goal is not to make a dataset look perfect or to remove every unusual value. The goal is to produce a table that is <strong>fit for the reporting task</strong>:</p>
+<ul>
+<li>each row and column has a clear meaning;</li>
+<li>values are stored in types appropriate for their meaning;</li>
+<li>missing and repeated records have been investigated;</li>
+<li>every change is supported by evidence and recorded in code; and</li>
+<li>the original source remains unchanged so the work can be checked and rerun.</li>
+</ul>
+<p>What counts as “clean” depends on the question. A missing value that prevents one analysis may be acceptable for another. Cleaning therefore requires judgment and source knowledge, not just a list of functions.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Goal for this chapter">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Goal for this chapter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We will turn the deliberately imperfect 2025 file into a reproducible, analysis-ready table while preserving the imported CSV. Every change will respond to a problem observed in Chapter 3.</p>
+</div>
+</div>
+</section>
+<section id="continue-with-the-imported-table" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="continue-with-the-imported-table"><span class="header-section-number">4.3</span> Continue with the imported table</h2>
 <p>Chapter 3 imported <code>gpfg_messy.csv</code> as <code>gpfg_raw</code>. Most of the table arrived correctly: the amounts and percentages are already numeric, and the category values are consistent. We only need to solve four visible problems:</p>
 <ol type="1">
 <li>a few column names are awkward;</li>
@@ -427,8 +464,8 @@ Continue in the same project
 </div>
 <p>One row is intended to represent one reported equity holding at the end of 2025.</p>
 </section>
-<section id="turn-observations-into-a-cleaning-plan" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="turn-observations-into-a-cleaning-plan"><span class="header-section-number">4.3</span> Turn observations into a cleaning plan</h2>
+<section id="turn-observations-into-a-cleaning-plan" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="turn-observations-into-a-cleaning-plan"><span class="header-section-number">4.4</span> Turn observations into a cleaning plan</h2>
 <p>Run the inspection from Chapter 3 again:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -481,8 +518,8 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 </table>
 <p>Choose a function only after identifying the problem it needs to solve.</p>
 </section>
-<section id="rename-the-awkward-columns" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="rename-the-awkward-columns"><span class="header-section-number">4.4</span> Rename the awkward columns</h2>
+<section id="rename-the-awkward-columns" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="rename-the-awkward-columns"><span class="header-section-number">4.5</span> Rename the awkward columns</h2>
 <p>Use <code>rename()</code> with <code>new_name = old_name</code>. An old name containing spaces needs backticks:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg_raw <span class="sc">|&gt;</span></span>
@@ -513,8 +550,8 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <p>The new names use lowercase <code>snake_case</code>, the naming style introduced in Chapter 2. The other column names were already suitable, so we did not rename them. Renaming changes labels, not values.</p>
 <p><code>year</code> appears as <code>&lt;dbl&gt;</code>, which is still a numeric type and is suitable for these whole-year values. We do not need to convert a column merely to make its type label look different.</p>
 </section>
-<section id="convert-the-date-type" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="convert-the-date-type"><span class="header-section-number">4.5</span> Convert the date type</h2>
+<section id="convert-the-date-type" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="convert-the-date-type"><span class="header-section-number">4.6</span> Convert the date type</h2>
 <p>The values in <code>report_date</code> use day-month-year order, such as <code>31/12/2025</code>, but R imported the column as <code>&lt;chr&gt;</code> text. The data source tells us what the order means.</p>
 <p>Use <code>mutate()</code> to change the existing column. <code>dmy()</code> means day, month, year:</p>
 <div class="cell">
@@ -553,13 +590,47 @@ Confirm the date order
 </div>
 </div>
 </section>
-<section id="check-missing-values" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="check-missing-values"><span class="header-section-number">4.6</span> Check missing values</h2>
+<section id="check-missing-values" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="check-missing-values"><span class="header-section-number">4.7</span> Check missing values</h2>
 <p>R represents unavailable information with <code>NA</code>. A missing value differs from zero: zero is a known amount, while <code>NA</code> means the value is unavailable.</p>
-<p>Use <code>is.na()</code> inside <code>filter()</code> to see rows with a missing company name:</p>
+<section id="how-filter-works" class="level3">
+<h3 class="anchored" data-anchor-id="how-filter-works">How <code>filter()</code> works</h3>
+<p><code>filter()</code> is a dplyr function that keeps rows where a condition is <code>TRUE</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>It selects rows; it does not change column names or values. If the result is only printed, the original object remains unchanged. If the pipeline is assigned back to an object with <code>&lt;-</code>, that object is updated to contain only the kept rows.</p>
+<p>The conditions used in this chapter are:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Condition</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>is.na(company)</code></td>
+<td>The company value is missing</td>
+</tr>
+<tr class="even">
+<td><code>!is.na(company)</code></td>
+<td>The company value is not missing</td>
+</tr>
+<tr class="odd">
+<td><code>n &gt; 1</code></td>
+<td>The count is greater than one</td>
+</tr>
+<tr class="even">
+<td><code>company == "3P Learning Ltd"</code></td>
+<td>The company equals this exact text</td>
+</tr>
+</tbody>
+</table>
+<p><code>!</code> means “not,” <code>&gt;</code> means “greater than,” and <code>==</code> tests whether two values are equal. A single <code>=</code> has a different role: it names arguments and options inside functions.</p>
+<p>First use <code>is.na()</code> inside <code>filter()</code> to display rows with a missing company name. Because this result is not assigned, it does not change <code>gpfg</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -570,19 +641,20 @@ Confirm the date order
 </div>
 <p>The result contains one deliberately incomplete row. It has a year and date but no company, country, industry, or market value, so it cannot represent the holding described by the data dictionary. After inspecting the whole row, remove it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>!</code> means “not,” so the code keeps rows whose company is not missing.</p>
+<p>This time the result is assigned back to <code>gpfg</code>, so the working object now keeps only rows whose company is not missing.</p>
 <p>Never remove every row containing <code>NA</code> automatically. In another dataset, a missing value may be expected or may require more reporting. Here the decision is justified because the entire supposed holding is incomplete.</p>
 </section>
-<section id="check-duplicate-rows" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="check-duplicate-rows"><span class="header-section-number">4.7</span> Check duplicate rows</h2>
+</section>
+<section id="check-duplicate-rows" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="check-duplicate-rows"><span class="header-section-number">4.8</span> Check duplicate rows</h2>
 <p>The file should contain one row per reported holding. Count combinations of company, country, and industry to find possible repetition:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(company, country, industry) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(company, country, industry) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -593,8 +665,8 @@ Confirm the date order
 </div>
 <p><code>count()</code> creates <code>n</code>, the number of matching rows. Inspect the result in the original table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">"3P Learning Ltd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">"3P Learning Ltd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -605,16 +677,16 @@ Confirm the date order
 </div>
 <p>The two complete rows are identical. After confirming that, use <code>distinct()</code> without column names to keep each complete row once:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A repeated company name is not always a duplicate. The decision depends on the meaning and values of the complete row.</p>
 </section>
-<section id="verify-and-save-the-clean-table" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="verify-and-save-the-clean-table"><span class="header-section-number">4.8</span> Verify and save the clean table</h2>
+<section id="verify-and-save-the-clean-table" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="verify-and-save-the-clean-table"><span class="header-section-number">4.9</span> Verify and save the clean table</h2>
 <p>Finish by checking the structure, dimensions, and a few rows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,201
 Columns: 11
@@ -630,8 +702,8 @@ $ voting_pct            &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.
 $ ownership_pct         &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.23, …
 $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -643,12 +715,12 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <p>The clean table has 7,201 rows and 11 columns. Its names are convenient, the reporting date is a date, the incomplete row is gone, and the confirmed duplicate has been removed.</p>
 <p>Keep <code>gpfg_messy.csv</code> unchanged as the imported source. Save the clean object under a new filename:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(gpfg, <span class="st">"data/gpfg_2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(gpfg, <span class="st">"data/gpfg_2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Chapter 5 will combine this clean file with four earlier annual files. If you begin the book later, an identical ready-made <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2025.csv"><code>gpfg_2025.csv</code></a> is available from the repository.</p>
+<p>Chapter 5 will analyse this clean annual file, and Chapter 6 will combine it with four earlier annual files. If you begin the book later, an identical ready-made <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2025.csv"><code>gpfg_2025.csv</code></a> is available from the repository.</p>
 </section>
-<section id="practice" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="practice"><span class="header-section-number">4.9</span> Practice</h2>
+<section id="practice" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="practice"><span class="header-section-number">4.10</span> Practice</h2>
 <p>Restart R and knit <code>04-data-cleaning.Rmd</code> from the beginning. Then answer:</p>
 <ol type="1">
 <li>Which observation justified each cleaning step?</li>
@@ -657,11 +729,16 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <li>What evidence justified removing the incomplete row?</li>
 <li>What evidence justified removing the duplicate row?</li>
 <li>Why was the original CSV kept under a different name?</li>
+<li>What is the difference between printing a <code>filter()</code> result and assigning that result back to <code>gpfg</code>?</li>
 </ol>
 </section>
-<section id="takeaways" class="level2" data-number="4.10">
-<h2 data-number="4.10" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.10</span> Takeaways</h2>
+<section id="takeaways" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="takeaways"><span class="header-section-number">4.11</span> Takeaways</h2>
 <table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Function or idea</th>
@@ -687,7 +764,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 </tr>
 <tr class="odd">
 <td><code>filter()</code></td>
-<td>Keeps rows that meet a condition</td>
+<td>Keeps rows where a condition is true; assignment saves the subset</td>
 </tr>
 <tr class="even">
 <td><code>!</code></td>
@@ -1119,8 +1196,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./analysis-gpfg.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Data Analysis</span>">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./analysis-gpfg.html" class="pagination-link" aria-label="<span class='chapter-number'>5</span>&nbsp; <span class='chapter-title'>Analysis I</span>">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analysis I</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

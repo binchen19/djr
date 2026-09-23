@@ -37,7 +37,7 @@ so that `year` is a variable, and then the region labels must be added from the
 second table.
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `08-join-reshape.Rmd`. Download
+Open `djr.Rproj` and create `09-join-reshape.Rmd`. Download
 [`gpfg_country_wide.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_country_wide.csv)
 and
 [`gpfg_country_lookup.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_country_lookup.csv),
@@ -245,7 +245,7 @@ for it; keep the long version for most analysis and charts.
 | Find keys that did not match | `anti_join()` |
 | Put category values into separate columns | `pivot_wider()` |
 
-Chapter 5 used `bind_rows()` because the annual files had the same columns and
+Chapter 6 used `bind_rows()` because the annual files had the same columns and
 needed to be stacked. This chapter uses `left_join()` because two tables hold
 different variables about the same countries.
 
@@ -270,7 +270,7 @@ different variables about the same countries.
 | `left_join()` | Keeps the left table and adds matching columns |
 | `pivot_wider()` | Moves category values into separate columns |
 
-In Chapter 9, we will use the same join logic to connect investment-market
+In Chapter 10, we will use the same join logic to connect investment-market
 summaries to geographic boundary coordinates.
 
 ::: {.callout-tip title="Want more control?"}

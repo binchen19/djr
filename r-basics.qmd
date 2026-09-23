@@ -159,7 +159,7 @@ column. Each student is one observation, so each student has one row.
 
 “Tidy” describes the arrangement of a table; it is not another file type. A
 tibble can contain tidy or untidy data. We will learn how to make an untidy
-table tidy in Chapter 8, Join and Reshape.
+table tidy in Chapter 9, Join and Reshape.
 
 ::: {.callout-tip title="Learn more about tidy data"}
 The official [tidyr introduction to tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html)

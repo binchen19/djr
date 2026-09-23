@@ -6,12 +6,39 @@ title: "Data Cleaning"
 
 By the end of this chapter, you should be able to:
 
+- explain what data cleaning is and what it is intended to achieve;
 - turn observations from the import chapter into a short cleaning plan;
 - rename awkward columns with `rename()`;
 - change a date column to the correct type with `mutate()` and `dmy()`;
 - inspect and handle missing values;
 - identify and remove a confirmed duplicate row; and
 - save a clean CSV without overwriting the imported source.
+
+## What is data cleaning?
+
+**Data cleaning** is the process of identifying, investigating, and correcting
+problems that could make an analysis inaccurate, confusing, or difficult to
+reproduce. Common problems include unclear column names, incorrect types,
+missing information, inconsistent categories, and duplicated records.
+
+The goal is not to make a dataset look perfect or to remove every unusual
+value. The goal is to produce a table that is **fit for the reporting task**:
+
+- each row and column has a clear meaning;
+- values are stored in types appropriate for their meaning;
+- missing and repeated records have been investigated;
+- every change is supported by evidence and recorded in code; and
+- the original source remains unchanged so the work can be checked and rerun.
+
+What counts as “clean” depends on the question. A missing value that prevents
+one analysis may be acceptable for another. Cleaning therefore requires
+judgment and source knowledge, not just a list of functions.
+
+::: {.callout-note title="Goal for this chapter"}
+We will turn the deliberately imperfect 2025 file into a reproducible,
+analysis-ready table while preserving the imported CSV. Every change will
+respond to a problem observed in Chapter 3.
+:::
 
 ## Continue with the imported table
 
@@ -117,7 +144,35 @@ documentation. Use `dmy()` for day-month-year, `mdy()` for month-day-year, or
 R represents unavailable information with `NA`. A missing value differs from
 zero: zero is a known amount, while `NA` means the value is unavailable.
 
-Use `is.na()` inside `filter()` to see rows with a missing company name:
+### How `filter()` works
+
+`filter()` is a dplyr function that keeps rows where a condition is `TRUE`:
+
+```r
+table |>
+  filter(condition)
+```
+
+It selects rows; it does not change column names or values. If the result is
+only printed, the original object remains unchanged. If the pipeline is
+assigned back to an object with `<-`, that object is updated to contain only
+the kept rows.
+
+The conditions used in this chapter are:
+
+| Condition | Meaning |
+|---|---|
+| `is.na(company)` | The company value is missing |
+| `!is.na(company)` | The company value is not missing |
+| `n > 1` | The count is greater than one |
+| `company == "3P Learning Ltd"` | The company equals this exact text |
+
+`!` means “not,” `>` means “greater than,” and `==` tests whether two values
+are equal. A single `=` has a different role: it names arguments and options
+inside functions.
+
+First use `is.na()` inside `filter()` to display rows with a missing company
+name. Because this result is not assigned, it does not change `gpfg`:
 
 ```{r}
 gpfg |>
@@ -134,7 +189,8 @@ gpfg <- gpfg |>
   filter(!is.na(company))
 ```
 
-The `!` means “not,” so the code keeps rows whose company is not missing.
+This time the result is assigned back to `gpfg`, so the working object now
+keeps only rows whose company is not missing.
 
 Never remove every row containing `NA` automatically. In another dataset, a
 missing value may be expected or may require more reporting. Here the decision
@@ -192,7 +248,8 @@ under a new filename:
 write_csv(gpfg, "data/gpfg_2025.csv")
 ```
 
-Chapter 5 will combine this clean file with four earlier annual files. If you
+Chapter 5 will analyse this clean annual file, and Chapter 6 will combine it
+with four earlier annual files. If you
 begin the book later, an identical ready-made
 [`gpfg_2025.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2025.csv)
 is available from the repository.
@@ -207,6 +264,8 @@ Restart R and knit `04-data-cleaning.Rmd` from the beginning. Then answer:
 4. What evidence justified removing the incomplete row?
 5. What evidence justified removing the duplicate row?
 6. Why was the original CSV kept under a different name?
+7. What is the difference between printing a `filter()` result and assigning
+   that result back to `gpfg`?
 
 ## Takeaways
 
@@ -216,7 +275,7 @@ Restart R and knit `04-data-cleaning.Rmd` from the beginning. Then answer:
 | `mutate()` | Creates or changes columns |
 | `dmy()` | Converts day-month-year text to a date |
 | `is.na()` | Identifies missing values |
-| `filter()` | Keeps rows that meet a condition |
+| `filter()` | Keeps rows where a condition is true; assignment saves the subset |
 | `!` | Means “not” inside a logical condition |
 | `count()` | Counts repeated combinations |
 | `distinct()` | Keeps each complete row once |

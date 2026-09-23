@@ -1,4 +1,4 @@
-# Render the ten instructor R Markdown class notes to a local-only folder.
+# Render the eleven instructor R Markdown class notes to a local-only folder.
 
 notes <- list.files(
   "class-notes",
@@ -9,8 +9,8 @@ notes <- list.files(
 rendered_dir <- file.path(getwd(), "class-notes", "rendered")
 dir.create(rendered_dir, recursive = TRUE, showWarnings = FALSE)
 
-if (length(notes) != 10) {
-  stop("Expected 10 class-note R Markdown files, but found ", length(notes), ".")
+if (length(notes) != 11) {
+  stop("Expected 11 class-note R Markdown files, but found ", length(notes), ".")
 }
 
 for (note in notes) {

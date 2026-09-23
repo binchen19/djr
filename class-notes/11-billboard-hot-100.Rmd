@@ -1,5 +1,5 @@
 ---
-title: "Class 10: Billboard Hot 100"
+title: "Class 11: Billboard Hot 100"
 author: "Bin Chen"
 output:
   html_document:

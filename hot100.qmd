@@ -34,7 +34,7 @@ symbol as a missing value. Here this is essential information about the file,
 not an optional display setting.
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `10-hot100.Rmd`. Download
+Open `djr.Rproj` and create `11-hot100.Rmd`. Download
 [`hot100.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/hot100.csv)
 and save it in `data/`. This case changes the topic, but it uses the same
 project and tidyverse workflow.

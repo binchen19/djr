@@ -56,8 +56,9 @@ The book follows six progressive parts:
 
 1. **Getting Started** — set up R, RStudio, an RStudio Project, and R Markdown.
 2. **Data Import & Cleaning** — import, inspect, and clean data.
-3. **Data Analysis** — combine annual observations and investigate summaries,
-   rankings, comparisons, and trends.
+3. **Data Analysis** — begin with one clean annual snapshot, then combine
+   annual observations to investigate summaries, rankings, comparisons, and
+   trends.
 4. **Data Visualization** — move from a reporting question to a basic chart,
    then add complexity only when the question requires it.
 5. **Advanced Workflows** — reshape, join, and map related data.
@@ -78,10 +79,11 @@ which file to download, and which earlier files to reuse.
 Most core chapters use the year-end equity holdings of Norway's Government
 Pension Fund Global, published by Norges Bank Investment Management (NBIM).
 The data include companies, markets, industries, market values, and ownership
-information. We begin with a deliberately messy version of 2025 and clean it.
-We then import five annual files from 2021 through 2025, combine them, and use
-the result for analysis and visualization. The complete 1998--2025 history is
-available as an optional resource for longer-term reporting, with important
+information. We begin with a deliberately messy version of 2025, clean it,
+and use the clean annual snapshot for our first analysis. We then import five
+annual files from 2021 through 2025, combine them, and use the result to study
+trends and make visualizations. The complete 1998--2025 history is available
+as an optional resource for longer-term reporting, with important
 comparability cautions.
 
 The original source is the

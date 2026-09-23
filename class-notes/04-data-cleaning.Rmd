@@ -1,25 +1,50 @@
 ---
-title: "Class 4: Data Cleaning"
+title: "Week 3, Part 2: Data Cleaning"
 author: "Bin Chen"
 output:
   html_document:
     toc: true
+    toc_float: true
     theme: cosmo
 ---
 
-## Today
+## From inspection to cleaning
 
-Continue with the object imported in Class 3. We will solve four clear
-problems: awkward names, a text date, an incomplete row, and a duplicate.
+**Data cleaning** means identifying, investigating, and correcting problems
+that could make an analysis inaccurate or difficult to reproduce. Its goal is
+not to make every value look neat. The goal is a table that is fit for the
+reporting task: rows and columns have clear meanings, values have appropriate
+types, missing and repeated records have been investigated, and every change
+is recorded in code.
+
+Keep the imported source unchanged. The cleaning code should create a separate
+analysis-ready result that another person can reproduce and check.
+
+Part 1 imported `gpfg_messy.csv` and produced a four-step plan. We will now:
+
+1. rename four awkward columns;
+2. convert one text column to a date;
+3. inspect and handle one incomplete row;
+4. inspect and remove one confirmed duplicate; and
+5. verify and save a separate clean file.
+
+Each R Markdown document must contain the code it needs to run from the
+beginning, so start by recreating the imported object:
 
 ```{r}
 library(tidyverse)
 
 gpfg_raw <- read_csv("data/gpfg_messy.csv")
-glimpse(gpfg_raw)
 ```
 
+Keep `gpfg_raw` unchanged. We will store the cleaned result in a new object
+called `gpfg`.
+
 ## 1. Rename selected columns
+
+The inspection found four names that contain capitals and spaces. Use
+`rename()` with `new_name = old_name`. Put backticks around an old name that
+contains spaces:
 
 ```{r}
 gpfg <- gpfg_raw |>
@@ -29,15 +54,21 @@ gpfg <- gpfg_raw |>
     company = `Company Name`,
     market_value_nok = `Market Value NOK`
   )
+
+glimpse(gpfg)
 ```
 
-Read each line as `new_name = old_name`. Columns whose names were already
-clear are left alone. `year` may display as `<dbl>`; it is already numeric and
-does not need conversion for this work.
+The new names follow `snake_case`: lowercase words separated by underscores.
 
-## 2. Convert the date
+The remaining names were already clear, so we did not change them. Cleaning
+should respond to observed problems, not rewrite everything.
 
-The source uses day-month-year order, such as `31/12/2025`:
+## 2. Correct the date type
+
+The values in `report_date` look like `31/12/2025`. The source confirms that
+the order is day, month, year.
+
+Use `mutate()` to change the column and `dmy()` to interpret that order:
 
 ```{r}
 gpfg <- gpfg |>
@@ -46,28 +77,79 @@ gpfg <- gpfg |>
 glimpse(gpfg)
 ```
 
-`mutate()` changes the column. `dmy()` converts day-month-year text to a real
-date. Confirm the order from the source; never guess an ambiguous date.
+The type should now be `<date>` rather than `<chr>`.
 
-## 3. Inspect the missing row
+- `dmy()` reads day-month-year;
+- `mdy()` reads month-day-year; and
+- `ymd()` reads year-month-day.
+
+Do not choose a date function by guessing. A value such as `03/04/2025` is
+ambiguous without source documentation.
+
+`year` may appear as `<dbl>`. It is already numeric and works for the tasks in
+this course, so no conversion is needed merely to make the label look
+different.
+
+## 3. Inspect missing values
+
+R represents missing information with `NA`. Missing is different from zero:
+
+- `0` is a known value;
+- `NA` means a value is not available.
+
+### How `filter()` works
+
+`filter()` keeps rows where a condition is `TRUE`:
+
+```r
+table |>
+  filter(condition)
+```
+
+If we only print the result, the original table does not change. If we assign
+the pipeline back with `<-`, the working object is updated to contain only the
+kept rows.
+
+| Condition | Meaning |
+|---|---|
+| `is.na(company)` | Company is missing |
+| `!is.na(company)` | Company is not missing |
+| `n > 1` | Count is greater than one |
+| `company == "3P Learning Ltd"` | Company equals this exact text |
+
+`!` means “not,” `>` means “greater than,” and `==` checks equality.
+
+`is.na()` asks whether a value is missing. Use it inside `filter()` to display
+rows with a missing company. Because the result is not assigned, `gpfg` does
+not change:
+
 
 ```{r}
 gpfg |>
   filter(is.na(company))
 ```
 
-This deliberately incomplete row has no company, country, industry, or value,
-so it cannot represent a holding. After checking the whole row, remove it:
+The result is deliberately incomplete: it has no company, country, industry,
+or market value, so it cannot represent the holding described by the data
+dictionary. To keep non-missing company rows, put `!` before the condition and
+assign the result back to `gpfg`:
 
 ```{r}
 gpfg <- gpfg |>
   filter(!is.na(company))
 ```
 
-`!` means “not.” Do not automatically remove missing values in other data;
-first determine what they mean.
+The working object now keeps only rows whose company is not missing.
 
-## 4. Check a possible duplicate
+Do not automatically remove every row containing `NA`. In another dataset, a
+missing response may be valid, important, or impossible to recover. First ask
+what the field means and whether the row can still answer the question.
+
+## 4. Inspect possible duplicates
+
+The intended row meaning is one reported holding at the end of 2025.
+`count()` reports how often each combination of selected values appears. Use it
+to flag possible repetition:
 
 ```{r}
 gpfg |>
@@ -75,47 +157,107 @@ gpfg |>
   filter(n > 1)
 ```
 
+The function creates `n`, the number of times each combination appears. It
+flags a possible problem; it does not prove the records are identical.
+
+Inspect the complete source rows:
+
 ```{r}
 gpfg |>
   filter(company == "3P Learning Ltd")
 ```
 
-The two rows are completely identical, so keep one copy:
+Every displayed value is identical. We can therefore keep one copy of each
+complete row:
 
 ```{r}
 gpfg <- gpfg |>
   distinct()
 ```
 
-## 5. Verify and save
+A repeated company name alone would not be enough evidence. The same company
+could appear in different markets, industries, or years.
+
+## 5. Verify the result
+
+Recheck the structure and preview:
 
 ```{r}
 glimpse(gpfg)
 
 gpfg |>
   slice_head(n = 5)
+```
 
+Now verify the two issues we removed:
+
+```{r}
+gpfg |>
+  filter(is.na(company))
+```
+
+```{r}
+gpfg |>
+  count(company, country, industry) |>
+  filter(n > 1)
+```
+
+Both results should be empty. The cleaned table should contain 7,201 rows and
+11 columns.
+
+## 6. Save without overwriting the source
+
+`write_csv()` saves the cleaned object as a CSV. Give it a new filename rather
+than overwriting the imported source:
+
+```{r}
 write_csv(gpfg, "data/gpfg_2025.csv")
 ```
 
-The result should have 7,201 rows and 11 columns. Keep the original messy CSV;
-later classes use the new clean file.
+The two files have different jobs:
 
-## Exit ticket
+| File | Purpose |
+|---|---|
+| `gpfg_messy.csv` | Preserved imported source and evidence of the original problems |
+| `gpfg_2025.csv` | Clean table used in later analysis |
 
-- What evidence justified each cleaning step?
-- What is the difference between renaming and changing a type?
-- Why can we remove this missing row and this duplicate?
-- Why should the raw CSV remain unchanged?
+Keeping the original makes the decisions reviewable and allows the cleaning
+code to be rerun from the beginning.
+
+## Complete Week 3 workflow
+
+```text
+CSV source
+  → local file in an R Project
+  → read_csv()
+  → glimpse() and slice_head()
+  → cleaning plan
+  → rename(), mutate(), filter(), distinct()
+  → verification
+  → write_csv() to a new file
+```
+
+## Practice
+
+Restart R and knit both Week 3 notes from the beginning. Then explain:
+
+1. what one source row should represent;
+2. the observation that justified each cleaning step;
+3. the difference between renaming a column and changing its type;
+4. why the missing row could be removed in this example;
+5. why the repeated rows were confirmed before `distinct()`; and
+6. the difference between printing a filtered result and assigning it; and
+7. why the raw file was not overwritten.
 
 ## Key code
 
 | Code | Use |
 |---|---|
-| `rename(new = old)` | Rename selected columns |
-| `mutate()` + `dmy()` | Convert a day-month-year column |
-| `filter(is.na(...))` | Inspect missing values |
-| `filter(!is.na(...))` | Keep non-missing rows |
-| `count()` | Find repeated identifiers |
-| `distinct()` | Remove a confirmed exact duplicate |
-| `write_csv()` | Save the clean table |
+| `rename(new = old)` | Renames selected columns |
+| `mutate()` | Creates or changes a column |
+| `dmy()` | Reads day-month-year text as a date |
+| `is.na()` | Identifies a missing value |
+| `filter()` | Keeps rows where a condition is true; assignment saves the subset |
+| `count()` | Counts repeated combinations |
+| `distinct()` | Keeps each complete row once after verification |
+| `write_csv()` | Saves a new clean CSV |

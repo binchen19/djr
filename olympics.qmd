@@ -22,7 +22,7 @@ By the end of this case, you should be able to:
 ## Set up the case
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `11-olympics.Rmd`. Download
+Open `djr.Rproj` and create `12-olympics.Rmd`. Download
 [`medallists.csv`](https://raw.githubusercontent.com/binchen19/djr/main/data/medallists.csv)
 and save it in `data/`.
 :::

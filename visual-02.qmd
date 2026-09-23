@@ -16,7 +16,7 @@ By the end of this chapter, you should be able to:
 
 ## When does a chart need more complexity?
 
-Chapter 6 used a line, bars, a histogram, and a scatterplot to answer four
+Chapter 7 used a line, bars, a histogram, and a scatterplot to answer four
 basic questions. An advanced chart should begin from one of those forms and
 add something only because the reporting question requires it.
 
@@ -30,7 +30,7 @@ add something only because the reporting question requires it.
 | Reduce overlap among many groups | Facets or small multiples |
 
 ::: {.callout-tip title="Continue in the same project"}
-Open `djr.Rproj` and create `07-advanced-visualization.Rmd`. Reuse
+Open `djr.Rproj` and create `08-data-visualization-ii.Rmd`. Reuse
 `data/gpfg_5_years.csv` and save finished charts in `outputs/`.
 :::
 
@@ -67,8 +67,8 @@ The same rule applies to `fill`, `size`, and other visual properties.
 
 ### Step 1: state the question
 
-> How did reported market value change for the United States, China, and Japan
-> from 2021 through 2025?
+> How did the total reported market value of NBIM's equity holdings in the
+> United States, China, and Japan change from 2021 through 2025?
 
 ### Step 2: identify and prepare the columns
 
@@ -164,8 +164,8 @@ after confirming that the basic multi-line chart works.
 
 ### Question and analysis table
 
-> How did total values differ across three industries and three regions in
-> 2025?
+> How did the total market value of NBIM's reported equity holdings differ
+> across three industries and three regions in 2025?
 
 ```{r}
 region_industry <- gpfg_latest |>
@@ -254,8 +254,8 @@ region_industry |>
 
 A different question requires a different bar arrangement:
 
-> Within each selected industry, what share of the three-region total came
-> from each region?
+> Within each selected industry, what share of NBIM's reported total across
+> the three selected regions came from each region?
 
 Starting from the same table and mappings, change the position to `"fill"`:
 
@@ -293,9 +293,10 @@ support a claim about which industry has the largest total.
 
 ## Compare distributions with box plots
 
-Chapter 6's histogram described all 2025 holding values together. Now ask:
+Chapter 7's histogram described all 2025 holding values together. Now ask:
 
-> How did holding-level value distributions differ across industries?
+> Among companies in NBIM's 2025 data, how did the distribution of reported
+> holding values differ across industries?
 
 The source table already contains the two required columns:
 
@@ -340,10 +341,10 @@ scale in the axis label.
 
 ## Add a third variable with facets
 
-Return to the basic relationship question from Chapter 6:
+Return to the basic relationship question from Chapter 7:
 
-> Did market value and ownership percentage vary together, and did the pattern
-> differ across regions?
+> Among companies in NBIM's 2025 data, were higher ownership percentages
+> associated with larger holding values, and did that pattern differ by region?
 
 First select three regions so the comparison remains readable:
 
