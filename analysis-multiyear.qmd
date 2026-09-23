@@ -80,7 +80,9 @@ analysing a trend.
 ## Combine annual rows with `bind_rows()`
 
 The five tables contain the same columns but different annual observations.
-`bind_rows()` places their rows underneath one another:
+`bind_rows(table1, table2, ...)` places their rows underneath one another. The
+table names are separated by commas, and their shared column names line up in
+the result:
 
 ```{r}
 gpfg <- bind_rows(
@@ -190,8 +192,9 @@ We can also ask:
 > How did the total reported market value of NBIM's equity holdings in the
 > United States, China, and Japan change from 2021 through 2025?
 
-Create a vector containing the three selected markets, then use `%in%` to keep
-rows whose country appears in that vector:
+Create a vector containing the three selected markets. The expression
+`country %in% selected_countries` asks whether each country belongs to that
+vector and returns `TRUE` or `FALSE`; `filter()` keeps the `TRUE` rows:
 
 ```{r}
 selected_countries <- c("United States", "China", "Japan")
@@ -205,8 +208,7 @@ country_trends <- gpfg |>
 country_trends
 ```
 
-One row now represents one selected investment market in one year. `%in%`
-asks whether each country belongs to `selected_countries`.
+One row now represents one selected investment market in one year.
 
 This table combines a comparison question—differences among markets—with a
 trend question—change across years. Chapter 8 will display the three series

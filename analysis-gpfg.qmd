@@ -71,7 +71,9 @@ glimpse(gpfg)
 The output should show 7,201 rows, 11 columns, convenient names, numeric value
 columns, and a real date column.
 
-Inspect the available region labels:
+`distinct(column)` keeps each observed value in a column once.
+`arrange(column)` then orders rows from smallest to largest or, for text,
+alphabetically. Use both to inspect the available region labels:
 
 ```{r}
 gpfg |>
@@ -79,10 +81,12 @@ gpfg |>
   arrange(region)
 ```
 
-`distinct()` keeps each observed value once. `arrange()` places the values in
-alphabetical order so they are easier to inspect.
+The result is a short alphabetical list rather than thousands of repeated
+region labels.
 
-Count the holding records in each region:
+`count(region)` returns one row per region and creates a count column named
+`n`. `arrange(desc(n))` sorts that column in descending order, with the
+largest count first:
 
 ```{r}
 gpfg |>
@@ -94,9 +98,6 @@ The result describes the number of rows. It does not yet tell us which region
 has the largest total market value. Count and amount answer different
 questions.
 
-`count()` creates a new column called `n`. In `arrange(desc(n))`, `desc()` asks
-R to place the largest counts first.
-
 ## Types of questions in data journalism
 
 | Question type | What it asks | Example using the 2025 data |
@@ -105,7 +106,7 @@ R to place the largest counts first.
 | Ranking | Which observations are largest or smallest? | Which companies had the largest reported holding values in 2025? |
 | Comparison | How do categories differ? | Which investment markets accounted for the largest 2025 totals? |
 | Relationship | Do two measures vary together? | Were higher ownership percentages associated with larger holding values? |
-| Trend | How did a measure change over time? | How did the total reported value change from 2021 to 2025? |
+| Trend | How did a measure change over time? | How did NBIM's reported equity-holdings total change from 2021 to 2025? |
 
 The clean 2025 file can answer the first four types because it contains many
 holdings, categories, and numeric measures. It cannot answer a trend question:
@@ -117,7 +118,9 @@ will solve that limitation.
 > Across the company holdings reported by NBIM at the end of 2025, what were
 > the total and median market values?
 
-`summarise()` reduces a table to calculated summary values:
+`summarise()` reduces many rows to calculated summary values. Its basic form
+is `summarise(new_name = calculation)`: the name on the left labels the result
+column, and the calculation on the right produces its value.
 
 ```{r}
 holding_summary <- gpfg |>
@@ -141,9 +144,10 @@ are often uneven, so compare the mean and median before calling either value
 > Which ten companies in NBIM's 2025 equity-holdings data had the largest
 > reported holding values, measured in NOK?
 
-The question needs the company, market, industry, and NOK value. `select()`
-keeps those columns. `arrange()` orders the rows, and `desc()` requests
-descending order:
+The question needs the company, market, industry, and NOK value.
+`select(column1, column2)` keeps the named columns. `arrange(column)` sorts
+from smallest to largest, while `arrange(desc(column))` sorts from largest to
+smallest. After sorting, `slice_head(n = 10)` keeps the first ten rows:
 
 ```{r}
 largest_holdings <- gpfg |>
@@ -163,8 +167,10 @@ important rows against the source before publication.
 > Which investment markets accounted for the largest total market value of
 > NBIM's reported equity holdings at the end of 2025?
 
-This question needs one total per country. `group_by(country)` forms the
-country groups, and `summarise()` returns one result row for each group:
+This question needs one total per country. `group_by(country)` tells dplyr to
+treat each country as a separate group; it does not calculate a result by
+itself. The following `summarise()` returns one row for each group. Inside it,
+`n()` counts rows and `sum()` adds their values:
 
 ```{r}
 country_summary <- gpfg |>
@@ -184,12 +190,13 @@ Track the changing row meaning:
 - before `summarise()`, one row represents one holding;
 - after `summarise()`, one row represents one investment market.
 
-Inside `summarise()`, `n()` counts holding records and `sum()` adds their
-values. These measures need not produce the same ranking.
+Record count and total value need not produce the same ranking.
 
 ### Calculate a share
 
-`mutate()` can add each market's percentage share of the full reported value:
+`mutate()` adds or changes columns while keeping the existing rows. Its basic
+form is `mutate(new_column = calculation)`. Use it to add each market's
+percentage share of the full reported value:
 
 ```{r}
 country_summary <- country_summary |>
@@ -246,8 +253,8 @@ time dimension.
 
 1. Use `distinct()` to inspect the industry labels.
 2. Use `count()` to find the most frequently occurring industries.
-3. Calculate the total, mean, and median USD value of individual holdings.
-4. Rank the ten largest individual holdings by USD value.
+3. Calculate the total, mean, and median USD value of the company holdings.
+4. Rank the ten largest company holdings by USD value.
 5. Compare total market value and record count across industries.
 6. Write one supported finding and one explanatory question requiring more
    evidence.

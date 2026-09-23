@@ -121,7 +121,11 @@ The values in `report_date` use day-month-year order, such as `31/12/2025`,
 but R imported the column as `<chr>` text. The data source tells us what the
 order means.
 
-Use `mutate()` to change the existing column. `dmy()` means day, month, year:
+Use `mutate()` to change the existing column. Its basic form is
+`mutate(column = calculation)`: the name on the left of `=` identifies the
+column to create or replace, and the expression on the right produces its
+values. `mutate()` keeps the other rows and columns. Here, `dmy()` means day,
+month, year:
 
 ```{r}
 gpfg <- gpfg |>
@@ -198,8 +202,10 @@ is justified because the entire supposed holding is incomplete.
 
 ## Check duplicate rows
 
-The file should contain one row per reported holding. Count combinations of
-company, country, and industry to find possible repetition:
+The file should contain one row per reported holding.
+`count(column1, column2)` returns one row for each observed combination and
+creates `n`, the number of matching source rows. Use it to find possible
+repetition across company, country, and industry:
 
 ```{r}
 gpfg |>
@@ -207,16 +213,17 @@ gpfg |>
   filter(n > 1)
 ```
 
-`count()` creates `n`, the number of matching rows. Inspect the result in the
-original table:
+Use the result to identify which records need inspection in the original
+table:
 
 ```{r}
 gpfg |>
   filter(company == "3P Learning Ltd")
 ```
 
-The two complete rows are identical. After confirming that, use `distinct()`
-without column names to keep each complete row once:
+The two complete rows are identical. `distinct()` keeps unique rows. With no
+column names inside the parentheses, it compares every column and keeps each
+complete row once:
 
 ```{r}
 gpfg <- gpfg |>
@@ -241,8 +248,10 @@ The clean table has 7,201 rows and 11 columns. Its names are convenient, the
 reporting date is a date, the incomplete row is gone, and the confirmed
 duplicate has been removed.
 
-Keep `gpfg_messy.csv` unchanged as the imported source. Save the clean object
-under a new filename:
+Keep `gpfg_messy.csv` unchanged as the imported source. `write_csv()` uses the
+basic form `write_csv(table, "path")`: the first argument is the object to
+save, and the second is the new file path. Save the clean object under a new
+filename:
 
 ```{r}
 write_csv(gpfg, "data/gpfg_2025.csv")

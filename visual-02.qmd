@@ -142,6 +142,10 @@ title.
 
 ### Step 6: add a restrained theme and palette
 
+`scale_color_manual()` assigns exact colors to the values mapped to `color`.
+The names in `values` must match the country values in the data. `theme()` then
+changes one specific design setting while retaining `theme_minimal()`:
+
 ```{r}
 country_trend_plot <- country_trend_plot +
   scale_color_manual(
@@ -167,6 +171,10 @@ after confirming that the basic multi-line chart works.
 > How did the total market value of NBIM's reported equity holdings differ
 > across three industries and three regions in 2025?
 
+Inside `filter()`, conditions separated by a comma must both be true. The
+following code therefore keeps a row only when its region and industry are
+both in the selected vectors:
+
 ```{r}
 region_industry <- gpfg_latest |>
   filter(
@@ -179,10 +187,6 @@ region_industry <- gpfg_latest |>
 
 region_industry
 ```
-
-The two conditions inside `filter()` are separated by a comma, so both must be
-true: a row must belong to one of the selected regions and one of the selected
-industries.
 
 The visual roles are industry on x, value on y, and region mapped to fill.
 Start with the default bars:
@@ -298,7 +302,10 @@ Chapter 7's histogram described all 2025 holding values together. Now ask:
 > Among companies in NBIM's 2025 data, how did the distribution of reported
 > holding values differ across industries?
 
-The source table already contains the two required columns:
+The source table already contains the two required columns. `geom_boxplot()`
+summarizes a numeric distribution for each group: the line inside a box is the
+median, the box contains the middle half of the values, and points beyond the
+whiskers identify values to inspect.
 
 | Visual role | Column |
 |---|---|
@@ -335,9 +342,9 @@ industry_box +
   theme_minimal()
 ```
 
-The line inside each box is the median. Points beyond the whiskers deserve
-inspection, but they are not automatically errors. Always disclose a log
-scale in the axis label.
+Points beyond the whiskers deserve inspection, but they are not automatically
+errors. `scale_x_log10()` changes the display scale rather than the underlying
+data. Always disclose a log scale in the axis label.
 
 ## Add a third variable with facets
 
@@ -369,7 +376,8 @@ relationship_plot <- selected_holdings |>
 relationship_plot
 ```
 
-Now add one new layer, `facet_wrap()`, to create a panel for each region:
+Now add one new layer, `facet_wrap()`, to create a panel for each region. In
+`facet_wrap(~ region)`, the `~` can be read as “make panels by region”:
 
 ```{r}
 relationship_plot +

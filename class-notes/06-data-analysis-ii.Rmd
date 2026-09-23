@@ -78,7 +78,8 @@ write_csv(gpfg, "data/gpfg_5_years.csv")
 
 ## 4. Overall trend
 
-Question: How did total reported market value change from 2021 to 2025?
+Question: How did the total reported market value of NBIM's equity holdings
+change from 2021 to 2025?
 
 ```{r}
 annual_summary <- gpfg |>
@@ -96,7 +97,8 @@ After `summarise()`, one row represents one annual snapshot.
 
 ## 5. Comparative trend
 
-Question: How did value change for the United States, China, and Japan?
+Question: How did the total reported market value of NBIM's equity holdings in
+the United States, China, and Japan change from 2021 to 2025?
 
 ```{r}
 selected_countries <- c("United States", "China", "Japan")

@@ -476,7 +476,7 @@ $ `Image URL`    &lt;chr&gt; "#", "https://charts-static.billboard.com/img/1958/
 </section>
 <section id="strategy-1-identify-a-song-with-two-columns" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="strategy-1-identify-a-song-with-two-columns"><span class="header-section-number">11.3</span> Strategy 1: identify a song with two columns</h2>
-<p>A title alone does not always identify a song. Several artists may have songs with the same title. The following check keeps every artist-title combination once, then finds titles associated with more than one artist:</p>
+<p>A title alone does not always identify a song. Several artists may have songs with the same title. The following check keeps every artist-title combination once, then finds titles associated with more than one artist. The optional <code>name</code> argument in <code>count(..., name = "number_of_artists")</code> gives the count column a descriptive name instead of the default <code>n</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(artist, song) <span class="sc">|&gt;</span></span>
@@ -492,7 +492,6 @@ $ `Image URL`    &lt;chr&gt; "#", "https://charts-static.billboard.com/img/1958/
 </div>
 </div>
 </div>
-<p>The <code>name = "number_of_artists"</code> argument gives the new count column a descriptive name instead of the default <code>n</code>.</p>
 <p>For this case, we define a unique song as one published <code>artist</code>–<code>song</code> combination. This is an analytical rule, not a universal identifier. Remixes, featured artists, and changing chart credits may require additional reporting decisions.</p>
 </section>
 <section id="strategy-2-define-the-period-and-threshold" class="level2" data-number="11.4">
@@ -653,7 +652,7 @@ $ `Image URL`    &lt;chr&gt; "#", "https://charts-static.billboard.com/img/1958/
 </section>
 <section id="check-artist-credits" class="level2" data-number="11.10">
 <h2 data-number="11.10" class="anchored" data-anchor-id="check-artist-credits"><span class="header-section-number">11.10</span> Check artist credits</h2>
-<p>The <code>artist</code> column contains the credit printed on the chart. A performer may appear alone, with a featured artist, or as part of a group. Before combining names, inspect possible variants:</p>
+<p>The <code>artist</code> column contains the credit printed on the chart. A performer may appear alone, with a featured artist, or as part of a group. Before combining names, inspect possible variants. <code>str_to_lower()</code> converts text to lowercase for the search, and <code>str_detect(text, pattern)</code> returns <code>TRUE</code> when the selected pattern appears:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hot100 <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(artist) <span class="sc">|&gt;</span></span>
@@ -666,7 +665,6 @@ $ `Image URL`    &lt;chr&gt; "#", "https://charts-static.billboard.com/img/1958/
 </div>
 </div>
 </div>
-<p><code>str_to_lower()</code> makes capitalization consistent for the search, and <code>str_detect()</code> checks whether each credit contains the selected text.</p>
 <p>This analysis ranks published credit strings. Splitting collaborations or merging name variants requires a rule that should be documented.</p>
 </section>
 <section id="practice" class="level2" data-number="11.11">

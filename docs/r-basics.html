@@ -516,7 +516,7 @@ Assignment shortcut
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Age at the beginning of the course</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Good comments explain a decision. There is little value in writing <code># calculate the mean</code> immediately above <code>mean(student_ages)</code> because the code already says that.</p>
+<p>Good comments explain a decision. There is little value in writing <code># add one to x</code> immediately above <code>x + 1</code> because the code already says that.</p>
 </section>
 <section id="combine-values-into-a-vector" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="combine-values-into-a-vector"><span class="header-section-number">2.6</span> Combine values into a vector</h2>
@@ -677,6 +677,19 @@ Learn more about tidy data
 </table>
 <p>The object <code>student_ages</code> is the input, or <strong>argument</strong>, given to each function. In later chapters, these same functions will summarize columns in much larger imported tables.</p>
 <p>Many functions have optional arguments. Begin with the arguments needed for the task; open a help page later by typing a function name after <code>?</code>, such as <code>?mean</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="How this book introduces functions">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+How this book introduces functions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Later chapters begin with a reporting question or a problem in the data. When a new function is needed, the text first explains what it does, shows its simplest useful form, and then asks you to inspect the result. Later examples reuse the function with shorter reminders. This keeps the journalism logic in charge without treating R functions as unexplained machinery.</p>
+</div>
+</div>
 </section>
 <section id="use-pipes" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="use-pipes"><span class="header-section-number">2.10</span> Use pipes</h2>

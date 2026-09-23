@@ -32,7 +32,8 @@ gpfg_latest <- gpfg |>
 
 ## 1. A trend question
 
-Question: How did total reported market value change from 2021 to 2025?
+Question: How did the total reported market value of NBIM's equity holdings
+change from 2021 to 2025?
 
 Needed columns: `year` and `market_value_nok`.
 
@@ -94,14 +95,15 @@ column.
 
 ## 2. A ranking question
 
-Question: Which ten markets had the largest values in 2025?
+Question: Which ten investment markets accounted for the largest total market
+value of NBIM's reported equity holdings in 2025?
 
 ```{r}
 top_countries <- gpfg_latest |>
   group_by(country) |>
   summarise(market_value_usd = sum(market_value_usd)) |>
-  slice_max(market_value_usd, n = 10) |>
-  arrange(market_value_usd)
+  arrange(desc(market_value_usd)) |>
+  slice_head(n = 10)
 
 top_countries
 ```

@@ -63,7 +63,9 @@ appears for 20 weeks contributes 20 rows.
 
 A title alone does not always identify a song. Several artists may have songs
 with the same title. The following check keeps every artist-title combination
-once, then finds titles associated with more than one artist:
+once, then finds titles associated with more than one artist. The optional
+`name` argument in `count(..., name = "number_of_artists")` gives the count
+column a descriptive name instead of the default `n`:
 
 ```{r}
 hot100 |>
@@ -73,9 +75,6 @@ hot100 |>
   arrange(desc(number_of_artists)) |>
   slice_head(n = 10)
 ```
-
-The `name = "number_of_artists"` argument gives the new count column a
-descriptive name instead of the default `n`.
 
 For this case, we define a unique song as one published `artist`–`song`
 combination. This is an analytical rule, not a universal identifier. Remixes,
@@ -207,16 +206,15 @@ Calling both measures “number of songs” would change the finding.
 
 The `artist` column contains the credit printed on the chart. A performer may
 appear alone, with a featured artist, or as part of a group. Before combining
-names, inspect possible variants:
+names, inspect possible variants. `str_to_lower()` converts text to lowercase
+for the search, and `str_detect(text, pattern)` returns `TRUE` when the selected
+pattern appears:
 
 ```{r}
 hot100 |>
   distinct(artist) |>
   filter(str_detect(str_to_lower(artist), "taylor swift"))
 ```
-
-`str_to_lower()` makes capitalization consistent for the search, and
-`str_detect()` checks whether each credit contains the selected text.
 
 This analysis ranks published credit strings. Splitting collaborations or
 merging name variants requires a rule that should be documented.

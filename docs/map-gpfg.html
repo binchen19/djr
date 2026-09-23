@@ -410,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A ranked bar chart is usually better when the main task is comparing exact country values. A map is useful when location and geographic pattern matter.</p>
 <p>Our question is:</p>
 <blockquote class="blockquote">
-<p>Where was the reported market value of the fund’s equity holdings concentrated in 2025?</p>
+<p>Where was the market value of NBIM’s reported equity holdings concentrated at the end of 2025?</p>
 </blockquote>
 <p>The question needs <code>country</code> and <code>market_value_usd</code>. To draw country shapes, we also need longitude, latitude, and a polygon group from a boundary table. The analysis and boundary data therefore have to be joined.</p>
 <p>To keep this lesson focused on the tidyverse, the course provides a prepared CSV of world boundary coordinates. The coordinates come from Natural Earth; their reproducible preparation is recorded in <code>scripts/prepare_map_boundaries.R</code>.</p>
@@ -461,7 +461,7 @@ Continue in the same project
 </section>
 <section id="step-2-make-place-names-match" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="step-2-make-place-names-match"><span class="header-section-number">10.4</span> Step 2: make place names match</h2>
-<p>The holdings and boundary files do not always spell a place in the same way. Keep the original <code>country</code> column and create a separate matching name:</p>
+<p>The holdings and boundary files do not always spell a place in the same way. Keep the original <code>country</code> column and create a separate matching name. <code>recode(column, old_value = new_value)</code> replaces only the values explicitly listed:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> country_summary <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -473,7 +473,7 @@ Continue in the same project
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>recode()</code> replaces only the listed values. A separate <code>map_name</code> column makes the changes visible and preserves the publisher’s original labels.</p>
+<p>A separate <code>map_name</code> column makes the changes visible and preserves the publisher’s original labels.</p>
 </section>
 <section id="step-3-check-matches-before-joining" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="step-3-check-matches-before-joining"><span class="header-section-number">10.5</span> Step 3: check matches before joining</h2>

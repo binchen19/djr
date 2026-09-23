@@ -94,8 +94,7 @@ age <- 20
 ```
 
 Good comments explain a decision. There is little value in writing
-`# calculate the mean` immediately above `mean(student_ages)` because the code
-already says that.
+`# add one to x` immediately above `x + 1` because the code already says that.
 
 ## Combine values into a vector
 
@@ -214,6 +213,14 @@ much larger imported tables.
 Many functions have optional arguments. Begin with the arguments needed for
 the task; open a help page later by typing a function name after `?`, such as
 `?mean`.
+
+::: {.callout-note title="How this book introduces functions"}
+Later chapters begin with a reporting question or a problem in the data. When
+a new function is needed, the text first explains what it does, shows its
+simplest useful form, and then asks you to inspect the result. Later examples
+reuse the function with shorter reminders. This keeps the journalism logic in
+charge without treating R functions as unexplained machinery.
+:::
 
 ## Use pipes
 

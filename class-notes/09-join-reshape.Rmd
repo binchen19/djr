@@ -11,7 +11,8 @@ output:
 
 Answer a question that cannot be answered from either source table alone:
 
-> How did reported equity value change by region from 2021 to 2025?
+> How did the total reported market value of NBIM's equity holdings change by
+> region from 2021 to 2025?
 
 ```{r}
 library(tidyverse)

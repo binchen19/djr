@@ -31,6 +31,12 @@ chart and then a map, and the multi-year table supports both trend calculations
 and line charts. The longer 1998–2025 archive remains available without
 overloading the first multi-year lesson.
 
+The sequence now uses a question-driven, function-explicit balance. A
+reporting need comes first, but a core function is not allowed to appear as a
+black box: its purpose and simplest useful syntax are explained immediately
+before first use, and the resulting row meaning is checked afterward. Later
+chapters give shorter reminders instead of reteaching the same verb.
+
 The main remaining risk is pace, not sequence. Chapters 1 and 8 contain more
 material than most beginners can absorb in one uninterrupted live demo. The
 class notes identify a shorter route; the fuller chapters should remain
@@ -164,6 +170,8 @@ the complete rows and recalling what one row should represent.
 - Separated single-year analysis from the work of importing multiple files.
 - Added a deliberate ending: a single snapshot cannot answer a trend question.
 - Made that limitation the reason to continue to Analysis II.
+- Added just-in-time syntax explanations for `distinct()`, `arrange()`,
+  `summarise()`, `select()`, `group_by()`, `n()`, and `mutate()`.
 
 ### Teaching caution
 

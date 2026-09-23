@@ -416,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="6.2" class="anchored" data-anchor-id="add-the-missing-time-dimension"><span class="header-section-number">6.2</span> Add the missing time dimension</h2>
 <p>Chapter 5 used the clean 2025 snapshot to answer description, ranking, comparison, and relationship questions. It could not answer:</p>
 <blockquote class="blockquote">
-<p>How did reported equity value change over time?</p>
+<p>How did the total reported market value of NBIM’s equity holdings change from 2021 to 2025?</p>
 </blockquote>
 <p>A trend needs the same measure at several dates. We will add four earlier year-end snapshots and analyse the five-year period from 2021 through 2025. Five files provide enough time points for a trend while keeping the import exercise manageable.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
@@ -503,7 +503,7 @@ Do not combine first and inspect later
 </section>
 <section id="combine-annual-rows-with-bind_rows" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="combine-annual-rows-with-bind_rows"><span class="header-section-number">6.5</span> Combine annual rows with <code>bind_rows()</code></h2>
-<p>The five tables contain the same columns but different annual observations. <code>bind_rows()</code> places their rows underneath one another:</p>
+<p>The five tables contain the same columns but different annual observations. <code>bind_rows(table1, table2, ...)</code> places their rows underneath one another. The table names are separated by commas, and their shared column names line up in the result:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  gpfg_2021,</span>
@@ -598,7 +598,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <section id="ask-an-overall-trend-question" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="ask-an-overall-trend-question"><span class="header-section-number">6.8</span> Ask an overall trend question</h2>
 <blockquote class="blockquote">
-<p>How did the total reported market value of the equity holdings change from 2021 through 2025?</p>
+<p>How did the total reported market value of NBIM’s equity holdings change from 2021 through 2025?</p>
 </blockquote>
 <p>The question needs <code>year</code> and <code>market_value_nok</code>. Group the observations by year and return one summary row for each annual snapshot:</p>
 <div class="cell">
@@ -630,9 +630,9 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <h2 data-number="6.9" class="anchored" data-anchor-id="combine-trend-and-comparison"><span class="header-section-number">6.9</span> Combine trend and comparison</h2>
 <p>We can also ask:</p>
 <blockquote class="blockquote">
-<p>How did reported market value change for the United States, China, and Japan from 2021 through 2025?</p>
+<p>How did the total reported market value of NBIM’s equity holdings in the United States, China, and Japan change from 2021 through 2025?</p>
 </blockquote>
-<p>Create a vector containing the three selected markets, then use <code>%in%</code> to keep rows whose country appears in that vector:</p>
+<p>Create a vector containing the three selected markets. The expression <code>country %in% selected_countries</code> asks whether each country belongs to that vector and returns <code>TRUE</code> or <code>FALSE</code>; <code>filter()</code> keeps the <code>TRUE</code> rows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>selected_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"China"</span>, <span class="st">"Japan"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -651,7 +651,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 </div>
 </div>
 </div>
-<p>One row now represents one selected investment market in one year. <code>%in%</code> asks whether each country belongs to <code>selected_countries</code>.</p>
+<p>One row now represents one selected investment market in one year.</p>
 <p>This table combines a comparison question—differences among markets—with a trend question—change across years. Chapter 8 will display the three series with separate colored lines.</p>
 </section>
 <section id="interpret-trends-carefully" class="level2" data-number="6.10">
@@ -682,6 +682,11 @@ The complete history is optional
 <section id="questions-now-available" class="level2" data-number="6.11">
 <h2 data-number="6.11" class="anchored" data-anchor-id="questions-now-available"><span class="header-section-number">6.11</span> Questions now available</h2>
 <table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 38%">
+<col style="width: 38%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Question</th>
@@ -691,27 +696,27 @@ The complete history is optional
 </thead>
 <tbody>
 <tr class="odd">
-<td>What was the 2025 median holding value?</td>
+<td>What was the median value of an NBIM company holding in 2025?</td>
 <td style="text-align: center;">Yes</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr class="even">
-<td>Which markets had the largest 2025 totals?</td>
+<td>Which investment markets accounted for the largest 2025 totals?</td>
 <td style="text-align: center;">Yes</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr class="odd">
-<td>Were value and ownership associated in 2025?</td>
+<td>Were ownership percentage and holding value associated in 2025?</td>
 <td style="text-align: center;">Yes</td>
 <td style="text-align: center;">No</td>
 </tr>
 <tr class="even">
-<td>Did total reported value rise or fall?</td>
+<td>Did the total value of NBIM’s reported equity holdings rise or fall?</td>
 <td style="text-align: center;">No</td>
 <td style="text-align: center;">Yes</td>
 </tr>
 <tr class="odd">
-<td>Did selected markets follow similar paths?</td>
+<td>Did the selected investment markets follow similar paths?</td>
 <td style="text-align: center;">No</td>
 <td style="text-align: center;">Yes</td>
 </tr>

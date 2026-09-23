@@ -42,6 +42,9 @@ gpfg |>
   arrange(region)
 ```
 
+`distinct(region)` keeps each region once. `arrange(region)` puts the result
+in alphabetical order.
+
 ```{r}
 gpfg |>
   count(region) |>
@@ -52,7 +55,11 @@ Record count describes rows; it does not measure their total value.
 
 ## 2. Description
 
-Question: What were the total and typical values of individual holdings?
+Question: Across the company holdings reported by NBIM at the end of 2025,
+what were the total and median market values?
+
+Function focus: `summarise(new_name = calculation)` reduces many rows to
+calculated summary values.
 
 ```{r}
 holding_summary <- gpfg |>
@@ -71,7 +78,11 @@ Compare mean and median. A few large holdings can pull the mean upward.
 
 ## 3. Ranking
 
-Question: Which ten individual holdings had the largest values?
+Question: Which ten companies in NBIM's 2025 data had the largest reported
+holding values, measured in NOK?
+
+Function focus: `select()` keeps columns, `arrange(desc(column))` sorts from
+largest to smallest, and `slice_head(n = 10)` keeps the first ten rows.
 
 ```{r}
 largest_holdings <- gpfg |>
@@ -84,7 +95,11 @@ largest_holdings
 
 ## 4. Comparison
 
-Question: Which investment markets had the largest total reported values?
+Question: Which investment markets accounted for the largest total market
+value of NBIM's reported equity holdings at the end of 2025?
+
+Function focus: `group_by(country)` defines the groups; the following
+`summarise()` returns one row per country. `n()` counts rows within each group.
 
 ```{r}
 country_summary <- gpfg |>
@@ -102,6 +117,9 @@ country_summary |>
 Before `summarise()`, one row is one holding. After it, one row is one
 investment market.
 
+`mutate(new_column = calculation)` adds a column while keeping the existing
+country rows:
+
 ```{r}
 country_summary <- country_summary |>
   mutate(
@@ -114,7 +132,8 @@ country_summary |>
 
 ## 5. Prepare a relationship question
 
-Question: Did market value and ownership percentage vary together?
+Question: Among companies in NBIM's 2025 data, were higher ownership
+percentages associated with larger reported holding values?
 
 ```{r}
 relationship_data <- gpfg |>

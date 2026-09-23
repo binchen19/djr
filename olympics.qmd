@@ -50,7 +50,8 @@ These are therefore different measures:
 ## Strategy 1: separate rows from people
 
 Begin by comparing the number of rows with the number of unique athlete
-identifiers:
+identifiers. `n()` counts rows, while `n_distinct(column)` counts the different
+values in a column:
 
 ```{r}
 medallists |>
@@ -60,9 +61,9 @@ medallists |>
   )
 ```
 
-The two totals answer different questions. `n()` counts records, while
-`n_distinct(code_athlete)` counts people. The identifier is safer than the
-displayed name because names can be repeated or formatted inconsistently.
+The two totals answer different questions. The athlete identifier is safer
+than the displayed name because names can be repeated or formatted
+inconsistently.
 
 To find athletes associated with the most medal results, keep the identifier
 and readable name together:

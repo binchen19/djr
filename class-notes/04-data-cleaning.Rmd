@@ -68,7 +68,9 @@ should respond to observed problems, not rewrite everything.
 The values in `report_date` look like `31/12/2025`. The source confirms that
 the order is day, month, year.
 
-Use `mutate()` to change the column and `dmy()` to interpret that order:
+Use `mutate(column = calculation)` to create or replace a column while keeping
+the other rows and columns. Here `dmy()` supplies the calculation that
+interprets the date order:
 
 ```{r}
 gpfg <- gpfg |>
@@ -207,8 +209,8 @@ Both results should be empty. The cleaned table should contain 7,201 rows and
 
 ## 6. Save without overwriting the source
 
-`write_csv()` saves the cleaned object as a CSV. Give it a new filename rather
-than overwriting the imported source:
+`write_csv(table, "path")` saves a table as a CSV. Give it a new filename
+rather than overwriting the imported source:
 
 ```{r}
 write_csv(gpfg, "data/gpfg_2025.csv")

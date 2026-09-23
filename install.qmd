@@ -219,7 +219,7 @@ toolbar buttons, you type small marks that describe the structure. For example:
 | Bold text | `**important finding**` |
 | A bullet point | `- first item` |
 | A link | `[R Project](https://www.r-project.org/)` |
-| Inline code | `` `read_csv()` `` |
+| Inline code | `` `2 + 2` `` |
 
 **R Markdown** combines Markdown writing with executable R code in one file.
 An R Markdown filename ends in `.Rmd`. It can contain three kinds of material:

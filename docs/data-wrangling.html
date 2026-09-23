@@ -553,7 +553,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <section id="convert-the-date-type" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="convert-the-date-type"><span class="header-section-number">4.6</span> Convert the date type</h2>
 <p>The values in <code>report_date</code> use day-month-year order, such as <code>31/12/2025</code>, but R imported the column as <code>&lt;chr&gt;</code> text. The data source tells us what the order means.</p>
-<p>Use <code>mutate()</code> to change the existing column. <code>dmy()</code> means day, month, year:</p>
+<p>Use <code>mutate()</code> to change the existing column. Its basic form is <code>mutate(column = calculation)</code>: the name on the left of <code>=</code> identifies the column to create or replace, and the expression on the right produces its values. <code>mutate()</code> keeps the other rows and columns. Here, <code>dmy()</code> means day, month, year:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">report_date =</span> <span class="fu">dmy</span>(report_date))</span>
@@ -650,7 +650,7 @@ Confirm the date order
 </section>
 <section id="check-duplicate-rows" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="check-duplicate-rows"><span class="header-section-number">4.8</span> Check duplicate rows</h2>
-<p>The file should contain one row per reported holding. Count combinations of company, country, and industry to find possible repetition:</p>
+<p>The file should contain one row per reported holding. <code>count(column1, column2)</code> returns one row for each observed combination and creates <code>n</code>, the number of matching source rows. Use it to find possible repetition across company, country, and industry:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(company, country, industry) <span class="sc">|&gt;</span></span>
@@ -663,7 +663,7 @@ Confirm the date order
 </div>
 </div>
 </div>
-<p><code>count()</code> creates <code>n</code>, the number of matching rows. Inspect the result in the original table:</p>
+<p>Use the result to identify which records need inspection in the original table:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">"3P Learning Ltd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -675,7 +675,7 @@ Confirm the date order
 </div>
 </div>
 </div>
-<p>The two complete rows are identical. After confirming that, use <code>distinct()</code> without column names to keep each complete row once:</p>
+<p>The two complete rows are identical. <code>distinct()</code> keeps unique rows. With no column names inside the parentheses, it compares every column and keeps each complete row once:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -713,7 +713,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 </div>
 </div>
 <p>The clean table has 7,201 rows and 11 columns. Its names are convenient, the reporting date is a date, the incomplete row is gone, and the confirmed duplicate has been removed.</p>
-<p>Keep <code>gpfg_messy.csv</code> unchanged as the imported source. Save the clean object under a new filename:</p>
+<p>Keep <code>gpfg_messy.csv</code> unchanged as the imported source. <code>write_csv()</code> uses the basic form <code>write_csv(table, "path")</code>: the first argument is the object to save, and the second is the new file path. Save the clean object under a new filename:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(gpfg, <span class="st">"data/gpfg_2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>

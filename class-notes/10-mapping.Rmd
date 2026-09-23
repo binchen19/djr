@@ -9,8 +9,8 @@ output:
 
 ## Today
 
-Question: Where was the reported market value of the fund's equity holdings
-concentrated in 2025?
+Question: Where was the market value of NBIM's reported equity holdings
+concentrated at the end of 2025?
 
 Use the Chapter 9 join workflow to connect one value per investment market to
 world boundary coordinates, then build the map one layer at a time.

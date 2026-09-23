@@ -489,7 +489,7 @@ $ code_team    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 </section>
 <section id="strategy-1-separate-rows-from-people" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="strategy-1-separate-rows-from-people"><span class="header-section-number">12.3</span> Strategy 1: separate rows from people</h2>
-<p>Begin by comparing the number of rows with the number of unique athlete identifiers:</p>
+<p>Begin by comparing the number of rows with the number of unique athlete identifiers. <code>n()</code> counts rows, while <code>n_distinct(column)</code> counts the different values in a column:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>medallists <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
@@ -504,7 +504,7 @@ $ code_team    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 </div>
 </div>
 </div>
-<p>The two totals answer different questions. <code>n()</code> counts records, while <code>n_distinct(code_athlete)</code> counts people. The identifier is safer than the displayed name because names can be repeated or formatted inconsistently.</p>
+<p>The two totals answer different questions. The athlete identifier is safer than the displayed name because names can be repeated or formatted inconsistently.</p>
 <p>To find athletes associated with the most medal results, keep the identifier and readable name together:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>athlete_medals <span class="ot">&lt;-</span> medallists <span class="sc">|&gt;</span></span>

@@ -117,6 +117,9 @@ patience are more important than previous coding experience.
 - **Run one code chunk at a time.** Look at the result before moving forward.
 - **Change one thing and run it again.** This is often the fastest way to
   understand a function.
+- **Follow the question-to-function pattern.** A new function is introduced
+  when a reporting task first needs it. Learn its simplest form, inspect what
+  it returns, and then reuse it in later chapters.
 - **Use the Takeaways tables.** They provide a quick reference after each
   chapter.
 

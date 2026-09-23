@@ -20,8 +20,8 @@ country values. A map is useful when location and geographic pattern matter.
 
 Our question is:
 
-> Where was the reported market value of the fund's equity holdings
-> concentrated in 2025?
+> Where was the market value of NBIM's reported equity holdings concentrated
+> at the end of 2025?
 
 The question needs `country` and `market_value_usd`. To draw country shapes,
 we also need longitude, latitude, and a polygon group from a boundary table.
@@ -71,7 +71,9 @@ values also gives us a table against which to check the finished map.
 ## Step 2: make place names match
 
 The holdings and boundary files do not always spell a place in the same way.
-Keep the original `country` column and create a separate matching name:
+Keep the original `country` column and create a separate matching name.
+`recode(column, old_value = new_value)` replaces only the values explicitly
+listed:
 
 ```{r}
 country_summary <- country_summary |>
@@ -85,8 +87,8 @@ country_summary <- country_summary |>
   )
 ```
 
-`recode()` replaces only the listed values. A separate `map_name` column makes
-the changes visible and preserves the publisher's original labels.
+A separate `map_name` column makes the changes visible and preserves the
+publisher's original labels.
 
 ## Step 3: check matches before joining
 

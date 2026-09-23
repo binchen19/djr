@@ -134,6 +134,9 @@ the line connects them.
 
 ### Step 7: add labels
 
+`labs()` adds communication text without changing the data or marks. Name the
+title, axes, and source explicitly:
+
 ```{r}
 trend_plot <- trend_plot +
   labs(
@@ -339,7 +342,7 @@ Add labels and a simple fixed color only after reading the basic result:
 ggplot(gpfg_latest, aes(x = market_value_usd)) +
   geom_histogram(fill = "#0072B2", color = "white") +
   labs(
-    title = "Most individual holdings were small relative to the largest",
+    title = "Most company holdings were small relative to the largest",
     x = "Market value in USD",
     y = "Number of holding records",
     caption = "Source: Norges Bank Investment Management"
@@ -374,9 +377,10 @@ ggplot(
   geom_point()
 ```
 
-One point represents one holding. A visible relationship does not show that
-one variable caused the other. Chapter 8 will address overlapping points,
-skewed values, and comparisons among regions.
+`geom_point()` draws one point for each row using its x and y values. Here one
+point represents one holding. A visible relationship does not show that one
+variable caused the other. Chapter 8 will address overlapping points, skewed
+values, and comparisons among regions.
 
 ## Choose a basic chart from the question
 

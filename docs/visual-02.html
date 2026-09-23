@@ -488,7 +488,7 @@ Continue in the same project
 <section id="step-1-state-the-question" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-state-the-question">Step 1: state the question</h3>
 <blockquote class="blockquote">
-<p>How did reported market value change for the United States, China, and Japan from 2021 through 2025?</p>
+<p>How did the total reported market value of NBIM’s equity holdings in the United States, China, and Japan change from 2021 through 2025?</p>
 </blockquote>
 </section>
 <section id="step-2-identify-and-prepare-the-columns" class="level3">
@@ -600,6 +600,7 @@ Continue in the same project
 </section>
 <section id="step-6-add-a-restrained-theme-and-palette" class="level3">
 <h3 class="anchored" data-anchor-id="step-6-add-a-restrained-theme-and-palette">Step 6: add a restrained theme and palette</h3>
+<p><code>scale_color_manual()</code> assigns exact colors to the values mapped to <code>color</code>. The names in <code>values</code> must match the country values in the data. <code>theme()</code> then changes one specific design setting while retaining <code>theme_minimal()</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>country_trend_plot <span class="ot">&lt;-</span> country_trend_plot <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
@@ -629,8 +630,9 @@ Continue in the same project
 <section id="question-and-analysis-table" class="level3">
 <h3 class="anchored" data-anchor-id="question-and-analysis-table">Question and analysis table</h3>
 <blockquote class="blockquote">
-<p>How did total values differ across three industries and three regions in 2025?</p>
+<p>How did the total market value of NBIM’s reported equity holdings differ across three industries and three regions in 2025?</p>
 </blockquote>
+<p>Inside <code>filter()</code>, conditions separated by a comma must both be true. The following code therefore keeps a row only when its region and industry are both in the selected vectors:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>region_industry <span class="ot">&lt;-</span> gpfg_latest <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
@@ -650,7 +652,6 @@ Continue in the same project
 </div>
 </div>
 </div>
-<p>The two conditions inside <code>filter()</code> are separated by a comma, so both must be true: a row must belong to one of the selected regions and one of the selected industries.</p>
 <p>The visual roles are industry on x, value on y, and region mapped to fill. Start with the default bars:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>region_industry <span class="sc">|&gt;</span></span>
@@ -732,7 +733,7 @@ Continue in the same project
 <h2 data-number="8.6" class="anchored" data-anchor-id="compare-composition-with-percentage-bars"><span class="header-section-number">8.6</span> Compare composition with percentage bars</h2>
 <p>A different question requires a different bar arrangement:</p>
 <blockquote class="blockquote">
-<p>Within each selected industry, what share of the three-region total came from each region?</p>
+<p>Within each selected industry, what share of NBIM’s reported total across the three selected regions came from each region?</p>
 </blockquote>
 <p>Starting from the same table and mappings, change the position to <code>"fill"</code>:</p>
 <div class="cell">
@@ -775,9 +776,9 @@ Continue in the same project
 <h2 data-number="8.7" class="anchored" data-anchor-id="compare-distributions-with-box-plots"><span class="header-section-number">8.7</span> Compare distributions with box plots</h2>
 <p>Chapter 7’s histogram described all 2025 holding values together. Now ask:</p>
 <blockquote class="blockquote">
-<p>How did holding-level value distributions differ across industries?</p>
+<p>Among companies in NBIM’s 2025 data, how did the distribution of reported holding values differ across industries?</p>
 </blockquote>
-<p>The source table already contains the two required columns:</p>
+<p>The source table already contains the two required columns. <code>geom_boxplot()</code> summarizes a numeric distribution for each group: the line inside a box is the median, the box contains the middle half of the values, and points beyond the whiskers identify values to inspect.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -835,13 +836,13 @@ Continue in the same project
 </div>
 </div>
 </div>
-<p>The line inside each box is the median. Points beyond the whiskers deserve inspection, but they are not automatically errors. Always disclose a log scale in the axis label.</p>
+<p>Points beyond the whiskers deserve inspection, but they are not automatically errors. <code>scale_x_log10()</code> changes the display scale rather than the underlying data. Always disclose a log scale in the axis label.</p>
 </section>
 <section id="add-a-third-variable-with-facets" class="level2" data-number="8.8">
 <h2 data-number="8.8" class="anchored" data-anchor-id="add-a-third-variable-with-facets"><span class="header-section-number">8.8</span> Add a third variable with facets</h2>
 <p>Return to the basic relationship question from Chapter 7:</p>
 <blockquote class="blockquote">
-<p>Did market value and ownership percentage vary together, and did the pattern differ across regions?</p>
+<p>Among companies in NBIM’s 2025 data, were higher ownership percentages associated with larger holding values, and did that pattern differ by region?</p>
 </blockquote>
 <p>First select three regions so the comparison remains readable:</p>
 <div class="cell">
@@ -868,7 +869,7 @@ Continue in the same project
 </div>
 </div>
 </div>
-<p>Now add one new layer, <code>facet_wrap()</code>, to create a panel for each region:</p>
+<p>Now add one new layer, <code>facet_wrap()</code>, to create a panel for each region. In <code>facet_wrap(~ region)</code>, the <code>~</code> can be read as “make panels by region”:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>relationship_plot <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>

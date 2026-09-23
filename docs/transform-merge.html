@@ -427,7 +427,7 @@ Part 5: Advanced Workflows
 </ul>
 <p>We want to answer:</p>
 <blockquote class="blockquote">
-<p>How did reported equity value change by region from 2021 through 2025?</p>
+<p>How did the total reported market value of NBIM’s equity holdings change by region from 2021 through 2025?</p>
 </blockquote>
 <p>Neither file can answer the question alone. The values must first be reshaped so that <code>year</code> is a variable, and then the region labels must be added from the second table.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Continue in the same project">
@@ -552,7 +552,7 @@ $ region  &lt;chr&gt; "Oceania", "Europe", "Middle East", "Asia", "Europe", "Lat
 <p><code>cols = -country</code> means “reshape every column except <code>country</code>.” The old column names become values of <code>year</code>.</p>
 <section id="correct-the-new-year-type" class="level3">
 <h3 class="anchored" data-anchor-id="correct-the-new-year-type">Correct the new year type</h3>
-<p>Column names are text, so <code>year</code> is now a character column even though its values look like numbers. Convert it after reshaping:</p>
+<p>Column names are text, so <code>year</code> is now a character column even though its values look like numbers. <code>parse_integer()</code> reads whole-number text such as <code>"2021"</code> as an integer. Use it after reshaping:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>country_year <span class="ot">&lt;-</span> country_year <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">parse_integer</span>(year))</span>
@@ -566,7 +566,7 @@ $ year             &lt;int&gt; 2021, 2022, 2023, 2024, 2025, 2021, 2022, 2023, 2
 $ market_value_nok &lt;dbl&gt; 169158412726, 198502533260, 225499465333, 23770473133…</code></pre>
 </div>
 </div>
-<p><code>parse_integer()</code> reads text such as <code>"2021"</code> as an integer. We use it here because the year values came from column names. This is a useful example of a cleaning step being prompted by a real change in the data.</p>
+<p>We use this conversion because the year values came from column names. This is a useful example of a cleaning step being prompted by a real change in the data.</p>
 <p>Check the new structure:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>country_year <span class="sc">|&gt;</span></span>
@@ -626,7 +626,7 @@ $ market_value_nok &lt;dbl&gt; 169158412726, 198502533260, 225499465333, 2377047
 </div>
 </div>
 <p><code>anti_join()</code> keeps keys from the left table that are absent from the right. An empty result means every country found a match. This is a useful check, not the final combined table.</p>
-<p>Now add <code>region</code>:</p>
+<p>Now add <code>region</code>. The basic form is <code>left_table |&gt; left_join(right_table, by = "key")</code>. It keeps every row from the left table and adds matching columns from the right table:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>country_year <span class="ot">&lt;-</span> country_year <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(country_lookup, <span class="at">by =</span> <span class="st">"country"</span>)</span>
@@ -641,7 +641,7 @@ $ market_value_nok &lt;dbl&gt; 169158412726, 198502533260, 225499465333, 2377047
 $ region           &lt;chr&gt; "Oceania", "Oceania", "Oceania", "Oceania", "Oceania"…</code></pre>
 </div>
 </div>
-<p><code>left_join()</code> keeps every row from <code>country_year</code>, the table on the left, and adds the matching <code>region</code> from <code>country_lookup</code>. The essential <code>by</code> argument states which column should match.</p>
+<p>Here the essential <code>by</code> argument states that <code>country</code> is the column that should match.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Always check the row meaning after a join">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -658,7 +658,7 @@ Always check the row meaning after a join
 </section>
 <section id="answer-the-question" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="answer-the-question"><span class="header-section-number">9.6</span> Answer the question</h2>
-<p>Now the combined table contains all three columns needed for the question: <code>year</code>, <code>region</code>, and <code>market_value_nok</code>.</p>
+<p>Now the combined table contains all three columns needed for the question: <code>year</code>, <code>region</code>, and <code>market_value_nok</code>. The earlier check found some unavailable country-year values, so <code>na.rm = TRUE</code> tells <code>sum()</code> to ignore those <code>NA</code> values when calculating each reported total:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>region_year <span class="ot">&lt;-</span> country_year <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, region) <span class="sc">|&gt;</span></span>
@@ -674,7 +674,7 @@ Always check the row meaning after a join
 </div>
 </div>
 </div>
-<p>The result has one row per region and year. It can now be used for a comparison table or a multi-line chart. Notice the workflow: the reporting question told us which variables were missing and therefore which reshape and join were necessary. Here <code>na.rm = TRUE</code> tells <code>sum()</code> to ignore unavailable country-year cells; it does not replace those cells with known zeros.</p>
+<p>The result has one row per region and year. It can now be used for a comparison table or a multi-line chart. Notice the workflow: the reporting question told us which variables were missing and therefore which reshape and join were necessary. Ignoring <code>NA</code> during the calculation does not replace those cells with known zeros.</p>
 </section>
 <section id="when-would-we-make-data-wider" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="when-would-we-make-data-wider"><span class="header-section-number">9.7</span> When would we make data wider?</h2>

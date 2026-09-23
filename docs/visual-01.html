@@ -481,7 +481,7 @@ Continue in the same project
 <section id="step-1-state-the-question" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-state-the-question">Step 1: state the question</h3>
 <blockquote class="blockquote">
-<p>How did the total reported market value of the equity holdings change from 2021 through 2025?</p>
+<p>How did the total reported market value of NBIM’s equity holdings change from 2021 through 2025?</p>
 </blockquote>
 </section>
 <section id="step-2-identify-the-columns" class="level3">
@@ -606,6 +606,7 @@ Continue in the same project
 </section>
 <section id="step-7-add-labels" class="level3">
 <h3 class="anchored" data-anchor-id="step-7-add-labels">Step 7: add labels</h3>
+<p><code>labs()</code> adds communication text without changing the data or marks. Name the title, axes, and source explicitly:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>trend_plot <span class="ot">&lt;-</span> trend_plot <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
@@ -697,7 +698,7 @@ A line does not explain the change
 <section id="question-and-columns" class="level3">
 <h3 class="anchored" data-anchor-id="question-and-columns">Question and columns</h3>
 <blockquote class="blockquote">
-<p>Which investment markets had the largest total reported values in 2025?</p>
+<p>Which investment markets accounted for the largest total market value of NBIM’s reported equity holdings at the end of 2025?</p>
 </blockquote>
 <table class="table">
 <thead>
@@ -880,7 +881,7 @@ A line does not explain the change
 <section id="question-and-visual-plan" class="level3">
 <h3 class="anchored" data-anchor-id="question-and-visual-plan">Question and visual plan</h3>
 <blockquote class="blockquote">
-<p>How were individual holding values distributed in 2025?</p>
+<p>How were the reported USD values of NBIM’s company holdings distributed in 2025?</p>
 </blockquote>
 <p>This question uses the numeric <code>market_value_usd</code> column. A histogram maps it to x, divides its values into ranges called bins, and counts the observations in each range. It does not require a y column from the source table.</p>
 <div class="cell">
@@ -900,7 +901,7 @@ A line does not explain the change
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gpfg_latest, <span class="fu">aes</span>(<span class="at">x =</span> market_value_usd)) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"#0072B2"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Most individual holdings were small relative to the largest"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Most company holdings were small relative to the largest"</span>,</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Market value in USD"</span>,</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of holding records"</span>,</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Source: Norges Bank Investment Management"</span></span>
@@ -921,7 +922,7 @@ A line does not explain the change
 <section id="question-and-visual-plan-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-and-visual-plan-1">Question and visual plan</h3>
 <blockquote class="blockquote">
-<p>Did market value and ownership percentage tend to vary together in 2025?</p>
+<p>Among companies in NBIM’s 2025 equity-holdings data, were higher ownership percentages associated with larger reported holding values?</p>
 </blockquote>
 <table class="table">
 <thead>
@@ -967,7 +968,7 @@ A line does not explain the change
 </div>
 </div>
 </div>
-<p>One point represents one holding. A visible relationship does not show that one variable caused the other. Chapter 8 will address overlapping points, skewed values, and comparisons among regions.</p>
+<p><code>geom_point()</code> draws one point for each row using its x and y values. Here one point represents one holding. A visible relationship does not show that one variable caused the other. Chapter 8 will address overlapping points, skewed values, and comparisons among regions.</p>
 </section>
 </section>
 <section id="choose-a-basic-chart-from-the-question" class="level2" data-number="7.7">

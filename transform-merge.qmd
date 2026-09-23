@@ -30,7 +30,8 @@ Suppose a colleague sends two files:
 
 We want to answer:
 
-> How did reported equity value change by region from 2021 through 2025?
+> How did the total reported market value of NBIM's equity holdings change by
+> region from 2021 through 2025?
 
 Neither file can answer the question alone. The values must first be reshaped
 so that `year` is a variable, and then the region labels must be added from the
@@ -114,7 +115,8 @@ column names become values of `year`.
 ### Correct the new year type
 
 Column names are text, so `year` is now a character column even though its
-values look like numbers. Convert it after reshaping:
+values look like numbers. `parse_integer()` reads whole-number text such as
+`"2021"` as an integer. Use it after reshaping:
 
 ```{r}
 country_year <- country_year |>
@@ -123,9 +125,9 @@ country_year <- country_year |>
 glimpse(country_year)
 ```
 
-`parse_integer()` reads text such as `"2021"` as an integer. We use it here
-because the year values came from column names. This is a useful example of a
-cleaning step being prompted by a real change in the data.
+We use this conversion because the year values came from column names. This is
+a useful example of a cleaning step being prompted by a real change in the
+data.
 
 Check the new structure:
 
@@ -174,7 +176,9 @@ country_year |>
 An empty result means every country found a match. This is a useful check, not
 the final combined table.
 
-Now add `region`:
+Now add `region`. The basic form is
+`left_table |> left_join(right_table, by = "key")`. It keeps every row from
+the left table and adds matching columns from the right table:
 
 ```{r}
 country_year <- country_year |>
@@ -183,9 +187,8 @@ country_year <- country_year |>
 glimpse(country_year)
 ```
 
-`left_join()` keeps every row from `country_year`, the table on the left, and
-adds the matching `region` from `country_lookup`. The essential `by` argument
-states which column should match.
+Here the essential `by` argument states that `country` is the column that
+should match.
 
 ::: {.callout-important title="Always check the row meaning after a join"}
 Before the join, one row represented one country-year. That should still be
@@ -196,7 +199,9 @@ inflate later totals.
 ## Answer the question
 
 Now the combined table contains all three columns needed for the question:
-`year`, `region`, and `market_value_nok`.
+`year`, `region`, and `market_value_nok`. The earlier check found some
+unavailable country-year values, so `na.rm = TRUE` tells `sum()` to ignore
+those `NA` values when calculating each reported total:
 
 ```{r}
 region_year <- country_year |>
@@ -210,8 +215,8 @@ region_year
 The result has one row per region and year. It can now be used for a comparison
 table or a multi-line chart. Notice the workflow: the reporting question told
 us which variables were missing and therefore which reshape and join were
-necessary. Here `na.rm = TRUE` tells `sum()` to ignore unavailable
-country-year cells; it does not replace those cells with known zeros.
+necessary. Ignoring `NA` during the calculation does not replace those cells
+with known zeros.
 
 ## When would we make data wider?
 

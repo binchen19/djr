@@ -444,6 +444,7 @@ Continue in the same project
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/gpfg_2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One row represents one equity holding reported by NBIM at the end of 2025. A row is not a purchase, sale, investment return, or payment received by a company.</p>
+<p>Here, a <strong>holding</strong> means the fund’s reported ownership stake in a company at the reporting date. Saying that a company appears in the data does not mean that it received cash from Norway in 2025.</p>
 </section>
 <section id="a-question-to-answer-workflow" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="a-question-to-answer-workflow"><span class="header-section-number">5.3</span> A question-to-answer workflow</h2>
@@ -481,7 +482,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 </div>
 </div>
 <p>The output should show 7,201 rows, 11 columns, convenient names, numeric value columns, and a real date column.</p>
-<p>Inspect the available region labels:</p>
+<p><code>distinct(column)</code> keeps each observed value in a column once. <code>arrange(column)</code> then orders rows from smallest to largest or, for text, alphabetically. Use both to inspect the available region labels:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(region) <span class="sc">|&gt;</span></span>
@@ -494,8 +495,8 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 </div>
 </div>
 </div>
-<p><code>distinct()</code> keeps each observed value once. <code>arrange()</code> places the values in alphabetical order so they are easier to inspect.</p>
-<p>Count the holding records in each region:</p>
+<p>The result is a short alphabetical list rather than thousands of repeated region labels.</p>
+<p><code>count(region)</code> returns one row per region and creates a count column named <code>n</code>. <code>arrange(desc(n))</code> sorts that column in descending order, with the largest count first:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(region) <span class="sc">|&gt;</span></span>
@@ -509,7 +510,6 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 </div>
 </div>
 <p>The result describes the number of rows. It does not yet tell us which region has the largest total market value. Count and amount answer different questions.</p>
-<p><code>count()</code> creates a new column called <code>n</code>. In <code>arrange(desc(n))</code>, <code>desc()</code> asks R to place the largest counts first.</p>
 </section>
 <section id="types-of-questions-in-data-journalism" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="types-of-questions-in-data-journalism"><span class="header-section-number">5.5</span> Types of questions in data journalism</h2>
@@ -530,27 +530,27 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <tr class="odd">
 <td>Description</td>
 <td>How much is there, or what is typical?</td>
-<td>What was the total or median holding value?</td>
+<td>Across NBIM’s 2025 company holdings, what were the total and median market values?</td>
 </tr>
 <tr class="even">
 <td>Ranking</td>
 <td>Which observations are largest or smallest?</td>
-<td>Which individual holdings had the largest values?</td>
+<td>Which companies had the largest reported holding values in 2025?</td>
 </tr>
 <tr class="odd">
 <td>Comparison</td>
 <td>How do categories differ?</td>
-<td>Which investment markets had the largest totals?</td>
+<td>Which investment markets accounted for the largest 2025 totals?</td>
 </tr>
 <tr class="even">
 <td>Relationship</td>
 <td>Do two measures vary together?</td>
-<td>Are larger holdings associated with higher ownership percentages?</td>
+<td>Were higher ownership percentages associated with larger holding values?</td>
 </tr>
 <tr class="odd">
 <td>Trend</td>
 <td>How did a measure change over time?</td>
-<td>Did reported value rise or fall?</td>
+<td>How did NBIM’s reported equity-holdings total change from 2021 to 2025?</td>
 </tr>
 </tbody>
 </table>
@@ -559,9 +559,9 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <section id="ask-a-descriptive-question" class="level2" data-number="5.6">
 <h2 data-number="5.6" class="anchored" data-anchor-id="ask-a-descriptive-question"><span class="header-section-number">5.6</span> Ask a descriptive question</h2>
 <blockquote class="blockquote">
-<p>What were the total and typical values of individual holdings in 2025?</p>
+<p>Across the company holdings reported by NBIM at the end of 2025, what were the total and median market values?</p>
 </blockquote>
-<p><code>summarise()</code> reduces a table to calculated summary values:</p>
+<p><code>summarise()</code> reduces many rows to calculated summary values. Its basic form is <code>summarise(new_name = calculation)</code>: the name on the left labels the result column, and the calculation on the right produces its value.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>holding_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
@@ -586,9 +586,9 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <section id="ask-a-ranking-question" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="ask-a-ranking-question"><span class="header-section-number">5.7</span> Ask a ranking question</h2>
 <blockquote class="blockquote">
-<p>Which ten individual holdings had the largest reported market values in 2025?</p>
+<p>Which ten companies in NBIM’s 2025 equity-holdings data had the largest reported holding values, measured in NOK?</p>
 </blockquote>
-<p>The question needs the company, market, industry, and NOK value. <code>select()</code> keeps those columns. <code>arrange()</code> orders the rows, and <code>desc()</code> requests descending order:</p>
+<p>The question needs the company, market, industry, and NOK value. <code>select(column1, column2)</code> keeps the named columns. <code>arrange(column)</code> sorts from smallest to largest, while <code>arrange(desc(column))</code> sorts from largest to smallest. After sorting, <code>slice_head(n = 10)</code> keeps the first ten rows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>largest_holdings <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(company, country, industry, market_value_nok) <span class="sc">|&gt;</span></span>
@@ -609,9 +609,9 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <section id="ask-a-comparison-question" class="level2" data-number="5.8">
 <h2 data-number="5.8" class="anchored" data-anchor-id="ask-a-comparison-question"><span class="header-section-number">5.8</span> Ask a comparison question</h2>
 <blockquote class="blockquote">
-<p>Which investment markets accounted for the largest total reported market values in 2025?</p>
+<p>Which investment markets accounted for the largest total market value of NBIM’s reported equity holdings at the end of 2025?</p>
 </blockquote>
-<p>This question needs one total per country. <code>group_by(country)</code> forms the country groups, and <code>summarise()</code> returns one result row for each group:</p>
+<p>This question needs one total per country. <code>group_by(country)</code> tells dplyr to treat each country as a separate group; it does not calculate a result by itself. The following <code>summarise()</code> returns one row for each group. Inside it, <code>n()</code> counts rows and <code>sum()</code> adds their values:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
@@ -636,10 +636,10 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <li>before <code>summarise()</code>, one row represents one holding;</li>
 <li>after <code>summarise()</code>, one row represents one investment market.</li>
 </ul>
-<p>Inside <code>summarise()</code>, <code>n()</code> counts holding records and <code>sum()</code> adds their values. These measures need not produce the same ranking.</p>
+<p>Record count and total value need not produce the same ranking.</p>
 <section id="calculate-a-share" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-a-share">Calculate a share</h3>
-<p><code>mutate()</code> can add each market’s percentage share of the full reported value:</p>
+<p><code>mutate()</code> adds or changes columns while keeping the existing rows. Its basic form is <code>mutate(new_column = calculation)</code>. Use it to add each market’s percentage share of the full reported value:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> country_summary <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
@@ -656,13 +656,13 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 </div>
 </div>
 </div>
-<p>The denominator is the sum of the country totals. The resulting percentage answers: “What share of the 2025 reported total is associated with this investment market?”</p>
+<p>The denominator is the sum of the country totals. The resulting percentage answers: “What share of the total market value in NBIM’s 2025 equity-holdings data is associated with this investment market?”</p>
 </section>
 </section>
 <section id="prepare-a-relationship-question" class="level2" data-number="5.9">
 <h2 data-number="5.9" class="anchored" data-anchor-id="prepare-a-relationship-question"><span class="header-section-number">5.9</span> Prepare a relationship question</h2>
 <blockquote class="blockquote">
-<p>Did market value and ownership percentage tend to vary together in 2025?</p>
+<p>Among companies in NBIM’s 2025 equity-holdings data, were higher ownership percentages associated with larger reported holding values?</p>
 </blockquote>
 <p>The required columns already exist in the single-year file:</p>
 <div class="cell">
@@ -699,8 +699,8 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <ol type="1">
 <li>Use <code>distinct()</code> to inspect the industry labels.</li>
 <li>Use <code>count()</code> to find the most frequently occurring industries.</li>
-<li>Calculate the total, mean, and median USD value of individual holdings.</li>
-<li>Rank the ten largest individual holdings by USD value.</li>
+<li>Calculate the total, mean, and median USD value of the company holdings.</li>
+<li>Rank the ten largest company holdings by USD value.</li>
 <li>Compare total market value and record count across industries.</li>
 <li>Write one supported finding and one explanatory question requiring more evidence.</li>
 <li>Write one trend question that this single-year file cannot answer.</li>

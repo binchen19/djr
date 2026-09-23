@@ -37,7 +37,8 @@ Color represents a column: inside `aes()` and a legend is created.
 
 ## 1. Compare several trends
 
-Question: How did value change for the United States, China, and Japan?
+Question: How did the total reported market value of NBIM's equity holdings in
+the United States, China, and Japan change from 2021 to 2025?
 
 ```{r}
 selected_countries <- c("United States", "China", "Japan")
@@ -84,8 +85,8 @@ ggplot(
 
 ## 2. Grouped versus stacked bars
 
-Question: Within the largest industries, how do reported values compare across
-regions?
+Question: Within the largest industries, how did the total market value of
+NBIM's reported equity holdings compare across regions in 2025?
 
 ```{r}
 selected_industries <- c("Technology", "Financials", "Industrials")
