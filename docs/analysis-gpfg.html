@@ -364,6 +364,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ask-a-ranking-question" id="toc-ask-a-ranking-question" class="nav-link" data-scroll-target="#ask-a-ranking-question"><span class="header-section-number">5.7</span> Ask a ranking question</a></li>
   <li><a href="#ask-a-comparison-question" id="toc-ask-a-comparison-question" class="nav-link" data-scroll-target="#ask-a-comparison-question"><span class="header-section-number">5.8</span> Ask a comparison question</a>
   <ul class="collapse">
+  <li><a href="#watch-grouping-and-summarising" id="toc-watch-grouping-and-summarising" class="nav-link" data-scroll-target="#watch-grouping-and-summarising">Watch grouping and summarising</a></li>
   <li><a href="#calculate-a-share" id="toc-calculate-a-share" class="nav-link" data-scroll-target="#calculate-a-share">Calculate a share</a></li>
   </ul></li>
   <li><a href="#prepare-a-relationship-question" id="toc-prepare-a-relationship-question" class="nav-link" data-scroll-target="#prepare-a-relationship-question"><span class="header-section-number">5.9</span> Prepare a relationship question</a></li>
@@ -611,7 +612,24 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <blockquote class="blockquote">
 <p>Which investment markets accounted for the largest total market value of NBIM’s reported equity holdings at the end of 2025?</p>
 </blockquote>
-<p>This question needs one total per country. <code>group_by(country)</code> tells dplyr to treat each country as a separate group; it does not calculate a result by itself. The following <code>summarise()</code> returns one row for each group. Inside it, <code>n()</code> counts rows and <code>sum()</code> adds their values:</p>
+<p>This question needs one total per country. <code>group_by(country)</code> tells dplyr to treat each country as a separate group; it does not calculate a result by itself. The following <code>summarise()</code> returns one row for each group. Inside it, <code>n()</code> counts rows and <code>sum()</code> adds their values.</p>
+<section id="watch-grouping-and-summarising" class="level3">
+<h3 class="anchored" data-anchor-id="watch-grouping-and-summarising">Watch grouping and summarising</h3>
+<p>Play the animation below and pause as each group becomes one summary row. Its <code>cat1</code> column contains categories, like our <code>country</code> column; its <code>x</code> column contains numbers, like our <code>market_value_nok</code> column.</p>
+<video controls="" playsinline="" preload="metadata" style="display: block; width: 100%; height: auto;" aria-label="Animation of group_by followed by summarise" aria-describedby="group-summary-description">
+  <source src="images/grp-summarize-01.mp4" type="video/mp4">
+  <p><a href="images/grp-summarize-01.mp4">Open the grouping and summarising animation.</a></p>
+</video>
+<p>Animation by <a href="https://www.andrewheiss.com/blog/2024/04/04/group_by-summarize-ungroup-animations/#summarizing-groups-with-group_by-summarize">Andrew Heiss</a>, used unchanged under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The animation uses <code>summarize()</code>, an alternative spelling of <code>summarise()</code>; both do exactly the same thing.</p>
+<div id="group-summary-description">
+<p>Watch three steps:</p>
+<ol type="1">
+<li><code>group_by(cat1)</code> identifies which rows belong together. The animation separates them visually, but R keeps one table and does not reorder its rows just because it is grouped.</li>
+<li><code>summarise()</code> calculates the mean, total, and row count separately for each group.</li>
+<li>The result contains one row per category, with its calculated summaries.</li>
+</ol>
+</div>
+<p>Without grouping, our earlier summary described the whole dataset in one row. Now we want a separate count and total for each country. Before running the code, predict what one row of the result will represent:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>country_summary <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span></span>
@@ -637,6 +655,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <li>after <code>summarise()</code>, one row represents one investment market.</li>
 </ul>
 <p>Record count and total value need not produce the same ranking.</p>
+</section>
 <section id="calculate-a-share" class="level3">
 <h3 class="anchored" data-anchor-id="calculate-a-share">Calculate a share</h3>
 <p><code>mutate()</code> adds or changes columns while keeping the existing rows. Its basic form is <code>mutate(new_column = calculation)</code>. Use it to add each market’s percentage share of the full reported value:</p>

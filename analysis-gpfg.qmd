@@ -170,7 +170,40 @@ important rows against the source before publication.
 This question needs one total per country. `group_by(country)` tells dplyr to
 treat each country as a separate group; it does not calculate a result by
 itself. The following `summarise()` returns one row for each group. Inside it,
-`n()` counts rows and `sum()` adds their values:
+`n()` counts rows and `sum()` adds their values.
+
+### Watch grouping and summarising
+
+Play the animation below and pause as each group becomes one summary row.
+Its `cat1` column contains categories, like our `country` column; its `x`
+column contains numbers, like our `market_value_nok` column.
+
+```{=html}
+<video controls playsinline preload="metadata" style="display: block; width: 100%; height: auto;" aria-label="Animation of group_by followed by summarise" aria-describedby="group-summary-description">
+  <source src="images/grp-summarize-01.mp4" type="video/mp4">
+  <p><a href="images/grp-summarize-01.mp4">Open the grouping and summarising animation.</a></p>
+</video>
+```
+
+Animation by [Andrew Heiss](https://www.andrewheiss.com/blog/2024/04/04/group_by-summarize-ungroup-animations/#summarizing-groups-with-group_by-summarize),
+used unchanged under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+The animation uses `summarize()`, an alternative spelling of `summarise()`;
+both do exactly the same thing.
+
+::: {#group-summary-description}
+Watch three steps:
+
+1. `group_by(cat1)` identifies which rows belong together. The animation
+   separates them visually, but R keeps one table and does not reorder its
+   rows just because it is grouped.
+2. `summarise()` calculates the mean, total, and row count separately for
+   each group.
+3. The result contains one row per category, with its calculated summaries.
+:::
+
+Without grouping, our earlier summary described the whole dataset in one row.
+Now we want a separate count and total for each country. Before running the
+code, predict what one row of the result will represent:
 
 ```{r}
 country_summary <- gpfg |>
