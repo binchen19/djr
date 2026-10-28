@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/Data Journalism with R/Midterm Question Bank</text>
+    </category>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q01 - What is R?</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What is R?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<p>A programming language and environment for data analysis</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A folder used to store CSV files</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A spreadsheet program</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>An R package</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-r-rstudio-projects-packages</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q02 - R and RStudio</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What is the relationship between R and RStudio?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>RStudio is the programming language, while R runs the code</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>R is the programming language, while RStudio provides an interface for working with R</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>R and RStudio are two names for the same software</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Installing RStudio automatically replaces R</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-r-rstudio-projects-packages</text></tag></tags>
+  </question>
+
+  <question type="truefalse">
+    <name><text>DJR Q03 - R Projects and relative paths</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Working inside an R Project makes it easier to use relative paths and share an analysis with other people.</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <answer fraction="100" format="moodle_auto_format"><text>true</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="moodle_auto_format"><text>false</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-r-rstudio-projects-packages</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q04 - Installing and loading packages</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which statement correctly describes installing and loading a package?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Run install.packages() every time you open RStudio</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>Install the package once, then load it with library() in each new R session</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Run library() before installing the package</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A package remains loaded after RStudio is closed</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-r-rstudio-projects-packages</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q05 - What is the tidyverse?</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What is the tidyverse?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A replacement for the R programming language</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A single dataset for practicing R</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>A collection of R packages that follow related design principles</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A type of R Project</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-r-rstudio-projects-packages</text></tag></tags>
+  </question>
+
+  <question type="truefalse">
+    <name><text>DJR Q06 - Packages across R sessions</text></name>
+    <questiontext format="html"><text><![CDATA[<p>After running library(tidyverse) once, tidyverse will remain loaded even after you close and reopen RStudio.</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <answer fraction="0" format="moodle_auto_format"><text>true</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="moodle_auto_format"><text>false</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-r-rstudio-projects-packages</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q07 - Object missing while knitting</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A student creates complaints by importing a CSV file in the Console. The student then knits an R Markdown document and receives the following error. What is the most likely explanation?</p><pre><code>object 'complaints' not found</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>R Markdown cannot use data frames</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The CSV file contains missing values</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Objects must have capitalized names in R Markdown</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>The document does not contain the code needed to create or import complaints</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-r-rstudio-projects-packages</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q08 - Assignment operator</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What does the assignment operator do in this code?</p><pre><code>city &lt;- "Hong Kong"</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>It compares two values</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>It assigns "Hong Kong" to the object city</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>It prints "Hong Kong"</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>It creates a column called "Hong Kong"</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-basic-syntax-and-data-types</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q09 - Accessing a column</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What does the dollar sign do in the following code?</p><pre><code>complaints$district</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Deletes the district column</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Imports a file called district</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>Accesses the district column in complaints</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Counts the districts</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-basic-syntax-and-data-types</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q10 - Reading column types</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Suppose glimpse() displays the following column types. Which interpretation is correct?</p><pre><code>&lt;chr&gt; agency
+&lt;dbl&gt; amount
+&lt;lgl&gt; reviewed</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<p>agency is text, amount is numeric, and reviewed contains TRUE/FALSE values</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>All three columns contain text</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>agency is a date, amount is text, and reviewed is numeric</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>All three columns contain numbers</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-basic-syntax-and-data-types</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q11 - Pipe syntax</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code is equivalent to the following?</p><pre><code>filter(complaints, status == "Open")</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(status == "Open")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>filter |&gt;
+  complaints(status == "Open")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints &lt;-
+  status == "Open"</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  status == "Open"</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-basic-syntax-and-data-types</text></tag></tags>
+  </question>
+
+  <question type="truefalse">
+    <name><text>DJR Q12 - Saving filtered results</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Running the following code permanently changes the original complaints object.</p><pre><code>complaints |&gt;
+  filter(status == "Open")</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <answer fraction="0" format="moodle_auto_format"><text>true</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="moodle_auto_format"><text>false</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-basic-syntax-and-data-types</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q13 - Creating a vector</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What is created by this code?</p><pre><code>scores &lt;- c(72, 81, 94)</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A data frame with three columns</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>A numeric vector containing three values</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A character vector</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A CSV file</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-basic-syntax-and-data-types</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q14 - Creating a tibble from vectors</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Two vectors have been created. Which code correctly combines them into a tibble?</p><pre><code>city &lt;- c("Central", "Wan Chai", "Eastern")
+cases &lt;- c(25, 18, 31)</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>tibble(city, cases())</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>tibble &lt;- city + cases</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>case_data &lt;- tibble(
+  district = city,
+  number_of_cases = cases
+)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>case_data &lt;- c(city = cases)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-basic-syntax-and-data-types</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q15 - Saving a transformed object</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Consider this code. Which statement is correct?</p><pre><code>open_cases &lt;- complaints |&gt;
+  filter(status == "Open")</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>complaints is replaced by the filtered rows</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>open_cases contains the filtered rows, while complaints remains unchanged</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Both objects contain only open cases</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The code changes the status column to "Open"</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-basic-syntax-and-data-types</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q16 - Why use CSV files?</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Why are CSV files commonly used for sharing tabular data?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A CSV file can contain interactive charts</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>A CSV file is a relatively simple plain-text format that many programs can read</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A CSV file automatically fixes missing values</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A CSV file can contain multiple worksheets</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-csv-import-and-paths</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q17 - Importing a CSV with tidyverse</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which tidyverse function imports a CSV file?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<p>read_csv()</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>read.csv()</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>open_csv()</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>import_data()</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-csv-import-and-paths</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q18 - Choosing a relative path</text></name>
+    <questiontext format="html"><text><![CDATA[<p>An R Project has analysis.Rmd in its main folder and council_budget.csv inside a data subfolder. Which path should be used in analysis.Rmd?</p><pre><code>news-project/
+├── news-project.Rproj
+├── analysis.Rmd
+└── data/
+    └── council_budget.csv</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>"council_budget.csv"</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>"news-project/council_budget.csv"</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>"data/council_budget.csv"</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>"/Users/student/news-project/data/council_budget.csv"</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-csv-import-and-paths</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q19 - Diagnosing a file path error</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A student runs this code and R reports that the file does not exist. What should the student check first?</p><pre><code>traffic &lt;- read_csv("data/traffic.csv")</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Whether traffic contains missing values</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>Whether the file name, folder name, and relative path are correct</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Whether the columns are numeric</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Whether the file contains duplicate rows</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-csv-import-and-paths</text></tag></tags>
+  </question>
+
+  <question type="truefalse">
+    <name><text>DJR Q20 - Stability of live URLs</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Importing data directly from a live URL guarantees that the same data will be available every time the analysis is run.</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <answer fraction="0" format="moodle_auto_format"><text>true</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="moodle_auto_format"><text>false</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-csv-import-and-paths</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q21 - Why keep a local data copy?</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Why might a journalist save a stable local copy of an online dataset?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Local data never contain errors</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>R cannot import data from a URL</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>The analysis can still run if the website changes or becomes unavailable</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Local data do not need to be inspected</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-csv-import-and-paths</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q22 - Problem with an absolute path</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Why is this path unsuitable for a project that will be shared with classmates?</p><pre><code>read_csv("/Users/maria/Desktop/news-project/data/budget.csv")</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>read_csv() cannot read files from the Desktop</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>The path depends on Maria’s computer and folder structure</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>CSV files cannot be stored inside folders</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The path does not include the package name</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-csv-import-and-paths</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q23 - Opening the correct R Project</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A classmate receives the project shown below. The code read_csv("data/cases.csv") works on your computer but not on the classmate’s computer. The classmate opened analysis.Rmd directly without opening the project. What should the classmate try first?</p><pre><code>news-project/
+├── news-project.Rproj
+├── analysis.Rmd
+└── data/
+    └── cases.csv</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<p>Open news-project.Rproj, then run the analysis from the project</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Replace the relative path with your personal absolute path</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Move cases.csv to the Desktop</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Convert the CSV file to a Word document</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-csv-import-and-paths</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q24 - Purpose of glimpse</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What is the main purpose of glimpse(complaints)?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>To remove incorrect rows</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>To show column names, column types, and example values</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>To calculate an average</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>To arrange the dataset</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="truefalse">
+    <name><text>DJR Q25 - Inspecting the first rows</text></name>
+    <questiontext format="html"><text><![CDATA[<p>The following code returns the first five rows according to the dataset’s current order.</p><pre><code>complaints |&gt;
+  slice_head(n = 5)</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>1.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <answer fraction="100" format="moodle_auto_format"><text>true</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="moodle_auto_format"><text>false</text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q26 - Renaming a column</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code renames complaint_category to category?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  rename(complaint_category = category)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  rename(category = complaint_category)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  rename("complaint_category")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  category(complaint_category)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q27 - Parsing a month-day-year date</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What date is produced by this code?</p><pre><code>mdy("04/03/2025")</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>4 March 2025</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>3 April 2025</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>5 April 2023</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The code always returns an error</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q28 - Converting an ISO date</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What is the result of this code?</p><pre><code>as.Date("2025-04-03")</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<p>A Date value representing 3 April 2025</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A Date value representing 4 March 2025</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A numeric value representing 2025</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>A missing value</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q29 - Counting missing values by column</text></name>
+    <questiontext format="html"><text><![CDATA[<p>What does this code return?</p><pre><code>colSums(is.na(complaints))</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<p>The number of missing values in each column</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Only the rows containing missing values</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The total number of rows</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The number of duplicate rows</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q30 - Inspecting rows with a missing value</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code displays the records where agency is missing?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(is.na(agency))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(agency == NA)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  arrange(NA)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  distinct(NA)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q31 - Numeric-looking values stored as text</text></name>
+    <questiontext format="html"><text><![CDATA[<p>glimpse() shows the following. Why should the journalist investigate this column?</p><pre><code>amount &lt;chr&gt; "1200", "850", "975"</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Character columns cannot contain digits</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Every character column must be deleted</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>The values look numeric, but R has stored the column as text</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>glimpse() has automatically changed the numbers to text</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q32 - Handling mixed date formats</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A date column contains the values shown below. What is the safest first step?</p><pre><code>04/03/2025
+2025-04-05
+April 8, 2025</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Apply mdy() immediately and assume every value follows the same format</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Delete the entire date column</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Convert the column to numbers</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>Inspect the formats and source documentation before deciding how to convert them</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q33 - Repeated identifiers versus duplicate rows</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Consider this small dataset:</p><table border="1" cellpadding="5"><thead><tr><th>complaint_id</th><th>district</th><th>status</th></tr></thead><tbody><tr><td>101</td><td>North</td><td>Open</td></tr><tr><td>101</td><td>North</td><td>Closed</td></tr><tr><td>102</td><td>South</td><td>Open</td></tr></tbody></table><p>What is the best interpretation of this code?</p><pre><code>records |&gt;
+  distinct(complaint_id)</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>It proves that the first two rows are exact duplicates</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>It returns two unique IDs, but the repeated ID does not necessarily mean the records are exact duplicates</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>It returns three rows because all statuses are different</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>It automatically decides which complaint record is correct</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-inspection-and-cleaning</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q34 - Finding unique values</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A campaign-donation dataset contains repeated donor cities. Which code returns each city once?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>donations |&gt;
+  filter(city)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>donations |&gt;
+  arrange(city)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>donations |&gt;
+  distinct(city)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>donations |&gt;
+  summarise(city)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q35 - Filtering one category</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code selects only restaurant inspections with a result of "Fail"?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>inspections |&gt;
+  filter(result == "Fail")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>inspections |&gt;
+  arrange(result == "Fail")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>inspections |&gt;
+  distinct(result == "Fail")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>inspections |&gt;
+  summarise(result == "Fail")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>easy</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q36 - Filtering with AND conditions</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code selects open housing complaints from Kowloon?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(district == "Kowloon", status == "Open")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(district == "Kowloon" | status == "Open")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  arrange(district, status)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  distinct(district, status)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q37 - Filtering with OR conditions</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code selects complaints from either Central or Western?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(district == "Central", district == "Western")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(district == "Central" | district == "Western")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(district == "Central" &amp; district == "Western")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  arrange(district == "Central")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q38 - Arranging values from largest to smallest</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code arranges the largest contract values first?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>contracts |&gt;
+  filter(value)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>contracts |&gt;
+  arrange(value)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>contracts |&gt;
+  arrange(desc(value))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>contracts |&gt;
+  distinct(value)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q39 - Calculating an overall total</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A donations dataset has one row per donation. Which code calculates the total donated amount?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>donations |&gt;
+  summarise(total = sum(amount, na.rm = TRUE))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>donations |&gt;
+  arrange(amount)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>donations |&gt;
+  distinct(amount)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>donations |&gt;
+  filter(amount)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q40 - Calculating a grouped average</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code calculates the average waiting time for each hospital?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>patients |&gt;
+  group_by(hospital) |&gt;
+  summarise(average_wait = mean(wait_days, na.rm = TRUE))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>patients |&gt;
+  filter(hospital) |&gt;
+  summarise(average_wait = wait_days)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>patients |&gt;
+  arrange(hospital, wait_days)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>patients |&gt;
+  distinct(hospital, wait_days)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q41 - Counting records by group</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code counts the number of complaints in each category?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  summarise(category = n())</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  group_by(category) |&gt;
+  summarise(number_of_complaints = n())</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  filter(category) |&gt;
+  arrange(category)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>complaints |&gt;
+  distinct(number_of_complaints)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q42 - Interpreting a grouped result</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Consider this analysis. What does each row in the result represent?</p><pre><code>patients |&gt;
+  group_by(hospital) |&gt;
+  summarise(average_wait = mean(wait_days, na.rm = TRUE))</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>One patient</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>One day</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>One hospital and its average waiting time</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>One missing value</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q43 - Missing values in a mean</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A column called wait_days contains missing values. The code mean(wait_days) returns NA. Which code is the most appropriate correction?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>mean(wait_days, missing = FALSE)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>mean(wait_days, na.rm = TRUE)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>mean(is.na(wait_days))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>arrange(wait_days)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q44 - Finding the largest individual records</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Which code returns the five contracts with the largest individual values?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>contracts |&gt;
+  arrange(desc(value)) |&gt;
+  slice_head(n = 5)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>contracts |&gt;
+  arrange(value) |&gt;
+  slice_head(n = 5)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>contracts |&gt;
+  filter(value == 5)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>contracts |&gt;
+  group_by(value) |&gt;
+  summarise(n = 5)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>medium</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q45 - Predicting rows after grouping</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A dataset contains the following region values. How many rows will the result contain?</p><pre><code>East
+East
+West
+West
+West
+
+data |&gt;
+  group_by(region) |&gt;
+  summarise(number_of_records = n())</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>1</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>2</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>3</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>5</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q46 - Ranking grouped totals</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A public-spending dataset contains many payments made by each department. Which code ranks departments by their total spending?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>spending |&gt;
+  group_by(department) |&gt;
+  summarise(total = sum(amount, na.rm = TRUE)) |&gt;
+  arrange(desc(total))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>spending |&gt;
+  arrange(desc(amount)) |&gt;
+  group_by(department) |&gt;
+  summarise(total = sum(amount, na.rm = TRUE))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>spending |&gt;
+  group_by(department) |&gt;
+  summarise(total = mean(amount, na.rm = TRUE)) |&gt;
+  arrange(desc(total))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>spending |&gt;
+  distinct(department, amount) |&gt;
+  arrange(desc(amount))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q47 - Grouping after summarising</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A student writes the following code. Why does it not calculate the number of complaints in each district?</p><pre><code>complaints |&gt;
+  summarise(total = n()) |&gt;
+  group_by(district)</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>n() cannot count rows</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>group_by() can only be used with numeric columns</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>The data were summarised before being grouped, so the district information is no longer available</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>summarise() must always come before group_by()</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q48 - Complete grouped analysis pipeline</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A transport dataset contains district, route, and delay_minutes. A journalist wants to find the routes in Kowloon with the highest average delay. Which workflow is correct?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="100" format="html"><text><![CDATA[<pre><code>delays |&gt;
+  filter(district == "Kowloon") |&gt;
+  group_by(route) |&gt;
+  summarise(average_delay = mean(delay_minutes, na.rm = TRUE)) |&gt;
+  arrange(desc(average_delay))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>delays |&gt;
+  group_by(district) |&gt;
+  filter(route == "Kowloon") |&gt;
+  arrange(delay_minutes)</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>delays |&gt;
+  summarise(average_delay = mean(delay_minutes)) |&gt;
+  filter(district == "Kowloon")</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<pre><code>delays |&gt;
+  distinct(route) |&gt;
+  arrange(desc(delay_minutes))</code></pre>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q49 - Unit of analysis and repeat visits</text></name>
+    <questiontext format="html"><text><![CDATA[<p>A hospital dataset has one row per patient visit. The same patient may visit more than once. After grouping by hospital and calculating number_of_visits = n(), what does a high value of number_of_visits mean?</p>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The hospital treated the largest number of unique patients</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>The hospital has the largest number of recorded visits, which may include repeat visits</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The hospital provided the best care</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>The hospital had the longest waiting time</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+
+  <question type="multichoice">
+    <name><text>DJR Q50 - Predicting a grouped total with missing data</text></name>
+    <questiontext format="html"><text><![CDATA[<p>Consider this dataset:</p><table border="1" cellpadding="5"><thead><tr><th>candidate</th><th>amount</th></tr></thead><tbody><tr><td>A</td><td>100</td></tr><tr><td>A</td><td>NA</td></tr><tr><td>B</td><td>50</td></tr><tr><td>B</td><td>150</td></tr></tbody></table><p>What will this code return?</p><pre><code>donations |&gt;
+  group_by(candidate) |&gt;
+  summarise(total = sum(amount, na.rm = TRUE)) |&gt;
+  arrange(desc(total))</code></pre>]]></text></questiontext>
+    <generalfeedback format="html"><text><![CDATA[]]></text></generalfeedback>
+    <defaultgrade>2.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>ABCD</answernumbering>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Candidate A: 100, followed by Candidate B: 50</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Candidate A: NA, followed by Candidate B: 200</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="100" format="html"><text><![CDATA[<p>Candidate B: 200, followed by Candidate A: 100</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <answer fraction="0" format="html"><text><![CDATA[<p>Candidate B: 150, followed by Candidate A: 100</p>]]></text><feedback format="html"><text><![CDATA[]]></text></feedback></answer>
+    <tags><tag><text>difficult</text></tag><tag><text>section-data-analysis</text></tag></tags>
+  </question>
+</quiz>
+

@@ -363,7 +363,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#convert-the-date-type" id="toc-convert-the-date-type" class="nav-link" data-scroll-target="#convert-the-date-type"><span class="header-section-number">4.6</span> Convert the date type</a></li>
   <li><a href="#check-missing-values" id="toc-check-missing-values" class="nav-link" data-scroll-target="#check-missing-values"><span class="header-section-number">4.7</span> Check missing values</a>
   <ul class="collapse">
-  <li><a href="#how-filter-works" id="toc-how-filter-works" class="nav-link" data-scroll-target="#how-filter-works">How <code>filter()</code> works</a></li>
+  <li><a href="#start-with-is.na" id="toc-start-with-is.na" class="nav-link" data-scroll-target="#start-with-is.na">Start with <code>is.na()</code></a></li>
+  <li><a href="#inspect-an-affected-row-with-filter" id="toc-inspect-an-affected-row-with-filter" class="nav-link" data-scroll-target="#inspect-an-affected-row-with-filter">Inspect an affected row with <code>filter()</code></a></li>
   </ul></li>
   <li><a href="#check-duplicate-rows" id="toc-check-duplicate-rows" class="nav-link" data-scroll-target="#check-duplicate-rows"><span class="header-section-number">4.8</span> Check duplicate rows</a></li>
   <li><a href="#verify-and-save-the-clean-table" id="toc-verify-and-save-the-clean-table" class="nav-link" data-scroll-target="#verify-and-save-the-clean-table"><span class="header-section-number">4.9</span> Verify and save the clean table</a></li>
@@ -402,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>turn observations from the import chapter into a short cleaning plan;</li>
 <li>rename awkward columns with <code>rename()</code>;</li>
 <li>change a date column to the correct type with <code>mutate()</code> and <code>dmy()</code>;</li>
-<li>inspect and handle missing values;</li>
+<li>create a compact missing-value report and inspect affected rows;</li>
 <li>identify and remove a confirmed duplicate row; and</li>
 <li>save a clean CSV without overwriting the imported source.</li>
 </ul>
@@ -593,11 +594,38 @@ Confirm the date order
 <section id="check-missing-values" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="check-missing-values"><span class="header-section-number">4.7</span> Check missing values</h2>
 <p>R represents unavailable information with <code>NA</code>. A missing value differs from zero: zero is a known amount, while <code>NA</code> means the value is unavailable.</p>
-<section id="how-filter-works" class="level3">
-<h3 class="anchored" data-anchor-id="how-filter-works">How <code>filter()</code> works</h3>
+<section id="start-with-is.na" class="level3">
+<h3 class="anchored" data-anchor-id="start-with-is.na">Start with <code>is.na()</code></h3>
+<p><code>is.na()</code> asks whether each value is missing. It returns <code>TRUE</code> for a missing value and <code>FALSE</code> for an available value. Begin with three familiar values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="cn">NA</span>, <span class="dv">250</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE</code></pre>
+</div>
+</div>
+<p>Running <code>is.na(gpfg)</code> is also valid, but it would return a grid of <code>TRUE</code> and <code>FALSE</code> with the same 7,203 rows and 11 columns as the table. That output is too large to be a useful report.</p>
+<p>For a compact count, place <code>is.na(gpfg)</code> inside <code>colSums()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(gpfg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 year           report_date                region 
+                    0                     0                     1 
+              country               company              industry 
+                    1                     1                     1 
+     market_value_nok      market_value_usd            voting_pct 
+                    1                     1                     1 
+        ownership_pct incorporation_country 
+                    1                     1 </code></pre>
+</div>
+</div>
+<p>Read the code from the inside out: <code>is.na()</code> checks every cell, and <code>colSums()</code> counts the <code>TRUE</code> values down each column. The result shows which columns contain missing values and how many they contain.</p>
+<p><code>colSums()</code> is a small base R helper. We use it here because the tidyverse version of the same all-column report requires more advanced syntax. The result is only a report; it does not remove or replace anything.</p>
+</section>
+<section id="inspect-an-affected-row-with-filter" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-an-affected-row-with-filter">Inspect an affected row with <code>filter()</code></h3>
 <p><code>filter()</code> is a dplyr function that keeps rows where a condition is <code>TRUE</code>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>table <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>table <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>It selects rows; it does not change column names or values. If the result is only printed, the original object remains unchanged. If the pipeline is assigned back to an object with <code>&lt;-</code>, that object is updated to contain only the kept rows.</p>
 <p>The conditions used in this chapter are:</p>
 <table class="table">
@@ -627,10 +655,10 @@ Confirm the date order
 </tbody>
 </table>
 <p><code>!</code> means “not,” <code>&gt;</code> means “greater than,” and <code>==</code> tests whether two values are equal. A single <code>=</code> has a different role: it names arguments and options inside functions.</p>
-<p>First use <code>is.na()</code> inside <code>filter()</code> to display rows with a missing company name. Because this result is not assigned, it does not change <code>gpfg</code>:</p>
+<p>The report shows that <code>company</code> contains one missing value. Use <code>filter(is.na(company))</code> to display the complete row containing that value. Because this result is not assigned, it does not change <code>gpfg</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -641,8 +669,8 @@ Confirm the date order
 </div>
 <p>The result contains one deliberately incomplete row. It has a year and date but no company, country, industry, or market value, so it cannot represent the holding described by the data dictionary. After inspecting the whole row, remove it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(company))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This time the result is assigned back to <code>gpfg</code>, so the working object now keeps only rows whose company is not missing.</p>
 <p>Never remove every row containing <code>NA</code> automatically. In another dataset, a missing value may be expected or may require more reporting. Here the decision is justified because the entire supposed holding is incomplete.</p>
@@ -652,9 +680,9 @@ Confirm the date order
 <h2 data-number="4.8" class="anchored" data-anchor-id="check-duplicate-rows"><span class="header-section-number">4.8</span> Check duplicate rows</h2>
 <p>The file should contain one row per reported holding. <code>count(column1, column2)</code> returns one row for each observed combination and creates <code>n</code>, the number of matching source rows. Use it to find possible repetition across company, country, and industry:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(company, country, industry) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(company, country, industry) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -665,8 +693,8 @@ Confirm the date order
 </div>
 <p>Use the result to identify which records need inspection in the original table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">"3P Learning Ltd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(company <span class="sc">==</span> <span class="st">"3P Learning Ltd"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -677,8 +705,8 @@ Confirm the date order
 </div>
 <p>The two complete rows are identical. <code>distinct()</code> keeps unique rows. With no column names inside the parentheses, it compares every column and keeps each complete row once:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="ot">&lt;-</span> gpfg <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>A repeated company name is not always a duplicate. The decision depends on the meaning and values of the complete row.</p>
 </section>
@@ -686,7 +714,7 @@ Confirm the date order
 <h2 data-number="4.9" class="anchored" data-anchor-id="verify-and-save-the-clean-table"><span class="header-section-number">4.9</span> Verify and save the clean table</h2>
 <p>Finish by checking the structure, dimensions, and a few rows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gpfg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 7,201
 Columns: 11
@@ -702,8 +730,8 @@ $ voting_pct            &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.
 $ ownership_pct         &lt;dbl&gt; 3.00, 1.39, 1.27, 2.22, 1.68, 1.28, 1.17, 3.23, …
 $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Australi…</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gpfg <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
@@ -715,7 +743,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <p>The clean table has 7,201 rows and 11 columns. Its names are convenient, the reporting date is a date, the incomplete row is gone, and the confirmed duplicate has been removed.</p>
 <p>Keep <code>gpfg_messy.csv</code> unchanged as the imported source. <code>write_csv()</code> uses the basic form <code>write_csv(table, "path")</code>: the first argument is the object to save, and the second is the new file path. Save the clean object under a new filename:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(gpfg, <span class="st">"data/gpfg_2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(gpfg, <span class="st">"data/gpfg_2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Chapter 5 will analyse this clean annual file, and Chapter 6 will combine it with four earlier annual files. If you begin the book later, an identical ready-made <a href="https://raw.githubusercontent.com/binchen19/djr/main/data/gpfg_2025.csv"><code>gpfg_2025.csv</code></a> is available from the repository.</p>
 </section>
@@ -726,6 +754,7 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <li>Which observation justified each cleaning step?</li>
 <li>What did <code>rename()</code> change, and what did it leave unchanged?</li>
 <li>Why was <code>dmy()</code> the correct date function?</li>
+<li>Why is <code>colSums(is.na(gpfg))</code> more useful than printing <code>is.na(gpfg)</code>?</li>
 <li>What evidence justified removing the incomplete row?</li>
 <li>What evidence justified removing the duplicate row?</li>
 <li>Why was the original CSV kept under a different name?</li>
@@ -763,22 +792,26 @@ $ incorporation_country &lt;chr&gt; "Australia", "Australia", "Australia", "Aust
 <td>Identifies missing values</td>
 </tr>
 <tr class="odd">
+<td><code>colSums(is.na(data))</code></td>
+<td>Counts missing values in every column</td>
+</tr>
+<tr class="even">
 <td><code>filter()</code></td>
 <td>Keeps rows where a condition is true; assignment saves the subset</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>!</code></td>
 <td>Means “not” inside a logical condition</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>count()</code></td>
 <td>Counts repeated combinations</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>distinct()</code></td>
 <td>Keeps each complete row once</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>write_csv()</code></td>
 <td>Saves a tibble as a new CSV file</td>
 </tr>

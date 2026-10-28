@@ -525,6 +525,18 @@ $ region  &lt;chr&gt; "Oceania", "Europe", "Middle East", "Asia", "Europe", "Lat
 </section>
 <section id="convert-wide-data-to-long-data" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="convert-wide-data-to-long-data"><span class="header-section-number">9.4</span> Convert wide data to long data</h2>
+<p>Watch how the animation moves column names and values into a long table, then reverses the process with <code>pivot_wider()</code>. The <code>id</code> column identifies each observation. In our example, <code>country</code> plays that role, the year column names become <code>year</code>, and the numbers become <code>market_value_nok</code>.</p>
+<div id="fig-pivot-animation" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Animation showing pivot_longer moving several columns into name and value columns while repeating the identifier, and pivot_wider reversing the transformation.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pivot-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/tidyr-pivoting.gif" class="img-fluid figure-img" style="width:100.0%" alt="Animation showing pivot_longer moving several columns into name and value columns while repeating the identifier, and pivot_wider reversing the transformation.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pivot-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.1: Moving between wide and long data with pivot_longer() and pivot_wider(). Animation: Garrick Aden-Buie and contributors, tidyexplain (CC0).
+</figcaption>
+</figure>
+</div>
+<p><a href="https://github.com/gadenbuie/tidyexplain#pivot-wider-and-longer">Animation source: tidyexplain</a>.</p>
 <p><code>pivot_longer()</code> needs three pieces of information:</p>
 <ul>
 <li><code>cols</code>: the columns to move into rows;</li>
@@ -627,6 +639,19 @@ $ market_value_nok &lt;dbl&gt; 169158412726, 198502533260, 225499465333, 2377047
 </div>
 <p><code>anti_join()</code> keeps keys from the left table that are absent from the right. An empty result means every country found a match. This is a useful check, not the final combined table.</p>
 <p>Now add <code>region</code>. The basic form is <code>left_table |&gt; left_join(right_table, by = "key")</code>. It keeps every row from the left table and adds matching columns from the right table:</p>
+<p>In the animation, <code>id</code> is the matching key. Watch the row with <code>id = 3</code>: it stays in the result even though the right table has no match, so its new value is <code>NA</code>. The right-only row with <code>id = 4</code> is not added. In our example, <code>country</code> is the key, <code>country_year</code> is the left table, and <code>country_lookup</code> supplies the new <code>region</code> column.</p>
+<div id="fig-left-join-animation" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Animation matching two tables by id. Left-table ids 1, 2, and 3 remain; id 3 receives NA for the unmatched right-hand value, and right-only id 4 is excluded.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-left-join-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/left-join.gif" class="img-fluid figure-img" style="width:100.0%" alt="Animation matching two tables by id. Left-table ids 1, 2, and 3 remain; id 3 receives NA for the unmatched right-hand value, and right-only id 4 is excluded.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-left-join-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.2: A left join keeps all rows from the left table and adds matching values from the right. Animation: Garrick Aden-Buie, tidyexplain (CC0).
+</figcaption>
+</figure>
+</div>
+<p><a href="https://github.com/gadenbuie/tidyexplain#left-join">Animation source: tidyexplain</a>.</p>
+<p>Now apply the same operation to our country tables:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>country_year <span class="ot">&lt;-</span> country_year <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(country_lookup, <span class="at">by =</span> <span class="st">"country"</span>)</span>
@@ -679,6 +704,7 @@ Always check the row meaning after a join
 <section id="when-would-we-make-data-wider" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="when-would-we-make-data-wider"><span class="header-section-number">9.7</span> When would we make data wider?</h2>
 <p>Long data are usually easier to analyse in R. Wide data can still be helpful for a compact reporting table—for example, one row per country with 2024 and 2025 values side by side.</p>
+<p>Revisit <a href="#fig-pivot-animation" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> and follow the <code>pivot_wider()</code> direction. This time, values in the <code>year</code> column become column names, while each country’s <code>market_value_nok</code> values fill the cells.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>country_change <span class="ot">&lt;-</span> country_year <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2024</span>, <span class="dv">2025</span>)) <span class="sc">|&gt;</span></span>

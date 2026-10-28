@@ -89,6 +89,15 @@ column.
 
 ## Convert wide data to long data
 
+Watch how the animation moves column names and values into a long table, then
+reverses the process with `pivot_wider()`. The `id` column identifies each
+observation. In our example, `country` plays that role, the year column names
+become `year`, and the numbers become `market_value_nok`.
+
+![Moving between wide and long data with pivot_longer() and pivot_wider(). Animation: Garrick Aden-Buie and contributors, tidyexplain (CC0).](images/tidyr-pivoting.gif){#fig-pivot-animation fig-alt="Animation showing pivot_longer moving several columns into name and value columns while repeating the identifier, and pivot_wider reversing the transformation." width=100%}
+
+[Animation source: tidyexplain](https://github.com/gadenbuie/tidyexplain#pivot-wider-and-longer).
+
 `pivot_longer()` needs three pieces of information:
 
 - `cols`: the columns to move into rows;
@@ -180,6 +189,18 @@ Now add `region`. The basic form is
 `left_table |> left_join(right_table, by = "key")`. It keeps every row from
 the left table and adds matching columns from the right table:
 
+In the animation, `id` is the matching key. Watch the row with `id = 3`: it
+stays in the result even though the right table has no match, so its new value
+is `NA`. The right-only row with `id = 4` is not added. In our example,
+`country` is the key, `country_year` is the left table, and `country_lookup`
+supplies the new `region` column.
+
+![A left join keeps all rows from the left table and adds matching values from the right. Animation: Garrick Aden-Buie, tidyexplain (CC0).](images/left-join.gif){#fig-left-join-animation fig-alt="Animation matching two tables by id. Left-table ids 1, 2, and 3 remain; id 3 receives NA for the unmatched right-hand value, and right-only id 4 is excluded." width=100%}
+
+[Animation source: tidyexplain](https://github.com/gadenbuie/tidyexplain#left-join).
+
+Now apply the same operation to our country tables:
+
 ```{r}
 country_year <- country_year |>
   left_join(country_lookup, by = "country")
@@ -223,6 +244,10 @@ with known zeros.
 Long data are usually easier to analyse in R. Wide data can still be helpful
 for a compact reporting table—for example, one row per country with 2024 and
 2025 values side by side.
+
+Revisit @fig-pivot-animation and follow the `pivot_wider()` direction. This
+time, values in the `year` column become column names, while each country's
+`market_value_nok` values fill the cells.
 
 ```{r}
 country_change <- country_year |>

@@ -99,7 +99,24 @@ R represents missing information with `NA`. Missing is different from zero:
 - `0` is a known value;
 - `NA` means a value is not available.
 
-### How `filter()` works
+First see what `is.na()` returns on three values:
+
+```{r}
+is.na(c(100, NA, 250))
+```
+
+`is.na(gpfg)` is valid, but it produces a grid as large as the data. Use
+`colSums()` to count the `TRUE` values in each column instead:
+
+```{r}
+colSums(is.na(gpfg))
+```
+
+This report identifies the columns containing missing values; it does not
+change the table. `colSums()` is a small base R helper that avoids a more
+advanced tidyverse all-column expression.
+
+### Inspect a missing row with `filter()`
 
 `filter()` keeps rows where a condition is `TRUE`:
 
@@ -121,9 +138,9 @@ kept rows.
 
 `!` means “not,” `>` means “greater than,” and `==` checks equality.
 
-`is.na()` asks whether a value is missing. Use it inside `filter()` to display
-rows with a missing company. Because the result is not assigned, `gpfg` does
-not change:
+The report shows one missing company. Use `is.na()` inside `filter()` to
+display its complete row. Because the result is not assigned, `gpfg` does not
+change:
 
 
 ```{r}
@@ -234,7 +251,9 @@ CSV source
   → read_csv()
   → glimpse() and slice_head()
   → cleaning plan
-  → rename(), mutate(), filter(), distinct()
+  → rename() and mutate()
+  → is.na() and colSums() report
+  → filter() and distinct()
   → verification
   → write_csv() to a new file
 ```
@@ -246,10 +265,11 @@ Restart R and knit both Week 3 notes from the beginning. Then explain:
 1. what one source row should represent;
 2. the observation that justified each cleaning step;
 3. the difference between renaming a column and changing its type;
-4. why the missing row could be removed in this example;
-5. why the repeated rows were confirmed before `distinct()`; and
-6. the difference between printing a filtered result and assigning it; and
-7. why the raw file was not overwritten.
+4. why `colSums(is.na(gpfg))` is more useful than printing `is.na(gpfg)`;
+5. why the missing row could be removed in this example;
+6. why the repeated rows were confirmed before `distinct()`;
+7. the difference between printing a filtered result and assigning it; and
+8. why the raw file was not overwritten.
 
 ## Key code
 
@@ -259,6 +279,7 @@ Restart R and knit both Week 3 notes from the beginning. Then explain:
 | `mutate()` | Creates or changes a column |
 | `dmy()` | Reads day-month-year text as a date |
 | `is.na()` | Identifies a missing value |
+| `colSums(is.na(data))` | Counts missing values in every column |
 | `filter()` | Keeps rows where a condition is true; assignment saves the subset |
 | `count()` | Counts repeated combinations |
 | `distinct()` | Keeps each complete row once after verification |

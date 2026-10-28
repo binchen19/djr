@@ -10,7 +10,7 @@ By the end of this chapter, you should be able to:
 - turn observations from the import chapter into a short cleaning plan;
 - rename awkward columns with `rename()`;
 - change a date column to the correct type with `mutate()` and `dmy()`;
-- inspect and handle missing values;
+- create a compact missing-value report and inspect affected rows;
 - identify and remove a confirmed duplicate row; and
 - save a clean CSV without overwriting the imported source.
 
@@ -148,7 +148,34 @@ documentation. Use `dmy()` for day-month-year, `mdy()` for month-day-year, or
 R represents unavailable information with `NA`. A missing value differs from
 zero: zero is a known amount, while `NA` means the value is unavailable.
 
-### How `filter()` works
+### Start with `is.na()`
+
+`is.na()` asks whether each value is missing. It returns `TRUE` for a missing
+value and `FALSE` for an available value. Begin with three familiar values:
+
+```{r}
+is.na(c(100, NA, 250))
+```
+
+Running `is.na(gpfg)` is also valid, but it would return a grid of `TRUE` and
+`FALSE` with the same 7,203 rows and 11 columns as the table. That output is
+too large to be a useful report.
+
+For a compact count, place `is.na(gpfg)` inside `colSums()`:
+
+```{r}
+colSums(is.na(gpfg))
+```
+
+Read the code from the inside out: `is.na()` checks every cell, and
+`colSums()` counts the `TRUE` values down each column. The result shows which
+columns contain missing values and how many they contain.
+
+`colSums()` is a small base R helper. We use it here because the tidyverse
+version of the same all-column report requires more advanced syntax. The
+result is only a report; it does not remove or replace anything.
+
+### Inspect an affected row with `filter()`
 
 `filter()` is a dplyr function that keeps rows where a condition is `TRUE`:
 
@@ -175,8 +202,9 @@ The conditions used in this chapter are:
 are equal. A single `=` has a different role: it names arguments and options
 inside functions.
 
-First use `is.na()` inside `filter()` to display rows with a missing company
-name. Because this result is not assigned, it does not change `gpfg`:
+The report shows that `company` contains one missing value. Use
+`filter(is.na(company))` to display the complete row containing that value.
+Because this result is not assigned, it does not change `gpfg`:
 
 ```{r}
 gpfg |>
@@ -270,10 +298,11 @@ Restart R and knit `04-data-cleaning.Rmd` from the beginning. Then answer:
 1. Which observation justified each cleaning step?
 2. What did `rename()` change, and what did it leave unchanged?
 3. Why was `dmy()` the correct date function?
-4. What evidence justified removing the incomplete row?
-5. What evidence justified removing the duplicate row?
-6. Why was the original CSV kept under a different name?
-7. What is the difference between printing a `filter()` result and assigning
+4. Why is `colSums(is.na(gpfg))` more useful than printing `is.na(gpfg)`?
+5. What evidence justified removing the incomplete row?
+6. What evidence justified removing the duplicate row?
+7. Why was the original CSV kept under a different name?
+8. What is the difference between printing a `filter()` result and assigning
    that result back to `gpfg`?
 
 ## Takeaways
@@ -284,6 +313,7 @@ Restart R and knit `04-data-cleaning.Rmd` from the beginning. Then answer:
 | `mutate()` | Creates or changes columns |
 | `dmy()` | Converts day-month-year text to a date |
 | `is.na()` | Identifies missing values |
+| `colSums(is.na(data))` | Counts missing values in every column |
 | `filter()` | Keeps rows where a condition is true; assignment saves the subset |
 | `!` | Means “not” inside a logical condition |
 | `count()` | Counts repeated combinations |
